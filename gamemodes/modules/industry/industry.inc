@@ -15,11 +15,11 @@ stock IndustryRefresh(id)
 	if(IsValidDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][2]))
     	DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][2]);
 
-    format(str, sizeof(str), "%s\n{ffffff}Available commands:/cargobuy, /cargosell\n{ffffff}Available stock: %d", IndustryInfo[0][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
+    format(str, sizeof(str), "[%s]\n{ffffff}Available commands:/cargobuy, /cargosell\n{ffffff}Available stock: %d", IndustryInfo[0][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
     
-	format(str1, sizeof(str1), "%s\n{ffffff}Available commands:/cargobuy, /cargosell\n{ffffff}Available stock: %d", IndustryInfo[1][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
+	format(str1, sizeof(str1), "[%s]\n{ffffff}Available commands:/cargobuy, /cargosell\n{ffffff}Available stock: %d", IndustryInfo[1][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
 
-	format(str2, sizeof(str2), "%s\n{ffffff}Available commands:/cargobuy, /woodsell\n{ffffff}Available stock: %d", IndustryInfo[1][Name], ServerInfo[id][E_SERVER_WOODS]);
+	format(str2, sizeof(str2), "[%s]\n{ffffff}Available commands:/cargobuy, /woodsell\n{ffffff}Available stock: %d", IndustryInfo[1][Name], ServerInfo[id][E_SERVER_WOODS]);
 
 	ServerInfo[id][E_SERVER_3DTEXT][0] = CreateDynamic3DTextLabel(str, COLOR_POINT, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz], 5.0);
 	ServerInfo[id][E_SERVER_3DTEXT][1] = CreateDynamic3DTextLabel(str1, COLOR_POINT, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz], 5.0);  

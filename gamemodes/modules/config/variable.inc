@@ -1151,9 +1151,9 @@ new const JobLocName[][62] =
 new const IndustryInfo[][E_INDUSTRY_DATA] = 
 {
 	/* =====[SECONDARY]===== */
-	{"[Oceandocks Ships]", 2824.3801,-2387.5449,12.0771}, // Oceandocks Ships
-	{"[Oceandocks Ships]", 2824.1074,-2436.5945,12.0891}, // Oceandocks Ships
-	{"[Leafy Hollow Acress]", -1448.3512,-1522.6899,101.7578} //Leafy Hollow Acress
+	{"Oceandocks Ships", 2824.3801,-2387.5449,12.0771}, // Oceandocks Ships
+	{"Oceandocks Ships", 2824.1074,-2436.5945,12.0891}, // Oceandocks Ships
+	{"Leafy Hollow Acress", -1448.3512,-1522.6899,101.7578} //Leafy Hollow Acress
 };
 
 new const PenalInfo[][E_PENALCODES_DATA] =
