@@ -25,6 +25,7 @@
     Drugs Dealer Improvement.
     Rewrote Spraycan / Spraytags script.
     Rewrote business & relations script.
+    Rewrote GYM script.
 [-]
     Remove Turfwars / Turfconflict script
 */
