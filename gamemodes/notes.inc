@@ -27,5 +27,6 @@
     Rewrote business & relations script.
     Rewrote GYM script.
 [-]
-    Remove Turfwars / Turfconflict script
+    Remove Turfwars / Turfconflict script.
+    Remove /buygun from gundealer.
 */
