@@ -24,7 +24,7 @@
     Truckers Jobs Improvement.
     Drugs Dealer Improvement.
     Rewrote Spraycan / Spraytags script.
-
+    Rewrote business & relations script.
 [-]
     Remove Turfwars / Turfconflict script
 */
