@@ -1,3 +1,15 @@
+InsertDocksWorkers()
+{
+    for(new i; i < sizeof(Dockworker_Store); i++)
+    {
+        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /storecargo", COLOR_POINT, Dockworker_Store[i][0],Dockworker_Store[i][1], Dockworker_Store[i][2], 5.0);
+    }
+    for(new i; i < sizeof(Dockworker_Collect); i++)
+    {
+        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /takecargo", COLOR_POINT, Dockworker_Collect[i][0],Dockworker_Collect[i][1], Dockworker_Collect[i][2], 5.0);
+    }
+    return 1;
+}
 function:DockWorkers(playerid, type)
 {
     new text[256], vehicleid = GetPlayerVehicleID(playerid);
@@ -86,12 +98,9 @@ CMD:takecargo(playerid, params[])
     if(!IsPlayerInRangeOfPoint(playerid, 3.0, Dockworker_Collect[PlayerDockworkerCollect[playerid]][0], Dockworker_Collect[PlayerDockworkerCollect[playerid]][1], Dockworker_Collect[PlayerDockworkerCollect[playerid]][2]))
         return SendErrorMessage(playerid, "You aren't near the dockworker collect checkpoint.");
 
-    if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_DOCKSWORKER)
-        return SendErrorMessage(playerid, "You aren't docksworker.");
-
     if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {
-        if(PlayerInfo[playerid][E_CHARACTER_INJOBS] == true && VehicleInfo[vehicleid][E_VEHICLE_CRATES] == 0)
+        if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] == true && VehicleInfo[vehicleid][E_VEHICLE_CRATES] == 0)
         {
             new Float:x, Float:y, Float:z;
             GetPlayerPos(playerid, x, y, z);
@@ -115,13 +124,10 @@ CMD:storecargo(playerid, params[])
 
     if(!IsPlayerInRangeOfPoint(playerid, 3.0, Dockworker_Store[PlayerDockworkerStore[playerid]][0],Dockworker_Store[PlayerDockworkerStore[playerid]][1], Dockworker_Store[PlayerDockworkerStore[playerid]][2]))
         return SendErrorMessage(playerid, "You aren't near the dockworker collect checkpoint.");
-
-    if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_DOCKSWORKER)
-        return SendErrorMessage(playerid, "You aren't docksworker.");
         
     if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {
-        if(PlayerInfo[playerid][E_CHARACTER_INJOBS] == true && VehicleInfo[vehicleid][E_VEHICLE_CRATES] == 1)
+        if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] == true && VehicleInfo[vehicleid][E_VEHICLE_CRATES] == 1)
         {
             new Float:x, Float:y, Float:z;
             GetPlayerPos(playerid, x, y, z);

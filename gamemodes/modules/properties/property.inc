@@ -38,7 +38,7 @@ function:Query_LoadProperties()
 		cache_get_value_name_bool(i, "PropertyLocked", PropertyInfo[i+1][E_PROPERTY_LOCKED]);
 		
 		cache_get_value_name_int(i, "PropertyCashbox", PropertyInfo[i+1][E_PROPERTY_CASH]);
-		PropertyInfo[i+1][E_PROPERTY_PICKUP] = CreateDynamicObject(19198, PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 3.0); 
+		PropertyInfo[i+1][E_PROPERTY_PICKUP] = CreateDynamicObject(1273, PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 5.0); 
 
 		countProperties++; 
 	}
@@ -78,7 +78,7 @@ function:OnEntranceChange(playerid, response, property)
 
 		format(PropertyInfo[property][E_PROPERTY_ADDRESS], 128, "%dth %s", property, ReturnLocationStreet(playerid));
 
-		PropertyInfo[property][E_PROPERTY_PICKUP] = CreateDynamicObject(19198, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 3.0); 
+		PropertyInfo[property][E_PROPERTY_PICKUP] = CreateDynamicObject(1273, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 3.0); 
 		
 		SaveProperty(property);
 		SendServerMessage(playerid, "You set Property %i's entrance.", property);
@@ -121,11 +121,11 @@ function:OnPlayerEnterProperty(playerid, id)
 
 stock IsPlayerInProperty(playerid)
 {
-	if(PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP])
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP])
 	{
 		for(new i = 1; i < MAX_PROPERTY; i++)
 		{
-			if(i == PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] && GetPlayerVirtualWorld(playerid) == PropertyInfo[i][E_PROPERTY_INTERIORWORLD])
+			if(i == PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] && GetPlayerVirtualWorld(playerid) == PropertyInfo[i][E_PROPERTY_INTERIORWORLD])
 				return i;
 		}
 	}
@@ -208,7 +208,7 @@ CMD:editproperty(playerid, params[])
 	{
 		SendUsageMessage(playerid, "/editproperty [property id] [configuration]");
 		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} Entrance, Faction,");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} Type, MarketPrice, Level.");
+		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} Type, price, Level.");
 		return 1; 
 	}
 	
@@ -257,12 +257,12 @@ CMD:editproperty(playerid, params[])
 		
 		SendServerMessage(playerid, "You set Property %i's type to %s.", id, typeName);	
 	}
-	else if(!strcmp(indx, "marketprice"))
+	else if(!strcmp(indx, "price"))
 	{
 		new price;
 		
 		if(sscanf(specifier, "i", price))
-			return SendUsageMessage(playerid, "/editproperty %i MarketPrice [price]", id);
+			return SendUsageMessage(playerid, "/editproperty %i price [price]", id);
 			
 		if(price < 1)
 			return SendErrorMessage(playerid, "The price has to be greater than or equal to 1."); 

@@ -12,14 +12,7 @@ enum E_EMMET_DATA
 
 new const EmmetInfo[][E_EMMET_DATA] =
 {
-    {6, "[Emmet's Hardware]\n{ffffff}Available Commands: /buygun", 2442.4590,-1969.1083,13.5469,180.6462},
-    {20033, "[TDF Gun's Dealer]\n{ffffff}Available Commands: /buygun", 1125.0013,-1023.2226,31.1027,86.1012},
-    {20090, "[KTB Gun's Dealer]\n{ffffff}Available Commands: /buygun", 2015.2699,-1284.4753,23.9844,263.7494},
-    {20085, "[RHB Gun's Dealer]\n{ffffff}Available Commands: /buygun", 2168.6335,-1506.7484,23.9284,41.4714},
-    {20092, "[FYB Gun's Dealer]\n{ffffff}Available Commands: /buygun", 1964.3077,-1605.5304,13.5442,50.1477}, 
-    {20095, "[TDB Gun's Dealer]\n{ffffff}Available Commands: /buygun", 1180.1652,-1222.2889,18.5547,263.2347}, 
-    {116, "[VLA Gun's Dealer]\n{ffffff}Available Commands: /buygun", 1813.9130,-2020.5454,13.5720,255.5141}, 
-    {110, "[LSV Gun's Dealer]\n{ffffff}Available Commands: /buygun", 2579.7588,-1443.6919,24.0000,91.1754} 
+    {6, "[Emmet's Hardware]\n{ffffff}Available Commands: /buygun", 2442.4590,-1969.1083,13.5469,180.6462}
 };
 
 InsertEmmetInit()
@@ -42,35 +35,5 @@ stock BuyGunFromEmmet(playerid)
 	{
         ShowPlayerDialog(playerid, DIALOG_EMMET, DIALOG_STYLE_TABLIST, "Emmet Hardware:", "Emmet Colt\tGlock 17\nMagazine\t9mm clip", "Select", "Cancel");
     }
-    else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 7 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 8)
-	{
-		new str[512];
-		strcat(str, "Glock-19 (Ammo: 25)\n");
-		strcat(str, "Glock-17 (Ammo: 25)\n");
-		strcat(str, "Glock-P80 (Ammo: 25)\n");
-		strcat(str, "MAC-11 (Ammo: 50)\n");
-		strcat(str, "MAC-10 (Ammo: 50)\n");
-		strcat(str, "Socimi T821 (Ammo: 50)\n");
-		strcat(str, "9mm (Ammo: 25)\n");
-		strcat(str, "9x19mm (Ammo: 50)\n");
-		strcat(str, "Marijuana (5g)\n");
-		strcat(str, "Heroin (5g)\n");
-		ShowPlayerDialog(playerid, DIALOG_BUYGUN, DIALOG_STYLE_LIST, str1, str, "Select", "Close");
-	}
-	else
-	{
-		new str[512];
-		strcat(str, "Glock-19 (Ammo: 25)\n");
-		strcat(str, "Glock-17 (Ammo: 25)\n");
-		strcat(str, "Glock-P80 (Ammo: 25)\n");
-		strcat(str, "MAC-11 (Ammo: 50)\n");
-		strcat(str, "MAC-10 (Ammo: 50)\n");
-		strcat(str, "Socimi T821 (Ammo: 50)\n");
-		strcat(str, "9mm (Ammo: 25)\n");
-		strcat(str, "9x19mm (Ammo: 50)\n");
-		strcat(str, "Marijuana (5g)\n");
-		strcat(str, "Cocaine (5g)\n");
-		ShowPlayerDialog(playerid, DIALOG_BUYGUN, DIALOG_STYLE_LIST, str1, str, "Select", "Close");
-	}
     return 1;
 }

@@ -7,16 +7,16 @@ stock PauseAC(playerid)
 }
 
 //Variable Check
-new bool:AC_VHEALTH	    = true;
-new bool:AC_ARMOR		= true;
-new bool:AC_HEALTH		= true;
-new bool:AC_FLY		    = true;
-new bool:AC_WEAPON		= true;
-new bool:AC_MONEY		= true;
-new bool:AC_JETPACK	    = true;
-new bool:AC_REM         = true;
-new bool:AC_WARP        = true;
-new bool:AC_TELEPORT    = true;
+new bool:AC_VHEALTH;
+new bool:AC_ARMOR;
+new bool:AC_HEALTH;
+new bool:AC_FLY;
+new bool:AC_WEAPON;
+new bool:AC_MONEY;
+new bool:AC_JETPACK;
+new bool:AC_REM;
+new bool:AC_WARP;
+new bool:AC_TELEPORT;
 
 
 new 
@@ -25,6 +25,13 @@ new
     Float:ac_fly_z[MAX_PLAYERS];
 
 new LastEnteredVehicle[MAX_PLAYERS];
+
+new playerTeleportDelay[MAX_PLAYERS];
+new playerInterior[MAX_PLAYERS];
+new Float: playerPos[MAX_PLAYERS][3];
+
+new playerTpDetections[MAX_PLAYERS];
+new lastPlayerTpDetection[MAX_PLAYERS];
 
 new legalmods[48][22] = {
         {400, 1024,1021,1020,1019,1018,1013,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000},
@@ -92,8 +99,18 @@ stock InsertAntiCheat()
 	AC_JETPACK	    = true;
 	AC_REM	    	= true;
 	AC_WARP        	= true;
+    AC_TELEPORT     = true;
     return 1;
 }
+
+stock ResetTeleportAC(playerid) {
+    playerTeleportDelay[playerid] = 0;
+    playerInterior[playerid] = 0;
+    playerTpDetections[playerid] = 0;
+    lastPlayerTpDetection[playerid] = 0;
+    return 1;
+}
+
 /*=====[VEHICLE WARP CHECK]=====*/
 function:PlayerPutIntoVehicle(playerid, vehicleid, seatid)
 {
@@ -519,4 +536,117 @@ function:CBugFreezeOver(playerid)
 	pCBugging[playerid] = false;
     ClearAnimations(playerid);
 	return 1;
+}
+
+stock TeleportACSpawn(playerid) { 
+    GetPlayerPos(playerid, playerPos[playerid][0], playerPos[playerid][1], playerPos[playerid][2]);
+    return 1;
+}
+
+const PLAYER_SYNC = 207;
+
+IPacket:PLAYER_SYNC(playerid, BitStream:bs) {
+
+    new onFootData[PR_OnFootSync];
+    BS_IgnoreBits(bs, 8);
+    BS_ReadOnFootSync(bs, onFootData);
+
+    if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true && AC_TELEPORT == true) {
+        if (ACPauseTimer[playerid] == 0) {
+
+            if (gettime() > playerTeleportDelay[playerid]){
+                    
+                new 
+                    Float: distance = GetPlayerDistanceFromPoint(playerid, playerPos[playerid][0], playerPos[playerid][1], playerPos[playerid][2]),
+                    Float:limit_distance = 15.0,
+                    player_state = GetPlayerState(playerid);
+                
+                if (GetPlayerTeam(playerid) == PLAYER_STATE_DEAD || GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED) distance = 3.0;
+                else
+                {
+                    switch(player_state)
+                    {
+                        case PLAYER_STATE_ONFOOT: limit_distance = 35.0;
+                        case PLAYER_STATE_DRIVER, PLAYER_STATE_PASSENGER: limit_distance = 150.0;
+                    }
+                }
+
+                if((onFootData[PR_surfingOffsets][0] != 0.0) && (onFootData[PR_surfingOffsets][1] != 0.0) && (onFootData[PR_surfingOffsets][2] != 0.0)){
+                    limit_distance = 150.0;
+                }
+
+                if(IsABike(GetPlayerSurfingVehicleID(playerid))){
+                    return 1;
+                }
+
+                if (distance > limit_distance && ACPauseTimer[playerid] == 0)
+                {
+                    lastPlayerTpDetection[playerid] = gettime();
+                    ++ playerTpDetections[playerid];
+
+                    if (playerTpDetections[playerid] >= 2)
+                    {
+                        new gstr[512];
+                        format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Teleport On-Foot]", ReturnSettingsName(playerid, playerid));
+                        SendClientMessageToAll(COLOR_YELLOW, gstr);
+                        KickEx(playerid);
+                    }
+                }
+
+                GetPlayerPos(playerid, playerPos[playerid][0], playerPos[playerid][1], playerPos[playerid][2]);
+                playerTeleportDelay[playerid] = (gettime() + 2);
+            }
+
+        } else {
+            GetPlayerPos(playerid, playerPos[playerid][0], playerPos[playerid][1], playerPos[playerid][2]); 
+        }
+    }
+
+    return true;
+}
+
+const VEHICLE_SYNC = 200;
+
+IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
+{
+
+    new inCarData[PR_InCarSync];
+    BS_IgnoreBits(bs, 8);
+    BS_ReadInCarSync(bs, inCarData);
+
+    if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true && AC_TELEPORT == true) {
+        if (ACPauseTimer[playerid] == 0) {
+
+            if (gettime() > playerTeleportDelay[playerid]){
+                    
+                new Float: distance = GetPlayerDistanceFromPoint(playerid, inCarData[PR_position][0], inCarData[PR_position][1], inCarData[PR_position][2]);
+
+	            if (distance > 150.0 && ACPauseTimer[playerid] == 0)
+			    {
+                    lastPlayerTpDetection[playerid] = gettime();
+                    ++ playerTpDetections[playerid];
+
+                    if (playerTpDetections[playerid] >= 2)
+                    {
+                        new gstr[512];
+                        format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Teleport In-Vehicle]", ReturnSettingsName(playerid, playerid));
+                        SendClientMessageToAll(COLOR_YELLOW, gstr);
+                        KickEx(playerid);
+                    }
+                }
+
+                playerPos[playerid][0] = inCarData[PR_position][0];
+                playerPos[playerid][1] = inCarData[PR_position][1];
+                playerPos[playerid][2] = inCarData[PR_position][2];
+
+                playerTeleportDelay[playerid] = (gettime() + 2);
+            }
+        } else {
+            playerPos[playerid][0] = inCarData[PR_position][0];
+            playerPos[playerid][1] = inCarData[PR_position][1];
+            playerPos[playerid][2] = inCarData[PR_position][2];
+        }
+    }
+
+    return true;
 }

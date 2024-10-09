@@ -106,7 +106,7 @@ function:PlayersUpdates()
 				}
 			}
 				
-			if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRASHMASTER && PlayerInfo[playerid][E_CHARACTER_INJOBS] == true && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
+			if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == true && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
         	{
 				PlayerInfo[playerid][E_CHARACTER_JOBSTIME]--; 
 					
@@ -119,7 +119,7 @@ function:PlayersUpdates()
 				{
 					SetVehicleToRespawnEx(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
 					
-					PlayerInfo[playerid][E_CHARACTER_INJOBS] = false;
+					PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = false;
 					PlayerInfo[playerid][E_CHARACTER_JOBSTIME] = 0;
 					PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = -1;
 					RemovePlayerAttachedObject(playerid, ATTACH_HAND);
@@ -478,16 +478,6 @@ function:OnPlayerNearPickup()
 			format(str, sizeof(str), "This point is part of the truckers jobs. in order to start it /takejobs or /tpda.");
 			ShowBoxMessage(i, str, 3, 0);
 		}
-		else if(IsPlayerInRangeOfPoint(i, 3.0, JobsInfo[2][E_JOBSPOSX], JobsInfo[2][E_JOBSPOSY], JobsInfo[2][E_JOBSPOSZ]))
-		{
-			format(str, sizeof(str), "This point is part of the docksworker jobs. in order to start it, /takejobs or press 2.");
-			ShowBoxMessage(i, str, 3, 0);
-		}
-		else if(IsPlayerInRangeOfPoint(i, 3.0, JobsInfo[3][E_JOBSPOSX], JobsInfo[3][E_JOBSPOSY], JobsInfo[3][E_JOBSPOSZ]))
-		{
-			format(str, sizeof(str), "This point is part of the trashmaster jobs. in order to start it, /takejobs or press 2.");
-			ShowBoxMessage(i, str, 3, 0);
-		}
 		else if(IsPlayerInRangeOfPoint(i, 3.0, 684.6581,-1570.5861,14.2422))
 		{	
 			format(str, sizeof(str), "Porch of %s, %s.~n~Bikes dealership to buy vehicle use /carbuy.", ReturnLocationStreet(i), ReturnLocation(i));
@@ -544,41 +534,5 @@ function:MinutesTimes()
 			}
 		}
 	}	
-	return 1;
-}
-
-function:TurfCapturedTimer()
-{
-	for(new i = 0; i < MAX_TURFS; i ++)
-	{
-	    if(TurfInfo[i][E_FACTION_TURFEXISTS] && TurfInfo[i][E_FACTION_TURFCAPTURER] != INVALID_PLAYER_ID && TurfInfo[i][E_FACTION_TURFTIME] > 0)
-	    {
-	        if((ReturnFactionType(TurfInfo[i][E_FACTION_TURFCAPTURER]) != FACTION_TYPE_POLICE) && (PlayerInfo[TurfInfo[i][E_FACTION_TURFCAPTURER]][E_CHARACTER_FACTION] == -1))
-	        {
-	            TurfInfo[i][E_FACTION_TURFCAPTURER] = INVALID_PLAYER_ID;
-	            TurfInfo[i][E_FACTION_TURFTIME] = 0;
-	            ReloadTurf(i);
-	        }
-	        else
-	        {
-		        TurfInfo[i][E_FACTION_TURFTIME]--;
-
-		        if(TurfInfo[i][E_FACTION_TURFTIME] <= 0)
-		        {
-					new factionid = PlayerInfo[TurfInfo[i][E_FACTION_TURFCAPTURER]][E_CHARACTER_FACTION];
-		            GetPlayerName(TurfInfo[i][E_FACTION_TURFCAPTURER], TurfInfo[i][E_FACTION_TURFCAPTUREDBY], MAX_PLAYER_NAME);
- 
-					SendTurfMessage(i, COLOR_YELLOW, "[Turf Conflict]: {d7d7d7}%s has been take over by %s for %s.", ReturnLocationStreet(TurfInfo[i][E_FACTION_TURFCAPTURER]), ReturnSettingsName(TurfInfo[i][E_FACTION_TURFCAPTURER], i), FactionInfo[factionid][E_FACTION_NAME]);
-
-					TurfCaptured(TurfInfo[i][E_FACTION_TURFCAPTURER], i);
-
-	                TurfInfo[i][E_FACTION_TURFCAPTURER] = INVALID_PLAYER_ID;
-		        	TurfInfo[i][E_FACTION_TURFTIME] = 0;
-
-					ReloadTurf(i);
-				}
-			}
-		}
-	}
 	return 1;
 }

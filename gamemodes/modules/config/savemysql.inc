@@ -146,7 +146,7 @@ stock SaveVehicle(vehicleid)
 
 stock SaveProperty(id)
 {
-	new query[256]; 
+	new query[512]; 
 	
 	mysql_format(ourConnection, query, sizeof(query), "UPDATE properties SET PropertyOwnerDBID = %i, PropertyType = %i, PropertyFaction = %i, PropertyLocked = %i, PropertyCashbox = %i, PropertyLevel = %i, PropertyMarketPrice = %i WHERE PropertyDBID = %i",
 		PropertyInfo[id][E_PROPERTY_OWNERDBID], 
@@ -176,6 +176,31 @@ stock SaveProperty(id)
 		PropertyInfo[id][E_PROPERTY_INTERIORWORLD],
 		PropertyInfo[id][E_PROPERTY_ADDRESS],
 		PropertyInfo[id][E_PROPERTY_DBID]);
+	mysql_pquery(ourConnection, query);
+
+	return 1;
+}
+
+stock SaveEntrance(id)
+{
+	new query[512]; 
+	
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE entrance SET posx = %f, posy = %f, posz = %f, icon = %i WHERE ID = %i",
+		EntranceInfo[id][E_ENTRANCE_POS][0],
+		EntranceInfo[id][E_ENTRANCE_POS][1],
+		EntranceInfo[id][E_ENTRANCE_POS][2],
+		EntranceInfo[id][E_ENTRANCE_ICON],
+		EntranceInfo[id][E_PROPERTY_DBID]);
+	mysql_pquery(ourConnection, query);
+	 
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE entrance SET intx = %f, inty = %f, intz = %f, interior = %i, world = %i, garage = %i WHERE ID = %i",
+		EntranceInfo[id][E_ENTRANCE_INT][0],
+		EntranceInfo[id][E_ENTRANCE_INT][1],
+		EntranceInfo[id][E_ENTRANCE_INT][2],
+		EntranceInfo[id][E_ENTRANCE_INTERIOR],
+		EntranceInfo[id][E_ENTRANCE_WORLD],
+		EntranceInfo[id][E_ENTRANCE_GARAGE],
+		EntranceInfo[id][E_PROPERTY_DBID]);
 	mysql_pquery(ourConnection, query);
 
 	return 1;
@@ -225,22 +250,11 @@ stock SaveServerDatas(id)
 {
 	new query[400];
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE server_data SET products = %i WHERE id = %i",
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE server_data SET products = %i, woods = %i WHERE id = %i",
 		ServerInfo[id][E_SERVER_PRODUCTS],
+		ServerInfo[id][E_SERVER_WOODS],
 		ServerInfo[id][E_SERVER_DBID]);
 	mysql_pquery(ourConnection, query);
-	return 1;
-}
-
-stock SaveServerData()
-{
-	for(new i = 0; i < MAX_SERVERDATA; i++)
-	{
-		if(!ServerInfo[i][E_SERVER_DBID])
-			continue;
-			
-		SaveServerDatas(i); 
-	}
 	return 1;
 }
 

@@ -49,7 +49,7 @@ CMD:settings(playerid, params[])
 	format(str, sizeof(str), "%sFaction Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGFMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sTurf GangZones\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGTURF]) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
+	//format(str, sizeof(str), "%sTurf GangZones\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGTURF]) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sSwitch Namestyles\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE]) ? ("{5B9460}Fn_Ln{ffffff}") : ("{945F5B}Streetnames{ffffff}"));
 	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{5B9460}LOW{ffffff}") : ("{945F5B}HIGH{ffffff}"));
 	ShowPlayerDialog(playerid, DIALOG_SETTINGS, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
@@ -1332,10 +1332,7 @@ CMD:rcp(playerid, params[])
 
 CMD:enter(playerid, params[])
 {
-	new id, b_id, str[128]; 
-
-	if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-		return SendErrorMessage(playerid, "You can't leave while editing an object.");
+	new id, b_id, e_id, str[128]; 
 
 	//Enter
 	if((id = IsPlayerNearProperty(playerid)) != 0)
@@ -1346,7 +1343,7 @@ CMD:enter(playerid, params[])
 		if(PropertyInfo[id][E_PROPERTY_LOCKED])
 			return GameTextForPlayer(playerid, "~r~Locked", 3000, 3);
 				
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = id;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = id;
 
 		SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_INTERIORPOS][0], PropertyInfo[id][E_PROPERTY_INTERIORPOS][1], PropertyInfo[id][E_PROPERTY_INTERIORPOS][2] - 3);
 			
@@ -1384,30 +1381,25 @@ CMD:enter(playerid, params[])
 		SetPlayerInterior(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSINTERIOR]); 
 		SetPlayerVirtualWorld(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSWORLD]); 
 		
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = b_id; 
+		PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = b_id; 
 
 		SendBusinessType(playerid, b_id);
 		return 1;
 	}
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, 1555.2958,-1675.5598,16.1953))
+	if((e_id = IsPlayerNearEntrance(playerid)) != 0)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
 			return SendErrorMessage(playerid, "You can't leave while editing an object.");
+					
+		PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = e_id;
 
-		SetPlayerPosEx(playerid, 246.5364,63.3064,1003.6406);
-		SetPlayerFacingAngle(playerid, 11.1769);
-		SetPlayerInterior(playerid, 6);
-		return 1;
-	}
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, 1411.6389,-1699.7167,13.5395))
-	{
-		if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-			return SendErrorMessage(playerid, "You can't leave while editing an object.");
-
-		SetPlayerPosEx(playerid, 1397.7013,-1678.6591,41.5967);
-		SetPlayerFacingAngle(playerid, 8.9305);
-		SetPlayerInterior(playerid, 5);
-		return 1;
+		SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_INT][0], EntranceInfo[e_id][E_ENTRANCE_INT][1], EntranceInfo[e_id][E_ENTRANCE_INT][2]);
+				
+		SetPlayerVirtualWorld(playerid, EntranceInfo[e_id][E_ENTRANCE_WORLD]);
+		SetPlayerInterior(playerid, EntranceInfo[e_id][E_ENTRANCE_INTERIOR]); 
+				
+		TogglePlayerControllable(playerid, false);
+		SetTimerEx("OnPlayerEnterEntrance", 2000, false, "ii", playerid, e_id); 	
 	}
 	
 	//Exit
@@ -1424,7 +1416,7 @@ CMD:enter(playerid, params[])
 		SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
 		SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]); 
 		
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = 0;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0;
 		return 1;
 	}
 	
@@ -1445,30 +1437,24 @@ CMD:enter(playerid, params[])
 			SetPlayerVirtualWorld(playerid, 0);
 			SetPlayerInterior(playerid, 0);
 			
-			PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = 0;
+			PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
 		}
 		return 1;
 	}
-
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, 246.5364,63.3064,1003.6406))
+	if((e_id = IsPlayerInEntrance(playerid)) != 0)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
 			return SendErrorMessage(playerid, "You can't leave while editing an object.");
 
-		SetPlayerPosEx(playerid, 1555.2958,-1675.5598,16.1953);
-		SetPlayerFacingAngle(playerid, 267.2341);
-		SetPlayerInterior(playerid, 0);
-		return 1;
-	}
-
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, 1397.7013,-1678.6591,41.5967))
-	{
-		if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-			return SendErrorMessage(playerid, "You can't leave while editing an object.");
-
-		SetPlayerPosEx(playerid, 1411.6389,-1699.7167,13.5395);
-		SetPlayerFacingAngle(playerid, 54.4270);
-		SetPlayerInterior(playerid, 0);
+		if(IsPlayerInRangeOfPoint(playerid, 3.0, EntranceInfo[e_id][E_ENTRANCE_INT][0], EntranceInfo[e_id][E_ENTRANCE_INT][1], EntranceInfo[e_id][E_ENTRANCE_INT][2]))
+		{
+			SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_POS][0], EntranceInfo[e_id][E_ENTRANCE_POS][1], EntranceInfo[e_id][E_ENTRANCE_POS][2]);
+			
+			SetPlayerVirtualWorld(playerid, 0);
+			SetPlayerInterior(playerid, 0); 
+			
+			PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0;
+		}
 		return 1;
 	}
 
@@ -1477,13 +1463,16 @@ CMD:enter(playerid, params[])
 
 CMD:exit(playerid, params[])
 {
-	new id, b_id;
+	new id, b_id, e_id;
 	
 	if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
 		return SendErrorMessage(playerid, "You can't leave while editing an object.");
 	
 	if((id = IsPlayerInProperty(playerid)) != 0)
 	{
+		if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
+			return SendErrorMessage(playerid, "You can't leave while editing an object.");
+
 		if(!IsPlayerInRangeOfPoint(playerid, 3.0, PropertyInfo[id][E_PROPERTY_INTERIORPOS][0], PropertyInfo[id][E_PROPERTY_INTERIORPOS][1], PropertyInfo[id][E_PROPERTY_INTERIORPOS][2]))
 			return SendErrorMessage(playerid, "You aren't near the door.");
 	
@@ -1492,51 +1481,47 @@ CMD:exit(playerid, params[])
 		SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
 		SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]); 
 		
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = 0;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0;
 		return 1;
 	}
 	
 	if((b_id = IsPlayerInBusiness(playerid)) != 0)
 	{
-		if(!IsPlayerInRangeOfPoint(playerid, 3.0, BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][0], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][1], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][2]))
-			return SendErrorMessage(playerid, "You aren't near the door.");
+		if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
+			return SendErrorMessage(playerid, "You can't leave while editing an object.");
 
-		if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] > 0)
+		if(IsPlayerInRangeOfPoint(playerid, 3.0, BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][0], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][1], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][2]))
 		{
-			SaveCharacter(playerid);
-		}
-	
-		SetPlayerPosEx(playerid, BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][2]);
+			if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] > 0)
+			{
+				SaveCharacter(playerid);
+			}
 		
-		SetPlayerVirtualWorld(playerid, 0);
-		SetPlayerInterior(playerid, 0);
-		
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = 0;
-
-		if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] > 0)
-		{
-			Relations_Remove(playerid, BusinessInfo[b_id][E_BUSINESS_NAME], 30);
-			PlayerInfo[playerid][E_CHARACTER_PURCHASE] = 0;
+			SetPlayerPosEx(playerid, BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][2]);
+			
+			SetPlayerVirtualWorld(playerid, 0);
+			SetPlayerInterior(playerid, 0);
+			
+			PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
 		}
 		return 1;
 	}
-
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, 246.5364,63.3064,1003.6406))
+	if((e_id = IsPlayerInEntrance(playerid)) != 0)
 	{
-		SetPlayerPosEx(playerid, 1555.2958,-1675.5598,16.1953);
-		SetPlayerFacingAngle(playerid, 267.2341);
-		SetPlayerInterior(playerid, 0);
+		if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
+			return SendErrorMessage(playerid, "You can't leave while editing an object.");
+
+		if(IsPlayerInRangeOfPoint(playerid, 3.0, EntranceInfo[e_id][E_ENTRANCE_INT][0], EntranceInfo[e_id][E_ENTRANCE_INT][1], EntranceInfo[e_id][E_ENTRANCE_INT][2]))
+		{
+			SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_POS][0], EntranceInfo[e_id][E_ENTRANCE_POS][1], EntranceInfo[e_id][E_ENTRANCE_POS][2]);
+			
+			SetPlayerVirtualWorld(playerid, 0);
+			SetPlayerInterior(playerid, 0); 
+			
+			PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0;
+		}
 		return 1;
 	}
-
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, 1397.7013,-1678.6591,41.5967))
-	{
-		SetPlayerPosEx(playerid, 1411.6389,-1699.7167,13.5395);
-		SetPlayerFacingAngle(playerid, 54.4270);
-		SetPlayerInterior(playerid, 0);
-		return 1;
-	}
-	SendErrorMessage(playerid, "You aren't in an interior.");
 	return 1;
 }
 
@@ -2487,56 +2472,6 @@ CMD:factionhelp(playerid, params[])
 	return 1;
 }
 
-CMD:fskin(playerid, params[])
-{
-	if(!IsPlayerFaction(playerid))
-		return SendErrorMessage(playerid, "You are not apart a gang members");
-
-	if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_ILLEGAL)
-		return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
-
-	if(!IsPlayerInRangeOfPoint(playerid, 5.0, FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][0], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][1], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][2]))
-		return SendErrorMessage(playerid, "You aren't near your faction spawn.");
-	
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 3)
-	{
-	    ShowModelSelectionMenu(playerid, "Skin_List", MODEL_SELECTION_FACTIONS, g_aGSFSkins, sizeof(g_aGSFSkins), -16.0, 0.0, -55.0);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 4)
-	{
-		    ShowModelSelectionMenu(playerid, "Skin_List", MODEL_SELECTION_FACTIONS, g_aKTBSkins, sizeof(g_aKTBSkins), -16.0, 0.0, -55.0);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 5)
-	{
-	    ShowModelSelectionMenu(playerid, "Skin_List", MODEL_SELECTION_FACTIONS, g_aRHBSkins, sizeof(g_aRHBSkins), -16.0, 0.0, -55.0);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 6)
-	{
-	    ShowModelSelectionMenu(playerid, "Skin_List", MODEL_SELECTION_FACTIONS, g_aSBFSkins, sizeof(g_aSBFSkins), -16.0, 0.0, -55.0);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 8)
-	{
-		ShowModelSelectionMenu(playerid, "Skin_List", MODEL_SELECTION_FACTIONS, g_aAztecasSkins, sizeof(g_aAztecasSkins), -16.0, 0.0, -55.0);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 7)
-	{
-	    ShowModelSelectionMenu(playerid, "Skin_List", MODEL_SELECTION_FACTIONS, g_aVagosSkins, sizeof(g_aVagosSkins), -16.0, 0.0, -55.0);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 9)
-	{
-	    ShowModelSelectionMenu(playerid, "Skin_List", MODEL_SELECTION_FACTIONS, g_aFYBSkins, sizeof(g_aFYBSkins), -16.0, 0.0, -55.0);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 10)
-	{
-	    ShowModelSelectionMenu(playerid, "Skin_List", MODEL_SELECTION_FACTIONS, g_aTDFSkins, sizeof(g_aTDFSkins), -16.0, 0.0, -55.0);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 11)
-	{
-	    ShowModelSelectionMenu(playerid, "Skin_List", MODEL_SELECTION_FACTIONS, g_aTDBSkins, sizeof(g_aTDBSkins), -16.0, 0.0, -55.0);
-	}
-	return 1;
-}
-
 CMD:factions(playerid, params[])
 {
 	new str[512], longstr[512]; 
@@ -2551,20 +2486,6 @@ CMD:factions(playerid, params[])
 	}
 	
 	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Factions:", longstr, "Select", ""); 
-	return 1;
-}
-
-CMD:subsets(playerid, params[])
-{
-	new str[512]; 
-	strcat(str, "ID\tFaction\tName\n"); 
-	strcat(str, "1\t{00B10E}[GSF]\t{00B10E}Orange Grove Street [OGF]\n2\t{00B10E}[GSF]\t{00B10E}Project Gangster Famillies [PGF]\n3\t{00B10E}[GSF]\t{00B10E}Cherry Hood Groves [CHG]\n"); 
-	strcat(str, "4\t{98ED8E}[SBF]\t{98ED8E}East Beach Famillies [EBF]\n5\t{98ED8E}[SBF]\t{98ED8E}Nashville Famillies [NVF]\n"); 
-	strcat(str, "6\t{8B15DC}[KTB]\t{8B15DC}Washington Trayz [WT]\n7\t{8B15DC}[KTB]\t{8B15DC}Kilo Park Hustlas [KPH]\n"); 
-	strcat(str, "8\t{73389C}[RHB]\t{73389C}Rich Rollins [RR]\n9\t{73389C}[RHB]\t{73389C}K-Gang [KPH]\n10\t{73389C}[RHB]\t{73389C}Fruit Town Ballas [FTB]\n"); 
-	strcat(str, "11\t{510089}[FYB]\t{510089}Killa Yard [KY]\n12\t{510089}[FYB]\t{510089}Naybahood Purpz [NHP]\n");
-	strcat(str, "13\t{DDC66B}[LSV]\t{DDC66B}Reyes Del Norte [RDN]\n14\t{DDC66B}[LSV]\t{DDC66B}Barrio Playa Grande [BPG]\n"); 
-	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Factions Subsets:", str, "Select", "Close"); 
 	return 1;
 }
 
@@ -2783,13 +2704,13 @@ CMD:factionon(playerid, params[])
 				
 			if(PlayerInfo[i][E_CHARACTER_ADMINDUTY])
 			{
-				format(lstr, sizeof(lstr), "%s(%d)\t%s\t%s\t%s", lstr, i, IsPlayerFactionRank(i), IsPlayerFactionSubsetsName(i), ReturnSettingsName(i, i));
+				format(lstr, sizeof(lstr), "%s(%d)\t%s\t%s", lstr, i, IsPlayerFactionRank(i), ReturnSettingsName(i, i));
 				format(lstr, sizeof(lstr), "%s\n", lstr);
 				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Faction Online:", lstr, "Close", "");
 			}	
 			else
 			{
-				format(lstr, sizeof(lstr), "%s(%d)\t%s\t%s\t%s", lstr, i, IsPlayerFactionRank(i), IsPlayerFactionSubsetsName(i), ReturnSettingsName(i, i));
+				format(lstr, sizeof(lstr), "%s(%d)\t%s\t%s", lstr, i, IsPlayerFactionRank(i), ReturnSettingsName(i, i));
 				format(lstr, sizeof(lstr), "%s\n", lstr);
 				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, str, lstr, "Close", "");
 			}
@@ -2819,6 +2740,9 @@ CMD:fduty(playerid, params[])
 		
 	if(PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
 		return SendErrorMessage(playerid, "You're already on duty."); 
+
+	if(!PlayerInfo[playerid][E_CHARACTER_FACSKIN])
+		return SendErrorMessage(playerid, "You don't have faction uniform");
 		
 	if(!IsPlayerInRangeOfPoint(playerid, 5.0, FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][0], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][1], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][2]))
 		return SendErrorMessage(playerid, "You aren't near your faction spawn.");
@@ -2830,6 +2754,8 @@ CMD:fduty(playerid, params[])
 	
 	SetPlayerHealthEx(playerid, 100);
 	SetPlayerArmourEx(playerid, 100);
+
+	SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_FACSKIN]); 
 	
 	if(!Inventory_Count(playerid, "Night Hawk"))
 	{
@@ -2861,9 +2787,8 @@ CMD:offduty(playerid, params[])
 	
 	SetPlayerArmour(playerid, 0);
 	SetPlayerHealthEx(playerid, 100); 
-		
-	if(GetPlayerSkin(playerid) != PlayerInfo[playerid][E_CHARACTER_LASTSKIN])
-		SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]); 
+	
+	SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]); 
 	
 	if(Inventory_Count(playerid, "Night Hawk"))
 	{
@@ -3619,6 +3544,7 @@ CMD:repairkits(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairkits", 4500, true, "ii", playerid, vehicleid);
 	return 1;
 }
+
 CMD:buyweapon(playerid, params[])
 {
 	if(!IsPlayerInBusiness(playerid) && !IsPlayerNearCashiers(playerid))
@@ -3651,63 +3577,11 @@ CMD:buyweapon(playerid, params[])
 
 CMD:buygun(playerid, params[])
 {
-	if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < 4)
+	if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < 5)
 		return SendErrorMessage(playerid, "You don't have permission to use this command."); 
-		
-	if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] < 1)
-		return SendErrorMessage(playerid, "There is no stock faction supply storage.");
 
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, EmmetInfo[0][EMMET_POSX], EmmetInfo[0][EMMET_POSY], EmmetInfo[0][EMMET_POSZ]))
 	{
-		BuyGunFromEmmet(playerid);
-	}
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, EmmetInfo[1][EMMET_POSX], EmmetInfo[1][EMMET_POSY], EmmetInfo[1][EMMET_POSZ]))
-	{
-		if(IsPlayerFaction(playerid) != 10)
-			return SendErrorMessage(playerid, "You aren't temple drive famillies members.");
-
-		BuyGunFromEmmet(playerid);
-	}
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, EmmetInfo[2][EMMET_POSX], EmmetInfo[2][EMMET_POSY], EmmetInfo[2][EMMET_POSZ]))
-	{
-		if(IsPlayerFaction(playerid) != 4)
-			return SendErrorMessage(playerid, "You aren't kilo tray members.");
-
-		BuyGunFromEmmet(playerid);
-	}
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, EmmetInfo[3][EMMET_POSX], EmmetInfo[3][EMMET_POSY], EmmetInfo[3][EMMET_POSZ]))
-	{
-		if(IsPlayerFaction(playerid) != 5)
-			return SendErrorMessage(playerid, "You aren't rollin height members.");
-
-		BuyGunFromEmmet(playerid);
-	}
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, EmmetInfo[4][EMMET_POSX], EmmetInfo[4][EMMET_POSY], EmmetInfo[4][EMMET_POSZ]))
-	{
-		if(IsPlayerFaction(playerid) != 9)
-			return SendErrorMessage(playerid, "You aren't front yard members.");
-
-		BuyGunFromEmmet(playerid);
-	}
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, EmmetInfo[5][EMMET_POSX], EmmetInfo[5][EMMET_POSY], EmmetInfo[5][EMMET_POSZ]))
-	{
-		if(IsPlayerFaction(playerid) != 11)
-			return SendErrorMessage(playerid, "You aren't temple drive ballas members.");
-
-		BuyGunFromEmmet(playerid);
-	}
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, EmmetInfo[6][EMMET_POSX], EmmetInfo[6][EMMET_POSY], EmmetInfo[6][EMMET_POSZ]))
-	{
-		if(IsPlayerFaction(playerid) != 7)
-			return SendErrorMessage(playerid, "You aren't varrios los aztecas members.");
-
-		BuyGunFromEmmet(playerid);
-	}
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, EmmetInfo[7][EMMET_POSX], EmmetInfo[7][EMMET_POSY], EmmetInfo[7][EMMET_POSZ]))
-	{
-		if(IsPlayerFaction(playerid) != 8)
-			return SendErrorMessage(playerid, "You aren't los santos vagos members.");
-
 		BuyGunFromEmmet(playerid);
 	}
 	return 1;

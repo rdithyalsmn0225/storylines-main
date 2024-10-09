@@ -1,6 +1,6 @@
 //Database
 //#define MYSQL_HOST
-//#define DEBUG_MODE
+#define DEBUG_MODE
 
 #if defined MYSQL_HOST
 	#define SQL_HOSTNAME "204.10.192.68"
@@ -10,7 +10,7 @@
 #else
 	#define SQL_HOSTNAME "127.0.0.1"
 	#define SQL_USERNAME "root"
-	#define SQL_DATABASE "idlestreet"
+	#define SQL_DATABASE "storylines"
 	#define SQL_PASSWORD ""
 #endif
 
@@ -37,6 +37,7 @@
 #define BODY_PART_HEAD (9)
 
 /*=====[MAXIMUMS]=====*/
+#define MAX_ENTRANCE 				(100)
 #define MAX_PROPERTY 				(100)
 #define MAX_BUSINESS 				(100)
 #define MAX_BUSINESS_PRODUCTS 		(50)
@@ -92,76 +93,12 @@ LoadCustomModels()
 	AddSimpleModel(-1, 1529, -2024, "graffiti/graffiti.dff", "graffiti/ballas/fyb5.txd");
 
 	//========================================Skins========================================
-	AddCharModel(105, 20029, "misc/skin/fam/gsf/fam1.dff", "misc/skin/fam/gsf/fam1.txd");
-	AddCharModel(106, 20030, "misc/skin/fam/gsf/fam2.dff", "misc/skin/fam/gsf/fam2.txd");
-	AddCharModel(107, 20031, "misc/skin/fam/gsf/fam3.dff", "misc/skin/fam/gsf/fam3.txd");
-
-	AddCharModel(105, 20033, "misc/skin/fam/tdf/TDF1.dff", "misc/skin/fam/tdf/TDF1.txd");
-	AddCharModel(106, 20034, "misc/skin/fam/tdf/TDF2.dff", "misc/skin/fam/tdf/TDF2.txd");
-	AddCharModel(107, 20035, "misc/skin/fam/tdf/TDF3.dff", "misc/skin/fam/tdf/TDF3.txd");
-	AddCharModel(105, 20036, "misc/skin/fam/tdf/TDF4.dff", "misc/skin/fam/tdf/TDF4.txd");
-
-	AddCharModel(105, 20037, "misc/skin/fam/sbf/sev1.dff", "misc/skin/fam/sbf/sev1.txd");
-	AddCharModel(106, 20038, "misc/skin/fam/sbf/sev2.dff", "misc/skin/fam/sbf/sev2.txd");
-	AddCharModel(107, 20039, "misc/skin/fam/sbf/sev3.dff", "misc/skin/fam/sbf/sev3.txd");
-	AddCharModel(105, 20040, "misc/skin/fam/sbf/sev4.dff", "misc/skin/fam/sbf/sev4.txd");
-
-	AddCharModel(108, 20041, "misc/skin/hispanic/lsv/lsv1.dff", "misc/skin/hispanic/lsv/lsv1.txd");
-	AddCharModel(109, 20042, "misc/skin/hispanic/lsv/lsv2.dff", "misc/skin/hispanic/lsv/lsv2.txd");
-	AddCharModel(110, 20043, "misc/skin/hispanic/lsv/lsv3.dff", "misc/skin/hispanic/lsv/lsv3.txd");
-	AddCharModel(108, 20044, "misc/skin/hispanic/lsv/lsv4.dff", "misc/skin/hispanic/lsv/lsv4.txd");
-	AddCharModel(109, 20045, "misc/skin/hispanic/lsv/lsv5.dff", "misc/skin/hispanic/lsv/lsv5.txd");
-	AddCharModel(110, 20046, "misc/skin/hispanic/lsv/lsv6.dff", "misc/skin/hispanic/lsv/lsv6.txd");
-	AddCharModel(108, 20047, "misc/skin/hispanic/lsv/lsv7.dff", "misc/skin/hispanic/lsv/lsv7.txd");
-	AddCharModel(109, 20048, "misc/skin/hispanic/lsv/lsv8.dff", "misc/skin/hispanic/lsv/lsv8.txd");
-	AddCharModel(110, 20049, "misc/skin/hispanic/lsv/lsv9.dff", "misc/skin/hispanic/lsv/lsv9.txd");
-	AddCharModel(108, 20050, "misc/skin/hispanic/lsv/lsv10.dff", "misc/skin/hispanic/lsv/lsv10.txd");
-
-	AddCharModel(116, 20060, "misc/skin/hispanic/vla/vla1.dff", "misc/skin/hispanic/vla/vla1.txd");
-	AddCharModel(114, 20061, "misc/skin/hispanic/vla/vla2.dff", "misc/skin/hispanic/vla/vla2.txd");
-	AddCharModel(115, 20062, "misc/skin/hispanic/vla/vla3.dff", "misc/skin/hispanic/vla/vla3.txd");
-	AddCharModel(116, 20063, "misc/skin/hispanic/vla/vla4.dff", "misc/skin/hispanic/vla/vla4.txd");
-	AddCharModel(114, 20064, "misc/skin/hispanic/vla/vla5.dff", "misc/skin/hispanic/vla/vla5.txd");
-	AddCharModel(115, 20065, "misc/skin/hispanic/vla/vla6.dff", "misc/skin/hispanic/vla/vla6.txd");
-	AddCharModel(116, 20066, "misc/skin/hispanic/vla/vla7.dff", "misc/skin/hispanic/vla/vla7.txd");
-	AddCharModel(115, 20067, "misc/skin/hispanic/vla/vla8.dff", "misc/skin/hispanic/vla/vla8.txd");
-	AddCharModel(116, 20068, "misc/skin/hispanic/vla/vla9.dff", "misc/skin/hispanic/vla/vla9.txd");
-	AddCharModel(114, 20069, "misc/skin/hispanic/vla/vla10.dff", "misc/skin/hispanic/vla/vla10.txd");
-	AddCharModel(115, 20070, "misc/skin/hispanic/vla/vla11.dff", "misc/skin/hispanic/vla/vla11.txd");
-
+	
 	AddCharModel(300, 20071, "misc/skin/lspd/lapd1.dff", "misc/skin/lspd/lapd1.txd");
 	AddCharModel(301, 20072, "misc/skin/lspd/lapd2.dff", "misc/skin/lspd/lapd2.txd");
 	AddCharModel(300, 20073, "misc/skin/lspd/lapd3.dff", "misc/skin/lspd/lapd3.txd");
 	AddCharModel(301, 20074, "misc/skin/lspd/lapd4.dff", "misc/skin/lspd/lapd4.txd");
 
-	/*AddCharModel(105, 20075, "misc/skin/fam/ogf/ogf1.dff", "misc/skin/fam/ogf/ogf1.txd");
-	AddCharModel(106, 20076, "misc/skin/fam/ogf/ogf2.dff", "misc/skin/fam/ogf/ogf2.txd");
-	AddCharModel(107, 20077, "misc/skin/fam/ogf/ogf3.dff", "misc/skin/fam/ogf/ogf3.txd");
-	AddCharModel(105, 20078, "misc/skin/fam/ogf/ogf4.dff", "misc/skin/fam/ogf/ogf4.txd");
-	AddCharModel(106, 20079, "misc/skin/fam/ogf/ogf5.dff", "misc/skin/fam/ogf/ogf5.txd");
-	AddCharModel(107, 20080, "misc/skin/fam/ogf/ogf6.dff", "misc/skin/fam/ogf/ogf6.txd");
-	AddCharModel(105, 20081, "misc/skin/fam/ogf/ogf7.dff", "misc/skin/fam/ogf/ogf7.txd");
-	AddCharModel(106, 20082, "misc/skin/fam/ogf/ogf8.dff", "misc/skin/fam/ogf/ogf8.txd");
-	AddCharModel(107, 20083, "misc/skin/fam/ogf/ogf9.dff", "misc/skin/fam/ogf/ogf9.txd");
-	AddCharModel(105, 20084, "misc/skin/fam/ogf/ogf10.dff", "misc/skin/fam/ogf/ogf10.txd");*/
-
-	AddCharModel(105, 20085, "misc/skin/ballas/ktb/ballas1.dff", "misc/skin/ballas/ktb/ballas1.txd");
-	AddCharModel(106, 20086, "misc/skin/ballas/ktb/ballas2.dff", "misc/skin/ballas/ktb/ballas2.txd");
-	AddCharModel(107, 20087, "misc/skin/ballas/ktb/ballas3.dff", "misc/skin/ballas/ktb/ballas3.txd");
-
-	AddCharModel(105, 20088, "misc/skin/ballas/rhb/ballas1.dff", "misc/skin/ballas/rhb/ballas1.txd");
-	AddCharModel(106, 20089, "misc/skin/ballas/rhb/ballas2.dff", "misc/skin/ballas/rhb/ballas2.txd");
-	AddCharModel(107, 20090, "misc/skin/ballas/rhb/ballas3.dff", "misc/skin/ballas/rhb/ballas3.txd");
-
-	AddCharModel(105, 20091, "misc/skin/ballas/fyb/ballas1.dff", "misc/skin/ballas/fyb/ballas1.txd");
-	AddCharModel(106, 20092, "misc/skin/ballas/fyb/ballas2.dff", "misc/skin/ballas/fyb/ballas2.txd");
-	AddCharModel(107, 20093, "misc/skin/ballas/fyb/ballas3.dff", "misc/skin/ballas/fyb/ballas3.txd");
-
-	AddCharModel(105, 20094, "misc/skin/ballas/tdb/ballas1.dff", "misc/skin/ballas/tdb/ballas1.txd");
-	AddCharModel(106, 20095, "misc/skin/ballas/tdb/ballas2.dff", "misc/skin/ballas/tdb/ballas2.txd");
-	AddCharModel(107, 20096, "misc/skin/ballas/tdb/ballas3.dff", "misc/skin/ballas/tdb/ballas3.txd");
-
-	AddCharModel(105, 20097, "misc/skin/player/Radeetz/Radeetz.dff", "misc/skin/player/Radeetz/Radeetz.txd");
 	//==========================================Weapons======================================
 	AddSimpleModel(-1, 18634, -2200, "misc/weapons/hardbat.dff", "misc/weapons/hardbat.txd");
 	AddSimpleModel(-1, 18634, -2201, "misc/weapons/woodbat.dff", "misc/weapons/woodbat.txd");

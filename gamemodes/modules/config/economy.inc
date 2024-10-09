@@ -19,3 +19,4 @@
 
 //CARGO PRICE
 #define PRICE_PRODUCTS 5
+#define PRICE_WOODS 5

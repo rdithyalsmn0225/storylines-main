@@ -50,138 +50,64 @@ stock BusinessRefresh(businessid)
 	{
 		case BUSINESS_TYPE_BANK:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(141, 2318.3074, -7.3343, 26.7496, 87.9017, false);
-			//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 52, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1274, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
-
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /bank to see bank menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		case BUSINESS_TYPE_DINNER:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(209, 450.6853,-82.1422,999.5547,178.0486, false);
-		 	//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 50, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(19811, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
-
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /menu to see food & drink menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		case BUSINESS_TYPE_BAR:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(171, 499.6378,-77.5639,998.7651,357.2770, false);
-		 	//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 49, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1544, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
-
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /buybeer to see menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
 		case BUSINESS_TYPE_JEWELRY:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(155, 375.9426, -117.2931, 1001.4995, -179.0999, false);
-	 		//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 52, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(19941, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
-		
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /jewelry to see jewelry menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_GENERAL:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(101, -54.5022,-0.8566,203.2633,267.6774, false);
-	     	//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 17, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(19592, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
-
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Press 'N' to pay items to clerk.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_AMMUNATION:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(179, 295.5838, -40.0050, 1001.5156, 0.0000, false);
-	     	//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 6, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(19832, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
-
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /buyweapon to see weapon menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_CLOTHES:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(211, 207.5742, -98.7995, 1005.2578, -178.2999, false);
-	     	//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 45, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(2704, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
-
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /clothes to see list clothing.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_HAIRCUT:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(156, 414.0432,-18.1806,1001.8047,181.2493, false);
-	   		//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 7, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(2752, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
-
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /haircut to see list style haircut.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		   
 		case BUSINESS_TYPE_FURNITURE:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(141, 1355.2993,1703.6777,434.9792,268.5770, false);
-	   		//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 35, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1277, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
-
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /props to see menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_CLUB:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(171, 1214.8995,-15.2654,1000.9219,357.5378, false);
-	   		//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 48, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(19819, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
-
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /buybeer to see menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
 		case BUSINESS_TYPE_DEALERSHIP:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(141, 0, 0, 0, 0, false);
-			//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 55, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1239, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /carbuy to see menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
 		case BUSINESS_TYPE_DMV:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(141, 0, 0, 0, 0, false);
-			//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 36, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1581, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /drivetest to see menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
 		case BUSINESS_TYPE_GYM:
 		{
-			//BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(141, 0, 0, 0, 0, false);
-			//SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
-			
-			BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 54, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(3071, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 3.0);
-
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /fightstyle to learn fightstyles.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 	}
@@ -189,6 +115,7 @@ stock BusinessRefresh(businessid)
 	BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_SKIN], BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_POS][0], BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_POS][1], BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_POS][2], BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_POS][3], false);
 	SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
 
+	BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1272, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 5.0);
 	if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_GYM)
 	{
 		BusinessInfo[businessid][E_BUSINESS_RDUMBELL] = CreateObject(3071, 772.992,5.18281,999.927,0.0,90.0,90.0);
@@ -288,14 +215,14 @@ stock GetClosestBusiness(playerid, type)
 
 stock IsPlayerInBusiness(playerid)
 {
-	if(PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ])
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ])
 	{
 		for(new i = 1; i < MAX_BUSINESS; i++)
 		{
 			if(!BusinessInfo[i][E_BUSINESS_DBID])
 				continue;
 				
-			if(i == PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] && GetPlayerVirtualWorld(playerid) == BusinessInfo[i][E_BUSINESS_INTERIORPOSWORLD])
+			if(i == PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] && GetPlayerVirtualWorld(playerid) == BusinessInfo[i][E_BUSINESS_INTERIORPOSWORLD])
 				return i;
 		}
 	}
@@ -712,8 +639,8 @@ CMD:createbusiness(playerid, params[])
 	if(sscanf(params, "i", type_id))
 	{
 		SendUsageMessage(playerid, "/createbusiness business id [business type]"); 
-		SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Pizza stack, 4. Ammunation, 5. Club, 6. Bank.");
-		SendClientMessage(playerid, COLOR_WHITE, "Types: 7. General, 8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Furniture, 13. Gym."); 
+		SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Pizza stack, 4. Ammunation, 5. Club, 6. Bank, 7. General.");
+		SendClientMessage(playerid, COLOR_WHITE, "Types: 8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Furniture, 13. Gym."); 
 		return 1;
 	}
 	
@@ -778,8 +705,8 @@ CMD:editbusiness(playerid, params[])
 		if(sscanf(bstr, "i", type))
 		{
 			SendUsageMessage(playerid, "/editbusiness %i [business type]"); 
-			SendClientMessage(playerid, COLOR_WHITE, "Types: 1.Dinner's, 2.Bar, 3.Pizza stack, 4. Ammunation, 5. Club, 6.Bank.");
-			SendClientMessage(playerid, COLOR_WHITE, "Types: 7.General, 8. Clothes, 9. Dealership, 10. DMV, 11.Barbershop, 12.Furniture, 13.Gym."); 
+			SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Pizza stack, 4. Ammunation, 5. Club, 6. Bank, 7. General.");
+			SendClientMessage(playerid, COLOR_WHITE, "Types: 8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Furniture, 13. Gym."); 
 			return 1;
 		}
 
@@ -789,11 +716,7 @@ CMD:editbusiness(playerid, params[])
 		if(type == BusinessInfo[id][E_BUSINESS_TYPE])
 			return SendErrorMessage(playerid, "You can't set the businesses type to what it already is."); 
 			
-		DestroyDynamicPickup(BusinessInfo[id][E_BUSINESS_PICKUP]);
-			
-		BusinessInfo[id][E_BUSINESS_PICKUP] = CreateDynamicPickup(19198, 1, BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][2], 0);
-
-		DestroyDynamicMapIcon(BusinessInfo[id][E_BUSINESS_MAPICON]);
+		BusinessRefresh(id);
 		SendServerMessage(playerid, "You changed business %i's type to %i.", id, type);
 		SaveBusiness(id);	
 	}
@@ -853,12 +776,12 @@ CMD:editbusiness(playerid, params[])
 			
 		ConfirmDialog(playerid, "Confirmation", "Are you sure you want to set / change this banks pickup?", "OnBusinessBankpickupChange", id);
 	}
-	else if(!strcmp(astr, "marketprice"))
+	else if(!strcmp(astr, "price"))
 	{
 		new price;
 		
 		if(sscanf(bstr, "i", price))
-			return SendUsageMessage(playerid, "/editbusiness %i marketprice [amount]", id);
+			return SendUsageMessage(playerid, "/editbusiness %i price [amount]", id);
 			
 		BusinessInfo[id][E_BUSINESS_PRICE] = price;
 		

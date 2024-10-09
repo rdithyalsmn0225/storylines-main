@@ -187,7 +187,7 @@ function:SprayingTags(playerid, inputtext[], type, Float:x, Float:y, Float:z, Fl
                 RemovePlayerAttachedObject(playerid, 9);
                 ClearAnimations(playerid);
                 Spraytags_Save(id);
-				TurfsPoints(playerid, IsPlayerNearTurf(playerid));
+				//TurfsPoints(playerid, IsPlayerNearTurf(playerid));
                 
 				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 				{
@@ -230,8 +230,7 @@ function:SprayingTags(playerid, inputtext[], type, Float:x, Float:y, Float:z, Fl
                 RemovePlayerAttachedObject(playerid, 9);
                 ClearAnimations(playerid);
                 Spraytags_Save(id);
-				TurfsPoints(playerid, IsPlayerNearTurf(playerid));
-
+				
                 if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
                 {
                     ResetVarInventory(playerid);

@@ -189,6 +189,7 @@ function:ResetPlayer(playerid)
 	CurrentHealthVar[playerid] = 0;
 	CurrentArmourVar[playerid] = 0;
 	ResetPlayerJump(playerid);
+	ResetTeleportAC(playerid);
 	
 	KillTimer(cameraTimer[playerid]);
 
@@ -269,8 +270,9 @@ function:ResetPlayer(playerid)
 
 	PlayerInfo[playerid][E_CHARACTER_DRINKING] = 0;
 	
-	PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = 0; 
-	PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = 0;
+	PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; 
+	PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
+	PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = 0;
 
 	PlayerInfo[playerid][E_CHARACTER_TARGET] = 0;
 	PlayerInfo[playerid][E_CHARACTER_LISTITEM] = 0;
@@ -331,11 +333,18 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_EXTORTION] = false;
 	PlayerInfo[playerid][E_CHARACTER_EXTORTIONID] = 0;
 	PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] = 0;
-	PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE] = false;
+	PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE] = true;
 
 	pCBugging[playerid] = false;
 	KillTimer(ptmCBugFreezeOver[playerid]);
 	ptsLastFiredWeapon[playerid] = 0;
+
+	for(new i; i < 4; i++)
+	{
+		format(characterLister[playerid][i], 128, "");
+		characterSkin[playerid][i] = 0;
+		characterFaction[playerid][i] = 0;
+	}
 
 	//Offer
 	PlayerInfo[playerid][E_CHARACTER_FRISKOFFER] = INVALID_PLAYER_ID;
@@ -370,7 +379,8 @@ function:ResetPlayer(playerid)
     PlayerInfo[playerid][E_CHARACTER_AFKTIME] = 0;
 
     PlayerInfo[playerid][E_CHARACTER_JOBSTIME] = 0;
-    PlayerInfo[playerid][E_CHARACTER_INJOBS] = false;
+    PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = false;
+	PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
 	PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] = 0;
 	PlayerInfo[playerid][E_CHARACTER_BURGLARY] = false;
 	PlayerInfo[playerid][E_CHARACTER_HASBURGLARY] = false;
@@ -468,7 +478,7 @@ stock ShowCharacterStats(playerid, playerb)
 	SendClientMessageEx(playerb, COLOR_RELATIONS, "[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
 	if(PlayerInfo[playerb][E_CHARACTER_FACTION])
 	{
-		SendClientMessageEx(playerb, COLOR_FISHING, "[FACTION]:{ffffff} [Faction: %s] [Rank: %s] [Subsets: %s]", ReturnFactionName(playerid), IsPlayerFactionRank(playerid), IsPlayerFactionSubsetsName(playerid));
+		SendClientMessageEx(playerb, COLOR_FISHING, "[FACTION]:{ffffff} [Faction: %s] [Rank: %s]", ReturnFactionName(playerid), IsPlayerFactionRank(playerid));
 	}
 	SendClientMessageEx(playerb, COLOR_STORE, "[JOBS]:{ffffff} [Jobs: %s] [Skills: %s]", ReturnJobName(PlayerInfo[playerid][E_CHARACTER_JOBS]), ReturnJobSkill(playerid, PlayerInfo[playerid][E_CHARACTER_JOBS]));
 	SendClientMessageEx(playerb, COLOR_JOBS, "[KEYS]:{ffffff} VehicleKey:[%s] DuplicateKey:[%s] BusinessKey:[%s]", vehicle_key, duplicate_key, business_key);	
@@ -587,15 +597,6 @@ stock IsChannelSlot(playerid, chan)
 			return i;
 	}
 	return 0; 
-}
-
-stock strcpy(dest[], const src[])
-{
-    new i;
-    for (i = 0; i < strlen(src) + 1; i++) // +1 to include the null terminator
-    {
-        dest[i] = src[i];
-    }
 }
 
 stock FilterInputText(const inputtext[])
@@ -893,92 +894,6 @@ stock IsPlayerFactionRank(playerid)
 	else
 	{
 		format(astring, sizeof(astring), "Hoodrats");
-	}
-	return astring;
-}
-
-stock IsPlayerFactionSubsetsName(playerid)
-{
- 	new astring[28];
- 	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 3)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "Ganton Most Wanted");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "Cherry Hood Groves");
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 4)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 0)format(astring, sizeof(astring), "Washington Trayz");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "Kilo Park Hustlas");
-	}
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 5)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "Rich Rollins");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "K-Gang");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 3)format(astring, sizeof(astring), "Fruit Town Ballas");
-	}
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 6)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "East Beach Famillies");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "Nashville Famillies");
-	}
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 7)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "Reyes Del Norte");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "Barrio Playa Grande");
-	}
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 8)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "Hillside Azteca");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "Trayline Azteca");
-	}
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 9)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "Killa Yard");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "Naybahood Purpz");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 3)format(astring, sizeof(astring), "106 Yardies");
-	}
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 10)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "Crystall Hill Famillies");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "Broadway Street Famillies");
-	}
-	return astring;
-}
-
-stock IsPlayerFactionSubsets(playerid)
-{
- 	new astring[28];
- 	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 3)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "[OGF]");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "[PGF]");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 3)format(astring, sizeof(astring), "[CHG]");
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 4)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 0)format(astring, sizeof(astring), "[WT]");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "[KPH]");
-	}
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 5)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "[RR]");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "[KG]");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 3)format(astring, sizeof(astring), "[FTB]");
-	}
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 6)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "[EBF]");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "[NVF]");
-	}
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 7)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "[RDN]");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "[BPG]");
-	}
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 9)
- 	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)format(astring, sizeof(astring), "[KY]");
- 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 2)format(astring, sizeof(astring), "[NHP]");
 	}
 	return astring;
 }

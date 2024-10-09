@@ -88,8 +88,89 @@ Voiceline_Play(playerid, voiceid)
 	return 1;
 }		
 
+CMD:vl(playerid, params[]) return cmd_voicelines(playerid, params);
 CMD:voicelines(playerid, params[])
 {
-	ShowPlayerDialog(playerid, DIALOG_VOICELINES, DIALOG_STYLE_LIST, "Voicelines Select:", "Famillies Gang Members\nBallas Gang Members\nAztecas Gang Members\nVagos Gang Members\nPolice Officers", "Select", "Close");
+	Dialog_Show(playerid, VoicelinesList, DIALOG_STYLE_LIST, "Voicelines Select:", "Famillies Gang Members\nBallas Gang Members\nAztecas Gang Members\nVagos Gang Members\nPolice Officers", "Select", "Close");
+	return 1;
+}
+
+Dialog:VoicelinesList(playerid, response, listitem, inputtext[]) 
+{
+	new string[2048];
+    if(response)
+	{
+		switch(listitem)
+		{
+			case 0:
+			{
+				strcat(string, "Description\n");
+				forex(i, sizeof (VL_Families)) {
+					format(string, sizeof(string), "%s%s\n", string, VL_Families[i][E_VOICELINE_DESC]);
+				}
+				Dialog_ShowPages(playerid, VoicelinesPlay, DIALOG_STYLE_TABLIST_HEADERS, "Voicelines:", string, "Play", "Close");
+			}
+			case 1:
+			{
+				strcat(string, "Description\n");
+				forex(i, sizeof(VL_Ballas)) {
+					format(string, sizeof(string), "%s%s\n", string, VL_Ballas[i][E_VOICELINE_DESC]);
+				}
+				Dialog_ShowPages(playerid, VoicelinesPlay, DIALOG_STYLE_TABLIST_HEADERS, "Voicelines:", string, "Play", "Close");
+			}
+			case 2:
+			{
+				strcat(string, "Description\n");
+				forex(i, sizeof(VL_Aztecas)) {
+					format(string, sizeof(string), "%s%s\n", string, VL_Aztecas[i][E_VOICELINE_DESC]);
+				}
+				Dialog_ShowPages(playerid, VoicelinesPlay, DIALOG_STYLE_TABLIST_HEADERS, "Voicelines:", string, "Play", "Close");
+			}
+			case 3:
+			{
+				strcat(string, "Description\n");
+				forex(i, sizeof(VL_Vagos)) {
+					format(string, sizeof(string), "%s%s\n", string, VL_Vagos[i][E_VOICELINE_DESC]);
+				}
+				Dialog_ShowPages(playerid, VoicelinesPlay, DIALOG_STYLE_TABLIST_HEADERS, "Voicelines:", string, "Play", "Close");
+			}
+			case 4:
+			{
+				strcat(string, "Description\n");
+				forex(i, sizeof(VL_LSPD)) {
+					format(string, sizeof(string), "%s%s\n", string, VL_LSPD[i][E_VOICELINE_DESC]);
+				}
+				Dialog_ShowPages(playerid, VoicelinesPlay, DIALOG_STYLE_TABLIST_HEADERS, "Voicelines:", string, "Play", "Close");
+			}
+		}
+	}
+    return 1;
+}
+
+Dialog:VoicelinesPlay(playerid, response, listitem, inputtext[]) 
+{
+    if(response)
+	{
+		if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 3 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 6 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 10)
+		{
+			Voiceline_Play(playerid, VL_Families[listitem][E_VOICELINE_ID]);
+		}
+		else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 4 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 5 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 9 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 11)
+		{
+			Voiceline_Play(playerid, VL_Ballas[listitem][E_VOICELINE_ID]);
+		}
+		else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 8)
+		{
+			Voiceline_Play(playerid, VL_Aztecas[listitem][E_VOICELINE_ID]);
+		}
+		else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 7)
+		{
+			Voiceline_Play(playerid, VL_Vagos[listitem][E_VOICELINE_ID]);
+		}
+		else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 1)
+		{
+			Voiceline_Play(playerid, VL_LSPD[listitem][E_VOICELINE_ID]);
+		}
+	}
 	return 1;
 }

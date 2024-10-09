@@ -17,20 +17,6 @@ new dmv_vehicles[4];
 
 new PlayerActor[MAX_PLAYERS][4];
 
-//Actor
-new g_StaticActors[30];
-
-InsertMapIcons()
-{
-	CreateDynamicMapIcon(1555.4071,-1675.9655,16.1953, 30, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL); //lspd
-	CreateDynamicMapIcon(2032.0125,-1407.1543,17.1903, 22, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL); //Hospital
-	CreateDynamicMapIcon(2495.4246,-1691.1404,14.7656, 15, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL); //CJ
-	CreateDynamicMapIcon(2523.2678,-1679.3127,15.4970, 38, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL); //Sweet
-	CreateDynamicMapIcon(2459.4849,-1691.6638,13.5454, 34, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL); //Ryder
-	CreateDynamicMapIcon(2065.1001,-1703.5552,14.1484, 8, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL); //Bigsmoke
-	CreateDynamicMapIcon(2443.2249,-1968.0973,13.5469, 18, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL); //Emmet
-}
-
 CreatePlayerActor(playerid)
 {
 	new vwid = AccountInfo[playerid][E_MASTERS_DBID];
@@ -208,104 +194,6 @@ InsertStaticVehicles()
 	{
 		VehicleInfo[LSPDVehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
 		VehicleInfo[LSPDVehicles[i]][E_VEHICLE_FUEL] = 100;
-	}
-
-	//Grove Street Families
-	GSF_Vehicles[0] = CreateVehicle(492, 2509.9296, -1669.0062, 13.2189, 8.7322, 12, 1, -1); //GSF
-	GSF_Vehicles[1] = CreateVehicle(567, 2474.0119, -1692.0253, 13.6390, 359.9972, 11, 0, -1); //GSF
-	GSF_Vehicles[2] = CreateVehicle(492, 2451.5410, -1663.7249, 13.1531, 90.2983, 10, 0, -1); //GSF
-	GSF_Vehicles[3] = CreateVehicle(412, 2481.9396, -1654.2548, 13.1807, 91.5362, 10, 0, -1); //GSF
-
-	for (new i = 0; i < 4; i ++) if (IsValidVehicle(GSF_Vehicles[i])) 
-	{
-		VehicleInfo[GSF_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[GSF_Vehicles[i]][E_VEHICLE_FUEL] = 100;
-	}
-
-	//Killo Tray Ballas
-	KTB_Vehicles[0] = CreateVehicle(566, 1981.4327,-1275.5765,23.6010,181.0455, 29, 1, -1); //KTB
-	KTB_Vehicles[1] = CreateVehicle(517, 1999.3201,-1275.2437,23.6027,359.6360, 30, 1, -1); //KTB
-	KTB_Vehicles[2] = CreateVehicle(405, 2008.4663,-1275.5184,23.6018,179.2122, 11, 0, -1); //KTB
-	KTB_Vehicles[3] = CreateVehicle(445, 2024.8915,-1291.6016,20.7047,180.2293, 30, 1, -1); //KTB
-	for (new i = 0; i < 4; i ++) if (IsValidVehicle(KTB_Vehicles[i])) 
-	{
-		VehicleInfo[KTB_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[KTB_Vehicles[i]][E_VEHICLE_FUEL] = 100;
-	}
-
-	//Jefferson Ballas
-	JB_Vehicles[0] = CreateVehicle(566, 2269.1245,-1416.3932,23.4564,45.5890, 29, 1, -1); //JB
-	JB_Vehicles[1] = CreateVehicle(405, 2246.9924,-1412.3864,23.6771,89.9011, 30, 1, -1); //JB
-	JB_Vehicles[2] = CreateVehicle(517, 2262.4512,-1453.4043,23.3699,95.6432, 12, 1, -1); //JB
-	JB_Vehicles[3] = CreateVehicle(445, 2188.1389,-1465.9117,25.3224,89.5494, 10, 1, -1); //JB
-	for (new i = 0; i < 4; i ++) if (IsValidVehicle(JB_Vehicles[i])) 
-	{
-		VehicleInfo[JB_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[JB_Vehicles[i]][E_VEHICLE_FUEL] = 100;
-	}
-
-	//Seville Boulevard Famillies
-	SBF_Vehicles[0] = CreateVehicle(492, 2734.4475, -1990.5172, 13.1300, 271.1235, 9, 0, -1); //Tahoma
-	SBF_Vehicles[1] = CreateVehicle(412, 2696.1992, -2007.7884, 13.2625, 89.5965, 12, 0, -1); //Majestic
-	SBF_Vehicles[2] = CreateVehicle(567, 2783.2895, -1998.0635, 13.1188, 87.7948, 12, 0, -1); //Greenwood
-	SBF_Vehicles[3] = CreateVehicle(492, 2750.7900, -1990.5590, 13.0925, 270.8733, 51, 0, -1); //Tahoma
-	for (new i = 0; i < 4; i ++) if (IsValidVehicle(SBF_Vehicles[i])) 
-	{
-		VehicleInfo[SBF_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[SBF_Vehicles[i]][E_VEHICLE_FUEL] = 100;
-	}
-
-	//Varios Los Aztecas
-	VLA_Vehicles[0] = CreateVehicle(575, 1862.5097, -2048.4335, 13.1544, 91.5799, 11, 0, -1); //VLA
-	VLA_Vehicles[1] = CreateVehicle(474, 1887.4024, -2028.7281, 13.1655, 357.7594, 12, 0, -1); //VLA
-	VLA_Vehicles[2] = CreateVehicle(466, 1878.6042, -2037.1751, 13.1860, 359.2419, 10, 0, -1); //VLA
-	VLA_Vehicles[3] = CreateVehicle(567, 1827.3304, -2037.0565, 13.3112, 359.8548, 32, 0, -1); //VLA
-	for (new i = 0; i < 4; i ++) if (IsValidVehicle(VLA_Vehicles[i])) 
-	{
-		VehicleInfo[VLA_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[VLA_Vehicles[i]][E_VEHICLE_FUEL] = 100;
-	}
-
-	//Eeast Los santos Vagos
-	ELSV_Vehicles[0] = CreateVehicle(474, 2566.0146,-1490.7144,23.6314,88.9938, 61, 0, -1); //ELSV
-	ELSV_Vehicles[1] = CreateVehicle(467, 2534.0156,-1509.1288,23.5625,88.5979, 41, 0, -1); //ELSV
-	ELSV_Vehicles[2] = CreateVehicle(576, 2532.3359,-1549.8925,23.1501,154.0457, 13, 0, -1); //ELSV
-	ELSV_Vehicles[3] = CreateVehicle(467, 2473.6042,-1567.6104,23.0858,88.5126, 65, 0, -1); //ELSV
-	for (new i = 0; i < 4; i ++) if (IsValidVehicle(ELSV_Vehicles[i])) 
-	{
-		VehicleInfo[ELSV_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[ELSV_Vehicles[i]][E_VEHICLE_FUEL] = 100;
-	}
-
-	//Front Yard Ballas
-	FYB_Vehicles[0] = CreateVehicle(566, 1947.3402,-1561.9609,13.4978,131.2088, 29, 1, -1); //JB
-	FYB_Vehicles[1] = CreateVehicle(517, 1936.3823,-1560.8550,13.4825,44.0506, 30, 1, -1); //JB
-	FYB_Vehicles[2] = CreateVehicle(405, 1995.0963,-1604.8083,13.4152,314.4805, 12, 1, -1); //JB
-	FYB_Vehicles[3] = CreateVehicle(445, 1954.7057,-1595.6567,13.4313,135.5698, 10, 1, -1); //JB
-	for (new i = 0; i < 4; i ++) if (IsValidVehicle(FYB_Vehicles[i])) 
-	{
-		VehicleInfo[FYB_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[FYB_Vehicles[i]][E_VEHICLE_FUEL] = 100;
-	}
-
-	TDB_Vehicles[0] = CreateVehicle(566,1167.6653,-1209.8619,19.1670,89.6247,29, 1, -1);
-	TDB_Vehicles[1] = CreateVehicle(517,1155.3810,-1232.6425,16.4068,180.7964,30, 1, -1);
-	TDB_Vehicles[2] = CreateVehicle(405,1155.6931,-1255.3346,14.2934,181.0030,12, 22, -1);
-	TDB_Vehicles[3] = CreateVehicle(445,1189.5892,-1203.3043,19.4212,88.8266,10, 1, -1);
-	for (new i = 0; i < 4; i ++) if (IsValidVehicle(TDB_Vehicles[i])) 
-	{
-		VehicleInfo[TDB_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[TDB_Vehicles[i]][E_VEHICLE_FUEL] = 100;
-	}
-
-	TDF_Vehicles[0] = CreateVehicle(492,1208.1804,-1070.9553,29.0190,181.6342,9, 0, -1);
-	TDF_Vehicles[1] = CreateVehicle(412,1217.7416,-1069.5494,29.0092,1.3636,12, 0, -1);
-	TDF_Vehicles[2] = CreateVehicle(567,1224.3577,-1099.9832,25.0504,178.5682,51, 0, -1);
-	TDF_Vehicles[3] = CreateVehicle(412,1222.0919,-1034.5342,31.6031,89.6242,11, 0, -1);
-	for (new i = 0; i < 4; i ++) if (IsValidVehicle(TDF_Vehicles[i])) 
-	{
-		VehicleInfo[TDF_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[TDF_Vehicles[i]][E_VEHICLE_FUEL] = 100;
 	}
 }
 RemoveObjects(playerid)

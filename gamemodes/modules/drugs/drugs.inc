@@ -154,14 +154,6 @@ stock IsPlayerUsingDrugs(playerid, type)
 
 			SetPlayerDrunkLevel(playerid, 2000);
 
-			new turfid = IsPlayerNearTurf(playerid);
-			if(turfid)
-			{	
-				if(GetPlayerTeam(playerid) != PLAYER_STATE_WOUNDED && GlobalTurf == 0 && TurfInfo[turfid][E_FACTION_TURFTYPE] == 0 && FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] == FACTION_TYPE_ILLEGAL)
-				{
-					TurfsPoints(playerid, turfid);
-				}
-			}
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -194,14 +186,6 @@ stock IsPlayerUsingDrugs(playerid, type)
 
 			SetPlayerDrunkLevel(playerid, 2000);
 
-			new turfid = IsPlayerNearTurf(playerid);
-			if(turfid)
-			{	
-				if(GetPlayerTeam(playerid) != PLAYER_STATE_WOUNDED && GlobalTurf == 0 && TurfInfo[turfid][E_FACTION_TURFTYPE] == 0 && FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] == FACTION_TYPE_ILLEGAL)
-				{
-					TurfsPoints(playerid, turfid);
-				}
-			}
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -220,14 +204,6 @@ stock IsPlayerUsingDrugs(playerid, type)
 
 			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_SMOKE_CIGGY);
 
-			new turfid = IsPlayerNearTurf(playerid);
-			if(turfid)
-			{	
-				if(GetPlayerTeam(playerid) != PLAYER_STATE_WOUNDED && GlobalTurf == 0 && TurfInfo[turfid][E_FACTION_TURFTYPE] == 0 && FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] == FACTION_TYPE_ILLEGAL)
-				{
-					TurfsPoints(playerid, turfid);
-				}
-			}
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -259,14 +235,6 @@ stock IsPlayerUsingDrugs(playerid, type)
 			SetPlayerHealthEx(playerid, health+15);
 			SetPlayerDrunkLevel(playerid, 4000);
 
-			new turfid = IsPlayerNearTurf(playerid);
-			if(turfid)
-			{	
-				if(GetPlayerTeam(playerid) != PLAYER_STATE_WOUNDED && GlobalTurf == 0 && TurfInfo[turfid][E_FACTION_TURFTYPE] == 0 && FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] == FACTION_TYPE_ILLEGAL)
-				{
-					TurfsPoints(playerid, turfid);
-				}
-			}
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -299,14 +267,6 @@ stock IsPlayerUsingDrugs(playerid, type)
 
 			SetPlayerDrunkLevel(playerid, 2000);
 
-			new turfid = IsPlayerNearTurf(playerid);
-			if(turfid)
-			{	
-				if(GetPlayerTeam(playerid) != PLAYER_STATE_WOUNDED && GlobalTurf == 0 && TurfInfo[turfid][E_FACTION_TURFTYPE] == 0 && FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] == FACTION_TYPE_ILLEGAL)
-				{
-					TurfsPoints(playerid, turfid);
-				}
-			}
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);

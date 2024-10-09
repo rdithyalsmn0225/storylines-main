@@ -34,9 +34,7 @@ enum
 enum
 {
 	JOB_NONE,
-    JOB_TRUCKER,
-	JOB_DOCKSWORKER,
-	JOB_TRASHMASTER
+    JOB_TRUCKER
 };
 
 enum 
@@ -124,6 +122,7 @@ enum P_ACCOUNT_DATA
 	E_CHARACTER_DBID,
 	E_CHARACTER_ADMIN,
 	E_CHARACTER_LASTSKIN,
+	E_CHARACTER_FACSKIN,
 	E_CHARACTER_LEVEL,
 	E_CHARACTER_EXP,
 	E_CHARACTER_LASTINTERIOR,
@@ -155,8 +154,9 @@ enum P_ACCOUNT_DATA
 	E_CHARACTER_EQUIPITEMS,
 	E_CHARACTER_WEAPONTYPE,
 	E_CHARACTER_TIMEPLAYED,
-	E_CHARACTER_INSEIDEPROP,
-	E_CHARACTER_INSEIDEBIZ,
+	E_CHARACTER_INSIDEPROP,
+	E_CHARACTER_INSIDEBIZ,
+	E_CHARACTER_INSIDEENT,
 	E_CHARACTER_LASTDAMAGE,
 	E_CHARACTER_AFK,
 	E_CHARACTER_AFKTIME,
@@ -260,7 +260,8 @@ enum P_ACCOUNT_DATA
 	bool:E_CHARACTER_HASBURGLARY,
 	bool:E_CHARACTER_STARTBURGLARY,
 	bool:E_CHARACTER_LOADING,
-	bool:E_CHARACTER_INJOBS,
+	bool:E_CHARACTER_DOCKSWORK,
+	bool:E_CHARACTER_GARBAGEMAN,
 	bool:E_CHARACTER_TOGMENU,
 	bool:E_CHARACTER_TOGJOIN,
 	bool:E_CHARACTER_TOGADMIN,
@@ -290,7 +291,7 @@ enum G_REPORT_INFO
 
 enum E_VOICELINE_DATA 
 {
-	E_VOICELINE_CONST,
+	E_VOICELINE_TYPE,
 	E_VOICELINE_ID,
 	E_VOICELINE_DESC[96]
 };
@@ -316,33 +317,6 @@ enum E_FACTION_INFO
 	Float: E_FACTION_SPAWN[3],
 	Text3D:E_FACTION_SPAWNTEXT
 }
-
-enum E_TURF_DATA
-{
-	E_FACTION_TURFDBID,
-	E_FACTION_TURFEXISTS,
-	E_FACTION_TURFCAPTUREDBY[MAX_PLAYER_NAME],
-	E_FACTION_TURFGANG,
-	E_FACTION_TURFTYPE,
-	E_FACTION_TURFZONE,
-	E_FACTION_TURFAREA,
-	E_FACTION_TURFTIME,
-	E_FACTION_TURFCAPTURER,
-	E_FACTION_TURFGANGTYPE[10],
-	E_FACTION_TURFDRUGSACTOR,
-	E_FACTION_TURFDRUGSEXISTS,
-	E_FACTION_TURFDRUGSTYPE,
-	E_FACTION_TURFDRUGS,
-	Float: E_FACTION_TURFMINX,
-	Float: E_FACTION_TURFMINY,
-	Float: E_FACTION_TURFMAXX,
-	Float: E_FACTION_TURFMAXY,
-	Float: E_FACTION_TURFHEIGHT,
-	Float: E_FACTION_TURFDRUGSX,
-	Float: E_FACTION_TURFDRUGSY,
-	Float: E_FACTION_TURFDRUGSZ,
-	Float: E_FACTION_TURFDRUGSA
-};
 
 enum E_VEHICLE_DATA
 {
@@ -479,6 +453,19 @@ enum bizInt
 	Float: E_INT_A
 };
 
+enum E_ENTRANCE_DATA
+{
+	E_ENTRANCE_DBID,
+	E_ENTRANCE_INTERIOR,
+	E_ENTRANCE_WORLD,
+	E_ENTRANCE_ICON,
+	E_ENTRANCE_MAPICON,
+	E_ENTRANCE_GARAGE,
+	E_ENTRANCE_PICKUP[2],
+	Float: E_ENTRANCE_POS[3],
+	Float: E_ENTRANCE_INT[3]
+}
+
 enum 
 {
 	VOICE_LINE_FAMILIES,
@@ -512,11 +499,8 @@ enum E_SERVERSTOCK_DATA
 {
 	E_SERVER_DBID,
 	E_SERVER_PRODUCTS,
-	E_SERVER_CRATES,
-	E_SERVER_CLOTHES,
-	E_SERVER_FOODS,
-	E_SERVER_TOOLS,
-	Text3D:E_SERVER_3DTEXT
+	E_SERVER_WOODS,
+	Text3D:E_SERVER_3DTEXT[3]
 }
 
 enum E_DEALERSHIP_DATA
@@ -697,8 +681,8 @@ enum E_INDUSTRY_DATA {
 
 /*=====[PENALCODE]=====*/
 enum E_PENALCODES_DATA {
-	E_PENALCODES_TYPE[2048],
-	E_PENALCODES_NAME[2048],
+	E_PENALCODES_TYPE[128],
+	E_PENALCODES_NAME[1024],
 	E_PENALCODES_CHARGES,
 	E_PENALCODES_JAILTIME
 };
@@ -710,13 +694,13 @@ new	AreaInfo[E_AREA_DATA],
 	AccountInfo[MAX_PLAYERS][P_MASTER_ACCOUNTS],
 	ReportInfo[100][G_REPORT_INFO], 
 	playerReport[MAX_PLAYERS][128], 
-	TurfInfo[MAX_TURFS][E_TURF_DATA],
 	CourtInfo[MAX_COURT][E_COURT_DATA],
 	FactionInfo[MAX_FACTIONS][E_FACTION_INFO], 
 	FactionRanks[MAX_FACTIONS][MAX_FACTION_RANKS][60], 
 	VehicleInfo[MAX_VEHICLES][E_VEHICLE_DATA],
 	PropertyInfo[MAX_PROPERTY][E_PROPERTY_DATA], 
 	BusinessInfo[MAX_BUSINESS][E_BUSINESS_DATA], 
+	EntranceInfo[MAX_ENTRANCE][E_ENTRANCE_DATA],
 	ServerInfo[MAX_SERVERDATA][E_SERVERSTOCK_DATA], 
 	DamageInfo[MAX_PLAYERS][100][E_DAMAGE_INFO], 
 	ListedContacts[MAX_PLAYERS][MAX_CONTACTS],
@@ -763,7 +747,6 @@ new TotalPlayerDamages[MAX_PLAYERS],
 	characterPickTime[MAX_PLAYERS],
 	characterFaction[MAX_PLAYERS][4],
 	characterLister[MAX_PLAYERS][4][MAX_PLAYER_NAME + 1],
-	characterStreetLister[MAX_PLAYERS][4][MAX_PLAYER_NAME + 1],
 	bool:characterSelection[MAX_PLAYERS],
 	lastVehicleSpawn[MAX_PLAYERS],
 	bool:playerTowingVehicle[MAX_PLAYERS], 
@@ -787,41 +770,11 @@ new TotalPlayerDamages[MAX_PLAYERS],
 	DealershipAlarmLevel[MAX_PLAYERS], 
 	DealershipImmobLevel[MAX_PLAYERS];
 
-new g_aGSFSkins[] = {
-	105, 106, 107, 20029, 20030, 20031
-};
-
-new g_aSBFSkins[] = {
-	20037, 20038, 20039, 20040
-};
-
-new g_aTDFSkins[] = {
-	20033, 20034, 20035, 20036
-};
-
-new g_aKTBSkins[] = {
-	20085, 20086, 20087
-};
-
-new g_aRHBSkins[] = {
-	20088, 20089, 20090
-};
-
-new g_aFYBSkins[] = {
-	20091, 20092, 20093
-};
-
-new g_aTDBSkins[] = {
-	20094, 20095, 20096
-};
-
-new g_aAztecasSkins[] = {
-	114, 115, 116, 20061, 20062, 20063, 20064, 20065, 20066, 20067, 20068, 20069, 20070
-};
-
-new g_aVagosSkins[] = {
-	108, 109, 110, 20041, 20042, 20043, 20044, 20045, 20046, 20047, 20048, 20049, 20050
-};
+new DrugsDealerType[MAX_PLAYERS],
+	DrugsDealerAmount[MAX_PLAYERS],
+	DrugsDealerExists[MAX_PLAYERS],
+	DrugsDealerActor[MAX_PLAYERS],
+	Float: DrugsDealerPos[MAX_PLAYERS][4];
 
 new g_aLspdSkins[] = {
 	300, 301, 302, 310, 311, 20071, 20072, 20073, 20074
@@ -919,6 +872,7 @@ new Float: ENEXPoint[][] =
 new Float:JobPoint[][] = 
 {
 	{1793.2362,-1691.9686,13.4858}, //Truckers
+	{-1438.6829,-1543.6034,101.7578}, //Lumberjack
 	{2177.2751,-1986.4753,13.5504}, //Trashmaster
 	{2748.7725,-2451.0012,13.6484},  //Dockworker
 	{2924.4316,-2052.0808,3.5480}  //Fishing
@@ -1104,9 +1058,7 @@ new possiblE_VEHICLE_PLATES[][] =
 new const JobsInfo[][E_JOBS_LOCATIONS] =
 {
 	{"Unemployed", 0.0, 0.0, 0.0},
-	{"Truckers", 1793.2362,-1691.9686,13.4858},
-	{"Docksworker", 2748.7725,-2451.0012,13.6484},
-	{"Trashmaster", 2177.2751,-1986.4753,13.5504}
+	{"Truckers", 1793.2362,-1691.9686,13.4858}
 };
 
 new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
@@ -1153,7 +1105,7 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Baking Soda", 19570, 0},
 	{"Pots", 19585, 1},
 	{"Grill", 19831, 2},
-	{"Foods Cargo", 2912, 0},
+	{"Woods Cargo", 2912, 0},
 	{"Tools Cargo", 2912, 0},
 	{"Clothes Cargo", 2912, 0},
 	{"Products Cargo", 2912, 0}
@@ -1190,16 +1142,18 @@ new const PublicName[][128] =
 new const JobLocName[][62] =
 {
 	"ArborV Trucking.co (Job: Trucking)",
-    "G&S Garbage.co (Job: Trashmaster)",
-	"Sheroline's Dockswork.co (Job: Dockworker)",
+	"Leafy Hollow Timber.co (Job: Lumberjack)",
+    "G&S Garbage.co (SideJob: Trashmaster)",
+	"Sheroline's Dockswork.co (SideJob: Dockworker)",
 	"Royal Fishers.co (SideJob: Fishing)"
 };
 
 new const IndustryInfo[][E_INDUSTRY_DATA] = 
 {
 	/* =====[SECONDARY]===== */
-	{"Oceandocks Ships - Secondary", 2824.3801,-2387.5449,12.0771}, //Foods Cargo Secondary
-	{"Oceandocks Ships - Secondary", 2824.1074,-2436.5945,12.0891} //Tools Cargo Secondary
+	{"[Oceandocks Ships]", 2824.3801,-2387.5449,12.0771}, // Oceandocks Ships
+	{"[Oceandocks Ships]", 2824.1074,-2436.5945,12.0891}, // Oceandocks Ships
+	{"[Leafy Hollow Acress]", -1448.3512,-1522.6899,101.7578} //Leafy Hollow Acress
 };
 
 new const PenalInfo[][E_PENALCODES_DATA] =
@@ -1300,9 +1254,9 @@ new const PenalInfo[][E_PENALCODES_DATA] =
 	{"CCW / PF Violation", "A person who carries concealed a legal, registered firearm that is not authorized as a conceal-carry weapon.", 1500, 15}
 };
 
-new VL_Families[][E_VOICELINE_DATA ] = {
+new VL_Families[][E_VOICELINE_DATA] = {
 
-	{VOICE_LINE_FAMILIES, 103100, "Hey get in the car fools! "},
+	{VOICE_LINE_FAMILIES, 103100, "Hey get in the car fools!"},
 	{VOICE_LINE_FAMILIES, 103104, "Proud of you boy you have him down."},
 	{VOICE_LINE_FAMILIES, 103105, "Man I hope nobody got hurt."},
 	{VOICE_LINE_FAMILIES, 103113, "Yeaaah baby ! "},
@@ -1506,8 +1460,7 @@ new VL_Families[][E_VOICELINE_DATA ] = {
 	{VOICE_LINE_FAMILIES, 102999, "What the FUCK is wrong with chu!?"}
 };
 
-
-new VL_Ballas[][E_VOICELINE_DATA ] = {
+new VL_Ballas[][E_VOICELINE_DATA] = {
 	// RHB, KTB, FYB
 	{VOICE_LINE_BALLAS, 101100, "Grove Street Famaly' SUCK ASS ! "},
 	{VOICE_LINE_BALLAS, 101101, "SUCK MA DICK GROVE BITCH!"},
@@ -1749,7 +1702,7 @@ new VL_Ballas[][E_VOICELINE_DATA ] = {
 	{VOICE_LINE_BALLAS, 100872, "Over here you lil' mark."},
 	{VOICE_LINE_BALLAS, 100877, "Watch out Ima be the hero of the day."},
 	{VOICE_LINE_BALLAS, 100878, "I luv ma hood'."},
-	{VOICE_LINE_BALLAS, 100893, "You sucka ! "},
+	{VOICE_LINE_BALLAS, 100893, "You sucka !"},
 	{VOICE_LINE_BALLAS, 100896, "Oh-. shit the police."},
 	{VOICE_LINE_BALLAS, 100899, "I didn't do shit to yall, I didn't do nothing."},
 	{VOICE_LINE_BALLAS, 100901, "Don't you have something better to do ? Go { have a donut.   "},
@@ -1768,19 +1721,17 @@ new VL_Ballas[][E_VOICELINE_DATA ] = {
 	{VOICE_LINE_BALLAS, 100956, "What set you from, speak up !?"},
 	{VOICE_LINE_BALLAS, 100957, "I'ma E_BALLER homie, What are you ? "},
 	{VOICE_LINE_BALLAS, 100958, "Yeah Balla' 4 Life, What about you ?"},
-	{VOICE_LINE_BALLAS, 100959, "Ima E_BALLER homie, Are you ? "},
+	{VOICE_LINE_BALLAS, 100959, "Ima E_BALLER homie, Are you ?"},
 	{VOICE_LINE_BALLAS, 100966, "You can't kill me or there is gonna be war."},
 	{VOICE_LINE_BALLAS, 100967, "Don't turn this battle into a war homie."},
 	{VOICE_LINE_BALLAS, 100968, "Mane go and put that thing away mane."},
-	{VOICE_LINE_BALLAS, 100969, "Itchy trigger finger or what ? "},
+	{VOICE_LINE_BALLAS, 100969, "Itchy trigger finger or what ?"},
 	{VOICE_LINE_BALLAS, 100976, "This is a B' ride busta'"},
 	{VOICE_LINE_BALLAS, 100984, "Somebody drop this fool."},
-	{VOICE_LINE_BALLAS, 100988, "You can't jack me mark, Ima BALLAS ! "}
-} ;
+	{VOICE_LINE_BALLAS, 100988, "You can't jack me mark, Ima BALLAS !"}
+};
 
-
-
-new VL_Aztecas[][E_VOICELINE_DATA ] = {
+new VL_Aztecas[][E_VOICELINE_DATA] = {
 	// VLA
 	{VOICE_LINE_VLA, 108406, "Ima blast on you pendejo"},
 	{VOICE_LINE_VLA, 108407, "Ballassos ivavossos pendejos "},
@@ -2000,20 +1951,18 @@ new VL_Aztecas[][E_VOICELINE_DATA ] = {
 	{VOICE_LINE_VLA, 109323, "Hold that puto down"},
 	{VOICE_LINE_VLA, 109369, "Get down ! "},
 	{VOICE_LINE_VLA, 109370, "Drop em"},
-	{VOICE_LINE_VLA, 109259, "Goes down one !  "},
-	{VOICE_LINE_VLA, 109321, "Cover Ma' Ass ! "},
+	{VOICE_LINE_VLA, 109259, "Goes down one !"},
+	{VOICE_LINE_VLA, 109321, "Cover Ma' Ass !"},
 	{VOICE_LINE_VLA, 109339, "This shit keep happenin around here."},
 	{VOICE_LINE_VLA, 109390, "Thats incredible."},
-	{VOICE_LINE_VLA, 109331, "I am gonna teach you the value of the money { puto!"},
+	{VOICE_LINE_VLA, 109331, "I am gonna teach you the value of the money puto!"},
 	{VOICE_LINE_VLA, 109336, "Why don't I have more feria to live."},
 	{VOICE_LINE_VLA, 109339, "This shit' keeps happening around here."},
 	{VOICE_LINE_VLA, 109343, "I am not some pedo, cabron!"},
 	{VOICE_LINE_VLA, 109356, "Just keep to the pedal to the medal!"}
-} ;
+};
 
-
-
-new VL_Vagos[][E_VOICELINE_DATA ] = {
+new VL_Vagos[][E_VOICELINE_DATA] = {
 	{VOICE_LINE_VAGOS, 103800, "Adios Amigos ! "},
 	{VOICE_LINE_VAGOS, 103801, "You dead now BRO! "},
 	{VOICE_LINE_VAGOS, 103805, "Adios ENEMIGAS!"},
@@ -2024,7 +1973,6 @@ new VL_Vagos[][E_VOICELINE_DATA ] = {
 	{VOICE_LINE_VAGOS, 103816, "We gonna take over Grove Street Turf ! "},
 	{VOICE_LINE_VAGOS, 103817, "GROVE STREET KILLA ! "},
 	{VOICE_LINE_VAGOS, 103822, "Whats up ? You want sum step up."},
-	{VOICE_LINE_VAGOS, 103823, "(Spanish)"},
 	{VOICE_LINE_VAGOS, 103825, "Man fuck your Varrio!"},
 	{VOICE_LINE_VAGOS, 103826, "Man this is Santos Vagos ! "},
 	{VOICE_LINE_VAGOS, 103827, "Fuck Varrios Los Aztecas ! "},
@@ -2190,7 +2138,6 @@ new VL_Vagos[][E_VOICELINE_DATA ] = {
 	{VOICE_LINE_VAGOS, 104327, "COVER ME VAGO ! "},
 	{VOICE_LINE_VAGOS, 104329, "COVER ME ESE ! "},
 	{VOICE_LINE_VAGOS, 104331, "You can't stop me ! "},
-	{VOICE_LINE_VAGOS, 104334, "(Spanish)"},
 	{VOICE_LINE_VAGOS, 104352, "Those were for some self defence holmes."},
 	{VOICE_LINE_VAGOS, 104353, "I cut off my finger prints jura."},
 	{VOICE_LINE_VAGOS, 104356, "You miss cabron ! "},
@@ -2210,7 +2157,7 @@ new VL_Vagos[][E_VOICELINE_DATA ] = {
 	{VOICE_LINE_VAGOS, 101012, "Vagos, Vamos!"}
 };
 
-new VL_LSPD[][E_VOICELINE_DATA ] = {
+new const VL_LSPD[][E_VOICELINE_DATA] = {
 	{VOICE_LINE_LSPD, 10800, "This doesn't concern you."} ,
 	{VOICE_LINE_LSPD, 10803, "Don't push me son."} ,
 	{VOICE_LINE_LSPD, 10811, "Did anybody frisk that guy ?"} ,

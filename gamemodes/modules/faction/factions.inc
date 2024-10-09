@@ -67,55 +67,19 @@ function:Query_LoadFactions()
 		cache_get_value_name_int(i, "FactionChatColor", FactionInfo[i+1][E_FACTION_COLORHEX]);
 		cache_get_value_name_int(i, "FactionType", FactionInfo[i+1][E_FACTION_TYPE]);
 
-		FactionInfo[i+1][E_FACTION_SPAWNPICKUP] = CreateDynamicPickup(1314, 1, FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], FactionInfo[i+1][E_FACTION_SPAWNWORLD], FactionInfo[i+1][E_FACTION_SPAWNINT], -1, 3.0);
+		FactionInfo[i+1][E_FACTION_SPAWNPICKUP] = CreateDynamicPickup(1314, 1, FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], FactionInfo[i+1][E_FACTION_SPAWNWORLD], FactionInfo[i+1][E_FACTION_SPAWNINT], -1, 5.0);
 		
 		if(FactionInfo[i+1][E_FACTION_TYPE] == FACTION_TYPE_ILLEGAL)
 		{
 			new str[512];
-			format(str, sizeof(str), "Faction Storage\n{ffffff}Available Commands: /fskin to change your faction skin");
+			format(str, sizeof(str), "[Faction Spawn Point]\n{ffffff}Available Commands: /fskin to change your faction skin");
 			FactionInfo[i+1][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel(str, COLOR_POINT, FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[i+1][E_FACTION_SPAWNWORLD], FactionInfo[i+1][E_FACTION_SPAWNINT]);
 		}
 		else
 		{
 			new str[512];
-			format(str, sizeof(str), "Faction Storage\n{ffffff}Available Commands: /uniform to change your faction skin");
+			format(str, sizeof(str), "[Faction Spawn Point]\n{ffffff}Available Commands: /uniform to change your faction skin");
 			FactionInfo[i+1][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel(str, COLOR_POINT, FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[i+1][E_FACTION_SPAWNWORLD], FactionInfo[i+1][E_FACTION_SPAWNINT]);
-		}
-		if(FactionInfo[i+1][E_FACTION_DBID] == 6)
-		{
-			FactionInfo[i+1][E_FACTION_MAPICON] = CreateDynamicMapIcon(FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 62, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-		}
-		if(FactionInfo[i+1][E_FACTION_DBID] == 7)
-		{
-			FactionInfo[i+1][E_FACTION_MAPICON] = CreateDynamicMapIcon(FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 59, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-		}
-		if(FactionInfo[i+1][E_FACTION_DBID] == 8)
-		{
-			FactionInfo[i+1][E_FACTION_MAPICON] = CreateDynamicMapIcon(FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 59, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-		}
-		if(FactionInfo[i+1][E_FACTION_DBID] == 9)
-		{
-			FactionInfo[i+1][E_FACTION_MAPICON] = CreateDynamicMapIcon(FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 62, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-		}
-		if(FactionInfo[i+1][E_FACTION_DBID] == 10)
-		{
-			FactionInfo[i+1][E_FACTION_MAPICON] = CreateDynamicMapIcon(FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 60, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-		}
-		if(FactionInfo[i+1][E_FACTION_DBID] == 11)
-		{
-			FactionInfo[i+1][E_FACTION_MAPICON] = CreateDynamicMapIcon(FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 58, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-		}
-		if(FactionInfo[i+1][E_FACTION_DBID] == 12)
-		{
-			FactionInfo[i+1][E_FACTION_MAPICON] = CreateDynamicMapIcon(FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 59, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-		}
-		if(FactionInfo[i+1][E_FACTION_DBID] == 13)
-		{
-			FactionInfo[i+1][E_FACTION_MAPICON] = CreateDynamicMapIcon(FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 62, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-		}
-		if(FactionInfo[i+1][E_FACTION_DBID] == 14)
-		{
-			FactionInfo[i+1][E_FACTION_MAPICON] = CreateDynamicMapIcon(FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 59, 0, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
 		}
 		mysql_format(ourConnection, newThread, sizeof(newThread), "SELECT * FROM faction_ranks WHERE factionid = %i", i+1); 
 		mysql_pquery(ourConnection, newThread, "Query_LoadFactionRanks", "i", i+1);

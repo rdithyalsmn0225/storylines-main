@@ -168,55 +168,6 @@ stock SendAdminMessage(level, const str[])
 	return 1;
 }
 
-SendTurfMessage(turfid, color, const text[], {Float,_}:...)
-{
-	static
-  	    args,
-	    str[192];
-
-	if((args = numargs()) <= 3)
-	{
-	    foreach(new i : Player)
-	    {
-	        if(IsPlayerNearTurf(i) == turfid)
-	        {
-	    		SendClientMessage(i, color, text);
-			}
-		}
-	}
-	else
-	{
-		while(--args >= 3)
-		{
-			#emit LCTRL 	5
-			#emit LOAD.alt 	args
-			#emit SHL.C.alt 2
-			#emit ADD.C 	12
-			#emit ADD
-			#emit LOAD.I
-			#emit PUSH.pri
-		}
-		#emit PUSH.S 	text
-		#emit PUSH.C 	192
-		#emit PUSH.C 	str
-		#emit PUSH.S	8
-		#emit SYSREQ.C 	format
-		#emit LCTRL 	5
-		#emit SCTRL 	4
-
-		foreach(new i : Player)
-	    {
-	        if(IsPlayerNearTurf(i) == turfid)
-	        {
-	    		SendClientMessage(i, color, str);
-			}
-		}
-
-		#emit RETN
-	}
-	return 1;
-}
-
 stock SendAdminMessageEx(color, level, const str[], {Float,_}:...)
 {
 	static
@@ -810,16 +761,14 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 
 		if(!AccountInfo[playerid][E_MASTERS_LOGGED] || PlayerInfo[playerid][E_CHARACTER_TUTORIALSTEP] && !PlayerInfo[playerid][E_CHARACTER_TUTORIAL])
 		{
-			SendErrorMessage(playerid, "You can't talk when you aren't login.");
-			return 0;
+			return SendErrorMessage(playerid, "You can't talk when you aren't login.");
 		}
 		return 0;
 	}
 
     if(GetPlayerTeam(playerid) != PLAYER_STATE_ALIVE)
 	{
-		SendErrorMessage(playerid, "You can't talk when you aren't alive.");
-		return 0;
+		return SendErrorMessage(playerid, "You can't talk when you aren't alive.");
 	}
 
 	new vehicleid = GetPlayerVehicleID(playerid);

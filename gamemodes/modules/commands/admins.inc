@@ -132,9 +132,9 @@ CMD:goto(playerid, params[])
 		
 	SendTeleportMessage(playerid);	
 	
-	if(PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ])
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ])
 	{
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = 0;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
 	}
 	return 1;
 }
@@ -822,9 +822,9 @@ CMD:gotols(playerid, params[])
 	SetPlayerPosEx(playerid, 1514.1836, -1677.8027, 14.0469);
 	SetPlayerInterior(playerid, 0); SetPlayerVirtualWorld(playerid, 0);
 	
-	if(PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ])
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ])
 	{
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = 0;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
 	}
 	
 	SendTeleportMessage(playerid);
@@ -957,9 +957,9 @@ CMD:gotocar(playerid, params[])
 		
 	SendTeleportMessage(playerid);
 	
-	if(PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ])
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ])
 	{
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = 0;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
 	}
 	return 1;
 }
@@ -1172,6 +1172,30 @@ CMD:itemlist(playerid, params[])
 	return ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, "List of Items:", string, "Select", "Cancel");
 }
 
+CMD:gotoentrance(playerid, params[])
+{
+	new id;
+	
+	if(IsPlayerAdmins(playerid) < ADMINS_HIGH)
+		return SendUnauthMessage(playerid);
+	
+	if(sscanf(params, "i", id))
+		return SendUsageMessage(playerid, "/gotoentrance [entrance ID]");
+		
+	if(!EntranceInfo[id][E_ENTRANCE_DBID] || id > MAX_ENTRANCE)
+		return SendErrorMessage(playerid, "The entrance you specified doesn't exist.");
+		
+	SetPlayerPosEx(playerid, EntranceInfo[id][E_ENTRANCE_POS][0], EntranceInfo[id][E_ENTRANCE_POS][1], EntranceInfo[id][E_ENTRANCE_POS][2]);
+	
+	SendServerMessage(playerid, "You teleported to entrance %i.", id);
+	
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
+	{
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = 0;
+	}
+	return 1;
+}
+
 CMD:gotoproperty(playerid, params[])
 {
 	new id;
@@ -1192,9 +1216,9 @@ CMD:gotoproperty(playerid, params[])
 	
 	SendServerMessage(playerid, "You teleported to Property %i.", id);
 	
-	if(PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ])
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = 0;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = 0;
 	}
 	return 1;
 }
@@ -1215,9 +1239,9 @@ CMD:gotobusiness(playerid, params[])
 	SetPlayerPosEx(playerid, BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][2]); 
 	SendServerMessage(playerid, "You teleported to business %i.", id); 
 	
-	if(PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ])
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = 0;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = 0;
 	}
 	return 1;
 }
@@ -1242,9 +1266,9 @@ CMD:gotofaction(playerid, params[])
 	
 	SendServerMessage(playerid, "You teleported to %s's spawn point.", ReturnFactionNameEx(id)); 
 
-	if(PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ])
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ])
 	{
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = 0;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
 	}
 	return 1;
 }
@@ -1269,9 +1293,9 @@ CMD:xyz(playerid, params[])
 	
 	SendTeleportMessage(playerid);
 	
-	if(PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ])
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ])
 	{
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = 0;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
 	}
 	return 1;
 }
@@ -1880,13 +1904,12 @@ CMD:editfaction(playerid, params[])
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
 		return 0;
 		
-	//This is a lead admin version for faction configuration;
 	new factionid, oneString[60], secString[90]; 
 		
 	if (sscanf(params, "ds[60]S()[90]", factionid, oneString, secString))
 	{
 		SendUsageMessage(playerid, "/editfaction [faction id] [configuration]");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} type, color, spawn, turftokens"); 
+		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} type, color, spawn"); 
 		return 1;
 	}
 	
@@ -1937,15 +1960,10 @@ CMD:editfaction(playerid, params[])
 	}
 	else if(!strcmp(oneString, "spawn"))
 	{
-		if(IsValidDynamicObject(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]))
-			DestroyDynamicPickup(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]); 
-
-		FactionInfo[factionid][E_FACTION_SPAWNPICKUP] = CreateDynamicPickup(1239, 1, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
-		FactionInfo[factionid][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel("Faction Spawn Point\n{ffffff}Available Commands: Use /factionhelp to see faction commands", COLOR_POINT, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], 30.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
-
 		GetPlayerPos(playerid, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2]);
 		
 		FactionInfo[factionid][E_FACTION_SPAWNINT] = GetPlayerInterior(playerid);
+		FactionInfo[factionid][E_FACTION_SPAWNWORLD] = GetPlayerVirtualWorld(playerid);
 		
 		if(GetPlayerInterior(playerid) != 0)
 			FactionInfo[factionid][E_FACTION_SPAWNWORLD] = 0; 
@@ -1953,11 +1971,18 @@ CMD:editfaction(playerid, params[])
 		else FactionInfo[factionid][E_FACTION_SPAWNWORLD] = GetPlayerVirtualWorld(playerid);
 		
 		SendServerMessage(playerid, "You changed faction %d's spawn point.", factionid); 
+
+		if(IsValidDynamicPickup(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]))
+			DestroyDynamicPickup(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]); 
+		if(IsValidDynamic3DTextLabel(FactionInfo[factionid][E_FACTION_SPAWNTEXT]))
+			DestroyDynamic3DTextLabel(FactionInfo[factionid][E_FACTION_SPAWNTEXT]);
+
+		FactionInfo[factionid][E_FACTION_SPAWNPICKUP] = CreateDynamicPickup(1239, 1, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
+		FactionInfo[factionid][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel("Faction Spawn Point\n{ffffff}Available Commands: Use /factionhelp to see faction commands", COLOR_POINT, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], 30.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
+
 		SaveFaction(factionid);
 	}
-	
 	else return SendErrorMessage(playerid, "Invalid Parameter.");
-
 	return 1;
 }
 
@@ -2033,6 +2058,7 @@ CMD:setpfaction(playerid, params[])
 	return 1;
 }
 
+/*
 CMD:turfnear(playerid, params[])
 {
 	new turfid;
@@ -2180,7 +2206,7 @@ CMD:editturfwars(playerid, params[])
 	}
 
 	return 1;
-}
+}*/
 
 CMD:afklist(playerid, params[])
 {
@@ -2199,23 +2225,3 @@ CMD:afklist(playerid, params[])
 
 	return 1;
 }
-
-/*
-CMD:loadturf(playerid, params[])
-{
-	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
-	
-	SendErrorMessage(playerid, "This commands has been disabled by radeetz");
-	new queryBuffer[512];
-	for (new i = 0; i < sizeof(LoadTurfs); i++)
-	{
-		if(!TurfInfo[i][E_FACTION_TURFEXISTS])
-		{
-			mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "INSERT INTO turfs (`id`, `name`, `type`, `min_x`, `min_y`, `max_x`, `max_y`, `height`) VALUES('%i', 'none', '%i', '%f', '%f', '%f', '%f', '%f')", i, 0, LoadTurfs[i][minX], LoadTurfs[i][minY], LoadTurfs[i][maxX], LoadTurfs[i][maxY], LoadTurfs[i][size]);
-			mysql_pquery(ourConnection, queryBuffer, "InsertGangTurf", "iiifffff", playerid, i, 0, LoadTurfs[i][minX], LoadTurfs[i][minY], LoadTurfs[i][maxX], LoadTurfs[i][maxY], LoadTurfs[i][size]);
-		}
-	}
-	
-	return 1;
-}*/

@@ -17,25 +17,26 @@
 #include <a_samp>
 #include <a_mysql>
 #include <a_http>
-#include <zcmd>
 #include <streamer>
+#include <progress2>
+#include <easyDialog>
+#include <strlib>
+#include <foreach>
+#include <zcmd>
+#include <sscanf2>
 #include <rSelection>
 #include <map-zones>
 #include <fader>
-#include <progress2>
-#include <sscanf2>
-#include <foreach>
-#include <strlib>
 #include <Pawn.RakNet>
 #include <realtime-clock>
 
 //Database establisher:
 new MySQL:ourConnection; 
 
-#include "modules\macro.inc"
-#include "modules\color.inc"
-#include "modules\variable.inc"
-#include "modules\vardialog.inc"
+#include "modules\config\macro.inc"
+#include "modules\config\color.inc"
+#include "modules\config\variable.inc"
+#include "modules\config\vardialog.inc"
 
 main ()  {}
 
@@ -81,7 +82,7 @@ main ()  {}
 #include "modules\players\accessories.inc"
 #include "modules\players\afk.inc"
 
-#include "modules\turfs\turfs.inc"
+//#include "modules\turfs\turfs.inc"
 
 #include "modules\emmet\emmet.inc"
 
@@ -94,6 +95,8 @@ main ()  {}
 #include "modules\business\robbery.inc"
 
 #include "modules\properties\property.inc"
+
+#include "modules\entrance\entrance.inc"
 
 #include "modules\vehicles\vehicles.inc"
 #include "modules\vehicles\vehicles_timer.inc"
@@ -166,7 +169,6 @@ public OnGameModeInit()
 	
 	//Insert:
 	InsertObjects();
-	InsertMapIcons();
 	InsertEmmetInit();
 	InsertJobsPoint();
 	InsertAntiCheat();
@@ -175,6 +177,7 @@ public OnGameModeInit()
 	InsertDealership();
 	InsertStaticArea();
 	InsertTrashmaster();
+	InsertDocksWorkers();
 	InsertDonatorStars();
 	InsertStaticActors();
 	InsertStaticVehicles();
@@ -195,7 +198,7 @@ public OnGameModeInit()
 	SetTimer("OnVehicleUpdate", 1000, true);
 	SetTimer("MinutesTimes", 60000, true);
 	SetTimer("WeaponUpdate", 1000, true);
-	SetTimer("TurfCapturedTimer", 1000, true);
+	//SetTimer("TurfCapturedTimer", 1000, true);
 	SetTimer("BarInfoTimer", 200000, true);
 	SetTimer("AntiCheatCheck", 500, true);
 	SetTimer("IndustryTimer", 3600000, true);
@@ -204,10 +207,11 @@ public OnGameModeInit()
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
 	mysql_pquery(ourConnection, "SELECT * FROM properties ORDER BY PropertyDBID", "Query_LoadProperties");
 	mysql_pquery(ourConnection, "SELECT * FROM businesses ORDER BY BusinessDBID ASC", "Query_LoadBusinesses"); 
+	mysql_pquery(ourConnection, "SELECT * FROM entrance ORDER BY ID", "Query_LoadEntrance");
 	mysql_pquery(ourConnection, "SELECT * FROM `court`", "Query_CourtLoad", "");
-	mysql_pquery(ourConnection, "SELECT * FROM `turfs`", "Query_LoadTurf", ""); 
+	//mysql_pquery(ourConnection, "SELECT * FROM `turfs`", "Query_LoadTurf", ""); 
 	mysql_pquery(ourConnection, "SELECT * FROM `dropped`", "Query_DroppedLoad", "");
-	mysql_pquery(ourConnection, "SELECT * FROM `turfsglobal`", "Query_LoadGlobalTurf", "");
+	//mysql_pquery(ourConnection, "SELECT * FROM `turfsglobal`", "Query_LoadGlobalTurf", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `spray_tags`", "Query_SpraytagsLoad", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `server_data`", "Query_ServerDataLoad", "");
 
@@ -317,15 +321,15 @@ public OnPlayerConnect(playerid)
 		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE);
 	}
 	
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 500);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_SPAS12_SHOTGUN, 200);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 250);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 250);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 500);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 500);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 500);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_SPAS12_SHOTGUN, 500);
 	SetPlayerSkillLevel(playerid, WEAPONSKILL_MICRO_UZI, 50);
 	SetPlayerSkillLevel(playerid, WEAPONSKILL_MP5, 250);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 200);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 300);
 	SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 200);
 	SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 300);
 
@@ -359,26 +363,6 @@ public OnPlayerDisconnect(playerid, reason)
 	}
 
 	KillTimer(cameraTimer[playerid]);
-	
-	for(new i = 0; i < MAX_TURFS; i ++)
-	{
-	    if(TurfInfo[i][E_FACTION_TURFEXISTS] && TurfInfo[i][E_FACTION_TURFTIME] > 0 && TurfInfo[i][E_FACTION_TURFCAPTURER] == playerid)
-	    {
-	        if(reason == 0)
-			{
-				if(PlayerInfo[playerid][E_CHARACTER_FACTION] >= 0)
-		        {
-		            SendFactionMessage(PlayerInfo[playerid][E_CHARACTER_FACTION], "%s crashed while attempting to capture a turf. 1 turf token was refunded to your gang.", ReturnSettingsName(playerid, playerid));
-				}
-			}
-
-	        SendTurfMessage(i, COLOR_RED, "(( %s disconnected and therefore failed to capture the turf. ))", ReturnSettingsName(playerid, playerid));
-
-	        TurfInfo[i][E_FACTION_TURFCAPTURER] = INVALID_PLAYER_ID;
-	        TurfInfo[i][E_FACTION_TURFTIME] = 0;
-	        ReloadTurf(i);
-	    }
-	}
 
 	new playerTime = NetStats_GetConnectedTime(playerid);
 	new secondsConnection = (playerTime % (1000*60*60)) / (1000*60);
@@ -491,7 +475,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 			ApplyAnimation(playerid, "CARRY", "putdwn", 4.1, 0, 0, 0, 0, 0, 1);
 			GPS_DisablePlayerRaceCheckPoint(playerid);
 	    }
-		if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRASHMASTER && PlayerInfo[playerid][E_CHARACTER_INJOBS] == true && PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] == 1 && PlayerCheckpoint[playerid] == GPS_GARBAGE)
+		if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == true && PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] == 1 && PlayerCheckpoint[playerid] == GPS_GARBAGE)
 		{
 			PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] = 0;
 			ApplyAnimation(playerid, "CARRY", "putdwn", 4.1, 0, 0, 0, 0, 0, 1);
@@ -609,6 +593,9 @@ function:OnPlayerRegister(playerid)
 
 function:LoggingIn(playerid)
 {
+	if (!IsPlayerConnected(playerid))
+	    return 0;
+
 	if(!cache_num_rows())
 	{
 		playerLogin[playerid]++;
@@ -644,13 +631,17 @@ function:LoggingIn(playerid)
 	KillTimer(cameraTimer[playerid]);
 	SetCameraBehindPlayer(playerid); 
 
-	mysql_format(ourConnection, fetchChars, sizeof(fetchChars), "SELECT * FROM bannedlist WHERE MasterDBID = %i", AccountInfo[playerid][E_MASTERS_DBID]);
+	mysql_format(ourConnection, fetchChars, sizeof(fetchChars), "SELECT * FROM bannedlist WHERE MasterDBID = %d", AccountInfo[playerid][E_MASTERS_DBID]);
 	mysql_pquery(ourConnection, fetchChars, "Query_CheckBannedAccount", "i", playerid); 
 	return 1;
 }
 
 function:Query_CheckBannedAccount(playerid)
 {
+	new rows, fields;
+	cache_get_row_count(rows);
+	cache_get_field_count(fields);
+
 	if(!cache_num_rows())
 	{
 		loginTime[playerid] = 0; 
@@ -658,15 +649,11 @@ function:Query_CheckBannedAccount(playerid)
 		
 		new fetchChars[512];
 	
-		mysql_format(ourConnection, fetchChars, sizeof(fetchChars), "SELECT char_name, char_masters, pLastSkin, pFaction, char_dbid FROM characters WHERE master_dbid = %i LIMIT 4", AccountInfo[playerid][E_MASTERS_DBID]);
+		mysql_format(ourConnection, fetchChars, sizeof(fetchChars), "SELECT * FROM characters WHERE `master_dbid` = '%d' LIMIT 4", AccountInfo[playerid][E_MASTERS_DBID]);
 		mysql_pquery(ourConnection, fetchChars, "DB_ListCharacters", "i", playerid);
 	}
 	else
-	{
-		new rows, fields;
-		cache_get_row_count(rows);
-		cache_get_field_count(fields);
-		
+	{	
 		new banDate[90], banner[32];
 		
 		cache_get_value_name(0, "Date", banDate, 90);
@@ -681,32 +668,36 @@ function:Query_CheckBannedAccount(playerid)
 
 function:DB_ListCharacters(playerid)
 {
-	new rows, fields;
+	new rows;
 	cache_get_row_count(rows);
-	cache_get_field_count(fields);
-
+	
 	new vwid = AccountInfo[playerid][E_MASTERS_DBID];
 	SetPlayerVirtualWorld(playerid, vwid);
-	characterSelection[playerid] = true;
-	playerMakingCharacter[playerid] = false;
-	playerCharacterStep[playerid] = 0; 
 
-	if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == -1) 
+	if(!rows)
 	{
-		PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] = 0;
+		SendServerMessage(playerid, "You don't have any existing characters.");
+		
+		PlayerTextDrawSetString(playerid, SelectFactionName[playerid], "Hoodrats");
+		PlayerTextDrawSetString(playerid, SelectFactionLocation[playerid], "Empty_Characters");
+		PlayerTextDrawColor(playerid,SelectFactionName[playerid], COLOR_WHITE);
 	}
 
-	for (new i = 0; i < rows; i ++)
+	for (new i = 0; i < 4; i ++)
+	{
+		characterLister[playerid][i][0] = EOS;
+	}
+
+	for (new i = 0; i < cache_num_rows(); i ++)
 	{
 		cache_get_value_name(i, "char_name", characterLister[playerid][i], 128); 
-		cache_get_value_name(i, "char_masters", characterStreetLister[playerid][i], 128); 
 		cache_get_value_name_int(i, "pLastSkin", characterSkin[playerid][i]);
 		cache_get_value_name_int(i, "pFaction", characterFaction[playerid][i]);
 	}
-		
-	CreatePlayerActor(playerid);
-	ShowCharacterSelection(playerid);	
 
+	CreatePlayerActor(playerid);
+	ShowCharacterSelection(playerid);
+	
 	KillTimer(cameraTimer[playerid]);
 	return 1;
 }
@@ -739,6 +730,7 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name(0, "char_masters", PlayerInfo[playerid][E_CHARACTER_STREETNAME], 32);
 	cache_get_value_name_int(0, "pAdmin", PlayerInfo[playerid][E_CHARACTER_ADMIN]);
 	cache_get_value_name_int(0, "pLastSkin", PlayerInfo[playerid][E_CHARACTER_LASTSKIN]);
+	cache_get_value_name_int(0, "pFacSkin", PlayerInfo[playerid][E_CHARACTER_FACSKIN]);
 	cache_get_value_name_float(0, "pLastPosX", PlayerInfo[playerid][E_CHARACTER_LASTPOS][0]);
 	cache_get_value_name_float(0, "pLastPosY", PlayerInfo[playerid][E_CHARACTER_LASTPOS][1]);
 	cache_get_value_name_float(0, "pLastPosZ", PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
@@ -766,8 +758,8 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_int(0, "pTimeplayed", PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
 	cache_get_value_name_int(0, "pMaskID", PlayerInfo[playerid][E_CHARACTER_MASKID][0]);
 	cache_get_value_name_int(0, "pMaskIDEx", PlayerInfo[playerid][E_CHARACTER_MASKID][1]);
-	cache_get_value_name_int(0, "pInProperty", PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP]);
-	cache_get_value_name_int(0, "pInBusiness", PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ]);
+	cache_get_value_name_int(0, "pInProperty", PlayerInfo[playerid][E_CHARACTER_INSIDEPROP]);
+	cache_get_value_name_int(0, "pInBusiness", PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ]);
 	cache_get_value_name_int(0, "pMainSlot", PlayerInfo[playerid][E_CHARACTER_MAINSLOT]);
 	cache_get_value_name_int(0, "pRobberyCooldown", PlayerInfo[playerid][E_CHARACTER_ROBBERYCD]);
 	cache_get_value_name_int(0, "pSpawnPoint", PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT]);
@@ -878,14 +870,14 @@ stock LoadCharacter(playerid)
 	SendClientMessage(playerid, COLOR_WHITE, "The first thing we suggest you to do is to read /help or read the rules in discord server!");
 	SendClientMessage(playerid, COLOR_WHITE, "Visit us and register on our discord at idlestreetrpg.my.id to stay updated.");
 	SendClientMessageEx(playerid, COLOR_WHITE, "You are a {%06x}%s{ffffff} of {%06x}%s{ffffff}.", GetPlayerColor(playerid) >>> 8, IsPlayerFactionRank(playerid), GetPlayerColor(playerid) >>> 8, ReturnFactionName(playerid));
-	if(GlobalTurf == 1)
+	/*if(GlobalTurf == 1)
 	{
 		SendClientMessageEx(playerid, COLOR_WHITE, "Turf Conflict is {8E5B94}Inactive{ffffff} for {8E5B94}%d{ffffff} days.", GlobalTurfStart);
 	}
 	else if(GlobalTurf == 0)
 	{
 		SendClientMessageEx(playerid, COLOR_WHITE, "Turf Conflict is {8E5B94}Active{ffffff} for {8E5B94}%d{ffffff} days.", GlobalTurfEnd);
-	}
+	}*/
 	
 	if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
 	{
@@ -2709,7 +2701,7 @@ public OnPlayerSpawn(playerid)
 
 	SetWeather(2);
 
-	ShowTurfsOnMap(playerid, true);
+	//ShowTurfsOnMap(playerid, true);
 
 	KillTimer(cameraTimer[playerid]);
 	SetCameraBehindPlayer(playerid); 
@@ -2873,7 +2865,7 @@ public OnPlayerUpdate(playerid)
 
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	{
-		if(Inventory_Count(playerid, "Foods Cargo") || Inventory_Count(playerid, "Tools Cargo") || Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Products Cargo"))
+		if(Inventory_Count(playerid, "Woods Cargo") || Inventory_Count(playerid, "Tools Cargo") || Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Products Cargo"))
 		{
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 			{
@@ -2969,40 +2961,6 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			{
 				SelectCharacter(playerid, 3);
 			}
-		}
-		if(playerCharacterStep[playerid] == 6)
-		{
-			PlayerTextDrawHide(playerid, SelectFaction[0][playerid]);
-			PlayerTextDrawHide(playerid, SelectFaction[1][playerid]);
-			PlayerTextDrawHide(playerid, SelectFactionName[playerid]);
-			PlayerTextDrawHide(playerid, SelectFactionLocation[playerid]);
-			PlayerTextDrawHide(playerid, SelectFactionClick[0][playerid]);
-			PlayerTextDrawHide(playerid, SelectFactionClick[1][playerid]);
-			PlayerTextDrawHide(playerid, SelectFactionClick[2][playerid]);
-
-			PlayerInfo[playerid][E_CHARACTER_FACTION] = 0;
-			characterSelection[playerid] = true;
-			playerMakingCharacter[playerid] = false;
-			playerCharacterStep[playerid] = 0; 
-			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0;
-			new rand = random(sizeof(g_aHoodRatsSkins));
-			PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aHoodRatsSkins[rand];
-			ClearLines(playerid, 17); 
-							
-			SendServerMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
-			SendErrorMessage(playerid, "You are not apart of this faction, you have been given hoodrats (Civilian)"); 
-							
-			new query[512];
-
-			new idx; 
-					
-			idx = PlayerInfo[playerid][E_CHARACTER_FACTION];
-							
-			mysql_format(ourConnection, query, sizeof(query), "INSERT INTO characters (`master_dbid`, `char_name`, `char_masters`, `pAge`, `pOrigin`, `pFaction`, `pLastSkin`, `pStory`, `pStoryTwo`, `create_date`, `create_ip`, `pPhone`, pSpawnPoint, pLastPosX, pLastPosY, pLastPosZ) VALUES(%i, '%e', '%e', '%e', '%e', '%d', '%d', '%e', '%e', '%e', '%e', %i, %d, %f, %f, %f)", AccountInfo[playerid][E_MASTERS_DBID], playerCharactersName[playerid], playerCharactersStreetName[playerid], playerCharactersAge[playerid],
-			playerCharacterOrigin[playerid], PlayerInfo[playerid][E_CHARACTER_FACTION], PlayerInfo[playerid][E_CHARACTER_LASTSKIN], playerCharacterStory[playerid][0], playerCharacterStory[playerid][1], ReturnDate(), ReturnIP(playerid), 94000+random(6999), PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT], FactionInfo[idx][E_FACTION_SPAWN][0], FactionInfo[idx][E_FACTION_SPAWN][1], FactionInfo[idx][E_FACTION_SPAWN][2]);				
-			mysql_pquery(ourConnection, query); 
-							
-			SetTimerEx("RefreshCharacters", 1000, false, "i", playerid);
 		}
 	}
 	/*=====[TUTORIAL]=====*/
@@ -3137,7 +3095,7 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 		if(response)
 		{
 			SetPlayerSkin(playerid, modelid);
-			PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = modelid;
+			PlayerInfo[playerid][E_CHARACTER_FACSKIN] = modelid;
 			SaveCharacter(playerid);
 		}
 	}
@@ -3306,7 +3264,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 {
 	if(!success)
 	{
-		if(strlen(cmdtext) > 35)
+		if(strlen(cmdtext) > 50)
 		{
 			SendClientMessage(playerid, COLOR_RED, "[Error]:{d7d7d7} The command you entered doesn't exist. Use /help to see a list of available commands."); 
 			PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
@@ -3352,7 +3310,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	/*=====[TRASHMASTER]=====*/
 	if (newkeys & KEY_WALK && !IsPlayerInAnyVehicle(playerid))
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRASHMASTER && PlayerInfo[playerid][E_CHARACTER_INJOBS] == true && PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] == 0)
+		if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == true && PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] == 0)
 		{
 			if(IsPlayerInRangeOfPoint(playerid, 3.0, GarbageLocations[PlayerTrashmaster[playerid]][0], GarbageLocations[PlayerTrashmaster[playerid]][1], GarbageLocations[PlayerTrashmaster[playerid]][2]))
 			{
@@ -3737,14 +3695,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		{
 			PlayerInfo[playerid][E_CHARACTER_DRINKING]--;
 			
-			new turfid = IsPlayerNearTurf(playerid);
+			/*new turfid = IsPlayerNearTurf(playerid);
 			if(turfid)
 			{
 				if(GetPlayerTeam(playerid) != PLAYER_STATE_WOUNDED && GlobalTurf == 0 && TurfInfo[turfid][E_FACTION_TURFTYPE] == 0 && FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] == FACTION_TYPE_ILLEGAL)
 				{
 				    TurfsPoints(playerid, turfid);
 				}
-			}
+			}*/
 			if(PlayerInfo[playerid][E_CHARACTER_DRINKING] < 0)
 			{
 				PlayerInfo[playerid][E_CHARACTER_DRINKCD] = gettime();
@@ -3803,7 +3761,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			ResetVarInventory(playerid);
 		}
 
-		new id, b_id, str[128]; 
+		new id, b_id, e_id, str[128]; 
 		//Enter
 		if((id = IsPlayerNearProperty(playerid)) != 0)
 		{
@@ -3813,16 +3771,28 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			if(PropertyInfo[id][E_PROPERTY_LOCKED])
 				return GameTextForPlayer(playerid, "~r~Locked", 3000, 3);
 					
-			PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = id;
+			PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = id;
 
-			SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_INTERIORPOS][0], PropertyInfo[id][E_PROPERTY_INTERIORPOS][1], PropertyInfo[id][E_PROPERTY_INTERIORPOS][2] - 3);
+			SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_INTERIORPOS][0], PropertyInfo[id][E_PROPERTY_INTERIORPOS][1], PropertyInfo[id][E_PROPERTY_INTERIORPOS][2]);
 				
 			SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_INTERIORWORLD]);
 			SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_INTERIORINTERIOR]);
-				
-			TogglePlayerControllable(playerid, false);
-			SetTimerEx("OnPlayerEnterProperty", 2000, false, "ii", playerid, id); 	
 		}
+		if((e_id = IsPlayerNearEntrance(playerid)) != 0)
+		{
+			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
+				return SendErrorMessage(playerid, "You can't leave while editing an object.");
+					
+			PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = e_id;
+
+			SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_INT][0], EntranceInfo[e_id][E_ENTRANCE_INT][1], EntranceInfo[e_id][E_ENTRANCE_INT][2]);
+				
+			SetPlayerVirtualWorld(playerid, EntranceInfo[e_id][E_ENTRANCE_WORLD]);
+			SetPlayerInterior(playerid, EntranceInfo[e_id][E_ENTRANCE_INTERIOR]); 
+				
+			TogglePlayerControllable(playerid, false);	
+		}
+
 		if((b_id = IsPlayerNearBusiness(playerid)) != 0)
 		{
 			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
@@ -3851,32 +3821,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			SetPlayerInterior(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSINTERIOR]); 
 			SetPlayerVirtualWorld(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSWORLD]); 
 			
-			PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = b_id; 
+			PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = b_id; 
 			
 			SendBusinessType(playerid, b_id);
 			return 1;
 		}
-		if(IsPlayerInRangeOfPoint(playerid, 3.0, 1555.2958,-1675.5598,16.1953))
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-				return SendErrorMessage(playerid, "You can't leave while editing an object.");
 
-			SetPlayerPosEx(playerid, 246.5364,63.3064,1003.6406);
-			SetPlayerFacingAngle(playerid, 11.1769);
-			SetPlayerInterior(playerid, 6);
-			return 1;
-		}
-		if(IsPlayerInRangeOfPoint(playerid, 3.0, 1411.6389,-1699.7167,13.5395))
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-				return SendErrorMessage(playerid, "You can't leave while editing an object.");
-
-			SetPlayerPosEx(playerid, 1397.7013,-1678.6591,41.5967);
-			SetPlayerFacingAngle(playerid, 8.9305);
-			SetPlayerInterior(playerid, 5);
-			return 1;
-		}
-		
 		//Exit
 		if((id = IsPlayerInProperty(playerid)) != 0)
 		{
@@ -3890,7 +3840,24 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
 				SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]); 
 				
-				PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP] = 0;
+				PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = 0;
+			}
+			return 1;
+		}
+
+		if((e_id = IsPlayerInEntrance(playerid)) != 0)
+		{
+			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
+				return SendErrorMessage(playerid, "You can't leave while editing an object.");
+
+			if(IsPlayerInRangeOfPoint(playerid, 3.0, EntranceInfo[e_id][E_ENTRANCE_INT][0], EntranceInfo[e_id][E_ENTRANCE_INT][1], EntranceInfo[e_id][E_ENTRANCE_INT][2]))
+			{
+				SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_POS][0], EntranceInfo[e_id][E_ENTRANCE_POS][1], EntranceInfo[e_id][E_ENTRANCE_POS][2]);
+				
+				SetPlayerVirtualWorld(playerid, 0);
+				SetPlayerInterior(playerid, 0); 
+				
+				PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0;
 			}
 			return 1;
 		}
@@ -3912,35 +3879,13 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				SetPlayerVirtualWorld(playerid, 0);
 				SetPlayerInterior(playerid, 0);
 				
-				PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ] = 0;
+				PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
 				if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] > 0)
 				{
 					Relations_Remove(playerid, BusinessInfo[b_id][E_BUSINESS_NAME], 30);
 					PlayerInfo[playerid][E_CHARACTER_PURCHASE] = 0;
 				}
 			}
-			return 1;
-		}
-
-		if(IsPlayerInRangeOfPoint(playerid, 3.0, 246.5364,63.3064,1003.6406))
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-				return SendErrorMessage(playerid, "You can't leave while editing an object.");
-
-			SetPlayerPosEx(playerid, 1555.2958,-1675.5598,16.1953);
-			SetPlayerFacingAngle(playerid, 267.2341);
-			SetPlayerInterior(playerid, 0);
-			return 1;
-		}
-
-		if(IsPlayerInRangeOfPoint(playerid, 3.0, 1397.7013,-1678.6591,41.5967))
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-				return SendErrorMessage(playerid, "You can't leave while editing an object.");
-				
-			SetPlayerPosEx(playerid, 1411.6389,-1699.7167,13.5395);
-			SetPlayerFacingAngle(playerid, 54.4270);
-			SetPlayerInterior(playerid, 0);
 			return 1;
 		}
 	}
@@ -4136,71 +4081,6 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			FishAreaMap[playerid][10] = CreateDynamicMapIcon(2945.1201,-1741.1361,-58.5000, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
 			FishAreaMap[playerid][11] = CreateDynamicMapIcon(2961.6399,-1126.9136,-59.9930, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
 		}
-
-		//GSF
-		if((GSF_Vehicles[0] <= vehicleid <= GSF_Vehicles[3]) && PlayerInfo[playerid][E_CHARACTER_FACTION] != 3)
-	    {
-	        SendErrorMessage(playerid, "You are not an official member of the Grove Street Families.");
-	        RemovePlayerFromVehicle(playerid);
-	        return 1;
-	    }
-
-	    //KTB
-	    if((KTB_Vehicles[0] <= vehicleid <= KTB_Vehicles[3]) && PlayerInfo[playerid][E_CHARACTER_FACTION] != 4)
-	    {
-	        SendErrorMessage(playerid, "You are not an official member of the Kilo Tray Ballas.");
-	        RemovePlayerFromVehicle(playerid);
-	        return 1;
-	    }
-	    //JB
-	    if((JB_Vehicles[0] <= vehicleid <= JB_Vehicles[3]) && PlayerInfo[playerid][E_CHARACTER_FACTION] != 5)
-	    {
-	        SendErrorMessage(playerid, "You are not an official member of the Rollin Heights Ballas.");
-	        RemovePlayerFromVehicle(playerid);
-	        return 1;
-	    }
-	    if((SBF_Vehicles[0] <= vehicleid <= SBF_Vehicles[3]) && PlayerInfo[playerid][E_CHARACTER_FACTION] != 6)
-	    {
-	        SendErrorMessage(playerid, "You are not an official member of the Sevillie Boulevard Famillies.");
-	        RemovePlayerFromVehicle(playerid);
-	        return 1;
-	    }
-	    if((VLA_Vehicles[0] <= vehicleid <= VLA_Vehicles[3]) && PlayerInfo[playerid][E_CHARACTER_FACTION] != 8)
-	    {
-	        SendErrorMessage(playerid, "You are not an official member of the Varios Los Aztecas.");
-	        RemovePlayerFromVehicle(playerid);
-	        return 1;
-	    }
-	    if((ELSV_Vehicles[0] <= vehicleid <= ELSV_Vehicles[3]) && PlayerInfo[playerid][E_CHARACTER_FACTION] != 7)
-	    {
-	        SendErrorMessage(playerid, "You are not an official member of the East Los santos Vagos.");
-	        RemovePlayerFromVehicle(playerid);
-	        return 1;
-	    }
-	    if((LSPDVehicles[0] <= vehicleid <= LSPDVehicles[17]) && PlayerInfo[playerid][E_CHARACTER_FACTION] != 1)
-	    {
-	        SendErrorMessage(playerid, "You are not apart an a Los Santos Police Departement");
-	        RemovePlayerFromVehicle(playerid);
-	        return 1;
-	    }
-	    if((FYB_Vehicles[0] <= vehicleid <= FYB_Vehicles[3]) && PlayerInfo[playerid][E_CHARACTER_FACTION] != 9)
-	    {
-	        SendErrorMessage(playerid, "You are not an official member of the Front Yard Ballas.");
-	        RemovePlayerFromVehicle(playerid);
-	        return 1;
-	    }
-	    if((TDF_Vehicles[0] <= vehicleid <= TDF_Vehicles[3]) && PlayerInfo[playerid][E_CHARACTER_FACTION] != 10)
-	    {
-	        SendErrorMessage(playerid, "You are not an official member of the Temple Drive Famillies.");
-	        RemovePlayerFromVehicle(playerid);
-	        return 1;
-	    }
-	    if((TDB_Vehicles[0] <= vehicleid <= TDB_Vehicles[3]) && PlayerInfo[playerid][E_CHARACTER_FACTION] != 11)
-	    {
-	        SendErrorMessage(playerid, "You are not an official member of the Temple Drive Ballas.");
-	        RemovePlayerFromVehicle(playerid);
-	        return 1;
-	    }
 	}
 	
 	if(newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER)
@@ -4254,7 +4134,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 {
     if(Jobs_vehicles[7] <= vehicleid <= Jobs_vehicles[11])
     {
-        PlayerInfo[playerid][E_CHARACTER_INJOBS] = false;
+        PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
         ShowBoxMessage(playerid, "~w~Dockworker job stopped.", 5, 2); 
 		SetVehicleToRespawnEx(vehicleid);
     }   
@@ -4518,12 +4398,15 @@ public OnVehicleSpawn(vehicleid)
 
 function:RefreshCharacters(playerid)
 {
+	if (!IsPlayerConnected(playerid))
+	    return 0;
+
 	SendServerMessage(playerid, "Your character list has been refreshed."); 
 	
 	new 
-		fetchChars[512];
+		fetchChars[128];
 	
-	mysql_format(ourConnection, fetchChars, sizeof(fetchChars), "SELECT char_name, char_masters, pLastSkin, pFaction, char_dbid FROM characters WHERE master_dbid = %i LIMIT 4", AccountInfo[playerid][E_MASTERS_DBID]);
+	mysql_format(ourConnection, fetchChars, sizeof(fetchChars), "SELECT * FROM characters WHERE `master_dbid` = '%d' LIMIT 4", AccountInfo[playerid][E_MASTERS_DBID]);
 	mysql_pquery(ourConnection, fetchChars, "DB_ListCharacters", "i", playerid);
 	return 1; 
 }
@@ -4586,26 +4469,25 @@ function:SaveCharacterPos(playerid)
 	new thread[512]; 
 	
 	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
-	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] == false)
+	if(!PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
 	{
 		GetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 		GetPlayerArmour(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
-	}
-	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastPosX = %f, pLastPosY = %f, pLastPosZ = %f, pLastInterior = %i, pLastWorld = %i, pInProperty = %i, pInBusiness = %i, pHasInjured = %i, pHasDeath = %i, pHealth = %f, pArmor = %f WHERE char_dbid = %i",
 	
-		PlayerInfo[playerid][E_CHARACTER_LASTPOS][0],
-		PlayerInfo[playerid][E_CHARACTER_LASTPOS][1],
-		PlayerInfo[playerid][E_CHARACTER_LASTPOS][2],
-		GetPlayerInterior(playerid),
-		GetPlayerVirtualWorld(playerid),
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEPROP],
-		PlayerInfo[playerid][E_CHARACTER_INSEIDEBIZ],
-		PlayerInfo[playerid][E_CHARACTER_INJURED],
-		PlayerInfo[playerid][E_CHARACTER_DEATH],
-		PlayerInfo[playerid][E_CHARACTER_HEALTH],
-		PlayerInfo[playerid][E_CHARACTER_ARMOUR],
-		PlayerInfo[playerid][E_CHARACTER_DBID]);
-		
+		mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastPosX = %f, pLastPosY = %f, pLastPosZ = %f, pLastInterior = %i, pLastWorld = %i, pInProperty = %i, pInBusiness = %i, pHasInjured = %i, pHasDeath = %i, pHealth = %f, pArmor = %f WHERE char_dbid = %i",
+			PlayerInfo[playerid][E_CHARACTER_LASTPOS][0],
+			PlayerInfo[playerid][E_CHARACTER_LASTPOS][1],
+			PlayerInfo[playerid][E_CHARACTER_LASTPOS][2],
+			GetPlayerInterior(playerid),
+			GetPlayerVirtualWorld(playerid),
+			PlayerInfo[playerid][E_CHARACTER_INSIDEPROP],
+			PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ],
+			PlayerInfo[playerid][E_CHARACTER_INJURED],
+			PlayerInfo[playerid][E_CHARACTER_DEATH],
+			PlayerInfo[playerid][E_CHARACTER_HEALTH],
+			PlayerInfo[playerid][E_CHARACTER_ARMOUR],
+			PlayerInfo[playerid][E_CHARACTER_DBID]);
+	}
 	return mysql_pquery(ourConnection, thread);
 }
 
@@ -4619,9 +4501,10 @@ function:SaveCharacter(playerid)
 		AccountInfo[playerid][E_MASTERS_DBID]);
 	mysql_pquery(ourConnection, query);
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pAdmin = %i, pLastSkin = %i, pLevel = %i, pMoney = %i, pBank = %i, pPaycheck = %i, pPhone = %i, pLastOnline = '%e', pLastOnlineTime = %i, pAdminjailed = %i, pAdminJailTime = %i WHERE char_dbid = %i",
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pAdmin = %i, pLastSkin = %i, pFacSkin = %i, pLevel = %i, pMoney = %i, pBank = %i, pPaycheck = %i, pPhone = %i, pLastOnline = '%e', pLastOnlineTime = %i, pAdminjailed = %i, pAdminJailTime = %i WHERE char_dbid = %i",
 		PlayerInfo[playerid][E_CHARACTER_ADMIN],
 		PlayerInfo[playerid][E_CHARACTER_LASTSKIN],
+		PlayerInfo[playerid][E_CHARACTER_FACSKIN],
 		PlayerInfo[playerid][E_CHARACTER_LEVEL],
 		PlayerInfo[playerid][E_CHARACTER_MONEY],
 		PlayerInfo[playerid][E_CHARACTER_BANK],

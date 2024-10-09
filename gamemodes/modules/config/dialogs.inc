@@ -613,7 +613,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(2 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a sprunk.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a sprunk for $50.");
+						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a sprunk for $2.");
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 5; 
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -1369,19 +1369,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						if ((id = GetNearestVehicle(playerid)) != -1 && !VehicleInfo[id][E_VEHICLE_LOCKED])
 						{
-							if(GetVehicleModel(id) == 600 || GetVehicleModel(id) == 543 || GetVehicleModel(id) == 605 || GetVehicleModel(id) == 433)
+							if(GetVehicleModel(id) == 459 || GetVehicleModel(id) == 482 || GetVehicleModel(id) == 440 || GetVehicleModel(id) == 413)
 							{
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(name, "Products Cargo") && VS_Count(id, "Products Cargo") >= 2 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 2 || !strcmp(name, "Tools Cargo") && VS_Count(id, "Tools Cargo") >= 2 || !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 2)
+									if(!strcmp(name, "Products Cargo") && VS_Count(id, "Products Cargo") >= 3 || !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 3 || !strcmp(name, "Tools Cargo") && VS_Count(id, "Tools Cargo") >= 3 || !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 3)
 										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
 									VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, name);
-									UpdateVehicleObject(id);
+		
 									ShowVehicleStorage(playerid, id);
 								}
 								else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] > 1) 
@@ -1393,19 +1393,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
 							}
-							else if(GetVehicleModel(id) == 422)
+							else if(GetVehicleModel(id) == 499 || GetVehicleModel(id) == 414)
 							{
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(name, "Products Cargo") && VS_Count(id, "Products Cargo") >= 3 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 3 || !strcmp(name, "Tools Cargo") && VS_Count(id, "Tools Cargo") >= 3 || !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 3)
+									if(!strcmp(name, "Products Cargo") && VS_Count(id, "Products Cargo") >= 5 || !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 5 || !strcmp(name, "Tools Cargo") && VS_Count(id, "Tools Cargo") >= 5 || !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 5)
 										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
 									VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, name);
-									UpdateVehicleObject(id);
+				
 									ShowVehicleStorage(playerid, id);
 								}
 								else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] > 1) 
@@ -1417,19 +1417,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
 							}
-							else if(GetVehicleModel(id) == 478)
+							else if(GetVehicleModel(id) == 456)
 							{
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(name, "Products Cargo") && VS_Count(id, "Products Cargo") >= 4 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 4 || !strcmp(name, "Tools Cargo") && VS_Count(id, "Tools Cargo") >= 4 || !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 4)
+									if(!strcmp(name, "Products Cargo") && VS_Count(id, "Products Cargo") >= 8 || !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 8 || !strcmp(name, "Tools Cargo") && VS_Count(id, "Tools Cargo") >= 8 || !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 8)
 										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
 									VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, name);
-									UpdateVehicleObject(id);
+					
 									ShowVehicleStorage(playerid, id);
 								}
 								else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] > 1) 
@@ -1441,19 +1441,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
 							}
-							else if(GetVehicleModel(id) == 554)
+							else if(GetVehicleModel(id) == 455)
 							{
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(name, "Products Cargo") && VS_Count(id, "Products Cargo") >= 5 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 5 || !strcmp(name, "Tools Cargo") && VS_Count(id, "Tools Cargo") >= 5 || !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 5)
+									if(!strcmp(name, "Products Cargo") && VS_Count(id, "Products Cargo") >= 10 || !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 10 || !strcmp(name, "Tools Cargo") && VS_Count(id, "Tools Cargo") >= 10 || !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 10)
 										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
 									VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, name);
-									UpdateVehicleObject(id);
+					
 									ShowVehicleStorage(playerid, id);
 								}
 								else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] > 1) 
@@ -1691,7 +1691,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    {
 			        case 0:
 			        {
-			        	new str[512];
+			        	new str[1024];
 			        	strcat(str, "/stats\tSee your character's stats\n/admins\tSee list administrator on/off duty\n/report\tReport something to admin\n/o(oc)\tOut of character global chat\n/pay\tPay to another players\n/isafk\tSee who is afk\n/time\tSee the time\n/levelup\tLevel up your character\n");
 						strcat(str, "/enter\tEnter building\n/exit\tExit building\n/mask\tWear your mask\n/setchannel\tSet your channel radio\n/setslot\tSet your slot radio\n/radio\tTalk to radio\n/licenseexam\tDriving test in dmv\n/unimpound\tUnimpound your vehicle\n/rcp\tShow checkpoint if u loss\n/inventory(y)\tSee your inventory\n");
 						strcat(str, "/jobs\tSee list available jobs\n/damages\tSee your damages from your body\n/acceptdeath\tAccepted your wounded bound situation\n/fixr\tFix your radio\n/respawnme\tWake up from injured\n/setspawn\tSet your setspawn\n/settings\tSettings your gameplay.\n/approve\tapprove from other player offer\n");
@@ -1700,7 +1700,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1:
 					{
-						new str[512];
+						new str[1024];
 						strcat(str, "/me\tDo an emote with your character\n/do\tDo an emote to another entity than your own character\n/ame\tDo an emote that shown above your character\n/my\tDo an emote in possesive pronoun\n/amy\tDo an emote in possesive pronoun above your character\n/shout\tShout with your character\n");
 						strcat(str, "/low\tTalk in low chat\n/b\tWrite in local OOC chat\n/pm\tsend private messages another players\n/deposit\tDeposit your money to bank\n/withdraw\tWithdraw your money\n/balance\tSee your balance in bank\n/license\tShow your licenses\n/animhelp\tSee all available animations\n/handshake\tshake your hand to other player\n/frisk\tinspect other player inventory\n/voicelines\tVoicelines character in gta");
 						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Roleplay Commands:", str, "Select", "Close");
@@ -1725,7 +1725,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 5:
 					{
-						new str[512];
+						new str[1024];
 						strcat(str, "/carlist\tList/Spawn your own vehicles\n/carlock\t(Un)lock your own vehicles\ncardespawn\tDespawn your own vehicles\n/carkey\tShare your vehicles keys to another players\n/carscrap\tDestroy your vehicles into Vehicle Scrapyard\n");
 						strcat(str, "/carfind\tFind your vehicles in map\n/carhood\tOpen the hood vehicles\n/cartrunk\tOpen the trunks vehicles\n/carlights\tTurn on/off your vehicles lights\n");
 						strcat(str, "/engine\tTurn on/off engine on your vehicle\n/check\tCheck your vehicle in trunk\n/place\tPlace your weapon to your vehicle\n/refill\tRefill your vehicle fuel");
@@ -1740,11 +1740,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 7:
 					{
-						new str[512];
-						strcat(str, "Press '2'\tStart the jobs missions\nPress 'ALT'\tPickup trash nearest trashcan pickup (trashmaster)\n/takejobs\tStart join the jobs\n/takecargo\tLoad the cargo package from oceandocks import warehouse (Docksworker)\n/storecargo\tUnload the cargo package into oceandocks export warehouse (Docksworker)\n");
-						strcat(str, "/tpda\tSee the industry list (Truckers)\n/cargo\tTo buy or sell the cargo (Truckers)\n");
-						strcat(str, "/fish\tStart fishing jobs\n");
-						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Jobs Commands:", str, "Select", "Close");
+						new str[1024];
+						strcat(str, "CMD\tDescription\tType\n");
+						strcat(str, "/takejobs\tStart join the jobs\tTake Jobs\nPress '2'\tStart the jobs missions\tDocksworker & Garbageman\nPress 'ALT'\tPickup trash nearest trashcan pickup\tGarbageman\n/takecargo\tLoad the cargo package from oceandocks import warehouse\tDocksworker\n/storecargo\tUnload the cargo package into oceandocks export warehouse\tDocksworker\n");
+						strcat(str, "/tpda\tSee the industry list\tTruckers\n/cargobuy\tBuy products cargo from oceandocks ships\tTruckers\n/cargosell\tSell products cargo to business\tTruckers\n/cargodrop\tDropped/Remove products cargo in your inventory\tTruckers\n");
+						strcat(str, "/fish\tStart fishing jobs\tActivity\n");
+						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Jobs Commands:", str, "Select", "Close");
 					}
 					case 8:
 					{
@@ -1857,21 +1858,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 6:
 					{
-						if(PlayerInfo[playerid][E_CHARACTER_TOGTURF])
-						{
-							PlayerInfo[playerid][E_CHARACTER_TOGTURF] = false;
-							ShowTurfsOnMap(playerid, false);
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Turf Gangzone has been Enable.");
-						}
-						else
-						{
-							PlayerInfo[playerid][E_CHARACTER_TOGTURF] = true;
-							ShowTurfsOnMap(playerid, true);
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Turf Gangzone has been Disable.");
-						}
-					}
-					case 7:
-					{
 						if(PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE] = false;
@@ -1885,7 +1871,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							SendClientMessage(playerid, COLOR_WHITE, "Settings: switched your namestyle to Firstname_Lastname.");
 						}
 					}
-					case 8:
+					case 7:
 					{
 						if(PlayerInfo[playerid][E_CHARACTER_TOGDD])
 						{
@@ -1949,45 +1935,27 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0: //Crack, Marijuana
 					{
-						new turfid, type = randomEx(1,2);
+						new type = randomEx(1,2);
 						if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
 							return SendErrorMessage(playerid, "You are not apart a gang members");
 
 						if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_ILLEGAL)
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
-						if((turfid = IsPlayerNearTurf(playerid)) == -1)
-						    return SendErrorMessage(playerid, "You are not in range of any turfs.");
-
-						if(TurfInfo[turfid][E_FACTION_TURFDRUGSEXISTS] == 1)
-							return SendErrorMessage(playerid, "Drugs Addicted is still on this turf.");
-
-						if(TurfInfo[turfid][E_FACTION_TURFGANG] == PlayerInfo[playerid][E_CHARACTER_FACTION])
-						{
-							SetTimerEx("DrugsDealing", 15000, false, "iiffff", turfid, type, x, y, z ,a);
-							SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
-						}
+						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
+						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 					case 1: //Heroin
 					{
-						new turfid, type = 3;
+						new type = 3;
 						if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
 							return SendErrorMessage(playerid, "You are not apart a gang members");
 
 						if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_ILLEGAL)
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
-						if((turfid = IsPlayerNearTurf(playerid)) == -1)
-						    return SendErrorMessage(playerid, "You are not in range of any turfs.");
-
-						if(TurfInfo[turfid][E_FACTION_TURFDRUGSEXISTS] == 1)
-							return SendErrorMessage(playerid, "Drugs Addicted is still on this turf.");
-
-						if(TurfInfo[turfid][E_FACTION_TURFGANG] == PlayerInfo[playerid][E_CHARACTER_FACTION])
-						{
-							SetTimerEx("DrugsDealing", 15000, false, "iiffff", turfid, type, x, y, z ,a);
-							SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
-						}
+						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
+						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 				}
 			}
@@ -2003,47 +1971,27 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0: //Crack, Marijuana
 					{
-						new turfid, type = randomEx(1,2);
+						new type = randomEx(1,2);
 						if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
 							return SendErrorMessage(playerid, "You are not apart a gang members");
 
 						if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_ILLEGAL)
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
-						if((turfid = IsPlayerNearTurf(playerid)) == -1)
-						    return SendErrorMessage(playerid, "You are not in range of any turfs.");
-
-						if(TurfInfo[turfid][E_FACTION_TURFDRUGSEXISTS] == 1)
-							return SendErrorMessage(playerid, "Drugs Addicted is still on this turf.");
-
-
-						if(TurfInfo[turfid][E_FACTION_TURFGANG] == PlayerInfo[playerid][E_CHARACTER_FACTION])
-						{
-							SetTimerEx("DrugsDealing", 15000, false, "iiffff", turfid, type, x, y, z ,a);
-							SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
-						}
+						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
+						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 					case 1: //PCP
 					{
-						new turfid, type = 4;
+						new type = 4;
 						if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
 							return SendErrorMessage(playerid, "You are not apart a gang members");
 
 						if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_ILLEGAL)
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
-						if((turfid = IsPlayerNearTurf(playerid)) == -1)
-						    return SendErrorMessage(playerid, "You are not in range of any turfs.");
-
-						if(TurfInfo[turfid][E_FACTION_TURFDRUGSEXISTS] == 1)
-							return SendErrorMessage(playerid, "Drugs Addicted is still on this turf.");
-
-
-						if(TurfInfo[turfid][E_FACTION_TURFGANG] == PlayerInfo[playerid][E_CHARACTER_FACTION])
-						{
-							SetTimerEx("DrugsDealing", 15000, false, "iiffff", turfid, type, x, y, z ,a);
-							SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
-						}
+						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
+						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 				}
 			}	
@@ -2052,115 +2000,89 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if(response)
 			{
-				new turfid;
-				if((turfid = IsPlayerNearTurf(playerid)) == -1)
-				{
-				    return SendErrorMessage(playerid, "You are not in range of any turfs.");
-				}
-
-				if(TurfInfo[turfid][E_FACTION_TURFGANG] != PlayerInfo[playerid][E_CHARACTER_FACTION])
-				{
-					return SendErrorMessage(playerid, "You are not in range of your gang turf.");
-				}
-
 				if(IsPlayerNearDrugsDealing(playerid))
 				{
-					if(TurfInfo[turfid][E_FACTION_TURFDRUGSTYPE] == 1)
+					if(DrugsDealerType[playerid] == 1)
 					{
-						new cost = TurfInfo[turfid][E_FACTION_TURFDRUGS] * 350;
+						new cost = DrugsDealerAmount[playerid] * 350;
 						if(!Inventory_Count(playerid, "Cocaine Crack"))
 							return SendErrorMessage(playerid, "You don't have any crack in inventory.");
 
-						if(Inventory_Count(playerid, "Cocaine Crack") < TurfInfo[turfid][E_FACTION_TURFDRUGS])
-							return SendErrorMessage(playerid, "You need at least %d grams of crack.", TurfInfo[turfid][E_FACTION_TURFDRUGS]);
+						if(Inventory_Count(playerid, "Cocaine Crack") < DrugsDealerAmount[playerid])
+							return SendErrorMessage(playerid, "You need at least %d grams of crack.", DrugsDealerAmount[playerid]);
 
-						Inventory_Remove(playerid, "Cocaine Crack", TurfInfo[turfid][E_FACTION_TURFDRUGS]);
+						Inventory_Remove(playerid, "Cocaine Crack", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
 						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've received $%d from selling crack.", cost);
-						TurfsPointsMinus(playerid, turfid);
-						//SetDynamicActorAngleToPlayer(TurfInfo[turfid][E_FACTION_TURFDRUGSACTOR], playerid);
-						ApplyDynamicActorAnimation(TurfInfo[turfid][E_FACTION_TURFDRUGSACTOR], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
+
+						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
+						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
 						ApplyAnimation(playerid, "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0, 1);
-						SetTimerEx("DrugsDealingRun", 3000, false, "ii", turfid, 0);
-						TurfInfo[turfid][E_FACTION_TURFDRUGSEXISTS] = 0;
+						SetTimerEx("DrugsDealingRun", 3000, false, "ii", playerid, 0);
 					}
-					else if(TurfInfo[turfid][E_FACTION_TURFDRUGSTYPE] == 2)
+					else if(DrugsDealerType[playerid] == 2)
 					{
-						new cost = TurfInfo[turfid][E_FACTION_TURFDRUGS] * 200;
+						new cost = DrugsDealerAmount[playerid] * 200;
 						if(!Inventory_Count(playerid, "Marijuana"))
 							return SendErrorMessage(playerid, "You don't have any marijuana in inventory.");
 
-						if(Inventory_Count(playerid, "Marijuana") < TurfInfo[turfid][E_FACTION_TURFDRUGS])
-							return SendErrorMessage(playerid, "You need at least %d grams of marijuana.", TurfInfo[turfid][E_FACTION_TURFDRUGS]);
+						if(Inventory_Count(playerid, "Marijuana") < DrugsDealerAmount[playerid])
+							return SendErrorMessage(playerid, "You need at least %d grams of marijuana.", DrugsDealerAmount[playerid]);
 
-						Inventory_Remove(playerid, "Marijuana", TurfInfo[turfid][E_FACTION_TURFDRUGS]);
+						Inventory_Remove(playerid, "Marijuana", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
 						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've received $%d from selling marijuana.", cost);
-						TurfsPointsMinus(playerid, turfid);
-						//SetDynamicActorAngleToPlayer(TurfInfo[turfid][E_FACTION_TURFDRUGSACTOR], playerid);
-						ApplyDynamicActorAnimation(TurfInfo[turfid][E_FACTION_TURFDRUGSACTOR], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
+
+						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
+						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
 						ApplyAnimation(playerid, "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0, 1);
-						SetTimerEx("DrugsDealingRun", 3000, false, "ii", turfid, 0);
-						TurfInfo[turfid][E_FACTION_TURFDRUGSEXISTS] = 0;
+						SetTimerEx("DrugsDealingRun", 3000, false, "ii", playerid, 0);
 					}
-					else if(TurfInfo[turfid][E_FACTION_TURFDRUGSTYPE] == 3)
+					else if(DrugsDealerType[playerid] == 3)
 					{
-						new cost = TurfInfo[turfid][E_FACTION_TURFDRUGS] * 200;
+						new cost = DrugsDealerAmount[playerid] * 200;
 						if(!Inventory_Count(playerid, "Heroin"))
 							return SendErrorMessage(playerid, "You don't have any heroin in inventory.");
 
-						if(Inventory_Count(playerid, "Heroin") < TurfInfo[turfid][E_FACTION_TURFDRUGS])
-							return SendErrorMessage(playerid, "You need at least %d grams of heroin.", TurfInfo[turfid][E_FACTION_TURFDRUGS]);
+						if(Inventory_Count(playerid, "Heroin") < DrugsDealerAmount[playerid])
+							return SendErrorMessage(playerid, "You need at least %d grams of heroin.", DrugsDealerAmount[playerid]);
 
-						Inventory_Remove(playerid, "Heroin", TurfInfo[turfid][E_FACTION_TURFDRUGS]);
+						Inventory_Remove(playerid, "Heroin", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
 						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've received $%d from selling heroin.", cost);
 
-						//SetDynamicActorAngleToPlayer(TurfInfo[turfid][E_FACTION_TURFDRUGSACTOR], playerid);
-						ApplyDynamicActorAnimation(TurfInfo[turfid][E_FACTION_TURFDRUGSACTOR], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
+						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
+						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
 						ApplyAnimation(playerid, "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0, 1);
-						SetTimerEx("DrugsDealingRun", 3000, false, "ii", turfid, 0);
-						TurfInfo[turfid][E_FACTION_TURFDRUGSEXISTS] = 0;
+						SetTimerEx("DrugsDealingRun", 3000, false, "ii", playerid, 0);
 					}
-					else if(TurfInfo[turfid][E_FACTION_TURFDRUGSTYPE] == 4)
+					else if(DrugsDealerType[playerid] == 4)
 					{
-						new cost = TurfInfo[turfid][E_FACTION_TURFDRUGS] * 150;
+						new cost = DrugsDealerAmount[playerid] * 150;
 						if(!Inventory_Count(playerid, "PCP"))
 							return SendErrorMessage(playerid, "You don't have any pcp in inventory.");
 
-						if(Inventory_Count(playerid, "PCP") < TurfInfo[turfid][E_FACTION_TURFDRUGS])
-							return SendErrorMessage(playerid, "You need at least %d grams of pcp.", TurfInfo[turfid][E_FACTION_TURFDRUGS]);
+						if(Inventory_Count(playerid, "PCP") < DrugsDealerAmount[playerid])
+							return SendErrorMessage(playerid, "You need at least %d grams of pcp.", DrugsDealerAmount[playerid]);
 
-						Inventory_Remove(playerid, "PCP", TurfInfo[turfid][E_FACTION_TURFDRUGS]);
+						Inventory_Remove(playerid, "PCP", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
 						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've received $%d from selling pcp.", cost);
 
-						//SetDynamicActorAngleToPlayer(TurfInfo[turfid][E_FACTION_TURFDRUGSACTOR], playerid);
-						ApplyDynamicActorAnimation(TurfInfo[turfid][E_FACTION_TURFDRUGSACTOR], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
+						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
+						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
 						ApplyAnimation(playerid, "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0, 1);
-						SetTimerEx("DrugsDealingRun", 3000, false, "ii", turfid, 0);
-						TurfInfo[turfid][E_FACTION_TURFDRUGSEXISTS] = 0;
+						SetTimerEx("DrugsDealingRun", 3000, false, "ii", playerid, 0);
 					}
 				}
 			}
 			else
 			{
-				new turfid;
-				if((turfid = IsPlayerNearTurf(playerid)) == -1)
-				{
-				    return SendErrorMessage(playerid, "You are not in range of any turfs.");
-				}
-
-				if(TurfInfo[turfid][E_FACTION_TURFGANG] != PlayerInfo[playerid][E_CHARACTER_FACTION])
-				{
-					return SendErrorMessage(playerid, "You are not in range of your gang turf.");
-				}
 				if(IsPlayerNearDrugsDealing(playerid))
 				{
-					//SetDynamicActorAngleToPlayer(TurfInfo[turfid][E_FACTION_TURFDRUGSACTOR], playerid);
-					ApplyDynamicActorAnimation(TurfInfo[turfid][E_FACTION_TURFDRUGSACTOR], "PED", "fucku", 4.1, 0, 0, 0, 0, 0);
-					SetTimerEx("DrugsDealingRun", 3000, false, "ii", turfid, 1);
-					TurfInfo[turfid][E_FACTION_TURFDRUGSEXISTS] = 0;
+					//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
+					ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "PED", "fucku", 4.1, 0, 0, 0, 0, 0);
+					SetTimerEx("DrugsDealingRun", 3000, false, "ii", playerid, 1);
 				}
 			}
 		}
@@ -2398,39 +2320,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 1;
 				}
 				else return SendUnauthMessage(playerid);
-			}
-		}
-		case DIALOG_CHARGES:
-		{
-			if(response)
-			{
-				new str[256];
-				PlayerInfo[playerid][E_CHARACTER_MDCCHARGE] = PenalInfo[listitem][E_PENALCODES_CHARGES];
-				PlayerInfo[playerid][E_CHARACTER_MDCTIME] = PenalInfo[listitem][E_PENALCODES_JAILTIME];
-				format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_STREETNAME]);
-				format(PlayerInfo[playerid][E_CHARACTER_MDCDESC], 128, "%s", PenalInfo[listitem][E_PENALCODES_TYPE]);
-
-				format(str, sizeof(str), "Suspect: %s\nDescription: (%s) %.150s\nCharges: $%d\nJail Times: %d Month (Minutes)", PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_STREETNAME], PenalInfo[listitem][E_PENALCODES_TYPE], PenalInfo[listitem][E_PENALCODES_NAME], PenalInfo[listitem][E_PENALCODES_CHARGES], PenalInfo[listitem][E_PENALCODES_JAILTIME]);
-				ShowPlayerDialog(playerid, DIALOG_CHARGESELECT, DIALOG_STYLE_MSGBOX, "State Penal Code (Arrest Offesenses):", str, "Enter", "Cancel");
-			}
-		}
-		case DIALOG_CHARGESELECT:
-		{
-			if(response)
-			{
-				PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_PRISON] = true;
-				PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_PRISON] = PlayerInfo[playerid][E_CHARACTER_MDCTIME] * 60;
-				SetPlayerInPrison(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
-				
-				ResetPlayerWeapons(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
-				SaveCharacter(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
-				RemovePlayerAttachedObject(playerid, 0);
-				PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_HANDCUFF] = false;
-				SetPlayerSpecialAction(PlayerInfo[playerid][E_CHARACTER_MDCSELECT], SPECIAL_ACTION_NONE);
-
-				GiveMoney(PlayerInfo[playerid][E_CHARACTER_MDCSELECT], -PlayerInfo[playerid][E_CHARACTER_MDCCHARGE]);
-
-				AddWanted(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], PlayerInfo[playerid][E_CHARACTER_MDCDESC]);
 			}
 		}
 		case DIALOG_PHONE:
@@ -2860,7 +2749,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							if (VstorageInfo[carid][itemid][E_VEHICLE_TRUNKQUANTITY] == 1)
 							{
-								if(!strcmp(string, "Products Cargo") && Inventory_Count(playerid, "Products Cargo") == 1 || !strcmp(string, "Foods Cargo") && Inventory_Count(playerid, "Foods Cargo") == 1 || !strcmp(string, "Tools Cargo") && Inventory_Count(playerid, "Tools Cargo") == 1 || !strcmp(string, "Clothes Cargo") && Inventory_Count(playerid, "Clothes Cargo") == 1)
+								if(!strcmp(string, "Products Cargo") && Inventory_Count(playerid, "Products Cargo") == 1 || !strcmp(string, "Woods Cargo") && Inventory_Count(playerid, "Woods Cargo") == 1 || !strcmp(string, "Tools Cargo") && Inventory_Count(playerid, "Tools Cargo") == 1 || !strcmp(string, "Clothes Cargo") && Inventory_Count(playerid, "Clothes Cargo") == 1)
 									return SendErrorMessage(playerid, "You can't take cargo from your vehicle trunk");
 
 								new id = Inventory_Add(playerid, string, VstorageInfo[carid][itemid][E_VEHICLE_TRUNKMODEL], 1);
@@ -2869,15 +2758,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 									return SendErrorMessage(playerid, "You don't have any storage slots left.");
 
 								VS_RemoveItem(carid, string);
-								UpdateVehicleObject(carid);
+				
 								ShowVehicleStorage(playerid, carid);
 							}
 							else
 							{
-								if(!strcmp(string, "Products Cargo") && Inventory_Count(playerid, "Products Cargo") == 1 || !strcmp(string, "Foods Cargo") && Inventory_Count(playerid, "Foods Cargo") == 1 || !strcmp(string, "Tools Cargo") && Inventory_Count(playerid, "Tools Cargo") == 1 || !strcmp(string, "Clothes Cargo") && Inventory_Count(playerid, "Clothes Cargo") == 1)
+								if(!strcmp(string, "Products Cargo") && Inventory_Count(playerid, "Products Cargo") == 1 || !strcmp(string, "Woods Cargo") && Inventory_Count(playerid, "Woods Cargo") == 1 || !strcmp(string, "Tools Cargo") && Inventory_Count(playerid, "Tools Cargo") == 1 || !strcmp(string, "Clothes Cargo") && Inventory_Count(playerid, "Clothes Cargo") == 1)
 									return SendErrorMessage(playerid, "You can't take cargo from your vehicle trunk");
 
-								if(!strcmp(string, "Products Cargo") && VS_Count(carid, "Products Cargo") > 1 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") > 1 || !strcmp(string, "Tools Cargo") && VS_Count(carid, "Tools Cargo") > 1 || !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") > 1)
+								if(!strcmp(string, "Products Cargo") && VS_Count(carid, "Products Cargo") > 1 || !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") > 1 || !strcmp(string, "Tools Cargo") && VS_Count(carid, "Tools Cargo") > 1 || !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") > 1)
 								{
 									new id = Inventory_Add(playerid, string, VstorageInfo[carid][itemid][E_VEHICLE_TRUNKMODEL], 1);
 
@@ -2885,7 +2774,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 										return SendErrorMessage(playerid, "You don't have any storage slots left.");
 
 									VS_RemoveItem(carid, string);
-									UpdateVehicleObject(carid);
+						
 									ShowVehicleStorage(playerid, carid);
 								}
 								else
@@ -2901,19 +2790,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							new id = Inventory_GetItemID(playerid, string);
 
-							if(GetVehicleModel(carid) == 600 || GetVehicleModel(carid) == 543 || GetVehicleModel(carid) == 605 || GetVehicleModel(carid) == 433)
+							if(GetVehicleModel(carid) == 459 || GetVehicleModel(carid) == 482 || GetVehicleModel(carid) == 440 || GetVehicleModel(carid) == 413)
 							{
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(string, "Products Cargo") && VS_Count(carid, "Products Cargo") >= 2 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 2 || !strcmp(string, "Tools Cargo") && VS_Count(carid, "Tools Cargo") >= 2 || !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 2)
+									if(!strcmp(string, "Products Cargo") && VS_Count(carid, "Products Cargo") >= 3 || !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 3 || !strcmp(string, "Tools Cargo") && VS_Count(carid, "Tools Cargo") >= 3 || !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 3)
 										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
 									VS_AddItem(carid, string, InventoryInfo[playerid][id][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, string);
-									UpdateVehicleObject(carid);
+						
 									ShowVehicleStorage(playerid, carid);
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] > 1) 
@@ -2925,19 +2814,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
 							}
-							else if(GetVehicleModel(carid) == 422)
+							else if(GetVehicleModel(carid) == 499 || GetVehicleModel(carid) == 414)
 							{
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(string, "Products Cargo") && VS_Count(carid, "Products Cargo") >= 3 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 3 || !strcmp(string, "Tools Cargo") && VS_Count(carid, "Tools Cargo") >= 3 || !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 3)
+									if(!strcmp(string, "Products Cargo") && VS_Count(carid, "Products Cargo") >= 5 || !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 5 || !strcmp(string, "Tools Cargo") && VS_Count(carid, "Tools Cargo") >= 5 || !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 5)
 										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
 									VS_AddItem(carid, string, InventoryInfo[playerid][id][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, string);
-									UpdateVehicleObject(carid);
+				
 									ShowVehicleStorage(playerid, carid);
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] > 1) 
@@ -2949,19 +2838,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
 							}
-							else if(GetVehicleModel(carid) == 478)
+							else if(GetVehicleModel(carid) == 456)
 							{
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(string, "Products Cargo") && VS_Count(carid, "Products Cargo") >= 4 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 4 || !strcmp(string, "Tools Cargo") && VS_Count(carid, "Tools Cargo") >= 4 || !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 4)
+									if(!strcmp(string, "Products Cargo") && VS_Count(carid, "Products Cargo") >= 8 || !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 8 || !strcmp(string, "Tools Cargo") && VS_Count(carid, "Tools Cargo") >= 8 || !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 8)
 										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
 									VS_AddItem(carid, string, InventoryInfo[playerid][id][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, string);
-									UpdateVehicleObject(carid);
+						
 									ShowVehicleStorage(playerid, carid);
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] > 1) 
@@ -2973,19 +2862,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
 							}
-							else if(GetVehicleModel(carid) == 554)
+							else if(GetVehicleModel(carid) == 455)
 							{
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(string, "Products Cargo") && VS_Count(carid, "Products Cargo") >= 5 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 5 || !strcmp(string, "Tools Cargo") && VS_Count(carid, "Tools Cargo") >= 5 || !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 5)
+									if(!strcmp(string, "Products Cargo") && VS_Count(carid, "Products Cargo") >= 10 || !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 10 || !strcmp(string, "Tools Cargo") && VS_Count(carid, "Tools Cargo") >= 10 || !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 10)
 										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
 									VS_AddItem(carid, string, InventoryInfo[playerid][id][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, string);
-									UpdateVehicleObject(carid);
+						
 									ShowVehicleStorage(playerid, carid);
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] > 1) 
@@ -3121,102 +3010,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				GPS_SetPlayerRaceCheckPoint(playerid, 1, IndustryInfo[listitem][Posx], IndustryInfo[listitem][Posy], IndustryInfo[listitem][Posz], 0.0, 0.0, 0.0);
 			}
 		}
-		case DIALOG_VOICELINES:
-		{
-			if(response)
-			{
-				switch(listitem)
-				{
-					case 0:
-					{
-						if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 3 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 6 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 10)
-						{
-							for (new i = 0, j = sizeof (VL_Families); i < j; i ++ ) {
-								new string[9999];
-								format(string, sizeof(string), "%s%s\n", string, VL_Families[i][E_VOICELINE_DESC]); 
-								ShowPlayerDialog(playerid, DIALOG_VOICELINES_LIST, DIALOG_STYLE_LIST, "Famillies Gang Voicelines:", string, "Play", "Close");
-							}
-						}
-						else SendErrorMessage(playerid, "You are not apart in this factions.");
-					}
-					case 1:
-					{
-						if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 4 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 5 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 9 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 11)
-						{
-							for(new i = 0, j = sizeof (VL_Ballas); i < j; i ++ ) {
-								new string[9999];
-								format(string, sizeof(string), "%s%s\n", string, VL_Ballas[i][E_VOICELINE_DESC]); 
-								ShowPlayerDialog(playerid, DIALOG_VOICELINES_LIST, DIALOG_STYLE_LIST, "Famillies Gang Voicelines:", string, "Play", "Close");
-							}
-						}
-						else SendErrorMessage(playerid, "You are not apart in this factions.");
-					}
-					case 2:
-					{
-						if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 8)
-						{
-							for(new i = 0, j = sizeof (VL_Aztecas); i < j; i ++ ) {
-								new string[9999];
-								format(string, sizeof(string), "%s%s\n", string, VL_Aztecas[i][E_VOICELINE_DESC]); 
-								ShowPlayerDialog(playerid, DIALOG_VOICELINES_LIST, DIALOG_STYLE_LIST, "Famillies Gang Voicelines:", string, "Play", "Close");
-							}
-						}
-						else SendErrorMessage(playerid, "You are not apart in this factions.");
-					}
-					case 3:
-					{
-						if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 7)
-						{
-							for(new i = 0, j = sizeof (VL_Vagos); i < j; i ++ ) {
-								new string[9999];
-								format(string, sizeof(string), "%s%s\n", string, VL_Vagos[i][E_VOICELINE_DESC]); 
-								ShowPlayerDialog(playerid, DIALOG_VOICELINES_LIST, DIALOG_STYLE_LIST, "Famillies Gang Voicelines:", string, "Play", "Close");
-							}
-						}
-						else SendErrorMessage(playerid, "You are not apart in this factions.");
-					}
-					case 4:
-					{
-						if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 1)
-						{
-							for(new i = 0, j = sizeof (VL_LSPD); i < j; i ++ ) {
-								new string[9999];
-								format(string, sizeof(string), "%s%s\n", string, VL_LSPD[i][E_VOICELINE_DESC]); 
-								ShowPlayerDialog(playerid, DIALOG_VOICELINES_LIST, DIALOG_STYLE_LIST, "Famillies Gang Voicelines:", string, "Play", "Close");
-							}
-						}
-						else SendErrorMessage(playerid, "You are not apart in this factions.");
-					}
-				}
-			}
-		}
-		case DIALOG_VOICELINES_LIST:
-		{
-			if(response)
-			{	
-				if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 3 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 6 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 10)
-				{
-					Voiceline_Play(playerid, VL_Families[listitem][E_VOICELINE_ID]);
-				}
-				else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 4 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 5 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 9 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 11)
-				{
-					Voiceline_Play(playerid, VL_Ballas[listitem][E_VOICELINE_ID]);
-				}
-				else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 8)
-				{
-					Voiceline_Play(playerid, VL_Aztecas[listitem][E_VOICELINE_ID]);
-				}
-				else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 7)
-				{
-					Voiceline_Play(playerid, VL_Vagos[listitem][E_VOICELINE_ID]);
-				}
-				else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 1)
-				{
-					Voiceline_Play(playerid, VL_LSPD[listitem][E_VOICELINE_ID]);
-				}
-			}
-		}
 	}
-	PlayerPlaySound(playerid, 1054, 0.0, 0.0, 0.0);
+	//PlayerPlaySound(playerid, 1054, 0.0, 0.0, 0.0);
 	return 0;
 }

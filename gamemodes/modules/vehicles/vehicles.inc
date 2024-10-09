@@ -77,6 +77,14 @@ stock IsEngineVehicle(vehicleid)
     return (g_aEngineStatus[modelid - 400]);
 }
 
+IsABike(vehicleid)
+{
+    switch (GetVehicleModel(vehicleid)) {
+        case 448, 461..463, 468, 521..523, 581, 586, 481, 509, 510: return 1;
+    }
+    return 0;
+}
+
 function:OnVehicleScrap(playerid, response, dbid, cash_back)
 {
 	if(response)

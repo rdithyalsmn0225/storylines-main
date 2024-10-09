@@ -10,7 +10,7 @@ InsertTrashmaster()
 
 Trashmaster_FetchNewPoint(playerid) 
 {
-    if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRASHMASTER && PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] == 1)
+    if(PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] == 1)
     {
         new Float:x, Float:y, Float:z;
 		GetVehiclePos(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], x, y, z);
