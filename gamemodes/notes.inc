@@ -16,7 +16,11 @@
 
 | Changelogs |
 
-Improvement & Fixed other Bugs
-Truckers Jobs Improvement
+[x]
+    Fixed database from factions skin.
+[*]
+    Improvement & Fixed other Bugs.
+    Trashmaster & Docksworker Improvement.
+    Truckers Jobs Improvement.
 
 */
