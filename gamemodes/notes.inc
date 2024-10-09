@@ -23,6 +23,7 @@
     Fixed database from factions skin.
 [*]
     Improvement & Fixed other Bugs.
+    Improvement Drugs Production scripts.
     Trashmaster & Docksworker Improvement.
     Truckers Jobs Improvement.
     Drugs Dealer Improvement.
