@@ -22,5 +22,6 @@
     Improvement & Fixed other Bugs.
     Trashmaster & Docksworker Improvement.
     Truckers Jobs Improvement.
+    Drugs Dealer Improvement.
 
 */
