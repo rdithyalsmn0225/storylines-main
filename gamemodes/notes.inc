@@ -23,5 +23,5 @@
     Trashmaster & Docksworker Improvement.
     Truckers Jobs Improvement.
     Drugs Dealer Improvement.
-
+    Rewrote Spraycan / Spraytags script.
 */
