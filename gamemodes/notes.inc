@@ -17,7 +17,8 @@
 | Changelogs |
 
 [+]
-    Added /creategun in warehouses using materials.
+    Added /creategun & /createammo in warehouses using materials.
+    Added properties type warehouses [Acid lab & Storehouse].
 [x]
     Fixed database from factions skin.
 [*]
