@@ -16,6 +16,8 @@
 
 | Changelogs |
 
+[+]
+    Added /creategun in warehouses using materials.
 [x]
     Fixed database from factions skin.
 [*]
