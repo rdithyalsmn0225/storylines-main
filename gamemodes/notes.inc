@@ -19,18 +19,16 @@
 [+]
     Added /creategun & /createammo in warehouses using materials.
     Added properties type warehouses [Acid lab & Storehouse].
+    Added Materials items inventory. -
+    Added lumberjack jobs.
 [x]
-    Fixed database from factions skin.
+    Fixed database from factions skin. -
 [*]
     Improvement & Fixed other Bugs.
     Improvement Drugs Production scripts.
-    Trashmaster & Docksworker Improvement.
-    Truckers Jobs Improvement.
-    Drugs Dealer Improvement.
     Rewrote Spraycan / Spraytags script.
     Rewrote business & relations script.
     Rewrote GYM script.
 [-]
-    Remove Turfwars / Turfconflict script.
-    Remove /buygun from gundealer.
+
 */

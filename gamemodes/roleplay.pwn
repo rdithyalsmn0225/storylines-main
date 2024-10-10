@@ -176,6 +176,7 @@ public OnGameModeInit()
 	InsertAdvertise();
 	InsertDealership();
 	InsertStaticArea();
+	InsertAcidGunLabs();
 	InsertTrashmaster();
 	InsertDocksWorkers();
 	InsertDonatorStars();
@@ -3933,38 +3934,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			new id = Item_Nearest(playerid);
 			if (id != -1)
 			{
-				if(DroppedInfo[id][E_DROPPED_TYPE] == 1 && DroppedInfo[id][E_DROPPED_LOADING] == false)
-				{
-					if(DroppedInfo[id][E_DROPPED_AMOUNT] == 0)
-					{
-						ShowPlayerDialog(playerid, DIALOG_DRUGSCOMBINE, DIALOG_STYLE_TABLIST_HEADERS, "Choose your drugs:", "Drugs Name\tIngredient\nCocaine Crack\tBaking Soda & Cocaine\nPCP\tMarijuana, Parsley, Mint & Baking Soda", "Select", "Cancel");
-					}
-
-					if(DroppedInfo[id][E_DROPPED_AMOUNT] == 1)
-					{
-						if(PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] == 1)
-						{
-							new rand = randomEx(5, 7);
-							PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] = 0;
-							DroppedInfo[id][E_DROPPED_AMOUNT] = 0;
-							DroppedInfo[id][E_DROPPED_LOADING] = false;
-							
-							Inventory_Add(playerid, "Cocaine Crack", -2502, rand);
-							SendClientMessageEx(playerid, COLOR_JOBS, "[Drugs]:{d7d7d7} You've receive %d grams of Cocaine Crack.", rand);
-						}
-						else if(PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] == 2)
-						{
-							new rand = randomEx(3, 5);
-							PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] = 0;
-							DroppedInfo[id][E_DROPPED_AMOUNT] = 0;
-							DroppedInfo[id][E_DROPPED_LOADING] = false;
-
-							Inventory_Add(playerid, "PCP", -2500, rand);
-							SendClientMessageEx(playerid, COLOR_JOBS, "[Drugs]:{d7d7d7} You've receive %d grams of PCP.", rand);
-						}
-					}
-				}
-				else if(DroppedInfo[id][E_DROPPED_TYPE] == 2 && DroppedInfo[id][E_DROPPED_LOADING] == false)
+				if(DroppedInfo[id][E_DROPPED_TYPE] == 2 && DroppedInfo[id][E_DROPPED_LOADING] == false)
 				{
 					if(DroppedInfo[id][E_DROPPED_AMOUNT] == 0)
 					{
@@ -3973,7 +3943,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						
 						Inventory_Remove(playerid, "Raw Meat", 1);
 
-						DroppedInfo[id][E_DROPPED_LOADINGDISPLAY] = Create3DTextLabel("BBQ COOK IN PROCESS\nSupplied Meat: 180 grams\nTime Left: ((|------))", COLOR_DARKGREEN, DroppedInfo[id][E_DROPPED_POS][0], DroppedInfo[id][E_DROPPED_POS][1], DroppedInfo[id][E_DROPPED_POS][2], 25.0, 0, 1);
+						DroppedInfo[id][E_DROPPED_LOADINGDISPLAY] = Create3DTextLabel("BBQ COOK IN PROCESS\nSupplied Meat: 180 grams\nTime Left: ((|------))", COLOR_DARKGREEN, DroppedInfo[id][E_DROPPED_POS][0], DroppedInfo[id][E_DROPPED_POS][1], DroppedInfo[id][E_DROPPED_POS][2], 5.0, 0, 1);
 						DroppedInfo[id][E_DROPPED_LOADINGCOUNT] = 1;
 
 						DroppedInfo[id][E_DROPPED_LOADING] = true; 

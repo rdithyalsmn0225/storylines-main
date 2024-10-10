@@ -2,12 +2,12 @@
 function:CookDrugs(playerid, type, id)
 {
 	new text[256];
-    DroppedInfo[id][E_DROPPED_LOADINGCOUNT]++;
+    BusinessInfo[id][E_BUSINESS_LOADINGCOUNT]++;
 	switch(type)
 	{
 		case 1:
 		{
-			switch(DroppedInfo[id][E_DROPPED_LOADINGCOUNT])
+			switch(BusinessInfo[id][E_BUSINESS_LOADINGCOUNT])
 			{
 				case 2: text = "CRACK COOK IN PROCESS\nSupplied Coke: 5 gram\nExpected Output: 5-7 gram\nTime Left: ((||-----))";
 				case 3: text = "CRACK COOK IN PROCESS\nSupplied Coke: 5 gram\nExpected Output: 5-7 gram\nTime Left: ((|||----))";
@@ -17,15 +17,15 @@ function:CookDrugs(playerid, type, id)
 				case 7: text = "CRACK COOK IN PROCESS\nSupplied Coke: 5 gram\nExpected Output: 5-7 gram\nTime Left: ((|||||||))";
 				case 8:
 				{
-					Delete3DTextLabel(DroppedInfo[id][E_DROPPED_LOADINGDISPLAY]); 
-					KillTimer(DroppedInfo[id][E_DROPPED_LOADINGTIMER]);
-					DroppedInfo[id][E_DROPPED_LOADINGCOUNT] = 0;
-					DroppedInfo[id][E_DROPPED_LOADING] = true;
+					Delete3DTextLabel(BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY]); 
+					KillTimer(BusinessInfo[id][E_BUSINESS_LOADINGTIMER]);
+					BusinessInfo[id][E_BUSINESS_LOADINGCOUNT] = 0;
+					BusinessInfo[id][E_BUSINESS_LOADING] = true;
 					
-					DroppedInfo[id][E_DROPPED_AMOUNT] = 1;
+					BusinessInfo[id][E_BUSINESS_AMOUNT] = 1;
 
 					new string[512];
-					format(string, sizeof(string), "UPDATE `dropped` SET `itemAmount` = %d WHERE `ID` = '%d'", 1, id);
+					format(string, sizeof(string), "UPDATE `businesses` SET `BusinessAmount` = %d WHERE `BusinessDBID` = '%d'", 1, id);
 	    			mysql_pquery(ourConnection, string);
 
 					Inventory_Remove(playerid, "Cocaine", 2);
@@ -37,7 +37,7 @@ function:CookDrugs(playerid, type, id)
 		}
 		case 2:
 		{
-			switch(DroppedInfo[id][E_DROPPED_LOADINGCOUNT])
+			switch(BusinessInfo[id][E_BUSINESS_LOADINGCOUNT])
 			{
 				case 2: text = "PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((||-----))";
 				case 3: text = "PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((|||----))";
@@ -47,15 +47,15 @@ function:CookDrugs(playerid, type, id)
 				case 7: text = "PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((|||||||))";
 				case 8:
 				{
-					Delete3DTextLabel(DroppedInfo[id][E_DROPPED_LOADINGDISPLAY]); 
-					KillTimer(DroppedInfo[id][E_DROPPED_LOADINGTIMER]);
-					DroppedInfo[id][E_DROPPED_LOADINGCOUNT] = 0;
-					DroppedInfo[id][E_DROPPED_LOADING] = true;
+					Delete3DTextLabel(BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY]); 
+					KillTimer(BusinessInfo[id][E_BUSINESS_LOADINGTIMER]);
+					BusinessInfo[id][E_BUSINESS_LOADINGCOUNT] = 0;
+					BusinessInfo[id][E_BUSINESS_LOADING] = true;
 					
-					DroppedInfo[id][E_DROPPED_AMOUNT] = 1;
+					BusinessInfo[id][E_BUSINESS_AMOUNT] = 1;
 
 					new string[512];
-					format(string, sizeof(string), "UPDATE `dropped` SET `itemAmount` = %d WHERE `ID` = '%d'", 1, id);
+					format(string, sizeof(string), "UPDATE `businesses` SET `BusinessAmount` = %d WHERE `BusinessDBID` = '%d'", 1, id);
 	    			mysql_pquery(ourConnection, string);
 					
 					Inventory_Remove(playerid, "Marijuana", 2);
@@ -68,7 +68,7 @@ function:CookDrugs(playerid, type, id)
 			}
 		}
     }
-    Update3DTextLabelText(DroppedInfo[id][E_DROPPED_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
 }
 
 /*=====[PURCHASE DRUGS]=====*/
@@ -270,6 +270,46 @@ stock IsPlayerUsingDrugs(playerid, type)
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
+			}
+		}
+	}
+	return 1;
+}
+
+CMD:production(playerid, params[])
+{
+	new id = IsPlayerInBusiness(playerid);
+	if (id != -1)
+	{
+		if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_ACID && BusinessInfo[playerid][E_BUSINESS_LOADING] == false)
+		{
+			if(BusinessInfo[id][E_BUSINESS_AMOUNT] == 0)
+			{
+				ShowPlayerDialog(playerid, DIALOG_DRUGSCOMBINE, DIALOG_STYLE_TABLIST_HEADERS, "Choose your drugs:", "Drugs Name\tIngredient\nCocaine Crack\tBaking Soda & Cocaine\nPCP\tMarijuana, Parsley, Mint & Baking Soda", "Select", "Cancel");
+			}
+
+			if(BusinessInfo[id][E_BUSINESS_AMOUNT] == 1)
+			{
+				if(PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] == 1)
+				{
+					new rand = randomEx(5, 7);
+					PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] = 0;
+					BusinessInfo[id][E_BUSINESS_AMOUNT] = 0;
+					BusinessInfo[id][E_BUSINESS_LOADING] = false;
+					
+					Inventory_Add(playerid, "Cocaine Crack", -2502, rand);
+					SendClientMessageEx(playerid, COLOR_JOBS, "[Drugs]:{d7d7d7} You've receive %d grams of Cocaine Crack.", rand);
+				}
+				else if(PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] == 2)
+				{
+					new rand = randomEx(3, 5);
+					PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] = 0;
+					BusinessInfo[id][E_BUSINESS_AMOUNT] = 0;
+					BusinessInfo[id][E_BUSINESS_LOADING] = false;
+
+					Inventory_Add(playerid, "PCP", -2500, rand);
+					SendClientMessageEx(playerid, COLOR_JOBS, "[Drugs]:{d7d7d7} You've receive %d grams of PCP.", rand);
+				}
 			}
 		}
 	}

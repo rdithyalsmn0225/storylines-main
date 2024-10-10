@@ -61,9 +61,9 @@ stock BusinessRefresh(businessid)
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /buybeer to see menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
-		case BUSINESS_TYPE_JEWELRY:
+		case BUSINESS_TYPE_ACID:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /jewelry to see jewelry menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /production to opens the production menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_GENERAL:
@@ -281,9 +281,9 @@ stock SendBusinessType(playerid, id)
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /buybeer to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
 			ShowBoxMessage(playerid, str, 5);
 		}
-		case BUSINESS_TYPE_JEWELRY:
+		case BUSINESS_TYPE_ACID:
 		{
-			SendClientMessageEx(playerid, COLOR_DARKGREEN, "Welcome to %s\nAvailable commands: /jewelry to see business menu..", BusinessInfo[id][E_BUSINESS_NAME]);
+			SendClientMessageEx(playerid, COLOR_DARKGREEN, "Welcome to %s\nAvailable commands: /production to opens the production menu", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_WHITE, "Available commands: /menu."); 
 		}
 		case BUSINESS_TYPE_CLOTHES:
@@ -618,6 +618,8 @@ function:Query_LoadBusinesses()
 
 		cache_get_value_name_int(i, "BusinessRobberyTime", BusinessInfo[i+1][E_BUSINESS_ROBBERYTIME]);
 		cache_get_value_name_int(i, "BusinessShipments", BusinessInfo[i+1][E_BUSINESS_SHIPMENTS]);
+
+		cache_get_value_name_int(i, "BusinessAmount", BusinessInfo[i+1][E_BUSINESS_AMOUNT]);
 
 		BusinessRefresh(i+1);
 	}	

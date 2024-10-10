@@ -2094,10 +2094,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0:
 					{
-						new id = Item_Nearest(playerid);
+						new id = IsPlayerInBusiness(playerid);
 						if(id != -1)
 						{
-							if(DroppedInfo[id][E_DROPPED_TYPE] != 1)
+							if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_ACID)
 								return SendErrorMessage(playerid, "You aren't near a pot of water.");
 
 							if(!Inventory_Count(playerid, "Cocaine"))
@@ -2109,11 +2109,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							if(Inventory_Count(playerid, "Baking Soda") < 2)
 								return SendErrorMessage(playerid, "You need at least 5 pack of baking soda.");
 
-							DroppedInfo[id][E_DROPPED_LOADINGDISPLAY] = Create3DTextLabel("CRACK COOK IN PROCESS\nSupplied Coke: 5 gram\nExpected Output: 5-7 gram\nTime Left: ((|------))", COLOR_DARKGREEN, DroppedInfo[id][E_DROPPED_POS][0], DroppedInfo[id][E_DROPPED_POS][1], DroppedInfo[id][E_DROPPED_POS][2], 25.0, 0, 1);
-							DroppedInfo[id][E_DROPPED_LOADINGCOUNT] = 1;
+							BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY] = Create3DTextLabel("CRACK COOK IN PROCESS\nSupplied Coke: 5 gram\nExpected Output: 5-7 gram\nTime Left: ((|------))", COLOR_DARKGREEN, BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][2]+2, 5.0, 0, 1);
+							BusinessInfo[id][E_BUSINESS_LOADINGCOUNT] = 1;
 
-							DroppedInfo[id][E_DROPPED_LOADING] = true; 
-							DroppedInfo[id][E_DROPPED_LOADINGTIMER] = SetTimerEx("CookDrugs", 10000, true, "iii", playerid, 1, id);
+							BusinessInfo[id][E_BUSINESS_LOADING] = true; 
+							BusinessInfo[id][E_BUSINESS_LOADINGTIMER] = SetTimerEx("CookDrugs", 10000, true, "iii", playerid, 1, id);
 						}
 					}
 					case 1:
@@ -2121,7 +2121,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new id = Item_Nearest(playerid);
 						if(id != -1)
 						{
-							if(DroppedInfo[id][E_DROPPED_TYPE] != 1)
+							if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_ACID)
 								return SendErrorMessage(playerid, "You aren't near a pot of water.");
 
 							if(!Inventory_Count(playerid, "Marijuana"))
@@ -2139,11 +2139,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							if(Inventory_Count(playerid, "Baking Soda") < 5)
 								return SendErrorMessage(playerid, "You need at least 1 pack of baking soda.");
 
-							DroppedInfo[id][E_DROPPED_LOADINGDISPLAY] = Create3DTextLabel("PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((|------))", COLOR_DARKGREEN, DroppedInfo[id][E_DROPPED_POS][0], DroppedInfo[id][E_DROPPED_POS][1], DroppedInfo[id][E_DROPPED_POS][2], 25.0, 0, 1);
-							DroppedInfo[id][E_DROPPED_LOADINGCOUNT] = 1;
+							BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY] = Create3DTextLabel("PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((|------))", COLOR_DARKGREEN, BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][2]+2, 5.0, 0, 1);
+							BusinessInfo[id][E_BUSINESS_LOADINGCOUNT] = 1;
 
-							DroppedInfo[id][E_DROPPED_LOADING] = true; 
-							DroppedInfo[id][E_DROPPED_LOADINGTIMER] = SetTimerEx("CookDrugs", 10000, true, "iii", playerid, 2, id);
+							BusinessInfo[id][E_BUSINESS_LOADING] = true; 
+							BusinessInfo[id][E_BUSINESS_LOADINGTIMER] = SetTimerEx("CookDrugs", 10000, true, "iii", playerid, 2, id);
 						}
 					}
 				}

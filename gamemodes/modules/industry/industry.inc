@@ -107,7 +107,7 @@ stock ShowShipments(playerid)
 	    switch (BusinessInfo[i][E_BUSINESS_TYPE]) {
 	        case 1: type = "Restaurant";
 	        case 2: type = "Bar";
-	        case 3: type = "Jewelry";
+	        case 3: type = "Acid Lab";
 	        case 4: type = "Ammunations";
 			case 6: type = "Club";
 			case 7: type = "Bank";
