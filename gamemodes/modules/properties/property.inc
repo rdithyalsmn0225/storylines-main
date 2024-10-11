@@ -38,7 +38,7 @@ function:Query_LoadProperties()
 		cache_get_value_name_bool(i, "PropertyLocked", PropertyInfo[i+1][E_PROPERTY_LOCKED]);
 		
 		cache_get_value_name_int(i, "PropertyCashbox", PropertyInfo[i+1][E_PROPERTY_CASH]);
-		PropertyInfo[i+1][E_PROPERTY_PICKUP] = CreateDynamicObject(1273, PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 5.0); 
+		PropertyInfo[i+1][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][2], 0, 0, -1, 5.0); 
 
 		countProperties++; 
 	}
@@ -70,15 +70,15 @@ function:OnEntranceChange(playerid, response, property)
 	{
 		GetPlayerPos(playerid, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2]);
 		
-		if(IsValidDynamicObject(PropertyInfo[property][E_PROPERTY_PICKUP]))
-			DestroyDynamicObject(PropertyInfo[property][E_PROPERTY_PICKUP]); 
+		if(IsValidDynamicPickup(PropertyInfo[property][E_PROPERTY_PICKUP]))
+			DestroyDynamicPickup(PropertyInfo[property][E_PROPERTY_PICKUP]); 
 
 		PropertyInfo[property][E_PROPERTY_ENTRANCEINTERIOR] = GetPlayerInterior(playerid);
 		PropertyInfo[property][E_PROPERTY_ENTRANCEWORLD] = GetPlayerVirtualWorld(playerid);
 
 		format(PropertyInfo[property][E_PROPERTY_ADDRESS], 128, "%dth %s", property, ReturnLocationStreet(playerid));
 
-		PropertyInfo[property][E_PROPERTY_PICKUP] = CreateDynamicObject(1273, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 3.0); 
+		PropertyInfo[property][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2]+0.8, 0, 0, -1, 5.0); 
 		
 		SaveProperty(property);
 		SendServerMessage(playerid, "You set Property %i's entrance.", property);

@@ -1,2 +1,0 @@
-[18:47:43] [plugins/mysql] error #1065 while executing query "": Query was empty (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:4460 -> F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:378 -> F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:265)
-[19:00:51] [plugins/mysql] error #1065 while executing query "": Query was empty (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:4460 -> F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:260)

@@ -3209,16 +3209,6 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 		PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
 		return true;
 	}
-	if ((response) && (extraid == MODEL_SELECTION_SPRAYTAGS))
-	{
-	    new Float:x, Float:y, Float:z; 
-		GetPlayerPos(playerid, x, y, z); 
-		PlayerInfo[playerid][E_CHARACTER_OBJECTID] = modelid;
-		PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = 0;
-		PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = PlayerInfo[playerid][E_CHARACTER_DBID];
-
-		ShowPlayerDialog(playerid, DIALOG_SPRAYMENU, DIALOG_STYLE_LIST, "Choose your spraytags menu:", "Classic Spraytags\nCustom Spraytags\nCreate Spraytags", "Select", "Select");
-	}
 	else
 	{
 		SetCameraBehindPlayer(playerid);
@@ -4184,7 +4174,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 				{
 					new str[32];
 					format(str, sizeof(str), "Static");
-					SetTimerEx("SprayingTags", 10000, false, "isiffffff", playerid, str, 3, x, y, z, rx, ry, rz);
+					SetTimerEx("SprayingTags", 10000, false, "isiffffff", playerid, str, 1, x, y, z, rx, ry, rz);
 						
 					ApplyAnimation(playerid, "GRAFFITI", "null", 4.0, 0, 0, 0, 0, 0, 0);
 					ApplyAnimation(playerid, "GRAFFITI", "spraycan_fire", 4.0, 1, 0, 0, 0, 0, 1);

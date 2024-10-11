@@ -63,35 +63,6 @@ LoadCustomModels()
     //======================================Textdraws======================================
 	AddSimpleModel(-1, 19379, -2001, "misc/textdraws/idlstxt.dff", "misc/textdraws/idlstxt.txd");
 
-	//======================================Graffiti======================================
-	AddSimpleModel(-1, 1529, -2002, "graffiti/graffiti.dff", "graffiti/ballas/balla.txd");
-	AddSimpleModel(-1, 1529, -2003, "graffiti/graffiti.dff", "graffiti/ballas/fyb.txd");
-	AddSimpleModel(-1, 1529, -2004, "graffiti/graffiti.dff", "graffiti/ballas/ktb.txd");
-	AddSimpleModel(-1, 1529, -2005, "graffiti/graffiti.dff", "graffiti/ballas/rhb.txd");
-	AddSimpleModel(-1, 1529, -2006, "graffiti/graffiti.dff", "graffiti/ballas/rhb2.txd");
-	AddSimpleModel(-1, 1529, -2007, "graffiti/graffiti.dff", "graffiti/ballas/rhb3.txd");
-
-	AddSimpleModel(-1, 1529, -2008, "graffiti/graffiti.dff", "graffiti/fam/tdf.txd");
-	AddSimpleModel(-1, 1529, -2009, "graffiti/graffiti.dff", "graffiti/fam/sbf.txd");
-
-	AddSimpleModel(-1, 1529, -2010, "graffiti/graffiti.dff", "graffiti/aztecas/vla.txd");
-	AddSimpleModel(-1, 1529, -2011, "graffiti/graffiti.dff", "graffiti/aztecas/vla2.txd");
-	AddSimpleModel(-1, 1529, -2012, "graffiti/graffiti.dff", "graffiti/aztecas/vla3.txd");
-	AddSimpleModel(-1, 1529, -2013, "graffiti/graffiti.dff", "graffiti/aztecas/vla4.txd");
-
-	AddSimpleModel(-1, 1529, -2014, "graffiti/graffiti.dff", "graffiti/vagos/lsv.txd");
-	AddSimpleModel(-1, 1529, -2015, "graffiti/graffiti.dff", "graffiti/vagos/lsv2.txd");
-	AddSimpleModel(-1, 1529, -2016, "graffiti/graffiti.dff", "graffiti/vagos/lsv3.txd");
-	AddSimpleModel(-1, 1529, -2017, "graffiti/graffiti.dff", "graffiti/vagos/lsv4.txd");
-	AddSimpleModel(-1, 1529, -2018, "graffiti/graffiti.dff", "graffiti/vagos/lsv5.txd");
-	AddSimpleModel(-1, 1529, -2019, "graffiti/graffiti.dff", "graffiti/aztecas/vla5.txd");
-	//AddSimpleModel(-1, 1529, -2020, "graffiti/graffiti.dff", "graffiti/vagos/lsv7.txd");
-
-	AddSimpleModel(-1, 1529, -2021, "graffiti/graffiti.dff", "graffiti/ballas/fyb2.txd");
-	AddSimpleModel(-1, 1529, -2022, "graffiti/graffiti.dff", "graffiti/ballas/fyb3.txd");
-	AddSimpleModel(-1, 1529, -2023, "graffiti/graffiti.dff", "graffiti/ballas/fyb4.txd");
-	AddSimpleModel(-1, 1529, -2024, "graffiti/graffiti.dff", "graffiti/ballas/fyb5.txd");
-
 	//========================================Skins========================================
 	
 	AddCharModel(300, 20071, "misc/skin/lspd/lapd1.dff", "misc/skin/lspd/lapd1.txd");
@@ -122,55 +93,6 @@ LoadCustomModels()
 	AddSimpleModel(-1, 1575, -2504, "misc/gym/kmb_bpress.dff", "misc/gym/gym_weights.txd"); //Heroine
 	AddSimpleModel(-1, 1575, -2505, "misc/gym/kmb_dumbbell_l.dff", "misc/gym/gym_weights.txd"); //Marijuana
 	AddSimpleModel(-1, 1575, -2506, "misc/gym/kmb_dumbbell_r.dff", "misc/gym/gym_weights.txd"); //Cocaine
-
-	//==========================================Spraytags==========================================
-	/*AddSimpleModel(-1, 1529, -2800, "font/font.dff", "font/result.txd");
-
-	//==========================================Alphabet==========================================
-	AddSimpleModel(-1, 1529, -2801, "font/font.dff", "font/alphabet/A.txd");
-	AddSimpleModel(-1, 1529, -2802, "font/font.dff", "font/alphabet/B.txd");
-	AddSimpleModel(-1, 1529, -2803, "font/font.dff", "font/alphabet/C.txd");
-	AddSimpleModel(-1, 1529, -2804, "font/font.dff", "font/alphabet/D.txd");
-	AddSimpleModel(-1, 1529, -2805, "font/font.dff", "font/alphabet/E.txd");
-	AddSimpleModel(-1, 1529, -2806, "font/font.dff", "font/alphabet/F.txd");
-	AddSimpleModel(-1, 1529, -2807, "font/font.dff", "font/alphabet/G.txd");
-	AddSimpleModel(-1, 1529, -2808, "font/font.dff", "font/alphabet/H.txd");
-	AddSimpleModel(-1, 1529, -2809, "font/font.dff", "font/alphabet/I.txd");
-	AddSimpleModel(-1, 1529, -2810, "font/font.dff", "font/alphabet/J.txd");
-	AddSimpleModel(-1, 1529, -2811, "font/font.dff", "font/alphabet/K.txd");
-	AddSimpleModel(-1, 1529, -2812, "font/font.dff", "font/alphabet/L.txd");
-	AddSimpleModel(-1, 1529, -2813, "font/font.dff", "font/alphabet/M.txd");
-	AddSimpleModel(-1, 1529, -2814, "font/font.dff", "font/alphabet/N.txd");
-	AddSimpleModel(-1, 1529, -2815, "font/font.dff", "font/alphabet/O.txd");
-	AddSimpleModel(-1, 1529, -2816, "font/font.dff", "font/alphabet/P.txd");
-	AddSimpleModel(-1, 1529, -2817, "font/font.dff", "font/alphabet/Q.txd");
-	AddSimpleModel(-1, 1529, -2818, "font/font.dff", "font/alphabet/R.txd");
-	AddSimpleModel(-1, 1529, -2819, "font/font.dff", "font/alphabet/S.txd");
-	AddSimpleModel(-1, 1529, -2820, "font/font.dff", "font/alphabet/T.txd");
-	AddSimpleModel(-1, 1529, -2821, "font/font.dff", "font/alphabet/U.txd");
-	AddSimpleModel(-1, 1529, -2822, "font/font.dff", "font/alphabet/V.txd");
-	AddSimpleModel(-1, 1529, -2823, "font/font.dff", "font/alphabet/W.txd");
-	AddSimpleModel(-1, 1529, -2824, "font/font.dff", "font/alphabet/X.txd");
-	AddSimpleModel(-1, 1529, -2825, "font/font.dff", "font/alphabet/Y.txd");
-	AddSimpleModel(-1, 1529, -2826, "font/font.dff", "font/alphabet/Z.txd");
-
-	//==========================================Punctuation==========================================
-	AddSimpleModel(-1, 1529, -2827, "font/font.dff", "font/punctuation/equals.txd");
-	AddSimpleModel(-1, 1529, -2828, "font/font.dff", "font/punctuation/exclamation.txd");
-	AddSimpleModel(-1, 1529, -2829, "font/font.dff", "font/punctuation/question.txd");
-	AddSimpleModel(-1, 1529, -2830, "font/font.dff", "font/punctuation/slash.txd");
-	AddSimpleModel(-1, 1529, -2831, "font/font.dff", "font/punctuation/stars.txd");
-	//==========================================Numbers==========================================
-	AddSimpleModel(-1, 1529, -2832, "font/font.dff", "font/numbers/1.txd");
-	AddSimpleModel(-1, 1529, -2833, "font/font.dff", "font/numbers/2.txd");
-	AddSimpleModel(-1, 1529, -2834, "font/font.dff", "font/numbers/3.txd");
-	AddSimpleModel(-1, 1529, -2835, "font/font.dff", "font/numbers/4.txd");
-	AddSimpleModel(-1, 1529, -2836, "font/font.dff", "font/numbers/5.txd");
-	AddSimpleModel(-1, 1529, -2837, "font/font.dff", "font/numbers/6.txd");
-	AddSimpleModel(-1, 1529, -2838, "font/font.dff", "font/numbers/7.txd");
-	AddSimpleModel(-1, 1529, -2839, "font/font.dff", "font/numbers/8.txd");
-	AddSimpleModel(-1, 1529, -2840, "font/font.dff", "font/numbers/9.txd");
-	AddSimpleModel(-1, 1529, -2841, "font/font.dff", "font/numbers/0.txd");*/
 
 	//=======================================Clothing=======================================
 	AddSimpleModel(-1, 18957, -25000, "misc/cloth/Aztecas/vlabandana.dff", "misc/cloth/Aztecas/vlabandana.txd");
@@ -239,7 +161,6 @@ LoadCustomModels()
 	AddSimpleModel(-1, 18957, -25056, "misc/cloth/ogchain.dff", "misc/cloth/ogchain.txd");
 	AddSimpleModel(-1, 18957, -25057, "misc/cloth/ogsunglasses.dff", "misc/cloth/ogsunglasses.txd");
 	AddSimpleModel(-1, 18957, -25058, "misc/cloth/balaclava.dff", "misc/cloth/balaclava.txd");
-
 
 	AddSimpleModel(-1, 18957, -25059, "misc/cloth/Hats&Glasses/WuzimuGlasses.dff", "misc/cloth/Hats&Glasses/hats&glasses.txd");
 	AddSimpleModel(-1, 18957, -25060, "misc/cloth/Hats&Glasses/VLACap.dff", "misc/cloth/Hats&Glasses/hats&glasses.txd");
@@ -346,74 +267,26 @@ LoadCustomModels()
 	AddSimpleModel(-1, 18957, -25157, "misc/cloth/Rings/silver.dff", "misc/cloth/Rings/ringtextures.txd");
 
 	//==========================================MAPSSSS==========================================
-	//AddSimpleModel(-1, 5474, -25551, "maps/bridge/bridgerail.dff", "maps/bridge/bridge.txd");
-	//AddSimpleModel(-1, 5474, -25552, "maps/bridge/idlewoodbridge.dff", "maps/bridge/bridge.txd");
-	AddSimpleModel(-1, 5474, -25553, "maps/jefferson/jeffersonmotel.dff", "maps/jefferson/jeffersonmotel.txd");
-	AddSimpleModel(-1, 5474, -25554, "maps/jefferson/jeffersonmotelalp.dff", "maps/jefferson/jeffersonmotelalp.txd");
 	AddSimpleModel(-1, 5474, -25555, "maps/pizzastack/pizzastack.dff", "maps/pizzastack/pizzastack.txd");
 
-	//AddSimpleModel(-1, 5474, -25558, "maps/seville/sevilleenex.dff", "maps/seville/sevilleenex.txd");
-	//AddSimpleModel(-1, 5474, -25559, "maps/frontyard/frontyard.dff", "maps/frontyard/frontyard.txd");
-	AddSimpleModel(-1, 5474, -25572, "maps/frontyard/idleplaza.dff", "maps/frontyard/idleplaza.txd");
-	//AddSimpleModel(-1, 5474, -25560, "maps/bahamas/bahamas.dff", "maps/bahamas/bahamas.txd");
-	AddSimpleModel(-1, 5474, -25562, "maps/seville/sbf_vp.dff", "maps/seville/sevtextures.txd");
-	AddSimpleModel(-1, 5474, -25563, "maps/seville/sbf4_vp.dff", "maps/seville/sevtextures.txd");
-	//AddSimpleModel(-1, 5474, -25565, "maps/tdf/tdf.dff", "maps/tdf/tdf.txd");
-	//AddSimpleModel(-1, 5474, -25566, "maps/tdf/tdfint.dff", "maps/tdf/tdf.txd");
 	AddSimpleModel(-1, 1923, -25567, "maps/crenshaw/crenshawfurn.dff", "maps/crenshaw/crenshawfurn.txd");
 	AddSimpleModel(-1, 1923, -25568, "maps/crenshaw/crenshawmisc.dff", "maps/crenshaw/crenshawmisc.txd");
 	AddSimpleModel(-1, 1923, -25569, "maps/crenshaw/crenshawgr.dff", "maps/crenshaw/crenshawgr.txd");
 	AddSimpleModel(-1, 8674, -25570, "maps/crenshaw/crenshawalp.dff", "maps/crenshaw/crenshawalp.txd");
 	AddSimpleModel(-1, 1923, -25571, "maps/crenshaw/crenshawex.dff", "maps/crenshaw/crenshawex.txd");
-	AddSimpleModel(-1, 1923, -25573, "maps/elcorona/elcflatex2.dff", "maps/elcorona/elcflatex2.txd");
-	AddSimpleModel(-1, 1923, -25574, "maps/elcorona/elcflatex.dff", "maps/elcorona/elcflatex.txd");
-	AddSimpleModel(-1, 19478, -25575, "maps/elcorona/elcflatalp.dff", "maps/elcorona/elcflatalp.txd");
-	AddSimpleModel(-1, 1923, -25576, "maps/elcorona/elcflatfurn3.dff", "maps/elcorona/elcflatfurn3.txd");
-	AddSimpleModel(-1, 1923, -25577, "maps/elcorona/elcflatfurn2.dff", "maps/elcorona/elcflatfurn2.txd");
-	AddSimpleModel(-1, 1923, -25578, "maps/elcorona/elcflatfurn.dff", "maps/elcorona/elcflatfurn.txd");
-	AddSimpleModel(-1, 1923, -25579, "maps/elcorona/elcflatmisc.dff", "maps/elcorona/elcflatmisc.txd");
-	AddSimpleModel(-1, 1923, -25580, "maps/elcorona/elcflatmisc.dff", "maps/elcorona/elcflatmisc2.txd");
-	AddSimpleModel(-1, 19379, -25581, "maps/lsv/lsvmisc6.dff", "maps/lsv/lsvmisc6.txd");
-	AddSimpleModel(-1, 19379, -25582, "maps/lsv/lsvex3.dff", "maps/lsv/lsvex3.txd");
-	AddSimpleModel(-1, 19379, -25583, "maps/lsv/lsvmisc5.dff", "maps/lsv/lsvmisc5.txd");
-	AddSimpleModel(-1, 19325, -25584, "maps/lsv/lsvalp.dff", "maps/lsv/lsvalp.txd");
-	AddSimpleModel(-1, 19379, -25585, "maps/lsv/lsvfurn.dff", "maps/lsv/lsvfurn.txd");
-	AddSimpleModel(-1, 19379, -25586, "maps/lsv/lsvint2.dff", "maps/lsv/lsvint2.txd");
-	AddSimpleModel(-1, 19379, -25587, "maps/lsv/lsvint.dff", "maps/lsv/lsvint.txd");
-	AddSimpleModel(-1, 19379, -25588, "maps/lsv/lsvex2.dff", "maps/lsv/lsvex2.txd");
-	AddSimpleModel(-1, 19379, -25589, "maps/lsv/lsvex.dff", "maps/lsv/lsvex.txd");
-	AddSimpleModel(-1, 19379, -25590, "maps/lsv/lsvmisc3.dff", "maps/lsv/lsvmisc3.txd");
-	AddSimpleModel(-1, 19379, -25591, "maps/lsv/lsvmisc2.dff", "maps/lsv/lsvmisc2.txd");
-	AddSimpleModel(-1, 19379, -25592, "maps/lsv/lsvmisc.dff", "maps/lsv/lsvmisc.txd");
-	//AddSimpleModel(-1, 19379, -25593, "maps/tdb/tdbenex.dff", "maps/tdb/tdbenex.txd");
-	//AddSimpleModel(-1, 19379, -25594, "maps/ganton/gantonflatex.dff", "maps/ganton/gantonflatex.txd");
-	//AddSimpleModel(-1, 19379, -25595, "maps/ganton/gantonflatint.dff", "maps/ganton/gantonflatint.txd");
+	
 	AddSimpleModel(-1, 19379, -25596, "maps/pizzastack/pizzastack.dff", "maps/pizzastack/pizzastack.txd");
 	AddSimpleModel(-1, 19379, -25597, "maps/cluckinbell/cluckinbell1.dff", "maps/cluckinbell/cluckinbell1.txd");
 	AddSimpleModel(-1, 19379, -25598, "maps/cluckinbell/cluckinbell2.dff", "maps/cluckinbell/cluckinbell2.txd");
 	AddSimpleModel(-1, 19379, -25599, "maps/donut/donut.dff", "maps/donut/donut.txd");
 	AddSimpleModel(-1, 19379, -25600, "maps/donut/donutint.dff", "maps/donut/donutint.txd");
 	AddSimpleModel(-1, 5430, -25601, "maps/idleliquor/idleliquor.dff", "maps/idleliquor/idleliquor.txd");
-	AddSimpleModel(-1, 1923, -25602, "maps/ganton24/ganton24.dff", "maps/ganton24/ganton24.txd");
-    AddSimpleModel(-1, 1923, -25603, "maps/ganton24/ganton24_objects.dff",  "maps/ganton24/ganton24_objects.txd");
-
+	
 	AddSimpleModel(-1, 5474, -25604, "maps/westmont/reyo_westmont1.dff", "maps/westmont/reyo_westmont1.txd");
 	AddSimpleModel(-1, 5474, -25605, "maps/westmont/reyo_westmont2.dff", "maps/westmont/reyo_westmont2.txd");
 	AddSimpleModel(-1, 5474, -25606, "maps/westmont/reyo_wm_bits.dff", "maps/westmont/reyo_wm_bits.txd");
 	AddSimpleModel(-1, 5474, -25607, "maps/westmont/w_bits2.dff", "maps/westmont/w_bits2.txd");
 	AddSimpleModel(-1, 5474, -25608, "maps/westmont/westmont_4.dff", "maps/westmont/westmont.txd");
 	AddSimpleModel(-1, 5474, -25609, "maps/westmont/westmont2.dff", "maps/westmont/westmont.txd");
-
-	AddSimpleModel(-1, 5474, -25610, "maps/alhambra/alhambra_roads.dff",          "maps/alhambra/alhambra_roads.txd");
-    AddSimpleModel(-1, 5474, -25611, "maps/alhambra/alhambra_1.dff",              "maps/alhambra/alhambra_1.txd");
-    AddSimpleModel(-1, 5474, -25612, "maps/alhambra/alhambra_2.dff",              "maps/alhambra/alhambra_2.txd");
-    AddSimpleModel(-1, 5474, -25613, "maps/alhambra/alhambra_3.dff",              "maps/alhambra/alhambra_3.txd");
-    AddSimpleModel(-1, 5474, -25614, "maps/alhambra/alhambra_4.dff",              "maps/alhambra/alhambra_4.txd");
-    AddSimpleModel(-1, 5474, -25615, "maps/alhambra/alhambra_sm_car.dff",         "maps/alhambra/alhambra_sm_car.txd");
-    AddSimpleModel(-1, 5474, -25616, "maps/alhambra/alhambra_projects.dff",       "maps/alhambra/alhambra_projects.txd");
-    AddSimpleModel(-1, 5474, -25617, "maps/alhambra/alhambra_houses.dff",         "maps/alhambra/alhambra_houses.txd");
-    AddSimpleModel(-1, 5474, -25618, "maps/alhambra/alhambra_bits.dff",           "maps/alhambra/alhambra_bits.txd");
-    AddSimpleModel(-1, 8674, -25619, "maps/alhambra/alhambra_alphas.dff",         "maps/alhambra/alhambra_alphas.txd");
-	AddSimpleModel(-1, 5474, -25620,   "maps/alhambra/alley_bits.dff",            "maps/alhambra/alley_bits.txd");
     return 1;
 }

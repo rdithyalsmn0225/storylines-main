@@ -17,7 +17,7 @@
 | Changelogs |
 
 [+]
-    Added /creategun & /createammo in warehouses using materials.
+    Added /creategun & /createammo in warehouses using materials. -
     Added properties type warehouses [Acid lab & Storehouse]. -
     Added Materials items inventory. -
     Added lumberjack jobs.

@@ -31,7 +31,7 @@ Spraytags_Nearest(playerid)
 	return -1;
 }
 
-stock Spraytags_Create(playerid, modelid, owner, Float:x, Float:y, Float:z, Float:rx, Float:ry, Float:rz)
+stock Spraytags_Create(playerid, modelid, owner, text[], font, color, Float:x, Float:y, Float:z, Float:rx, Float:ry, Float:rz)
 {
 	DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]); 
 	PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
@@ -44,6 +44,9 @@ stock Spraytags_Create(playerid, modelid, owner, Float:x, Float:y, Float:z, Floa
 	    SpraytagsInfo[i][E_SPRAYTAGS_OBJECTID]	= modelid;
 	    SpraytagsInfo[i][E_SPRAYTAGS_TYPE]	= 1;
 	    SpraytagsInfo[i][E_SPRAYTAGS_OWNER] = owner;
+        format(SpraytagsInfo[i][E_SPRAYTAGS_TEXT], 128, "%s", text);
+        format(SpraytagsInfo[i][E_SPRAYTAGS_FONT], 128, "%s", font);
+        SpraytagsInfo[i][E_SPRAYTAGS_COLOR] = color;
         SpraytagsInfo[i][E_SPRAYTAGS_POS][0] = x;
         SpraytagsInfo[i][E_SPRAYTAGS_POS][1] = y;
         SpraytagsInfo[i][E_SPRAYTAGS_POS][2] = z;
@@ -54,7 +57,7 @@ stock Spraytags_Create(playerid, modelid, owner, Float:x, Float:y, Float:z, Floa
         SpraytagsInfo[i][E_SPRAYTAGS_INTERIOR] = GetPlayerInterior(playerid);
         SpraytagsInfo[i][E_SPRAYTAGS_WORLD] = GetPlayerVirtualWorld(playerid);
 
-		Spraytags_Refresh(i, modelid);
+		Spraytags_Refresh(i);
 		mysql_pquery(ourConnection, "INSERT INTO `spray_tags` (`interior`) VALUES(0)", "OnSpraytagsCreated", "d", i);
 
 		return i;
@@ -62,7 +65,7 @@ stock Spraytags_Create(playerid, modelid, owner, Float:x, Float:y, Float:z, Floa
 	return -1;
 }
 
-stock Spraytags_Refresh(spid, modelid)
+stock Spraytags_Refresh(spid)
 {
 	if (spid != -1 && SpraytagsInfo[spid][E_SPRAYTAGS_EXISTS])
 	{
@@ -71,11 +74,7 @@ stock Spraytags_Refresh(spid, modelid)
 
         if(SpraytagsInfo[spid][E_SPRAYTAGS_TYPE] == 1)
         {
-		    SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT] = CreateDynamicObject(modelid, SpraytagsInfo[spid][E_SPRAYTAGS_POS][0], SpraytagsInfo[spid][E_SPRAYTAGS_POS][1], SpraytagsInfo[spid][E_SPRAYTAGS_POS][2], SpraytagsInfo[spid][E_SPRAYTAGS_POS][3], SpraytagsInfo[spid][E_SPRAYTAGS_POS][4], SpraytagsInfo[spid][E_SPRAYTAGS_POS][5], SpraytagsInfo[spid][E_SPRAYTAGS_WORLD], SpraytagsInfo[spid][E_SPRAYTAGS_INTERIOR]);
-        }
-        else if(SpraytagsInfo[spid][E_SPRAYTAGS_TYPE] == 2)
-        {
-            SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT] = CreateDynamicObject(19482, SpraytagsInfo[spid][E_SPRAYTAGS_POS][0], SpraytagsInfo[spid][E_SPRAYTAGS_POS][1], SpraytagsInfo[spid][E_SPRAYTAGS_POS][2], SpraytagsInfo[spid][E_SPRAYTAGS_POS][3], SpraytagsInfo[spid][E_SPRAYTAGS_POS][4], SpraytagsInfo[spid][E_SPRAYTAGS_POS][5]+180, SpraytagsInfo[spid][E_SPRAYTAGS_WORLD], SpraytagsInfo[spid][E_SPRAYTAGS_INTERIOR]);
+            SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT] = CreateDynamicObject(19482, SpraytagsInfo[spid][E_SPRAYTAGS_POS][0], SpraytagsInfo[spid][E_SPRAYTAGS_POS][1], SpraytagsInfo[spid][E_SPRAYTAGS_POS][2], SpraytagsInfo[spid][E_SPRAYTAGS_POS][3], SpraytagsInfo[spid][E_SPRAYTAGS_POS][4], SpraytagsInfo[spid][E_SPRAYTAGS_POS][5], SpraytagsInfo[spid][E_SPRAYTAGS_WORLD], SpraytagsInfo[spid][E_SPRAYTAGS_INTERIOR]);
             SetDynamicObjectMaterialText(SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT], 0, SpraytagsInfo[spid][E_SPRAYTAGS_TEXT], OBJECT_MATERIAL_SIZE_512x256, SpraytagsInfo[spid][E_SPRAYTAGS_FONT], 40, 1, SpraytagsInfo[spid][E_SPRAYTAGS_COLOR], 0, OBJECT_MATERIAL_TEXT_ALIGN_CENTER);
         }
         return 1;
@@ -136,7 +135,7 @@ function:Query_SpraytagsLoad()
         cache_get_value_name_int(i, "color", SpraytagsInfo[i][E_SPRAYTAGS_COLOR]);
 		cache_get_value_name_int(i, "owner", SpraytagsInfo[i][E_SPRAYTAGS_OWNER]);
 
-		Spraytags_Refresh(i, SpraytagsInfo[i][E_SPRAYTAGS_OBJECTID]);
+		Spraytags_Refresh(i);
 	}
 	return 1;
 }
@@ -154,97 +153,14 @@ function:OnSpraytagsCreated(spid)
 
 function:SprayingTags(playerid, inputtext[], type, Float:x, Float:y, Float:z, Float:rx, Float:ry, Float:rz)
 {
-    new id = Spraytags_Nearest(playerid);
-
     switch(type)
     {
-        case 1: //Static Spraytags
+        case 1: //CreateSpraytags
         {
-			if(id != -1)
-			{
-                if (IsValidDynamicObject(SpraytagsInfo[id][E_SPRAYTAGS_OBJECT]))
-                    DestroyDynamicObject(SpraytagsInfo[id][E_SPRAYTAGS_OBJECT]);
-
-                if(SpraytagsInfo[id][E_SPRAYTAGS_TYPE] == 1)
-                {
-				    SpraytagsInfo[id][E_SPRAYTAGS_OBJECT] = CreateDynamicObject(PlayerInfo[playerid][E_CHARACTER_OBJECTID], SpraytagsInfo[id][E_SPRAYTAGS_POS][0], SpraytagsInfo[id][E_SPRAYTAGS_POS][1], SpraytagsInfo[id][E_SPRAYTAGS_POS][2], SpraytagsInfo[id][E_SPRAYTAGS_POS][3], SpraytagsInfo[id][E_SPRAYTAGS_POS][4], SpraytagsInfo[id][E_SPRAYTAGS_POS][5], SpraytagsInfo[id][E_SPRAYTAGS_WORLD], SpraytagsInfo[id][E_SPRAYTAGS_INTERIOR]);
-                }
-                else if(SpraytagsInfo[id][E_SPRAYTAGS_TYPE] == 2)
-                {
-				    SpraytagsInfo[id][E_SPRAYTAGS_OBJECT] = CreateDynamicObject(PlayerInfo[playerid][E_CHARACTER_OBJECTID], SpraytagsInfo[id][E_SPRAYTAGS_POS][0], SpraytagsInfo[id][E_SPRAYTAGS_POS][1], SpraytagsInfo[id][E_SPRAYTAGS_POS][2], SpraytagsInfo[id][E_SPRAYTAGS_POS][3], SpraytagsInfo[id][E_SPRAYTAGS_POS][4], SpraytagsInfo[id][E_SPRAYTAGS_POS][5], SpraytagsInfo[id][E_SPRAYTAGS_WORLD], SpraytagsInfo[id][E_SPRAYTAGS_INTERIOR]);
-                }
-
-                SpraytagsInfo[id][E_SPRAYTAGS_OBJECTID] = PlayerInfo[playerid][E_CHARACTER_OBJECTID];
-                SpraytagsInfo[id][E_SPRAYTAGS_OWNER] = PlayerInfo[playerid][E_CHARACTER_OBJECTOWN];
-                SpraytagsInfo[id][E_SPRAYTAGS_TYPE] = 1;
-
-                format(SpraytagsInfo[id][E_SPRAYTAGS_TEXT], 128, inputtext);
-
-                PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
-                PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = 0;
-
-                RemovePlayerAttachedObject(playerid, 8);
-                RemovePlayerAttachedObject(playerid, 9);
-                ClearAnimations(playerid);
-                Spraytags_Save(id);
-				//TurfsPoints(playerid, IsPlayerNearTurf(playerid));
-                
-				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
-				{
-					ResetVarInventory(playerid);
-				}
-
-				Inventory_Remove(playerid, "Spraycan", 1);
-            }
-        }
-        case 2: //Custom Spraytags
-        {
-			if(id != -1)
-			{
-                if (IsValidDynamicObject(SpraytagsInfo[id][E_SPRAYTAGS_OBJECT]))
-                    DestroyDynamicObject(SpraytagsInfo[id][E_SPRAYTAGS_OBJECT]);
-            
-                if(SpraytagsInfo[id][E_SPRAYTAGS_TYPE] == 1)
-                {
-                    SpraytagsInfo[id][E_SPRAYTAGS_OBJECT] = CreateDynamicObject(19482, SpraytagsInfo[id][E_SPRAYTAGS_POS][0], SpraytagsInfo[id][E_SPRAYTAGS_POS][1], SpraytagsInfo[id][E_SPRAYTAGS_POS][2], SpraytagsInfo[id][E_SPRAYTAGS_POS][3], SpraytagsInfo[id][E_SPRAYTAGS_POS][4], SpraytagsInfo[id][E_SPRAYTAGS_POS][5]+180, SpraytagsInfo[id][E_SPRAYTAGS_WORLD], SpraytagsInfo[id][E_SPRAYTAGS_INTERIOR]);
-                    SetDynamicObjectMaterialText(SpraytagsInfo[id][E_SPRAYTAGS_OBJECT], 0, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], OBJECT_MATERIAL_SIZE_512x256, PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], 40, 1, PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR], 0, OBJECT_MATERIAL_TEXT_ALIGN_CENTER);
-                }
-                else if(SpraytagsInfo[id][E_SPRAYTAGS_TYPE] == 2)
-                {
-                    SpraytagsInfo[id][E_SPRAYTAGS_OBJECT] = CreateDynamicObject(19482, SpraytagsInfo[id][E_SPRAYTAGS_POS][0], SpraytagsInfo[id][E_SPRAYTAGS_POS][1], SpraytagsInfo[id][E_SPRAYTAGS_POS][2], SpraytagsInfo[id][E_SPRAYTAGS_POS][3], SpraytagsInfo[id][E_SPRAYTAGS_POS][4], SpraytagsInfo[id][E_SPRAYTAGS_POS][5], SpraytagsInfo[id][E_SPRAYTAGS_WORLD], SpraytagsInfo[id][E_SPRAYTAGS_INTERIOR]);
-                    SetDynamicObjectMaterialText(SpraytagsInfo[id][E_SPRAYTAGS_OBJECT], 0, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], OBJECT_MATERIAL_SIZE_512x256, PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], 40, 1, PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR], 0, OBJECT_MATERIAL_TEXT_ALIGN_CENTER);
-                }
-
-                SpraytagsInfo[id][E_SPRAYTAGS_OBJECTID] = 19482;
-                SpraytagsInfo[id][E_SPRAYTAGS_OWNER] = PlayerInfo[playerid][E_CHARACTER_OBJECTOWN];
-                SpraytagsInfo[id][E_SPRAYTAGS_TYPE] = 2;
-                
-                format(SpraytagsInfo[id][E_SPRAYTAGS_TEXT], 128, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING]);
-                SpraytagsInfo[id][E_SPRAYTAGS_COLOR] = PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR];
-                format(SpraytagsInfo[id][E_SPRAYTAGS_FONT], 128, PlayerInfo[playerid][E_CHARACTER_OBJECTFONT]);
-
-                PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
-                PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = 0;
-
-                RemovePlayerAttachedObject(playerid, 8);
-                RemovePlayerAttachedObject(playerid, 9);
-                ClearAnimations(playerid);
-                Spraytags_Save(id);
-				
-                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
-                {
-                    ResetVarInventory(playerid);
-                    format(SpraytagsInfo[id][E_SPRAYTAGS_TEXT], 32, "");
-                    format(SpraytagsInfo[id][E_SPRAYTAGS_FONT], 32, "");
-                }
-                Inventory_Remove(playerid, "Spraycan", 1);
-            }
-        }
-        case 3: //Admin Creator
-        {
-			id = Spraytags_Create(playerid, PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTOWN], x, y, z, rx, ry, rz);
+            new idx = Spraytags_Nearest(playerid);
+			idx = Spraytags_Create(playerid, PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTOWN], PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR], x, y, z, rx, ry, rz);
 	    			
-	    	if (id == -1)
+	    	if (idx == -1)
 	    		return SendErrorMessage(playerid, "You can't make anymore spraytags.");	
 
             RemovePlayerAttachedObject(playerid, 8);
@@ -266,12 +182,156 @@ CMD:spray(playerid, params[])
 	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
 		return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
 
-    if(ReturnFactionType(playerid) != FACTION_TYPE_ILLEGAL)
-        return SendErrorMessage(playerid, "You can't make spraytags because you are not apart in a gang."); 
+    if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < 3)
+        return SendErrorMessage(playerid, "You can't make spraytags because your level must be level 3."); 
 
     if(!Inventory_Count(playerid, "Spraycan"))
         return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
         
-    ShowModelSelectionMenu(playerid, "Spraytags", MODEL_SELECTION_SPRAYTAGS, g_aSpraytags, sizeof(g_aSpraytags), -5.0, -4.0, -89);
+    Dialog_Show(playerid, SprayFont, DIALOG_STYLE_INPUT, "Spraytags:", "The font you input will only be visible to visual players that only have that font\nPlease input the font below:", "Input", "Cancel");
 	return 1;
+}
+
+Dialog:SprayFont(playerid, response, listitem, inputtext[])
+{
+    if(response)
+    {
+        if (isnull(inputtext) || !FilterInputFont(inputtext) || strlen(inputtext) < 5)
+            return Dialog_Show(playerid, SprayFont, DIALOG_STYLE_INPUT, "Spraytags Fonts:", "Your spraytags will replace the spraytags with custom font.\nThe font you input will only be visible to visual players that only have that font\nPlease input the font below:", "Input", "Cancel");
+
+        format(PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], 512, inputtext);
+
+        new str[256];
+        strcat(str, "{2C6B2F}Green\n");
+        strcat(str, "{9EC9A0}Light Green\n");
+        strcat(str, "{6D9D6F}Dark Green\n");
+        strcat(str, "{6C1D8A}Purple\n");
+        strcat(str, "{9B4F8F}Light Purple\n");
+        strcat(str, "{8A2C7C}Medium Purple\n");
+        strcat(str, "{AC09C7}Dark Purple\n");
+        strcat(str, "{7BEDff}Cyan\n");
+        strcat(str, "{FFDF7B}Yellow\n");
+        strcat(str, "{D7A542}Orange\n");
+        strcat(str, "{FF0000}Red\n");
+        strcat(str, "{0055FF}Blue\n");
+        
+        Dialog_Show(playerid, SprayColor, DIALOG_STYLE_LIST, "Spraytags Colors:", str, "Select", "Cancel");
+    }
+    return 1;
+}
+
+Dialog:SprayColor(playerid, response, listitem, inputtext[])
+{
+    if(response)
+    {
+        switch(listitem)
+        {
+            case 0:
+            {
+                new iColor = HexToInt("0xFF2C6B2F");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+            case 1:
+            {
+                new iColor = HexToInt("0xFF9EC9A0");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+            case 2:
+            {
+                new iColor = HexToInt("0xFF6D9D6F");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+            case 3:
+            {
+                new iColor = HexToInt("0xFF6C1D8A");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+            case 4:
+            {
+                new iColor = HexToInt("0xFF9B4F8F");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+            case 5:
+            {
+                new iColor = HexToInt("0xFF8A2C7C");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+            case 6:
+            {
+                new iColor = HexToInt("0xFFAC09C7");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+            case 7:
+            {
+                new iColor = HexToInt("0xFF7BEDff");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+            case 8:
+            {
+                new iColor = HexToInt("0xFFFFDF7B");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+            case 9:
+            {
+                new iColor = HexToInt("0xFFD7A542");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+            case 10:
+            {
+                new iColor = HexToInt("0xFFFF0000");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+            case 11:
+            {
+                new iColor = HexToInt("0xFF0055FF");
+                PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+                Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+            }
+        }
+    }
+    return 1;
+}
+
+Dialog:SprayText(playerid, response, listitem, inputtext[])
+{
+    if (response) 
+    {
+        if (isnull(inputtext) || strlen(inputtext) < 5 || strlen(inputtext) > 32)
+            return Dialog_Show(playerid, SprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and * = / ? !\nTo break the letter use \"|\"\nPlease input the letter below:", "Input", "Cancel");
+
+        new formattedText[512];
+        format(formattedText, sizeof(formattedText), "%s", inputtext);
+
+        for (new i = 0; i < strlen(formattedText); i++)
+        {
+            if (formattedText[i] == '|')
+            {
+                formattedText[i] = '\n'; 
+            }
+        }
+
+        format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 128, formattedText);
+
+        new Float:x, Float:y, Float:z; 
+        GetPlayerPos(playerid, x, y, z); 
+
+        
+        PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(19482, x, y, z, 0.0, 0.0, 0.0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid)); 
+        SetDynamicObjectMaterialText(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT], 0, formattedText, OBJECT_MATERIAL_SIZE_512x256, PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], 40, 1, PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR], 0, OBJECT_MATERIAL_TEXT_ALIGN_CENTER);
+        
+        EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]); 
+        PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 1;
+    }
+    return 1;
 }

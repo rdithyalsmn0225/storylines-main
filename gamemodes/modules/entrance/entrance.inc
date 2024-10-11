@@ -53,7 +53,7 @@ function:OnENTEntranceChange(playerid, response, newid)
 			DestroyDynamicObject(EntranceInfo[newid][E_ENTRANCE_PICKUP][0]); 
         
         if(IsValidDynamicMapIcon(EntranceInfo[newid][E_ENTRANCE_MAPICON]))
-			DestroyDynamicObject(EntranceInfo[newid][E_ENTRANCE_MAPICON]); 
+			DestroyDynamicMapIcon(EntranceInfo[newid][E_ENTRANCE_MAPICON]); 
 
 		EntranceInfo[newid][E_ENTRANCE_PICKUP][0] = CreateDynamicObject(19198, EntranceInfo[newid][E_ENTRANCE_POS][0], EntranceInfo[newid][E_ENTRANCE_POS][1], EntranceInfo[newid][E_ENTRANCE_POS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 3.0); 
 		EntranceInfo[newid][E_ENTRANCE_MAPICON] = CreateDynamicMapIcon(EntranceInfo[newid][E_ENTRANCE_POS][0], EntranceInfo[newid][E_ENTRANCE_POS][1], EntranceInfo[newid][E_ENTRANCE_POS][2], EntranceInfo[newid][E_ENTRANCE_ICON], 0, -1, -1, -1, 999999.0);

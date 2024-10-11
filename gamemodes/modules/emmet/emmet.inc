@@ -43,6 +43,9 @@ CMD:buymats(playerid, params[])
 	if(!IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz]))
 		return SendErrorMessage(playerid, "You aren't nearest materials point.");
 
+    if(!ServerInfo[0][E_SERVER_PRODUCTS])
+		return SendErrorMessage(playerid, "Materials is out of stock.");
+
 	Dialog_Show(playerid, BuyMats, DIALOG_STYLE_INPUT, "Materials:", "Materials price: $5 / 1 gram of materials\nPlease input the amount of materials you want to buy:", "Enter", "Cancel");
 	return 1;
 }
