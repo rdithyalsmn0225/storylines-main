@@ -14775,3 +14775,486 @@ Console input: exit
 [21:01:26] =       Made by BigETI =
 [21:01:26] = Unloaded!            =
 [21:01:26] ========================
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[21:01:32] filterscripts = ""  (string)
+[21:01:32] 
+[21:01:32] Server Plugins
+[21:01:32] --------------
+[21:01:32]  Loading plugin: mysql
+[21:01:32]  >> plugin.mysql: R41-4 successfully loaded.
+[21:01:32]   Loaded.
+[21:01:32]  Loading plugin: sscanf
+[21:01:32] 
+
+[21:01:32]  ===============================
+
+[21:01:32]       sscanf plugin loaded.     
+
+[21:01:32]          Version:  2.8.2        
+
+[21:01:32]    (c) 2012 Alex "Y_Less" Cole  
+
+[21:01:32]  ===============================
+
+[21:01:32]   Loaded.
+[21:01:32]  Loading plugin: streamer
+[21:01:32] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:01:32]   Loaded.
+[21:01:32]  Loading plugin: pawnplus
+[21:01:32]  PawnPlus v1.5 loaded
+[21:01:32]  Created by IS4
+[21:01:32]   Loaded.
+[21:01:32]  Loading plugin: pawn-memory
+[21:01:32] ========================
+[21:01:32] = Memory access plugin =
+[21:01:32] =       Made by BigETI =
+[21:01:32] = Loaded!              =
+[21:01:32] ========================
+[21:01:32]   Loaded.
+[21:01:32]  Loading plugin: pawnraknet
+[21:01:32] [Pawn.RakNet] plugin v1.6.0 loading...
+[21:01:32] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[21:01:32]   Loaded.
+[21:01:32]  Loaded 6 plugins.
+
+[21:01:32] 
+[21:01:32] Filterscripts
+[21:01:32] ---------------
+[21:01:32]   Loaded 0 filterscripts.
+
+[21:01:32] [DATABASE]: Connection established to 'storylines'...
+[21:01:32] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[21:01:32] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[21:01:32] [artwork:crc] misc/skin/lspd/lapd1.dff CRC = 0xAC8AF291
+[21:01:32] [artwork:crc] misc/skin/lspd/lapd1.txd CRC = 0xA1A5F21F
+[21:01:32] [artwork:crc] misc/skin/lspd/lapd2.dff CRC = 0x996651D3
+[21:01:32] [artwork:crc] misc/skin/lspd/lapd2.txd CRC = 0xD22F0079
+[21:01:32] [artwork:crc] misc/skin/lspd/lapd3.dff CRC = 0xC0269F8E
+[21:01:32] [artwork:crc] misc/skin/lspd/lapd3.txd CRC = 0xDD624092
+[21:01:32] [artwork:crc] misc/skin/lspd/lapd4.dff CRC = 0x9AE35B04
+[21:01:32] [artwork:crc] misc/skin/lspd/lapd4.txd CRC = 0xA63451FA
+[21:01:32] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[21:01:32] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[21:01:32] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[21:01:32] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[21:01:32] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[21:01:32] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[21:01:32] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[21:01:33] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[21:01:33] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[21:01:33] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[21:01:33] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[21:01:33] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[21:01:33] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[21:01:33] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[21:01:33] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[21:01:33] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[21:01:33] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[21:01:33] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[21:01:33] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[21:01:33] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[21:01:33] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[21:01:33] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[21:01:33] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[21:01:33] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[21:01:33] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[21:01:33] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[21:01:33] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[21:01:33] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[21:01:33] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[21:01:33] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[21:01:33] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[21:01:33] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[21:01:33] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[21:01:33] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[21:01:33] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[21:01:33] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlabandana.dff CRC = 0xEC2ABF0D
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlabandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlabothshoulderrag.dff CRC = 0x1FA566F
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlabothshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlacholohat.dff CRC = 0x2379F713
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlacholohat.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlafacerag.dff CRC = 0xF8AD7CB5
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlafacerag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlafamrag.dff CRC = 0xAB809429
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlafamrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlahatbandana.dff CRC = 0x6FE51BFF
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlahatbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlaheadrag.dff CRC = 0x72EC4760
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlaheadrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlashoulderrag.dff CRC = 0xC37CF499
+[21:01:33] [artwork:crc] misc/cloth/Aztecas/vlashoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasbackwardbandana.dff CRC = 0x213E8C9F
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasbackwardbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasbothshoulderrag.dff CRC = 0x766A0A38
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasbothshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasfacerag.dff CRC = 0x9D36DFCF
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasfacerag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasfamrag.dff CRC = 0x504BCE3B
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasfamrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasfrontbandana.dff CRC = 0xCE57A92F
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasfrontbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballashatbandana.dff CRC = 0x3DD975C1
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballashatbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasheadrag.dff CRC = 0x30BC120D
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasheadrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasshoulderrag.dff CRC = 0x8234AF32
+[21:01:33] [artwork:crc] misc/cloth/Ballas/ballasshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpbandana.dff CRC = 0xD2281EB9
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpbothshoulderrag.dff CRC = 0x83349424
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpbothshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpcholohat.dff CRC = 0x734688A7
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpcholohat.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpfacerag.dff CRC = 0x94726B03
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpfacerag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpfamrag.dff CRC = 0x46BD8B6
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpfamrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bphat.dff CRC = 0xA29DB063
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bphat.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpheadrag.dff CRC = 0x9A70A3AD
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpheadrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpshoulderrag.dff CRC = 0x22CEF522
+[21:01:33] [artwork:crc] misc/cloth/BrownPride/bpshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsbackwardrag.dff CRC = 0xC84D31DA
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsbackwardrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsbothshoulderrag.dff CRC = 0xE154DCDC
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsbothshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsfacerag.dff CRC = 0x625C61D4
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsfacerag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsfamrag.dff CRC = 0x4A4052B0
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsfamrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsfrontrag.dff CRC = 0xE5DD9023
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsfrontrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/GSF/gshatonbandana.dff CRC = 0x93CE475
+[21:01:33] [artwork:crc] misc/cloth/GSF/gshatonbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsheadrag.dff CRC = 0x7747F57A
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsheadrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsshoulderrag.dff CRC = 0x51E52176
+[21:01:33] [artwork:crc] misc/cloth/GSF/gsshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfacerag.dff CRC = 0x641B9126
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfacerag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfamrag.dff CRC = 0x2F5CA4C5
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfamrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfbackwardbandana.dff CRC = 0xB6A05F32
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfbackwardbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfbandanahat.dff CRC = 0xE70828E9
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfbandanahat.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfbothshoulderrag.dff CRC = 0x4F4F4C76
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfbothshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfheadrag.dff CRC = 0x43F36557
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfheadrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfrontbandana.dff CRC = 0xA6C831CF
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfrontbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfshoulderrag.dff CRC = 0xE61EB55C
+[21:01:33] [artwork:crc] misc/cloth/SBF/sbfshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfacerag.dff CRC = 0x5E196A89
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfacerag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfamrag.dff CRC = 0xC870CB8E
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfamrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfbackwardbandana.dff CRC = 0xF3BA4077
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfbackwardbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfbothshoulderrag.dff CRC = 0xE6AFB6DD
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfbothshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfhatbandana.dff CRC = 0x90D95FF2
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfhatbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfheadrag.dff CRC = 0x2575C452
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfheadrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfrontrag.dff CRC = 0xB7243E47
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfrontrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfshoulderrag.dff CRC = 0x1BEE740B
+[21:01:33] [artwork:crc] misc/cloth/TDF/tdfshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosbandana.dff CRC = 0xB66C3895
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosbothshoulderrag.dff CRC = 0x442286E8
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosbothshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagoscholohat.dff CRC = 0xF2E4DBEC
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagoscholohat.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosfacerag.dff CRC = 0x54085F15
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosfacerag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosfamrag.dff CRC = 0xB2345646
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosfamrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagoshatbandana.dff CRC = 0x4A4F9373
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagoshatbandana.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosheadrag.dff CRC = 0xD638CC5F
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosheadrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosshoulderrag.dff CRC = 0x3AB3CF38
+[21:01:33] [artwork:crc] misc/cloth/Vagos/vagosshoulderrag.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/ogchain.dff CRC = 0x9555B87A
+[21:01:33] [artwork:crc] misc/cloth/ogchain.txd CRC = 0x20F22939
+[21:01:33] [artwork:crc] misc/cloth/ogsunglasses.dff CRC = 0x642A91AC
+[21:01:33] [artwork:crc] misc/cloth/ogsunglasses.txd CRC = 0xA0BBF986
+[21:01:33] [artwork:crc] misc/cloth/balaclava.dff CRC = 0x59FF7EA4
+[21:01:33] [artwork:crc] misc/cloth/balaclava.txd CRC = 0xD429700B
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/WuzimuGlasses.dff CRC = 0xB6D0CD43
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/VLACap.dff CRC = 0x35BE12CD
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/USAFaceRag.dff CRC = 0xF60B79EA
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/USAbandana.dff CRC = 0x15916D14
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/SouthernFaceRag.dff CRC = 0x3FC77508
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/SouthernBandana.dff CRC = 0xA9035E08
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/SkullyCap.dff CRC = 0x2B805441
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/SBFCap.dff CRC = 0x7AD92A20
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/SaintsCap.dff CRC = 0x3BF37868
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/RyderGlasses.dff CRC = 0x18151ECF
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/RyderCap.dff CRC = 0xBFDA5F5B
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/RHBCap.dff CRC = 0xAE5562B0
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/PimpGlasses.dff CRC = 0x5E8C2ADD
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/OGSunglasses.dff CRC = 0xB5371506
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/MexicanFaceRag.dff CRC = 0xD92BB184
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/MexicanBandana.dff CRC = 0x1D02C8CD
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/LSVCap.dff CRC = 0x4CF8F9A2
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/LSCap.dff CRC = 0xCDA2B300
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/KushCap.dff CRC = 0x3C3856B5
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/KTBCap.dff CRC = 0x87749286
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/HandsomeGlasses.dff CRC = 0x79175738
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/GSFCap.dff CRC = 0x86403D54
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/GangstaCap.dff CRC = 0x4F6A1776
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/FYBCap.dff CRC = 0xD10E61DE
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/FAMALAYCap.dff CRC = 0x2533FE03
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/FaceMask2.dff CRC = 0x20164E34
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/FaceMask1.dff CRC = 0x9DDFFDBF
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/DribblersCap.dff CRC = 0xDBB9D09B
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/BigSmokeGlasses.dff CRC = 0x741119A5
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/BigSmokeCap.dff CRC = 0x2A05E7B6
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/BdupCap.dff CRC = 0xAC78668E
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/BALLACap.dff CRC = 0x869CE5E6
+[21:01:33] [artwork:crc] misc/cloth/Hats&Glasses/hats&glasses.txd CRC = 0xFC281938
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/yellowwatch.dff CRC = 0x6CA0A189
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/silverwatch.dff CRC = 0xC9E5443C
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/rolexwatch.dff CRC = 0x7F99D2C6
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/purplewatch.dff CRC = 0x5ABCA868
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/greenwatch.dff CRC = 0x2DBE9207
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/goldenwatch.dff CRC = 0xC40BD4A9
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/fancysilverwatch.dff CRC = 0x82636DAE
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/fancygoldenwatch.dff CRC = 0xA353E82B
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/darkgreenwatch.dff CRC = 0x3F26F3F3
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/darkbluewatch.dff CRC = 0xE5219B18
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/brownwatch.dff CRC = 0x939F9D4C
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/blackwatch.dff CRC = 0x744D69A6
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Watches/Watches.txd CRC = 0xB51F1B49
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/69chain.dff CRC = 0xA9399A8
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Africanecklace.dff CRC = 0x9D39F35A
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/blingblingchain.dff CRC = 0xDE0AB611
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/BOSSchain.dff CRC = 0x13678F1F
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/crosschain.dff CRC = 0xB2EC5438
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/CROWNchain.dff CRC = 0x71BCF2C1
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/discchain.dff CRC = 0x28B7DF2C
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/dogtagchain.dff CRC = 0x37420A9C
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/dollarchain.dff CRC = 0x817792A0
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/doublechains.dff CRC = 0x2D451A9D
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/doublecrosschain.dff CRC = 0xDA0E458F
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/doublegoldchains.dff CRC = 0x9EEFFE05
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/GANGSTAchain.dff CRC = 0x334BAEC
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Gchain.dff CRC = 0x2957F865
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/goldenlipschain.dff CRC = 0x7B0E79FE
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/goldsilverchain.dff CRC = 0x7A2B78B0
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/GUNchain.dff CRC = 0x20BC4D28
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/jesuschain.dff CRC = 0xF160BDC
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/jesuscrosschain.dff CRC = 0x58088317
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/KINGchain.dff CRC = 0xA2D17F7A
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/LSchain.dff CRC = 0x46E729F3
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/marijuanachain.dff CRC = 0x2BAF5896
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/middlefingerchain.dff CRC = 0xF7CE115
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/REALNIGGA_Chain.dff CRC = 0xC816F696
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/saintschain.dff CRC = 0x554842D6
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/shortbronzechain.dff CRC = 0x8021CC07
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/shortgoldenchain.dff CRC = 0x37D6ADB3
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/shortsilverchain.dff CRC = 0xBE3F5CC4
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/shortgoldenlipschain.dff CRC = 0x802549B2
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/shortsilverlipschain.dff CRC = 0x570929A9
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/silverlipschain.dff CRC = 0x1C6C9962
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/sneakerschain.dff CRC = 0x37D2917A
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/thickgoldenchain.dff CRC = 0x76F2138
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/thicksilverchain.dff CRC = 0xDDF5C1EB
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/thinsilverchain.dff CRC = 0x57AD7578
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/UZIchain.dff CRC = 0x61967C34
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/worldismine.dff CRC = 0xE4AB8421
+[21:01:33] [artwork:crc] misc/cloth/Chains&Watches/Chains/Chains.txd CRC = 0x25B1E5
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/doublegoldenearring.dff CRC = 0x5C3D8D10
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/bracelets&earrings.txd CRC = 0xA3AEF87D
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/doublesilverearring.dff CRC = 0xA75B2A4D
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/bracelets&earrings.txd CRC = 0xA3AEF87D
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/doubleweedearring.dff CRC = 0x3DAF4717
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/bracelets&earrings.txd CRC = 0xA3AEF87D
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/goldenlipbracelet.dff CRC = 0xDC73C031
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/bracelets&earrings.txd CRC = 0xA3AEF87D
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/goldenthickbracelet.dff CRC = 0x3578F3AA
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/bracelets&earrings.txd CRC = 0xA3AEF87D
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/silverlipbracelet.dff CRC = 0x90F02E37
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/bracelets&earrings.txd CRC = 0xA3AEF87D
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/silverthickbracelet.dff CRC = 0xCFB789A6
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/bracelets&earrings.txd CRC = 0xA3AEF87D
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/singlegoldenearring.dff CRC = 0xBAA5E0E3
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/bracelets&earrings.txd CRC = 0xA3AEF87D
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/singlesilverearring.dff CRC = 0xFEE0A8A3
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/bracelets&earrings.txd CRC = 0xA3AEF87D
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/singleweedearring.dff CRC = 0x7E6BF6
+[21:01:33] [artwork:crc] misc/cloth/Bracelets&Earrings/bracelets&earrings.txd CRC = 0xA3AEF87D
+[21:01:33] [artwork:crc] misc/cloth/Rings/bluering.dff CRC = 0xC19D8D69
+[21:01:33] [artwork:crc] misc/cloth/Rings/ringtextures.txd CRC = 0xCBA6A9B9
+[21:01:33] [artwork:crc] misc/cloth/Rings/bronzeage.dff CRC = 0xD85050D3
+[21:01:33] [artwork:crc] misc/cloth/Rings/ringtextures.txd CRC = 0xCBA6A9B9
+[21:01:33] [artwork:crc] misc/cloth/Rings/goldnsilver.dff CRC = 0x66CE1988
+[21:01:33] [artwork:crc] misc/cloth/Rings/ringtextures.txd CRC = 0xCBA6A9B9
+[21:01:33] [artwork:crc] misc/cloth/Rings/greenring.dff CRC = 0xF69CB958
+[21:01:33] [artwork:crc] misc/cloth/Rings/ringtextures.txd CRC = 0xCBA6A9B9
+[21:01:33] [artwork:crc] misc/cloth/Rings/purplering.dff CRC = 0x84B18FBB
+[21:01:33] [artwork:crc] misc/cloth/Rings/ringtextures.txd CRC = 0xCBA6A9B9
+[21:01:33] [artwork:crc] misc/cloth/Rings/redring.dff CRC = 0x6BF60177
+[21:01:33] [artwork:crc] misc/cloth/Rings/ringtextures.txd CRC = 0xCBA6A9B9
+[21:01:33] [artwork:crc] misc/cloth/Rings/silver.dff CRC = 0x99759D47
+[21:01:33] [artwork:crc] misc/cloth/Rings/ringtextures.txd CRC = 0xCBA6A9B9
+[21:01:33] [artwork:crc] maps/pizzastack/pizzastack.dff CRC = 0xC025BF38
+[21:01:33] [artwork:crc] maps/pizzastack/pizzastack.txd CRC = 0x7315E032
+[21:01:33] [artwork:crc] maps/crenshaw/crenshawfurn.dff CRC = 0x74C572F8
+[21:01:33] [artwork:crc] maps/crenshaw/crenshawfurn.txd CRC = 0xB092A960
+[21:01:33] [artwork:crc] maps/crenshaw/crenshawmisc.dff CRC = 0xB01B0789
+[21:01:33] [artwork:crc] maps/crenshaw/crenshawmisc.txd CRC = 0x4A159909
+[21:01:33] [artwork:crc] maps/crenshaw/crenshawgr.dff CRC = 0x28B7AA8F
+[21:01:33] [artwork:crc] maps/crenshaw/crenshawgr.txd CRC = 0x9FB8542A
+[21:01:33] [artwork:crc] maps/crenshaw/crenshawalp.dff CRC = 0xD8B3E353
+[21:01:33] [artwork:crc] maps/crenshaw/crenshawalp.txd CRC = 0x6261BE0F
+[21:01:33] [artwork:crc] maps/crenshaw/crenshawex.dff CRC = 0x7B558804
+[21:01:33] [artwork:crc] maps/crenshaw/crenshawex.txd CRC = 0xDE73DF9B
+[21:01:33] [artwork:crc] maps/pizzastack/pizzastack.dff CRC = 0xC025BF38
+[21:01:33] [artwork:crc] maps/pizzastack/pizzastack.txd CRC = 0x7315E032
+[21:01:33] [artwork:crc] maps/cluckinbell/cluckinbell1.dff CRC = 0xC735976D
+[21:01:33] [artwork:crc] maps/cluckinbell/cluckinbell1.txd CRC = 0x2BBAAF41
+[21:01:33] [artwork:crc] maps/cluckinbell/cluckinbell2.dff CRC = 0x6284CC0F
+[21:01:33] [artwork:crc] maps/cluckinbell/cluckinbell2.txd CRC = 0x18F6ED4E
+[21:01:33] [artwork:crc] maps/donut/donut.dff CRC = 0xA014B254
+[21:01:33] [artwork:crc] maps/donut/donut.txd CRC = 0x72E4C393
+[21:01:33] [artwork:crc] maps/donut/donutint.dff CRC = 0xAD53B0D0
+[21:01:33] [artwork:crc] maps/donut/donutint.txd CRC = 0xB3134B0C
+[21:01:33] [artwork:crc] maps/idleliquor/idleliquor.dff CRC = 0x4D8A27CE
+[21:01:33] [artwork:crc] maps/idleliquor/idleliquor.txd CRC = 0x4373EC9D
+[21:01:33] [artwork:crc] maps/westmont/reyo_westmont1.dff CRC = 0x39EE1533
+[21:01:33] [artwork:crc] maps/westmont/reyo_westmont1.txd CRC = 0x5A9FFA1F
+[21:01:33] [artwork:crc] maps/westmont/reyo_westmont2.dff CRC = 0x25E1CFC1
+[21:01:33] [artwork:crc] maps/westmont/reyo_westmont2.txd CRC = 0x1B8C945
+[21:01:33] [artwork:crc] maps/westmont/reyo_wm_bits.dff CRC = 0xFA950B4C
+[21:01:33] [artwork:crc] maps/westmont/reyo_wm_bits.txd CRC = 0x62C7AD0D
+[21:01:33] [artwork:crc] maps/westmont/w_bits2.dff CRC = 0x87EB7580
+[21:01:33] [artwork:crc] maps/westmont/w_bits2.txd CRC = 0x99ADD36C
+[21:01:33] [artwork:crc] maps/westmont/westmont_4.dff CRC = 0x2A6E3226
+[21:01:33] [artwork:crc] maps/westmont/westmont.txd CRC = 0x8349F247
+[21:01:33] [artwork:crc] maps/westmont/westmont2.dff CRC = 0xBD04DBEE
+[21:01:33] [artwork:crc] maps/westmont/westmont.txd CRC = 0x8349F247
+[21:01:33] Number of vehicle models: 16
+[21:01:33] [SERVER]: 2 factions were loaded from "storylines" database...
+[21:01:33] [SERVER]: 1 entrance were loaded from "storylines" database...
+[21:01:33] [SERVER]: 5 court were loaded from "storylines" database...
+[21:01:33] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[21:01:33] [SERVER]: 3 businesses were loaded from "storylines" database...
+[21:01:33] [SERVER]: 4 properties were loaded from "storylines" database...
+[21:01:42] [connection] incoming connection: 127.0.0.1:54946 id: 0
+[21:01:42] [join] Radeetz has joined the server (0:127.0.0.1)
+[21:01:52] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[21:01:52] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[21:01:52] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[21:01:56] Player [Jayvon Williams] sent command: /spray
+[21:01:59] Player [Jayvon Williams] sent command: /spray
+[21:03:00] Player [Jayvon Williams] sent command: /spray
+[21:03:06] Player [Jayvon Williams] sent command: /spray

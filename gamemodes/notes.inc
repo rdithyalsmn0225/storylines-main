@@ -26,8 +26,8 @@
 [*]
     Improvement & Fixed other Bugs.
     Improvement Drugs Production scripts.
-    Rewrote Spraycan / Spraytags script.
-    Rewrote business & relations script.
+    Rewrote Spraycan / Spraytags script. -
+    Rewrote business & relations script. -
     Rewrote GYM script.
 [-]
 

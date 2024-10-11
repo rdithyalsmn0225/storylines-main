@@ -199,7 +199,7 @@ public OnGameModeInit()
 	SetTimer("OnVehicleUpdate", 1000, true);
 	SetTimer("MinutesTimes", 60000, true);
 	SetTimer("WeaponUpdate", 1000, true);
-	//SetTimer("TurfCapturedTimer", 1000, true);
+	SetTimer("SprayTagsTimer", 60000, true);
 	SetTimer("BarInfoTimer", 200000, true);
 	SetTimer("AntiCheatCheck", 500, true);
 	SetTimer("IndustryTimer", 3600000, true);

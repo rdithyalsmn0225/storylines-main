@@ -53,6 +53,7 @@ stock Spraytags_Create(playerid, modelid, owner, text[], font, color, Float:x, F
         SpraytagsInfo[i][E_SPRAYTAGS_POS][3] = rx;
         SpraytagsInfo[i][E_SPRAYTAGS_POS][4] = ry;
         SpraytagsInfo[i][E_SPRAYTAGS_POS][5] = rz;
+        SpraytagsInfo[i][E_SPRAYTAGS_TIMER] = 60;
 
         SpraytagsInfo[i][E_SPRAYTAGS_INTERIOR] = GetPlayerInterior(playerid);
         SpraytagsInfo[i][E_SPRAYTAGS_WORLD] = GetPlayerVirtualWorld(playerid);
@@ -334,4 +335,23 @@ Dialog:SprayText(playerid, response, listitem, inputtext[])
         PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 1;
     }
     return 1;
+}
+
+function:SprayTagsTimer()
+{
+    new queryBuffer[512];
+    for(new i; i < MAX_SPRAYTAGS; i++)
+    {
+        if(SpraytagsInfo[i][E_SPRAYTAGS_TIMER])
+        {
+            SpraytagsInfo[i][E_SPRAYTAGS_TIMER]--;
+        }
+        else
+        {
+            mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "DELETE FROM `spray_tags` WHERE `id` = '%i'", SpraytagsInfo[i][E_SPRAYTAGS_DBID]);
+	        mysql_pquery(ourConnection, queryBuffer);
+
+            Spraytags_Refresh(i);
+        }
+    }
 }
