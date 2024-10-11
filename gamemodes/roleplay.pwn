@@ -2875,18 +2875,9 @@ public OnPlayerUpdate(playerid)
 				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 			}
 		}
-		else if(Inventory_Count(playerid, "Grill"))
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-			{
-				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = GRILLS;
-				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 19831, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
-			}
-		}
 		else
 		{
-			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == GRILLS || PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES)
+			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES)
 			{
 				RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
@@ -4012,7 +4003,6 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	new vehicleid = GetPlayerVehicleID(playerid);
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
-
 		if(!VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_ENGINE] && IsEngineVehicle(vehicleid))
 	   	{
 			ShowBoxMessage(playerid, "The engine is off press 'ALT' or /engine to turn on vehicle", 5, 2);

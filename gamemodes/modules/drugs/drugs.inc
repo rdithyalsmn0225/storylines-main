@@ -279,7 +279,7 @@ stock IsPlayerUsingDrugs(playerid, type)
 CMD:production(playerid, params[])
 {
 	new id = IsPlayerInBusiness(playerid);
-	if (id != -1)
+	if (id != -1 && IsPlayerNearCashiers(playerid))
 	{
 		if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_ACID && BusinessInfo[playerid][E_BUSINESS_LOADING] == false)
 		{

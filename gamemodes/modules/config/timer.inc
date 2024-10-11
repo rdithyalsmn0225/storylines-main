@@ -437,7 +437,7 @@ function:OnPlayerNearPickup()
 			{
 				if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV)
 					format(str, sizeof(str), "Porch of %s, %s.~n~%s enter the vehicle to start drivetest.", ReturnLocationStreet(i), ReturnLocation(i), BusinessInfo[id][E_BUSINESS_NAME], BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]); 
-				else if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_HAIRCUT)
+				else if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_HAIRCUT || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_GUNSTORE || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_ACID)
 					format(str, sizeof(str), "Porch of %s, %s.~n~%s Owned By: NPC~n~Entrance Fee: $%s.~n~~n~To enter, use RETURN.", ReturnLocationStreet(i), ReturnLocation(i), BusinessInfo[id][E_BUSINESS_NAME], BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]); 
 				else if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK)
 					format(str, sizeof(str), "Porch of %s, %s.~n~%s Owned By: Goverment~n~Entrance Fee: $%s.~n~~n~To enter, use RETURN.", ReturnLocationStreet(i), ReturnLocation(i), BusinessInfo[id][E_BUSINESS_NAME], BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]); 

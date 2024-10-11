@@ -320,15 +320,6 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
-	else if(!strcmp(name, "Pots"))
-	{
-		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-		{
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = POTS;
-			SetPlayerAttachedObject(playerid, ATTACH_HAND, 19585, 6, 0.057999, 0.017000, 0.017000, -64.099983, -33.599929, 108.100006, 1.000000, 1.000000, 1.000000);
-		}
-		else SendErrorMessage(playerid, "You must store your items in inventory first.");
-	}
 	else if(!strcmp(name, "Marijuana"))
 	{
 		IsPlayerUsingDrugs(playerid, 1);

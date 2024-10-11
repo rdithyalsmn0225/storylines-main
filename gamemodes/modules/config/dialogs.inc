@@ -579,23 +579,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 					}
-					case 6:
-					{
-						if(Inventory_Count(playerid, "Pots") >= 5)
-							return SendErrorMessage(playerid, "You may only hold up to 5 pots.");
-					
-						if(500 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-							return SendErrorMessage(playerid, "You can't afford a pots.");
-					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a pots for $250.");
-
-						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 500; 
-						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
-						
-						Inventory_Add(playerid, "Pots", 19570, 1, 1);
-
-						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
-					}
 				}
 			}
 		}
@@ -1537,12 +1520,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 					    if(!strcmp(string, "Mask"))
 					        return SendErrorMessage(playerid, "You can't do that on this item!");
-
-						if(!strcmp(string, "Pots"))
-							return DropPlayerItem(playerid, itemid, 1, 1);						
-
-						if(!strcmp(string, "Grill"))
-							return DropPlayerItem(playerid, itemid, 1, 2);						
 					    
 						else if (InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY] == 1)
 						{
@@ -1695,7 +1672,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			        	strcat(str, "/stats\tSee your character's stats\n/admins\tSee list administrator on/off duty\n/report\tReport something to admin\n/o(oc)\tOut of character global chat\n/pay\tPay to another players\n/isafk\tSee who is afk\n/time\tSee the time\n/levelup\tLevel up your character\n");
 						strcat(str, "/enter\tEnter building\n/exit\tExit building\n/mask\tWear your mask\n/setchannel\tSet your channel radio\n/setslot\tSet your slot radio\n/radio\tTalk to radio\n/licenseexam\tDriving test in dmv\n/unimpound\tUnimpound your vehicle\n/rcp\tShow checkpoint if u loss\n/inventory(y)\tSee your inventory\n");
 						strcat(str, "/jobs\tSee list available jobs\n/damages\tSee your damages from your body\n/acceptdeath\tAccepted your wounded bound situation\n/fixr\tFix your radio\n/respawnme\tWake up from injured\n/setspawn\tSet your setspawn\n/settings\tSettings your gameplay.\n/approve\tapprove from other player offer\n");
-			    		strcat(str, "/coin\tFlips your coin\n/dice\tRolls a dice\n/gascan\tRefilling your vehicle fuel\n/repairkits\tRepairing your vehicle engine\n/cursor\tEnable/disable your cursor");
+			    		strcat(str, "/coin\tFlips your coin\n/dice\tRolls a dice\n/gascan\tRefilling your vehicle fuel\n/repairkits\tRepairing your vehicle engine\n/cursor\tEnable/disable your cursorn");
 			    		ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "General Commands:", str, "Select", "Close");
 					}
 					case 1:
@@ -1750,8 +1727,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 8:
 					{
 						new str[512];
-						strcat(str, "Press 'ALT'\tStolen goods in NPC House\n/drugdeal\tSelling Drugs to NPC\n/usemarijuana\tConsume drugs type marijuana\n");
-						strcat(str, "/usecocaine\tConsume drugs type cocaine\n/useheroin\tConsume drugs type heroin\n/usecrack\tConsume drugs type crack cocaine\n/usepcp\tConsume drugs type pcp\n/combinedrugs\tCombine your drugs");
+						strcat(str, "Press 'ALT'\tStolen goods in NPC House\nHold 'RMB'\tHold aim into actor/npc to start robbery in business\nPress 'LMB'\tBeat'em into actor/npc to start extortion in business\n");
+						strcat(str, "/extort\tStart extortion in business\n/extortions\tSee the list of business you have relations with them\n/drugsdeal\tSelling Drugs to NPC\n");
 						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Crime Professions Commands:", str, "Select", "Close");
 					}
 			    }
@@ -2097,6 +2074,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new id = IsPlayerInBusiness(playerid);
 						if(id != -1)
 						{
+							if(BusinessInfo[id][E_BUSINESS_LOADING] == true)
+								return SendErrorMessage(playerid, "You can't start drugs combine right now.");
+
 							if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_ACID)
 								return SendErrorMessage(playerid, "You aren't near a pot of water.");
 
@@ -2109,7 +2089,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							if(Inventory_Count(playerid, "Baking Soda") < 2)
 								return SendErrorMessage(playerid, "You need at least 5 pack of baking soda.");
 
-							BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY] = Create3DTextLabel("CRACK COOK IN PROCESS\nSupplied Coke: 5 gram\nExpected Output: 5-7 gram\nTime Left: ((|------))", COLOR_DARKGREEN, BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][2]+2, 5.0, 0, 1);
+							BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY] = Create3DTextLabel("PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((|------))", COLOR_DARKGREEN, BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][2]+1, 5.0, BusinessInfo[id][E_BUSINESS_INTERIORPOSWORLD], 1);
 							BusinessInfo[id][E_BUSINESS_LOADINGCOUNT] = 1;
 
 							BusinessInfo[id][E_BUSINESS_LOADING] = true; 
@@ -2121,6 +2101,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new id = Item_Nearest(playerid);
 						if(id != -1)
 						{
+							if(BusinessInfo[id][E_BUSINESS_LOADING] == true)
+								return SendErrorMessage(playerid, "You can't start drugs combine right now.");
+
 							if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_ACID)
 								return SendErrorMessage(playerid, "You aren't near a pot of water.");
 
@@ -2139,7 +2122,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							if(Inventory_Count(playerid, "Baking Soda") < 5)
 								return SendErrorMessage(playerid, "You need at least 1 pack of baking soda.");
 
-							BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY] = Create3DTextLabel("PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((|------))", COLOR_DARKGREEN, BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][2]+2, 5.0, 0, 1);
+							BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY] = Create3DTextLabel("PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((|------))", COLOR_DARKGREEN, BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][2]+1, 5.0, BusinessInfo[id][E_BUSINESS_INTERIORPOSWORLD], 1);
 							BusinessInfo[id][E_BUSINESS_LOADINGCOUNT] = 1;
 
 							BusinessInfo[id][E_BUSINESS_LOADING] = true; 
@@ -2566,95 +2549,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						ContactInfo[playerid][id][E_CONTACT_DBID] = 0;
 
 						ShowContacts(playerid);
-					}
-				}
-			}
-		}
-		case DIALOG_BUYGUN:
-		{
-			if (response)
-			{
-				new str[512];
-				switch(listitem)
-				{
-					case 0:
-					{
-						format(str, sizeof(str), "Are you sure you want to purchase a Glock 19 for $%d?", GLOCK19);
-						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_COLT45, 25, GLOCK19, 1); 
-					}
-					case 1:
-					{
-						format(str, sizeof(str), "Are you sure you want to purchase a Glock 17 for $%d?", GLOCK17);
-						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_COLT45, 25, GLOCK17, 2); 
-					}
-					case 2:
-					{
-						format(str, sizeof(str), "Are you sure you want to purchase a Glock P80 for $%d?", GLOCKP80);
-						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_COLT45, 25, GLOCKP80, 3); 
-					}
-					case 3:
-					{
-						format(str, sizeof(str), "Are you sure you want to purchase a Mac-11 for $%d?", MAC11);
-						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_UZI, 50, MAC11, 1); 
-					}
-					case 4:
-					{
-						format(str, sizeof(str), "Are you sure you want to purchase a Mac-11 for $%d?", MAC10);
-						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_UZI, 50, MAC10, 2); 
-					}
-					case 5:
-					{
-						format(str, sizeof(str), "Are you sure you want to purchase a Mac-11 for $%d?", SOCIMIT821);
-						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_UZI, 50, SOCIMIT821, 2); 
-					}
-					case 6:
-					{
-						format(str, sizeof(str), "Are you sure you want to buy ammo for $%d?", A9MM); 
-						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseAmmo", 0, 25, A9MM); 
-					}
-					case 7:
-					{
-						format(str, sizeof(str), "Are you sure you want to buy ammo for $%d?", A9X19MM); 
-						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseAmmo", 1, 50, A9X19MM); 
-					}
-					case 8:
-					{
-						format(str, sizeof(str), "Are you sure you want to buy this drugs for $%d?", PMARIJUANA); 
-						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 0, 5, PMARIJUANA); 
-					}
-					case 9:
-					{
-						if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 7 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 8)
-						{
-							format(str, sizeof(str), "Are you sure you want to buy this drugs for $%d?", PHEROIN); 
-							ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 2, 5, PHEROIN); 
-						}
-						else
-						{
-							format(str, sizeof(str), "Are you sure you want to buy this drugs for $%d?", PCOCAINE); 
-							ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 1, 5, PCOCAINE); 
-						}
-					}
-				}
-			}
-		}
-		case DIALOG_EMMET:
-		{
-			if (response)
-			{
-				switch(listitem)
-				{
-					case 0:
-					{
-						new str[512];
-						format(str, sizeof(str), "Are you sure you want to purchase a Emmet Pistol for $%d?", 4000);
-						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_COLT45, 25, 4000, 1); 
-					}
-					case 1:
-					{
-						new str[512];
-						format(str, sizeof(str), "Are you sure you want to buy ammo for $%d?", A9MM); 
-						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseAmmo", 0, 25, A9MM); 
 					}
 				}
 			}

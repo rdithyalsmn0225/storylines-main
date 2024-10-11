@@ -26,7 +26,8 @@ function:Query_LoadEntrance()
 		cache_get_value_name_int(i, "garage", EntranceInfo[i+1][E_ENTRANCE_GARAGE]);
 	
 		EntranceInfo[i+1][E_ENTRANCE_PICKUP][0] = CreateDynamicObject(19198, EntranceInfo[i+1][E_ENTRANCE_POS][0], EntranceInfo[i+1][E_ENTRANCE_POS][1], EntranceInfo[i+1][E_ENTRANCE_POS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 5.0); 
-
+		EntranceInfo[i+1][E_ENTRANCE_MAPICON] = CreateDynamicMapIcon(EntranceInfo[i+1][E_ENTRANCE_POS][0], EntranceInfo[i+1][E_ENTRANCE_POS][1], EntranceInfo[i+1][E_ENTRANCE_POS][2], EntranceInfo[i+1][E_ENTRANCE_ICON], 0, -1, -1, -1, 999999.0);
+		
 		countEntrance++; 
 	}
 	

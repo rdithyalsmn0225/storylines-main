@@ -68,7 +68,6 @@ enum
 	GASCAN,
 	FISHING_ROD,
 	REPAIR_KITS,
-	POTS,
 	KNIFE,
 	BAT,
 	PISTOL,
@@ -80,7 +79,6 @@ enum
 	PCP,
 	CRACK,
 	CRATES,
-	GRILLS
 };
 
 enum
@@ -505,7 +503,8 @@ enum E_SERVERSTOCK_DATA
 	E_SERVER_DBID,
 	E_SERVER_PRODUCTS,
 	E_SERVER_WOODS,
-	Text3D:E_SERVER_3DTEXT[3]
+	E_SERVER_MATERIALS,
+	Text3D:E_SERVER_3DTEXT[4]
 }
 
 enum E_DEALERSHIP_DATA
@@ -908,7 +907,7 @@ new const bizInteriors[][bizInt] =
     {1, 	4, 459.8408,-88.8034,999.5547, 0.0000}, 		//Jay Dinner
 	{2, 	11,  501.7161,-68.2272,998.7578, 0.0000},		//Bar
 	{3, 	11, 1439.6498,1563.5875,108.3770,359.7745},		//Acid
-	{4, 	1, 285.3918,-41.7356,1001.5156, 0.0000},		//Ammunation
+	{4, 	11, 1470.5206,1563.0314,108.3770,358.2301},		//Ammunation
 	{5, 	2, 1204.7509,-13.8483,1000.9219, 315.0000},		//Club
 	{6, 	0,  2304.6750,-16.0614,26.7422, 90.0000},		//Bank
 	{7, 	17, -45.8394,2.1805,203.2633, 179.6117},		//General
@@ -1109,8 +1108,6 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Oregano", 19570, 0},
 	{"Baking Soda", 19570, 0},
 	{"Materials", 3014, 0},
-	{"Pots", 19585, 1},
-	{"Grill", 19831, 2},
 	{"Woods Cargo", 2912, 0},
 	{"Tools Cargo", 2912, 0},
 	{"Clothes Cargo", 2912, 0},
@@ -1159,7 +1156,8 @@ new const IndustryInfo[][E_INDUSTRY_DATA] =
 	/* =====[SECONDARY]===== */
 	{"Oceandocks Ships", 2824.3801,-2387.5449,12.0771}, // Oceandocks Ships
 	{"Oceandocks Ships", 2824.1074,-2436.5945,12.0891}, // Oceandocks Ships
-	{"Leafy Hollow Acress", -1448.3512,-1522.6899,101.7578} //Leafy Hollow Acress
+	{"Leafy Hollow Acress", -1448.3512,-1522.6899,101.7578}, //Leafy Hollow Acress
+	{"Gunstore", 1468.3636,1568.7332,108.3770} //Gunstore int
 };
 
 new const PenalInfo[][E_PENALCODES_DATA] =

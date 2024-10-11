@@ -1,12 +1,13 @@
 enum
 {
     INDUSTRY_PRODUCTS,
-    INDUSTRY_WOODS
+    INDUSTRY_WOODS,
+	INDUSTRY_MATERIALS
 };
 
 stock IndustryRefresh(id)
 {
-    new str[512], str1[512], str2[512];
+    new str[512], str1[512], str2[512], str3[512];
 
 	if(IsValidDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][0]))
     	DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][0]);
@@ -14,16 +15,21 @@ stock IndustryRefresh(id)
     	DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][1]);
 	if(IsValidDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][2]))
     	DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][2]);
+	if(IsValidDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][3]))
+    	DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][3]);
 
-    format(str, sizeof(str), "[%s]\n{ffffff}Available commands:/cargobuy, /cargosell\n{ffffff}Available stock: %d", IndustryInfo[0][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
+    format(str, sizeof(str), "[%s]\n{ffffff}Available commands: /cargobuy, /cargosell\n{ffffff}Available stock: %d", IndustryInfo[0][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
     
-	format(str1, sizeof(str1), "[%s]\n{ffffff}Available commands:/cargobuy, /cargosell\n{ffffff}Available stock: %d", IndustryInfo[1][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
+	format(str1, sizeof(str1), "[%s]\n{ffffff}Available commands: /cargobuy, /cargosell\n{ffffff}Available stock: %d", IndustryInfo[1][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
 
-	format(str2, sizeof(str2), "[%s]\n{ffffff}Available commands:/cargobuy, /woodsell\n{ffffff}Available stock: %d", IndustryInfo[1][Name], ServerInfo[id][E_SERVER_WOODS]);
+	format(str2, sizeof(str2), "[%s]\n{ffffff}Available commands: /cargobuy, /woodsell\n{ffffff}Available stock: %d", IndustryInfo[2][Name], ServerInfo[id][E_SERVER_WOODS]);
+
+	format(str3, sizeof(str3), "[%s]\n{ffffff}Available commands: /buymats\n{ffffff}Available stock: %d", IndustryInfo[3][Name], ServerInfo[id][E_SERVER_WOODS]);
 
 	ServerInfo[id][E_SERVER_3DTEXT][0] = CreateDynamic3DTextLabel(str, COLOR_POINT, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz], 5.0);
 	ServerInfo[id][E_SERVER_3DTEXT][1] = CreateDynamic3DTextLabel(str1, COLOR_POINT, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz], 5.0);  
 	ServerInfo[id][E_SERVER_3DTEXT][2] = CreateDynamic3DTextLabel(str2, COLOR_POINT, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz], 5.0);  
+	ServerInfo[id][E_SERVER_3DTEXT][3] = CreateDynamic3DTextLabel(str3, COLOR_POINT, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz], 5.0);  
 	return 1;
 }
 
@@ -58,6 +64,10 @@ stock ServerData_Plus(type, plus)
 		{
 			ServerInfo[0][E_SERVER_WOODS]+= plus;
 		}
+		case INDUSTRY_MATERIALS:
+		{
+			ServerInfo[0][E_SERVER_MATERIALS]+= plus;
+		}
 	}
     IndustryRefresh(0);
 	SaveServerDatas(0);
@@ -75,6 +85,10 @@ stock ServerData_Minus(type, minus)
 		case INDUSTRY_WOODS:
 		{
 			ServerInfo[0][E_SERVER_WOODS]-= minus;
+		}
+		case INDUSTRY_MATERIALS:
+		{
+			ServerInfo[0][E_SERVER_MATERIALS]-= minus;
 		}
 	}
 
@@ -102,13 +116,13 @@ stock ShowShipments(playerid)
 
 	string[0] = 0;
 
-	for (new i = 0; i < MAX_BUSINESS; i ++) if (BusinessInfo[i][E_BUSINESS_EXISTS] && BusinessInfo[i][E_BUSINESS_STOCK] < 100)
+	for (new i = 0; i < MAX_BUSINESS; i ++) if (BusinessInfo[i][E_BUSINESS_EXISTS] && BusinessInfo[i][E_BUSINESS_STOCK] < 100 && BusinessInfo[i][E_BUSINESS_TYPE] != 3 && BusinessInfo[i][E_BUSINESS_TYPE] != 4)
 	{
 	    switch (BusinessInfo[i][E_BUSINESS_TYPE]) {
 	        case 1: type = "Restaurant";
 	        case 2: type = "Bar";
-	        case 3: type = "Acid Lab";
-	        case 4: type = "Ammunations";
+	        case 3: type = "Acid Labs";
+	        case 4: type = "Gunstore";
 			case 6: type = "Club";
 			case 7: type = "Bank";
 			case 8: type = "Pawnstore";

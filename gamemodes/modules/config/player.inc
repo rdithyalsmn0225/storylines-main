@@ -474,7 +474,7 @@ stock ShowCharacterStats(playerid, playerb)
 	
 	SendClientMessageEx(playerid, COLOR_HEADER, "|______________________________ (%d) %s Statistics ______________________________|", playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
 	SendClientMessageEx(playerb, COLOR_PHONE, "[ACCOUNT]:{ffffff} [Streetname: %s] - [Account: %s] - [Date: %s]", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());	
-	SendClientMessageEx(playerb, COLOR_FACTION, "[SESSION]:{ffffff} [Level: %d] [EXP: %d/%d] [Time played: %d hours]", PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], ((PlayerInfo[playerid][E_CHARACTER_LEVEL]) * 4 + 2), PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
+	SendClientMessageEx(playerb, COLOR_FACTION, "[SESSION]:{ffffff} [Level: %d] [EXP: %d/10] [Time played: %d hours]", PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
 	SendClientMessageEx(playerb, COLOR_RELATIONS, "[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
 	if(PlayerInfo[playerb][E_CHARACTER_FACTION])
 	{
@@ -675,7 +675,7 @@ stock ShowGeneralList(playerid, type)
 				if(IsPlayerInRangeOfPoint(playerid, 2.0, -48.1108,5.5907,203.2633))
 				{
 					format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-					ShowPlayerDialog(playerid, DIALOG_GENERALSTORE4, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nSpraycan\t$250\nCrowbar\t$500\nPots\t$500", "Select", "Cancel"); 
+					ShowPlayerDialog(playerid, DIALOG_GENERALSTORE4, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nSpraycan\t$250\nCrowbar\t$500", "Select", "Cancel"); 
 				}
 			}
 		}
@@ -736,49 +736,9 @@ stock ShowFurnitureList(playerid, type)
 
 	switch(type)
 	{
-		case 1: //BPG
+		case 1:
 		{
-			if(IsPlayerInBusiness(playerid))
-			{	
-				if(IsPlayerInRangeOfPoint(playerid, 2.0, 1359.4304,1703.7946,434.9792))
-				{
-					format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-					ShowPlayerDialog(playerid, DIALOG_FURNITURESTORE1, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nBoombox\t$300\nGloves\t$300\nPots\t$500", "Select", "Cancel"); 
-				}
-			}
-		}
-		case 2: //Box
-		{
-			if(IsPlayerInBusiness(playerid))
-			{	
-				if(IsPlayerInRangeOfPoint(playerid, 2.0, 1359.4393,1710.9224,434.9792))
-				{
-					format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-					ShowPlayerDialog(playerid, DIALOG_FURNITURESTORE2, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nShoebox\t$100", "Select", "Cancel"); 
-				}
-			}
-		}
-		case 3: //GRILL
-		{
-			if(IsPlayerInBusiness(playerid))
-			{	
-				if(IsPlayerInRangeOfPoint(playerid, 2.0, 1362.5713,1711.0144,434.9792))
-				{
-					format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-					ShowPlayerDialog(playerid, DIALOG_FURNITURESTORE3, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nBBQ Grill\t$600", "Select", "Cancel"); 
-				}
-			}
-		}
-		case 4: //CTB
-		{
-			if(IsPlayerInBusiness(playerid))
-			{	
-				if(IsPlayerInRangeOfPoint(playerid, 2.0, 1356.3547,1708.9935,434.9792))
-				{
-					format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-					ShowPlayerDialog(playerid, DIALOG_FURNITURESTORE4, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nRed Chair\t$500\nBroken Bed\t$800\nTable\t$600", "Select", "Cancel"); 
-				}
-			}
+			
 		}
 	}
 	return 1;

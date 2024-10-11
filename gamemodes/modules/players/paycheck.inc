@@ -14,7 +14,7 @@ function:CallPaycheck()
     	new tax = (paycheck / 100) * gTax; // 10% tax
 		new total = paycheck - tax;
 
-		if(PlayerInfo[i][E_CHARACTER_EXP] == 8)
+		if(PlayerInfo[i][E_CHARACTER_EXP] == 10)
 		{
 			PlayerInfo[i][E_CHARACTER_EXP] = 0;
 			PlayerInfo[i][E_CHARACTER_LEVEL]++;

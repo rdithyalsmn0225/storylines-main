@@ -2278,7 +2278,8 @@ CMD:buybiz(playerid, params[])
 		if(BusinessInfo[id][E_BUSINESS_OWNERDBID])
 			return SendErrorMessage(playerid, "This business isn't for sale."); 
 
-		if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DEALERSHIP || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_HAIRCUT)
+		if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DEALERSHIP || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_HAIRCUT
+		|| BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_GUNSTORE || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_ACID)
 			return SendErrorMessage(playerid, "This property isn't for sale."); 
 			
 		if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < BusinessInfo[id][E_BUSINESS_LEVEL])
@@ -3542,47 +3543,5 @@ CMD:repairkits(playerid, params[])
 
 	PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
 	PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairkits", 4500, true, "ii", playerid, vehicleid);
-	return 1;
-}
-
-CMD:buyweapon(playerid, params[])
-{
-	if(!IsPlayerInBusiness(playerid) && !IsPlayerNearCashiers(playerid))
-		return SendErrorMessage(playerid, "You aren't in a business.");
-		
-	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_TYPE] != BUSINESS_TYPE_AMMUNATION)
-		return SendErrorMessage(playerid, "You aren't in an ammunation."); 
-
-	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
-		return SendErrorMessage(playerid, "This business is out of stock");
-
-	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
-		return SendErrorMessage(playerid, "This Business has been robbery.");
-		
-	if(!PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE])
-		return SendUnauthMessage(playerid); 
-
-	new str[512];
-	strcat(str, "Glock-19 (Ammo: 25)\n");
-	strcat(str, "Glock-17 (Ammo: 25)\n");
-	strcat(str, "Glock-P80 (Ammo: 25)\n");
-	strcat(str, "MAC-11 (Ammo: 50)\n");
-	strcat(str, "MAC-10 (Ammo: 50)\n");
-	strcat(str, "Socimi T821 (Ammo: 50)\n");
-	strcat(str, "9mm (Ammo: 25)\n");
-	strcat(str, "9x19mm (Ammo: 50)\n");
-	ShowPlayerDialog(playerid, DIALOG_BUYGUN, DIALOG_STYLE_LIST, "Faction Storage:", str, "Select", "Close");
-	return 1;
-}
-
-CMD:buygun(playerid, params[])
-{
-	if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < 5)
-		return SendErrorMessage(playerid, "You don't have permission to use this command."); 
-
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, EmmetInfo[0][EMMET_POSX], EmmetInfo[0][EMMET_POSY], EmmetInfo[0][EMMET_POSZ]))
-	{
-		BuyGunFromEmmet(playerid);
-	}
 	return 1;
 }

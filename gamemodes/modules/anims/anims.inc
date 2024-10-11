@@ -501,14 +501,9 @@ CMD:angry(playerid, params[]){
 CMD:flex(playerid, params[])
 {
     if(!IsAnimationPermitted(playerid))
-	{
 	    return SendErrorMessage(playerid, "You cannot use this command right now.");
-	}
 	if(20 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-	{
-		SendErrorMessage(playerid, "You must have $20 for flexin'.");
-		return 1;
-	}
+		return SendErrorMessage(playerid, "You must have $20 for flexin'.");
 
 	switch(strval(params))
 	{

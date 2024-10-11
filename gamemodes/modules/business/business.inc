@@ -63,7 +63,7 @@ stock BusinessRefresh(businessid)
 			
 		case BUSINESS_TYPE_ACID:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /production to opens the production menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Production]\n{ffffff}Available commands: /production to opens the production menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_GENERAL:
@@ -71,9 +71,9 @@ stock BusinessRefresh(businessid)
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Press 'N' to pay items to clerk.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
-		case BUSINESS_TYPE_AMMUNATION:
+		case BUSINESS_TYPE_GUNSTORE:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /buyweapon to see weapon menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Production]\n{ffffff}Available commands: /creategun to create weapons / ammo with materials..", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_CLOTHES:
@@ -88,7 +88,7 @@ stock BusinessRefresh(businessid)
 		   
 		case BUSINESS_TYPE_FURNITURE:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /props to see menu.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: Press 'N' to pay items to clerk.", COLOR_POINT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_CLUB:
@@ -251,9 +251,9 @@ stock SendBusinessType(playerid, id)
 	new str[128];
 	switch(BusinessInfo[id][E_BUSINESS_TYPE])
 	{
-		case BUSINESS_TYPE_AMMUNATION:
+		case BUSINESS_TYPE_GUNSTORE:
 		{
-			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /buyweapon, /buyammo to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /creategun create weapons / ammo with materials.", BusinessInfo[id][E_BUSINESS_NAME]);
 			ShowBoxMessage(playerid, str, 5);
 		}
 		case BUSINESS_TYPE_BANK:
@@ -263,7 +263,7 @@ stock SendBusinessType(playerid, id)
 		}
 		case BUSINESS_TYPE_GENERAL:
 		{
-			format(str, sizeof(str), "Welcome to %s.\nThis is a General store you can buy anything.", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s.\nThis is a general store you can buy anything.", BusinessInfo[id][E_BUSINESS_NAME]);
 			ShowBoxMessage(playerid, str, 5);
 		}
 		case BUSINESS_TYPE_CLUB:
@@ -356,13 +356,17 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 		{
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
-		
+
+			if(Inventory_Count(playerid, "Materials") < 50)
+				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
-				FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE]--;
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Glock 19", -2205, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 50);
+				GiveMoney(playerid, -2000);
 				SaveCharacter(playerid);
 			}
 			else
@@ -370,6 +374,8 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Glock 19", -2205, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 50);
+				GiveMoney(playerid, -2000);
 
 				SaveCharacter(playerid);
 			}
@@ -378,13 +384,18 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 		{
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
-		
+			
+			if(Inventory_Count(playerid, "Materials") < 55)
+				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
-				FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE]--;
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Glock 17", -2204, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 55);
+				GiveMoney(playerid, -2000);
+
 				SaveCharacter(playerid);
 			}
 			else
@@ -392,6 +403,8 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Glock 17", -2204, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 55);
+				GiveMoney(playerid, -2000);
 
 				SaveCharacter(playerid);
 			}
@@ -400,13 +413,18 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 		{
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
-		
+
+			if(Inventory_Count(playerid, "Materials") < 60)
+				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
-				FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE]--;
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Glock P80", -2206, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 60);
+				GiveMoney(playerid, -2000);
+
 				SaveCharacter(playerid);
 			}
 			else
@@ -414,6 +432,8 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Glock P80", -2206, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 60);
+				GiveMoney(playerid, -2000);
 
 				SaveCharacter(playerid);
 			}
@@ -422,13 +442,18 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 		{
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
-		
+
+			if(Inventory_Count(playerid, "Materials") < 100)
+				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
-				FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE]--;
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Mac 11", -2207, 1);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 100);
+				GiveMoney(playerid, -2500);
+
 				SaveCharacter(playerid);
 			}
 			else
@@ -436,6 +461,8 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Mac 11", -2207, 1);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 100);
+				GiveMoney(playerid, -2500);
 
 				SaveCharacter(playerid);
 			}
@@ -445,12 +472,17 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 			
+			if(Inventory_Count(playerid, "Materials") < 110)
+				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
-				FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE]--;
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Mac 12", -2208, 1);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 110);
+				GiveMoney(playerid, -2500);
+
 				SaveCharacter(playerid);
 			}
 			else
@@ -458,21 +490,28 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Mac 12", -2208, 1);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 110);
+				GiveMoney(playerid, -2500);
 
 				SaveCharacter(playerid);
 			}
 		}
 		else if(weapon == WEAPON_UZI && type == 3)
 		{
+			if(Inventory_Count(playerid, "Materials") < 120)
+				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 			
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
-				FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE]--;
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Socimi Type 821", -2209, 1);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 120);
+				GiveMoney(playerid, -2500);
+
 				SaveCharacter(playerid);
 			}
 			else
@@ -480,6 +519,8 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "Socimi Type 821", -2209);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 120);
+				GiveMoney(playerid, -2500);
 
 				SaveCharacter(playerid);
 			}
@@ -516,36 +557,49 @@ function:OnPlayerPurchaseAmmo(playerid, response, type, ammo, price)
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
+			if(Inventory_Count(playerid, "Materials") < 120)
+				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
-				FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE]--;
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 35);
+				GiveMoney(playerid, -500);
 				SaveCharacter(playerid);
 			}
 			else
 			{
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 35);
+				GiveMoney(playerid, -500);
 				SaveCharacter(playerid);
 			}
 		}
 		else if(type == 1)
 		{
+			if(Inventory_Count(playerid, "Materials") < 120)
+				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 			
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
-				FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE]--;
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 30);
+				GiveMoney(playerid, -600);
 				SaveCharacter(playerid);
 			}
 			else
 			{
 				GiveMoney(playerid, -price);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);	
+				Inventory_Remove(playerid, "Materials", 30);
+				GiveMoney(playerid, -600);
+				SaveCharacter(playerid);
 			}
 		}
 	}
@@ -562,6 +616,8 @@ function:Query_InsertBusiness(playerid, newid, type)
 	BusinessInfo[newid][E_BUSINESS_DBID] = cache_insert_id(); 
 	BusinessInfo[newid][E_BUSINESS_TYPE] = type; 
  
+ 	format(BusinessInfo[newid][E_BUSINESS_NAME], 90, "Unknown");
+	
 	BusinessInfo[newid][E_BUSINESS_INTERIORPOS][0] = bizInteriors[type][E_INT_X]; 
 	BusinessInfo[newid][E_BUSINESS_INTERIORPOS][1] = bizInteriors[type][E_INT_Y]; 
 	BusinessInfo[newid][E_BUSINESS_INTERIORPOS][2] = bizInteriors[type][E_INT_Z]; 
@@ -641,7 +697,7 @@ CMD:createbusiness(playerid, params[])
 	if(sscanf(params, "i", type_id))
 	{
 		SendUsageMessage(playerid, "/createbusiness business id [business type]"); 
-		SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Pizza stack, 4. Ammunation, 5. Club, 6. Bank, 7. General.");
+		SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Acidlabs, 4. Gunstore, 5. Club, 6. Bank, 7. General.");
 		SendClientMessage(playerid, COLOR_WHITE, "Types: 8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Furniture, 13. Gym."); 
 		return 1;
 	}
@@ -707,7 +763,7 @@ CMD:editbusiness(playerid, params[])
 		if(sscanf(bstr, "i", type))
 		{
 			SendUsageMessage(playerid, "/editbusiness %i [business type]"); 
-			SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Pizza stack, 4. Ammunation, 5. Club, 6. Bank, 7. General.");
+			SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Acidlabs, 4. Gunstore, 5. Club, 6. Bank, 7. General.");
 			SendClientMessage(playerid, COLOR_WHITE, "Types: 8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Furniture, 13. Gym."); 
 			return 1;
 		}

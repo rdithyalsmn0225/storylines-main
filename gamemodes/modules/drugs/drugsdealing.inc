@@ -13,7 +13,7 @@ stock IsPlayerNearDrugsDealing(playerid)
 	return 1;
 }
 
-CMD:drugdeal(playerid, params[])
+CMD:drugsdeal(playerid, params[])
 {
 	new str[156];
 	if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
