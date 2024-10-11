@@ -1490,7 +1490,7 @@ CMD:exit(playerid, params[])
 		if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
 			return SendErrorMessage(playerid, "You can't leave while editing an object.");
 
-		if(IsPlayerInRangeOfPoint(playerid, 3.0, BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][0], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][1], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][2]))
+		if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][0], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][1], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][2]))
 		{
 			if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] > 0)
 			{
@@ -3508,40 +3508,5 @@ CMD:gascan(playerid, params[])
 		
 	playerRefillingVehicle[playerid] = true; 
 	playerRefillTimer[playerid] = SetTimerEx("OnGascanRefill", 4500, true, "iifff", playerid, vehicleid, vx, vy, vz);
-	return 1;
-}
-
-CMD:repairkits(playerid, params[])
-{
-	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != REPAIR_KITS)
-		return SendErrorMessage(playerid, "You must hold the repair kits in your hands.");
-
-	if(!Inventory_Count(playerid, "Repair Kits"))
-		return SendErrorMessage(playerid, "You don't have any repair kits in your inventory."); 
-
-	new vehicleid = GetNearestVehicle(playerid), Float:vx, Float:vy, Float:vz;
-	GetVehicleHood(vehicleid, vx, vy, vz);  
-	GetVehiclePos(vehicleid, vx, vy, vz);
-
-	if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
-		return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
-
-	if(IsPlayerInAnyVehicle(playerid))
-		return SendErrorMessage(playerid, "You can't be in a vehicle.");
-				
-	if(GetNearestVehicle(playerid) == INVALID_VEHICLE_ID)
-		return SendErrorMessage(playerid, "You aren't near a vehicle.");
-	if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-		return SendErrorMessage(playerid, "You're already repairing a vehicle."); 
-
-	new Float:x, Float:y, Float:z;
-	GetPlayerPos(playerid, x, y, z);
-	TogglePlayerControllable(playerid, false);
-	ApplyAnimation(playerid, "CAR", "Fixn_Car_Loop", 4.1, 1, 0, 0, 0, 0, 1);
-	PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
-	PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-
-	PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-	PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairkits", 4500, true, "ii", playerid, vehicleid);
 	return 1;
 }

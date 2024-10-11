@@ -45,12 +45,6 @@ enum
 	LOGS_ADVERT
 };
 
-enum 
-{
-	FISH_NONE,
-	FISH_BIG,
-	FISH_SMALL,
-};
 enum
 {	
 	DEALERSHIP_CATEGORY_BIKES,
@@ -694,7 +688,7 @@ enum E_PENALCODES_DATA {
 
 
 /*=====[VAR]=====*/
-new	AreaInfo[E_AREA_DATA],
+new
 	PlayerInfo[MAX_PLAYERS][P_ACCOUNT_DATA],
 	AccountInfo[MAX_PLAYERS][P_MASTER_ACCOUNTS],
 	ReportInfo[100][G_REPORT_INFO], 

@@ -156,6 +156,7 @@ stock IsPlayerPlayingMachine(playerid)
 
 stock IsPlayerExitMachine(playerid)
 {
+    new businessid = IsPlayerInBusiness(playerid);
     if(PlayerGymMachine[playerid] == GYM_DUMBELLS)
     {
         ApplyAnimation(playerid, "freeweights", "gym_free_putdown", 4.1, 0, 0, 0, 0, 0, 1 );
@@ -164,6 +165,7 @@ stock IsPlayerExitMachine(playerid)
         PlayerPointGym[playerid] = 0;  
         PlayerUsingGym[playerid] = false;
         DestroyGameBar(playerid);
+        BusinessInfo[businessid][E_BUSINESS_DUMBELL] = false;
     }
     else if(PlayerGymMachine[playerid] == GYM_TREADMILLS)
     {
@@ -173,6 +175,7 @@ stock IsPlayerExitMachine(playerid)
         PlayerPointGym[playerid] = 0;  
         PlayerUsingGym[playerid] = false;
         DestroyGameBar(playerid);
+        BusinessInfo[businessid][E_BUSINESS_TREADMILL] = false;
     }
     else if(PlayerGymMachine[playerid] == GYM_BICYLE)
     {
@@ -182,6 +185,7 @@ stock IsPlayerExitMachine(playerid)
         PlayerPointGym[playerid] = 0;  
         PlayerUsingGym[playerid] = false;
         DestroyGameBar(playerid);
+        BusinessInfo[businessid][E_BUSINESS_BYCICLE] = false;
     }
     else if(PlayerGymMachine[playerid] == GYM_BENCH)
     {
@@ -191,6 +195,7 @@ stock IsPlayerExitMachine(playerid)
         PlayerPointGym[playerid] = 0;  
         PlayerUsingGym[playerid] = false;
         DestroyGameBar(playerid);
+        BusinessInfo[businessid][E_BUSINESS_BENCH] = false;
     }
 
     RemovePlayerAttachedObject(playerid, ATTACH_ANIMS);

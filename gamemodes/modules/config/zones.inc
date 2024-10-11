@@ -510,20 +510,6 @@ new const Streets[][E_STREET_INFO] =
 
 stock InsertStaticArea()
 {
-	AreaInfo[E_AREA_FISHBIG][0] = CreateDynamicRectangle(2933, -1256.5, 3000, -1092.5);
-	AreaInfo[E_AREA_FISHBIG][1] = CreateDynamicRectangle(2856, -2327.5, 3000, -2220.5);
-	AreaInfo[E_AREA_FISHBIG][2] = CreateDynamicRectangle(2568, -2990, 2998, -2612);
-	AreaInfo[E_AREA_FISHBIG][3] = CreateDynamicRectangle(180, -3000, 970, -2314);
-	AreaInfo[E_AREA_FISHBIG][4] = CreateDynamicRectangle(1404, -3000, 2280, -2780);
-	AreaInfo[E_AREA_FISHBIG][5] = CreateDynamicRectangle(-66, -2295, 340, -1998);
-
-	AreaInfo[E_AREA_FISHSMALL][0] = CreateDynamicRectangle(-200, -1965, 77, -1668);
-	AreaInfo[E_AREA_FISHSMALL][1] = CreateDynamicRectangle(999, -2999.5, 1238, -2512.5);
-	AreaInfo[E_AREA_FISHSMALL][2] = CreateDynamicRectangle(429, -2252.5, 804, -1956.5);
-	AreaInfo[E_AREA_FISHSMALL][3] = CreateDynamicRectangle(2860, -2580.5, 3000, -2416.5);
-	AreaInfo[E_AREA_FISHSMALL][4] = CreateDynamicRectangle(2933, -1819.5, 3000, -1655.5);
-	AreaInfo[E_AREA_FISHSMALL][5] = CreateDynamicRectangle(2933, -2046.5, 3000, -1882.5);
-
 	//Areas:
 	ImpoundLotArea = CreateDynamicRectangle(1058, -1777.5, 1103, -1738.5);
 }

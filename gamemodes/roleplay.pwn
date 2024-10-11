@@ -103,6 +103,7 @@ main ()  {}
 #include "modules\vehicles\vehicles_storage.inc"
 #include "modules\vehicles\vehicles_dealership.inc"
 #include "modules\vehicles\vehicles_commands.inc"
+#include "modules\vehicles\vehicle_repair.inc"
 
 #include "modules\faction\factions.inc"
 #include "modules\faction\mdc.inc"
@@ -125,7 +126,6 @@ main ()  {}
 #include "modules\jobs\header.inc"
 #include "modules\jobs\burglary.inc"
 #include "modules\jobs\trucker.inc"
-#include "modules\jobs\mechanic.inc"
 #include "modules\jobs\fishing.inc"
 #include "modules\jobs\trashmaster.inc"
 #include "modules\jobs\dockworker.inc"
@@ -3832,7 +3832,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
 				return SendErrorMessage(playerid, "You can't leave while editing an object.");
 
-			if(IsPlayerInRangeOfPoint(playerid, 3.0, EntranceInfo[e_id][E_ENTRANCE_INT][0], EntranceInfo[e_id][E_ENTRANCE_INT][1], EntranceInfo[e_id][E_ENTRANCE_INT][2]))
+			if(IsPlayerInRangeOfPoint(playerid, 2.0, EntranceInfo[e_id][E_ENTRANCE_INT][0], EntranceInfo[e_id][E_ENTRANCE_INT][1], EntranceInfo[e_id][E_ENTRANCE_INT][2]))
 			{
 				SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_POS][0], EntranceInfo[e_id][E_ENTRANCE_POS][1], EntranceInfo[e_id][E_ENTRANCE_POS][2]);
 				
@@ -4418,26 +4418,28 @@ function:SaveCharacterPos(playerid)
 {
 	new thread[512]; 
 	
+	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
+		return 0;
+
 	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
-	if(!PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
-	{
-		GetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
-		GetPlayerArmour(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 	
-		mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastPosX = %f, pLastPosY = %f, pLastPosZ = %f, pLastInterior = %i, pLastWorld = %i, pInProperty = %i, pInBusiness = %i, pHasInjured = %i, pHasDeath = %i, pHealth = %f, pArmor = %f WHERE char_dbid = %i",
-			PlayerInfo[playerid][E_CHARACTER_LASTPOS][0],
-			PlayerInfo[playerid][E_CHARACTER_LASTPOS][1],
-			PlayerInfo[playerid][E_CHARACTER_LASTPOS][2],
-			GetPlayerInterior(playerid),
-			GetPlayerVirtualWorld(playerid),
-			PlayerInfo[playerid][E_CHARACTER_INSIDEPROP],
-			PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ],
-			PlayerInfo[playerid][E_CHARACTER_INJURED],
-			PlayerInfo[playerid][E_CHARACTER_DEATH],
-			PlayerInfo[playerid][E_CHARACTER_HEALTH],
-			PlayerInfo[playerid][E_CHARACTER_ARMOUR],
-			PlayerInfo[playerid][E_CHARACTER_DBID]);
-	}
+	GetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
+	GetPlayerArmour(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
+
+	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastPosX = %f, pLastPosY = %f, pLastPosZ = %f, pLastInterior = %i, pLastWorld = %i, pInProperty = %i, pInBusiness = %i, pHasInjured = %i, pHasDeath = %i, pHealth = %f, pArmor = %f WHERE char_dbid = %i",
+		PlayerInfo[playerid][E_CHARACTER_LASTPOS][0],
+		PlayerInfo[playerid][E_CHARACTER_LASTPOS][1],
+		PlayerInfo[playerid][E_CHARACTER_LASTPOS][2],
+		GetPlayerInterior(playerid),
+		GetPlayerVirtualWorld(playerid),
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP],
+		PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ],
+		PlayerInfo[playerid][E_CHARACTER_INJURED],
+		PlayerInfo[playerid][E_CHARACTER_DEATH],
+		PlayerInfo[playerid][E_CHARACTER_HEALTH],
+		PlayerInfo[playerid][E_CHARACTER_ARMOUR],
+		PlayerInfo[playerid][E_CHARACTER_DBID]);
+	
 	return mysql_pquery(ourConnection, thread);
 }
 
