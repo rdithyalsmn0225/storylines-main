@@ -20,7 +20,7 @@
 	SendClientMessageToAllEx(COLOR_GREY, "Debug: "%0)
 
 #define SendStreetMessage(%0)	\
-	SendClientMessageToAllEx(COLOR_POINT, "[Word on the Streetz]: "%0)
+	SendClientMessageToAllEx(COLOR_DARKGREEN, "[Word on the Streetz]: "%0)
 
 #define forex(%0,%1) for(new %0 = 0; %0 < %1; %0++)	
 
@@ -651,13 +651,13 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					string[128]
 				;
 		
-				format (string, sizeof(string), "Your new characters date of birth will be: {8E5B94}%s", playerCharactersAge[playerid]);
+				format (string, sizeof(string), "Your new characters date of birth will be: {5B9460}%s", playerCharactersAge[playerid]);
 				SendClientMessage(playerid, -1, string); 
 				
 				SendClientMessage(playerid, -1, " "); 
 				SendClientMessage(playerid, -1, "This next step will require your characters origin details. ");
-				SendClientMessage(playerid, -1, "Please provide your characters origin. Example: {8E5B94}Los santos");
-				SendClientMessage(playerid, -1, "Press {8E5B94}'T'{ffffff} to inputtext for character creation.");
+				SendClientMessage(playerid, -1, "Please provide your characters origin. Example: {5B9460}Los santos");
+				SendClientMessage(playerid, -1, "Press {5B9460}'T'{ffffff} to inputtext for character creation.");
 			
 				return 0;
 			}
@@ -678,14 +678,14 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 				
 				for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
 				
-				format (string, sizeof(string), "Your new characters origin will be: {8E5B94}%s", playerCharacterOrigin[playerid]);
+				format (string, sizeof(string), "Your new characters origin will be: {5B9460}%s", playerCharacterOrigin[playerid]);
 				SendClientMessage(playerid, -1, string);
 				
 				SendClientMessage(playerid, -1, " "); 
 				SendClientMessage(playerid, -1, "This next step will allow you the opportunity of writing a background story.");
 				SendClientMessage(playerid, -1, "In no more than three (3) paragraphs, introduce your characters story."); 
-				SendClientMessage(playerid, -1, "This step is {8E5B94}optional{FFFFFF} and not required. Type {8E5B94}\"skip\" {FFFFFF}to continue.");
-				SendClientMessage(playerid, -1, "Press {8E5B94}'T'{ffffff} to inputtext for character creation.");
+				SendClientMessage(playerid, -1, "This step is {5B9460}optional{FFFFFF} and not required. Type {5B9460}\"skip\" {FFFFFF}to continue.");
+				SendClientMessage(playerid, -1, "Press {5B9460}'T'{ffffff} to inputtext for character creation.");
 
 				ClearLines(playerid, 2);
 

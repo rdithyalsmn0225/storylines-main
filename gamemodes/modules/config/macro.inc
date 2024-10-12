@@ -15,6 +15,7 @@
 #endif
 
 #define SCRIPT_REV "End of the Line v1.0"
+#define PLAYER_MOTD "Please read the rules first!"
 
 #define PRESSED(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
 #define PRESSING(%0,%1) (%0 & (%1))

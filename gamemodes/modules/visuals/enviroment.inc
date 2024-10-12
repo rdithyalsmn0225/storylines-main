@@ -15,35 +15,24 @@ new Jobs_vehicles[20];
 new LSPDVehicles[30];
 new dmv_vehicles[4]; 
 
-new PlayerActor[MAX_PLAYERS][4];
+new PlayerActor[MAX_PLAYERS];
 
-CreatePlayerActor(playerid)
+CreatePlayerActor(playerid, skin)
 {
 	new vwid = AccountInfo[playerid][E_MASTERS_DBID];
 
-	PlayerActor[playerid][0] = CreateDynamicActor(characterSkin[playerid][0],2408.3296,-1384.2576,24.3245,104.8779); //hood
-	PlayerActor[playerid][1] = CreateDynamicActor(characterSkin[playerid][1],2248.5664,-1260.5315,23.9566,89.2008); //hood
-	PlayerActor[playerid][3] = CreateDynamicActor(characterSkin[playerid][2],2531.9561,-1667.5062,15.1688,88.3198); //hood
-	PlayerActor[playerid][3] = CreateDynamicActor(characterSkin[playerid][3],899.3932,-1073.4900,24.3234,178.2752); //hood
-	
-	ApplyDynamicActorAnimation(PlayerActor[playerid][0], "DEALER", "DEALER_IDLE", 4.1, 1, 0, 0, 0, 0);
-	ApplyDynamicActorAnimation(PlayerActor[playerid][1], "DEALER", "DEALER_IDLE", 4.1, 1, 0, 0, 0, 0);
-	ApplyDynamicActorAnimation(PlayerActor[playerid][2], "DEALER", "DEALER_IDLE", 4.1, 1, 0, 0, 0, 0);
-	ApplyDynamicActorAnimation(PlayerActor[playerid][3], "GRAVEYARD", "mrnF_loop", 4.1, 1, 0, 0, 0, 0);
-	
-	SetDynamicActorVirtualWorld(PlayerActor[playerid][0], vwid);
-	SetDynamicActorVirtualWorld(PlayerActor[playerid][1], vwid);
-	SetDynamicActorVirtualWorld(PlayerActor[playerid][2], vwid);
-	SetDynamicActorVirtualWorld(PlayerActor[playerid][3], vwid);
+	if(IsValidDynamicActor(PlayerActor[playerid]))
+		DestroyDynamicActor(PlayerActor[playerid]);
+
+	PlayerActor[playerid] = CreateDynamicActor(skin, 228.1842,66.9219,1005.0391,270.9520); //hood
+	ApplyDynamicActorAnimation(PlayerActor[playerid], "DEALER", "DEALER_IDLE", 4.1, 1, 0, 0, 0, 0);
+	SetDynamicActorVirtualWorld(PlayerActor[playerid], vwid);
 	return 1;
 }
 
 DestroyPlayerActor(playerid)
 {
-	for (new a = 0; a < 4; a ++)
-	{
-		DestroyDynamicActor(PlayerActor[playerid][a]);
-	}
+	DestroyDynamicActor(PlayerActor[playerid]);
 	return 1;
 }
 //Static
@@ -51,37 +40,37 @@ InsertStaticActors()
 {
 	fittingRoomDoor = CreateDynamicObject(2877, 216.760360, -97.310455, 1005.337768, 0.0, 0.0, 360.0, .interiorid = 15);
 
-	CreateDynamic3DTextLabel("[Drop Injured]\n{ffffff}Available Commands: '/dropinjured'", COLOR_POINT, 2035.0732,-1414.0488,16.9922, 5.0);
+	CreateDynamic3DTextLabel("[Drop Injured]\n{ffffff}Available Commands: '/dropinjured'", COLOR_DARKGREEN, 2035.0732,-1414.0488,16.9922, 5.0);
 
-	CreateDynamic3DTextLabel("[Vehicle Graveyard & Scrapyard]\n{ffffff}Available Commands: '/carscrap'", COLOR_POINT, 2412.9312,-1425.4226,23.9835, 5.0);
+	CreateDynamic3DTextLabel("[Vehicle Graveyard & Scrapyard]\n{ffffff}Available Commands: '/carscrap'", COLOR_DARKGREEN, 2412.9312,-1425.4226,23.9835, 5.0);
 
-	CreateDynamic3DTextLabel("[Clothes store]\n{ffffff}Available Commands: '/clothes'", COLOR_POINT, 217.5163,-98.4308,1005.2578, 5.0);
+	CreateDynamic3DTextLabel("[Clothes store]\n{ffffff}Available Commands: '/clothes'", COLOR_DARKGREEN, 217.5163,-98.4308,1005.2578, 5.0);
 
-	CreateDynamic3DTextLabel("[Los Santos Prison]\n{ffffff}Available Commands: '/charge'", COLOR_POINT, 252.9687,90.9530,1002.4453, 5.0);
+	CreateDynamic3DTextLabel("[Los Santos Prison]\n{ffffff}Available Commands: '/charge'", COLOR_DARKGREEN, 252.9687,90.9530,1002.4453, 5.0);
 
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_POINT, 2106.5166,-1797.5454,13.5625, 5.0);
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_POINT, 2414.0591,-1504.1791,24.0031, 5.0);
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_POINT, 2392.0125,-1905.1108,13.5234, 5.0);
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_POINT, 1859.9919,-1670.8585,13.3731, 5.0);
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_POINT, 1705.7178,-1650.0876,13.5276, 5.0);
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_POINT, 1035.1194,-1346.8387,13.7469, 5.0);
+	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 2106.5166,-1797.5454,13.5625, 5.0);
+	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 2414.0591,-1504.1791,24.0031, 5.0);
+	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 2392.0125,-1905.1108,13.5234, 5.0);
+	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 1859.9919,-1670.8585,13.3731, 5.0);
+	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 1705.7178,-1650.0876,13.5276, 5.0);
+	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 1035.1194,-1346.8387,13.7469, 5.0);
 
-	CreateDynamic3DTextLabel("[Liquor]\n{ffffff}Available Commands: '/buybeer'", COLOR_POINT, 2130.7271,-1769.0083,13.5510, 5.0);
-	CreateDynamic3DTextLabel("[Liquor]\n{ffffff}Available Commands: '/buybeer'", COLOR_POINT, 2139.9614,-1769.1486,13.5510, 5.0);
+	CreateDynamic3DTextLabel("[Liquor]\n{ffffff}Available Commands: '/buybeer'", COLOR_DARKGREEN, 2130.7271,-1769.0083,13.5510, 5.0);
+	CreateDynamic3DTextLabel("[Liquor]\n{ffffff}Available Commands: '/buybeer'", COLOR_DARKGREEN, 2139.9614,-1769.1486,13.5510, 5.0);
 
-	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_POINT, -48.4748,-1.1597,203.2633, 5.0);
-	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_POINT, -53.7980,2.8393,203.2633, 5.0);
-	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_POINT, -51.4530,5.4811,203.2633, 5.0);
-	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_POINT, -48.1108,5.5907,203.2633, 5.0);
-	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_POINT, -53.7646,5.2118,203.2633, 5.0);
+	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -48.4748,-1.1597,203.2633, 5.0);
+	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -53.7980,2.8393,203.2633, 5.0);
+	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -51.4530,5.4811,203.2633, 5.0);
+	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -48.1108,5.5907,203.2633, 5.0);
+	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -53.7646,5.2118,203.2633, 5.0);
 
-	CreateDynamic3DTextLabel("[Furniture Store]\n{ffffff}Press 'N' to grab an items.", COLOR_POINT, 1359.4304,1703.7946,434.9792, 5.0);
-	CreateDynamic3DTextLabel("[Furniture Store]\n{ffffff}Press 'N' to grab an items.", COLOR_POINT, 1359.4393,1710.9224,434.9792, 5.0);
-	CreateDynamic3DTextLabel("[Furniture Store]\n{ffffff}Press 'N' to grab an items.", COLOR_POINT, 1362.5713,1711.0144,434.9792, 5.0);
+	CreateDynamic3DTextLabel("[Furniture Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, 1359.4304,1703.7946,434.9792, 5.0);
+	CreateDynamic3DTextLabel("[Furniture Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, 1359.4393,1710.9224,434.9792, 5.0);
+	CreateDynamic3DTextLabel("[Furniture Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, 1362.5713,1711.0144,434.9792, 5.0);
 
-	CreateDynamic3DTextLabel("[Haircut]\n{ffffff}Available Commands: '/haircut'", COLOR_POINT, 2064.5574,-1794.9839,13.4599, 5.0);
+	CreateDynamic3DTextLabel("[Haircut]\n{ffffff}Available Commands: '/haircut'", COLOR_DARKGREEN, 2064.5574,-1794.9839,13.4599, 5.0);
 
-	CreateDynamic3DTextLabel("Fish Factory\n{ffffff}Available Commands: '/buybait'\n{ffffff}Available Commands: '/sellfish'", COLOR_POINT, 2895.6743,-2135.5847,3.6525, 5.0);
+	CreateDynamic3DTextLabel("Fish Factory\n{ffffff}Available Commands: '/buybait'\n{ffffff}Available Commands: '/sellfish'", COLOR_DARKGREEN, 2895.6743,-2135.5847,3.6525, 5.0);
 }
 
 InsertStaticVehicles()
@@ -2608,4 +2597,30 @@ InsertASGHMaps()
     tmpobjid = CreateDynamicObject(2611, 1836.189208, -1076.354858, 42.973728, 0.000000, 0.000000, -90.000000, -1, 1, -1, 300.00, 100.00); 
     tmpobjid = CreateDynamicObject(2612, 1836.189208, -1078.084594, 42.973728, 0.000000, 0.000000, -90.000000, -1, 1, -1, 300.00, 100.00); 
     tmpobjid = CreateDynamicObject(1506, 1834.043579, -1082.872314, 40.653724, 0.000000, 0.000000, 0.000000, -1, 1, -1, 300.00, 100.00); 
+}
+
+InsertSelectionMaps()
+{
+	tmpobjid = CreateDynamicObject(2691, 227.174942, 65.917274, 1005.739013, 0.000000, 0.000000, 90.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	tmpobjid = CreateDynamicObject(2691, 227.174942, 68.047256, 1005.739013, 0.000000, 0.000000, 90.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1005.018981, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1005.339294, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1005.699645, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1006.090026, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1006.450378, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1006.810729, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
 }

@@ -168,9 +168,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendClientMessage(playerid, COLOR_WHITE, "You selected an empty character slot!");
 				
 				SendClientMessage(playerid, -1, "This process will guide you through creating your character.");
-				SendClientMessage(playerid, -1, "Please begin by typing your characters first and last name. i.e: {8E5B94}George_Jefferson");
+				SendClientMessage(playerid, -1, "Please begin by typing your characters first and last name. i.e: {5B9460}George_Jefferson");
 				SendClientMessage(playerid, -1, "Your characters name must be in Firstname_Lastname format with no numbers or special characters.");
-				SendClientMessage(playerid, -1, "Press {8E5B94}'T'{ffffff} to inputtext for character creation.");
+				SendClientMessage(playerid, -1, "Press {5B9460}'T'{ffffff} to inputtext for character creation.");
 				
 				playerMakingCharacter[playerid] = true;
 				playerCharacterStep[playerid] = 1; 
@@ -187,7 +187,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				playerMakingCharacter[playerid] = false;
 				playerCharacterStep[playerid] = 0; 
 				
-				format(string, sizeof(string), "You selected the character {8E5B94}%s{FFFFFF}.", characterLister[playerid][listitem]);
+				format(string, sizeof(string), "You selected the character {5B9460}%s{FFFFFF}.", characterLister[playerid][listitem]);
 				SendClientMessage(playerid, -1, string);
 
 				UpdateTabListForOthers(playerid);
@@ -1728,7 +1728,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						strcat(str, "CMD\tDescription\tType\n");
 						strcat(str, "/takejobs\tStart join the jobs\tTake Jobs\nPress '2'\tStart the jobs missions\tDocksworker & Garbageman\nPress 'ALT'\tCutting & Take timber from tree\tLumberjack\nPress 'ALT'\tPickup trash nearest trashcan pickup\tGarbageman\n/takecargo\tLoad the cargo package from oceandocks import warehouse\tDocksworker\n/storecargo\tUnload the cargo package into oceandocks export warehouse\tDocksworker\n");
 						strcat(str, "/tpda\tSee the industry list\tTruckers\n/cargobuy\tBuy products cargo from oceandocks ships\tTruckers\n/cargosell\tSell products cargo to business\tTruckers\n/cargodrop\tDropped/Remove products cargo in your inventory\tTruckers\n");
-						strcat(str, "/timbersell\tSell timberwood to leafy hollow warehouses\tLumberjack\n/fish\tStart fishing jobs\tActivity\n");
+						strcat(str, "/timbercut\tCutting timber nearest trees\tLumberjack\n/timbersell\tSell timber to leafy hollow barn\tLumberjack\n/fish\tStart fishing jobs\tActivity\n");
 						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Jobs Commands:", str, "Select", "Close");
 					}
 					case 8:
@@ -2745,7 +2745,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 0:
 					{
 						new str[512];
-						strcat(str, "Welcome to The Ship!\n\nThe ship is currently restocked product every one hour(s).\n\nYou can buy cargo products if stock is still available on the ship.");
+						strcat(str, "Welcome to los santos economy!\n\nThe ship & warehouses is currently restocked product every 10 minute(s).\n\nYou can buy cargo products if stock is still available on the ship or warehouses.");
 						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Oceandocks Information", str, "Confirm", "");
 					}
 					case 1:

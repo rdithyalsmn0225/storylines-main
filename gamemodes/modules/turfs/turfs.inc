@@ -317,7 +317,7 @@ stock TurfCaptured(playerid, turfid)
 		ReloadTurf(turfid);
 		new str[128];
 		format(str, sizeof(str), "Street's News: %s has been take over by %s for %s", ReturnLocationStreet(playerid), ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-		SendClientMessageToAll(COLOR_POINT, str);
+		SendClientMessageToAll(COLOR_DARKGREEN, str);
 	}
 	else if(TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][0] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] 
 		&& TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8]
@@ -330,7 +330,7 @@ stock TurfCaptured(playerid, turfid)
 		ReloadTurf(turfid);
 		new str[128];
 		format(str, sizeof(str), "Street's News: %s has been take over by %s for %s", ReturnLocationStreet(playerid), ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-		SendClientMessageToAll(COLOR_POINT, str);
+		SendClientMessageToAll(COLOR_DARKGREEN, str);
 	}
 	else if(TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][0] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] 
 		&& TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8]
@@ -343,7 +343,7 @@ stock TurfCaptured(playerid, turfid)
 		ReloadTurf(turfid);
 		new str[128];
 		format(str, sizeof(str), "Street's News: %s has been take over by %s for %s", ReturnLocationStreet(playerid), ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-		SendClientMessageToAll(COLOR_POINT, str);
+		SendClientMessageToAll(COLOR_DARKGREEN, str);
 	}
 	else if(TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][0] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] 
 		&& TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8]
@@ -356,7 +356,7 @@ stock TurfCaptured(playerid, turfid)
 		ReloadTurf(turfid);
 		new str[128];
 		format(str, sizeof(str), "Street's News: %s has been take over by %s for %s", ReturnLocationStreet(playerid), ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-		SendClientMessageToAll(COLOR_POINT, str);
+		SendClientMessageToAll(COLOR_DARKGREEN, str);
 	}
 	else if(TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][0] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] 
 		&& TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8]
@@ -369,7 +369,7 @@ stock TurfCaptured(playerid, turfid)
 		ReloadTurf(turfid);
 		new str[128];
 		format(str, sizeof(str), "Street's News: %s has been take over by %s for %s", ReturnLocationStreet(playerid), ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-		SendClientMessageToAll(COLOR_POINT, str);
+		SendClientMessageToAll(COLOR_DARKGREEN, str);
 	}
 	else if(TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][0] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] 
 		&& TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8]
@@ -382,7 +382,7 @@ stock TurfCaptured(playerid, turfid)
 		ReloadTurf(turfid);
 		new str[128];
 		format(str, sizeof(str), "Street's News: %s has been take over by %s for %s", ReturnLocationStreet(playerid), ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-		SendClientMessageToAll(COLOR_POINT, str);
+		SendClientMessageToAll(COLOR_DARKGREEN, str);
 	}
 	else if(TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][0] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] 
 		&& TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8]
@@ -395,7 +395,7 @@ stock TurfCaptured(playerid, turfid)
 		ReloadTurf(turfid);
 		new str[128];
 		format(str, sizeof(str), "Street's News: %s has been take over by %s for %s", ReturnLocationStreet(playerid), ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-		SendClientMessageToAll(COLOR_POINT, str);
+		SendClientMessageToAll(COLOR_DARKGREEN, str);
 	}
 	else if(TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][0] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] 
 		&& TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8]
@@ -408,7 +408,7 @@ stock TurfCaptured(playerid, turfid)
 		ReloadTurf(turfid);
 		new str[128];
 		format(str, sizeof(str), "Street's News: %s has been take over by %s for %s", ReturnLocationStreet(playerid), ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-		SendClientMessageToAll(COLOR_POINT, str);
+		SendClientMessageToAll(COLOR_DARKGREEN, str);
 	}
 	else if(TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][0] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][1] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][2] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][3] 
 		&& TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][4] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][5] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][6] && TurfInfo[turfid][E_FACTION_TURFGANGTYPE][8] > TurfInfo[turfid][E_FACTION_TURFGANGTYPE][7]
@@ -421,7 +421,7 @@ stock TurfCaptured(playerid, turfid)
 		ReloadTurf(turfid);
 		new str[128];
 		format(str, sizeof(str), "Street's News: %s has been take over by %s for %s", ReturnLocationStreet(playerid), ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-		SendClientMessageToAll(COLOR_POINT, str);
+		SendClientMessageToAll(COLOR_DARKGREEN, str);
 	}
 	else
 	{

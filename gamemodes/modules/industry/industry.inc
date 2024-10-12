@@ -18,18 +18,18 @@ stock IndustryRefresh(id)
 	if(IsValidDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][3]))
     	DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][3]);
 
-    format(str, sizeof(str), "[%s]\n{ffffff}Available commands: /cargobuy, /cargosell\n{ffffff}Available stock: %d", IndustryInfo[0][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
+    format(str, sizeof(str), "[%s]\n{ffffff}Available stock: %d / 100\nPrice: $5 / unit", IndustryInfo[0][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
     
-	format(str1, sizeof(str1), "[%s]\n{ffffff}Available commands: /cargobuy, /cargosell\n{ffffff}Available stock: %d", IndustryInfo[1][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
+	format(str1, sizeof(str1), "[%s]\n{ffffff}Available stock: %d / 100\nPrice $5 / unit", IndustryInfo[1][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
 
-	format(str2, sizeof(str2), "[%s]\n{ffffff}Available commands: /cargobuy, /woodsell\n{ffffff}Available stock: %d", IndustryInfo[2][Name], ServerInfo[id][E_SERVER_WOODS]);
+	format(str2, sizeof(str2), "[%s]\n{ffffff}Available stock: %d / 100\nPrice $5 / unit", IndustryInfo[2][Name], ServerInfo[id][E_SERVER_WOODS]);
 
-	format(str3, sizeof(str3), "[%s]\n{ffffff}Available commands: /buymats\n{ffffff}Available stock: %d", IndustryInfo[3][Name], ServerInfo[id][E_SERVER_WOODS]);
+	format(str3, sizeof(str3), "[%s]\n{ffffff}Available stock: %d / 1000\nPrice $5 / gram", IndustryInfo[3][Name], ServerInfo[id][E_SERVER_MATERIALS]);
 
-	ServerInfo[id][E_SERVER_3DTEXT][0] = CreateDynamic3DTextLabel(str, COLOR_POINT, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz], 5.0);
-	ServerInfo[id][E_SERVER_3DTEXT][1] = CreateDynamic3DTextLabel(str1, COLOR_POINT, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz], 5.0);  
-	ServerInfo[id][E_SERVER_3DTEXT][2] = CreateDynamic3DTextLabel(str2, COLOR_POINT, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz], 5.0);  
-	ServerInfo[id][E_SERVER_3DTEXT][3] = CreateDynamic3DTextLabel(str3, COLOR_POINT, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz], 5.0);  
+	ServerInfo[id][E_SERVER_3DTEXT][0] = CreateDynamic3DTextLabel(str, COLOR_DARKGREEN, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz], 5.0);
+	ServerInfo[id][E_SERVER_3DTEXT][1] = CreateDynamic3DTextLabel(str1, COLOR_DARKGREEN, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz], 5.0);  
+	ServerInfo[id][E_SERVER_3DTEXT][2] = CreateDynamic3DTextLabel(str2, COLOR_DARKGREEN, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz], 5.0);  
+	ServerInfo[id][E_SERVER_3DTEXT][3] = CreateDynamic3DTextLabel(str3, COLOR_DARKGREEN, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz], 5.0);  
 	return 1;
 }
 
@@ -46,7 +46,8 @@ function:Query_ServerDataLoad()
 	{
 		cache_get_value_name_int(0, "id", ServerInfo[0][E_SERVER_DBID]);
 		cache_get_value_name_int(0, "products", ServerInfo[0][E_SERVER_PRODUCTS]);
-		cache_get_value_name_int(0, "woods", ServerInfo[0][E_SERVER_PRODUCTS]);
+		cache_get_value_name_int(0, "woods", ServerInfo[0][E_SERVER_WOODS]);
+		cache_get_value_name_int(0, "materials", ServerInfo[0][E_SERVER_MATERIALS]);
 	}	
     IndustryRefresh(0);
 	return 1;
@@ -144,7 +145,20 @@ stock ShowShipments(playerid)
 
 function:IndustryTimer()
 {
-    IndustryRefresh(0);
-	ServerInfo[0][E_SERVER_PRODUCTS] = 100;
+	if(ServerInfo[0][E_SERVER_PRODUCTS] <= 100)
+		ServerInfo[0][E_SERVER_PRODUCTS] += 10;
+	if(ServerInfo[0][E_SERVER_PRODUCTS] >= 100)
+		ServerInfo[0][E_SERVER_PRODUCTS] = 100;
+
+	if(ServerInfo[0][E_SERVER_WOODS] <= 100)
+		ServerInfo[0][E_SERVER_WOODS] += 10;
+	if(ServerInfo[0][E_SERVER_WOODS] >= 100)
+		ServerInfo[0][E_SERVER_WOODS] = 100;
+		
+	if(ServerInfo[0][E_SERVER_WOODS] <= 1000)
+		ServerInfo[0][E_SERVER_WOODS] += 10;
+	if(ServerInfo[0][E_SERVER_WOODS] >= 1000)
+		ServerInfo[0][E_SERVER_WOODS] = 1000;
+	IndustryRefresh(0);
 	return 1;
 }

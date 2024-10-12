@@ -185,6 +185,7 @@ public OnGameModeInit()
 	InsertDocksWorkers();
 	InsertDonatorStars();
 	InsertStaticActors();
+	InsertSelectionMaps();
 	InsertStaticVehicles();
 	InsertProjectPropsData();
 
@@ -204,9 +205,8 @@ public OnGameModeInit()
 	SetTimer("MinutesTimes", 60000, true);
 	SetTimer("WeaponUpdate", 1000, true);
 	SetTimer("SprayTagsTimer", 60000, true);
-	SetTimer("BarInfoTimer", 200000, true);
 	SetTimer("AntiCheatCheck", 500, true);
-	SetTimer("IndustryTimer", 3600000, true);
+	SetTimer("IndustryTimer", 600000, true);
 	SetTimer("TreeTimers", 1000, true);
 	
 	//Loading systems:
@@ -713,6 +713,7 @@ function:DB_ListCharacters(playerid)
 	
 	new vwid = AccountInfo[playerid][E_MASTERS_DBID];
 	SetPlayerVirtualWorld(playerid, vwid);
+	SetPlayerInterior(playerid, 6);
 
 	if(!rows)
 	{
@@ -735,7 +736,7 @@ function:DB_ListCharacters(playerid)
 		cache_get_value_name_int(i, "pFaction", characterFaction[playerid][i]);
 	}
 
-	CreatePlayerActor(playerid);
+	CreatePlayerActor(playerid, characterSkin[playerid][0]);
 	ShowCharacterSelection(playerid);
 	
 	KillTimer(cameraTimer[playerid]);
@@ -906,19 +907,11 @@ stock LoadCharacter(playerid)
 	}	
 
 	for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
-	SendClientMessage(playerid, COLOR_WHITE, "Welcome to the {8E5B94}GTA Storylines{ffffff}.");
+	SendClientMessageEx(playerid, COLOR_WHITE, "Welcome to the {5B9460}GTA Storylines{ffffff}, You logged in as {5B9460}%s{ffffff}.", AccountInfo[playerid][E_MASTERS_ACCNAME]);
 	SendClientMessage(playerid, COLOR_WHITE, "The first thing we suggest you to do is to read /help or read the rules in discord server!");
-	SendClientMessage(playerid, COLOR_WHITE, "Visit us and register on our discord at idlestreetrpg.my.id to stay updated.");
-	SendClientMessageEx(playerid, COLOR_WHITE, "You are a {%06x}%s{ffffff} of {%06x}%s{ffffff}.", GetPlayerColor(playerid) >>> 8, IsPlayerFactionRank(playerid), GetPlayerColor(playerid) >>> 8, ReturnFactionName(playerid));
-	/*if(GlobalTurf == 1)
-	{
-		SendClientMessageEx(playerid, COLOR_WHITE, "Turf Conflict is {8E5B94}Inactive{ffffff} for {8E5B94}%d{ffffff} days.", GlobalTurfStart);
-	}
-	else if(GlobalTurf == 0)
-	{
-		SendClientMessageEx(playerid, COLOR_WHITE, "Turf Conflict is {8E5B94}Active{ffffff} for {8E5B94}%d{ffffff} days.", GlobalTurfEnd);
-	}*/
-	
+	SendClientMessage(playerid, COLOR_WHITE, "Visit us and register on our discord at sa-mp.co.id to stay updated.");
+	SendClientMessageEx(playerid, COLOR_WHITE, "[Player MOTD]: {5B9460}%s", PLAYER_MOTD);
+
 	if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
 	{
 		if(!IsValidVehicle(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN]))
@@ -2833,7 +2826,7 @@ public OnPlayerUpdate(playerid)
 	if(GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED)
 	{
 		format(string, sizeof(string), "(( Has been injured %d times, /damages %d for more information. ))", TotalPlayerDamages[playerid], playerid);
-		SetPlayerChatBubble(playerid, string, COLOR_POINT, 30.0, 2500); 
+		SetPlayerChatBubble(playerid, string, COLOR_DARKGREEN, 30.0, 2500); 
 		
 		ShowBoxMessage(playerid, "Injury", 5, 1);
 		if(IsPlayerInAnyVehicle(playerid))
@@ -2847,7 +2840,7 @@ public OnPlayerUpdate(playerid)
 	}
 	else if(GetPlayerTeam(playerid) == PLAYER_STATE_DEAD)
 	{
-		SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_POINT, 30.0, 2500); 
+		SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_DARKGREEN, 30.0, 2500); 
 	}
 	
 	if(!IsPlayerInAnyVehicle(playerid))
@@ -4344,6 +4337,8 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 
 				if(response == EDIT_RESPONSE_FINAL)
 				{
+					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
+
 					TreeInfo[PlayerInfo[playerid][E_CHARACTER_OBJECTID]][E_TREE_POS][0] = x;
 					TreeInfo[PlayerInfo[playerid][E_CHARACTER_OBJECTID]][E_TREE_POS][1] = y;
 					TreeInfo[PlayerInfo[playerid][E_CHARACTER_OBJECTID]][E_TREE_POS][2] = z;
@@ -4463,13 +4458,13 @@ function:Query_CreateStreetNames(playerid)
 		
 		for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
 		
-		format (string, sizeof(string), "Your new characters street name will be: {8E5B94}%s", playerCharactersStreetName[playerid]);
+		format (string, sizeof(string), "Your new characters street name will be: {5B9460}%s", playerCharactersStreetName[playerid]);
 		SendClientMessage(playerid, -1, string); 
 
 		SendClientMessage(playerid, -1, " "); 
 		SendClientMessage(playerid, -1, "The next steps will require a background for your new character.");
-		SendClientMessage(playerid, -1, "Please provide your characters date of birth. The format: {8E5B94}02/02/1960");
-		SendClientMessage(playerid, -1, "Press {8E5B94}'T'{ffffff} to inputtext for character creation.");
+		SendClientMessage(playerid, -1, "Please provide your characters date of birth. The format: {5B9460}02/02/1960");
+		SendClientMessage(playerid, -1, "Press {5B9460}'T'{ffffff} to inputtext for character creation.");
 		playerCharacterStep[playerid] = 3; 
 	}
 	return 1;
@@ -4489,14 +4484,14 @@ function:Query_CreateCharacter(playerid)
 		
 		for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
 		
-		format (string, sizeof(string), "Your new characters name will be: {8E5B94}%s", playerCharactersName[playerid]);
+		format (string, sizeof(string), "Your new characters name will be: {5B9460}%s", playerCharactersName[playerid]);
 		SendClientMessage(playerid, -1, string); 
 
 		SendClientMessage(playerid, -1, " "); 
 		SendClientMessage(playerid, -1, "The next steps will require a creating characters street name.");
-		SendClientMessage(playerid, -1, "Please begin by typing your characters street name. i.e: {8E5B94}RayRay");
+		SendClientMessage(playerid, -1, "Please begin by typing your characters street name. i.e: {5B9460}RayRay");
 		SendClientMessage(playerid, -1, "Your characters name must be in 'Streetname' format with no numbers or special characters.");
-		SendClientMessage(playerid, -1, "Press {8E5B94}'T'{ffffff} to inputtext for character creation.");
+		SendClientMessage(playerid, -1, "Press {5B9460}'T'{ffffff} to inputtext for character creation.");
 		playerCharacterStep[playerid] = 2; 
 	}
 	return 1;

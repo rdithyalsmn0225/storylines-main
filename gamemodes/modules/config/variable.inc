@@ -1070,7 +1070,7 @@ new possiblE_VEHICLE_PLATES[][] =
 new const JobsInfo[][E_JOBS_LOCATIONS] =
 {
 	{"Unemployed", 0.0, 0.0, 0.0},
-	{"Truckers", 1793.2362,-1691.9686,13.4858},
+	{"Truckers", -76.8248,-1136.7188,1.0781},
 	{"Lumberjack", -1438.6829,-1543.6034,101.7578}
 };
 
@@ -1157,7 +1157,7 @@ new const PublicName[][128] =
 new const JobLocName[][62] =
 {
 	"ArborV Trucking.co (Job: Trucking)",
-	"Leafy Hollow Timber.co (Job: Lumberjack)",
+	"Leafy Hollow Barn.co (Job: Lumberjack)",
     "G&S Garbage.co (SideJob: Trashmaster)",
 	"Sheroline's Dockswork.co (SideJob: Dockworker)",
 	"Royal Fishers.co (SideJob: Fishing)"
@@ -1165,11 +1165,10 @@ new const JobLocName[][62] =
 
 new const IndustryInfo[][E_INDUSTRY_DATA] = 
 {
-	/* =====[SECONDARY]===== */
 	{"Oceandocks Ships", 2824.3801,-2387.5449,12.0771}, // Oceandocks Ships
 	{"Oceandocks Ships", 2824.1074,-2436.5945,12.0891}, // Oceandocks Ships
-	{"Leafy Hollow Acress", -1448.3512,-1522.6899,101.7578}, //Leafy Hollow Acress
-	{"Gunstore", 1468.3636,1568.7332,108.3770} //Gunstore int
+	{"Leafy Hollow Barn", -1448.3512,-1522.6899,101.7578}, //Leafy Hollow Acress
+	{"Materials", 1468.3636,1568.7332,108.3770} //Materials
 };
 
 new const PenalInfo[][E_PENALCODES_DATA] =

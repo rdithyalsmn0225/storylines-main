@@ -45,9 +45,7 @@ CMD:aduty(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] = false;
 		
 		format(str, sizeof(str), "%s is now off admin duty.", ReturnSettingsName(playerid, playerid)); 
-		format(str1, sizeof(str1), "You has now off admin duty.", ReturnSettingsName(playerid, playerid)); 
 		SendAdminMessage(1, str);
-		SendClientMessageEx(playerid, COLOR_WHITE, str1);
 		UpdateTabListForOthers(playerid);
 		SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]); 
 	}
@@ -57,7 +55,6 @@ CMD:aduty(playerid, params[])
 		
 		format(str, sizeof(str), "%s is now on admin duty.", ReturnSettingsName(playerid, playerid)); 
 		SendAdminMessage(1, str);
-		SendClientMessageEx(playerid, COLOR_RED, str1);
 		UpdateTabListForOthers(playerid);
 	}
 	
@@ -73,10 +70,10 @@ CMD:a(playerid, params[])
 	
 	if(strlen(params) > 89)
 	{
-		SendAdminMessageEx(COLOR_POINT, 1, "** %s (%s): %.89s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
-		SendAdminMessageEx(COLOR_POINT, 1, "** %s (%s): ... %s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params[89]);
+		SendAdminMessageEx(COLOR_DARKGREEN, 1, "** %s (%s): %.89s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
+		SendAdminMessageEx(COLOR_DARKGREEN, 1, "** %s (%s): ... %s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params[89]);
 	}
-	else SendAdminMessageEx(COLOR_POINT, 1, "** %s (%s): %s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
+	else SendAdminMessageEx(COLOR_DARKGREEN, 1, "** %s (%s): %s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
 	return 1;
 }
 
@@ -589,7 +586,7 @@ CMD:ar(playerid, params[])
 		return SendErrorMessage(playerid, "The report ID you specified doesn't exist."); 
 		
 	SendAdminMessageEx(COLOR_RED, 1, "[Report] Admin %s has accepted report %d", ReturnSettingsName(playerid, playerid), reportid);
-	SendClientMessageEx(playerid, COLOR_POINT, "[Report] You accepted %s's report. [Report: %s]", ReturnSettingsName(ReportInfo[reportid][E_REPORT_BY], playerid), ReportInfo[reportid][E_REPORT_DETAILS]);
+	SendClientMessageEx(playerid, COLOR_DARKGREEN, "[Report] You accepted %s's report. [Report: %s]", ReturnSettingsName(ReportInfo[reportid][E_REPORT_BY], playerid), ReportInfo[reportid][E_REPORT_DETAILS]);
 	
 	ReportInfo[reportid][E_REPORT_EXISTS] = false;
 	ReportInfo[reportid][E_REPORT_BY] = INVALID_PLAYER_ID; 
@@ -1977,7 +1974,7 @@ CMD:editfaction(playerid, params[])
 			DestroyDynamic3DTextLabel(FactionInfo[factionid][E_FACTION_SPAWNTEXT]);
 
 		FactionInfo[factionid][E_FACTION_SPAWNPICKUP] = CreateDynamicPickup(1239, 1, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
-		FactionInfo[factionid][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel("Faction Spawn Point\n{ffffff}Available Commands: Use /factionhelp to see faction commands", COLOR_POINT, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], 30.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
+		FactionInfo[factionid][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel("Faction Spawn Point\n{ffffff}Available Commands: Use /factionhelp to see faction commands", COLOR_DARKGREEN, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], 30.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
 
 		SaveFaction(factionid);
 	}

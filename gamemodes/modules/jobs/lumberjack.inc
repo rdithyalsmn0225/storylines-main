@@ -169,7 +169,7 @@ CMD:timbersell(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_WOODS, 1);
 		
-		SendServerMessage(playerid, "You has sell woods for %s into oceandocks ships.", FormatMoney(LUMBERJACK_SALARY*5));
+		SendServerMessage(playerid, "You has sell woods for %s into leafy hollow barn.", FormatMoney(LUMBERJACK_SALARY*2));
 	}
 	return 1;
 }

@@ -20,7 +20,7 @@ InsertEmmetInit()
     for(new i = 0; i < sizeof(EmmetInfo); i++)
     {
         Emmet[i] = CreateDynamicActor(EmmetInfo[i][EMMET_SKIN], EmmetInfo[i][EMMET_POSX], EmmetInfo[i][EMMET_POSY], EmmetInfo[i][EMMET_POSZ], EmmetInfo[i][EMMET_POSA]);
-        CreateDynamic3DTextLabel(EmmetInfo[i][EMMET_TEXT], COLOR_POINT, EmmetInfo[i][EMMET_POSX], EmmetInfo[i][EMMET_POSY], EmmetInfo[i][EMMET_POSZ], 3.0);
+        CreateDynamic3DTextLabel(EmmetInfo[i][EMMET_TEXT], COLOR_DARKGREEN, EmmetInfo[i][EMMET_POSX], EmmetInfo[i][EMMET_POSY], EmmetInfo[i][EMMET_POSZ], 3.0);
 		SetDynamicActorVirtualWorld(Emmet[i], 0);
 		ApplyDynamicActorAnimation(Emmet[i], "MISC", "IDLE_CHAT_02", 4.0999, 1, 0, 0, 0, 0);
 	}
@@ -60,9 +60,6 @@ CMD:creategun(playerid, params[])
 
 	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
 		return SendErrorMessage(playerid, "This Business has been robbery.");
-		
-	if(!PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE])
-		return SendUnauthMessage(playerid); 
 
 	new str[512];
 	strcat(str, "Weapons\tIngredient\tPrice");
@@ -102,7 +99,7 @@ Dialog:BuyMats(playerid, response, listitem, inputtext[])
 		if(total > PlayerInfo[playerid][E_CHARACTER_MONEY])
 			return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(total), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 		
-		GiveMoney(playerid, total);
+		GiveMoney(playerid, -total);
 		Inventory_Add(playerid, "Materials", 3014, strval(inputtext));
 	}
 	return 1;

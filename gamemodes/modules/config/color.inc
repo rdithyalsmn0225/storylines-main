@@ -44,6 +44,5 @@
 #define COLOR_CYAN 			(0x00FFFFFF)
 #define COLOR_PINK			(0xFF8282FF)
 #define COLOR_PURPLE 		(0x6613BFFF)
-#define COLOR_POINT 		(0xb6d9e1FF)
 #define COLOR_OOC         	(0xAAC4E5FF)
 #define COLOR_DEFAULT 		(0xC8C8C8C8)

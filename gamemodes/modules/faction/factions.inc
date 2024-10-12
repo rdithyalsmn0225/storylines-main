@@ -73,13 +73,13 @@ function:Query_LoadFactions()
 		{
 			new str[512];
 			format(str, sizeof(str), "[Faction Spawn Point]");
-			FactionInfo[i+1][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel(str, COLOR_POINT, FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[i+1][E_FACTION_SPAWNWORLD], FactionInfo[i+1][E_FACTION_SPAWNINT]);
+			FactionInfo[i+1][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel(str, COLOR_DARKGREEN, FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[i+1][E_FACTION_SPAWNWORLD], FactionInfo[i+1][E_FACTION_SPAWNINT]);
 		}
 		else
 		{
 			new str[512];
 			format(str, sizeof(str), "[Faction Spawn Point]\n{ffffff}Available Commands: /flocker to access faction locker.");
-			FactionInfo[i+1][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel(str, COLOR_POINT, FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[i+1][E_FACTION_SPAWNWORLD], FactionInfo[i+1][E_FACTION_SPAWNINT]);
+			FactionInfo[i+1][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel(str, COLOR_DARKGREEN, FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[i+1][E_FACTION_SPAWNWORLD], FactionInfo[i+1][E_FACTION_SPAWNINT]);
 		}
 		mysql_format(ourConnection, newThread, sizeof(newThread), "SELECT * FROM faction_ranks WHERE factionid = %i", i+1); 
 		mysql_pquery(ourConnection, newThread, "Query_LoadFactionRanks", "i", i+1);
