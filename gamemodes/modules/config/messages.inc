@@ -380,6 +380,56 @@ stock SendPoliceMessage(color, const str[], {Float,_}:...)
 	return 1;
 }
 
+stock SendMedicMessage(color, const str[], {Float,_}:...)
+{
+	static
+	    args,
+	    start,
+	    end,
+	    string[144]
+	;
+	#emit LOAD.S.pri 8
+	#emit STOR.pri args
+
+	if (args > 8)
+	{
+		#emit ADDR.pri str
+		#emit STOR.pri start
+
+	    for (end = start + (args - 8); end > start; end -= 4)
+		{
+	        #emit LREF.pri end
+	        #emit PUSH.pri
+		}
+		#emit PUSH.S str
+		#emit PUSH.C 144
+		#emit PUSH.C string
+
+		#emit LOAD.S.pri 8
+		#emit ADD.C 4
+		#emit PUSH.pri
+
+		#emit SYSREQ.C format
+		#emit LCTRL 5
+		#emit SCTRL 4
+
+        foreach (new i : Player)
+		{
+			if (FactionInfo[PlayerInfo[i][E_CHARACTER_FACTION]][E_FACTION_TYPE] == FACTION_TYPE_MEDICAL) {
+  				SendClientMessage(i, color, string);
+			}
+		}
+		return 1;
+	}
+	foreach (new i : Player)
+	{
+		if (FactionInfo[PlayerInfo[i][E_CHARACTER_FACTION]][E_FACTION_TYPE] == FACTION_TYPE_MEDICAL) {
+			SendClientMessage(i, color, str);
+		}
+	}
+	return 1;
+}
+
 stock SendUnauthMessage(playerid)
 {
 	return SendErrorMessage(playerid, "You aren't authorized to use this.");

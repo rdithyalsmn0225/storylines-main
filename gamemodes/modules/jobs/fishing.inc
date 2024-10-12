@@ -162,10 +162,11 @@ CMD:fish(playerid, params[])
 		return SendErrorMessage(playerid, "You must be onfoot!");
 
 	PlayerInfo[playerid][E_CHARACTER_FISHING] = true;
-	ApplyAnimation(playerid,"SWORD","sword_block", 4.1, 0, 1, 0, 1, 1);
+	
 	Inventory_Remove(playerid, "Fish Bait", 1);
 	SetTimerEx("FishingTimer", 15000, false, "ii", playerid, 1);
 	TogglePlayerControllable(playerid, false);
+	ApplyAnimation(playerid,"SWORD","sword_block",50.0 ,0,1,0,1,1);
 	SendClientMessageEx(playerid, COLOR_FISHING, "[Fishing]:{d7d7d7} You start fishing, please wait for the moment.");
 	return 1;
 }

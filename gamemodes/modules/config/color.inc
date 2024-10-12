@@ -41,6 +41,7 @@
 #define COLOR_FADE5 		(0x6E6E6E6E)
 
 #define COLOR_COP 			(0x8D8DFFFF)
+#define COLOR_MEDIC         (0xDFA0C1FF)
 #define COLOR_DEPT 			(0xF07A7AFF)
 
 #define COLOR_SAMP			(0xADC3E7FF)
@@ -57,17 +58,5 @@
 #define COLOR_POINT 		(0xb6d9e1FF)
 #define COLOR_OOC         	(0xAAC4E5FF)
 #define COLOR_DEFAULT 		(0xC8C8C8C8)
-
-//GANG COLOR
-#define COLOR_GSF 	(0x2C6B2FFF)
-#define COLOR_SBF	(0x9EC9A0FF)
-#define COLOR_TDF 	(0x6D9D6FFF)
-#define COLOR_OGF	(0xD7A542FF)
-#define COLOR_KTB 	(0x6C1D8AFF)
-#define COLOR_JB	(0x9B4F8FFF)
-#define COLOR_FYB	(0x8A2C7CFF)
-#define COLOR_TDB	(0xAC09C7FF)
-#define COLOR_VLA	(0x7BEDffFF)
-#define COLOR_ELSV	(0xFFDF7BFF)
 
 

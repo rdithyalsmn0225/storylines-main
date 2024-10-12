@@ -131,8 +131,9 @@ main ()  {}
 #include "modules\jobs\dockworker.inc"
 
 #include "modules\commands\globalooc.inc"
-#include "modules\commands\admins.inc"
-#include "modules\commands\general.inc"
+#include "modules\commands\cmd_admins.inc"
+#include "modules\commands\cmd_player.inc"
+#include "modules\commands\cmd_faction.inc"
 
 //Start of functions:
 public OnGameModeInit()
@@ -169,6 +170,7 @@ public OnGameModeInit()
 	
 	//Insert:
 	InsertObjects();
+	InsertASGHMaps();
 	InsertEmmetInit();
 	InsertJobsPoint();
 	InsertAntiCheat();
@@ -3351,14 +3353,15 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 			else if(PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] >= 100)
 			{
-				DestroyGameBar(playerid);
 				ClearAnimations(playerid);
 				Inventory_Add(playerid, "Fish", 19630, 1);
 				PlayerInfo[playerid][E_CHARACTER_FISHING] = false;
 				PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] = false;
 				PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] = 0;
+				
 				KillTimer(PlayerInfo[playerid][E_CHARACTER_FISHINGTIMER]);
 				TogglePlayerControllable(playerid, true);
+				DestroyGameBar(playerid);
 				ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
 				SendClientMessageEx(playerid, COLOR_FISHING, "[Fishing]:{d7d7d7} You caught a 1.kg fish.");
 				

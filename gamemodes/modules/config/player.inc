@@ -851,6 +851,14 @@ stock IsPlayerFactionRank(playerid)
  		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 3)format(astring, sizeof(astring), "Deputy Chief of Police");
  		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 4)format(astring, sizeof(astring), "Chief of Police");
 	}
+	else if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] == FACTION_TYPE_MEDICAL)
+ 	{ 
+ 		if (PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 0)format(astring, sizeof(astring), "Training");
+ 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 1)format(astring, sizeof(astring), "Doctor");
+ 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 2)format(astring, sizeof(astring), "Hospital Executive");
+ 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 3)format(astring, sizeof(astring), "Deputy Chief of Medical");
+ 		else if (PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 4)format(astring, sizeof(astring), "Chief of Medical");
+	}
 	else
 	{
 		format(astring, sizeof(astring), "Hoodrats");
@@ -865,66 +873,8 @@ stock randomEx(min, max)
 
 function:RefreshNamesFunc(playerid)
 {
-	
-	/*new str[1024];
-	format(str, sizeof(str), "%s%s", IsPlayerStreetName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME]);
-	SetPlayerName(playerid, str);*/
 	UpdateTabListForOthers(playerid);
 	UpdateTabListForPlayer(playerid);
-
-	if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 0 && PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 0) //Hoodrat
-	{
-		SetPlayerColor(playerid, COLOR_GREY);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 1) //LSPD
-	{
-		SetPlayerColor(playerid, COLOR_COP);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 2) //LSMD
-	{
-		SetPlayerColor(playerid, COLOR_PINK);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 3) //GSF
-	{
-		if (PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] == 1)
-		{
-			SetPlayerColor(playerid, COLOR_OGF);
-		}
-		else
-			SetPlayerColor(playerid, COLOR_GSF);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 4) //KTB
-	{
-		SetPlayerColor(playerid, COLOR_KTB);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 5) //JB
-	{
-		SetPlayerColor(playerid, COLOR_JB);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 6) //SBF
-	{
-		SetPlayerColor(playerid, COLOR_SBF);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 7) //ELSV
-	{
-		SetPlayerColor(playerid, COLOR_ELSV);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 8) //VLA
-	{
-		SetPlayerColor(playerid, COLOR_VLA);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 9) //FYB
-	{
-		SetPlayerColor(playerid, COLOR_FYB);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 10) //TDF
-	{
-		SetPlayerColor(playerid, COLOR_TDF);
-	}
-	else if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 11) //TDB
-	{
-		SetPlayerColor(playerid, COLOR_TDB);
-	}
 	return 1;
 }
 

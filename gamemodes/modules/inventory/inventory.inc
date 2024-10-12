@@ -345,7 +345,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
         if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
 			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = FISHING_ROD;
-			SetPlayerAttachedObject(playerid, ATTACH_HAND, 18632, 6, 0.0000, 0.0000, 0.0360, 0.0000, 0.0000, 0.0000, 1.0000, 1.0000, 1.0000, 0xFFFFFFFF, 0xFFFFFFFF);
+			SetPlayerAttachedObject(playerid, ATTACH_HAND, 18632,6,0.079376,0.037070,0.007706,181.482910,0.000000,0.000000,1.000000,1.000000,1.000000, 0xFFFFFFFF, 0xFFFFFFFF);
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
     }

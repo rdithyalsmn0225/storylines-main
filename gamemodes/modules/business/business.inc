@@ -358,7 +358,7 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 			if(Inventory_Count(playerid, "Materials") < 50)
-				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+				return SendErrorMessage(playerid, "You must have 50 gram of materials.");
 
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
@@ -386,7 +386,7 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 			
 			if(Inventory_Count(playerid, "Materials") < 55)
-				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+				return SendErrorMessage(playerid, "You must have 50 gram of materials.");
 
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
@@ -415,7 +415,7 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 			if(Inventory_Count(playerid, "Materials") < 60)
-				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+				return SendErrorMessage(playerid, "You must have 50 gram of materials.");
 
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
@@ -444,7 +444,7 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 			if(Inventory_Count(playerid, "Materials") < 100)
-				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+				return SendErrorMessage(playerid, "You must have 50 gram of materials.");
 
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
@@ -473,7 +473,7 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 			
 			if(Inventory_Count(playerid, "Materials") < 110)
-				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+				return SendErrorMessage(playerid, "You must have 50 gram of materials.");
 
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
@@ -499,7 +499,7 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 		else if(weapon == WEAPON_UZI && type == 3)
 		{
 			if(Inventory_Count(playerid, "Materials") < 120)
-				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+				return SendErrorMessage(playerid, "You must have 50 gram of materials.");
 
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
@@ -558,7 +558,7 @@ function:OnPlayerPurchaseAmmo(playerid, response, type, ammo, price)
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 			if(Inventory_Count(playerid, "Materials") < 120)
-				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+				return SendErrorMessage(playerid, "You must have 50 gram of materials.");
 
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
@@ -580,7 +580,7 @@ function:OnPlayerPurchaseAmmo(playerid, response, type, ammo, price)
 		else if(type == 1)
 		{
 			if(Inventory_Count(playerid, "Materials") < 120)
-				return SendErrorMessage(playerid, "You must have 50 gram of materials,");
+				return SendErrorMessage(playerid, "You must have 50 gram of materials.");
 
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));

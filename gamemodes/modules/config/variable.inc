@@ -779,6 +779,10 @@ new g_aLspdSkins[] = {
 	300, 301, 302, 310, 311, 20071, 20072, 20073, 20074
 };
 
+new g_aLsmdSkins[] = {
+	274, 275, 276
+};
+
 new g_aHoodRatsSkins[] = {
 	21, 22, 23, 28, 29, 25, 19, 7, 30, 66, 143, 144, 183, 142, 48, 47
 };
@@ -1066,6 +1070,7 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Fish Bait", 19566, 0},
 	{"Pissh Pack", 19572, 0},
 	{"Raw Meat", 19582, 0},
+	{"Medkits", 17738, 0},
 	{"BBQ", 19882, 0},
 	{"Broken Bottle", -2210, 0},
 	{"Glass", -2211, 0},
