@@ -98,6 +98,9 @@ CMD:takecargo(playerid, params[])
     if(!IsPlayerInRangeOfPoint(playerid, 3.0, Dockworker_Collect[PlayerDockworkerCollect[playerid]][0], Dockworker_Collect[PlayerDockworkerCollect[playerid]][1], Dockworker_Collect[PlayerDockworkerCollect[playerid]][2]))
         return SendErrorMessage(playerid, "You aren't near the dockworker collect checkpoint.");
 
+    if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+		return SendErrorMessage(playerid, "You're can't use this right now."); 
+
     if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {
         if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] == true && VehicleInfo[vehicleid][E_VEHICLE_CRATES] == 0)
@@ -125,6 +128,9 @@ CMD:storecargo(playerid, params[])
     if(!IsPlayerInRangeOfPoint(playerid, 3.0, Dockworker_Store[PlayerDockworkerStore[playerid]][0],Dockworker_Store[PlayerDockworkerStore[playerid]][1], Dockworker_Store[PlayerDockworkerStore[playerid]][2]))
         return SendErrorMessage(playerid, "You aren't near the dockworker collect checkpoint.");
         
+    if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+		return SendErrorMessage(playerid, "You're can't use this right now."); 
+
     if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {
         if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] == true && VehicleInfo[vehicleid][E_VEHICLE_CRATES] == 1)

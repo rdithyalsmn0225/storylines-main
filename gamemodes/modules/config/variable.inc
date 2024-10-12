@@ -34,7 +34,8 @@ enum
 enum
 {
 	JOB_NONE,
-    JOB_TRUCKER
+    JOB_TRUCKER,
+	JOB_LUMBERJACK,
 };
 
 enum 
@@ -73,6 +74,7 @@ enum
 	PCP,
 	CRACK,
 	CRATES,
+	WOODS,
 };
 
 enum
@@ -1067,7 +1069,8 @@ new possiblE_VEHICLE_PLATES[][] =
 new const JobsInfo[][E_JOBS_LOCATIONS] =
 {
 	{"Unemployed", 0.0, 0.0, 0.0},
-	{"Truckers", 1793.2362,-1691.9686,13.4858}
+	{"Truckers", 1793.2362,-1691.9686,13.4858},
+	{"Lumberjack", -1438.6829,-1543.6034,101.7578}
 };
 
 new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
@@ -1079,6 +1082,7 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Sprunk", 2601, 0},
 	{"Spraycan", 365, 0},
 	{"Crowbar", 18634, 0},
+	{"Axe", 19631, 0},
 	{"Gascan", 1650, 0},
 	{"Fish", 19630, 0},
 	{"Fishing rod", 18632, 0},
@@ -1114,6 +1118,7 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Oregano", 19570, 0},
 	{"Baking Soda", 19570, 0},
 	{"Materials", 3014, 0},
+	{"Woods", 1463, 0},
 	{"Woods Cargo", 2912, 0},
 	{"Tools Cargo", 2912, 0},
 	{"Clothes Cargo", 2912, 0},

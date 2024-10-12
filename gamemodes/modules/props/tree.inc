@@ -1,6 +1,6 @@
 stock IsPlayerNearestTree(playerid)
 {
-	forex(i, MAX_TREE) if(TreeInfo[i][E_TREE_EXISTS]) if(IsPlayerInDynamicArea(playerid, TreeInfo[i][E_TREE_AREA]))
+	forex(i, MAX_TREES) if(TreeInfo[i][E_TREE_EXISTS]) if(IsPlayerInDynamicArea(playerid, TreeInfo[i][E_TREE_AREA]))
 		return i;
 
 	return -1;
@@ -46,14 +46,14 @@ function:Query_LoadTree()
 		{
 			TreeInfo[i][E_TREE_EXISTS] = true;
 			TreeInfo[i][E_TREE_CUTTED] = false;
-			cache_get_value_name_int(i, "ID", TreeInfo[i][E_TREE_DBID]);
-			cache_get_value_name_float(i, "PosX", TreeInfo[i][E_TREE_POS][0]);
-			cache_get_value_name_float(i, "PosY", TreeInfo[i][E_TREE_POS][1]);
-			cache_get_value_name_float(i, "PosZ", TreeInfo[i][E_TREE_POS][2]);
-			cache_get_value_name_float(i, "PosRX", TreeInfo[i][E_TREE_POS][3]);
-			cache_get_value_name_float(i, "PosRY", TreeInfo[i][E_TREE_POS][4]);
-			cache_get_value_name_float(i, "PosRZ", TreeInfo[i][E_TREE_POS][5]);
-			cache_get_value_name_int(i, "Time", TreeInfo[i][E_TREE_TIMER]);
+			cache_get_value_name_int(i, "id", TreeInfo[i][E_TREE_DBID]);
+			cache_get_value_name_float(i, "posx", TreeInfo[i][E_TREE_POS][0]);
+			cache_get_value_name_float(i, "posy", TreeInfo[i][E_TREE_POS][1]);
+			cache_get_value_name_float(i, "posz", TreeInfo[i][E_TREE_POS][2]);
+			cache_get_value_name_float(i, "posrx", TreeInfo[i][E_TREE_POS][3]);
+			cache_get_value_name_float(i, "posry", TreeInfo[i][E_TREE_POS][4]);
+			cache_get_value_name_float(i, "posrz", TreeInfo[i][E_TREE_POS][5]);
+			cache_get_value_name_int(i, "time", TreeInfo[i][E_TREE_TIMER]);
 			Tree_Spawn(i);
 		}
 		printf("[SERVER]: %i businesses were loaded from \"%s\" database...", rows, SQL_DATABASE);
@@ -117,6 +117,19 @@ stock Tree_Delete(id)
 	return 1;
 }
 
+function:TreeTimers()
+{
+    forex(i, MAX_TREES) if(TreeInfo[i][E_TREE_EXISTS] && TreeInfo[i][E_TREE_TIMER] > 0)
+	{
+		TreeInfo[i][E_TREE_TIMER]--;
+		if(TreeInfo[i][E_TREE_TIMER] <= 0)
+		{
+			TreeInfo[i][E_TREE_CUTTED] = false;
+			TreeInfo[i][E_TREE_OBJECT] = CreateDynamicObject(657, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2], TreeInfo[i][E_TREE_POS][3], TreeInfo[i][E_TREE_POS][4], TreeInfo[i][E_TREE_POS][5], -1, -1, -1, 500.0, 500.0);
+			Tree_Refresh(i);
+		}
+	}
+}
 CMD:createtree(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < 4)

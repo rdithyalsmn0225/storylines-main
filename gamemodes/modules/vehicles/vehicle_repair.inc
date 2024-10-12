@@ -18,8 +18,9 @@ CMD:repairkits(playerid, params[])
 				
 	if(GetNearestVehicle(playerid) == INVALID_VEHICLE_ID)
 		return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
 	if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-		return SendErrorMessage(playerid, "You're already repairing a vehicle."); 
+		return SendErrorMessage(playerid, "You're can't use this right now."); 
 
 	new Float:x, Float:y, Float:z;
 	GetPlayerPos(playerid, x, y, z);

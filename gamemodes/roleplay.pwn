@@ -127,6 +127,7 @@ main ()  {}
 #include "modules\jobs\header.inc"
 #include "modules\jobs\burglary.inc"
 #include "modules\jobs\trucker.inc"
+#include "modules\jobs\lumberjack.inc"
 #include "modules\jobs\fishing.inc"
 #include "modules\jobs\trashmaster.inc"
 #include "modules\jobs\dockworker.inc"
@@ -206,6 +207,7 @@ public OnGameModeInit()
 	SetTimer("BarInfoTimer", 200000, true);
 	SetTimer("AntiCheatCheck", 500, true);
 	SetTimer("IndustryTimer", 3600000, true);
+	SetTimer("TreeTimers", 1000, true);
 	
 	//Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
@@ -215,7 +217,6 @@ public OnGameModeInit()
 	mysql_pquery(ourConnection, "SELECT * FROM `court`", "Query_CourtLoad", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `tree`", "Query_LoadTree", ""); 
 	mysql_pquery(ourConnection, "SELECT * FROM `dropped`", "Query_DroppedLoad", "");
-	//mysql_pquery(ourConnection, "SELECT * FROM `turfsglobal`", "Query_LoadGlobalTurf", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `spray_tags`", "Query_SpraytagsLoad", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `server_data`", "Query_ServerDataLoad", "");
 
@@ -548,6 +549,36 @@ public OnPlayerEnterRaceCheckpoint(playerid)
     return 1;
 }
 
+public OnPlayerEnterDynamicArea(playerid, areaid)
+{
+	forex(i, MAX_TREES) if(TreeInfo[i][E_TREE_EXISTS])
+	{
+		if(areaid == TreeInfo[i][E_TREE_AREA])
+		{
+			new str[152];
+			if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_LUMBERJACK)
+			{
+				if(TreeInfo[i][E_TREE_CUTTED])
+				{
+					format(str, sizeof(str), "Press LMB to load the timber.");
+				}
+				else
+				{
+					if(TreeInfo[i][E_TREE_TIMER] < 1)
+					{
+						format(str, sizeof(str), "Available to cut~n~Press LMB to begin.");
+					}
+					else
+					{
+						format(str, sizeof(str), "Available in: %d seconds", TreeInfo[i][E_TREE_TIMER]);
+					}
+				}
+				ShowBoxMessage(playerid, str, 5);
+			}
+		}
+	}
+	return 1;
+}
 
 public OnPlayerEnterDynamicCP(playerid, checkpointid)
 {
@@ -3271,6 +3302,59 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
+	if(newkeys & KEY_CTRL_BACK)
+	{
+		if(IsPlayerNearestTree(playerid) != -1)
+		{
+			new Float:x, Float:y, Float:z;
+			GetPlayerPos(playerid, x, y, z);
+
+			new id;
+			id = IsPlayerNearestTree(playerid);
+
+			if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_LUMBERJACK)
+				return SendErrorMessage(playerid, "You aren't lumberjack.");
+
+			if(!Inventory_Count(playerid, "Axe"))
+				return SendErrorMessage(playerid, "You don't have any axe in inventory.");
+
+			if(TreeInfo[id][E_TREE_TIMER] > 0)
+				return SendErrorMessage(playerid, "This tree still unavailable.");
+
+			if(TreeInfo[id][E_TREE_CUT])
+				return SendErrorMessage(playerid, "Unable to execute this tree! (being interacted with another player)");
+
+			if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+				return SendErrorMessage(playerid, "You're can't use this right now."); 
+
+			if(!TreeInfo[id][E_TREE_CUTTED])
+			{
+				if(TreeInfo[id][E_TREE_PROGRESS] < 100)
+				{
+					PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
+					PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+					PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading cutting trees process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+					PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("CutTree", 500, true, "dd", playerid, id);
+					TogglePlayerControllable(playerid, false);
+					ApplyAnimation(playerid,"BASEBALL", "Bat_M", 4.1, 1, 0, 0, 1, 0, 1);
+					TreeInfo[id][E_TREE_CUT] = true;
+				}
+			}
+			else
+			{
+				if(Inventory_Count(playerid, "Woods"))
+					return SendErrorMessage(playerid, "You already carrying woods");
+
+				PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
+				PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+				PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take timber process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+				PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("CreateTimber", 1000, true, "dd", playerid, id);
+				TogglePlayerControllable(playerid, false);
+				TreeInfo[id][E_TREE_CUT] = true;
+				ApplyAnimation(playerid,"BOMBER","BOM_Plant_Loop", 4.1, 1, 0, 0, 1, 0, 1);
+			}
+		}
+	}
 	if((newkeys & KEY_AIM) == KEY_AIM && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT && BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] > 500 && BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] == false)
 	{
 		if(GetPlayerWeapon(playerid) >= 22 && GetPlayerWeapon(playerid) <= 33)

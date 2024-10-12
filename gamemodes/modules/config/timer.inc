@@ -448,6 +448,13 @@ function:OnPlayerNearPickup()
 			
 			ShowBoxMessage(i, str, 3, 0); 	
 		}
+		if((id = IsPlayerNearEntrance(i)) != 0)
+		{
+			if(!EntranceInfo[id][E_ENTRANCE_DBID])
+				continue;
+			format(str, sizeof(str), "Porch of %s, %s.~n~~n~To enter, use RETURN.", ReturnLocationStreet(i), ReturnLocation(i), BusinessInfo[id][E_BUSINESS_NAME], ReturnDBIDName(BusinessInfo[id][E_BUSINESS_OWNERDBID]), FormatMoney(BusinessInfo[id][E_BUSINESS_ENTRANCEFEE])); 
+			ShowBoxMessage(i, str, 3, 0); 	
+		}
 		for(new p = 1; p < MAX_PROPERTY; p++)
 		{		
 			if(IsPlayerInRangeOfPoint(i, 3.0, PropertyInfo[p][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[p][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[p][E_PROPERTY_ENTRANCEPOS][2]))

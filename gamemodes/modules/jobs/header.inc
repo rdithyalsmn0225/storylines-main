@@ -127,7 +127,21 @@ ReturnJobSkill(playerid, jobid)
                 format(name, 32, "Courier");
             else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 0)
                 format(name, 32, "Courier Trainee");
-
+	    }
+        case JOB_LUMBERJACK:
+		{
+			if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 10)
+                format(name, 32, "Professional Lumberjack");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 8)
+                format(name, 32, "Lumberjack");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 6)
+                format(name, 32, "Lumberjack Trainee");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 4)
+                format(name, 32, "Professional Timberjack");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 2)
+                format(name, 32, "Timberjack");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 0)
+                format(name, 32, "Timberjack Trainee");
 	    }
 	    default: format(name, 32, "Unemployed");
 	}
@@ -159,6 +173,15 @@ CMD:takejob(playerid, params[])
 
         PlayerInfo[playerid][E_CHARACTER_JOBS] = JOB_TRUCKER;
         SendServerMessage(playerid, "You are now a truckers use /help to see jobs commands.");
+        SaveCharacter(playerid);
+    }
+    if(IsPlayerInRangeOfPoint(playerid, 3.0, JobsInfo[2][E_JOBSPOSX], JobsInfo[2][E_JOBSPOSY], JobsInfo[2][E_JOBSPOSZ]))
+    {
+        if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_NONE)
+            return SendErrorMessage(playerid, "You already have jobs.");
+
+        PlayerInfo[playerid][E_CHARACTER_JOBS] = JOB_LUMBERJACK;
+        SendServerMessage(playerid, "You are now a lumberjack use /help to see jobs commands.");
         SaveCharacter(playerid);
     }
     else return SendErrorMessage(playerid, "You aren't near jobs point");
