@@ -2,12 +2,13 @@ enum
 {
     INDUSTRY_PRODUCTS,
     INDUSTRY_WOODS,
-	INDUSTRY_MATERIALS
+	INDUSTRY_MATERIALS,
+	INDUSTRY_DRUGS
 };
 
 stock IndustryRefresh(id)
 {
-    new str[512], str1[512], str2[512], str3[512];
+    new str[512], str1[512], str2[512], str3[512], str4[512];
 
 	if(IsValidDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][0]))
     	DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][0]);
@@ -17,19 +18,24 @@ stock IndustryRefresh(id)
     	DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][2]);
 	if(IsValidDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][3]))
     	DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][3]);
+	if(IsValidDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][4]))
+    	DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][4]);
 
-    format(str, sizeof(str), "[%s]\n{ffffff}Available stock: %d / 100\nPrice: $5 / unit", IndustryInfo[0][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
+    format(str, sizeof(str), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price: $5 / unit", IndustryInfo[0][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
     
-	format(str1, sizeof(str1), "[%s]\n{ffffff}Available stock: %d / 100\nPrice $5 / unit", IndustryInfo[1][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
+	format(str1, sizeof(str1), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price $5 / unit", IndustryInfo[1][Name], ServerInfo[id][E_SERVER_PRODUCTS]);
 
-	format(str2, sizeof(str2), "[%s]\n{ffffff}Available stock: %d / 100\nPrice $5 / unit", IndustryInfo[2][Name], ServerInfo[id][E_SERVER_WOODS]);
+	format(str2, sizeof(str2), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price $5 / unit", IndustryInfo[2][Name], ServerInfo[id][E_SERVER_WOODS]);
 
-	format(str3, sizeof(str3), "[%s]\n{ffffff}Available stock: %d / 1000\nPrice $5 / gram", IndustryInfo[3][Name], ServerInfo[id][E_SERVER_MATERIALS]);
+	format(str3, sizeof(str3), "[%s]\n{ffffff}Available stock: %d / 1000\nMaterials Price $5 / gram", IndustryInfo[3][Name], ServerInfo[id][E_SERVER_MATERIALS]);
+
+	format(str4, sizeof(str4), "[%s]\n{ffffff}Available stock: %d / 100\nMarijuana Price $3000 / 25 gram\nCocaine Price $5000 / 30 gram\nHeroin Price $5000 / 30 gram", IndustryInfo[4][Name], ServerInfo[id][E_SERVER_DRUGS]);
 
 	ServerInfo[id][E_SERVER_3DTEXT][0] = CreateDynamic3DTextLabel(str, COLOR_DARKGREEN, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz], 5.0);
 	ServerInfo[id][E_SERVER_3DTEXT][1] = CreateDynamic3DTextLabel(str1, COLOR_DARKGREEN, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz], 5.0);  
 	ServerInfo[id][E_SERVER_3DTEXT][2] = CreateDynamic3DTextLabel(str2, COLOR_DARKGREEN, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz], 5.0);  
-	ServerInfo[id][E_SERVER_3DTEXT][3] = CreateDynamic3DTextLabel(str3, COLOR_DARKGREEN, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz], 5.0);  
+	ServerInfo[id][E_SERVER_3DTEXT][3] = CreateDynamic3DTextLabel(str3, COLOR_DARKGREEN, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz], 5.0); 
+	ServerInfo[id][E_SERVER_3DTEXT][4] = CreateDynamic3DTextLabel(str4, COLOR_DARKGREEN, IndustryInfo[4][Posx], IndustryInfo[4][Posy], IndustryInfo[4][Posz], 5.0);   
 	return 1;
 }
 
@@ -48,6 +54,7 @@ function:Query_ServerDataLoad()
 		cache_get_value_name_int(0, "products", ServerInfo[0][E_SERVER_PRODUCTS]);
 		cache_get_value_name_int(0, "woods", ServerInfo[0][E_SERVER_WOODS]);
 		cache_get_value_name_int(0, "materials", ServerInfo[0][E_SERVER_MATERIALS]);
+		cache_get_value_name_int(0, "drugs", ServerInfo[0][E_SERVER_DRUGS]);
 	}	
     IndustryRefresh(0);
 	return 1;
@@ -159,6 +166,12 @@ function:IndustryTimer()
 		ServerInfo[0][E_SERVER_WOODS] += 10;
 	if(ServerInfo[0][E_SERVER_WOODS] >= 1000)
 		ServerInfo[0][E_SERVER_WOODS] = 1000;
+
+	if(ServerInfo[0][E_SERVER_DRUGS] <= 100)
+		ServerInfo[0][E_SERVER_DRUGS] += 10;
+	if(ServerInfo[0][E_SERVER_DRUGS] >= 100)
+		ServerInfo[0][E_SERVER_DRUGS] = 100;
+
 	IndustryRefresh(0);
 	return 1;
 }

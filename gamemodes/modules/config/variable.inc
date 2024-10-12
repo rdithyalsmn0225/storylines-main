@@ -501,7 +501,8 @@ enum E_SERVERSTOCK_DATA
 	E_SERVER_PRODUCTS,
 	E_SERVER_WOODS,
 	E_SERVER_MATERIALS,
-	Text3D:E_SERVER_3DTEXT[4]
+	E_SERVER_DRUGS,
+	Text3D:E_SERVER_3DTEXT[5]
 }
 
 enum E_DEALERSHIP_DATA
@@ -1168,7 +1169,8 @@ new const IndustryInfo[][E_INDUSTRY_DATA] =
 	{"Oceandocks Ships", 2824.3801,-2387.5449,12.0771}, // Oceandocks Ships
 	{"Oceandocks Ships", 2824.1074,-2436.5945,12.0891}, // Oceandocks Ships
 	{"Leafy Hollow Barn", -1448.3512,-1522.6899,101.7578}, //Leafy Hollow Acress
-	{"Materials", 1468.3636,1568.7332,108.3770} //Materials
+	{"Gunstores", -576.3427,-505.8364,25.5234}, //Materials
+	{"Drugs Labs", 122.0707,-319.1785,1.5781} //DrugsLabs
 };
 
 new const PenalInfo[][E_PENALCODES_DATA] =

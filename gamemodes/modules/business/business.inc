@@ -625,7 +625,7 @@ function:Query_InsertBusiness(playerid, newid, type)
 	BusinessInfo[newid][E_BUSINESS_INTERIORPOSWORLD] = world;  
 
 	BusinessRefresh(newid);
-	SendServerMessage(playerid, "You created business ID %i. To configure, use \"/editbusiness\". ", newid); 
+	SendServerMessage(playerid, "You created business ID #%i. To configure, use \"/editbusiness\". ", newid); 
 	return 1;
 }
 

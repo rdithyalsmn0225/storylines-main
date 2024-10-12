@@ -6,7 +6,7 @@ stock ShowPublicLocation(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t%.2f Meter\n", str, PublicName[i], GetPlayerDistanceFromPoint(playerid, PublicPoint[i][0], PublicPoint[i][1], PublicPoint[i][2]));
 	}
-	Dialog_Show(playerid, GpsPublic, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Public", str, "Select", "Close");
+	Dialog_ShowPages(playerid, GpsPublic, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Public", str, "Select", "Close");
 	return 1;
 }
 
@@ -34,7 +34,7 @@ stock ShowTreeLocation(playerid)
 			format(str, sizeof(str), "%s%d\tAvailable\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
 		}
 	}
-	return Dialog_Show(playerid, GpsTree, DIALOG_STYLE_TABLIST_HEADERS, "Tree Location", str, "Find", "Close");
+	return Dialog_ShowPages(playerid, GpsTree, DIALOG_STYLE_TABLIST_HEADERS, "Tree Location", str, "Find", "Close");
 }
 
 Dialog:GpsTree(playerid, response, listitem, inputtext[])
@@ -54,7 +54,7 @@ stock ShowENEXLocation(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t%.2f Meter\n", str, ENEXName[i], GetPlayerDistanceFromPoint(playerid, ENEXPoint[i][0], ENEXPoint[i][1], ENEXPoint[i][2]));
 	}
-	Dialog_Show(playerid, GpsEnex, DIALOG_STYLE_TABLIST_HEADERS, "GPS: ENEX", str, "Select", "Close");
+	Dialog_ShowPages(playerid, GpsEnex, DIALOG_STYLE_TABLIST_HEADERS, "GPS: ENEX", str, "Select", "Close");
 	return 1;
 }
 
@@ -75,7 +75,7 @@ stock ShowJobLocation(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t%.2f Meter\n", str, JobLocName[i], GetPlayerDistanceFromPoint(playerid, JobPoint[i][0], JobPoint[i][1], JobPoint[i][2]));
 	}
-	Dialog_Show(playerid, GpsJobs, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Jobs", str, "Select", "Close");
+	Dialog_ShowPages(playerid, GpsJobs, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Jobs", str, "Select", "Close");
 	return 1;
 }
 
@@ -96,7 +96,7 @@ stock ShowBusinessLocation(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t%.2f Meter\n", str, BusinessInfo[i][E_BUSINESS_NAME], GetPlayerDistanceFromPoint(playerid, BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][2]));
 	}
-	Dialog_Show(playerid, GpsBiz, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Business", str, "Select", "Close");
+	Dialog_ShowPages(playerid, GpsBiz, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Business", str, "Select", "Close");
 	return 1;
 }
 

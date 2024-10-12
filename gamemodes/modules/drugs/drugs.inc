@@ -315,3 +315,44 @@ CMD:production(playerid, params[])
 	}
 	return 1;
 }
+
+CMD:buydrugs(playerid, params[])
+{
+	if(!IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[4][Posx], IndustryInfo[4][Posy], IndustryInfo[4][Posz]))
+		return SendErrorMessage(playerid, "You aren't nearest drugs labs.");
+
+	new str[512];
+	strcat(str, "Drugs\tPrice");
+	strcat(str, "Marijuana\t$3000\n");
+	strcat(str, "Cocaine\t$5000\n");
+	strcat(str, "Heroin\t$5000\n");
+	Dialog_Show(playerid, BuyDrugs, DIALOG_STYLE_TABLIST_HEADERS, "Gunstore:", str, "Select", "Close");
+	return 1;
+}
+
+Dialog:BuyDrugs(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		new str[512];
+        switch(listitem)
+        {
+            case 0:
+            {
+                format(str, sizeof(str), "Are you sure you want to buy this drugs for $%d?", PMARIJUANA); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 0, 25, PMARIJUANA); 
+            }
+            case 1:
+            {
+                format(str, sizeof(str), "Are you sure you want to buy this drugs for $%d?", PCOCAINE); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 1, 20, PCOCAINE); 
+            }
+			case 2:
+			{
+				format(str, sizeof(str), "Are you sure you want to buy this drugs for $%d?", PHEROIN); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 2, 20, PHEROIN); 
+			}
+		}
+	}
+	return 1;
+}

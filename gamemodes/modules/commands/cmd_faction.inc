@@ -924,7 +924,7 @@ CMD:dropinjured(playerid, params[])
         return SendUsageMessage(playerid, "/dropinjured [playerid/PartOfName]");
 
     if(otherid == INVALID_PLAYER_ID || !IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerid)))
-        return SendErrorMessage(playerid, "Player tersebut tidak berada didekat mu.");
+        return SendErrorMessage(playerid, "You aren't nearest of any player.");
 
     if(otherid == playerid)
         return SendErrorMessage(playerid, "You can't deliver yourself to the hospital.");
@@ -961,7 +961,7 @@ CMD:rescue(playerid, params[])
         return SendUsageMessage(playerid, "/rescue [playerid/PartOfName]");
 
     if(otherid == INVALID_PLAYER_ID || !IsPlayerNearPlayer(playerid, otherid, 5.0))
-        return SendErrorMessage(playerid, "Player tersebut tidak berada didekat mu.");
+        return SendErrorMessage(playerid, "You aren't nearest of any player.");
 
     if(otherid == playerid)
         return SendErrorMessage(playerid, "You can't rescue yourself.");

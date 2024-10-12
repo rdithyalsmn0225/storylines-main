@@ -1,23 +1,23 @@
 //SALARY JOBS
-#define TRASHMASTER_SALARY      1
-#define DOCKWORKER_SALARY       30
+#define TRASHMASTER_SALARY      3
+#define DOCKWORKER_SALARY       25
 #define FISHING_SALARY          10
 #define BURGLARY_SALARY         400
 #define LUMBERJACK_SALARY       25
 
 //FSTORAGE
-#define GLOCK19         3000
-#define GLOCK17         3500
-#define GLOCKP80        4000
-#define MAC11           4000
-#define MAC10           4500
-#define SOCIMIT821      4500
-#define PMARIJUANA       1000
-#define PCOCAINE         1750
-#define PHEROIN          1250
-#define A9MM            200
-#define A9X19MM         200
+#define GLOCK19         6000
+#define GLOCK17         6500
+#define GLOCKP80        7000
+#define MAC11           7000
+#define MAC10           7500
+#define SOCIMIT821      7500
+#define PMARIJUANA       2000
+#define PCOCAINE         2500
+#define PHEROIN          2500
+#define A9MM            1000
+#define A9X19MM         1000
 
 //CARGO PRICE
-#define PRICE_PRODUCTS 5
-#define PRICE_WOODS 5
+#define PRICE_PRODUCTS 8
+#define PRICE_WOODS 8

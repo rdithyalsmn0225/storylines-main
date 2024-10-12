@@ -158,7 +158,7 @@ stock SendAdminMessage(level, const str[])
 		newString[128]
 	;
 	
-	format(newString, sizeof(newString), "[Staff %i]:{d7d7d7} %s", level, str);
+	format(newString, sizeof(newString), "[Staff #%i]: %s", level, str);
 	
 	foreach(new i : Player)
 	{

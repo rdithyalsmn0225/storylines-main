@@ -39,7 +39,7 @@ function:OnEntranceCreate(playerid, newid, icon)
 {	
 	EntranceInfo[newid][E_ENTRANCE_DBID] = cache_insert_id(); 
     EntranceInfo[newid][E_ENTRANCE_ICON] = icon;
-	SendServerMessage(playerid, "You created entrance ID %i. To configure, use \"/editentrance\". ", newid); 
+	SendServerMessage(playerid, "You created entrance ID #%i. To configure, use \"/editentrance\". ", newid); 
 	return 1;
 }
 

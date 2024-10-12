@@ -60,7 +60,7 @@ function:OnPropertyCreate(playerid, newid, type)
 	PropertyInfo[newid][E_PROPERTY_INTERIORINTERIOR] = PropertyInteriors[type][E_INT_ID]; 
 	PropertyInfo[newid][E_PROPERTY_INTERIORWORLD] = world;
 
-	SendServerMessage(playerid, "You created property ID %i. To configure, use \"/editproperty\". ", newid); 
+	SendServerMessage(playerid, "You created property ID #%i. To configure, use \"/editproperty\". ", newid); 
 	return 1;
 }
 

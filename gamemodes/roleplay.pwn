@@ -4348,7 +4348,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 
 					Tree_Save(PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
 					Tree_Refresh(PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
-					SendServerMessage(playerid, "You're set position tree ID: %d", PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
+					SendServerMessage(playerid, "You're created tree ID #%d", PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
 					return 1;
 				}
 			}
