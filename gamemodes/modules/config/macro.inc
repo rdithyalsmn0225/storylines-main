@@ -84,7 +84,7 @@ LoadCustomModels()
 	AddSimpleModel(-1, 18634, -2209, "misc/weapons/socimi.dff", "misc/weapons/socimi.txd");
 	AddSimpleModel(-1, 18634, -2210, "misc/weapons/brokenbottle.dff", "misc/weapons/brokenbottle.txd");
 	AddSimpleModel(-1, 18634, -2211, "misc/weapons/glasses.dff", "misc/weapons/glasses.txd");
-
+	AddSimpleModel(-1, 18634, -2212, "misc/weapons/axe.dff", "misc/weapons/axe.txd");
 	//==========================================Objects==========================================
 	AddSimpleModel(-1, 1575, -2500, "misc/drugs/heroine.dff", "misc/drugs/drugs.txd"); //Heroine
 	AddSimpleModel(-1, 1575, -2501, "misc/drugs/marijuana.dff", "misc/drugs/drugs.txd"); //Marijuana
@@ -95,7 +95,7 @@ LoadCustomModels()
 	AddSimpleModel(-1, 1575, -2504, "misc/gym/kmb_bpress.dff", "misc/gym/gym_weights.txd"); //Heroine
 	AddSimpleModel(-1, 1575, -2505, "misc/gym/kmb_dumbbell_l.dff", "misc/gym/gym_weights.txd"); //Marijuana
 	AddSimpleModel(-1, 1575, -2506, "misc/gym/kmb_dumbbell_r.dff", "misc/gym/gym_weights.txd"); //Cocaine
-
+	
 	//=======================================Clothing=======================================
 	AddSimpleModel(-1, 18957, -25000, "misc/cloth/Aztecas/vlabandana.dff", "misc/cloth/Aztecas/vlabandana.txd");
 	AddSimpleModel(-1, 18957, -25001, "misc/cloth/Aztecas/vlabothshoulderrag.dff", "misc/cloth/Aztecas/vlabothshoulderrag.txd");

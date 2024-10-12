@@ -84,7 +84,7 @@ stock Relations_Add(playerid, name[])
 
 	    if (rid != -1)
 	    {
-            SendClientMessageEx(playerid, COLOR_RELATIONS, "[Relations]:{d7d7d7} You've got relations with %s.", name);
+            SendServerMessage(playerid, "You've got relations with %s.", name);
 
 	        RelationsInfo[playerid][rid][E_RELATIONS_EXISTS] = true;
             RelationsInfo[playerid][rid][E_RELATIONS_POINTS] = 100;
@@ -126,7 +126,7 @@ stock Relations_Remove(playerid, name[], value)
 	    	{
 				RelationsInfo[playerid][rid][E_RELATIONS_POINTS] = 0;
 			}
-            SendClientMessageEx(playerid, COLOR_RELATIONS, "[Relations]:{d7d7d7} You've lost %d relations with %s.", value, name);
+            SendServerMessage(playerid, "You've lost %d relations with %s.", value, name);
 
 			format(query, sizeof(query), "UPDATE relations SET RelationsPoints = %i WHERE RelationsID = %i AND ID = %i",
                 RelationsInfo[playerid][rid][E_RELATIONS_POINTS],

@@ -472,17 +472,17 @@ stock ShowCharacterStats(playerid, playerb)
 			format(business_key, 20, "%d", BusinessInfo[i][E_BUSINESS_DBID]); 
 	}
 	
-	SendClientMessageEx(playerid, COLOR_HEADER, "|______________________________ (%d) %s Statistics ______________________________|", playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
-	SendClientMessageEx(playerb, COLOR_PHONE, "[ACCOUNT]:{ffffff} [Streetname: %s] - [Account: %s] - [Date: %s]", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());	
-	SendClientMessageEx(playerb, COLOR_FACTION, "[SESSION]:{ffffff} [Level: %d] [EXP: %d/10] [Time played: %d hours]", PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
-	SendClientMessageEx(playerb, COLOR_RELATIONS, "[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
+	SendClientMessageEx(playerid, COLOR_DARKGREEN, "|______________________________ (%d) %s Statistics ______________________________|", playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
+	SendClientMessageEx(playerb, COLOR_WHITE, "[ACCOUNT]:{ffffff} [Streetname: %s] - [Account: %s] - [Date: %s]", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());	
+	SendClientMessageEx(playerb, COLOR_GREY, "[SESSION]:{ffffff} [Level: %d] [EXP: %d/10] [Time played: %d hours]", PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
+	SendClientMessageEx(playerb, COLOR_WHITE, "[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
+	SendClientMessageEx(playerb, COLOR_GREY, "[JOBS]:{ffffff} [Jobs: %s] [Skills: %s]", ReturnJobName(PlayerInfo[playerid][E_CHARACTER_JOBS]), ReturnJobSkill(playerid, PlayerInfo[playerid][E_CHARACTER_JOBS]));
+	SendClientMessageEx(playerb, COLOR_WHITE, "[KEYS]:{ffffff} VehicleKey:[%s] DuplicateKey:[%s] BusinessKey:[%s]", vehicle_key, duplicate_key, business_key);	
 	if(PlayerInfo[playerb][E_CHARACTER_FACTION])
 	{
-		SendClientMessageEx(playerb, COLOR_FISHING, "[FACTION]:{ffffff} [Faction: %s] [Rank: %s]", ReturnFactionName(playerid), IsPlayerFactionRank(playerid));
+		SendClientMessageEx(playerb, COLOR_GREY, "[FACTION]:{ffffff} [Faction: %s] [Rank: %s]", ReturnFactionName(playerid), IsPlayerFactionRank(playerid));
 	}
-	SendClientMessageEx(playerb, COLOR_STORE, "[JOBS]:{ffffff} [Jobs: %s] [Skills: %s]", ReturnJobName(PlayerInfo[playerid][E_CHARACTER_JOBS]), ReturnJobSkill(playerid, PlayerInfo[playerid][E_CHARACTER_JOBS]));
-	SendClientMessageEx(playerb, COLOR_JOBS, "[KEYS]:{ffffff} VehicleKey:[%s] DuplicateKey:[%s] BusinessKey:[%s]", vehicle_key, duplicate_key, business_key);	
-	SendClientMessageEx(playerb, COLOR_HEADER, "Related commands: '/inventory'");
+	SendTipMessage(playerb, "/inventory or press 'Y' to open inventory.");
 	
 	if(PlayerInfo[playerb][E_CHARACTER_ADMINDUTY])
 	{

@@ -163,7 +163,7 @@ CMD:editentrance(playerid, params[])
 	if(sscanf(params, "is[60]S()[60]", id, indx, specifier))
 	{
 		SendUsageMessage(playerid, "/editentrance [property id] [configuration]");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} Entrance, Interior, MapIcon");
+		SendClientMessage(playerid, COLOR_WHITE, "Entrance, Interior, MapIcon");
 		return 1; 
 	}
 	

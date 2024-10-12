@@ -32,14 +32,12 @@ function:OnPlayerFinishRobbery(playerid, actorid, type)
 
 		if(type == TYPE_FAILED)
 		{
-			SendClientMessage(playerid, COLOR_WHITE, "Robbery: You have failed to rob the business.");
+			SendErrorMessage(playerid, "You have failed to rob the business.");
 			return 0;
 		}
 		else
 		{
-			new string[128];
-			format(string, sizeof(string), "[Robbery]:{6a6a6b} You have successfully robbed the business for take the cash from cashiers!");
-			SendClientMessage(playerid, COLOR_RELATIONS, string);
+			SendServerMessage(playerid, "You have successfully robbed the business for take the cash from cashiers!");
 
 			BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] = 5;
 			BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = true;

@@ -29,8 +29,8 @@ function:OnPlayerWounded(playerid, killerid, reason)
 	
 	SetPlayerTeam(playerid, PLAYER_STATE_WOUNDED); 
 	
-	SendClientMessage(playerid, COLOR_RED, "[Injured]:{d7d7d7} You have been brutally wounded. If you aren't saved, you will die.");
-	SendClientMessage(playerid, COLOR_RED, "[Injured]:{d7d7d7} To accept death, type: /acceptdeath."); 
+	SendServerMessage(playerid, "You have been brutally wounded. If you aren't saved, you will die.");
+	SendTipMessage(playerid, "To accept death, type: /acceptdeath."); 
 	return 1;
 }
 
@@ -57,7 +57,7 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
     if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
 	
-	SendClientMessage(playerid, COLOR_RED, "[Death]:{d7d7d7} You're now dead. You need to wait 60 seconds until you can /respawnme."); 
+	SendTipMessage(playerid, "You're now dead. You need to wait 60 seconds until you can /respawnme."); 
 
 	if(IsPlayerInAnyVehicle(playerid))
 	{

@@ -50,7 +50,7 @@ stock StartMainJobs(playerid, type)
                         PlayerTrashmaster[playerid] = random(sizeof(GarbageLocations));
                         GPS_SetPlayerRaceCheckPoint(playerid, 1, GarbageLocations[PlayerTrashmaster[playerid]][0], GarbageLocations[PlayerTrashmaster[playerid]][1], GarbageLocations[PlayerTrashmaster[playerid]][2], 0.0, 0.0, 0.0);
                         
-                        SendServerMessage(playerid, "To start trashmaster jobs press ALT nearest the trashcan pickup.");
+                        SendTipMessage(playerid, "To start trashmaster jobs press 'ALT' nearest the trashcan pickup.");
                         ShowBoxMessage(playerid, "~w~Trashmaster job started. Colect trash in garbage around los santos", 5, 2);
                     }
                 }
@@ -102,7 +102,7 @@ stock InsertJobsPoint()
     for(new i = 0; i < sizeof(JobsInfo); i++)
     {
         CreateDynamicPickup(1239, 1, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], -1, -1, -1, 50.0);
-        CreateDynamic3DTextLabel("[Jobs Point]\n{ffffff}Available commands: /takejob /quitjob", COLOR_POINT, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], 50.0);
+        CreateDynamic3DTextLabel("[Jobs Point]\n{ffffff}Available commands: /takejobs /quitjobs", COLOR_POINT, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], 5.0);
     }
     return 1;
 }
@@ -164,7 +164,7 @@ ReturnJobName(jobid)
 	return name;
 }
 
-CMD:takejob(playerid, params[])
+CMD:takejobs(playerid, params[])
 {
     if(IsPlayerInRangeOfPoint(playerid, 3.0, JobsInfo[1][E_JOBSPOSX], JobsInfo[1][E_JOBSPOSY], JobsInfo[1][E_JOBSPOSZ]))
     {
@@ -188,7 +188,7 @@ CMD:takejob(playerid, params[])
     return 1;
 }
 
-CMD:quitjob(playerid, params[])
+CMD:quitjobs(playerid, params[])
 {
     if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_NONE)
     {

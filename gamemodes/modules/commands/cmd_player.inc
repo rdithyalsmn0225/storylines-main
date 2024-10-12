@@ -2,17 +2,17 @@
 
 CMD:credits(playerid, params[])
 {
-	SendClientMessage(playerid, COLOR_JOBS, "[Development Help]:");
+	SendClientMessage(playerid, COLOR_DARKGREEN, "[Development Help]:");
 	SendClientMessage(playerid, COLOR_CREDITS, "PatrickGTR:{ffffff} Open sourcing their actor robbery script.");
 	SendClientMessage(playerid, COLOR_CREDITS, "GTA-C:{ffffff} Open sourcing / leaked their environment.");
 	SendClientMessage(playerid, COLOR_CREDITS, "Radeetz:{ffffff} Development & Script gamemods for IDLS.");
 	SendClientMessage(playerid, COLOR_CREDITS, "Crashout:{ffffff} Helping Radeetz with ideas / troubleshoting and management.");
 	SendClientMessage(playerid, COLOR_CREDITS, "Arielnatanael:{ffffff} Helping Radeetz with ideas / troubleshoting and management.");
-	SendClientMessage(playerid, COLOR_JOBS, "[Server Management]:");
+	SendClientMessage(playerid, COLOR_DARKGREEN, "[Server Management]:");
 	SendClientMessage(playerid, COLOR_CREDITS, "Marv:{ffffff} Helping with reassembling the community & pre-launch server.");
 	SendClientMessage(playerid, COLOR_CREDITS, "Boris:{ffffff} Helping with reassembling the community management.");
 	SendClientMessage(playerid, COLOR_CREDITS, "Nhces:{ffffff} Helping with reassembling the community management.");
-	SendClientMessage(playerid, COLOR_JOBS, "[Conclussion]:");
+	SendClientMessage(playerid, COLOR_DARKGREEN, "[Conclussion]:");
 	SendClientMessage(playerid, COLOR_CREDITS, "The Community:{ffffff} for making this server possible and sticking by the staff team through sweat and frustation.");
 	return 1;
 }
@@ -542,7 +542,7 @@ CMD:setchannel(playerid, params[])
 	if(sscanf(params, "ii", channel, slot))
 	{
 		SendUsageMessage(playerid, "/setchannel [channel] [slot]"); 
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} /radiochannel to see LSPD Channel List"); 
+		SendClientMessage(playerid, COLOR_WHITE, "/radiochannel to see LSPD Channel List"); 
 		return 1;
 	}
 		
@@ -1063,7 +1063,7 @@ CMD:pickup(playerid, params[])
 		return SendErrorMessage(playerid, "You're already in a phone call."); 
 		
 	SendClientMessage(PlayerInfo[playerid][E_CHARACTER_PHONELINE], COLOR_GREY, "[ ! ] They picked up. You can talk now by using the chat box.");
-	SendClientMessage(playerid, COLOR_FACTION, "[Faction]:{d7d7d7} You can talk now by using the chatbox.");	
+	SendClientMessage(playerid, COLOR_FACTION, "You can talk now by using the chatbox.");	
 
 	ShowPhone(PlayerInfo[playerid][E_CHARACTER_PHONELINE], 4);
 	ShowPhone(playerid, 4);
@@ -2355,7 +2355,7 @@ CMD:bizfee(playerid, params[])
 		if(amount > 1500)
 			return SendErrorMessage(playerid, "The amount can't be above $1,500.");
 			
-		SendClientMessageEx(playerid, COLOR_STORE, "[Business]:{d7d7d7} You set your businesses entrance fee to $%s.", FormatMoney(amount));
+		SendServerMessage(playerid, "You set your businesses entrance fee to $%s.", FormatMoney(amount));
 		
 		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = amount;
 		SaveBusiness(id);
@@ -2493,7 +2493,7 @@ CMD:approve(playerid, params[])
 
 		
 				
-		SendClientMessageEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED], COLOR_FACTION, "[Faction]:{d7d7d7} %s accepted your faction invitation.", ReturnSettingsName(playerid, playerid));
+		SendClientMessageEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED], COLOR_FACTION, "%s accepted your faction invitation.", ReturnSettingsName(playerid, playerid));
 		SendServerMessage(playerid, "You joined the %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]));
 		
 		
@@ -2603,7 +2603,7 @@ CMD:handshake(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SHAKEOFFER] = playerid;
 	PlayerInfo[userid][E_CHARACTER_SHAKETYPE] = type;
 
-	SendServerMessage(userid, "%s has offered to shake your hand, type /approve handshake to approve.", ReturnSettingsName(playerid, playerid));
+	SendTipMessage(userid, "%s has offered to shake your hand, type /approve handshake to approve.", ReturnSettingsName(playerid, playerid));
 	SendServerMessage(playerid, "You have offered to shake %s's hand.", ReturnSettingsName(userid, playerid));
 	return 1;
 }
@@ -2623,7 +2623,7 @@ CMD:frisk(playerid, params[])
 
 	PlayerInfo[userid][E_CHARACTER_FRISKOFFER] = playerid;
 
-	SendServerMessage(userid, "%s has offered to frisk you, type /approve frisk to approve.", ReturnSettingsName(playerid, playerid));
+	SendTipMessage(userid, "%s has offered to frisk you, type /approve frisk to approve.", ReturnSettingsName(playerid, playerid));
 	SendServerMessage(playerid, "You have offered to frisk %s.", ReturnSettingsName(userid, playerid));
 	return 1;
 }

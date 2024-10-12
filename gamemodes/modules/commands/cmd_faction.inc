@@ -2,7 +2,7 @@
 CMD:fhelp(playerid, params[]) return cmd_factionhelp(playerid, params);
 CMD:factionhelp(playerid, params[])
 {
-	SendClientMessage(playerid, COLOR_RED, "[Faction]:{d7d7d7} /faction, /f, /fskin, /factionhelp"); 
+	SendClientMessage(playerid, COLOR_RED, "/faction, /f, /fskin, /factionhelp"); 
 	
 	if(!IsPlayerFaction(playerid))
 		return 1;
@@ -11,22 +11,22 @@ CMD:factionhelp(playerid, params[])
 		
 	if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
 	{
-		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} /fduty, /offduty, /handcuff, /unhandcuff, /badge, /flocker, /m(egaphone), /(dep)artment,");
-		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} /carsign, /remove_carsign, /tazer, /take, /givelicense, /impound, /checkvehicle, /mdc, /wanted");
+		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} /fduty, /offduty, /handcuff, /unhandcuff, /badge, /flocker, /m(egaphone), /(dep)artment,");
+		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} /carsign, /remove_carsign, /tazer, /take, /givelicense, /impound, /checkvehicle, /mdc, /wanted");
 	}
     if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
 	{
-		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} /fduty, /offduty, /flocker, /m(egaphone), /(dep)artment,");
-		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} /dropinjured, /loadinjured, /rescue");
+		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} /fduty, /offduty, /flocker, /m(egaphone), /(dep)artment,");
+		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} /dropinjured, /loadinjured, /rescue");
 	}
 	else if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 	{
-		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} /claimturfwars(/ctw), /turf, /buygun");
+		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} /claimturfwars(/ctw), /turf, /buygun");
 	}
 	
 	if(PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 4)
 	{
-		SendClientMessage(playerid, COLOR_RED, "Leadership:{d7d7d7} /finvite, /funinvite, /founinvite, /frank.");
+		SendClientMessage(playerid, COLOR_RED, "Leadership:{ffffff} /finvite, /funinvite, /founinvite, /frank.");
 	}
 	
 	return 1;
@@ -103,7 +103,7 @@ CMD:finvite(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_FACTIONINVITE] = PlayerInfo[playerid][E_CHARACTER_FACTION];	
 	PlayerInfo[playerb][E_CHARACTER_FACTIONINVITED] = playerid;
 	
-	SendServerMessage(playerb, "%s has invited you to join the %s, type /approve faction to join.", ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
+	SendTipMessage(playerb, "%s has invited you to join the %s, type /approve faction to join.", ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
 	SendServerMessage(playerid, "You invited %s to join the %s.", ReturnSettingsName(playerb, playerid), ReturnFactionName(playerid));
 	return 1;
 }
@@ -162,7 +162,7 @@ CMD:founinvite(playerid, params[])
 	{
 		if(!strcmp(ReturnSettingsName(i, i), params))
 		{
-			SendClientMessageEx(playerid, COLOR_FACTION, "[Faction]:{d7d7d7} %s is connected to the server. (ID: %i)", ReturnSettingsName(i, i), i);
+			SendClientMessageEx(playerid, COLOR_FACTION, "%s is connected to the server. (ID: %i)", ReturnSettingsName(i, i), i);
 			return 1;
 		}
 	}
@@ -172,7 +172,7 @@ CMD:founinvite(playerid, params[])
 	
 	if(!cache_num_rows())
 	{
-		SendClientMessageEx(playerid, COLOR_FACTION, "[Faction]:{d7d7d7} %s does not exist in the database.", params);
+		SendClientMessageEx(playerid, COLOR_FACTION, "%s does not exist in the database.", params);
 		cache_delete(cache);
 		return 1;
 	}
@@ -193,7 +193,7 @@ CMD:founinvite(playerid, params[])
 	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pFaction = 0, pFactionRank = 0, pLastSkin = 252 WHERE char_dbid = %i", playerDBID);
 	mysql_pquery(ourConnection, thread); cache_delete(cache);
 	
-	SendClientMessageEx(playerid, COLOR_FACTION, "[Faction]:{d7d7d7} %s was removed from the faction.", params);
+	SendClientMessageEx(playerid, COLOR_FACTION, "%s was removed from the faction.", params);
 	return 1;
 }
 
@@ -310,7 +310,7 @@ CMD:fduty(playerid, params[])
     if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
     {
         SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid));
-        SendClientMessage(playerid, COLOR_FACTION, "[Faction]:{d7d7d7} You can use /tazer or /riotgun.");
+        SendClientMessage(playerid, COLOR_FACTION, "You can use /tazer or /riotgun.");
         
         SetPlayerHealthEx(playerid, 100);
         SetPlayerArmourEx(playerid, 100);
@@ -619,7 +619,7 @@ CMD:carsign(playerid, params[])
 	
 	else
 	{
-		SendClientMessageEx(playerid, COLOR_FACTION, "[Faction]:{d7d7d7} Use \"/remove_carsign\" to destroy it next."); 
+		SendClientMessageEx(playerid, COLOR_FACTION, "Use \"/remove_carsign\" to destroy it next."); 
 		
 		VehicleInfo[vehicleid][E_VEHICLE_CARSIGNDISPLAY] = Create3DTextLabel(params, COLOR_WHITE, 0.0, 0.0, 0.0, 25.0, GetPlayerVirtualWorld(playerid), 0); 
 		Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_CARSIGNDISPLAY], vehicleid, -0.7, -1.9, -0.3); 
@@ -650,7 +650,7 @@ CMD:removecarsign(playerid, params[])
 	Delete3DTextLabel(VehicleInfo[vehicleid][E_VEHICLE_CARSIGNDISPLAY]); 
 	VehicleInfo[vehicleid][E_VEHICLE_CARSIGN] = true;
 
-	SendClientMessageEx(playerid, COLOR_FACTION, "[Faction]:{d7d7d7} You deleted your vehicles carsign."); 
+	SendClientMessageEx(playerid, COLOR_FACTION, "You deleted your vehicles carsign."); 
 	return 1;
 }
 

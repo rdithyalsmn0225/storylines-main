@@ -18,7 +18,8 @@ CMD:cargobuy(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_PRODUCTS, 1);
 
-		SendClientMessageEx(playerid, COLOR_JOBS, "[Jobs]:{d7d7d7} You has purchase products cargo for %s.", FormatMoney(PRICE_PRODUCTS));
+		SendServerMessage(playerid, "You has purchase products cargo for %s.", FormatMoney(PRICE_PRODUCTS));
+		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into warehouse/ships by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz])) //woods
 	{
@@ -35,7 +36,8 @@ CMD:cargobuy(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_WOODS, 1);
 
-		SendClientMessageEx(playerid, COLOR_JOBS, "[Jobs]:{d7d7d7} You has purchase products cargo for %s.", FormatMoney(PRICE_WOODS));
+		SendServerMessage(playerid, "You has purchase products cargo for %s.", FormatMoney(PRICE_WOODS));
+		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into warehouse/ships by type /tpda.");
 	}
 	return 1;
 }
@@ -57,7 +59,7 @@ CMD:cargosell(playerid, params[])
 		Inventory_Remove(playerid, "Products Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, 7);
-		GiveMoney(playerid, PRICE_PRODUCTS*5);
+		GiveMoney(playerid, PRICE_PRODUCTS*8);
 
 		if(BusinessInfo[id][E_BUSINESS_STOCK] > 100)
 		{
@@ -69,7 +71,7 @@ CMD:cargosell(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_STOCK]++;
 			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
 		}
-		SendClientMessageEx(playerid, COLOR_JOBS, "[Jobs]:{d7d7d7} You has sell products cargo for %s into business.", FormatMoney(PRICE_PRODUCTS*5));
+		SendServerMessage(playerid, "You has sell products cargo for %s into business.", FormatMoney(PRICE_PRODUCTS*8));
 	}
 
 	else if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz]) || IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz])) //products
@@ -87,7 +89,7 @@ CMD:cargosell(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_PRODUCTS, 1);
 		
-		SendClientMessageEx(playerid, COLOR_JOBS, "[Jobs]:{d7d7d7} You has sell woods cargo for %s into oceandocks ships.", FormatMoney(PRICE_WOODS*5));
+		SendServerMessage(playerid, "You has sell woods cargo for %s into oceandocks ships.", FormatMoney(PRICE_WOODS*5));
 	}
 	return 1;
 }
@@ -97,11 +99,18 @@ CMD:cargodrop(playerid, params[])
 	if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TRUCKER)
         return SendErrorMessage(playerid, "You aren't truckers.");
 
-	if(!Inventory_Count(playerid, "Products Cargo"))
-		return SendErrorMessage(playerid, "You are not carrying your cargo.");
-
-	Inventory_Remove(playerid, "Products Cargo", 1);
-	SendClientMessageEx(playerid, COLOR_JOBS, "[Jobs]:{d7d7d7} You has dropped products cargo in your inventory.");
+	if(Inventory_Count(playerid, "Products Cargo"))
+	{
+		Inventory_Remove(playerid, "Products Cargo", 1);
+		SendServerMessage(playerid, "You has dropped products cargo in your inventory.");
+	}
+	if(Inventory_Count(playerid, "Woods Cargo"))
+	{
+		Inventory_Remove(playerid, "Woods Cargo", 1);
+		SendServerMessage(playerid, "You has dropped products cargo in your inventory.");
+	}
+	else return SendErrorMessage(playerid, "You are not carrying your cargo.");
+	
 	return 1;
 }
 

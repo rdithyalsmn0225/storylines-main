@@ -9,25 +9,25 @@ CMD:ahelp(playerid, params[])
 	if(IsPlayerAdmins(playerid) >= 1)
 	{
 		SendClientMessage(playerid, COLOR_HEADER, "Staff Commands:");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{d7d7d7} /aduty, /forumname, /goto, /gethere, /bring, /a (achat), /showmain, /kick, /(o)ban, /(o)ajail,"); 
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{d7d7d7} /rjail, /rprison, /setint, /setvw, /skin, /health, /reports, /ar (accept), /dr (disregard),"); 
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{d7d7d7} /slap, /mute, /freeze, /unfreeze, /spec, /specoff, /stats (id), /gotols, /respawncar, /respawnstatic,"); 
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{d7d7d7} /gotocar, /getcar, /listmasks, /aooc, /revive, /listweapons");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /aduty, /forumname, /goto, /gethere, /bring, /a (achat), /showmain, /kick, /(o)ban, /(o)ajail,"); 
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /rjail, /rprison, /setint, /setvw, /skin, /health, /reports, /ar (accept), /dr (disregard),"); 
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /slap, /mute, /freeze, /unfreeze, /spec, /specoff, /stats (id), /gotols, /respawncar, /respawnstatic,"); 
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /gotocar, /getcar, /listmasks, /aooc, /revive, /listweapons");
 	}
 	if(IsPlayerAdmins(playerid) >= 2)
 	{
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{d7d7d7} /armor, /clearreports, /p2p, /gotoproperty, /gotofaction, /xyz,");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{d7d7d7} /gotobusiness, /noooc, /backup, /repair.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{ffffff} /armor, /clearreports, /p2p, /gotoproperty, /gotofaction, /xyz,");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{ffffff} /gotobusiness, /noooc, /backup, /repair.");
 	}
 	if(IsPlayerAdmins(playerid) >= 3)
 	{
-		SendClientMessage(playerid, COLOR_DARKGREEN, "High Admin:{d7d7d7} /spawncar, /despawncar, /createpcar, /setstats, /givemoney, /setcar, /setcarparams, /setpfaction, /setinv.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "High Admin:{ffffff} /spawncar, /despawncar, /createpcar, /setstats, /givemoney, /setcar, /setcarparams, /setpfaction, /setinv.");
 	}
 	if(IsPlayerAdmins(playerid) >= 4)
 	{
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{d7d7d7} /createfaction, /editfaction, /createproperty, /editproperty.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{d7d7d7} /createbusiness, /editbusiness, /callpaycheck, /gotomark, /loadturf, /turfwarscancel, /editturfwars, /destroyturfwars, /gototurfwars.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{d7d7d7} /createcourt, /editcourt.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /createfaction, /editfaction, /createproperty, /editproperty.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /createbusiness, /editbusiness, /callpaycheck, /gotomark, /loadturf, /turfwarscancel, /editturfwars, /destroyturfwars, /gototurfwars.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /createcourt, /editcourt.");
 	}
 	 
 	return 1; 
@@ -56,7 +56,6 @@ CMD:aduty(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] = true;
 		
 		format(str, sizeof(str), "%s is now on admin duty.", ReturnSettingsName(playerid, playerid)); 
-		format(str1, sizeof(str1), "[Admin]:{d7d7d7} You has now on admin duty.", ReturnSettingsName(playerid, playerid)); 
 		SendAdminMessage(1, str);
 		SendClientMessageEx(playerid, COLOR_RED, str1);
 		UpdateTabListForOthers(playerid);
@@ -218,10 +217,10 @@ CMD:kick(playerid, params[])
 		
 	if(strlen(reason) > 56)
 	{
-		SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  %s was kicked by %s, Reason: %.56s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), reason);
-		SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  ...%s", reason[56]); 
+		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was kicked by %s, Reason: %.56s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), reason);
+		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: ...%s", reason[56]); 
 	}
-	else SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  %s was kicked by %s, Reason: %s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), reason);
+	else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was kicked by %s, Reason: %s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), reason);
 	
 	new insertLog[256];
 	
@@ -298,10 +297,10 @@ CMD:ban(playerid, params[])
 		
 	if(strlen(reason) > 56)
 	{
-		SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  %s was banned by %s, Reason: %.56s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), reason);
-		SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  ...%s", reason[56]); 
+		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was banned by %s, Reason: %.56s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), reason);
+		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: ...%s", reason[56]); 
 	}
-	else SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  %s was banned by %s, Reason: %s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), reason);
+	else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was banned by %s, Reason: %s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), reason);
 	
 	new insertLog[256];
 	
@@ -375,10 +374,10 @@ CMD:ajail(playerid, params[])
 		
 	if(strlen(reason) > 45)
 	{
-		SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  %s was admin jailed by %s for %d mintues, Reason: %.56s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), length, reason);
-		SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  ...%s", reason[56]); 
+		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by %s for %d mintues, Reason: %.56s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), length, reason);
+		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: ...%s", reason[56]); 
 	}
-	else SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  %s was admin jailed by %s for %d mintues, Reason: %s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), length, reason);
+	else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by %s for %d mintues, Reason: %s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), length, reason);
 	
 	ClearAnimations(playerb); 
 	
@@ -425,7 +424,7 @@ CMD:rjail(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_ADMINJAIL] = 0;
 	
 	SaveCharacter(playerb);
-	SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  %s has been released from admin jail by %s.", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid));
+	SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s has been released from admin jail by %s.", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid));
 	return 1;
 }
 
@@ -455,7 +454,7 @@ CMD:rprison(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_PRISON] = 0;
 	
 	SaveCharacter(playerb);
-	SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  %s has been released from prison by %s.", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid));
+	SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s has been released from prison by %s.", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid));
 	return 1;
 }
 
@@ -1498,8 +1497,8 @@ CMD:setstats(playerid, params[])
 	if(sscanf(params, "uiI(-1)", playerb, statid, value))
 	{
 		SendUsageMessage(playerid, "/setstats [playerid OR name] [stat code] [value]"); 
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} 1. Faction Rank, 2. Radio, 3. Bank Money, 4. Level,");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} 5. EXP, 6. Paycheck, 7.Camera");
+		SendClientMessage(playerid, COLOR_WHITE, "1. Faction Rank, 2. Radio, 3. Bank Money, 4. Level,");
+		SendClientMessage(playerid, COLOR_WHITE, "5. EXP, 6. Paycheck, 7.Camera");
 		return 1;
 	}
 	
@@ -1653,7 +1652,7 @@ CMD:setcar(playerid, params[])
 	if(sscanf(params, "is[60]S()[60]", vehicleid, a_str, b_str))
 	{
 		SendUsageMessage(playerid, "/setcar [vehicleid] [params]");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} timesdestroyed, color1, color2, paintjob, plates");
+		SendClientMessage(playerid, COLOR_WHITE, "timesdestroyed, color1, color2, paintjob, plates");
 
 		return 1;
 	}
@@ -1909,7 +1908,7 @@ CMD:editfaction(playerid, params[])
 	if (sscanf(params, "ds[60]S()[90]", factionid, oneString, secString))
 	{
 		SendUsageMessage(playerid, "/editfaction [faction id] [configuration]");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} type, color, spawn"); 
+		SendClientMessage(playerid, COLOR_WHITE, "type, color, spawn"); 
 		return 1;
 	}
 	
@@ -2137,7 +2136,7 @@ CMD:editturfwars(playerid, params[])
 	if(sscanf(params, "is[14]S()[32]", turfid, option, param))
 	{
 	    SendUsageMessage(playerid, "/editturfwars [turfid] [option]");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} Faction, Type");
+		SendClientMessage(playerid, COLOR_WHITE, "Faction, Type");
 	    return 1;
 	}
 	if(!(0 <= turfid < MAX_TURFS) || !TurfInfo[turfid][E_FACTION_TURFEXISTS])

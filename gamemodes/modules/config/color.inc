@@ -1,28 +1,17 @@
 //Colors:
-#define COLOR_RED 			(0x6C1D1DFF)
+#define COLOR_RED 			(0xFF6347AA)
 
 #define COLOR_GREEN 		(0x5B9460FF)
 #define COLOR_DARKGREEN 	(0x5B9460FF)
 
 #define COLOR_CREDITS       (0xf8b56eFF)
 
-#define COLOR_SERVER		(0xdcdd8aFF)
+#define COLOR_SERVER		(0xDAA650FF)
+#define COLOR_FACTION       (0x99a5d7FF)
 #define COLOR_GAMES         (0xb6b9e1FF)
 #define COLOR_HEADER		(0x90D7F0FF)
 
 #define COLOR_YELLOW 		(0xFFFF00FF)
-
-#define COLOR_PHONE         (0xac90c7FF)
-#define COLOR_JOBS          (0x6fa8dcFF)
-#define COLOR_VEHICLE       (0xbab8daFF)
-#define COLOR_FISHING       (0xaff0f7FF)
-#define COLOR_INVENTORY     (0xE5ECD0FF)
-#define COLOR_FACTION       (0xd1f8ccFF)
-#define COLOR_STORE         (0xaa9b83FF)
-#define COLOR_RELATIONS     (0xe4b4cbFF)
-#define COLOR_WEAPONS       (0x16797eFF)
-#define COLOR_MONEY         (0xD4EDD7FF)
-#define COLOR_ADVERTISE     (0xd4f4deFF)
 
 #define COLOR_GRAD1			(0xCCE6E6FF)
 #define COLOR_GRAD2			(0xE2FFFFFF)
@@ -58,5 +47,3 @@
 #define COLOR_POINT 		(0xb6d9e1FF)
 #define COLOR_OOC         	(0xAAC4E5FF)
 #define COLOR_DEFAULT 		(0xC8C8C8C8)
-
-

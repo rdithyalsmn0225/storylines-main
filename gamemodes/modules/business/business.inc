@@ -324,11 +324,11 @@ function:OnSellBusiness(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_OWNERDBID] = 0; 
 		
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
-		SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You sold your business and earned $%s.", FormatMoney(totalPay)); 
+		SendServerMessage(playerid, "You sold your business and earned $%s.", FormatMoney(totalPay)); 
 		
 		SaveBusiness(businessid); SaveCharacter(playerid); 
 	}
-	else return SendServerMessage(playerid, "You cancelled.");
+	else return SendServerMessage(playerid, "You cancelled selling your business.");
 	return 1;
 }
 
@@ -736,8 +736,8 @@ CMD:editbusiness(playerid, params[])
 	if(sscanf(params, "is[90]S()[90]", id, astr, bstr))
 	{
 		SendUsageMessage(playerid, "/editbusiness [business ID] [configuration]");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} entrance, point, type, level, mapicon");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} entrancefee, name, bankpickup, marketprice"); 
+		SendClientMessage(playerid, COLOR_WHITE, "entrance, point, type, level, mapicon");
+		SendClientMessage(playerid, COLOR_WHITE, "entrancefee, name, bankpickup, marketprice"); 
 		return 1;
 	}
 	

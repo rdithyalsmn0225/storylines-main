@@ -8,7 +8,7 @@ function:OnVehicleFuelUpdate()
 
 			if (VehicleInfo[i][E_VEHICLE_FUEL] >= 1.0 && VehicleInfo[i][E_VEHICLE_FUEL] <= 5.0)
 			{
-			    SendClientMessage(GetVehicleDriver(i), COLOR_VEHICLE, "[Vehicle]:{d7d7d7} This vehicle is low on fuel.");
+			    SendServerMessage(GetVehicleDriver(i), "This vehicle is low on fuel.");
 			}
             SaveVehicle(i);
 		}

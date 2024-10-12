@@ -272,6 +272,11 @@ public OnGameModeExit()
 	SaveProperties();
 	SaveBusinesses();
 	RealTime_StopTime();
+
+	forex(i, MAX_TREES) if(TreeInfo[i][E_TREE_EXISTS])
+	{
+		Tree_Save(i);
+	}
 	
 	//Closing database:
 	mysql_close(ourConnection);
@@ -363,7 +368,7 @@ public OnPlayerDisconnect(playerid, reason)
 		{
 			PlayerInfo[i][E_CHARACTER_FACTIONINVITE] = 0;
 			PlayerInfo[i][E_CHARACTER_FACTIONINVITED] = INVALID_PLAYER_ID;
-			SendClientMessage(i, COLOR_FACTION, "[Faction]:{d7d7d7} Your faction invitation was disregarded. Your inviter disconnected.");
+			SendClientMessage(i, COLOR_FACTION, "Your faction invitation was disregarded. Your inviter disconnected.");
 		}
 	}
 
@@ -476,7 +481,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 			PlayerInfo[playerid][E_CHARACTER_BURGLARY] = false;
 			RemovePlayerAttachedObject(playerid, 9);
 			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-			SendClientMessage(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You put stolen goods in your trunk.");
+			SendServerMessage(playerid, "You put stolen goods in your trunk.");
 			ApplyAnimation(playerid, "CARRY", "putdwn", 4.1, 0, 0, 0, 0, 0, 1);
 			GPS_DisablePlayerRaceCheckPoint(playerid);
 	    }
@@ -516,7 +521,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 			if(PlayerCheckpoint[playerid] == GPS_DMVFINISH)
 			{
 				StopDriverstest(playerid);
-				SendClientMessageEx(playerid, COLOR_STORE, "[Dmv]:{d7d7d7} Congratulations %s, you've passed your test.", ReturnSettingsName(playerid, playerid)); 
+				SendServerMessage(playerid, "Congratulations %s, you've passed your test.", ReturnSettingsName(playerid, playerid)); 
 				
 				PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE] = 1;
 				SaveCharacter(playerid);
@@ -560,13 +565,13 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 			{
 				if(TreeInfo[i][E_TREE_CUTTED])
 				{
-					format(str, sizeof(str), "Press LMB to load the timber.");
+					format(str, sizeof(str), "Press ALT to load the timber.");
 				}
 				else
 				{
 					if(TreeInfo[i][E_TREE_TIMER] < 1)
 					{
-						format(str, sizeof(str), "Available to cut~n~Press LMB to begin.");
+						format(str, sizeof(str), "Available to cut~n~Press ALT to begin.");
 					}
 					else
 					{
@@ -931,10 +936,10 @@ stock LoadCharacter(playerid)
 	{
 		if(strlen(PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON]) > 1)
 		{
-			SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  %s was admin jailed by SYSTEM for %d minutes, Reason: %.56s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60, PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON]);
-			SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  ...%s", PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON][56]); 
+			SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by SYSTEM for %d minutes, Reason: %.56s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60, PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON]);
+			SendClientMessageToAllEx(COLOR_RED, "AdmCmd: ...%s", PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON][56]); 
 		}
-		else SendClientMessageToAllEx(COLOR_RED, "[AdmCmd]:{d7d7d7}  %s was admin jailed by SYSTEM for %d minutes, Reason: %s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60, PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON]);
+		else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by SYSTEM for %d minutes, Reason: %s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60, PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON]);
 		
 		ClearAnimations(playerid);
 		
@@ -1898,7 +1903,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's taser.", ReturnSettingsName(hitid, hitid), ReturnSettingsName(playerid, playerid)); 
 			GameTextForPlayer(hitid, "~b~You Are Tasered", 2500, 3);
 			
-			SendClientMessage(hitid, COLOR_WEAPONS, "[Weapon]:{d7d7d7} You were just hit by a taser. 10,000 volts go through your body.");
+			SendServerMessage(hitid, "You were just hit by a taser. 10,000 volts go through your body.");
 			SendServerMessage(playerid, "You hit %s with your taser!", ReturnSettingsName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
@@ -1920,7 +1925,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			
 			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's riot gun.", ReturnSettingsName(hitid, hitid), ReturnSettingsName(playerid, playerid)); 
 			
-			SendClientMessage(hitid, COLOR_WEAPONS, "[Weapon]:{d7d7d7} You were just hit by a riot gun. rubber bullet go through your body.");
+			SendServerMessage(hitid, "You were just hit by a riot gun. rubber bullet go through your body.");
 			SendServerMessage(playerid, "You hit %s with your taser!", ReturnSettingsName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
@@ -2909,9 +2914,18 @@ public OnPlayerUpdate(playerid)
 				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 			}
 		}
+		else if(Inventory_Count(playerid, "Woods"))
+		{
+			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+			{
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
+				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 6, 0.000000, 0.000000, 0.000000, 0.000000, -1.799999, 0.000000, 0.188999, 0.292000, 0.256999);
+			}
+		}
 		else
 		{
-			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES)
+			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES || PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == WOODS)
 			{
 				RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
@@ -3270,7 +3284,7 @@ public OnPlayerCommandReceived(playerid, cmdtext[])
 	}
 	else
 	{
-		SendClientMessage(playerid, COLOR_RED, "[ACCESS DENIED]:{d7d7d7} You need to be logged in to use commands.");
+		SendErrorMessage(playerid, "You need to be logged in to use commands.");
 		printf("Player [%s] tried to send command: %s (During login, denied access)", ReturnSettingsName(playerid, playerid), cmdtext);
 		return 0;
 	}
@@ -3282,7 +3296,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 	{
 		if(strlen(cmdtext) > 50)
 		{
-			SendClientMessage(playerid, COLOR_RED, "[Error]:{d7d7d7} The command you entered doesn't exist. Use /help to see a list of available commands."); 
+			SendClientMessage(playerid, COLOR_RED, "ERROR: The command you entered doesn't exist. Use /help to see a list of available commands."); 
 			PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][1] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][2] = 0.0;
@@ -3293,7 +3307,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 			PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][1] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][2] = 0.0;
-			SendClientMessageEx(playerid, COLOR_RED, "[Error]:{d7d7d7} The command you entered \"%s\" doesn't exist. Use /help to see a list of available commands.", cmdtext);
+			SendClientMessageEx(playerid, COLOR_RED, "ERROR: The command you entered \"%s\" doesn't exist. Use /help to see a list of available commands.", cmdtext);
 		}
 	}
 	return 1;
@@ -3302,7 +3316,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
-	if(newkeys & KEY_CTRL_BACK)
+	if(newkeys & KEY_WALK)
 	{
 		if(IsPlayerNearestTree(playerid) != -1)
 		{
@@ -3317,6 +3331,9 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 			if(!Inventory_Count(playerid, "Axe"))
 				return SendErrorMessage(playerid, "You don't have any axe in inventory.");
+
+			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != AXE)
+				return SendErrorMessage(playerid, "You must hold the axe in your hands.");
 
 			if(TreeInfo[id][E_TREE_TIMER] > 0)
 				return SendErrorMessage(playerid, "This tree still unavailable.");
@@ -3448,7 +3465,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				TogglePlayerControllable(playerid, true);
 				DestroyGameBar(playerid);
 				ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-				SendClientMessageEx(playerid, COLOR_FISHING, "[Fishing]:{d7d7d7} You caught a 1.kg fish.");
+				SendServerMessage(playerid, "You caught a 1.kg fish.");
 				
 			}
 
@@ -3801,7 +3818,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				SetPlayerAttachedObject(playerid, 10, BurglaryInfo[b][E_BURGLARY_MODEL], 5, 0.3, 0.0, 0.1, 75, 0, 100, 0.7179, 0.6539, 0.6790);
 				DestroyDynamicObject(BurglaryInfo[b][E_BURGLARY_PROPERTY]);
 
-				SendClientMessage(playerid, COLOR_JOBS, "[Jobs]:{d7d7d7}You has stolen goods from this properties, put you stolen goods into vehicle.");
+				SendServerMessage(playerid, "You has stolen goods from this properties, put you stolen goods into vehicle.");
 				ShowBoxMessage(playerid, "Take item back to the truck!", 3, 2);
 				BurglaryInfo[b][E_BURGLARY_PROPERTYEXISTS] = false;
 				PlayerInfo[playerid][E_CHARACTER_BURGLARY] = true;
@@ -4000,33 +4017,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		}
 		else
 		{
-			new id = Item_Nearest(playerid);
-			if (id != -1)
-			{
-				if(DroppedInfo[id][E_DROPPED_TYPE] == 2 && DroppedInfo[id][E_DROPPED_LOADING] == false)
-				{
-					if(DroppedInfo[id][E_DROPPED_AMOUNT] == 0)
-					{
-						if(!Inventory_Count(playerid, "Raw Meat"))
-							return SendErrorMessage(playerid, "You don't have any raw meat in inventory.");
-						
-						Inventory_Remove(playerid, "Raw Meat", 1);
-
-						DroppedInfo[id][E_DROPPED_LOADINGDISPLAY] = Create3DTextLabel("BBQ COOK IN PROCESS\nSupplied Meat: 180 grams\nTime Left: ((|------))", COLOR_DARKGREEN, DroppedInfo[id][E_DROPPED_POS][0], DroppedInfo[id][E_DROPPED_POS][1], DroppedInfo[id][E_DROPPED_POS][2], 5.0, 0, 1);
-						DroppedInfo[id][E_DROPPED_LOADINGCOUNT] = 1;
-
-						DroppedInfo[id][E_DROPPED_LOADING] = true; 
-						DroppedInfo[id][E_DROPPED_LOADINGTIMER] = SetTimerEx("CookBBQ", 1000, true, "ii", playerid, id);
-					}
-					if(DroppedInfo[id][E_DROPPED_AMOUNT] == 1)
-					{
-						DroppedInfo[id][E_DROPPED_AMOUNT] = 0;
-						DroppedInfo[id][E_DROPPED_LOADING] = false;
-						Inventory_Add(playerid, "BBQ", 19882, 1);
-						SendClientMessageEx(playerid, COLOR_JOBS, "[BBQ]:{d7d7d7} You've receive 1 BBQ.");
-					}
-				}
-			}
 			if(IsPlayerInBusiness(playerid) && IsPlayerNearCashiers(playerid)) //Payclerk Pawnshop
 			{
 				if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])

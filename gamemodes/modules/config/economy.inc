@@ -3,7 +3,7 @@
 #define DOCKWORKER_SALARY       30
 #define FISHING_SALARY          10
 #define BURGLARY_SALARY         400
-#define LUMBERJACK_SALARY       10
+#define LUMBERJACK_SALARY       25
 
 //FSTORAGE
 #define GLOCK19         3000

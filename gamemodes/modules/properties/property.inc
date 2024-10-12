@@ -173,7 +173,7 @@ CMD:createproperty(playerid, params[])
 	if(sscanf(params, "i", vartype))
 	{
 		SendUsageMessage(playerid, "/createproperty [type]");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} 1. House, 2. Apartment Complex, 3. Burglary House.");
+		SendClientMessage(playerid, COLOR_WHITE, "1. House, 2. Apartment Complex, 3. Burglary House.");
 		return 1;
 	}
 	
@@ -207,8 +207,8 @@ CMD:editproperty(playerid, params[])
 	if(sscanf(params, "is[60]S()[60]", id, indx, specifier))
 	{
 		SendUsageMessage(playerid, "/editproperty [property id] [configuration]");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} Entrance, Faction,");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} Type, price, Level.");
+		SendClientMessage(playerid, COLOR_WHITE, "Entrance, Faction,");
+		SendClientMessage(playerid, COLOR_WHITE, "Type, price, Level.");
 		return 1; 
 	}
 	

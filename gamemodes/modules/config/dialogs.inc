@@ -242,7 +242,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				switch(listitem)
 				{
 					case 0: //Point Of Interest
-						ShowPlayerDialog(playerid, DIALOG_GPSPOI, DIALOG_STYLE_LIST, "GPS: Point of Interest", "Public Locations\nJobs Locations\nBusiness Locations", "Select", "Cancel");
+						ShowPlayerDialog(playerid, DIALOG_GPSPOI, DIALOG_STYLE_LIST, "GPS: Point of Interest", "Public Locations\nJobs Locations\nBusiness Locations\nTree Locations", "Select", "Cancel");
 					case 1:
 						ShowPlayerDialog(playerid, DIALOG_GPSPROP, DIALOG_STYLE_INPUT, "GPS: Properties", "Please enter the address of the properties below:", "Submit", "Cancel");
 					case 2: //ENEX
@@ -270,28 +270,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						ShowBusinessLocation(playerid);
 					} 
+					case 3: //Tree
+					{
+						ShowTreeLocation(playerid);
+					}
 				}
-			}
-		}
-		case DIALOG_GPS_PUBLIC:
-		{
-			if (response)
-			{
-				GPS_SetPlayerRaceCheckPoint(playerid, 1, PublicPoint[listitem][0], PublicPoint[listitem][1], PublicPoint[listitem][2], 0.0, 0.0, 0.0);
-			}
-		}
-		case DIALOG_GPS_JOBS:
-		{
-			if (response)
-			{
-				GPS_SetPlayerRaceCheckPoint(playerid, 1, JobPoint[listitem][0], JobPoint[listitem][1], JobPoint[listitem][2], 0.0, 0.0, 0.0);
-			}
-		}
-		case DIALOG_GPS_BUSINESS:
-		{
-			if (response)
-			{
-				GPS_SetPlayerRaceCheckPoint(playerid, 1, BusinessInfo[listitem+1][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[listitem+1][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[listitem+1][E_BUSINESS_ENTRANCEPOS][2], 0.0, 0.0, 0.0);
 			}
 		}
 		case DIALOG_POLICE_SKINS:
@@ -338,7 +321,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(500 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a cellphone.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a cellphone for $500.");
+						SendServerMessage(playerid, "You bought a cellphone for $500.");
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 500;
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -354,7 +337,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(500 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a radio.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a radio for $2,500.");
+						SendServerMessage(playerid, "You bought a radio for $2,500.");
  
 						
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 500;
@@ -371,7 +354,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(Inventory_Count(playerid, "Gascan") >= 5)
 							return SendErrorMessage(playerid, "You may only hold up to 5 gasoline cans.");
 						
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a gasoline can for $250.");
+						SendServerMessage(playerid, "You bought a gasoline can for $250.");
 						//GiveMoney(playerid, -250);
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 250; 
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -387,7 +370,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(Inventory_Count(playerid, "Repair Kits"))
 							return SendErrorMessage(playerid, "You already own a repairkit.");
 						
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a repairkit for $250.");
+						SendServerMessage(playerid, "You bought a repairkit for $250.");
 						//GiveMoney(playerid, -250);
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 500; 
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -412,7 +395,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(350 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a spikebat.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a spikebat for $350.");
+						SendServerMessage(playerid, "You bought a spikebat for $350.");
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 350;
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Spike Bat", -2200, 1);
@@ -427,7 +410,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(500 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a wooded.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a wooden for $500.");
+						SendServerMessage(playerid, "You bought a wooden for $500.");
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 500;
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Wooden", -2201, 1);
@@ -442,7 +425,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(350 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a nailbat.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a nailbat for $350.");
+						SendServerMessage(playerid, "You bought a nailbat for $350.");
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 350;
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Nail Bat", -2202, 1);
@@ -466,7 +449,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(50 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a raw meat.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a raw meat for $50.");
+						SendServerMessage(playerid, "You bought a raw meat for $50.");
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 50;
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Raw Meat", 19582, 1);
@@ -481,7 +464,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(100 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a parsley.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a parsley for $250.");
+						SendServerMessage(playerid, "You bought a parsley for $250.");
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 100; 
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -497,7 +480,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(150 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a mint.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a mint for $50.");
+						SendServerMessage(playerid, "You bought a mint for $50.");
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 50; 
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -513,7 +496,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a oregano.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a oregano for $250.");
+						SendServerMessage(playerid, "You bought a oregano for $250.");
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 250; 
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -529,7 +512,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(100 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a baking soda.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a baking soda for $100.");
+						SendServerMessage(playerid, "You bought a baking soda for $100.");
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 100; 
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -555,7 +538,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a spraycan.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a spraycan for $250.");
+						SendServerMessage(playerid, "You bought a spraycan for $250.");
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 250; 
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -571,7 +554,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(1000 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a crowbar.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a crowbar for $1.000.");
+						SendServerMessage(playerid, "You bought a crowbar for $1.000.");
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 500;
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -596,7 +579,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(2 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a sprunk.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a sprunk for $2.");
+						SendServerMessage(playerid, "You bought a sprunk for $2.");
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 5; 
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -621,7 +604,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(100 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a beer.");
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a budweiser beer for $100.");
+						SendServerMessage(playerid, "You bought a budweiser beer for $100.");
 						GiveMoney(playerid, -250); 
 						
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -643,7 +626,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return ShowBeerlist(playerid);
 						}
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a corona extra beer for $150.");
+						SendServerMessage(playerid, "You bought a corona extra beer for $150.");
 						GiveMoney(playerid, -150); 
 						
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -664,7 +647,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return ShowBeerlist(playerid);
 						}
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought a peroni beer for $200.");
+						SendServerMessage(playerid, "You bought a peroni beer for $200.");
 						GiveMoney(playerid, -200); 
 						
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
@@ -689,7 +672,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return ShowFoodMenu(playerid); 
 						}
 
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought American classic burger's and eat it");
+						SendServerMessage(playerid, "You bought American classic burger's and eat it");
 						GiveMoney(playerid, -50); 
 
 						new Float:health;
@@ -706,7 +689,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return ShowFoodMenu(playerid);
 						}
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought American classic donut's and eat it");
+						SendServerMessage(playerid, "You bought American classic donut's and eat it");
 						GiveMoney(playerid, -50); 
 						new Float:health;
 						GetPlayerHealth(playerid, health);
@@ -722,7 +705,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return ShowFoodMenu(playerid);
 						}
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought American classic pizza's and eat it");
+						SendServerMessage(playerid, "You bought American classic pizza's and eat it");
 						GiveMoney(playerid, -80); 
 						
 						new Float:health;
@@ -739,7 +722,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return ShowFoodMenu(playerid); 
 						}
 					
-						SendClientMessageEx(playerid, COLOR_STORE, "[Store]:{d7d7d7} You bought Coca cola large's and eat it");
+						SendServerMessage(playerid, "You bought Coca cola large's and eat it");
 						GiveMoney(playerid, -25); 
 						
 						new Float:health;
@@ -851,7 +834,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						pToys[playerid][toySelect[playerid]][E_TOY_SX],
 						pToys[playerid][toySelect[playerid]][E_TOY_SY],
 						pToys[playerid][toySelect[playerid]][E_TOY_SZ]);
-				SendClientMessageEx(playerid, 	COLOR_STORE, "[Clothing]{FFFFFF}  Accessories bone position now is %s", Bone_Name[listitem + 1]);
+				SendServerMessage(playerid, "Accessories bone position now is %s", Bone_Name[listitem + 1]);
 			}
 		}
 		case DIALOG_CLOTHESMENU:
@@ -892,28 +875,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 5);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 5;
-						SendClientMessageEx(playerid, COLOR_STORE, "[Gym]:{d7d7d7} You learn a fightstyle boxing for $1,000.");
+						SendServerMessage(playerid, "You learn a fightstyle boxing for $1,000.");
 						GiveMoney(playerid, -1000);
 					}	
 					case 1:
 					{
 						SetPlayerFightingStyle(playerid, 7);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 7;
-						SendClientMessageEx(playerid, COLOR_STORE, "[Gym]:{d7d7d7} You learn a fightstyle KneeHead for $2,500.");
+						SendServerMessage(playerid, "You learn a fightstyle KneeHead for $2,500.");
 						GiveMoney(playerid, -2500);
 					}
 					case 2:
 					{
 						SetPlayerFightingStyle(playerid, 15);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 15;
-						SendClientMessageEx(playerid, COLOR_STORE, "[Gym]:{d7d7d7} You learn a fightstyle GrabKick for $3,000.");
+						SendServerMessage(playerid, "You learn a fightstyle GrabKick for $3,000.");
 						GiveMoney(playerid, -3000);
 					}
 					case 3:
 					{
 						SetPlayerFightingStyle(playerid, 4);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 4;
-						SendClientMessageEx(playerid, COLOR_STORE, "[Gym]:{d7d7d7} You reset a fightstyle for $500.");
+						SendServerMessage(playerid, "You reset a fightstyle for $500.");
 						GiveMoney(playerid, -500);
 					}
 				}
@@ -1053,7 +1036,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				format(plates, 32, "%d%s%s%s%d%d%d", random(9), possiblE_VEHICLE_PLATES[randset[0]], possiblE_VEHICLE_PLATES[randset[1]], possiblE_VEHICLE_PLATES[randset[2]], random(9), random(9)); 
 				GiveMoney(playerid, -DealershipTotalCost[playerid]);
 				
-				SendClientMessage(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} Your vehicles being setup.");
 				ShowPlayerPlates(playerid, plates); 
 				
 				mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO vehicles (VehicleOwnerDBID, VehicleModel, VehicleParkPosX, VehicleParkPosY, VehicleParkPosZ, VehicleParkPosA) VALUES(%i, %i, %f, %f, %f, %f)",
@@ -1460,7 +1442,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 										VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
 										Inventory_Remove(playerid, name);
-										VehicleLumberUpdates(id);
+										VehicleObjectUpdates(id);
 										ShowVehicleStorage(playerid, id);
 									}
 									else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] > 1) 
@@ -1744,9 +1726,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						new str[1024];
 						strcat(str, "CMD\tDescription\tType\n");
-						strcat(str, "/takejobs\tStart join the jobs\tTake Jobs\nPress '2'\tStart the jobs missions\tDocksworker & Garbageman\nPress 'ALT'\tPickup trash nearest trashcan pickup\tGarbageman\n/takecargo\tLoad the cargo package from oceandocks import warehouse\tDocksworker\n/storecargo\tUnload the cargo package into oceandocks export warehouse\tDocksworker\n");
+						strcat(str, "/takejobs\tStart join the jobs\tTake Jobs\nPress '2'\tStart the jobs missions\tDocksworker & Garbageman\nPress 'ALT'\tCutting & Take timber from tree\tLumberjack\nPress 'ALT'\tPickup trash nearest trashcan pickup\tGarbageman\n/takecargo\tLoad the cargo package from oceandocks import warehouse\tDocksworker\n/storecargo\tUnload the cargo package into oceandocks export warehouse\tDocksworker\n");
 						strcat(str, "/tpda\tSee the industry list\tTruckers\n/cargobuy\tBuy products cargo from oceandocks ships\tTruckers\n/cargosell\tSell products cargo to business\tTruckers\n/cargodrop\tDropped/Remove products cargo in your inventory\tTruckers\n");
-						strcat(str, "/fish\tStart fishing jobs\tActivity\n");
+						strcat(str, "/timbersell\tSell timberwood to leafy hollow warehouses\tLumberjack\n/fish\tStart fishing jobs\tActivity\n");
 						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Jobs Commands:", str, "Select", "Close");
 					}
 					case 8:
@@ -1945,7 +1927,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendServerMessage(playerid, "You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 					case 1: //Heroin
 					{
@@ -1957,7 +1939,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendServerMessage(playerid, "You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 				}
 			}
@@ -1981,7 +1963,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendServerMessage(playerid, "You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 					case 1: //PCP
 					{
@@ -1993,7 +1975,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendServerMessage(playerid, "You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 				}
 			}	
@@ -2015,7 +1997,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "Cocaine Crack", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've received $%d from selling crack.", cost);
+						SendServerMessage(playerid, "You've received $%d from selling crack.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2033,7 +2015,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "Marijuana", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've received $%d from selling marijuana.", cost);
+						SendServerMessage(playerid, "You've received $%d from selling marijuana.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2051,7 +2033,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "Heroin", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've received $%d from selling heroin.", cost);
+						SendServerMessage(playerid, "You've received $%d from selling heroin.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2069,7 +2051,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "PCP", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendClientMessageEx(playerid, COLOR_JOBS, "[Drug Dealer]:{d7d7d7} You've received $%d from selling pcp.", cost);
+						SendServerMessage(playerid, "You've received $%d from selling pcp.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2367,7 +2349,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						format(string, sizeof(string), "INSERT INTO `contacts` (`ID`, `E_CONTACT_NAME`, `E_CONTACT_NUMBER`) VALUES('%d', '%s', '%d')", PlayerInfo[playerid][E_CHARACTER_DBID], name, ContactInfo[playerid][i][E_CONTACT_NUMBER]);
 						mysql_pquery(ourConnection, string, "OnContactAdd", "dd", playerid, i);
 
-						SendClientMessageEx(playerid, COLOR_PHONE, "[Phone]:{d7d7d7} You have added \"%s\" to your contacts.", name);
+						SendServerMessage(playerid, "You have added \"%s\" to your contacts.", name);
 						return 1;
 					}
 				}
@@ -2394,7 +2376,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						format(string, sizeof(string), "DELETE FROM `contacts` WHERE `ID` = '%d' AND `E_CONTACT_DBID` = '%d'", PlayerInfo[playerid][E_CHARACTER_DBID], ContactInfo[playerid][id][E_CONTACT_DBID]);
 						mysql_pquery(ourConnection, string);
 
-						SendClientMessageEx(playerid, COLOR_PHONE, "[Phone]:{d7d7d7} You have deleted \"%s\" from your contacts.", ContactInfo[playerid][id][E_CONTACT_NAME]);
+						SendServerMessage(playerid, "You have deleted \"%s\" from your contacts.", ContactInfo[playerid][id][E_CONTACT_NAME]);
 
 						ContactInfo[playerid][id][E_CONTACT_EXISTS] = false;
 						ContactInfo[playerid][id][E_CONTACT_NUMBER] = 0;
@@ -2434,7 +2416,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] -= rand;
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = false;
 							BusinessRefresh(IsPlayerInBusiness(playerid));
-							SendClientMessageEx(playerid, COLOR_RELATIONS, "[Business]:{d7d7d7} You've got money $%d from take cash money on cashiers.", rand);
+							SendServerMessage(playerid, "You've got money $%d from take cash money on cashiers.", rand);
 						}
 					}
 				}
@@ -2470,7 +2452,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					new engine, lights, alarm, doors, bonnet, objective;
 	
 					SetVehicleParamsEx(carid, engine, lights, alarm, doors, bonnet, 0, objective);
-					SendClientMessageEx(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You have closed the trunk.");
+					SendServerMessage(playerid, "You have closed the trunk.");
 				}
 			}
 		}
@@ -2505,7 +2487,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 									return SendErrorMessage(playerid, "You don't have any storage slots left.");
 
 								VS_RemoveItem(carid, string);
-								VehicleLumberUpdates(carid);
+								VehicleObjectUpdates(carid);
 				
 								ShowVehicleStorage(playerid, carid);
 							}
@@ -2523,7 +2505,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 										return SendErrorMessage(playerid, "You don't have any storage slots left.");
 
 									VS_RemoveItem(carid, string);
-									VehicleLumberUpdates(carid);
+									VehicleObjectUpdates(carid);
 						
 									ShowVehicleStorage(playerid, carid);
 								}
@@ -2600,7 +2582,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 									VS_AddItem(carid, string, InventoryInfo[playerid][id][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, string);
-									VehicleLumberUpdates(carid);
+									VehicleObjectUpdates(carid);
 									ShowVehicleStorage(playerid, carid);
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] > 1) 

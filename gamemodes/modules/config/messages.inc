@@ -1,18 +1,23 @@
 //Client messages:
 #define SendUsageMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_RED, "[Syntax]:{d7d7d7} "%1) 
+	SendClientMessageEx(%0, COLOR_WHITE, "USAGE: "%1) 
 	
 #define SendErrorMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_RED, "[Error]:{d7d7d7} "%1)
+	SendClientMessageEx(%0, COLOR_RED, "ERROR: "%1)
 
 #define SendServerMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_RED, "[Server]:{d7d7d7} "%1) 
+	SendClientMessageEx(%0, COLOR_SERVER, "[!] "%1) 
+
+#define SendTipMessage(%0,%1) \
+	SendClientMessageEx(%0, COLOR_SERVER, "Tip: "%1) 
+
+
 
 #define SendMinigamesMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_RED, "[Games]:{d7d7d7} "%1) 
+	SendClientMessageEx(%0, COLOR_GAMES, ""%1) 
 
 #define SendDebugMessage(%0)	\
-	SendClientMessageToAllEx(COLOR_GREY, "[Debug]: "%0)
+	SendClientMessageToAllEx(COLOR_GREY, "Debug: "%0)
 
 #define SendStreetMessage(%0)	\
 	SendClientMessageToAllEx(COLOR_POINT, "[Word on the Streetz]: "%0)

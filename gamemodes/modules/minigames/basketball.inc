@@ -148,7 +148,7 @@ CMD:editcourt(playerid, params[])
 	if(sscanf(params, "is[128]", id, indx))
 	{
 		SendUsageMessage(playerid, "/editcourt [court id] [configuration]");
-		SendClientMessage(playerid, COLOR_RED, "[Type]:{d7d7d7} ballpos, bluepos, redpos, bluering, redring");
+		SendClientMessage(playerid, COLOR_WHITE, "ballpos, bluepos, redpos, bluering, redring");
 		return 1; 
 	}
 	

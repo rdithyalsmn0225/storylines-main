@@ -29,7 +29,7 @@ CMD:carkey(playerid, params[])
 	SendServerMessage(playerb, "%s gave you a key to their vehicle.", ReturnSettingsName(playerid, playerid));
 		
 	GiveMoney(playerid, -500);
-	SendClientMessageEx(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You gave %s a duplicatekey for $500.", ReturnSettingsName(playerb, playerid));
+	SendServerMessage(playerid, "You gave %s a duplicatekey for $500.", ReturnSettingsName(playerb, playerid));
 		
 	PlayerInfo[playerb][E_CHARACTER_DUPLICATEKEY] = vehicleid;
     return 1;
@@ -76,7 +76,7 @@ CMD:cardespawn(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = false; 
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = INVALID_VEHICLE_ID;
 		
-	SendClientMessageEx(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You parked your %s.", ReturnVehicleName(vehicleid));
+	SendServerMessage(playerid, "You parked your %s.", ReturnVehicleName(vehicleid));
 		
 	SaveVehicle(vehicleid);
 		
@@ -148,17 +148,20 @@ CMD:carlock(playerid, params[])
 			
 		if(VehicleInfo[vehicleid][E_VEHICLE_LOCKED])
 		{
-			format(statusString, sizeof(statusString), "~g~%s UNLOCKED", ReturnVehicleName(vehicleid));
-			
+			format(statusString, sizeof(statusString), "~g~%s Unlocked", ReturnVehicleName(vehicleid));
+			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {5B9460}Unlocked", ReturnVehicleName(vehicleid));
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, false, bonnet, boot, objective);
 			VehicleInfo[vehicleid][E_VEHICLE_LOCKED] = false;
 		}
 		else 
 		{
-			format(statusString, sizeof(statusString), "~r~%s LOCKED", ReturnVehicleName(vehicleid));		
+			format(statusString, sizeof(statusString), "~r~%s Locked", ReturnVehicleName(vehicleid));	
+			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {FF6347}Locked", ReturnVehicleName(vehicleid));	
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, true, bonnet, boot, objective);
 			VehicleInfo[vehicleid][E_VEHICLE_LOCKED] = true;
 		}
+
+		ShowBoxMessage(playerid, statusString, 5, 2);
 		GameTextForPlayer(playerid, statusString, 3000, 3);
 	}
 	else SendErrorMessage(playerid, "You aren't near a vehicle OR the vehicle isn't synced.");
@@ -187,7 +190,7 @@ CMD:carfind(playerid, params[])
 		return SendErrorMessage(playerid, "You don't have a vehicle spawned.");
 			
 	if(IsVehicleOccupied(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN]))
-		return SendErrorMessage(playerid, "Your vehicle is in use / stolen.");
+		return SendErrorMessage(playerid, "Your vehicle is in use / stolen by another player.");
 			
 	new 
 		Float:fetchPos[3];
@@ -225,13 +228,13 @@ CMD:cartrunk(playerid, params[])
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, 1, objective);
 				
-			SendClientMessageEx(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You have opened the trunk.");
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {5B9460}Opened");	
 			ShowVehicleStorage(playerid, GetNearestVehicle(playerid));
 		}
 		else
 		{
-				SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, 0, objective);	
-				SendClientMessageEx(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You have closed the trunk.");
+			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, 0, objective);	
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {FF6347}Closed");	
 		}
 	}
 	else if(IsPlayerInAnyVehicle(playerid))
@@ -250,12 +253,12 @@ CMD:cartrunk(playerid, params[])
 		if(!boot)
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, 1, objective);	
-			SendClientMessageEx(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You have opened the trunk.");
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {5B9460}Opened");	
 		}
 		else
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, 0, objective);
-			SendClientMessageEx(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You have closed the trunk.");
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {FF6347}Closed");	
 		}
 	}
 	else return SendErrorMessage(playerid, "You aren't in or near a vehicle.");
@@ -289,12 +292,12 @@ CMD:carhood(playerid, params[])
 		if(!bonnet)
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, 1, boot, objective);
-			SendClientMessageEx(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You have opened the hood.");
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {5B9460}Opened");	
 		}
 		else
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, 0, boot, objective);
-			SendClientMessageEx(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You have closed the hood.");
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {FF6347}Closed");
 		}
 	}
 	else if(IsPlayerInAnyVehicle(playerid))
@@ -313,12 +316,12 @@ CMD:carhood(playerid, params[])
 		if(!bonnet)
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, 1, boot, objective);
-			SendClientMessageEx(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You have opened the hood.");
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {5B9460}Opened");	
 		}
 		else
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, 0, boot, objective);
-			SendClientMessageEx(playerid, COLOR_VEHICLE, "[Vehicle]:{d7d7d7} You have closed the hood.");
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {FF6347}Closed");
 		}
 	}
 	else return SendErrorMessage(playerid, "You aren't in or near a vehicle.");
@@ -365,11 +368,13 @@ CMD:engine(playerid, params[])
 		
 		if(!VehicleInfo[vehicleid][E_VEHICLE_ENGINE])
 		{
+			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {5B9460}Started", ReturnVehicleName(vehicleid));	
 			SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s started the engine of the %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(vehicleid)); 
 			SetTimerEx("TurnEngine", 2000, false, "d", vehicleid);
 		}
 		else
 		{
+			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {FF6347}Stopped", ReturnVehicleName(vehicleid));	
 			SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s stopped the engine of the %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(vehicleid)); 
 			ToggleVehicleEngine(vehicleid, false); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = false;
 		}

@@ -14,8 +14,8 @@ function:OnPlayerMakeRumour(playerid, response, price)
 	if(response)
 	{
 		new string[128];
-		format(string, sizeof(string), "[Rumour]:{D7D7D7} %s", PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING]);
-		SendClientMessageToAll(COLOR_ADVERTISE, string);
+		format(string, sizeof(string), "[Rumour]: %s", PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING]);
+		SendClientMessageToAll(COLOR_DARKGREEN, string);
 		CreateLogs(playerid, LOGS_ADVERT, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING]);
 
         GiveMoney(playerid, -price);
@@ -57,8 +57,8 @@ CMD:advertise(playerid, params[])
 	GiveMoney(playerid, -price);
 
 	new string[256];
-	format(string, sizeof(string), "[Advertisement]:{D7D7D7} %s (Phone: %d)", text, PlayerInfo[playerid][E_CHARACTER_PHONE]);
-	SendClientMessageToAll(COLOR_ADVERTISE, string);
+	format(string, sizeof(string), "[Advertisement]: %s (Phone: %d)", text, PlayerInfo[playerid][E_CHARACTER_PHONE]);
+	SendClientMessageToAll(COLOR_DARKGREEN, string);
 	CreateLogs(playerid, LOGS_ADVERT, text);
 
 	adcooldown = gettime();
