@@ -17,18 +17,12 @@
 | Changelogs |
 
 [+]
-    Added /creategun & /createammo in warehouses using materials. -
-    Added properties type warehouses [Acid lab & Storehouse]. -
-    Added Materials items inventory. -
+    Added LSMD /dropinjured /loadinjured /rescue.-
     Added lumberjack jobs.
 [x]
-    Fixed database from factions skin. -
+
 [*]
-    Improvement & Fixed other Bugs.
-    Improvement Drugs Production scripts.
-    Rewrote Spraycan / Spraytags script. -
-    Rewrote business & relations script. -
-    Rewrote GYM script.
+
 [-]
 
 */

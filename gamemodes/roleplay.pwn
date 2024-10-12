@@ -112,6 +112,7 @@ main ()  {}
 #include "modules\props\bbq.inc"
 #include "modules\props\advertise.inc"
 #include "modules\props\props.inc"
+#include "modules\props\tree.inc"
 
 #include "modules\drugs\drugs.inc"
 #include "modules\drugs\drugsdealing.inc"
@@ -212,7 +213,7 @@ public OnGameModeInit()
 	mysql_pquery(ourConnection, "SELECT * FROM businesses ORDER BY BusinessDBID ASC", "Query_LoadBusinesses"); 
 	mysql_pquery(ourConnection, "SELECT * FROM entrance ORDER BY ID", "Query_LoadEntrance");
 	mysql_pquery(ourConnection, "SELECT * FROM `court`", "Query_CourtLoad", "");
-	//mysql_pquery(ourConnection, "SELECT * FROM `turfs`", "Query_LoadTurf", ""); 
+	mysql_pquery(ourConnection, "SELECT * FROM `tree`", "Query_LoadTree", ""); 
 	mysql_pquery(ourConnection, "SELECT * FROM `dropped`", "Query_DroppedLoad", "");
 	//mysql_pquery(ourConnection, "SELECT * FROM `turfsglobal`", "Query_LoadGlobalTurf", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `spray_tags`", "Query_SpraytagsLoad", "");
@@ -4263,12 +4264,22 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 		
 					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
 		
-					SendErrorMessage(playerid, "You're no longer place a trashcan."); 
+					SendErrorMessage(playerid, "You're no longer editing tree."); 
 					return 1;
 				}
 
 				if(response == EDIT_RESPONSE_FINAL)
 				{
+					TreeInfo[PlayerInfo[playerid][E_CHARACTER_OBJECTID]][E_TREE_POS][0] = x;
+					TreeInfo[PlayerInfo[playerid][E_CHARACTER_OBJECTID]][E_TREE_POS][1] = y;
+					TreeInfo[PlayerInfo[playerid][E_CHARACTER_OBJECTID]][E_TREE_POS][2] = z;
+					TreeInfo[PlayerInfo[playerid][E_CHARACTER_OBJECTID]][E_TREE_POS][3] = rx;
+					TreeInfo[PlayerInfo[playerid][E_CHARACTER_OBJECTID]][E_TREE_POS][4] = ry;
+					TreeInfo[PlayerInfo[playerid][E_CHARACTER_OBJECTID]][E_TREE_POS][5] = rz;
+
+					Tree_Save(PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
+					Tree_Refresh(PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
+					SendServerMessage(playerid, "You're set position tree ID: %d", PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
 					return 1;
 				}
 			}

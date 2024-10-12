@@ -57,6 +57,8 @@
 #define MAX_COURT					(20)
 #define MAX_GARBAGE					(20)
 #define MAX_RELATIONS 				(100)
+#define MAX_TREES 					(100)
+
 
 LoadCustomModels()
 {

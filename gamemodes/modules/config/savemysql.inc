@@ -259,6 +259,23 @@ stock SaveServerDatas(id)
 	return 1;
 }
 
+stock Tree_Save(id)
+{
+	new query[400];
+	
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE tree SET posx = %f, posy = %f, posz = %f, posrx = %f, posry = %f, posrz = %f, time = %i WHERE id = %i",
+		TreeInfo[id][E_TREE_POS][0],
+		TreeInfo[id][E_TREE_POS][1],
+		TreeInfo[id][E_TREE_POS][2],
+		TreeInfo[id][E_TREE_POS][3],
+		TreeInfo[id][E_TREE_POS][4],
+		TreeInfo[id][E_TREE_POS][5],
+		TreeInfo[id][E_TREE_TIMER],
+		TreeInfo[id][E_TREE_DBID]);
+	mysql_pquery(ourConnection, query);
+	return 1;
+}
+
 stock Court_Save(cid)
 {
 	new query[512];

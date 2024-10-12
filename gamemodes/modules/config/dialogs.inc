@@ -1728,7 +1728,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						new str[512];
 						strcat(str, "Press 'ALT'\tStolen goods in NPC House\nHold 'RMB'\tHold aim into actor/npc to start robbery in business\nPress 'LMB'\tBeat'em into actor/npc to start extortion in business\n");
-						strcat(str, "/extort\tStart extortion in business\n/extortions\tSee the list of business you have relations with them\n/drugsdeal\tSelling Drugs to NPC\n");
+						strcat(str, "/extort\tStart extortion in business\n/extortions\tSee the list of business you have relations with them\n/drugsdeal\tSelling Drugs to NPC\n/creategun\tAssemble weapons using materials in Gunstore.");
 						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Crime Professions Commands:", str, "Select", "Close");
 					}
 			    }

@@ -14,6 +14,11 @@ CMD:factionhelp(playerid, params[])
 		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} /fduty, /offduty, /handcuff, /unhandcuff, /badge, /flocker, /m(egaphone), /(dep)artment,");
 		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} /carsign, /remove_carsign, /tazer, /take, /givelicense, /impound, /checkvehicle, /mdc, /wanted");
 	}
+    if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+	{
+		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} /fduty, /offduty, /flocker, /m(egaphone), /(dep)artment,");
+		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} /dropinjured, /loadinjured, /rescue");
+	}
 	else if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 	{
 		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} /claimturfwars(/ctw), /turf, /buygun");
