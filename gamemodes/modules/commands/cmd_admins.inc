@@ -38,7 +38,7 @@ CMD:aduty(playerid, params[])
 	if(!IsPlayerAdmins(playerid))
 		return 0;
 		
-	new str[128], str1[128];
+	new str[128];
 		
 	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
 	{

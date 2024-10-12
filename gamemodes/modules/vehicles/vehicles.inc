@@ -394,7 +394,7 @@ function:Query_LoadPrivateVehicle(playerid)
 			
 			format(str, sizeof(str), "SELECT * FROM `vstorage` WHERE `ID` = '%d'", VehicleInfo[vehicleid][E_VEHICLE_DBID]);
 			mysql_pquery(ourConnection, str, "VehicleStorage_Load", "d", vehicleid);
-			
+
 			if(VehicleInfo[vehicleid][E_VEHICLE_INT] != 0)
 			{
 				LinkVehicleToInterior(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_INT]); 
@@ -422,8 +422,6 @@ function:Query_LoadPrivateVehicle(playerid)
 				SetVehicleParamsEx(vehicleid, 0, 0, 0, 0, 0, 0, 0);
 				
 			else SetVehicleParamsEx(vehicleid, 0, 0, 0, 1, 0, 0, 0);
-
-			VehicleObjectUpdates(vehicleid);
 			
 			VehicleInfo[vehicleid][E_VEHICLE_ADMIN] = false;
 			
