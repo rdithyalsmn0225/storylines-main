@@ -355,7 +355,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You may only hold up to 5 gasoline cans.");
 						
 						SendServerMessage(playerid, "You bought a gasoline can for $250.");
-						//GiveMoney(playerid, -250);
+	
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 250; 
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Gascan", 1650, 1);
@@ -371,7 +371,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You already own a repairkit.");
 						
 						SendServerMessage(playerid, "You bought a repairkit for $250.");
-						//GiveMoney(playerid, -250);
+						
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 500; 
 						BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Repair Kits", 1650, 1);
@@ -1675,61 +1675,81 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    {
 			        case 0:
 			        {
-			        	new str[1024];
-			        	strcat(str, "/stats\tSee your character's stats\n/admins\tSee list administrator on/off duty\n/report\tReport something to admin\n/o(oc)\tOut of character global chat\n/pay\tPay to another players\n/isafk\tSee who is afk\n/time\tSee the time\n/levelup\tLevel up your character\n");
-						strcat(str, "/enter\tEnter building\n/exit\tExit building\n/mask\tWear your mask\n/setchannel\tSet your channel radio\n/setslot\tSet your slot radio\n/radio\tTalk to radio\n/licenseexam\tDriving test in dmv\n/unimpound\tUnimpound your vehicle\n/rcp\tShow checkpoint if u loss\n/inventory(y)\tSee your inventory\n");
-						strcat(str, "/jobs\tSee list available jobs\n/damages\tSee your damages from your body\n/acceptdeath\tAccepted your wounded bound situation\n/fixr\tFix your radio\n/respawnme\tWake up from injured\n/setspawn\tSet your setspawn\n/settings\tSettings your gameplay.\n/approve\tapprove from other player offer\n");
-			    		strcat(str, "/coin\tFlips your coin\n/dice\tRolls a dice\n/gascan\tRefilling your vehicle fuel\n/repairkits\tRepairing your vehicle engine\n/cursor\tEnable/disable your cursorn");
-			    		ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "General Commands:", str, "Select", "Close");
+						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ General Commands __________|");
+						SendClientMessage(playerid, COLOR_SERVER, "/stats, /admins, /report, /o(oc), /pay, /isafk, /time, /levelup, /rcp, /inventory");
+						SendClientMessage(playerid, COLOR_SERVER, "/enter, /exit, /mask, /setchannel, /setslot, /radio, /licenseexam, /unimpound");
+						SendClientMessage(playerid, COLOR_SERVER, "/damages, /acceptdeath, /helpup, /fixr, /respawnme, /setspawn, /settings, /approve");
+			        	SendClientMessage(playerid, COLOR_SERVER, "/coin, /dice, /gascan, /repairkits, /cursor");
 					}
 					case 1:
 					{
-						new str[1024];
-						strcat(str, "/me\tDo an emote with your character\n/do\tDo an emote to another entity than your own character\n/ame\tDo an emote that shown above your character\n/my\tDo an emote in possesive pronoun\n/amy\tDo an emote in possesive pronoun above your character\n/shout\tShout with your character\n");
-						strcat(str, "/low\tTalk in low chat\n/b\tWrite in local OOC chat\n/pm\tsend private messages another players\n/deposit\tDeposit your money to bank\n/withdraw\tWithdraw your money\n/balance\tSee your balance in bank\n/license\tShow your licenses\n/animhelp\tSee all available animations\n/handshake\tshake your hand to other player\n/frisk\tinspect other player inventory\n/voicelines\tVoicelines character in gta");
-						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Roleplay Commands:", str, "Select", "Close");
+						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Roleplay Commands __________|");
+						SendClientMessage(playerid, COLOR_SERVER, "/me, /do, /ame, /my, /amy, /s(hout), /l(ow), /b, /pm, /deposit, /withdraw");
+						SendClientMessage(playerid, COLOR_SERVER, "/balance, /license, /animhelp, /handshake, /frisk, /voicelines");
 					}
 					case 2:
 					{
-						new str[512];
-						strcat(str, "/buyproperty\tBuy properties availables\n/lock\tLocked or Unlock your properties\n/property\tSee your properties list");
-						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Property Commands:", str, "Select", "Close");
+						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Property Commands __________|");
+						SendClientMessage(playerid, COLOR_SERVER, "/buyproperty, /lock, /property");
 					}
 					case 3:
 					{
-						new str[512];
-						strcat(str, "/buybiz\tBuy business in server\n/bizinfo\tSee information business\n/bizfee\tSet your business fee\n/bizcash\tOpen your business cash\n/sellbiz\tSell your business to server\n");
-						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Business Commands:", str, "Select", "Close");
+						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Business Commands __________|");
+						SendClientMessage(playerid, COLOR_SERVER, "/buybiz, /lock, /bizinfo, /bizfee, /bizcash, /sellbiz");
 					}
 					case 4:
 					{
-						new str[512];
-						strcat(str, "/factionhelp\tSee faction commands\n/factions\tSee faction list in server\n/(f)action\tTalk in faction chat\n/togfam\tToggle your faction chat\n/factionon\tSee faction member online\n/accept\tAccept invitation faction");
-						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Faction Commands:", str, "Select", "Close");
+						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Faction Commands __________|");
+						SendClientMessage(playerid, COLOR_SERVER, "/factionhelp, /factions, /f, /factionon");
+
+						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+						{
+							SendClientMessage(playerid, COLOR_SERVER, "/fduty, /offduty, /handcuff, /unhandcuff, /badge, /flocker, /m(egaphone), /(dep)artment,");
+							SendClientMessage(playerid, COLOR_SERVER, "/carsign, /remove_carsign, /tazer, /take, /givelicense, /impound, /checkvehicle, /mdc");
+						}
+						if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+						{
+							SendClientMessage(playerid, COLOR_SERVER, "/fduty, /offduty, /flocker, /m(egaphone), /(dep)artment,");
+							SendClientMessage(playerid, COLOR_SERVER, "/dropinjured, /loadinjured, /rescue");
+						}
+						if(PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 4)
+						{
+							SendClientMessage(playerid, COLOR_SERVER, "/finvite, /funinvite, /founinvite, /frank.");
+						}
 					}
 					case 5:
 					{
-						new str[1024];
-						strcat(str, "/carlist\tList/Spawn your own vehicles\n/carlock\t(Un)lock your own vehicles\ncardespawn\tDespawn your own vehicles\n/carkey\tShare your vehicles keys to another players\n/carscrap\tDestroy your vehicles into Vehicle Scrapyard\n");
-						strcat(str, "/carfind\tFind your vehicles in map\n/carhood\tOpen the hood vehicles\n/cartrunk\tOpen the trunks vehicles\n/carlights\tTurn on/off your vehicles lights\n");
-						strcat(str, "/engine\tTurn on/off engine on your vehicle\n/check\tCheck your vehicle in trunk\n/place\tPlace your weapon to your vehicle\n/refill\tRefill your vehicle fuel");
-						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Vehicle Commands:", str, "Select", "Close");
+						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Vehicle Commands __________|");
+						SendClientMessage(playerid, COLOR_SERVER, "/carlist, /engine, /carlock, /carkey, /cardespawn, /cartrunk, /carhood");
+						SendClientMessage(playerid, COLOR_SERVER, "/carlights, /carfind, /carradio, /carscrap, /carwhisper, /carb, /refill");
 					}
 					case 6:
 					{
-						new str[512];
-						strcat(str, "/court\tStart playin' basketball in court\n/resetcourt\tif the ball lost/fall into ground will reset to default position.\nPress 'LMB'\tTo shoot the ball from a distance.\nPress 'LMB'\tClose to the hoop to dunk basketball.\nPress 'LMB'\tWill nearest player to steal the ball.\n");
-						strcat(str, "Press 'LMB'\tTo pass the ball to nearest player.\nHold 'LALT'\tTo stay/idle will you have a ball.\nHold 'LALT'\tBlocking their ball from nearest distance.");
-						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Minigames Commands:", str, "Select", "Close");
+						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Minigames Commands __________|");
+						SendClientMessage(playerid, COLOR_SERVER, "/court, /resetcourt");
 					}
 					case 7:
 					{
-						new str[1024];
-						strcat(str, "CMD\tDescription\tType\n");
-						strcat(str, "/takejobs\tStart join the jobs\tTake Jobs\nPress '2'\tStart the jobs missions\tDocksworker & Garbageman\nPress 'ALT'\tCutting & Take timber from tree\tLumberjack\nPress 'ALT'\tPickup trash nearest trashcan pickup\tGarbageman\n/takecargo\tLoad the cargo package from oceandocks import warehouse\tDocksworker\n/storecargo\tUnload the cargo package into oceandocks export warehouse\tDocksworker\n");
-						strcat(str, "/tpda\tSee the industry list\tTruckers\n/cargobuy\tBuy products cargo from oceandocks ships\tTruckers\n/cargosell\tSell products cargo to business\tTruckers\n/cargodrop\tDropped/Remove products cargo in your inventory\tTruckers\n");
-						strcat(str, "/timbercut\tCutting timber nearest trees\tLumberjack\n/timbersell\tSell timber to leafy hollow barn\tLumberjack\n/fish\tStart fishing jobs\tActivity\n");
-						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Jobs Commands:", str, "Select", "Close");
+						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Jobs Commands __________|");
+						SendClientMessage(playerid, COLOR_SERVER, "/takejobs, /quitjobs, /loadcargo, /storecargo, /collectgarbage");
+						SendClientMessage(playerid, COLOR_SERVER, "/fish, /sellfish, /buybait");
+						SendClientMessage(playerid, COLOR_SERVER, "Press '2' start sidejobs");
+						SendClientMessage(playerid, COLOR_SERVER, "Press 'ALT' collect trashcan");
+						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRUCKER)
+						{
+							SendClientMessage(playerid, COLOR_SERVER, "/tpda, /cargobuy, /cargosell, /cargodrop");
+							SendTipMessage(playerid, "Type '/cartrunk' to place cargo into truck.");
+						}
+						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_LUMBERJACK)
+						{
+							SendClientMessage(playerid, COLOR_SERVER, "/buyaxe, /timbercut, /timbersell");
+							SendTipMessage(playerid, "Press 'ALT' to cutting tree(s) using axe.");
+						}
+						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TAXI)
+						{
+							SendClientMessage(playerid, COLOR_SERVER, " ");
+							SendTipMessage(playerid, "Taxi fare will change every 50 meters of distance.");
+						}
 					}
 					case 8:
 					{
@@ -2734,29 +2754,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					ShowVehicleStorage(playerid, carid);
 				}
 				else ShowVehicleStorage(playerid, carid);
-			}
-		}
-		case DIALOG_INDUSTRY:
-		{
-			if(response)
-			{
-				switch(listitem)
-				{
-					case 0:
-					{
-						new str[512];
-						strcat(str, "Welcome to los santos economy!\n\nThe ship & warehouses is currently restocked product every 10 minute(s).\n\nYou can buy cargo products if stock is still available on the ship or warehouses.");
-						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Oceandocks Information", str, "Confirm", "");
-					}
-					case 1:
-					{
-						ShowIndustry(playerid);
-					}
-					case 2:
-					{
-						ShowShipments(playerid);
-					}
-				}
 			}
 		}
 		case DIALOG_INDUSTRYLOC:

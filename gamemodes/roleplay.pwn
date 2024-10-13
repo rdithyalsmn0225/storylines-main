@@ -128,6 +128,7 @@ main ()  {}
 #include "modules\jobs\burglary.inc"
 #include "modules\jobs\trucker.inc"
 #include "modules\jobs\lumberjack.inc"
+#include "modules\jobs\taxi.inc"
 #include "modules\jobs\fishing.inc"
 #include "modules\jobs\trashmaster.inc"
 #include "modules\jobs\dockworker.inc"
@@ -184,7 +185,7 @@ public OnGameModeInit()
 	InsertTrashmaster();
 	InsertDocksWorkers();
 	InsertDonatorStars();
-	InsertStaticActors();
+	Insert3DTextLabel();
 	InsertSelectionMaps();
 	InsertStaticVehicles();
 	InsertProjectPropsData();
@@ -362,6 +363,9 @@ public OnPlayerDisconnect(playerid, reason)
 		}
 	}
 	
+	if (PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
+	    LeaveTaxi(playerid, PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER]);
+
 	foreach(new i : Player)
 	{
 		if(PlayerInfo[i][E_CHARACTER_FACTIONINVITED] == playerid)
@@ -2965,7 +2969,7 @@ public OnPlayerUpdate(playerid)
 public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 {
 
-	/*=====[CHARACTER SELECTIONS]=====*/
+	// CHARACTER SELECTIONS:
 	if (playertextid == SelectFactionClick[0][playerid]) //PREV
 	{
 		SwitchPrevCharacterSelection(playerid);
@@ -2996,7 +3000,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			}
 		}
 	}
-	/*=====[TUTORIAL]=====*/
+	// TUTORIAL:
 	if (playertextid == tutorialclick[playerid])
     {
 		if(PlayerInfo[playerid][E_CHARACTER_TUTORIAL] == 0 && PlayerInfo[playerid][E_CHARACTER_TUTORIALSTEP] != 16)
@@ -3005,7 +3009,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		}
 		return 1;
     }
-	/*=====[PHONE]=====*/
+	// PHONE:
 	if (playertextid == phone[6][playerid])
     {
 		new str[60];
@@ -3031,7 +3035,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		ResetVarInventory(playerid);
         return 1;
     }
-	/*=====[VEHICLE]=====*/
+	// VEHICLE:
 	if (playertextid == VehicleClick[0][playerid])
     {
 		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
@@ -3386,7 +3390,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 		}
 	}
-	/*=====[TRASHMASTER]=====*/
+	// TRASHMASTER:
 	if (newkeys & KEY_WALK && !IsPlayerInAnyVehicle(playerid))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == true && PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] == 0)
@@ -3399,10 +3403,10 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
 				SetPlayerAttachedObject(playerid, ATTACH_HAND, 1265, 6, 0.272000,0.041000,0.000000,0.000000,-58.600017,0.000000,0.500000,0.500000,0.500000);
 			}
-			else return SendErrorMessage(playerid, "You aren't nearest trashcan pickup.");
+			else return SendErrorMessage(playerid, "You aren't near trashcan pickup.");
 		}
 	}
-	/*=====[PLAYER GYM]=====*/
+	// PLAYER GYM:
 	if(newkeys == KEY_SECONDARY_ATTACK && !IsPlayerInAnyVehicle(playerid))
     {
 		if(PlayerUsingGym[playerid] == false)
@@ -3438,7 +3442,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		}
 	}
 
-	/*=====[FISHING]=====*/
+	// FISHING:
 	if(newkeys == KEY_SPRINT && !IsPlayerInAnyVehicle(playerid))
     {
 		if(PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] == true)
@@ -3466,13 +3470,13 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		}
 	}
 
-	/*=====[BUNNY HOP]=====*/
+	// BUNNY HOP:
 	if(PRESSED(KEY_JUMP) && !PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
 	{
 	    PlayerJump[playerid][JumpPressed] = gettime();
 	}
 
-	/*=====[CBUG]=====*/
+	// CBUG:
 	if(!pCBugging[playerid] && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
 	{
 		if(PRESSED(KEY_FIRE))
@@ -3500,7 +3504,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 		}
 	}
-	/*=====[Basketball]=====*/
+	// Basketball:
 	if ((newkeys & KEY_WALK) && !(oldkeys & KEY_WALK) && !IsPlayerInAnyVehicle(playerid))
     {
 		if(PlayerInfo[playerid][E_CHARACTER_COURT])
@@ -3559,7 +3563,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 			else
 			{
-				/*=====[Blue Team]=====*/
+				// Blue Team:
 				if(IsPlayerInRangeOfPoint(playerid, 2, CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][2]))
 				{
 					MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_BALL][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_BALL][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_BALL][2], 7.5);
@@ -3613,7 +3617,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					return 1;
 				}
 
-				/*=====[Red Team]=====*/
+				// Red Team:
 				else if(IsPlayerInRangeOfPoint(playerid, 2, CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][2]))
 				{
 					MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_BALL][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_BALL][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_BALL][2], 7.5);
@@ -3666,7 +3670,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					ShootMiss(playerid, 2);
 					return 1;
 				}
-				/*=====[PASS & STEAL]=====*/
+				// PASS & STEAL:
 				for(new i; i < MAX_PLAYERS; i++)
 				{
 					if(IsPlayerConnected(i))
@@ -3691,7 +3695,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						}
 					}
 				}
-				/*=====[THROW]=====*/
+				// THROW:
 				new Float:x, Float:y, Float:z;
 				GetPlayerPos(playerid, x, y, z);
 				PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
@@ -4064,13 +4068,15 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	new vehicleid = GetPlayerVehicleID(playerid);
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
-		if(!VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_ENGINE] && IsEngineVehicle(vehicleid))
-	   	{
+		if(!VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_ENGINE] && IsEngineVehicle(vehicleid)){
 			ShowBoxMessage(playerid, "The engine is off press 'ALT' or /engine to turn on vehicle", 5, 2);
+			SendTipMessage(playerid, "The engine is off press 'ALT' or /engine to turn on vehicle");
 	   	}
 
-	   	if (ReturnVehicleHealth(vehicleid) <= 350)
+	   	if (ReturnVehicleHealth(vehicleid) <= 350){
 	    	ShowBoxMessage(playerid, "This vehicle is ~r~totalled~w~ and needs repairing.", 5, 2);
+			SendTipMessage(playerid, "This vehicle is totalled and needs repairing call mechanic or buy repairkits in pawnshop.");
+		}
 	
 		if(VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID])
 			SendClientMessageEx(playerid, COLOR_WHITE, "Welcome to your %s.", ReturnVehicleName(GetPlayerVehicleID(playerid)));
@@ -4089,19 +4095,25 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 
 		if(IsABoat(vehicleid))
 		{
-			FishAreaMap[playerid][0] = CreateDynamicMapIcon(-45.2194,-1780.0557,-50.0635, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			FishAreaMap[playerid][1] = CreateDynamicMapIcon(128.1362,-2223.3005,-12.7861, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			FishAreaMap[playerid][2] = CreateDynamicMapIcon(582.6174,-2095.0061,-26.5748, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			FishAreaMap[playerid][3] = CreateDynamicMapIcon(592.1650,-2433.3000,-26.1163, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			FishAreaMap[playerid][4] = CreateDynamicMapIcon(1055.9287,-2707.4985,-8.3693, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			FishAreaMap[playerid][5] = CreateDynamicMapIcon(1674.3541,-2870.7888,-10.8219, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			FishAreaMap[playerid][6] = CreateDynamicMapIcon(2634.8784,-2882.4399,-20.7802, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			FishAreaMap[playerid][7] = CreateDynamicMapIcon(2934.7493,-2427.5249,-35.2053, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			FishAreaMap[playerid][8] = CreateDynamicMapIcon(2953.4675,-2201.9214,-0.7634, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			FishAreaMap[playerid][9] = CreateDynamicMapIcon(2958.8481,-1861.3545,-20.8790, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			FishAreaMap[playerid][10] = CreateDynamicMapIcon(2945.1201,-1741.1361,-58.5000, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
-			FishAreaMap[playerid][11] = CreateDynamicMapIcon(2961.6399,-1126.9136,-59.9930, 0, 1, 0, 0, -1, 9999999.0, MAPICON_LOCAL);
+			ShowBoxMessage(playerid, "You are now entering boat, /fish to start fishing.", 5, 2);
+			SendTipMessage(playerid, "You are now entering boat, /fish to start fishing.");
 		}
+	}
+
+	if (newstate == PLAYER_STATE_PASSENGER && IsPlayerInsideTaxi(playerid))
+	{
+	    new driverid = GetVehicleDriver(GetPlayerVehicleID(playerid));
+
+	    PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 5;
+	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
+	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
+
+	    SendServerMessage(driverid, "%s has entered your taxi as a passenger.", ReturnSettingsName(playerid, driverid));
+		SendServerMessage(playerid, "You have entered %s's taxi.", ReturnSettingsName(driverid, playerid));
+	}
+ 	if (oldstate == PLAYER_STATE_PASSENGER && PlayerInfo[playerid][E_CHARACTER_TAXITIMER] != 0 && PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
+	{
+	    LeaveTaxi(playerid, PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER]);
 	}
 	
 	if(newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER)
@@ -4153,6 +4165,16 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 
 public OnPlayerExitVehicle(playerid, vehicleid)
 {
+	if (PlayerInfo[playerid][E_CHARACTER_TAXIDUTY])
+	{
+        foreach (new i : Player) if (PlayerInfo[i][E_CHARACTER_TAXIPLAYER] == playerid && IsPlayerInVehicle(i, GetPlayerVehicleID(playerid))) {
+	        LeaveTaxi(i, playerid);
+	    }
+	    
+        PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
+        SendServerMessage(playerid, "You are no longer on taxi duty!");
+	}
+
     if(Jobs_vehicles[7] <= vehicleid <= Jobs_vehicles[11])
     {
         PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
@@ -4887,7 +4909,7 @@ public OnIncomingRPC(playerid, rpcid, BitStream:bs)
 
 public OnDynamicObjectMoved(objectid)
 {
-	/*=====[Basketball]=====*/
+	// Basketball:
 	foreach(new pid : Player)
 	{
 		new i = CourtInfo[PlayerInfo[pid][E_CHARACTER_COURT]][E_BALLER];
@@ -4981,7 +5003,7 @@ public OnDynamicObjectMoved(objectid)
 			CourtInfo[PlayerInfo[pid][E_CHARACTER_COURT]][E_BALL_BOUNCE] = 1;
 		}
 
-		/*=====[Have Ball]=====*/
+		// Have Ball:
 		if(!PlayerInfo[i][E_CHARACTER_HAVEBALL]) return 1;
 		new Keys, ud, lr;
 		GetPlayerKeys(i, Keys, ud, lr);

@@ -35,12 +35,12 @@ function:CallPaycheck()
 		
 		SendClientMessageEx(i, COLOR_WHITE, "SERVER TIME:[ %s ]", ReturnHour()); 
 		
-		SendClientMessage(i, COLOR_HEADER, "|___ BANK STATEMENT ___|"); 
+		SendClientMessage(i, COLOR_DARKGREEN, "|___ BANK STATEMENT ___|"); 
 		SendClientMessageEx(i, COLOR_GREY, "   Balance: $%s", FormatMoney(PlayerInfo[i][E_CHARACTER_BANK])); 
 		SendClientMessageEx(i, COLOR_GREY, "   Interest rate: $%s (rate: %.1f)", FormatMoney(interest), floatdiv(float(rate), 10));
 		SendClientMessageEx(i, COLOR_GREY, "   Interest Gained: $%s", FormatMoney(paycheck));
 		SendClientMessageEx(i, COLOR_GREY, "   Tax paid: $%s (%i percent)", FormatMoney(tax), gTax); 
-		SendClientMessage(i, COLOR_HEADER, "|________________________|");
+		SendClientMessage(i, COLOR_DARKGREEN, "|________________________|");
 		
 		PlayerInfo[i][E_CHARACTER_PAYCHECK] = 0; 
 		PlayerInfo[i][E_CHARACTER_BANK]+= total; 

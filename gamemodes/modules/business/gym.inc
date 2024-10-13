@@ -1,5 +1,5 @@
 
-/*=====[FUNCTION PLAYER]=====*/
+// FUNCTION PLAYER:
 function:PlayerGYMTimers(playerid, type)
 {
     PlayerPointGym[playerid] -= 10;
@@ -206,7 +206,7 @@ stock IsPlayerExitMachine(playerid)
     return 1;
 }
 
-/*=====[FUNCTION USING MACHINE]=====*/
+// FUNCTION USING MACHINE:
 stock IsPlayerUsingDumbell(playerid, businessid, area)
 {
     switch(area)

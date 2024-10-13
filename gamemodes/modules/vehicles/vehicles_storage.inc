@@ -1,4 +1,4 @@
-/*=====Function]=====*/
+// Function:
 
 function:VehicleStorage_Load(vehicleid)
 {

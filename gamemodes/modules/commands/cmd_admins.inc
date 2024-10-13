@@ -1974,7 +1974,7 @@ CMD:editfaction(playerid, params[])
 			DestroyDynamic3DTextLabel(FactionInfo[factionid][E_FACTION_SPAWNTEXT]);
 
 		FactionInfo[factionid][E_FACTION_SPAWNPICKUP] = CreateDynamicPickup(1239, 1, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
-		FactionInfo[factionid][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel("Faction Spawn Point\n{ffffff}Available Commands: Use /factionhelp to see faction commands", COLOR_DARKGREEN, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], 30.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
+		FactionInfo[factionid][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel("Faction Spawn Point\n{ffffff}Available Commands: Use /factionhelp to see faction commands", COLOR_DARKGREEN, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
 
 		SaveFaction(factionid);
 	}

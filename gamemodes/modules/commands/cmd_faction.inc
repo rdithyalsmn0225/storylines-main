@@ -1,37 +1,4 @@
 //Faction commands:
-CMD:fhelp(playerid, params[]) return cmd_factionhelp(playerid, params);
-CMD:factionhelp(playerid, params[])
-{
-	SendClientMessage(playerid, COLOR_RED, "/faction, /f, /fskin, /factionhelp"); 
-	
-	if(!IsPlayerFaction(playerid))
-		return 1;
-	
-	SendClientMessageEx(playerid, COLOR_RED, "%s Commands:", ReturnFactionName(playerid));
-		
-	if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
-	{
-		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} /fduty, /offduty, /handcuff, /unhandcuff, /badge, /flocker, /m(egaphone), /(dep)artment,");
-		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} /carsign, /remove_carsign, /tazer, /take, /givelicense, /impound, /checkvehicle, /mdc, /wanted");
-	}
-    if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
-	{
-		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} /fduty, /offduty, /flocker, /m(egaphone), /(dep)artment,");
-		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} /dropinjured, /loadinjured, /rescue");
-	}
-	else if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
-	{
-		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} /claimturfwars(/ctw), /turf, /buygun");
-	}
-	
-	if(PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 4)
-	{
-		SendClientMessage(playerid, COLOR_RED, "Leadership:{ffffff} /finvite, /funinvite, /founinvite, /frank.");
-	}
-	
-	return 1;
-}
-
 CMD:factions(playerid, params[])
 {
 	new str[512], longstr[512]; 
@@ -477,7 +444,7 @@ CMD:badge(playerid, params[])
 	
 	else SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s shows %s their badge.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
 	
-	SendClientMessage(playerb, COLOR_COP, "|__________________________ Badge __________________________|");
+	SendClientMessage(playerb, COLOR_COP, "|__________ Badge __________|");
 	SendClientMessageEx(playerb, COLOR_WHITE, "  Name: %s", ReturnMixedName(playerid));
 	SendClientMessageEx(playerb, COLOR_GREY, "  Rank: %s", IsPlayerFactionRank(playerid));
 	SendClientMessageEx(playerb, COLOR_WHITE, "  Agency: %s", ReturnFactionName(playerid));
@@ -924,7 +891,7 @@ CMD:dropinjured(playerid, params[])
         return SendUsageMessage(playerid, "/dropinjured [playerid/PartOfName]");
 
     if(otherid == INVALID_PLAYER_ID || !IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerid)))
-        return SendErrorMessage(playerid, "You aren't nearest of any player.");
+        return SendErrorMessage(playerid, "You aren't near of any player.");
 
     if(otherid == playerid)
         return SendErrorMessage(playerid, "You can't deliver yourself to the hospital.");
@@ -961,7 +928,7 @@ CMD:rescue(playerid, params[])
         return SendUsageMessage(playerid, "/rescue [playerid/PartOfName]");
 
     if(otherid == INVALID_PLAYER_ID || !IsPlayerNearPlayer(playerid, otherid, 5.0))
-        return SendErrorMessage(playerid, "You aren't nearest of any player.");
+        return SendErrorMessage(playerid, "You aren't near of any player.");
 
     if(otherid == playerid)
         return SendErrorMessage(playerid, "You can't rescue yourself.");

@@ -898,6 +898,10 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 				}
 			}
 		}
+		if(PlayerInfo[playerid][E_CHARACTER_PHONELINE] == 111)
+		{
+			SendTaxiMessage(playerid);
+		}
 		else
 		{
 			if (vehicleid && IsPlayerInAnyVehicle(playerid) && IsWindowedVehicle(vehicleid)) 

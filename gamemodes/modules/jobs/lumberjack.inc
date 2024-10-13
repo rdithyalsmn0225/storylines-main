@@ -11,8 +11,7 @@ VehicleObjectUpdates(vehicleid)
             }
             else
             {
-                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
-                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+                DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
             }
         }
         case 543:
@@ -24,8 +23,7 @@ VehicleObjectUpdates(vehicleid)
             }
             else
             {
-                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
-                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+                DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
             }
         }
         case 478:
@@ -37,8 +35,7 @@ VehicleObjectUpdates(vehicleid)
             }
             else
             {
-                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
-                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+                DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
             }
         }
         case 554:
@@ -50,8 +47,7 @@ VehicleObjectUpdates(vehicleid)
             }
             else
             {
-                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
-                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+                DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
             }
         }
     }
@@ -149,6 +145,63 @@ function:CreateTimber(playerid, id)
 	return 1;
 }
 
+CMD:timbercut(playerid, params[])
+{
+    if(IsPlayerNearestTree(playerid) != -1)
+    {
+        new Float:x, Float:y, Float:z;
+        GetPlayerPos(playerid, x, y, z);
+
+        new id;
+        id = IsPlayerNearestTree(playerid);
+
+        if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_LUMBERJACK)
+            return SendErrorMessage(playerid, "You aren't lumberjack.");
+
+        if(!Inventory_Count(playerid, "Axe"))
+            return SendErrorMessage(playerid, "You don't have any axe in inventory.");
+
+        if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != AXE)
+            return SendErrorMessage(playerid, "You must hold the axe in your hands.");
+
+        if(TreeInfo[id][E_TREE_TIMER] > 0)
+            return SendErrorMessage(playerid, "This tree still unavailable.");
+
+        if(TreeInfo[id][E_TREE_CUT])
+            return SendErrorMessage(playerid, "Unable to execute this tree! (being interacted with another player)");
+
+        if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+            return SendErrorMessage(playerid, "You're can't use this right now."); 
+
+        if(!TreeInfo[id][E_TREE_CUTTED])
+        {
+            if(TreeInfo[id][E_TREE_PROGRESS] < 100)
+            {
+                PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
+                PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading cutting trees process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("CutTree", 500, true, "dd", playerid, id);
+                TogglePlayerControllable(playerid, false);
+                ApplyAnimation(playerid,"BASEBALL", "Bat_M", 4.1, 1, 0, 0, 1, 0, 1);
+                TreeInfo[id][E_TREE_CUT] = true;
+            }
+        }
+        else
+        {
+            if(Inventory_Count(playerid, "Woods"))
+                return SendErrorMessage(playerid, "You already carrying woods");
+
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
+            PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+            PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take timber process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+            PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("CreateTimber", 1000, true, "dd", playerid, id);
+            TogglePlayerControllable(playerid, false);
+            TreeInfo[id][E_TREE_CUT] = true;
+            ApplyAnimation(playerid,"BOMBER","BOM_Plant_Loop", 4.1, 1, 0, 0, 1, 0, 1);
+        }
+    }
+    return 1;
+}
 CMD:timbersell(playerid, params[])
 {
 	if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_LUMBERJACK)
@@ -172,4 +225,25 @@ CMD:timbersell(playerid, params[])
 		SendServerMessage(playerid, "You has sell woods for %s into leafy hollow barn.", FormatMoney(LUMBERJACK_SALARY*2));
 	}
 	return 1;
+}
+
+CMD:buyaxe(playerid, params[])
+{
+    if(!IsPlayerInRangeOfPoint(playerid, 3.0, -1448.7738,-1530.5585,101.7578))
+        return SendErrorMessage(playerid, "You aren't near leafy hollow barn.");
+
+    if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_LUMBERJACK)
+        return SendErrorMessage(playerid, "You aren't lumberjack.");
+
+    if(Inventory_Count(playerid, "Axe"))
+        return SendErrorMessage(playerid, "You already own a axe.");
+
+    if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+        return SendErrorMessage(playerid, "You can't afford axe.");
+
+    Inventory_Add(playerid, "Axe", -2211, 1);
+    GiveMoney(playerid, -250);
+    SendServerMessage(playerid, "You bought a axe for $250.");
+    SendTipMessage(playerid, "To start cutting the tree(s) /timbercut using axe.");
+    return 1;
 }

@@ -32,6 +32,7 @@
 #define COLOR_COP 			(0x8D8DFFFF)
 #define COLOR_MEDIC         (0xDFA0C1FF)
 #define COLOR_DEPT 			(0xF07A7AFF)
+#define COLOR_TAXI          (0xf1c232FF)
 
 #define COLOR_SAMP			(0xADC3E7FF)
 

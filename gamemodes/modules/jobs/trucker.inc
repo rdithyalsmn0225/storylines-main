@@ -119,6 +119,31 @@ CMD:tpda(playerid, params[])
     if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TRUCKER)
         return SendErrorMessage(playerid, "You aren't truckers.");
 
-    ShowPlayerDialog(playerid, DIALOG_INDUSTRY, DIALOG_STYLE_LIST, "Truck PDA:", "Show Oceandocks Information\nShow All Industry\nShow Business Request Shipments", "Select", "Cancel");
+    Dialog_Show(playerid, Industry, DIALOG_STYLE_LIST, "Truck PDA:", "Show Oceandocks Information\nShow All Industry\nShow Business Request Shipments", "Select", "Cancel");
     return 1;
+}
+
+Dialog:Industry(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		switch(listitem)
+		{
+			case 0:
+			{
+				new str[512];
+				strcat(str, "Welcome to los santos economy!\n\nThe ship & warehouses is currently restocked product every 10 minute(s).\n\nYou can buy cargo products if stock is still available on the ship or warehouses.");
+				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Information:", str, "Confirm", "");
+			}
+			case 1:
+			{
+				ShowIndustry(playerid);
+			}
+			case 2:
+			{
+				ShowShipments(playerid);
+			}
+		}
+	}
+	return 1;
 }

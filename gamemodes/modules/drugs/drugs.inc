@@ -1,4 +1,4 @@
-/*=====[COOKED DRUGS]=====*/
+// COOKED DRUGS:
 function:CookDrugs(playerid, type, id)
 {
 	new text[256];
@@ -71,7 +71,7 @@ function:CookDrugs(playerid, type, id)
     Update3DTextLabelText(BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
 }
 
-/*=====[PURCHASE DRUGS]=====*/
+// PURCHASE DRUGS:
 function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 {
 	if(response)
@@ -122,7 +122,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 	return 1;
 }
 
-/*=====[CONSUME DRUGS]=====*/
+// CONSUME DRUGS:
 stock IsPlayerUsingDrugs(playerid, type)
 {
 	switch(type)
@@ -319,14 +319,14 @@ CMD:production(playerid, params[])
 CMD:buydrugs(playerid, params[])
 {
 	if(!IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[4][Posx], IndustryInfo[4][Posy], IndustryInfo[4][Posz]))
-		return SendErrorMessage(playerid, "You aren't nearest drugs labs.");
+		return SendErrorMessage(playerid, "You aren't near drugs labs.");
 
 	new str[512];
-	strcat(str, "Drugs\tPrice");
+	strcat(str, "Drugs\tPrice\n");
 	strcat(str, "Marijuana\t$3000\n");
 	strcat(str, "Cocaine\t$5000\n");
 	strcat(str, "Heroin\t$5000\n");
-	Dialog_Show(playerid, BuyDrugs, DIALOG_STYLE_TABLIST_HEADERS, "Gunstore:", str, "Select", "Close");
+	Dialog_Show(playerid, BuyDrugs, DIALOG_STYLE_TABLIST_HEADERS, "Drugs Labs:", str, "Select", "Close");
 	return 1;
 }
 

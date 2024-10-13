@@ -108,7 +108,7 @@ stock ServerData_Minus(type, minus)
 stock ShowIndustry(playerid)
 {
 	new str[456];
-	forex(i, sizeof(IndustryInfo))
+	forex(i, sizeof(IndustryInfo) && !IndustryInfo[3][Name] && !IndustryInfo[4][Name])
 	{
 		format(str, sizeof(str), "%s%s\n", str, IndustryInfo[i][Name]);
 	}

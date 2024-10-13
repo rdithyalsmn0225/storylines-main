@@ -2,7 +2,7 @@ SetupCharacterSelection(playerid)
 {
 	new str[512], str1[512];
 
-	/*=====[CHARACTERS SELECTION]======*/
+	// CHARACTERS SELECTION]======*/
 	if(characterSelection[playerid])
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == -1) 
@@ -15,13 +15,13 @@ SetupCharacterSelection(playerid)
 			InterpolateCameraPos(playerid, 230.109451, 66.968635, 1005.550903, 230.109451, 66.968635, 1005.550903, 3000, 1);
 			InterpolateCameraLookAt(playerid, 226.109558, 66.989463, 1005.571472, 226.113281, 67.009956, 1005.720825, 3000, 1);
 
+
 			format(str, sizeof(str), "%s", (characterLister[playerid][0][0] == EOS) ? ("Empty_Slot") : (characterLister[playerid][0]));
 			format(str1, sizeof(str1), "%s", ReturnFactionNameEx(characterFaction[playerid][0]));
 
 			PlayerTextDrawSetString(playerid, SelectFactionName[playerid], str1);
 			PlayerTextDrawSetString(playerid, SelectFactionLocation[playerid], str);
-			PlayerTextDrawColor(playerid,SelectFactionName[playerid], FactionInfo[characterFaction[playerid][0]][E_FACTION_COLORHEX]);
-
+			
 			CreatePlayerActor(playerid, characterSkin[playerid][0]);
 		}
 		else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 1) 
@@ -34,8 +34,7 @@ SetupCharacterSelection(playerid)
 
 			PlayerTextDrawSetString(playerid, SelectFactionName[playerid], str1);
 			PlayerTextDrawSetString(playerid, SelectFactionLocation[playerid], str);
-			PlayerTextDrawColor(playerid,SelectFactionName[playerid], FactionInfo[characterFaction[playerid][1]][E_FACTION_COLORHEX]);
-
+			
 			CreatePlayerActor(playerid, characterSkin[playerid][1]);
 		}
 		else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 2) 
@@ -49,8 +48,7 @@ SetupCharacterSelection(playerid)
 
 			PlayerTextDrawSetString(playerid, SelectFactionName[playerid], str1);
 			PlayerTextDrawSetString(playerid, SelectFactionLocation[playerid], str);
-			PlayerTextDrawColor(playerid,SelectFactionName[playerid], FactionInfo[characterFaction[playerid][2]][E_FACTION_COLORHEX]);
-
+			
 			CreatePlayerActor(playerid, characterSkin[playerid][2]);
 		}
 		else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 3) 
@@ -63,8 +61,7 @@ SetupCharacterSelection(playerid)
 
 			PlayerTextDrawSetString(playerid, SelectFactionName[playerid], str1);
 			PlayerTextDrawSetString(playerid, SelectFactionLocation[playerid], str);
-			PlayerTextDrawColor(playerid, SelectFactionName[playerid], FactionInfo[characterFaction[playerid][3]][E_FACTION_COLORHEX]);
-
+			
 			CreatePlayerActor(playerid, characterSkin[playerid][3]);
 		}
 	}

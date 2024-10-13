@@ -6,7 +6,7 @@ stock Send911Message(playerid, type)
 		{
 			foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_POLICEDUTY])
 			{
-				SendClientMessage(i, COLOR_CYAN, "|____________Emergency Call____________|");
+				SendClientMessage(i, COLOR_CYAN, "|____________ Emergency Call ____________|");
 				SendClientMessageEx(i, COLOR_CYAN, "Caller: %s, Phone: %d, Trace: %s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_PHONE], ReturnLocation(playerid));
 				SendClientMessageEx(i, COLOR_CYAN, "Service required: %s", Player911Text[playerid][0]);
 				SendClientMessageEx(i, COLOR_CYAN, "Situation: %s", Player911Text[playerid][1]);
@@ -17,7 +17,7 @@ stock Send911Message(playerid, type)
 		{
 			foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_MEDICDUTY])
 			{
-				SendClientMessage(i, COLOR_PINK, "|____________Emergency Call____________|");
+				SendClientMessage(i, COLOR_PINK, "|____________ Emergency Call ____________|");
 				SendClientMessageEx(i, COLOR_PINK, "Caller: %s, Phone: %d, Trace: %s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_PHONE], ReturnLocation(playerid));
 				SendClientMessageEx(i, COLOR_PINK, "Service required: %s", Player911Text[playerid][0]);
 				SendClientMessageEx(i, COLOR_PINK, "Situation: %s", Player911Text[playerid][1]);
@@ -29,6 +29,18 @@ stock Send911Message(playerid, type)
 
 	Player911Type[playerid] = 0;	
 	cmd_hangup(playerid, ""); 
+	return 1;
+}
+
+stock SendTaxiMessage(playerid)
+{
+	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_TAXIDUTY])
+	{
+		SendClientMessage(i, COLOR_TAXI, "|____________ Taxi Call ____________|");
+		SendClientMessageEx(i, COLOR_TAXI, "Caller: %s, Phone: %d, Trace: %s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_PHONE], ReturnLocation(playerid));
+		SendClientMessageEx(i, COLOR_TAXI, "Service required: Taxi Drivers", Player911Text[playerid][0]);
+		SendClientMessageEx(i, COLOR_TAXI, "Location: %s", ReturnLocation(playerid)); 
+	}
 	return 1;
 }
 

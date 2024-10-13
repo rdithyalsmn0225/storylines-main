@@ -87,7 +87,7 @@ new legalmods[48][22] = {
 stock DistancePointToPoint(Float: x, Float: y, Float: z, Float: fx, Float:fy, Float: fz) return floatround(floatsqroot(floatpower(fx - x, 2) + floatpower(fy - y, 2) + floatpower(fz - z, 2)));
 
 
-/*=====[AC CONFIG]=====*/
+// AC CONFIG:
 stock InsertAntiCheat()
 {
     AC_VHEALTH	    = true;
@@ -111,7 +111,7 @@ stock ResetTeleportAC(playerid) {
     return 1;
 }
 
-/*=====[VEHICLE WARP CHECK]=====*/
+// VEHICLE WARP CHECK:
 function:PlayerPutIntoVehicle(playerid, vehicleid, seatid)
 {
     LastEnteredVehicle[playerid] = vehicleid;
@@ -119,7 +119,7 @@ function:PlayerPutIntoVehicle(playerid, vehicleid, seatid)
     return 1;
 }
 
-/*=====[VEHICLE MOD CHECK]=====*/
+// VEHICLE MOD CHECK:
 iswheelmodel(modelid) {
  
     new wheelmodels[17] = {1025,1073,1074,1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1096,1097,1098};
@@ -178,7 +178,7 @@ islegalcarmod(vehicleide, componentid)
     return modok;
 }
 
-/*=====[VEHICLE CHECK]=====*/
+// VEHICLE CHECK:
 stock VehicleSpeedCheck(vehicleid)
 {
         if(vehicleid != INVALID_VEHICLE_ID)
@@ -191,7 +191,7 @@ stock VehicleSpeedCheck(vehicleid)
         return INVALID_VEHICLE_ID;
 }
 
-/*=====[SPEED CHECK]=====*/
+// SPEED CHECK:
 stock PlayerSpeedCheck(playerid)
 {
     if(playerid != INVALID_PLAYER_ID)
@@ -222,7 +222,7 @@ stock SetPlayerArmourEx(playerid, Float:value)
 	return 1;
 }
 
-/*=====[VEHICLE CHECK]=====*/
+// VEHICLE CHECK:
 stock VehicleAnticheatCheck(vehicleid)
 {
 	new Float:currenthp, csh, cch;
@@ -236,7 +236,7 @@ stock VehicleAnticheatCheck(vehicleid)
 	return true;
 }
 
-/*=====[ARMOUR CHECK]=====*/
+// ARMOUR CHECK:
 stock ArmourAnticheatCheck(playerid)
 {
 	GetPlayerArmour(playerid, CurrentArmourVar[playerid]);
@@ -246,7 +246,7 @@ stock ArmourAnticheatCheck(playerid)
 	return true;
 }
 
-/*=====[HEALTH CHECK]=====*/
+// HEALTH CHECK:
 stock HealthAnticheatCheck(playerid)
 {
 	GetPlayerHealth(playerid, CurrentHealthVar[playerid]);
@@ -256,14 +256,14 @@ stock HealthAnticheatCheck(playerid)
 	return true;
 }
 
-/*=====[PAUSED CHECK]=====*/
+// PAUSED CHECK:
 stock PauseVehicleAC(vehicleid)
 {
 	VehicleInfo[vehicleid][E_VEHICLE_VCTIMER] = 5 * 4;
 	return true;
 }
 
-/*=====[WEAPONS CHECK]=====*/
+// WEAPONS CHECK:
 static const WeaponSlots[] = {
     0, 0, 1, 1, 1, 1, 1, 1, 1, 
     1, 10, 10, 10, 10, 10, 10, 
@@ -284,7 +284,7 @@ stock GetPlayerWeaponVar(playerid)
 }
 
 
-/*=====[AC CHECK]=====*/
+// AC CHECK:
 function:AntiCheatCheck()
 {
     foreach(new playerid : Player)

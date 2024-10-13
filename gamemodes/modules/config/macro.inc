@@ -28,7 +28,7 @@
 
 #pragma warning disable 239, 214, 213, 208
 
-/*=====[BODYPART]=====*/
+// BODYPART:
 #define BODY_PART_CHEST	(3)
 #define BODY_PART_GROIN (4)
 #define BODY_PART_LEFT_ARM (5)
@@ -37,7 +37,7 @@
 #define BODY_PART_RIGHT_LEG (8)
 #define BODY_PART_HEAD (9)
 
-/*=====[MAXIMUMS]=====*/
+// MAXIMUMS:
 #define MAX_ENTRANCE 				(100)
 #define MAX_PROPERTY 				(100)
 #define MAX_BUSINESS 				(100)

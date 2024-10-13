@@ -1,4 +1,4 @@
-/*=====[ANTICHEAT]=====*/
+// ANTICHEAT:
 new bool:pCBugging[MAX_PLAYERS],
 	ptmCBugFreezeOver[MAX_PLAYERS],
 	ptsLastFiredWeapon[MAX_PLAYERS],
@@ -36,6 +36,7 @@ enum
 	JOB_NONE,
     JOB_TRUCKER,
 	JOB_LUMBERJACK,
+	JOB_TAXI
 };
 
 enum 
@@ -102,7 +103,7 @@ enum
 	ATTACH_HAND2 = 9
 };
 
-/*=====[ENUM VAR]=====*/
+// ENUM VAR:
 enum P_MASTER_ACCOUNTS
 {
 	E_MASTERS_DBID,
@@ -215,6 +216,10 @@ enum P_ACCOUNT_DATA
 	E_CHARACTER_BURGLARYVEHICLE,
 	E_CHARACTER_TRASHMASTER_TIMER,
 	E_CHARACTER_TRASHMASTER_VALUE,
+	E_CHARACTER_TAXIFARE,
+	E_CHARACTER_TAXITIMER,
+	E_CHARACTER_TAXIPLAYER,
+	E_CHARACTER_TAXICALLED,
 	E_CHARACTER_AGE[20],
 	E_CHARACTER_ORIGIN[60],
 	E_CHARACTER_STORY[60],
@@ -248,6 +253,7 @@ enum P_ACCOUNT_DATA
 	bool:E_CHARACTER_VEHICLESPAWNED,
 	bool:E_CHARACTER_POLICEDUTY,
 	bool:E_CHARACTER_MEDICDUTY,
+	bool:E_CHARACTER_TAXIDUTY,
 	bool:E_CHARACTER_HASRADIO,
 	bool:E_CHARACTER_DIEUNKNOWN,
 	bool:E_CHARACTER_POLICEGUN,
@@ -291,7 +297,7 @@ enum E_VOICELINE_DATA
 	E_VOICELINE_DESC[96]
 };
 
-/*=====[FACTION]=====*/
+// FACTION:
 enum E_FACTION_INFO
 {
 	E_FACTION_DBID,
@@ -368,7 +374,7 @@ enum E_VEHICLE_STORAGE
 	E_VEHICLE_TRUNKTYPE
 };
 
-/*=====[PROPERTIES]=====*/
+// PROPERTIES:
 enum E_PROPERTY_DATA
 {
 	E_PROPERTY_DBID,
@@ -609,7 +615,7 @@ enum E_BURGLARY_DATA
 	bool:E_BURGLARY_PROPERTYEXISTS
 }
 
-/*=====[INVENTORY & DROPS]=====*/
+// INVENTORY & DROPS:
 enum E_INVENTORY_DATA
 {
 	E_INVENTORY_EXISTS,
@@ -646,7 +652,7 @@ enum E_DROPPED_DATA
 	E_DROPPED_OBJECT
 };
 
-/*=====[MODSHOP]=====*/
+// MODSHOP:
 new ModShop[4];
 new Menu:ModShopMenu;
 
@@ -696,7 +702,7 @@ enum E_INDUSTRY_DATA {
 	Float:Posz
 };
 
-/*=====[PENALCODE]=====*/
+// PENALCODE:
 enum E_PENALCODES_DATA {
 	E_PENALCODES_TYPE[128],
 	E_PENALCODES_NAME[1024],
@@ -705,7 +711,7 @@ enum E_PENALCODES_DATA {
 };
 
 
-/*=====[VAR]=====*/
+// VAR:
 new
 	PlayerInfo[MAX_PLAYERS][P_ACCOUNT_DATA],
 	AccountInfo[MAX_PLAYERS][P_MASTER_ACCOUNTS],
@@ -806,12 +812,12 @@ new g_aHoodRatsSkins[] = {
 	21, 22, 23, 28, 29, 25, 19, 7, 30, 66, 143, 144, 183, 142, 48, 47
 };
 
-/*=====[DRUGS DEAL SKIN]=====*/
+// DRUGS DEAL SKIN:
 new g_aDrugsDealSkins[] = {
 	21, 22, 25, 28, 29, 30, 30, 47, 48, 184
 };
 
-/*=====[DOCKWORKER]=====*/
+// DOCKWORKER:
 new Float: Dockworker_Collect[][3] = 
 {
 	{2733.5237,-2511.8403,13.6641},
@@ -826,7 +832,7 @@ new Float: Dockworker_Store[][3] =
  	{2554.2400,-2409.4878,13.6332}
 };
 
-/*=====[TOYS SELECTION]=====*/
+// TOYS SELECTION:
 new g_aClothingCustom[] = {
 	-25000, -25001, -25002, -25003, -25004, -25005, -25006, -25007, 
 	-25008, -25009, -25010, -25011, -25012, -25013, -25014, -25015, 
@@ -886,6 +892,7 @@ new Float:JobPoint[][] =
 {
 	{1793.2362,-1691.9686,13.4858}, //Truckers
 	{-1438.6829,-1543.6034,101.7578}, //Lumberjack
+	{685.7347,-1421.4628,14.6839}, //Taxi Driver
 	{2177.2751,-1986.4753,13.5504}, //Trashmaster
 	{2748.7725,-2451.0012,13.6484},  //Dockworker
 	{2924.4316,-2052.0808,3.5480}  //Fishing
@@ -1072,7 +1079,8 @@ new const JobsInfo[][E_JOBS_LOCATIONS] =
 {
 	{"Unemployed", 0.0, 0.0, 0.0},
 	{"Truckers", -76.8248,-1136.7188,1.0781},
-	{"Lumberjack", -1438.6829,-1543.6034,101.7578}
+	{"Lumberjack", -1438.6829,-1543.6034,101.7578},
+	{"Taxi Drivers", 685.7347,-1421.4628,14.6839}
 };
 
 new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
@@ -1157,8 +1165,9 @@ new const PublicName[][128] =
 
 new const JobLocName[][62] =
 {
-	"ArborV Trucking.co (Job: Trucking)",
+	"Trucking.co (Job: Trucking)",
 	"Leafy Hollow Barn.co (Job: Lumberjack)",
+	"Royal Cab.co (Job: Taxi Drivers)",
     "G&S Garbage.co (SideJob: Trashmaster)",
 	"Sheroline's Dockswork.co (SideJob: Dockworker)",
 	"Royal Fishers.co (SideJob: Fishing)"

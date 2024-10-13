@@ -101,7 +101,7 @@ stock InsertJobsPoint()
 {
     for(new i = 0; i < sizeof(JobsInfo); i++)
     {
-        CreateDynamicPickup(1239, 1, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], -1, -1, -1, 50.0);
+        CreateDynamicPickup(1239, 1, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], -1, -1, -1, 5.0);
         CreateDynamic3DTextLabel("[Jobs Point]\n{ffffff}Available commands: /takejobs /quitjobs", COLOR_DARKGREEN, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], 5.0);
     }
     return 1;
@@ -143,6 +143,21 @@ ReturnJobSkill(playerid, jobid)
             else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 0)
                 format(name, 32, "Timberjack Trainee");
 	    }
+        case JOB_TAXI:
+		{
+			if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 10)
+                format(name, 32, "Professional Taxi Driver");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 8)
+                format(name, 32, "Taxi Driver");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 6)
+                format(name, 32, "Taxi Driver Trainee");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 4)
+                format(name, 32, "Professional Driver");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 2)
+                format(name, 32, "Driver");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 0)
+                format(name, 32, "Driver Trainee");
+	    }
 	    default: format(name, 32, "Unemployed");
 	}
 	return name;
@@ -161,6 +176,10 @@ ReturnJobName(jobid)
         case JOB_LUMBERJACK:
         {
             format(name, 32, "Lumberjack");
+        }
+        case JOB_TAXI:
+        {
+            format(name, 32, "Taxi Driver");
         }
 	    default: format(name, 32, "Unemployed");
 	}

@@ -17,8 +17,7 @@
 | Changelogs |
 
 [+]
-    Added LSMD /dropinjured /loadinjured /rescue.-
-    Added lumberjack jobs.
+
 [x]
 
 [*]

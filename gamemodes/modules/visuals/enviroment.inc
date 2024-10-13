@@ -36,9 +36,11 @@ DestroyPlayerActor(playerid)
 	return 1;
 }
 //Static
-InsertStaticActors()
+Insert3DTextLabel()
 {
 	fittingRoomDoor = CreateDynamicObject(2877, 216.760360, -97.310455, 1005.337768, 0.0, 0.0, 360.0, .interiorid = 15);
+
+	CreateDynamic3DTextLabel("[Leafy Hollow Barn]\n{ffffff}Available Commands: '/buyaxe'", COLOR_DARKGREEN, -1448.7738,-1530.5585,101.7578, 5.0);
 
 	CreateDynamic3DTextLabel("[Drop Injured]\n{ffffff}Available Commands: '/dropinjured'", COLOR_DARKGREEN, 2035.0732,-1414.0488,16.9922, 5.0);
 
@@ -2601,26 +2603,39 @@ InsertASGHMaps()
 
 InsertSelectionMaps()
 {
-	tmpobjid = CreateDynamicObject(2691, 227.174942, 65.917274, 1005.739013, 0.000000, 0.000000, 90.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.416839, 1005.249206, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
 	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
-	tmpobjid = CreateDynamicObject(2691, 227.174942, 68.047256, 1005.739013, 0.000000, 0.000000, 90.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}_____", 130, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(2691, 227.174942, 67.007293, 1005.739013, 0.000000, 0.000000, 90.000000, -1, -1, -1, 800.00, 800.00); 
 	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
-	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1005.018981, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.416839, 1005.018981, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
 	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
-	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
-	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1005.339294, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}________", 130, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.416839, 1005.459411, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
 	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
-	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
-	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1005.699645, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}________", 130, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.416839, 1005.689636, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
 	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
-	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
-	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1006.090026, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}_____", 130, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.416839, 1005.939880, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
 	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
-	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
-	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1006.450378, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}________", 130, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.416839, 1006.170043, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
 	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
-	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
-	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.006805, 1006.810729, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}_____", 130, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.416839, 1006.450378, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
 	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
-	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}___________________________________________", 120, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}________", 130, "Ariel", 20, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.966857, 1004.948913, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{ff0000}3'", 130, "courier", 10, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.966857, 1005.389343, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{ff0000}4'", 130, "courier", 10, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.966857, 1005.879821, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{ff0000}5'", 130, "courier", 10, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.966857, 1006.390319, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{ff0000}6'", 130, "courier", 10, 1, 0x00000000, 0x00000000, 1);
 }

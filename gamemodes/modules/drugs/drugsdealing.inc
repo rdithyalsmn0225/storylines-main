@@ -60,7 +60,7 @@ CMD:drugsdeal(playerid, params[])
 			}
 			GPS_SetPlayerRaceCheckPoint(playerid, 1, DrugsDealerPos[playerid][0], DrugsDealerPos[playerid][1], DrugsDealerPos[playerid][2], 0.0, 0.0, 0.0);
 		}
-		else return SendErrorMessage(playerid, "You aren't nearest drugs customers.");
+		else return SendErrorMessage(playerid, "You aren't near drugs customers.");
 	}
 	return 1;
 }

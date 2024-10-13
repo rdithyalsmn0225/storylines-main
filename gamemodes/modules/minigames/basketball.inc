@@ -234,7 +234,7 @@ CMD:court(playerid, params[])
 			PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 2;
 			SendMinigamesMessage(playerid, "You've joined the basketball as red team.");
 		}
-		else return SendErrorMessage(playerid, "You aren't nearest court.");
+		else return SendErrorMessage(playerid, "You aren't near court.");
 	}
 	else
 	{
