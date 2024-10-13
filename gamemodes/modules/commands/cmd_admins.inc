@@ -1399,7 +1399,7 @@ CMD:spawncar(playerid, params[])
 	}
 	
 	lastVehicleSpawn[playerid] = gettime();
-	PutPlayerInVehicle(playerid, vehicleid, 0);
+	PlayerPutIntoVehicle(playerid, vehicleid, 0);
 	
 	format(str, sizeof(str), "%s spawned a temporary %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(vehicleid));
 	SendAdminMessage(3, str);

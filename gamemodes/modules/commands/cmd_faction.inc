@@ -870,7 +870,7 @@ CMD:loadinjured(playerid, params[])
 
         ClearAnimations(otherid);
 
-        PutPlayerInVehicle(otherid, i, seatid);
+        PlayerPutIntoVehicle(otherid, i, seatid);
     
         TogglePlayerControllable(otherid, false);
         SetPlayerHealth(otherid, 100.0);

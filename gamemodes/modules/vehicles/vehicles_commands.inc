@@ -162,7 +162,6 @@ CMD:carlock(playerid, params[])
 		}
 
 		ShowBoxMessage(playerid, statusString, 5, 2);
-		GameTextForPlayer(playerid, statusString, 3000, 3);
 	}
 	else SendErrorMessage(playerid, "You aren't near a vehicle OR the vehicle isn't synced.");
     return 1;

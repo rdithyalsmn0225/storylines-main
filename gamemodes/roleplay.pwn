@@ -20,11 +20,13 @@
 #include <streamer>
 #include <progress2>
 #include <easyDialog>
+#include <PreviewModelDialog>
 #include <strlib>
 #include <foreach>
 #include <zcmd>
 #include <sscanf2>
 #include <rSelection>
+
 #include <map-zones>
 #include <fader>
 #include <Pawn.RakNet>
@@ -2711,8 +2713,6 @@ public OnPlayerSpawn(playerid)
 
 	SetWeather(1);
 
-	//ShowTurfsOnMap(playerid, true);
-
 	KillTimer(cameraTimer[playerid]);
 	SetCameraBehindPlayer(playerid); 
 
@@ -3086,7 +3086,7 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 	if(extraid == MODEL_SELECTION_BUYSKIN)
 	{
 		if(response)
-		{
+        {
 			if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 			{
 				SetCameraBehindPlayer(playerid);
@@ -3106,7 +3106,7 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 	if(extraid == MODEL_SELECTION_FACTIONS)
 	{
 		if(response)
-		{
+        {
 			SetPlayerSkin(playerid, modelid);
 			PlayerInfo[playerid][E_CHARACTER_FACSKIN] = modelid;
 			SaveCharacter(playerid);

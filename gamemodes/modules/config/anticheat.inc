@@ -115,6 +115,7 @@ stock ResetTeleportAC(playerid) {
 function:PlayerPutIntoVehicle(playerid, vehicleid, seatid)
 {
     LastEnteredVehicle[playerid] = vehicleid;
+    PauseAC(playerid);
     PutPlayerInVehicle(playerid, vehicleid, seatid);
     return 1;
 }

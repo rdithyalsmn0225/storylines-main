@@ -280,7 +280,7 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 	SetVehicleNumberPlate(vehicleid, plates); 
 	SetVehicleToRespawnEx(vehicleid); 
 	
-	PutPlayerInVehicle(playerid, vehicleid, 0); 
+	PlayerPutIntoVehicle(playerid, vehicleid, 0); 
 	PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][id] = cache_insert_id(); 
 	
 	if(vehicleid != INVALID_VEHICLE_ID)
