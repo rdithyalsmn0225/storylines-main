@@ -26,7 +26,6 @@
 #include <zcmd>
 #include <sscanf2>
 #include <rSelection>
-
 #include <map-zones>
 #include <fader>
 #include <Pawn.RakNet>
@@ -836,7 +835,38 @@ function:Query_LoadCharacter(playerid)
 	mysql_pquery(ourConnection, pquery, "LoadPlayerRelations", "d", playerid);
 	
 	TogglePlayerSpectating(playerid, false);
-	return ShowPlayerDialog(playerid, DIALOG_SPAWNS, DIALOG_STYLE_TABLIST, "Spawn Option:", "1\tHoodrats Spawn\t(Public)\n2\tLast Position\t(Public)\n3\tFaction Spawn\t(Faction)", "Select", "Close");
+	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{5B9460}PUBLIC{ffffff}\n#2\tLast Position\t{5B9460}PUBLIC{ffffff}\n#3\tFaction Spawn\t{5B9460}FACTION{ffffff}", "Select", "Close");
+}
+
+Dialog:Spawns(playerid, response, listitem, inputtext[])
+{
+	if (!response)
+	{
+		SendErrorMessage(playerid, "You were kicked for not selection spawn."); 
+		return KickEx(playerid);
+	}
+	switch(listitem)
+	{
+		case 0:
+		{
+			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0; 
+			LoadCharacter(playerid);
+		}
+		case 1:
+		{
+			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 1; 
+			LoadCharacter(playerid);
+		}
+		case 2:
+		{
+			if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
+				return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{5B9460}PUBLIC{ffffff}\n#2\tLast Position\t{5B9460}PUBLIC{ffffff}\n#3\tFaction Spawn\t{5B9460}FACTION{ffffff}", "Select", "Close");
+
+			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 2;
+			LoadCharacter(playerid);
+		}
+	}
+	return 1;
 }
 
 stock LoadCharacter(playerid)
@@ -3011,55 +3041,6 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		ResetVarInventory(playerid);
         return 1;
     }
-	// VEHICLE:
-	if (playertextid == VehicleClick[0][playerid])
-    {
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
-			
-		new threadLoad[128]; 
-		
-		for(new i = 0; i < MAX_VEHICLES; i++)
-		{
-			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][1])
-				return SendErrorMessage(playerid, "That vehicle's already spawned.");
-		}
-		
-		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][1]);
-		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
-	}
-	if (playertextid == VehicleClick[1][playerid])
-    {
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
-			
-		new threadLoad[128]; 
-		
-		for(new i = 0; i < MAX_VEHICLES; i++)
-		{
-			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][2])
-				return SendErrorMessage(playerid, "That vehicle's already spawned.");
-		}
-		
-		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][2]);
-		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
-	}
-	if (playertextid == VehicleClick[2][playerid])
-    {
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
-			
-		new threadLoad[128]; 
-		
-		for(new i = 0; i < MAX_VEHICLES; i++)
-		{
-			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][3])
-				return SendErrorMessage(playerid, "That vehicle's already spawned.");
-		}
-		
-		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][3]);
-		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
-	}
 	if (playertextid == VehicleClose[playerid])
     {
 		PlayerTextDrawHide(playerid, VehicleBox[playerid]);
@@ -3721,7 +3702,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 		}
 	}
-	if(newkeys == KEY_FIRE && IsPlayerInAnyVehicle(playerid))
+	if(newkeys == KEY_FIRE && newkeys == KEY_LOOK_BEHIND && IsPlayerInAnyVehicle(playerid))
 	{
 		new vehicleid = GetPlayerVehicleID(playerid);
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
@@ -4013,8 +3994,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
 		if(!VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_ENGINE] && IsEngineVehicle(vehicleid)){
-			ShowBoxMessage(playerid, "The engine is off press 'ALT' or /engine to turn on vehicle", 5, 2);
-			SendTipMessage(playerid, "The engine is off press 'ALT' or /engine to turn on vehicle");
+			ShowBoxMessage(playerid, "The engine is off press 'ALT' + '2' or /engine to turn on vehicle", 5, 2);
+			SendTipMessage(playerid, "The engine is off press 'ALT' + '2' or /engine to turn on vehicle");
 	   	}
 
 	   	if (ReturnVehicleHealth(vehicleid) <= 350){

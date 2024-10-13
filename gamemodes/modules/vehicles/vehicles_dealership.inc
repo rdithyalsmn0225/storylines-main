@@ -54,7 +54,7 @@ CMD:carbuy(playerid, params[])
 			}
 		}
 				
-		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_SELECT, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DealershipSelect, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 2132.0190,-1149.9902,24.2088))
 	{		
@@ -74,7 +74,7 @@ CMD:carbuy(playerid, params[])
 			}
 		}
 				
-		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_SELECT, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DealershipSelect, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 1629.6158,-1903.5123,13.5530))
 	{		
@@ -94,7 +94,7 @@ CMD:carbuy(playerid, params[])
 			}
 		}
 				
-		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_SELECT, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DealershipSelect, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 2684.1277,-2515.6733,13.1552))
 	{		
@@ -114,7 +114,7 @@ CMD:carbuy(playerid, params[])
 			}
 		}
 				
-		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_SELECT, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DealershipSelect, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
 	else if(IsPlayerInRangeOfPoint(playerid, 3.0, 666.1486,-1419.0734,14.0272))
 	{		
@@ -134,7 +134,39 @@ CMD:carbuy(playerid, params[])
 			}
 		}
 				
-		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_SELECT, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DealershipSelect, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
     return 1;
+}
+
+Dialog:DealershipSelect(playerid, response, listitem, inputtext)
+{
+	if(response)
+	{
+		SubDealershipHolder[playerid] = SubDealershipHolderArr[playerid][listitem]; 
+		
+		new
+			i,
+			str[128],
+			caption[60]; 
+			
+		i = SubDealershipHolder[playerid];
+		
+		if(g_aDealershipData[i][E_DEALERSHIP_PRICE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			return SendErrorMessage(playerid, "You need $%s to buy this. (Total: $%s)", FormatMoney(g_aDealershipData[i][E_DEALERSHIP_PRICE]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY])); 
+			
+		DealershipTotalCost[playerid] = g_aDealershipData[i][E_DEALERSHIP_PRICE];
+		
+		format(caption, 60, "%s - {5B9460}%s:", g_aDealershipData[i][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+		strcat(str, "Colors\n");
+		strcat(str, "{FFFF00}Purchase Vehicle\n"); 
+		
+		TogglePlayerControllable(playerid, false); 
+		
+		DealershipPlayerCar[playerid] = CreateVehicle(g_aDealershipData[i][E_DEALERSHIP_MODELID], g_aDealershipData[i][E_DEALERSHIP_SPAWNX], g_aDealershipData[i][E_DEALERSHIP_SPAWNY], g_aDealershipData[i][E_DEALERSHIP_SPAWNZ], g_aDealershipData[i][E_DEALERSHIP_SPAWNA], 0, 0, -1);
+		PlayerPutIntoVehicle(playerid, DealershipPlayerCar[playerid], 0); 
+		
+		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_APPEND, DIALOG_STYLE_LIST, caption, str, "Append", "<<");
+	}
+	return 1;
 }

@@ -827,34 +827,6 @@ CMD:gotols(playerid, params[])
 	return 1;
 }
 
-/*CMD:respawncar(playerid, params[])
-{
-	if(!IsPlayerAdmins(playerid))
-		return SendUnauthMessage(playerid);
-		
-	new vehicleid, str[128];
-	
-	if(sscanf(params, "d", vehicleid))
-		return SendUsageMessage(playerid, "/respawncar [vehicleid]");
-		
-	if(!IsValidVehicle(vehicleid))
-		return SendErrorMessage(playerid, "You specified an invalid vehicle.");
-		
-	SetVehicleToRespawnEx(vehicleid);
-	
-	foreach(new i : Player)
-	{
-		if(GetPlayerVehicleID(i) == vehicleid)
-		{
-			SendServerMessage(i, "The vehicle you're in was respawned by %s.", ReturnSettingsName(playerid, playerid));
-		}
-	}
-	
-	format(str, sizeof(str), "%s respawned vehicle ID %d.", ReturnSettingsName(playerid, playerid), vehicleid);
-	SendAdminMessage(1, str);
-	return 1;
-}*/
-
 CMD:respawncar(playerid, params[])
 {
 	new option[10], param[12], str[256];
@@ -1366,7 +1338,7 @@ CMD:spawncar(playerid, params[])
 	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
 		return 0;
 		
-	new vehicleid = INVALID_VEHICLE_ID, modelid, color1, color2, siren, str[128]; 
+	new modelid, color1, color2, siren, str[128]; 
 	
 	if(sscanf(params, "iiiI(0)", modelid, color1, color2, siren))
 	{
@@ -1385,23 +1357,49 @@ CMD:spawncar(playerid, params[])
 		return SendErrorMessage(playerid, "A color you specified was invalid."); 
 		
 	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
-	//Using the player variable to avoid making other variables; 
 	
-	vehicleid = CreateVehicle(modelid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2], 0, color1, color2, -1, siren);
-	
-	if(vehicleid != INVALID_VEHICLE_ID)
+	for(new vehicleid; vehicleid != MAX_VEHICLES; ++vehicleid)
 	{
-		VehicleInfo[vehicleid][E_VEHICLE_ADMIN] = true;
-		VehicleInfo[vehicleid][E_VEHICLE_MODEL] = modelid;
+		VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH] = CreateVehicle(modelid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2], 0, color1, color2, -1, siren);
 		
-		VehicleInfo[vehicleid][E_VEHICLE_COLOR1] = color1;
-		VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = color2;
+		if(VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH] != INVALID_VEHICLE_ID)
+		{
+			VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_ADMIN] = true;
+			VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_MODEL] = modelid;
+			
+			VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_COLOR1] = color1;
+			VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_COLOR2] = color2;
+		}
+		PlayerPutIntoVehicle(playerid, VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH], 0);
+		
+		format(str, sizeof(str), "%s spawned a temporary %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]));
+		SendAdminMessage(3, str);
 	}
 	
 	lastVehicleSpawn[playerid] = gettime();
-	PlayerPutIntoVehicle(playerid, vehicleid, 0);
-	
-	format(str, sizeof(str), "%s spawned a temporary %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(vehicleid));
+	return 1;
+}
+
+CMD:despawncars(playerid, params[])
+{
+	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
+		return 0;
+
+	new vehicleCount, str[512];
+
+	for(new i = 0; i != MAX_VEHICLES; ++i)
+	{
+ 		if(VehicleInfo[i][E_VEHICLE_ADMIN])
+		{
+			DestroyVehicle(VehicleInfo[i][E_VEHICLE_ADMINVEH]);
+			VehicleInfo[i][E_VEHICLE_ADMIN] = false;
+			vehicleCount++;
+		}
+	}
+
+	if(!vehicleCount) return SendErrorMessage(playerid, "No admin vehicles found.");
+
+	format(str, sizeof(str), "%s destroyed %d admin temporary vehicles.", ReturnSettingsName(playerid, playerid), vehicleCount);
 	SendAdminMessage(3, str);
 	return 1;
 }

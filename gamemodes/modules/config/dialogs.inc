@@ -119,35 +119,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			mysql_pquery(ourConnection, continueCheck, "LoggingIn", "i", playerid);
 			return 1;
 		}
-		case DIALOG_SPAWNS:
-		{
-			if (!response)
-			{
-				SendErrorMessage(playerid, "You were kicked for not selection spawn."); 
-				return KickEx(playerid);
-			}
-			switch(listitem)
-			{
-				case 0:
-				{
-					PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0; 
-					LoadCharacter(playerid);
-				}
-				case 1:
-				{
-					PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 1; 
-					LoadCharacter(playerid);
-				}
-				case 2:
-				{
-					if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 0)
-						return ShowPlayerDialog(playerid, DIALOG_SPAWNS, DIALOG_STYLE_TABLIST, "Spawn Option:", "1\tHoodrats Spawn\t(Public)\n2\tLast Position\t(Public)\n3\tFaction Spawn\t(Faction)", "Select", "Close");
-
-					PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 2;
-					LoadCharacter(playerid);
-				}
-			}
-		}
 		case DIALOG_CHARS:
 		{
 			if (!response)
@@ -1720,7 +1691,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 5:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Vehicle Commands __________|");
-						SendClientMessage(playerid, COLOR_SERVER, "/carlist, /engine, /carlock, /carkey, /cardespawn, /cartrunk, /carhood");
+						SendClientMessage(playerid, COLOR_SERVER, "/carlist, /engine, /carlock, /carkey, /carsell, /cardespawn, /cartrunk, /carhood");
 						SendClientMessage(playerid, COLOR_SERVER, "/carlights, /carfind, /carradio, /carscrap, /carwhisper, /carb, /refill");
 					}
 					case 6:

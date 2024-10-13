@@ -1,4 +1,57 @@
 //car commands:
+CMD:carsell(playerid, params[])
+{
+	new vehicleid = GetPlayerVehicleID(playerid);
+
+	if(!IsPlayerInAnyVehicle(playerid))
+		return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+	if(VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
+		return SendErrorMessage(playerid, "You don't own this vehicle."); 
+
+	new userid = INVALID_PLAYER_ID, price;
+
+	if(sscanf(params, "ud", userid, price))
+		return SendUsageMessage(playerid, "/carsell [playerid OR name] [price]"); 
+
+	if(userid == INVALID_PLAYER_ID)
+		return SendErrorMessage(playerid, "This player is not connected.");
+
+	if(userid == playerid)
+		return SendErrorMessage(playerid, "You can't sell it to yourself.");
+
+	if(!IsPlayerNearPlayer(playerid, userid, 5.0))
+		return SendErrorMessage(playerid, "You aren't near that player.");
+
+	new idx;
+			
+	for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
+	{
+		if(!PlayerInfo[userid][E_CHARACTER_OWNEDVEHICLE][i])
+		{
+			idx = i;
+			break;
+		}
+	}
+				
+	if(!idx)
+	{
+		SendErrorMessage(playerid, "This player own the maximum amount of vehicles."); 
+		return 1;
+	}
+
+	if(price < 0)
+		return SendErrorMessage(playerid, "Invalid price!");
+
+	PlayerInfo[userid][E_CHARACTER_PRICEOFFER] = price;
+	PlayerInfo[userid][E_CHARACTER_SELLOFFER] = playerid;
+	PlayerInfo[userid][E_CHARACTER_SELLVOFFER] = vehicleid;
+
+	SendTipMessage(userid, "%s has offered sell their vehicle %s for $%s, type /approve vehicle to approve.", ReturnSettingsName(playerid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
+	SendServerMessage(playerid, "You have offered sell your %s for $%s.", ReturnSettingsName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
+	return 1;
+}
+
 CMD:carkey(playerid, params[])
 {
     if(!IsPlayerInAnyVehicle(playerid))
@@ -366,10 +419,9 @@ CMD:engine(playerid, params[])
 			return SendClientMessage(playerid, COLOR_RED, "Vehicle is out of fuel!"); 
 		
 		if(!VehicleInfo[vehicleid][E_VEHICLE_ENGINE])
-		{
-			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {5B9460}Started", ReturnVehicleName(vehicleid));	
+		{	
 			SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s started the engine of the %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(vehicleid)); 
-			SetTimerEx("TurnEngine", 2000, false, "d", vehicleid);
+			SetTimerEx("TurnEngine", 2000, false, "dd", playerid, vehicleid);
 		}
 		else
 		{

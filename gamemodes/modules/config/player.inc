@@ -63,11 +63,10 @@ function:SetPlayersSpawn(playerid)
 	{
 		case SPAWN_POINT_HOODRATS:
 		{
-			SetPlayerPosEx(playerid, 2233.9226,-1260.8771,23.9312);
-			SetPlayerFacingAngle(playerid, 269.8210);
+			SetPlayerPosEx(playerid, 1685.6182,-2334.3035,-2.6797);
+			SetPlayerFacingAngle(playerid, 2.2789);
 			SetPlayerInterior(playerid, 0);
 			SetPlayerVirtualWorld(playerid, 0);
-			ShowBoxMessage(playerid, "Ah shit, here we go again.", 5, 2);
 		}
 		case SPAWN_POINT_LAST:
 		{

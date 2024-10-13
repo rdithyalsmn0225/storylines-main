@@ -104,7 +104,7 @@ Dialog:GpsBiz(playerid, response, listitem, inputtext[])
 {
 	if (response)
 	{
-		GPS_SetPlayerRaceCheckPoint(playerid, 1, BusinessInfo[listitem+1][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[listitem+1][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[listitem+1][E_BUSINESS_ENTRANCEPOS][2], 0.0, 0.0, 0.0);
+		GPS_SetPlayerRaceCheckPoint(playerid, 1, BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][2], 0.0, 0.0, 0.0);
 	}
 	return 1;
 }

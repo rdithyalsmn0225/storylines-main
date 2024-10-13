@@ -2583,8 +2583,51 @@ CMD:approve(playerid, params[])
 	    SendServerMessage(playerid, "You've accepted %s's handshake.", ReturnSettingsName(targetid, playerid));
 	    SendServerMessage(targetid, "%s accepted your handshake.", ReturnSettingsName(playerid, playerid));
 	}
+	if (!strcmp(params, "vehicle", true) && PlayerInfo[playerid][E_CHARACTER_SELLOFFER] != INVALID_PLAYER_ID)
+	{
+		new idx;
+
+		new userid = PlayerInfo[playerid][E_CHARACTER_SELLOFFER], price = PlayerInfo[playerid][E_CHARACTER_PRICEOFFER], vehicleid = PlayerInfo[playerid][E_CHARACTER_SELLVOFFER];
+		
+		for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
+		{
+			if(!PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
+			{
+				idx = i;
+				break;
+			}
+		}
+
+		for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
+		{
+			if(!PlayerInfo[userid][E_CHARACTER_OWNEDVEHICLE][i])
+			{
+				idx = i;
+				break;
+			}
+		}
+
+		PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][idx] = VehicleInfo[vehicleid][E_VEHICLE_DBID];
+
+		PlayerInfo[userid][E_CHARACTER_OWNEDVEHICLE][idx] = 0;
+
+		VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID];
+
+		GiveMoney(playerid, -price);
+		GiveMoney(userid, price);
+
+		PlayerInfo[playerid][E_CHARACTER_SELLOFFER] = INVALID_PLAYER_ID;
+		PlayerInfo[playerid][E_CHARACTER_PRICEOFFER] = 0;
+		PlayerInfo[playerid][E_CHARACTER_SELLVOFFER] = 0;
+
+		SaveVehicle(vehicleid);
+
+		SendServerMessage(playerid, "You've accepted %s's offered selling vehicle.", ReturnSettingsName(userid, playerid));
+	    SendServerMessage(userid, "%s accepted offered selling your vehicle.", ReturnSettingsName(playerid, playerid));
+	}
 	return 1;
 }
+
 CMD:handshake(playerid, params[])
 {
 	static
