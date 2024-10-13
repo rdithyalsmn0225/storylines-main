@@ -760,7 +760,7 @@ CMD:givelicense(playerid, params[])
 	if (sscanf(params, "u", playerb))
 	{
 		SendUsageMessage(playerid, "/givelicense [playerid OR name]");
-		SendServerMessage(playerid, "This issues a weapon's license to players. "); 
+		SendTipMessage(playerid, "This issues a weapon's license to players. "); 
 		return 1;
 	}
 		

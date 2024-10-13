@@ -125,7 +125,6 @@ main ()  {}
 #include "modules\industry\industry.inc"
 
 #include "modules\jobs\header.inc"
-#include "modules\jobs\burglary.inc"
 #include "modules\jobs\trucker.inc"
 #include "modules\jobs\lumberjack.inc"
 #include "modules\jobs\taxi.inc"
@@ -209,6 +208,7 @@ public OnGameModeInit()
 	SetTimer("AntiCheatCheck", 500, true);
 	SetTimer("IndustryTimer", 600000, true);
 	SetTimer("TreeTimers", 1000, true);
+	SetTimer("TaxiTimers", 1000, true);
 	
 	//Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
@@ -224,7 +224,7 @@ public OnGameModeInit()
 	//Static vehicles:
 	CreateMenuModshop();
 
-	SetWeather(2);
+	SetWeather(1);
 
 	Times = TextDrawCreate(68.000000, 426.000000, "");
 	TextDrawFont(Times, 1);
@@ -475,20 +475,6 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 {
 	if(GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
     {
-		if(PlayerInfo[playerid][E_CHARACTER_BURGLARY] == true && PlayerCheckpoint[playerid] == GPS_BURGLARY)
-	    {
-			new vehicleid = PlayerInfo[playerid][E_CHARACTER_BURGLARYVEHICLE];	
-			if(VehicleInfo[vehicleid][E_VEHICLE_BURGLARY] == 5)
-				return GPS_SetPlayerRaceCheckPoint(playerid, 1, 2827.2036,-1550.3040,11.0991, 0.0, 0.0, 0.0, GPS_BURGLARYFINISH);
-
-			VehicleInfo[vehicleid][E_VEHICLE_BURGLARY] += 1;
-			PlayerInfo[playerid][E_CHARACTER_BURGLARY] = false;
-			RemovePlayerAttachedObject(playerid, 9);
-			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-			SendServerMessage(playerid, "You put stolen goods in your trunk.");
-			ApplyAnimation(playerid, "CARRY", "putdwn", 4.1, 0, 0, 0, 0, 0, 1);
-			GPS_DisablePlayerRaceCheckPoint(playerid);
-	    }
 		if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == true && PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] == 1 && PlayerCheckpoint[playerid] == GPS_GARBAGE)
 		{
 			PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] = 0;
@@ -507,19 +493,6 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 	}
 	if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {
-    	if(PlayerInfo[playerid][E_CHARACTER_HASBURGLARY] == true && PlayerCheckpoint[playerid] == GPS_BURGLARYFINISH)
-        {
-        	GivePaycheck(playerid, BURGLARY_SALARY);
-        	PlayerInfo[playerid][E_CHARACTER_HASBURGLARY] = false;
-        	PlayerInfo[playerid][E_CHARACTER_BURGLARYVEHICLE] = 0;
-			PlayerInfo[playerid][E_CHARACTER_ROBBERYCD] = 10;
-			PlayerInfo[playerid][E_CHARACTER_FEAR]++;
-			new str[128];
-			format(str, sizeof(str), "~h~Job Complete~n~~w~$%d~n~Fear +", BURGLARY_SALARY);
-			GameTextForPlayer(playerid, str, 3000, 6);
-			GPS_DisablePlayerRaceCheckPoint(playerid);
-        }
-
 		if(PlayerTakingLicense[playerid])
 		{
 			if(PlayerCheckpoint[playerid] == GPS_DMVFINISH)
@@ -2736,7 +2709,7 @@ public OnPlayerSpawn(playerid)
 	SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	SetPlayerArmourEx(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 
-	SetWeather(2);
+	SetWeather(1);
 
 	//ShowTurfsOnMap(playerid, true);
 
@@ -2907,6 +2880,7 @@ public OnPlayerUpdate(playerid)
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 			{
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CRATES;
+				RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 			}
@@ -2916,6 +2890,7 @@ public OnPlayerUpdate(playerid)
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 			{
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
+				RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 6, 0.000000, 0.000000, 0.000000, 0.000000, -1.799999, 0.000000, 0.188999, 0.292000, 0.256999);
 			}
@@ -2925,6 +2900,7 @@ public OnPlayerUpdate(playerid)
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES || PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == WOODS)
 			{
 				RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+				RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
 			}
@@ -3448,25 +3424,26 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		if(PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] == true)
 		{
 			if(PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] < 100)
+			{
 				PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] += 10;
-
-			else if(PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] >= 100)
+				SetPlayerGameBar(playerid, GameBar[1][playerid], PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE], GAMEBAR_PLUS);
+			}
+			if(PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] == 100)
 			{
 				ClearAnimations(playerid);
 				Inventory_Add(playerid, "Fish", 19630, 1);
 				PlayerInfo[playerid][E_CHARACTER_FISHING] = false;
 				PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] = false;
 				PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] = 0;
-				
+
+				DestroyGameBar(playerid);
 				KillTimer(PlayerInfo[playerid][E_CHARACTER_FISHINGTIMER]);
 				TogglePlayerControllable(playerid, true);
-				DestroyGameBar(playerid);
+				
 				ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-				SendServerMessage(playerid, "You caught a 1.kg fish.");
+				SendServerMessage(playerid, "You caught a 1.kg of fish.");
 				
 			}
-
-			SetPlayerGameBar(playerid, GameBar[1][playerid], PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE], GAMEBAR_PLUS);
 		}
 	}
 
@@ -3795,39 +3772,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 		}
 	}
-	if (newkeys & KEY_WALK && !IsPlayerInAnyVehicle(playerid))
-	{
-		for(new b = 0; b < sizeof(BurglaryInfo); b++)
-		{
-			if(IsPlayerInRangeOfPoint(playerid, 3.0, BurglaryInfo[b][E_BURGLARY_X], BurglaryInfo[b][E_BURGLARY_Y], BurglaryInfo[b][E_BURGLARY_Z]))
-			{
-				if(PlayerInfo[playerid][E_CHARACTER_STARTBURGLARY] == false)
-					return SendErrorMessage(playerid, "You cannot start burglary at this time.");
-
-				if(PlayerInfo[playerid][E_CHARACTER_BURGLARY] == true)
-					return SendErrorMessage(playerid, "You are carrying your stolen goods.");
-
-				if(BurglaryInfo[b][E_BURGLARY_PROPERTYEXISTS] == false)
-					return SendErrorMessage(playerid, "there are no goods to steal at this time.");
-
-				ApplyAnimation(playerid, "CARRY", "liftup", 4.1, 0, 0, 0, 0, 0, 1);
-				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-				SetPlayerAttachedObject(playerid, 10, BurglaryInfo[b][E_BURGLARY_MODEL], 5, 0.3, 0.0, 0.1, 75, 0, 100, 0.7179, 0.6539, 0.6790);
-				DestroyDynamicObject(BurglaryInfo[b][E_BURGLARY_PROPERTY]);
-
-				SendServerMessage(playerid, "You has stolen goods from this properties, put you stolen goods into vehicle.");
-				ShowBoxMessage(playerid, "Take item back to the truck!", 3, 2);
-				BurglaryInfo[b][E_BURGLARY_PROPERTYEXISTS] = false;
-				PlayerInfo[playerid][E_CHARACTER_BURGLARY] = true;
-				PlayerInfo[playerid][E_CHARACTER_HASBURGLARY] = true;
-
-				new Float:x, Float:y, Float:z;
-				GetVehiclePos(PlayerInfo[playerid][E_CHARACTER_BURGLARYVEHICLE], x, y, z);
-				GetVehicleBoot(PlayerInfo[playerid][E_CHARACTER_BURGLARYVEHICLE], x, y, z);
-				GPS_SetPlayerRaceCheckPoint(playerid, 1, x, y, z, 0.0, 0.0, 0.0, GPS_BURGLARY);
-			}
-		}
-	}
 	if (newkeys & KEY_SECONDARY_ATTACK && !IsPlayerInAnyVehicle(playerid))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_DRINKING] > 0)
@@ -4104,7 +4048,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	{
 	    new driverid = GetVehicleDriver(GetPlayerVehicleID(playerid));
 
-	    PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 5;
+	    PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 1;
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 

@@ -91,7 +91,7 @@ UpdateTabList(playerid, forplayerid)
 
     new title[64];
 
-    SetPlayerNameForPlayer(playerid, forplayerid, (strlen(title) > 0) ? title : ReturnSettingsName(playerid, forplayerid, .color=false));
+    SetPlayerNameForPlayer(playerid, forplayerid, (strlen(title) > 0) ? title : ReturnSettingsName(playerid, forplayerid));
     SetPlayerColorForPlayer(playerid, forplayerid, color, .force_color=false); 
     return 1;
 }

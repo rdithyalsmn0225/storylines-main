@@ -6,7 +6,7 @@
 //Property types:
 #define PROPERTY_TYPE_HOUSE (1)
 #define PROPERTY_TYPE_APTCOMPLEX (2)
-#define PROPERTY_TYPE_NPC (3)
+#define PROPERTY_TYPE_HIGHHOUSE (3)
 
 //Business types:
 #define BUSINESS_TYPE_DINNER (1)

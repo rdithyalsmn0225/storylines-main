@@ -70,10 +70,10 @@ CMD:a(playerid, params[])
 	
 	if(strlen(params) > 89)
 	{
-		SendAdminMessageEx(COLOR_DARKGREEN, 1, "** %s (%s): %.89s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
-		SendAdminMessageEx(COLOR_DARKGREEN, 1, "** %s (%s): ... %s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params[89]);
+		SendAdminMessageEx(COLOR_ADMIN, 1, "A-CHAT: %s (%s): %.89s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
+		SendAdminMessageEx(COLOR_ADMIN, 1, "A-CHAT: %s (%s): ... %s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params[89]);
 	}
-	else SendAdminMessageEx(COLOR_DARKGREEN, 1, "** %s (%s): %s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
+	else SendAdminMessageEx(COLOR_ADMIN, 1, "A-CHAT: %s (%s): %s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
 	return 1;
 }
 
@@ -1439,7 +1439,7 @@ CMD:createpcar(playerid, params[])
 	if(sscanf(params, "uiii", playerb, modelid, color1, color2))
 	{
 		SendUsageMessage(playerid, "/createpcar [playerid OR name] [model id] [color1] [color2]");
-		SendServerMessage(playerid, "This issues a permanent vehicle to a player.");
+		SendTipMessage(playerid, "This issues a permanent vehicle to a player.");
 		return 1;
 	}
 	
@@ -1765,7 +1765,7 @@ CMD:setcarparams(playerid, params[])
 	if(sscanf(params, "is[60]S()[60]", vehicleid, a_str, b_str))
 	{
 		SendUsageMessage(playerid, "/setcarparams [vehicleid] [params]");
-		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} engine, lights, lock, health"); 
+		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} engine, lights, lock, health"); 
 		return 1;
 	}
 		
@@ -1863,7 +1863,7 @@ CMD:createfaction(playerid, params[])
 	if(sscanf(params, "s[30]s[90]", varAbbrev, varName))
 	{
 		SendUsageMessage(playerid, "/createfaction [faction abbreviation] [faction name]");
-		SendClientMessage(playerid, COLOR_RED, "[ ! ]{ffffff} Do not use spaces for the abbreviation.");
+		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} Do not use spaces for the abbreviation.");
 		return 1; 
 	}
 	
@@ -2053,156 +2053,6 @@ CMD:setpfaction(playerid, params[])
 	
 	return 1;
 }
-
-/*
-CMD:turfnear(playerid, params[])
-{
-	new turfid;
-
-	if((turfid = IsPlayerNearTurf(playerid)) == -1)
-	{
-	    return SendErrorMessage(playerid, "You are not in range of any turfs.");
-	}
-
-	SendServerMessage(playerid, "Turf Conflict: %d", turfid);
-	return 1;
-}
-
-CMD:gototurfwars(playerid, params[])
-{
-	new turfid;
-
-	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
-
-	if(sscanf(params, "i", turfid))
-	{
-	    return SendUsageMessage(playerid, "/gototurfwars [turfid]");
-	}
-	if(!(0 <= turfid < MAX_TURFS) || !TurfInfo[turfid][E_FACTION_TURFEXISTS])
-	{
-	    return SendErrorMessage(playerid, "Invalid turfwars.");
-	}
-
-	GameTextForPlayer(playerid, "~w~Teleported", 5000, 1);
-
-	SetPlayerPosEx(playerid, TurfInfo[turfid][E_FACTION_TURFMINX], TurfInfo[turfid][E_FACTION_TURFMINY], TurfInfo[turfid][E_FACTION_TURFHEIGHT]);
-	SetPlayerInterior(playerid, 0);
-	SetPlayerVirtualWorld(playerid, 0);
-	SetCameraBehindPlayer(playerid);
-	return 1;
-}
-
-CMD:destroyturfwars(playerid, params[])
-{
-	new turfid, queryBuffer[512];
-
-	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
-
-	if(sscanf(params, "i", turfid))
-	{
-	    return SendUsageMessage(playerid, "/destroyturfwars [turfid]");
-	}
-	if(!(0 <= turfid < MAX_TURFS) || !TurfInfo[turfid][E_FACTION_TURFEXISTS])
-	{
-	    return SendErrorMessage(playerid, "Invalid turfwars.");
-	}
-
-	GangZoneDestroy(TurfInfo[turfid][E_FACTION_TURFZONE]);
-	DestroyDynamicArea(TurfInfo[turfid][E_FACTION_TURFAREA]);
-
-	mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "DELETE FROM turfs WHERE id = %i", turfid);
-	mysql_pquery(ourConnection, queryBuffer);
-
-	TurfInfo[turfid][E_FACTION_TURFEXISTS] = 0;
-	TurfInfo[turfid][E_FACTION_TURFGANG] = 0;
-    TurfInfo[turfid][E_FACTION_TURFTYPE] = 0;
-
-    SendServerMessage(playerid, "You have removed turfwars %i.", turfid);
-	return 1;
-}
-
-CMD:editturfwars(playerid, params[])
-{
-	new turfid, option[14], param[32], queryBuffer[512];
-
-	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
-
-	if(sscanf(params, "is[14]S()[32]", turfid, option, param))
-	{
-	    SendUsageMessage(playerid, "/editturfwars [turfid] [option]");
-		SendClientMessage(playerid, COLOR_WHITE, "Faction, Type");
-	    return 1;
-	}
-	if(!(0 <= turfid < MAX_TURFS) || !TurfInfo[turfid][E_FACTION_TURFEXISTS])
-	{
-	    return SendErrorMessage(playerid, "Invalid turf.");
-	}
-
- 	if(!strcmp(option, "faction", true))
-    {
-        new gangid;
-
-        if(sscanf(param, "i", gangid))
-        {
-            return SendUsageMessage(playerid, "/editturfwars [turfid] [gang] [gangid (-1 = none)]");
-		}
-		if(!(-1 <= gangid < MAX_FACTIONS))
-		{
-		    return SendErrorMessage(playerid, "Invalid gang.");
-		}
-
-		TurfInfo[turfid][E_FACTION_TURFGANG] = gangid;
-		ReloadTurf(turfid);
-
-		mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "UPDATE turfs SET capturedgang = %i WHERE id = %i", TurfInfo[turfid][E_FACTION_TURFGANG], turfid);
-		mysql_pquery(ourConnection, queryBuffer);
-
-		if(gangid == -1)
-		{
-			new str[128];
-			format(str, sizeof(str), "%s has reset the capturing gang of turf %i.", ReturnSettingsName(playerid, playerid), turfid);
-            SendAdminMessage(4, str);
-			SendServerMessage(playerid, "You have reset the capturing gang of turf %i.", turfid);
-		}
-		else
-		{
-			new str[128];
-			format(str, sizeof(str), "%s has set the capturing gang of turf %i to %s.", ReturnSettingsName(playerid, playerid), turfid, FactionInfo[gangid][E_FACTION_NAME]);
-            SendAdminMessage(4, str);
-			SendServerMessage(playerid, "You have set the capturing gang of turf %i to {00AA00}%s{33CCFF}.", turfid, FactionInfo[gangid][E_FACTION_NAME]);
-		}
-	}
-	else if(!strcmp(option, "type", true))
-    {
-        new type;
-
-        if(sscanf(param, "i", type))
-        {
-            SendUsageMessage(playerid, "/editturfwars [turfid] [type] [value]");
-           	SendClientMessage(playerid, COLOR_WHITE, "Types: (0) None (1) Locked");            
-           	return 1;
-		}
-		if(!(0 <= type <= 8))
-		{
-		    return SendErrorMessage(playerid, "Invalid type.");
-		}
-
-		TurfInfo[turfid][E_FACTION_TURFTYPE] = type;
-
-		mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "UPDATE turfs SET type = %i WHERE id = %i", TurfInfo[turfid][E_FACTION_TURFTYPE], turfid);
-		mysql_pquery(ourConnection, queryBuffer);
-
-		new str[512];
-		format(str, sizeof(str), "%s has set the type of turf %i to %i.", ReturnSettingsName(playerid, playerid), turfid, type);
-        SendAdminMessage(4, str);
-		SendServerMessage(playerid, "You have set the type of turf %i to %i.", turfid, type);
-	}
-
-	return 1;
-}*/
 
 CMD:afklist(playerid, params[])
 {

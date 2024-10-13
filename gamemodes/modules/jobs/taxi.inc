@@ -38,6 +38,7 @@ stock LeaveTaxi(playerid, driverid)
 	    GiveMoney(playerid, -PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
    		GiveMoney(driverid, PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 
+        SendServerMessage(driverid, "%s has exit your taxi and paid $%d.", ReturnSettingsName(playerid, driverid), PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 		SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "** %s has paid $%d to the taxi driver.", ReturnSettingsName(playerid, driverid), PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 
 	    PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 0;
@@ -55,10 +56,10 @@ function:TaxiTimers()
 		{
 		    PlayerInfo[i][E_CHARACTER_TAXITIMER]++;
 
-		    if (PlayerInfo[i][E_CHARACTER_TAXITIMER] == 25)
+		    if (PlayerInfo[i][E_CHARACTER_TAXITIMER] == 3)
 		    {
 		        PlayerInfo[i][E_CHARACTER_TAXITIMER] = 0;
-		        PlayerInfo[i][E_CHARACTER_TAXIFARE] += 5;
+		        PlayerInfo[i][E_CHARACTER_TAXIFARE] += 1;
 		    }
             new str[512];
 		    format(str, sizeof(str), "~y~Taxi Fare: $%d", PlayerInfo[i][E_CHARACTER_TAXIFARE], PlayerInfo[i][E_CHARACTER_TAXITIMER]);
@@ -96,7 +97,7 @@ Dialog:AcceptTaxi(playerid, response, listitem, inputtext[])
 	return 1;
 }
 
-CMD:acceptcall(playerid, params[])
+CMD:taxicall(playerid, params[])
 {
     if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TAXI)
 	    return SendErrorMessage(playerid, "You don't have the appropriate job.");

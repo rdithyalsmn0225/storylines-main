@@ -130,7 +130,7 @@ function:Float:GetDistanceBetweenPoints(Float:rx1,Float:ry1,Float:rz1,Float:rx2,
 function:OnAjailRecord(playerid)
 {
 	if(!cache_num_rows())
-		return SendClientMessage(playerid, COLOR_RED, "[ ! ] {FFFFFF}This player hasn't been admin jailed.");
+		return SendClientMessage(playerid, COLOR_RED, "[!] {FFFFFF}This player hasn't been admin jailed.");
 	
 	new rows, fields;
 	cache_get_row_count(rows);
@@ -251,6 +251,11 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] = 0;
 	PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE] = 0;
 	PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED] = INVALID_PLAYER_ID;
+
+	PlayerInfo[playerid][E_CHARACTER_TAXICALLED] = 0;
+	PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 0;
+	PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
+	PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = INVALID_PLAYER_ID;
 
 	for(new i = 1; i < MAX_PLAYER_VEHICLES; i++) { 
 		PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i] = 0; 
@@ -382,10 +387,6 @@ function:ResetPlayer(playerid)
     PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = false;
 	PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
 	PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] = 0;
-	PlayerInfo[playerid][E_CHARACTER_BURGLARY] = false;
-	PlayerInfo[playerid][E_CHARACTER_HASBURGLARY] = false;
-	PlayerInfo[playerid][E_CHARACTER_STARTBURGLARY] = false;
-	PlayerInfo[playerid][E_CHARACTER_BURGLARYVEHICLE] = -1;
 
 	PlayerInfo[playerid][E_CHARACTER_DEFAULTHUDBAR] = INVALID_PLAYER_BAR_ID;
 

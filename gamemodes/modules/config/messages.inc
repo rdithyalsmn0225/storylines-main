@@ -9,7 +9,7 @@
 	SendClientMessageEx(%0, COLOR_SERVER, "[!] "%1) 
 
 #define SendTipMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_SERVER, "Tip: "%1) 
+	SendClientMessageEx(%0, COLOR_TIP, "Tip: "%1) 
 
 
 
@@ -267,7 +267,7 @@ stock SendFactionMessage(playerid, const str[], {Float,_}:...)
 			if (PlayerInfo[i][E_CHARACTER_FACTION] == PlayerInfo[playerid][E_CHARACTER_FACTION]) {
 				if(PlayerInfo[i][E_CHARACTER_TOGFMS] == false)
   				{ 
-					SendClientMessage(i, FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_COLORHEX], string);
+					SendClientMessage(i, COLOR_FCHAT, string);
 				}
 			}
 		}
@@ -278,7 +278,7 @@ stock SendFactionMessage(playerid, const str[], {Float,_}:...)
 		if (PlayerInfo[i][E_CHARACTER_FACTION] == PlayerInfo[playerid][E_CHARACTER_FACTION]) {
 			if(PlayerInfo[i][E_CHARACTER_TOGFMS] == false)
   			{ 
-				SendClientMessage(i, FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_COLORHEX], str);
+				SendClientMessage(i, COLOR_FCHAT, str);
 			}
 		}
 	}
@@ -897,10 +897,6 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					Send911Message(playerid, 811); 
 				}
 			}
-		}
-		if(PlayerInfo[playerid][E_CHARACTER_PHONELINE] == 111)
-		{
-			SendTaxiMessage(playerid);
 		}
 		else
 		{

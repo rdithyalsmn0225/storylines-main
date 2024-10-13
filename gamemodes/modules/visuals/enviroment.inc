@@ -109,7 +109,6 @@ InsertStaticVehicles()
 		VehicleInfo[Jobs_vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
 		VehicleInfo[Jobs_vehicles[i]][E_VEHICLE_FUEL] = 99999;
 		VehicleInfo[Jobs_vehicles[i]][E_VEHICLE_CRATES] = 0;
-		VehicleInfo[Jobs_vehicles[i]][E_VEHICLE_BURGLARY] = 0;
 		VehicleInfo[Jobs_vehicles[i]][E_VEHICLE_TRASHMASTER] = 0;
 
 	}
@@ -208,15 +207,6 @@ RemoveObjects(playerid)
     RemoveBuildingForPlayer(playerid, 3294, -100.000000, 1111.414062, 21.640600, 1.000000);
     RemoveBuildingForPlayer(playerid, 5043, 1843.367188, -1856.320312, 13.875000, 1.000000);
     RemoveBuildingForPlayer(playerid, 7707, 2006.000000, 2317.601562, 11.312500, 1.000000);
-	
-	//Burglary
-	RemoveBuildingForPlayer(playerid, 2103, 2360.830, -1130.140, 1051.020, 0.250);
-	RemoveBuildingForPlayer(playerid, 2077, 2357.550, -1131.520, 1050.689, 0.250);
-	RemoveBuildingForPlayer(playerid, 2077, 2357.550, -1134.189, 1050.699, 0.250);
-	RemoveBuildingForPlayer(playerid, 2811, 2372.699, -1128.910, 1049.819, 0.250);
-	RemoveBuildingForPlayer(playerid, 2331, 2367.370, -1123.160, 1050.119, 0.250);
-	RemoveBuildingForPlayer(playerid, 2868, 2374.979, -1125.229, 1049.869, 0.250);
-	RemoveBuildingForPlayer(playerid, 2225, 2369.179, -1125.800, 1049.869, 0.250);
 
 	//Docksworker
 	RemoveBuildingForPlayer(playerid, 3624, 2788.159, -2455.879, 16.726, 0.250);

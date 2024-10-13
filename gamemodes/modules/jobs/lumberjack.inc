@@ -84,7 +84,7 @@ function:CutTree(playerid, id)
             {
                 TreeInfo[id][E_TREE_PROGRESS] = 0;
                 SendServerMessage(playerid, "You've successfully cutting down the Tree.");
-                SendTipMessage(playerid, "Press 'LMB' to create the wood timber.");
+                SendTipMessage(playerid, "Press 'ALT' to create the wood timber.");
                 TreeInfo[id][E_TREE_CUTTED] = true;
 
                 MoveDynamicObject(TreeInfo[id][E_TREE_OBJECT], TreeInfo[id][E_TREE_POS][0], TreeInfo[id][E_TREE_POS][1], TreeInfo[id][E_TREE_POS][2], 4.0,  TreeInfo[id][E_TREE_POS][3] + 90.0,  TreeInfo[id][E_TREE_POS][4],  TreeInfo[id][E_TREE_POS][5]);
@@ -222,7 +222,7 @@ CMD:timbersell(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_WOODS, 1);
 		
-		SendServerMessage(playerid, "You has sell woods for %s into leafy hollow barn.", FormatMoney(LUMBERJACK_SALARY*2));
+		SendServerMessage(playerid, "You has sell woods for $%s into leafy hollow barn.", FormatMoney(LUMBERJACK_SALARY*2));
 	}
 	return 1;
 }

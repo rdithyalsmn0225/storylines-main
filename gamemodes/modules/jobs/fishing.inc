@@ -75,19 +75,22 @@ function:FishingTimer(playerid, type)
 				PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] = true;
 				ShowGameBar(playerid, PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE], "Fishing");
 				ShowHeaderMessage(playerid, "Fishing", "Something is hooked in your line.\nPress SPACE to reel it in.");
-				PlayerInfo[playerid][E_CHARACTER_FISHINGTIMER] = SetTimerEx("FishingTimer", 1000, true, "ii", playerid, 2);
+				PlayerInfo[playerid][E_CHARACTER_FISHINGTIMER] = SetTimerEx("FishingTimer", 500, true, "ii", playerid, 2);
 			}
 			case 2:
 			{
 				PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] -= 10;
 				SetPlayerGameBar(playerid, GameBar[1][playerid], PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE], GAMEBAR_MINUS);
+
 				if(PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] < 0)
 				{
 					PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] = false;
 					PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] = 0;
-					KillTimer(PlayerInfo[playerid][E_CHARACTER_FISHINGTIMER]);
 					PlayerInfo[playerid][E_CHARACTER_FISHING] = false;
+
 					DestroyGameBar(playerid);
+					KillTimer(PlayerInfo[playerid][E_CHARACTER_FISHINGTIMER]);
+					
 					ClearAnimations(playerid);
 					TogglePlayerControllable(playerid, true);
 					ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
@@ -109,7 +112,7 @@ CMD:sellfish(playerid, params[])
 		
 	new str[356];
 	
-	format(str, sizeof(str), "You have %d fish in your inventory are you sure you want to sell it for $%s", Inventory_Count(playerid, "Fish"), FormatMoney(5 * Inventory_Count(playerid, "Fish")));
+	format(str, sizeof(str), "You have %d fish in your inventory are you sure you want to sell it for $%s", Inventory_Count(playerid, "Fish"), FormatMoney(FISHING_SALARY * Inventory_Count(playerid, "Fish")));
 	ShowPlayerDialog(playerid, DIALOG_SELLFISH, DIALOG_STYLE_MSGBOX, "Sell Fish:", str, "Sell", "Cancel");
 	return 1;
 }

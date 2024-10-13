@@ -43,15 +43,14 @@ CMD:cursor(playerid, params[])
 CMD:settings(playerid, params[])
 {
 	new str[512];
-	format(str, sizeof(str), "Streets TextDraws\t%s\n", (PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sJoined Logs\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGJOIN] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sAdmin Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGADMIN] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sFaction Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGFMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
-	//format(str, sizeof(str), "%sTurf GangZones\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGTURF]) ? ("{5B9460}ENABLE{ffffff}") : ("{945F5B}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sSwitch Namestyles\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE]) ? ("{5B9460}Fn_Ln{ffffff}") : ("{945F5B}Streetnames{ffffff}"));
-	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{5B9460}LOW{ffffff}") : ("{945F5B}HIGH{ffffff}"));
+	format(str, sizeof(str), "Streets TextDraws\t%s\n", (PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sJoined Logs\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGJOIN] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sAdmin Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGADMIN] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sFaction Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGFMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sSwitch Namestyles\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE]) ? ("{5B9460}Fn_Ln{ffffff}") : ("{FF6347}Mixed.Name{ffffff}"));
+	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{5B9460}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
 	ShowPlayerDialog(playerid, DIALOG_SETTINGS, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
 	return 1;
 }
@@ -967,7 +966,7 @@ CMD:hangup(playerid, params[])
 	{
 		KillTimer(playerPhone[playerid]); 
 		
-		SendClientMessage(playerid, COLOR_GREY, "[ ! ] You hung up."); 
+		SendClientMessage(playerid, COLOR_GREY, "[!] You hung up..."); 
 		return 1;
 	}
 	
@@ -977,7 +976,7 @@ CMD:hangup(playerid, params[])
 		{
 			KillTimer(Player911Timer[i][playerid]); 
 		}
-		SendClientMessage(playerid, COLOR_GREY, "[ ! ] You hung up."); 
+		SendClientMessage(playerid, COLOR_GREY, "[!] You hung up..."); 
 		
 		PlayerInfo[playerid][E_CHARACTER_PHONELINE] = INVALID_PLAYER_ID;
 		PlayerInfo[playerid][E_CHARACTER_CALL] = 0;
@@ -993,8 +992,8 @@ CMD:hangup(playerid, params[])
 	
 	if(PlayerInfo[playerid][E_CHARACTER_CALL] && PlayerInfo[playerid][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID)
 	{	
-		SendClientMessage(playerid, COLOR_GREY, "[ ! ] You hung up."); 
-		SendClientMessage(PlayerInfo[playerid][E_CHARACTER_PHONELINE], COLOR_GREY, "[ ! ] The call was disconnected."); 
+		SendClientMessage(playerid, COLOR_GREY, "[!] You hung up..."); 
+		SendClientMessage(PlayerInfo[playerid][E_CHARACTER_PHONELINE], COLOR_GREY, "[!] The call was disconnected."); 
 		
 		if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USECELLPHONE){
 			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_STOPUSECELLPHONE);
@@ -1005,25 +1004,22 @@ CMD:hangup(playerid, params[])
 		
 		PlayerInfo[playerid][E_CHARACTER_CALL] = 0; 
 		PlayerInfo[playerid][E_CHARACTER_PHONELINE] = INVALID_PLAYER_ID; 
-		printf("call 0");
 		return 1;
 	}
 	
 	if(!PlayerInfo[playerid][E_CHARACTER_CALL] && PlayerInfo[playerid][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID)
 	{
-		SendClientMessage(playerid, COLOR_GREY, "[ ! ] You hung up."); 
-		SendClientMessage(PlayerInfo[playerid][E_CHARACTER_PHONELINE], COLOR_GREY, "[ ! ] They hung up."); 
+		SendClientMessage(playerid, COLOR_GREY, "[!] You hung up..."); 
+		SendClientMessage(PlayerInfo[playerid][E_CHARACTER_PHONELINE], COLOR_GREY, "[!] They hung up..."); 
 		
 		printf("pPhoneline = %i", PlayerInfo[playerid][E_CHARACTER_PHONELINE]);
 		
 		if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USECELLPHONE){
 			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_STOPUSECELLPHONE);
-			printf("call 1");
 		}
 		
 		if(GetPlayerSpecialAction(PlayerInfo[playerid][E_CHARACTER_PHONELINE]) == SPECIAL_ACTION_USECELLPHONE){
 			SetPlayerSpecialAction(PlayerInfo[playerid][E_CHARACTER_PHONELINE], SPECIAL_ACTION_STOPUSECELLPHONE);
-			printf("call 2"); 
 		}
 		
 		format(str, sizeof(str), "* %s puts their phone away.", ReturnSettingsName(playerid, playerid));
@@ -1037,7 +1033,6 @@ CMD:hangup(playerid, params[])
 		
 		PlayerInfo[ PlayerInfo[playerid][E_CHARACTER_PHONELINE] ][E_CHARACTER_PHONELINE] = INVALID_PLAYER_ID;
 		PlayerInfo[playerid][E_CHARACTER_PHONELINE] = INVALID_PLAYER_ID;
-		printf("call 3"); 
 		return 1;
 	}
 	
@@ -1062,7 +1057,7 @@ CMD:pickup(playerid, params[])
 	if(PlayerInfo[playerid][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID && !PlayerInfo[playerid][E_CHARACTER_CALL])
 		return SendErrorMessage(playerid, "You're already in a phone call."); 
 		
-	SendClientMessage(PlayerInfo[playerid][E_CHARACTER_PHONELINE], COLOR_GREY, "[ ! ] They picked up. You can talk now by using the chat box.");
+	SendClientMessage(PlayerInfo[playerid][E_CHARACTER_PHONELINE], COLOR_GREY, "[!] They picked up. You can talk now by using the chat box.");
 	SendClientMessage(playerid, COLOR_FACTION, "You can talk now by using the chatbox.");	
 
 	ShowPhone(PlayerInfo[playerid][E_CHARACTER_PHONELINE], 4);
@@ -1120,10 +1115,18 @@ CMD:call(playerid, params[])
 	if(phone_number == 911)
 	{
 		PlayerInfo[playerid][E_CHARACTER_PHONELINE] = 999;
-		PlayerInfo[playerid][E_CHARACTER_CALL] = 1; 
+		PlayerInfo[playerid][E_CHARACTER_CALL] = 0; 
 	
 		Player911Timer[0][playerid] = SetTimerEx("On911Call", 2000, false, "i", playerid);
 		return 1;
+	}
+	if(phone_number == 111)
+	{
+		PlayerInfo[playerid][E_CHARACTER_PHONELINE] = 111;
+		PlayerInfo[playerid][E_CHARACTER_CALL] = 0; 
+		playerPhone[playerid] = 0;
+
+		SetTimerEx("SendTaxiMessage", 2000, false, "i", playerid);
 	}
 	
 	if(playerb == INVALID_PLAYER_ID)
@@ -1151,7 +1154,7 @@ CMD:call(playerid, params[])
 	}
 	
 	SendNearbyMessage(playerb, 20.0, COLOR_EMOTE, "* %s's phone begins to ring.", ReturnSettingsName(playerid, playerid)); 
-	SendClientMessageEx(playerb, COLOR_GREY, "[ ! ] To pickup the call, use /pickup. Incoming call from %i.", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
+	SendClientMessageEx(playerb, COLOR_GREY, "[!] To pickup the call, use /pickup. Incoming call from %i.", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
 	
 	ShowPhone(playerid, 1);
 	ShowPhone(playerb, 2);
@@ -1196,7 +1199,7 @@ CMD:sms(playerid, params[])
 		playerb = i;
 	}
 	
-	SendClientMessage(playerid, COLOR_GREY, "[ ! ] Your text message is being sent.");
+	SendClientMessage(playerid, COLOR_GREY, "[!] Your text message is being sent.");
 
 	format(str, sizeof(str), "* %s takes out their cellphone.", ReturnSettingsName(playerid, playerid));
 	SetPlayerChatBubble(playerid, str, COLOR_EMOTE, 20.0, 3000); 
@@ -1552,7 +1555,7 @@ CMD:buyproperty(playerid, params[])
 		if(PropertyInfo[id][E_PROPERTY_OWNERDBID])
 			return SendErrorMessage(playerid, "This property isn't for sale."); 
 
-		if(PropertyInfo[id][E_PROPERTY_TYPE] == PROPERTY_TYPE_NPC)
+		if(PropertyInfo[id][E_PROPERTY_TYPE] == PROPERTY_TYPE_HIGHHOUSE)
 			return SendErrorMessage(playerid, "This property isn't for sale."); 
 			
 		if(PropertyInfo[id][E_PROPERTY_PRICE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
@@ -1698,8 +1701,8 @@ CMD:property(playerid, params[])
 		if(PropertyInfo[id][E_PROPERTY_TYPE] == PROPERTY_TYPE_HOUSE)
 			type = "House";
 		
-		else if(PropertyInfo[id][E_PROPERTY_TYPE] == PROPERTY_TYPE_NPC)
-			type = "Burglary House";
+		else if(PropertyInfo[id][E_PROPERTY_TYPE] == PROPERTY_TYPE_HIGHHOUSE)
+			type = "High House";
 			
 		else if(PropertyInfo[id][E_PROPERTY_TYPE] == PROPERTY_TYPE_APTCOMPLEX)
 			type = "Apartment Complex"; 

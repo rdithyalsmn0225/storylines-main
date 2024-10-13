@@ -72,27 +72,6 @@ stock StartMainJobs(playerid, type)
             }
             return 1;
         }
-        case 3: //Burglary
-        {
-            if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
-            {
-                if(GetVehicleModel(vehicleid) == 498)
-                {
-                    if(PlayerInfo[playerid][E_CHARACTER_LEVEL] != 5)
-                        return SendErrorMessage(playerid, "You must level 5 to start missions burglary.");
-
-                    if(PlayerInfo[playerid][E_CHARACTER_ROBBERYCD] > 0)
-                        return SendErrorMessage(playerid, "You cannot be stolen goods at this time.");
-
-                    if(PlayerInfo[playerid][E_CHARACTER_STARTBURGLARY] == true) return SendErrorMessage(playerid, "You're currently in a mission. Please finish it to start another missions.");
-
-                    PlayerInfo[playerid][E_CHARACTER_STARTBURGLARY] = true;
-                    PlayerInfo[playerid][E_CHARACTER_BURGLARYVEHICLE] = vehicleid;
-                    ShowBoxMessage(playerid, "~w~Burglary started. Find NPC properties destination to start stolen goods!", 5, 2);
-                }
-            } 
-            return 1;
-        }
     }
     return 1;
 }
@@ -189,25 +168,18 @@ ReturnJobName(jobid)
 
 CMD:takejobs(playerid, params[])
 {
-    if(IsPlayerInRangeOfPoint(playerid, 3.0, JobsInfo[1][E_JOBSPOSX], JobsInfo[1][E_JOBSPOSY], JobsInfo[1][E_JOBSPOSZ]))
+    for(new i = 0; i != sizeof(JobsInfo); i++)
     {
-        if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_NONE)
-            return SendErrorMessage(playerid, "You already have jobs.");
+        if(IsPlayerInRangeOfPoint(playerid, 3.0, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ]))
+        {
+            if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_NONE)
+                return SendErrorMessage(playerid, "You already have jobs.");
 
-        PlayerInfo[playerid][E_CHARACTER_JOBS] = JOB_TRUCKER;
-        SendServerMessage(playerid, "You are now a truckers use /help to see jobs commands.");
-        SaveCharacter(playerid);
+            PlayerInfo[playerid][E_CHARACTER_JOBS] = i;
+            SendServerMessage(playerid, "You are now a %s use /help to see jobs commands.", JobsInfo[i][E_JOBSNAMES]);
+            SaveCharacter(playerid);
+        }
     }
-    if(IsPlayerInRangeOfPoint(playerid, 3.0, JobsInfo[2][E_JOBSPOSX], JobsInfo[2][E_JOBSPOSY], JobsInfo[2][E_JOBSPOSZ]))
-    {
-        if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_NONE)
-            return SendErrorMessage(playerid, "You already have jobs.");
-
-        PlayerInfo[playerid][E_CHARACTER_JOBS] = JOB_LUMBERJACK;
-        SendServerMessage(playerid, "You are now a lumberjack use /help to see jobs commands.");
-        SaveCharacter(playerid);
-    }
-    else return SendErrorMessage(playerid, "You aren't near jobs point");
     return 1;
 }
 

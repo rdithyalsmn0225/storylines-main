@@ -480,31 +480,6 @@ function:OnPlayerNearPickup()
 				}	
 			}
 		}
-		if(IsPlayerInRangeOfPoint(i, 3.0, JobsInfo[1][E_JOBSPOSX], JobsInfo[1][E_JOBSPOSY], JobsInfo[1][E_JOBSPOSZ]))
-		{
-			format(str, sizeof(str), "This point is part of the truckers jobs. in order to start it /takejobs or /tpda.");
-			ShowBoxMessage(i, str, 3, 0);
-		}
-		else if(IsPlayerInRangeOfPoint(i, 3.0, 684.6581,-1570.5861,14.2422))
-		{	
-			format(str, sizeof(str), "Porch of %s, %s.~n~Bikes dealership to buy vehicle use /carbuy.", ReturnLocationStreet(i), ReturnLocation(i));
-			ShowBoxMessage(i, str, 3, 0);
-		}
-		else if(IsPlayerInRangeOfPoint(i, 3.0, 2132.0190,-1149.9902,24.2088))
-		{		
-			format(str, sizeof(str), "Porch of %s, %s.~n~TwoDoor dealership to buy vehicle use /carbuy.", ReturnLocationStreet(i), ReturnLocation(i));
-			ShowBoxMessage(i, str, 3, 0);
-		}
-		else if(IsPlayerInRangeOfPoint(i, 3.0, 1629.6158,-1903.5123,13.5530))
-		{		
-			format(str, sizeof(str), "Porch of %s, %s.~n~FourDoor dealership to buy vehicle use /carbuy.", ReturnLocationStreet(i), ReturnLocation(i));
-			ShowBoxMessage(i, str, 3, 0);
-		}
-		else if(IsPlayerInRangeOfPoint(i, 3.0, 2684.1277,-2515.6733,13.1552))
-		{	
-			format(str, sizeof(str), "Porch of %s, %s.~n~Industrial dealership to buy vehicle use /carbuy.", ReturnLocationStreet(i), ReturnLocation(i));
-			ShowBoxMessage(i, str, 3, 0);
-		}
 	}
 	return 1;
 }

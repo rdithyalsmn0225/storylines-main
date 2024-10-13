@@ -1747,16 +1747,16 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TAXI)
 						{
-							SendClientMessage(playerid, COLOR_SERVER, " ");
+							SendClientMessage(playerid, COLOR_SERVER, "/taxiduty, /taxicall");
 							SendTipMessage(playerid, "Taxi fare will change every 50 meters of distance.");
 						}
 					}
 					case 8:
 					{
-						new str[512];
-						strcat(str, "Press 'ALT'\tStolen goods in NPC House\nHold 'RMB'\tHold aim into actor/npc to start robbery in business\nPress 'LMB'\tBeat'em into actor/npc to start extortion in business\n");
-						strcat(str, "/extort\tStart extortion in business\n/extortions\tSee the list of business you have relations with them\n/drugsdeal\tSelling Drugs to NPC\n/creategun\tAssemble weapons using materials in Gunstore.");
-						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Crime Professions Commands:", str, "Select", "Close");
+						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Crime Profesions Commands __________|");
+						SendClientMessage(playerid, COLOR_SERVER, "/extort, /extortions, drugsdeal, /buydrugs, /buymats, /creategun");
+						SendTipMessage(playerid, "Hold aim into actor/npc to start robbery business.");
+						SendTipMessage(playerid, "Press LMB (punch) into actor/npc to start extortions business.");
 					}
 			    }
 			}
@@ -2290,7 +2290,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					if (!IsPlayerConnected(targetid) || !PlayerInfo[targetid][E_CHARACTER_PHONE])
 						return SendErrorMessage(playerid, "The specified phone number went offline.");
 
-					SendClientMessage(playerid, COLOR_GREY, "[ ! ] Your text message is being sent.");
+					SendClientMessage(playerid, COLOR_GREY, "[!] Your text message is being sent.");
 
 					new str[512];
 					format(str, sizeof(str), "* %s takes out their cellphone.", ReturnSettingsName(playerid, playerid));

@@ -2,7 +2,6 @@
 #define TRASHMASTER_SALARY      3
 #define DOCKWORKER_SALARY       25
 #define FISHING_SALARY          10
-#define BURGLARY_SALARY         400
 #define LUMBERJACK_SALARY       25
 
 //FSTORAGE

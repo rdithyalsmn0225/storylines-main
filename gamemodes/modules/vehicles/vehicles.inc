@@ -315,7 +315,6 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 		
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = true;
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid;
-		VehicleInfo[vehicleid][E_VEHICLE_BURGLARY] = 0;
 	}
 	
 	SendServerMessage(playerid, "You successfully bought a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(DealershipTotalCost[playerid]));
@@ -430,7 +429,6 @@ function:Query_LoadPrivateVehicle(playerid)
 		}
 	}
 
-	VehicleInfo[vehicleid][E_VEHICLE_BURGLARY] = 0;
 	VehicleInfo[vehicleid][E_VEHICLE_CRATES] = 0;
 
 	VehicleInfo[vehicleid][E_VEHICLE_VCTIMER] = 0;

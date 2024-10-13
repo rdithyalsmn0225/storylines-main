@@ -114,7 +114,6 @@ function:OnInteriorChange(playerid, response, property)
 
 function:OnPlayerEnterProperty(playerid, id)
 {
-	CreateBurglary(id);
 	SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_INTERIORPOS][0], PropertyInfo[id][E_PROPERTY_INTERIORPOS][1], PropertyInfo[id][E_PROPERTY_INTERIORPOS][2]);
 	return TogglePlayerControllable(playerid, true);
 }
@@ -173,7 +172,7 @@ CMD:createproperty(playerid, params[])
 	if(sscanf(params, "i", vartype))
 	{
 		SendUsageMessage(playerid, "/createproperty [type]");
-		SendClientMessage(playerid, COLOR_WHITE, "1. House, 2. Apartment Complex, 3. Burglary House.");
+		SendClientMessage(playerid, COLOR_WHITE, "1. House, 2. Apartment Complex, 3. High House.");
 		return 1;
 	}
 	
@@ -250,7 +249,7 @@ CMD:editproperty(playerid, params[])
 			
 		if(vartype == PROPERTY_TYPE_HOUSE) typeName = "House";
 		if(vartype == PROPERTY_TYPE_APTCOMPLEX) typeName = "Apartment Complex";
-		if(vartype == PROPERTY_TYPE_NPC) typeName = "Burglary House";
+		if(vartype == PROPERTY_TYPE_HIGHHOUSE) typeName = "High House";
 		
 		PropertyInfo[id][E_PROPERTY_TYPE] = vartype;
 		SaveProperty(id);

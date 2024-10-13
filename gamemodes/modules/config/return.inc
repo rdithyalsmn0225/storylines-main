@@ -134,21 +134,6 @@ GetPlayerNametagPreference(playerid) {
 	return PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE];
 }
 
-ReturnFactionTags(faction_sql_id, color=false) 
-{
-	new name[64];
-
-	if(faction_sql_id) 
-	{
-		if(color) 
-		{
-			format (name, sizeof(name), "{%06x}[%s]%s", (FactionInfo[faction_sql_id][E_FACTION_COLORHEX] >>> 8), FactionInfo[faction_sql_id][E_FACTION_ABBREV]);
-		}
-		else format (name, sizeof(name), "[%s]", FactionInfo[faction_sql_id][E_FACTION_ABBREV]);
-	}
-	return name;
-}
-
 ReturnRPName(playerid) 
 { // Returns "Firstname_Lastname"
     new name[64];
@@ -170,28 +155,6 @@ ReturnRPName(playerid)
     return name;
 }
 
-ReturnTagName(playerid, color=true) 
-{
-    new name[64];
-
-    if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY]) 
-	{
-        format(name, sizeof(name), "%s", AccountInfo[playerid][E_MASTERS_ACCNAME]);
-    }
-    else 
-	{
-        if (PlayerInfo[playerid][E_CHARACTER_FACTION] && PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] > 0) 
-		{
-            format(name, sizeof (name), "%s%s", ReturnFactionTags(PlayerInfo[playerid][E_CHARACTER_FACTION], color), PlayerInfo[playerid][E_CHARACTER_STREETNAME]); 
-        }
-        else format(name, sizeof(name), "%s", PlayerInfo[playerid][E_CHARACTER_STREETNAME]);
-    }
-
-    new nameEx[64];
-    format(nameEx, sizeof(nameEx), "%s", name);
-    return nameEx;
-}
-
 TEMP_ReturnPlayerName(playerid) 
 {
 	new name [MAX_PLAYER_NAME];
@@ -207,7 +170,7 @@ ReturnSettingsName(fromplayerid, toplayerid, color=false)
 	{
         switch(GetPlayerNametagPreference(toplayerid)) 
 		{
-            case 0: format(name, sizeof(name), "%s", ReturnTagName(fromplayerid, color));
+            case 0: format(name, sizeof(name), "%s", ReturnMixedName(fromplayerid));
             case 1:	format(name, sizeof(name), "%s", ReturnRPName(fromplayerid));
         }
     }

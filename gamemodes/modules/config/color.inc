@@ -9,6 +9,7 @@
 #define COLOR_SERVER		(0xDAA650FF)
 #define COLOR_FACTION       (0x99a5d7FF)
 #define COLOR_GAMES         (0xb6b9e1FF)
+#define COLOR_TIP           (0x73B3EDFF)
 #define COLOR_HEADER		(0x90D7F0FF)
 
 #define COLOR_YELLOW 		(0xFFFF00FF)
@@ -33,6 +34,7 @@
 #define COLOR_MEDIC         (0xDFA0C1FF)
 #define COLOR_DEPT 			(0xF07A7AFF)
 #define COLOR_TAXI          (0xf1c232FF)
+#define COLOR_FCHAT         (0x93C47DFF)
 
 #define COLOR_SAMP			(0xADC3E7FF)
 
@@ -41,6 +43,8 @@
 
 #define COLOR_PMRECEIVED 	(0xFFDC18FF)
 #define COLOR_PMSENT 		(0xEEE854FF)
+
+#define COLOR_ADMIN         (0xAFD0EDFF)
 
 #define COLOR_CYAN 			(0x00FFFFFF)
 #define COLOR_PINK			(0xFF8282FF)

@@ -27,6 +27,7 @@
 #define function:%0(%1) forward %0(%1); public %0(%1)
 
 #pragma warning disable 239, 214, 213, 208
+#pragma unused ReturnSettingsName
 
 // BODYPART:
 #define BODY_PART_CHEST	(3)

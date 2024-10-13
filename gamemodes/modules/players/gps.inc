@@ -92,7 +92,7 @@ stock ShowBusinessLocation(playerid)
 {
 	new str[1024];
 	format(str, sizeof(str), "Name\tDistance\n");
-	forex(i, MAX_BUSINESS) if(BusinessInfo[i][E_BUSINESS_EXISTS])
+	forex(i, MAX_BUSINESS) if(BusinessInfo[i][E_BUSINESS_EXISTS] && BusinessInfo[i][E_BUSINESS_TYPE] != BUSINESS_TYPE_ACID && BusinessInfo[i][E_BUSINESS_TYPE] != BUSINESS_TYPE_GUNSTORE)
 	{
 		format(str, sizeof(str), "%s%s\t%.2f Meter\n", str, BusinessInfo[i][E_BUSINESS_NAME], GetPlayerDistanceFromPoint(playerid, BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][2]));
 	}
