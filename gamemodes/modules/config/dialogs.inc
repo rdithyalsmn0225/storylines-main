@@ -808,34 +808,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendServerMessage(playerid, "Accessories bone position now is %s", Bone_Name[listitem + 1]);
 			}
 		}
-		case DIALOG_CLOTHESMENU:
-		{
-			if(response)
-			{
-				switch(listitem)
-				{
-					case 0:
-					{
-						SetPlayerPos(playerid, 217.5163,-98.4308,1005.2578);
-						SetPlayerFacingAngle(playerid, 94.6310);
-
-						SetPlayerCameraPos(playerid, 214.387527, -99.966537, 1005.545410);
-						SetPlayerCameraLookAt(playerid, 217.848388, -97.962821, 1005.458129, 1);
-						ShowModelSelectionMenu(playerid, "Skin_List", MODEL_SELECTION_BUYSKIN, g_aHoodRatsSkins, sizeof(g_aHoodRatsSkins), -16.0, 0.0, -55.0);
-					}
-					case 1:
-					{
-						SetPlayerPos(playerid, 217.5163,-98.4308,1005.2578);
-						SetPlayerFacingAngle(playerid, 94.6310);
-
-						SetPlayerCameraPos(playerid, 214.387527, -99.966537, 1005.545410);
-						SetPlayerCameraLookAt(playerid, 217.848388, -97.962821, 1005.458129, 1);
-						ShowModelSelectionMenu(playerid, "Clothing_List", MODEL_SELECTION_CLOTHING1, g_aClothingCustom, sizeof(g_aClothingCustom), -16.0, 0.0, -55.0);
-					}
-				}
-			}
-			return 1;
-		}
 		case DIALOG_FIGHTSTYLE:
 		{
 			if(response)

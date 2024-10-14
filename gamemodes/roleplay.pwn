@@ -222,9 +222,6 @@ public OnGameModeInit()
 	mysql_pquery(ourConnection, "SELECT * FROM `spray_tags`", "Query_SpraytagsLoad", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `server_data`", "Query_ServerDataLoad", "");
 
-	//Static vehicles:
-	CreateMenuModshop();
-
 	SetWeather(1);
 
 	Times = TextDrawCreate(68.000000, 426.000000, "");
@@ -569,7 +566,7 @@ public OnPlayerEnterDynamicCP(playerid, checkpointid)
     {
     	if(IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerid)))
     	{
-    		ShowMenuForPlayer(ModShopMenu, playerid);
+			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Respray Exterior\t$150\nRespray Interior\t$150\nRespray Paintjob type 1\t$300\nRespray Paintjob type 2\t$300\nRespray Paintjob type 3\t$300\nRepair Bodywork\t$250\nRepair Engine\t$500\nRepair Tires\t$250\nAdd Modifications\t$350\nAdd Wheels\t$350\nAdd Hydraulics\t$500", "Select", "Close");
     		TogglePlayerControllable(playerid, false);
     		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = true;
     	}
@@ -578,7 +575,7 @@ public OnPlayerEnterDynamicCP(playerid, checkpointid)
     {
     	if(IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerid)))
     	{
-    		ShowMenuForPlayer(ModShopMenu, playerid);
+			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Respray Exterior\t$150\nRespray Interior\t$150\nRespray Paintjob type 1\t$300\nRespray Paintjob type 2\t$300\nRespray Paintjob type 3\t$300\nRepair Bodywork\t$250\nRepair Engine\t$500\nRepair Tires\t$250\nAdd Modifications\t$350\nAdd Wheels\t$350\nAdd Hydraulics\t$500", "Select", "Close");
     		TogglePlayerControllable(playerid, false);
     		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = true;
     	}
@@ -587,11 +584,245 @@ public OnPlayerEnterDynamicCP(playerid, checkpointid)
     {
     	if(IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerid)))
     	{
-    		ShowMenuForPlayer(ModShopMenu, playerid);
+			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Respray Exterior\t$150\nRespray Interior\t$150\nRespray Paintjob type 1\t$300\nRespray Paintjob type 2\t$300\nRespray Paintjob type 3\t$300\nRepair Bodywork\t$250\nRepair Engine\t$500\nRepair Tires\t$250\nAdd Modifications\t$350\nAdd Wheels\t$350\nAdd Hydraulics\t$500", "Select", "Close");
     		TogglePlayerControllable(playerid, false);
     		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = true;
     	}
     }
+	return 1;
+}
+
+Dialog:ModShops(playerid, response, listitem, inputtext[])
+{
+	new vehicleid = GetPlayerVehicleID(playerid);
+	switch(listitem)
+	{
+		case 0: 
+		{
+			if(!response)
+				return TogglePlayerControllable(playerid, true);
+
+			if (!IsPlayerInAnyVehicle(playerid))
+				return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+			static
+				colors[256];
+
+			for (new i = 0; i < sizeof(colors); i ++) {
+				colors[i] = i;
+			}
+			ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR1, colors);
+			TogglePlayerControllable(playerid, true);
+			PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+		}
+		case 1: 
+		{
+			if(!response)
+				return TogglePlayerControllable(playerid, true);
+
+			if (!IsPlayerInAnyVehicle(playerid))
+				return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+			static
+				colors[256];
+
+			for (new i = 0; i < sizeof(colors); i ++) {
+				colors[i] = i;
+			}
+			ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR2, colors);
+			TogglePlayerControllable(playerid, true);
+			PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+		}
+		case 2: 
+		{
+			if(!response)
+				return TogglePlayerControllable(playerid, true);
+
+			if (!IsPlayerInAnyVehicle(playerid))
+				return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+			if(!IsSuitablePaintjobCar(GetPlayerVehicleID(playerid))) 
+			{
+				TogglePlayerControllable(playerid, true);
+				SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
+			}
+			else 
+			{
+				ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5, 2);
+				
+				ChangeVehiclePaintjob(GetPlayerVehicleID(playerid), 0);
+				VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_PAINTJOB] = 0;
+				SaveVehicle(GetPlayerVehicleID(playerid));
+				PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
+
+				GiveMoney(playerid, -300);
+				PauseAC(playerid);
+				TogglePlayerControllable(playerid, true);
+				PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+			}
+		}
+		case 3: 
+		{
+			if(!response)
+				return TogglePlayerControllable(playerid, true);
+
+			if (!IsPlayerInAnyVehicle(playerid))
+				return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+			if(!IsSuitablePaintjobCar(GetPlayerVehicleID(playerid))) 
+			{
+				TogglePlayerControllable(playerid, true);
+				SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
+			}
+			else 
+			{
+				ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5, 2);
+				
+				ChangeVehiclePaintjob(GetPlayerVehicleID(playerid), 1);
+				VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_PAINTJOB] = 1;
+				SaveVehicle(GetPlayerVehicleID(playerid));
+				PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
+
+				GiveMoney(playerid, -300);
+				PauseAC(playerid);
+				TogglePlayerControllable(playerid, true);
+				PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+			}
+		}
+		case 4: 
+		{
+			if(!response)
+				return TogglePlayerControllable(playerid, true);
+
+			if (!IsPlayerInAnyVehicle(playerid))
+				return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+			if(!IsSuitablePaintjobCar(GetPlayerVehicleID(playerid))) 
+			{
+				TogglePlayerControllable(playerid, true);
+				SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
+			}
+			else 
+			{
+				ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5, 2);
+				
+				ChangeVehiclePaintjob(GetPlayerVehicleID(playerid), 2);
+				VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_PAINTJOB] = 2;
+				SaveVehicle(GetPlayerVehicleID(playerid));
+
+				PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
+				GiveMoney(playerid, -300);
+				PauseAC(playerid);
+				TogglePlayerControllable(playerid, true);
+				PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+			}
+				
+		}
+		case 5: 
+		{
+			if(!response)
+				return TogglePlayerControllable(playerid, true);
+
+			if (!IsPlayerInAnyVehicle(playerid))
+				return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+			new panels, doors, lights, tires;
+			GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
+			UpdateVehicleDamageStatus(vehicleid, 0, 0, 0, tires);
+			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
+			SaveVehicle(vehicleid);
+			GiveMoney(playerid, -250);
+			PauseAC(playerid);
+			TogglePlayerControllable(playerid, true);
+			PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+		}
+		case 6: 
+		{
+			if (!IsPlayerInAnyVehicle(playerid))
+				return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+			SetVehicleHealthEx(vehicleid, 1000.0);
+			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
+			SaveVehicle(vehicleid);
+			GiveMoney(playerid, -500);
+			PauseAC(playerid);
+			TogglePlayerControllable(playerid, true);
+			PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+		}
+		case 7: 
+		{
+			if(!response)
+				return TogglePlayerControllable(playerid, true);
+
+			if (!IsPlayerInAnyVehicle(playerid))
+				return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+			new panels, doors, lights, tires;
+			GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
+			UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, 0);
+			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
+			SaveVehicle(vehicleid);
+			GiveMoney(playerid, -250);
+			PauseAC(playerid);
+			TogglePlayerControllable(playerid, true);
+			PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+		}
+		case 8: 
+		{
+			if(!response)
+				return TogglePlayerControllable(playerid, true);
+
+			if (!IsPlayerInAnyVehicle(playerid))
+				return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+			new modname[50][32], v = GetPlayerVehicleID(playerid), mods[50], count = 0;
+			for(new m = 1000; m < 1193; m++)
+			{
+				if(IsVehicleUpgradeCompatible(VehicleInfo[v][E_VEHICLE_MODEL], m) && IsActualVehicleMod(m))
+				{
+					mods[count] = m;
+					format(modname[count], 32, "%s", GetVehicleModName(m));
+					count ++;
+				}
+			}
+			if(count == 0) return SendErrorMessage(playerid, "This vehicle does not support any bodywork modifications."); TogglePlayerControllable(playerid, true);
+
+			ShowModelSelectionMenu(playerid, "Add Modifications", MODEL_SELECTION_MODS, mods, count, 0.0, 0.0, 0.0);
+
+			TogglePlayerControllable(playerid, true);
+			PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+		}
+		case 9: 
+		{
+			if(!response)
+				return TogglePlayerControllable(playerid, true);
+
+			if (!IsPlayerInAnyVehicle(playerid))
+				return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+			ShowModelSelectionMenu(playerid, "Add Wheels", MODEL_SELECTION_WHEELS, {1025, 1073, 1074, 1075, 1076, 1077, 1078, 1079, 1080, 1081, 1082, 1083, 1084, 1085, 1096, 1097, 1098}, 17, 0.0, 0.0, 90.0);
+
+			TogglePlayerControllable(playerid, true);
+			PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+		}
+		case 10: 
+		{
+			if(!response)
+				return TogglePlayerControllable(playerid, true);
+
+			if (!IsPlayerInAnyVehicle(playerid))
+				return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+			AddVehicleComponent(GetPlayerVehicleID(playerid), 1087);
+			VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_HYDRAULICS] = 1087;
+
+			PauseAC(playerid);
+			GiveMoney(playerid, -500);
+			SaveVehicle(GetPlayerVehicleID(playerid));
+			TogglePlayerControllable(playerid, true);
+			PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+		}
+	}
 	return 1;
 }
 
@@ -3064,35 +3295,6 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 
 public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 {
-	if(extraid == MODEL_SELECTION_BUYSKIN)
-	{
-		if(response)
-        {
-			if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-			{
-				SetCameraBehindPlayer(playerid);
-				SendErrorMessage(playerid, "You can't afford a clothes.");
-				return 1;
-			}
-
-			if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
-			{
-				SetCameraBehindPlayer(playerid);
-				return SendErrorMessage(playerid, "This business is out of stock");
-			}
-
-            SetTimerEx("EnterFittingRoom", 1000, false, "ii", playerid, modelid);
-		}
-	}
-	if(extraid == MODEL_SELECTION_FACTIONS)
-	{
-		if(response)
-        {
-			SetPlayerSkin(playerid, modelid);
-			PlayerInfo[playerid][E_CHARACTER_FACSKIN] = modelid;
-			SaveCharacter(playerid);
-		}
-	}
 	if ((response) && (extraid == MODEL_SELECTION_COLOR1))
 	{
 		new vehicleid = GetPlayerVehicleID(playerid);
@@ -3128,61 +3330,6 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 		PauseAC(playerid);
 		TogglePlayerControllable(playerid, true);
 		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-	}
-	if ((response) && (extraid == MODEL_SELECTION_CLOTHING1))
-	{
-		if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-		{
-			SetCameraBehindPlayer(playerid);
-			SendErrorMessage(playerid, "You can't afford a clothes.");
-			return 1;
-		}
-
-		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
-		{
-			SetCameraBehindPlayer(playerid);
-			return SendErrorMessage(playerid, "This business is out of stock");
-		}
-		if(GetPlayerFreeToySlot(playerid) == -1)
-		{
-			SetCameraBehindPlayer(playerid);
-			return SendErrorMessage(playerid, "You already have full slot of Accessory!");
-		}
-
-		GiveMoney(playerid, -300);
-		ApplyAnimation(playerid, "CLOTHES", "CLO_Buy", 4.0, 0, 0, 0, 0, 0);
-    	SetCameraBehindPlayer(playerid);
-		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
-		ShowPlayerDialog(playerid, DIALOG_BUYCLOTHING, DIALOG_STYLE_LIST, "Bone Selection:", "Spine\nHead\nLeft upper arm\nRight upper arm\nLeft hand\nRight hand\nLeft thigh\nRight thigh\nLeft foot\nRight foot\nRight calf\nLeft calf\nLeft forearm\nRight forearm\nLeft shoulder\nRight shoulder\nNeck\nJaw", "Choose", "Cancel");
-		PlayerInfo[playerid][E_CHARACTER_TEMPMODEL] = modelid;
-	}
-	if ((response) && (extraid == MODEL_SELECTION_HAIRCUT))
-	{
-		if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-		{
-			ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
-			ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
-			SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
-			return SendErrorMessage(playerid, "You can't afford a clothes.");
-		}
-
-		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
-		{
-			ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
-			ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
-			SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
-			return SendErrorMessage(playerid, "This business is out of stock");
-		}
-
-		if(GetPlayerFreeToySlot(playerid) == -1)
-		{
-			ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
-			ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
-			SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
-			return SendErrorMessage(playerid, "You already have full slot of Accessory!");
-		}
-
-		SetTimerEx("StartHairCut", 500, false, "ii", playerid, modelid);
 	}
 	if((response) && (extraid == MODEL_SELECTION_MODS))
 	{
@@ -4563,230 +4710,6 @@ public OnWorldTimeUpdate(hour, minute)
   	format(str, sizeof(str), "worldtime %02d:%02d", hour, minute);
  	SendRconCommand(str);
   	return 1;
-}
-public OnPlayerSelectedMenuRow(playerid, row)
-{
-	new vehicleid = GetPlayerVehicleID(playerid);
-    if(GetPlayerMenu(playerid) == ModShopMenu)
-	{
-		switch(row)
-		{
-			case 0: 
-			{
-				if (!IsPlayerInAnyVehicle(playerid))
-	    			return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-				HideMenuForPlayer(ModShopMenu, playerid);
-				static
-			 		colors[256];
-
-				for (new i = 0; i < sizeof(colors); i ++) {
-					colors[i] = i;
-			   	}
-			   	ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR1, colors);
-			   	TogglePlayerControllable(playerid, true);
-			   	PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-			}
-			case 1: 
-			{
-				if (!IsPlayerInAnyVehicle(playerid))
-	    			return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-				HideMenuForPlayer(ModShopMenu, playerid);
-				static
-			 		colors[256];
-
-				for (new i = 0; i < sizeof(colors); i ++) {
-					colors[i] = i;
-			   	}
-			   	ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR2, colors);
-			   	TogglePlayerControllable(playerid, true);
-			   	PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-			}
-			case 2: 
-			{
-				if (!IsPlayerInAnyVehicle(playerid))
-	    			return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-				if(!IsSuitablePaintjobCar(GetPlayerVehicleID(playerid))) 
-				{
-					TogglePlayerControllable(playerid, true);
-					SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
-				}
-				else 
-				{
-					ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5, 2);
-					HideMenuForPlayer(ModShopMenu, playerid);
-					
-					ChangeVehiclePaintjob(GetPlayerVehicleID(playerid), 0);
-					VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_PAINTJOB] = 0;
-					SaveVehicle(GetPlayerVehicleID(playerid));
-					PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
-
-					GiveMoney(playerid, -300);
-					PauseAC(playerid);
-					TogglePlayerControllable(playerid, true);
-					PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-				}
-			}
-			case 3: 
-			{
-				if (!IsPlayerInAnyVehicle(playerid))
-	    			return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-				if(!IsSuitablePaintjobCar(GetPlayerVehicleID(playerid))) 
-				{
-					TogglePlayerControllable(playerid, true);
-					SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
-				}
-				else 
-				{
-					ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5, 2);
-					HideMenuForPlayer(ModShopMenu, playerid);
-					
-					ChangeVehiclePaintjob(GetPlayerVehicleID(playerid), 1);
-					VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_PAINTJOB] = 1;
-					SaveVehicle(GetPlayerVehicleID(playerid));
-					PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
-
-					GiveMoney(playerid, -300);
-					PauseAC(playerid);
-					TogglePlayerControllable(playerid, true);
-					PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-				}
-			}
-			case 4: 
-			{
-				if (!IsPlayerInAnyVehicle(playerid))
-	    			return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-				if(!IsSuitablePaintjobCar(GetPlayerVehicleID(playerid))) 
-				{
-					TogglePlayerControllable(playerid, true);
-					SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
-				}
-				else 
-				{
-					ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5, 2);
-					HideMenuForPlayer(ModShopMenu, playerid);
-					
-					ChangeVehiclePaintjob(GetPlayerVehicleID(playerid), 2);
-					VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_PAINTJOB] = 2;
-					SaveVehicle(GetPlayerVehicleID(playerid));
-
-					PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
-					GiveMoney(playerid, -300);
-					PauseAC(playerid);
-					TogglePlayerControllable(playerid, true);
-					PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-				}
-					
-			}
-			case 5: 
-			{
-				if (!IsPlayerInAnyVehicle(playerid))
-	    			return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-				HideMenuForPlayer(ModShopMenu, playerid);
-				new panels, doors, lights, tires;
-			    GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
-				UpdateVehicleDamageStatus(vehicleid, 0, 0, 0, tires);
-				PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
-				SaveVehicle(vehicleid);
-			   	GiveMoney(playerid, -150);
-				PauseAC(playerid);
-			   	TogglePlayerControllable(playerid, true);
-			   	PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-			}
-			case 6: 
-			{
-				if (!IsPlayerInAnyVehicle(playerid))
-	    			return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-				HideMenuForPlayer(ModShopMenu, playerid);
-				SetVehicleHealthEx(vehicleid, 1000.0);
-				PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
-				SaveVehicle(vehicleid);
-				GiveMoney(playerid, -150);
-				PauseAC(playerid);
-				TogglePlayerControllable(playerid, true);
-				PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-			}
-			case 7: 
-			{
-				if (!IsPlayerInAnyVehicle(playerid))
-	    			return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-				HideMenuForPlayer(ModShopMenu, playerid);
-				new panels, doors, lights, tires;
-			    GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
-				UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, 0);
-				PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
-				SaveVehicle(vehicleid);
-			   	GiveMoney(playerid, -150);
-				PauseAC(playerid);
-			   	TogglePlayerControllable(playerid, true);
-			   	PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-			}
-			case 8: 
-			{
-				if (!IsPlayerInAnyVehicle(playerid))
-	    			return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-				HideMenuForPlayer(ModShopMenu, playerid);
-				new modname[50][32], v = GetPlayerVehicleID(playerid), mods[50], count = 0;
-				for(new m = 1000; m < 1193; m++)
-				{
-					if(IsVehicleUpgradeCompatible(VehicleInfo[v][E_VEHICLE_MODEL], m) && IsActualVehicleMod(m))
-					{
-						mods[count] = m;
-						format(modname[count], 32, "%s", GetVehicleModName(m));
-						count ++;
-					}
-				}
-				if(count == 0) return SendErrorMessage(playerid, "This vehicle does not support any bodywork modifications."); TogglePlayerControllable(playerid, true);
-
-				ShowModelSelectionMenu(playerid, "Add Modifications", MODEL_SELECTION_MODS, mods, count, 0.0, 0.0, 0.0);
-
-			   	TogglePlayerControllable(playerid, true);
-			   	PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-			}
-			case 9: 
-			{
-				if (!IsPlayerInAnyVehicle(playerid))
-	    			return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-				HideMenuForPlayer(ModShopMenu, playerid);
-				ShowModelSelectionMenu(playerid, "Add Wheels", MODEL_SELECTION_WHEELS, {1025, 1073, 1074, 1075, 1076, 1077, 1078, 1079, 1080, 1081, 1082, 1083, 1084, 1085, 1096, 1097, 1098}, 17, 0.0, 0.0, 90.0);
-
-			   	TogglePlayerControllable(playerid, true);
-			   	PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-			}
-			case 10: 
-			{
-				if (!IsPlayerInAnyVehicle(playerid))
-	    			return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-				HideMenuForPlayer(ModShopMenu, playerid);
-				
-				AddVehicleComponent(GetPlayerVehicleID(playerid), 1087);
-				VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_HYDRAULICS] = 1087;
-
-				PauseAC(playerid);
-				GiveMoney(playerid, -500);
-				SaveVehicle(GetPlayerVehicleID(playerid));
-			   	TogglePlayerControllable(playerid, true);
-			   	PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-			}
-		}
-	}
-	return 1;
-}
-
-public OnPlayerExitedMenu(playerid)
-{
-	TogglePlayerControllable(playerid, true);
-	return 1;
 }
 
 //ObjectMove

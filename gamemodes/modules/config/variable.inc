@@ -638,7 +638,6 @@ enum E_DROPPED_DATA
 
 // MODSHOP:
 new ModShop[4];
-new Menu:ModShopMenu;
 
 enum E_SPRAYTAGS_DATA 
 {

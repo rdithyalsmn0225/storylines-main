@@ -783,7 +783,111 @@ stock ShowClothesMenu(playerid)
 	new id = IsPlayerInBusiness(playerid), str[128];
 
 	format(str, sizeof(str), "%s:", BusinessInfo[id][E_BUSINESS_NAME]);
-	ShowPlayerDialog(playerid, DIALOG_CLOTHESMENU, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nClassic Clothes\t$250\nToys\t$500", "Select", "Cancel");
+	Dialog_Show(playerid, BuySkins, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nClassic Clothes\t$250\nToys\t$500", "Select", "Cancel");
+	return 1;
+}
+
+Dialog:BuySkins(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		switch(listitem)
+		{
+			case 0:
+			{
+				SetPlayerPos(playerid, 217.5163,-98.4308,1005.2578);
+				SetPlayerFacingAngle(playerid, 94.6310);
+
+				SetPlayerCameraPos(playerid, 214.387527, -99.966537, 1005.545410);
+				SetPlayerCameraLookAt(playerid, 217.848388, -97.962821, 1005.458129, 1);
+
+				new str[512];
+				for(new i; i < sizeof(g_aHoodRatsSkins); i++)
+				{
+					format(str, sizeof(str), "%s%d\n", str, g_aHoodRatsSkins[i]);
+				}
+				Dialog_Show(playerid, BuySkinsModel, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+			}
+			case 1:
+			{
+				SetPlayerPos(playerid, 217.5163,-98.4308,1005.2578);
+				SetPlayerFacingAngle(playerid, 94.6310);
+
+				SetPlayerCameraPos(playerid, 214.387527, -99.966537, 1005.545410);
+				SetPlayerCameraLookAt(playerid, 217.848388, -97.962821, 1005.458129, 1);
+				new str[512];
+				for(new i; i < sizeof(g_aClothingCustom); i++)
+				{
+					format(str, sizeof(str), "%s%d\n", str, g_aClothingCustom[i]);
+				}
+				Dialog_Show(playerid, BuyAccModel, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+			}
+		}
+	}
+	return 1;
+}
+
+Dialog:BuySkinsModel(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		{
+			SetCameraBehindPlayer(playerid);
+			SendErrorMessage(playerid, "You can't afford a clothes.");
+			return 1;
+		}
+
+		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
+		{
+			SetCameraBehindPlayer(playerid);
+			return SendErrorMessage(playerid, "This business is out of stock");
+		}
+
+		SetTimerEx("EnterFittingRoom", 1000, false, "ii", playerid, g_aHoodRatsSkins[listitem]);
+	}
+	else
+	{
+		SetCameraBehindPlayer(playerid);
+		TogglePlayerControllable(playerid, true);
+	}
+	return 1;
+}
+
+Dialog:BuyAccModel(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		{
+			SetCameraBehindPlayer(playerid);
+			SendErrorMessage(playerid, "You can't afford a clothing.");
+			return 1;
+		}
+
+		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
+		{
+			SetCameraBehindPlayer(playerid);
+			return SendErrorMessage(playerid, "This business is out of stock");
+		}
+		if(GetPlayerFreeToySlot(playerid) == -1)
+		{
+			SetCameraBehindPlayer(playerid);
+			return SendErrorMessage(playerid, "You already have full slot of accessories!");
+		}
+
+		GiveMoney(playerid, -300);
+		ApplyAnimation(playerid, "CLOTHES", "CLO_Buy", 4.0, 0, 0, 0, 0, 0);
+    	SetCameraBehindPlayer(playerid);
+		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
+		ShowPlayerDialog(playerid, DIALOG_BUYCLOTHING, DIALOG_STYLE_LIST, "Bone Selection:", "Spine\nHead\nLeft upper arm\nRight upper arm\nLeft hand\nRight hand\nLeft thigh\nRight thigh\nLeft foot\nRight foot\nRight calf\nLeft calf\nLeft forearm\nRight forearm\nLeft shoulder\nRight shoulder\nNeck\nJaw", "Choose", "Cancel");
+		PlayerInfo[playerid][E_CHARACTER_TEMPMODEL] = g_aClothingCustom[listitem];
+	}
+	else
+	{
+		SetCameraBehindPlayer(playerid);
+		TogglePlayerControllable(playerid, true);
+	}
 	return 1;
 }
 

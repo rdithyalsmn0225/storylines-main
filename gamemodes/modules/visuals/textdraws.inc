@@ -39,24 +39,6 @@ new PlayerText:gui_spec_label[MAX_PLAYERS][5];
 
 //Textdraws
 
-CreateMenuModshop()
-{
-	ModShopMenu = CreateMenu("Pay'n'Spray",  1, 20.0, 180.0, 150.0, 0.0);
-
-	AddMenuItem(ModShopMenu, 0, "Respray Exterior");
-	AddMenuItem(ModShopMenu, 0, "Respray Interior");
-	AddMenuItem(ModShopMenu, 0, "Respray Paintjob type 1");
-	AddMenuItem(ModShopMenu, 0, "Respray Paintjob type 2");
-	AddMenuItem(ModShopMenu, 0, "Respray Paintjob type 3");
-	AddMenuItem(ModShopMenu, 0, "Repair Bodywork");
-	AddMenuItem(ModShopMenu, 0, "Repair Engine");
-	AddMenuItem(ModShopMenu, 0, "Repair Tires");
-	AddMenuItem(ModShopMenu, 0, "Add Modifications");
-	AddMenuItem(ModShopMenu, 0, "Add Wheels");
-	AddMenuItem(ModShopMenu, 0, "Add Hydraulics");
-	return 1;
-}
-
 stock CreateTextdraws(playerid)
 {
 	ServerName[0][playerid] = CreatePlayerTextDraw(playerid, 24.000000, 438.000000, "idlestreet");

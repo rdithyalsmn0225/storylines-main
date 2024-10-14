@@ -477,11 +477,55 @@ CMD:haircut(playerid, params[])
 		SetPlayerPos(playerid, 414.4374,-19.8381,1001.8047);
 		SetPlayerFacingAngle(playerid, 88.7491);
 
-		ShowModelSelectionMenu(playerid, "Haircut_List", MODEL_SELECTION_HAIRCUT, g_aHaircut, sizeof(g_aHaircut), -16.0, 0.0, -55.0);
+		new str[512];
+		for(new i; i < sizeof(g_aHaircut); i++)
+		{
+			format(str, sizeof(str), "%s%d\n", str, g_aHaircut[i]);
+		}
+		Dialog_Show(playerid, Haircuts, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business.");
 	return 1;
 }
+
+Dialog:Haircuts(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		{
+			ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
+			ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
+			SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
+			return SendErrorMessage(playerid, "You can't afford a clothes.");
+		}
+
+		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
+		{
+			ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
+			ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
+			SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
+			return SendErrorMessage(playerid, "This business is out of stock");
+		}
+
+		if(GetPlayerFreeToySlot(playerid) == -1)
+		{
+			ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
+			ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
+			SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
+			return SendErrorMessage(playerid, "You already have full slot of Accessory!");
+		}
+
+		SetTimerEx("StartHairCut", 500, false, "ii", playerid, g_aHaircut[listitem]);
+	}
+	else
+	{
+		SetCameraBehindPlayer(playerid);
+		TogglePlayerControllable(playerid, true);
+	}
+	return 1;
+}
+
 CMD:clothes(playerid, params[])
 {
 	new 

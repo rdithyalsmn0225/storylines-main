@@ -489,17 +489,50 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
             {
                 if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
                 {
-                    ShowModelSelectionMenu(playerid, "Los Santos Police Departement", MODEL_SELECTION_FACTIONS, g_aLspdSkins, sizeof(g_aLspdSkins), -16.0, 0.0, -55.0);
+					new str[512];
+					for(new i; i < sizeof(g_aLspdSkins); i++)
+					{
+						format(str, sizeof(str), "%s%d\n", str, g_aLspdSkins[i]);
+					}
+					Dialog_Show(playerid, LSPDSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
                 }
                 if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
                 {
-                    ShowModelSelectionMenu(playerid, "Los Santos Medicals Departement", MODEL_SELECTION_FACTIONS, g_aLsmdSkins, sizeof(g_aLsmdSkins), -16.0, 0.0, -55.0);
+					new str[512];
+					for(new i; i < sizeof(g_aLsmdSkins); i++)
+					{
+						format(str, sizeof(str), "%s%d\n", str, g_aLsmdSkins[i]);
+					}
+					Dialog_Show(playerid, LSMDSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
                 }
             }
         }
     }
     return 1;
 }
+
+Dialog:LSPDSkins(playerid, response, listitem, inputtext[])
+{
+	if(response)
+    {
+		SetPlayerSkin(playerid, g_aLspdSkins[listitem]);
+		PlayerInfo[playerid][E_CHARACTER_FACSKIN] = g_aLspdSkins[listitem];
+		SaveCharacter(playerid);
+	}
+	return 1;
+}
+
+Dialog:LSMDSkins(playerid, response, listitem, inputtext[])
+{
+	if(response)
+    {
+		SetPlayerSkin(playerid, g_aLsmdSkins[listitem]);
+		PlayerInfo[playerid][E_CHARACTER_FACSKIN] = g_aLsmdSkins[listitem];
+		SaveCharacter(playerid);
+	}
+	return 1;
+}
+
 CMD:m(playerid, params[]) return cmd_megaphone(playerid, params);
 CMD:megaphone(playerid, params[])
 {
