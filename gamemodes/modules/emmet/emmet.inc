@@ -40,7 +40,7 @@ stock BuyGunFromEmmet(playerid)
 
 CMD:buymats(playerid, params[])
 {
-	if(!IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz]))
+	if(!IsPlayerInRangeOfPoint(playerid, 3.0, -576.3427,-505.8364,25.5234))
 		return SendErrorMessage(playerid, "You aren't near materials point.");
 
     if(!ServerInfo[0][E_SERVER_PRODUCTS])

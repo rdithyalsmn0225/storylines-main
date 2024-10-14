@@ -129,6 +129,7 @@ main ()  {}
 #include "modules\jobs\trucker.inc"
 #include "modules\jobs\lumberjack.inc"
 #include "modules\jobs\taxi.inc"
+#include "modules\jobs\smuggler.inc"
 #include "modules\jobs\fishing.inc"
 #include "modules\jobs\trashmaster.inc"
 #include "modules\jobs\dockworker.inc"
@@ -210,6 +211,7 @@ public OnGameModeInit()
 	SetTimer("IndustryTimer", 600000, true);
 	SetTimer("TreeTimers", 1000, true);
 	SetTimer("TaxiTimers", 1000, true);
+	SetTimer("PacketTimers", 1800000, true);
 	
 	//Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
@@ -3419,6 +3421,30 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
 	if(newkeys & KEY_WALK)
 	{
+		if(!IsPlayerInRangeOfPoint(playerid, 2.0, packetpos[0], packetpos[1], packetpos[2]))
+		{
+			if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_SMUGGLER) 
+        		return SendErrorMessage(playerid, "You aren't smugglers.");
+
+			if(IsValidDynamic3DTextLabel(packetLabel))
+				DestroyDynamic3DTextLabel(packetLabel), packetLabel = Text3D: -1;
+
+			if(IsValidDynamicObject(packetObject))
+				DestroyDynamicObject(packetObject), packetObject = INVALID_OBJECT_ID;
+
+			PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = true;
+			RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+			SetPlayerAttachedObject(playerid, ATTACH_HAND, 11745, 6, 0.129999, 0.051000, 0.000000, 103.700004, -64.600059, 0.000000, 0.501999, 1.0, 1.0);
+
+			SendNearbyMessage(playerid, 30.0, COLOR_PURPLE, "* %s has picked up a Packet.", ReturnSettingsName(playerid, playerid));
+
+			SendTipMessage(playerid, "You've picked up packet, Type '/deliverypacket' to materials / drugs point.");
+			ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
+			packetpos[0] = 0.0;
+			packetpos[1] = 0.0;
+			packetpos[2] = -10.0;
+		}
 		if(IsPlayerNearestTree(playerid) != -1)
 		{
 			new Float:x, Float:y, Float:z;

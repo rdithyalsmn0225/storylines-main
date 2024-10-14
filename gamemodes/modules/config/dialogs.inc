@@ -1693,11 +1693,16 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							SendClientMessage(playerid, COLOR_SERVER, "/taxiduty, /taxicall");
 							SendTipMessage(playerid, "Taxi fare will change every 50 meters of distance.");
 						}
+						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TAXI)
+						{
+							SendClientMessage(playerid, COLOR_SERVER, "/findpacket, /storepacket");
+							SendTipMessage(playerid, "Press 'ALT' to pickup packet.");
+						}
 					}
 					case 8:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Crime Profesions Commands __________|");
-						SendClientMessage(playerid, COLOR_SERVER, "/extort, /extortions, drugsdeal, /buydrugs, /buymats, /creategun");
+						SendClientMessage(playerid, COLOR_SERVER, "/extort, /extortions, /drugsdeal, /buydrugs, /buymats, /creategun, /production");
 						SendTipMessage(playerid, "Hold aim into actor/npc to start robbery business.");
 						SendTipMessage(playerid, "Press LMB (punch) into actor/npc to start extortions business.");
 					}

@@ -1493,7 +1493,7 @@ CMD:setstats(playerid, params[])
 	{
 		SendUsageMessage(playerid, "/setstats [playerid OR name] [stat code] [value]"); 
 		SendClientMessage(playerid, COLOR_WHITE, "1. Faction Rank, 2. Radio, 3. Bank Money, 4. Level,");
-		SendClientMessage(playerid, COLOR_WHITE, "5. EXP, 6. Paycheck, 7.Camera");
+		SendClientMessage(playerid, COLOR_WHITE, "5. Paycheck, 6. Jobs, 7. Hoodrats");
 		return 1;
 	}
 	
@@ -1557,28 +1557,6 @@ CMD:setstats(playerid, params[])
 		case 5:
 		{
 			if(value == -1)
-				return SendUsageMessage(playerid, "/setstats [playerid OR name] 5 [value required]"); 
-		
-			format(str, sizeof(str), "%s set %s's fear: %i (Previously %i)", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), value, PlayerInfo[playerb][E_CHARACTER_FEAR]);
-			SendAdminMessage(3, str);
-			
-			PlayerInfo[playerb][E_CHARACTER_FEAR] = value;
-			SaveCharacter(playerb);
-		}
-		case 6:
-		{
-			if(value == -1)
-				return SendUsageMessage(playerid, "/setstats [playerid OR name] 5 [value required]"); 
-		
-			format(str, sizeof(str), "%s set %s's respect: %i (Previously %i)", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), value, PlayerInfo[playerb][E_CHARACTER_RESPECT]);
-			SendAdminMessage(3, str);
-			
-			PlayerInfo[playerb][E_CHARACTER_RESPECT] = value;
-			SaveCharacter(playerb);
-		}
-		case 7:
-		{
-			if(value == -1)
 				return SendUsageMessage(playerid, "/setstats [playerid OR name] 7 [value required]");
 				
 			format(str, sizeof(str), "%s set %s's paycheck: %i (Previously %i)", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), value, PlayerInfo[playerb][E_CHARACTER_PAYCHECK]);
@@ -1587,17 +1565,18 @@ CMD:setstats(playerid, params[])
 			PlayerInfo[playerb][E_CHARACTER_PAYCHECK] = value; 
 			SaveCharacter(playerb);
 		}
-		case 8:
+		case 6:
 		{
 			if(value == -1)
-				return SendUsageMessage(playerid, "/setstats [playerid OR name] 8 [value required]");
+				return SendUsageMessage(playerid, "/setstats [playerid OR name] 9 [value required]");
 				
-			format(str, sizeof(str), "%s set %s's camera: %i (Previously -)", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), value);
+			format(str, sizeof(str), "%s set %s's jobs: %s (Previously %d)", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), ReturnJobName(value), ReturnJobName(PlayerInfo[playerb][E_CHARACTER_JOB]));
 			SendAdminMessage(3, str);
 			
-			GivePlayerWeapon(playerid, 43, value);
+			PlayerInfo[playerb][E_CHARACTER_JOB] = value;
+			SaveCharacter(playerid);
 		}
-		case 9:
+		case 7:
 		{
 			if(value == -1)
 				return SendUsageMessage(playerid, "/setstats [playerid OR name] 9 [value required]");

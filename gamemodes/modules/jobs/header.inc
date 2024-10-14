@@ -137,6 +137,15 @@ ReturnJobSkill(playerid, jobid)
             else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 0)
                 format(name, 32, "Driver Trainee");
 	    }
+        case JOB_SMUGGLER:
+		{
+			if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 10)
+                format(name, 32, "Professional Smuggler");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 5)
+                format(name, 32, "Smuggler");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 3)
+                format(name, 32, "Smuggler Trainee");
+	    }
 	    default: format(name, 32, "Unemployed");
 	}
 	return name;
@@ -159,6 +168,10 @@ ReturnJobName(jobid)
         case JOB_TAXI:
         {
             format(name, 32, "Taxi Driver");
+        }
+        case JOB_SMUGGLER:
+        {
+            format(name, 32, "Smugglers");
         }
 	    default: format(name, 32, "Unemployed");
 	}

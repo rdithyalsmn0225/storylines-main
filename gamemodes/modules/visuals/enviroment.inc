@@ -38,6 +38,14 @@ DestroyPlayerActor(playerid)
 //Static
 Insert3DTextLabel()
 {
+    new str1[512], str2[512]; 
+    
+    format(str1, sizeof(str1), "[Gunstore Materials]\n{ffffff}Available stock: %d / 1000\nMaterials Price $5 / gram", ServerInfo[0][E_SERVER_MATERIALS]);
+    CreateDynamic3DTextLabel(str1, COLOR_DARKGREEN, -576.3427,-505.8364,25.5234, 5.0);
+
+    format(str2, sizeof(str2), "[Drugs Labs]\n{ffffff}Available stock: %d / 100\nMarijuana Price $3000 / 25 gram\nCocaine Price $5000 / 30 gram\nHeroin Price $5000 / 30 gram", ServerInfo[0][E_SERVER_DRUGS]);
+    CreateDynamic3DTextLabel(str2, COLOR_DARKGREEN, 122.0707,-319.1785,1.5781, 5.0);
+
 	fittingRoomDoor = CreateDynamicObject(2877, 216.760360, -97.310455, 1005.337768, 0.0, 0.0, 360.0, .interiorid = 15);
 
 	CreateDynamic3DTextLabel("[Leafy Hollow Barn]\n{ffffff}Available Commands: '/buyaxe'", COLOR_DARKGREEN, -1448.7738,-1530.5585,101.7578, 5.0);
@@ -49,16 +57,6 @@ Insert3DTextLabel()
 	CreateDynamic3DTextLabel("[Clothes store]\n{ffffff}Available Commands: '/clothes'", COLOR_DARKGREEN, 217.5163,-98.4308,1005.2578, 5.0);
 
 	CreateDynamic3DTextLabel("[Los Santos Prison]\n{ffffff}Available Commands: '/charge'", COLOR_DARKGREEN, 252.9687,90.9530,1002.4453, 5.0);
-
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 2106.5166,-1797.5454,13.5625, 5.0);
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 2414.0591,-1504.1791,24.0031, 5.0);
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 2392.0125,-1905.1108,13.5234, 5.0);
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 1859.9919,-1670.8585,13.3731, 5.0);
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 1705.7178,-1650.0876,13.5276, 5.0);
-	CreateDynamic3DTextLabel("[Food & Drinks Menu]\n{ffffff}Available Commands: '/menu'", COLOR_DARKGREEN, 1035.1194,-1346.8387,13.7469, 5.0);
-
-	CreateDynamic3DTextLabel("[Liquor]\n{ffffff}Available Commands: '/buybeer'", COLOR_DARKGREEN, 2130.7271,-1769.0083,13.5510, 5.0);
-	CreateDynamic3DTextLabel("[Liquor]\n{ffffff}Available Commands: '/buybeer'", COLOR_DARKGREEN, 2139.9614,-1769.1486,13.5510, 5.0);
 
 	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -48.4748,-1.1597,203.2633, 5.0);
 	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -53.7980,2.8393,203.2633, 5.0);
@@ -72,7 +70,7 @@ Insert3DTextLabel()
 
 	CreateDynamic3DTextLabel("[Haircut]\n{ffffff}Available Commands: '/haircut'", COLOR_DARKGREEN, 2064.5574,-1794.9839,13.4599, 5.0);
 
-	CreateDynamic3DTextLabel("Fish Factory\n{ffffff}Available Commands: '/buybait'\n{ffffff}Available Commands: '/sellfish'", COLOR_DARKGREEN, 2895.6743,-2135.5847,3.6525, 5.0);
+	CreateDynamic3DTextLabel("[Fish Factory]\n{ffffff}Available Commands: '/buybait'\n{ffffff}Available Commands: '/sellfish'", COLOR_DARKGREEN, 2895.6743,-2135.5847,3.6525, 5.0);
 }
 
 InsertStaticVehicles()

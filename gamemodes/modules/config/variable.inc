@@ -36,7 +36,8 @@ enum
 	JOB_NONE,
     JOB_TRUCKER,
 	JOB_LUMBERJACK,
-	JOB_TAXI
+	JOB_TAXI,
+	JOB_SMUGGLER
 };
 
 enum 
@@ -261,6 +262,7 @@ enum P_ACCOUNT_DATA
 	bool:E_CHARACTER_LOADING,
 	bool:E_CHARACTER_DOCKSWORK,
 	bool:E_CHARACTER_GARBAGEMAN,
+	bool:E_CHARACTER_TAKEPACKET,
 	bool:E_CHARACTER_TOGMENU,
 	bool:E_CHARACTER_TOGJOIN,
 	bool:E_CHARACTER_TOGADMIN,
@@ -800,6 +802,27 @@ new g_aDrugsDealSkins[] = {
 	21, 22, 25, 28, 29, 30, 30, 47, 48, 184
 };
 
+// SMUGGLER PACKET:
+new Text3D:packetLabel,
+	packetObject,
+	Float:packetpos[3];
+	
+new Float: RandomPacketPos[12][3] =
+{
+    {-788.65, 1565.19, 26.32},
+    {-166.42, 1177.99, 22.15},
+    {2428.71, 86.60, 27.05},
+    {1270.54, 307.02, 18.73},
+    {774.23, -484.35, 16.54},
+    {206.32, -102.91, 4.10},
+    {-1663.82, 1080.81, 7.13},
+    {-2147.69, 1229.76, 33.13},
+    {-673.34, 2706.38, 69.97},
+    {2354.80, -680.41, 132.14},
+    {-1635.92, -2246.49, 30.68},
+    {858.25, -18.09, 62.40}
+};
+
 // DOCKWORKER:
 new Float: Dockworker_Collect[][3] = 
 {
@@ -1052,7 +1075,8 @@ new const JobsInfo[][E_JOBS_LOCATIONS] =
 	{"Unemployed", 0.0, 0.0, 0.0},
 	{"Truckers", -76.8248,-1136.7188,1.0781},
 	{"Lumberjack", -1438.6829,-1543.6034,101.7578},
-	{"Taxi Drivers", 685.7347,-1421.4628,14.6839}
+	{"Taxi Drivers", 685.7347,-1421.4628,14.6839},
+	{"Smugglers", 977.34, -771.49, 112.20}
 };
 
 new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
@@ -1149,9 +1173,7 @@ new const IndustryInfo[][E_INDUSTRY_DATA] =
 {
 	{"Oceandocks Ships", 2824.3801,-2387.5449,12.0771}, // Oceandocks Ships
 	{"Oceandocks Ships", 2824.1074,-2436.5945,12.0891}, // Oceandocks Ships
-	{"Leafy Hollow Barn", -1448.3512,-1522.6899,101.7578}, //Leafy Hollow Acress
-	{"Gunstores", -576.3427,-505.8364,25.5234}, //Materials
-	{"Drugs Labs", 122.0707,-319.1785,1.5781} //DrugsLabs
+	{"Leafy Hollow Barn", -1448.3512,-1522.6899,101.7578} //Leafy Hollow Acress
 };
 
 new const PenalInfo[][E_PENALCODES_DATA] =

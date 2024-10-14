@@ -27,6 +27,18 @@ function:OnPlayerWounded(playerid, killerid, reason)
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
     if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
 	
+	new Float:x, Float:y, Float:z;
+	GetPlayerPos(playerid, x, y, z);
+	if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == true)
+	{
+		PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
+		InsertPacket(x, y, z-1);
+		foreach(new p : Player) if(PlayerInfo[p][E_CHARACTER_JOBS] == JOB_SMUGGLER)
+		{
+			SendClientMessage(p, COLOR_DARKGREEN, "[Word on the Streetz] Smuggler packet has been spawned '/findpacket' to track packet");
+		}
+	}
+
 	SetPlayerTeam(playerid, PLAYER_STATE_WOUNDED); 
 	
 	SendServerMessage(playerid, "You have been brutally wounded. If you aren't saved, you will die.");
@@ -68,6 +80,18 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 		ApplyAnimation(playerid, "WUZI", "CS_Dead_Guy", 4.1, 0, 1, 1, 1, 0, 1);	
 	}
 	Inventory_Clear(playerid);
+
+	new Float:x, Float:y, Float:z;
+	GetPlayerPos(playerid, x, y, z);
+	if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == true)
+	{
+		PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
+		InsertPacket(x, y, z-1);
+		foreach(new p : Player) if(PlayerInfo[p][E_CHARACTER_JOBS] == JOB_SMUGGLER)
+		{
+			SendClientMessage(p, COLOR_DARKGREEN, "[Word on the Streetz] Smuggler packet has been spawned '/findpacket' to track packet");
+		}
+	}
 	return 1;
 }
 

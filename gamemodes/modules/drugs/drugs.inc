@@ -88,7 +88,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 			
-			format(str, sizeof(str), "%s bought %d Marijuana Ammo", ReturnSettingsName(playerid, playerid), amount);
+			format(str, sizeof(str), "%s bought %d marijuana for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount));
 			SendAdminMessage(1, str); 
 		}
 		else if(type == 1)
@@ -103,7 +103,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 			
-			format(str, sizeof(str), "%s bought %d Cocaine Ammo for %s", ReturnSettingsName(playerid, playerid), amount);
+			format(str, sizeof(str), "%s bought %d cocaine for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount));
 			SendAdminMessage(1, str); 
 		}
 		else if(type == 2)
@@ -115,7 +115,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 			
-			format(str, sizeof(str), "%s bought %d Cocaine Ammo for %s", ReturnSettingsName(playerid, playerid), amount);
+			format(str, sizeof(str), "%s bought %d heroin for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount));
 			SendAdminMessage(1, str); 
 		}
 	}
@@ -318,7 +318,7 @@ CMD:production(playerid, params[])
 
 CMD:buydrugs(playerid, params[])
 {
-	if(!IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[4][Posx], IndustryInfo[4][Posy], IndustryInfo[4][Posz]))
+	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 122.0707,-319.1785,1.5781))
 		return SendErrorMessage(playerid, "You aren't near drugs labs.");
 
 	new str[512];

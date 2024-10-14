@@ -11,8 +11,6 @@
 #define SendTipMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_TIP, "Tip: "%1) 
 
-
-
 #define SendMinigamesMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_GAMES, ""%1) 
 
@@ -706,14 +704,6 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					SendClientMessage(playerid, -1, "Please provide your characters faction. either type:");
 					SendClientMessage(playerid, -1, "- Press \"LEFT\" or \"RIGHT\" to switch faction.");
 					SendClientMessage(playerid, -1, "- Press \"SELECT\" to select.");		
-
-					//playerCharacterStep[playerid] = 6; 
-					
-					//if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == -1) 
-					//{
-					//	PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] = SELECT_HOODRATS;
-					//}
-					//ShowCharacterSelection(playerid);
 
 					PlayerInfo[playerid][E_CHARACTER_FACTION] = 0;
 					characterSelection[playerid] = true;

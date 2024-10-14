@@ -536,14 +536,7 @@ function:OnPlayerPurchaseArmor(playerid, response)
 		if(2000 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 			return SendErrorMessage(playerid, "You can't afford this. (Cost: $2,000, Total: $%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 			
-		new
-			str[128]
-		;
-	
 		SetPlayerArmour(playerid, 50); 
-		
-		format(str, sizeof(str), "%s bought Armor.", ReturnSettingsName(playerid, playerid));
-		SendAdminMessage(1, str); 
 	}
 	return 1;
 }
