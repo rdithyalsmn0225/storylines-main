@@ -331,18 +331,6 @@ public OnPlayerConnect(playerid)
 	{
 		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE);
 	}
-	
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 250);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 250);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 500);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 500);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 500);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_SPAS12_SHOTGUN, 500);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_MICRO_UZI, 50);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_MP5, 250);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 300);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 300);
 
 	if(!IsPlayerNPC(playerid))
 	{
@@ -2983,6 +2971,18 @@ public OnPlayerSpawn(playerid)
 	{
 		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE);
 	}
+
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 250);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 250);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 200);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 500);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 500);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_SPAS12_SHOTGUN, 500);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_MICRO_UZI, 50);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_MP5, 250);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 300);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 200);
+	SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 300);
 	
 	SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	SetPlayerArmourEx(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);

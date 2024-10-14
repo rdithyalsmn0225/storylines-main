@@ -489,7 +489,7 @@ function:Query_ShowVehicleList(playerid)
 		cache_get_value_name(i, "VehiclePlates", vehiclePlates, 32);
 
 		isSpawned = false;
-		for(new id = 1; id < MAX_VEHICLES; id++)
+		for(new id = 1; id < MAX_PLAYER_VEHICLES; id++)
 		{
 			if(VehicleInfo[id][E_VEHICLE_DBID] == vehicleDBID)
 			{
@@ -521,10 +521,10 @@ Dialog:VehicleList(playerid, response, listitem, inputtext[])
 			
 		new threadLoad[128]; 
 		
-		if(VehicleInfo[listitem][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem+1])
+		if(VehicleInfo[PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem]][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem])
 			return SendErrorMessage(playerid, "This vehicle's already spawned.");
 
-		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem+1]);
+		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem]);
 		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
 	}
 	return 1;

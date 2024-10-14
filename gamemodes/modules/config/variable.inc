@@ -1076,7 +1076,7 @@ new const JobsInfo[][E_JOBS_LOCATIONS] =
 	{"Truckers", -76.8248,-1136.7188,1.0781},
 	{"Lumberjack", -1438.6829,-1543.6034,101.7578},
 	{"Taxi Drivers", 685.7347,-1421.4628,14.6839},
-	{"Smugglers", 977.34, -771.49, 112.20}
+	{"Smugglers", -540.1035,-540.0248,25.5234}
 };
 
 new const g_aInventoryItems[][E_INVENTORY_ITEMS] =

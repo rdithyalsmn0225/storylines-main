@@ -21,13 +21,13 @@ CMD:ahelp(playerid, params[])
 	}
 	if(IsPlayerAdmins(playerid) >= 3)
 	{
-		SendClientMessage(playerid, COLOR_DARKGREEN, "High Admin:{ffffff} /spawncar, /despawncar, /createpcar, /setstats, /givemoney, /setcar, /setcarparams, /setpfaction, /setinv.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /spawncar, /despawncar, /createpcar, /setstats, /givemoney, /setcar, /setcarparams, /setpfaction, /setinv, /respawnpacket, /afindpacket.");
 	}
 	if(IsPlayerAdmins(playerid) >= 4)
 	{
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /createfaction, /editfaction, /createproperty, /editproperty.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /createbusiness, /editbusiness, /callpaycheck, /gotomark, /loadturf, /turfwarscancel, /editturfwars, /destroyturfwars, /gototurfwars.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /createcourt, /editcourt.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createfaction, /editfaction, /createproperty, /editproperty.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createbusiness, /editbusiness, /callpaycheck, /gotomark, /loadturf, /turfwarscancel, /editturfwars, /destroyturfwars, /gototurfwars.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createcourt, /editcourt.");
 	}
 	 
 	return 1; 
@@ -1338,7 +1338,7 @@ CMD:spawncar(playerid, params[])
 	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
 		return 0;
 		
-	new modelid, color1, color2, siren, str[128]; 
+	new modelid, color1, color2, siren, str[128], vehicleid = GetPlayerVehicleID(playerid); 
 	
 	if(sscanf(params, "iiiI(0)", modelid, color1, color2, siren))
 	{
@@ -1358,23 +1358,21 @@ CMD:spawncar(playerid, params[])
 		
 	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
 	
-	for(new vehicleid; vehicleid != MAX_VEHICLES; ++vehicleid)
+	
+	VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH] = CreateVehicle(modelid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2], 0, color1, color2, -1, siren);
+	
+	if(VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH] != INVALID_VEHICLE_ID)
 	{
-		VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH] = CreateVehicle(modelid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2], 0, color1, color2, -1, siren);
+		VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_ADMIN] = true;
+		VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_MODEL] = modelid;
 		
-		if(VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH] != INVALID_VEHICLE_ID)
-		{
-			VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_ADMIN] = true;
-			VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_MODEL] = modelid;
-			
-			VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_COLOR1] = color1;
-			VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_COLOR2] = color2;
-		}
-		PlayerPutIntoVehicle(playerid, VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH], 0);
-		
-		format(str, sizeof(str), "%s spawned a temporary %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]));
-		SendAdminMessage(3, str);
+		VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_COLOR1] = color1;
+		VehicleInfo[VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]][E_VEHICLE_COLOR2] = color2;
 	}
+	PlayerPutIntoVehicle(playerid, VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH], 0);
+	
+	format(str, sizeof(str), "%s spawned a temporary %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]));
+	SendAdminMessage(3, str);
 	
 	lastVehicleSpawn[playerid] = gettime();
 	return 1;
