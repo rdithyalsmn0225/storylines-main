@@ -43,6 +43,8 @@ function:OnPlayerWounded(playerid, killerid, reason)
 	
 	SendServerMessage(playerid, "You have been brutally wounded. If you aren't saved, you will die.");
 	SendTipMessage(playerid, "To accept death, type: /acceptdeath."); 
+
+	SetPlayerPosEx(playerid, x, y, z);
 	return 1;
 }
 
@@ -92,6 +94,7 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 			SendClientMessage(p, COLOR_DARKGREEN, "[Word on the Streetz] Smuggler packet has been spawned '/findpacket' to track packet");
 		}
 	}
+	SetPlayerPosEx(playerid, x, y, z);
 	return 1;
 }
 
