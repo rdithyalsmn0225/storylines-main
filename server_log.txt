@@ -22741,3 +22741,73 @@ Console input: exit
 [21:03:59] =       Made by BigETI =
 [21:03:59] = Unloaded!            =
 [21:03:59] ========================
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[21:06:24] filterscripts = ""  (string)
+[21:06:24] 
+[21:06:24] Server Plugins
+[21:06:24] --------------
+[21:06:24]  Loading plugin: mysql
+[21:06:24]  >> plugin.mysql: R41-4 successfully loaded.
+[21:06:24]   Loaded.
+[21:06:24]  Loading plugin: sscanf
+[21:06:24] 
+
+[21:06:24]  ===============================
+
+[21:06:24]       sscanf plugin loaded.     
+
+[21:06:24]          Version:  2.8.2        
+
+[21:06:24]    (c) 2012 Alex "Y_Less" Cole  
+
+[21:06:24]  ===============================
+
+[21:06:24]   Loaded.
+[21:06:24]  Loading plugin: streamer
+[21:06:24] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:06:24]   Loaded.
+[21:06:24]  Loading plugin: pawnplus
+[21:06:24]  PawnPlus v1.5 loaded
+[21:06:24]  Created by IS4
+[21:06:24]   Loaded.
+[21:06:24]  Loading plugin: pawn-memory
+[21:06:24] ========================
+[21:06:24] = Memory access plugin =
+[21:06:24] =       Made by BigETI =
+[21:06:24] = Loaded!              =
+[21:06:24] ========================
+[21:06:24]   Loaded.
+[21:06:24]  Loading plugin: pawnraknet
+[21:06:24] [Pawn.RakNet] plugin v1.6.0 loading...
+[21:06:24] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[21:06:24]   Loaded.
+[21:06:24]  Loaded 6 plugins.
+
+[21:06:24] 
+[21:06:24] Filterscripts
+[21:06:24] ---------------
+[21:06:24]   Loaded 0 filterscripts.
+

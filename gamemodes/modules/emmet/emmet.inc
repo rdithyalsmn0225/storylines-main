@@ -62,7 +62,7 @@ CMD:creategun(playerid, params[])
 		return SendErrorMessage(playerid, "This Business has been robbery.");
 
 	new str[512];
-	strcat(str, "Weapons\tIngredient\tPrice");
+	strcat(str, "Weapons\tIngredient\tPrice\n");
 	strcat(str, "Glock-19\tMaterials 50\t$6.000\n");
 	strcat(str, "Glock-17\tMaterials 55\t$6.500\n");
 	strcat(str, "Glock-P80\tMaterials 60\t$7.000\n");
