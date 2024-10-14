@@ -69,6 +69,7 @@ CMD:creategun(playerid, params[])
 	strcat(str, "MAC-11\tMaterials 100\t$7.000\n");
 	strcat(str, "MAC-10\tMaterials 110\t$7.500\n");
 	strcat(str, "Socimi T821\tMaterials 120\t$7.500\n");
+    strcat(str, "Deagle\tMaterials 80\t$7.000\n");
 	strcat(str, "9mm 50x\tMaterials 50\t$1.000\n");
 	strcat(str, "9x19mm 100x\tMaterials 50\t$1.000\n");
 	Dialog_Show(playerid, BuyGuns, DIALOG_STYLE_TABLIST_HEADERS, "Gunstore:", str, "Select", "Close");
@@ -140,35 +141,22 @@ Dialog:BuyGuns(playerid, response, listitem, inputtext[])
             case 5:
             {
                 format(str, sizeof(str), "Are you sure you want to purchase a Mac-11 for $%d?", SOCIMIT821);
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_UZI, 10, SOCIMIT821, 2); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_UZI, 10, SOCIMIT821, 3); 
             }
             case 6:
+            {
+                format(str, sizeof(str), "Are you sure you want to purchase a Deagle for $%d?", SOCIMIT821);
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_DEAGLE, 10, DEAGLES, 2); 
+            }
+            case 7:
             {
                 format(str, sizeof(str), "Are you sure you want to buy ammo for $%d?", A9MM); 
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseAmmo", 0, 50, A9MM); 
             }
-            case 7:
+            case 8:
             {
                 format(str, sizeof(str), "Are you sure you want to buy ammo for $%d?", A9X19MM); 
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseAmmo", 1, 100, A9X19MM); 
-            }
-            case 8:
-            {
-                format(str, sizeof(str), "Are you sure you want to buy this drugs for $%d?", PMARIJUANA); 
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 0, 5, PMARIJUANA); 
-            }
-            case 9:
-            {
-                if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 7 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 8)
-                {
-                    format(str, sizeof(str), "Are you sure you want to buy this drugs for $%d?", PHEROIN); 
-                    ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 2, 5, PHEROIN); 
-                }
-                else
-                {
-                    format(str, sizeof(str), "Are you sure you want to buy this drugs for $%d?", PCOCAINE); 
-                    ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 1, 5, PCOCAINE); 
-                }
             }
         }
     }

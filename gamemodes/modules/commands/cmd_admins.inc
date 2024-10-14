@@ -1570,7 +1570,7 @@ CMD:setstats(playerid, params[])
 			if(value == -1)
 				return SendUsageMessage(playerid, "/setstats [playerid OR name] 9 [value required]");
 				
-			format(str, sizeof(str), "%s set %s's jobs: %s (Previously %d)", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), ReturnJobName(value), ReturnJobName(PlayerInfo[playerb][E_CHARACTER_JOBS]));
+			format(str, sizeof(str), "%s set %s's jobs: %s (Previously %s)", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), ReturnJobName(value), ReturnJobName(PlayerInfo[playerb][E_CHARACTER_JOBS]));
 			SendAdminMessage(3, str);
 			
 			PlayerInfo[playerb][E_CHARACTER_JOBS] = value;

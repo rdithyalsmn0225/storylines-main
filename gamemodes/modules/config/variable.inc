@@ -1106,6 +1106,7 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Glock 17", -2204, 0},
 	{"Glock 19", -2205, 0},
 	{"Glock P80", -2206, 0},
+	{"Deagle", 348, 0},
 	{"Mac 11", -2207, 0},
 	{"Mac 12", -2208, 0},
 	{"Socimi Type 821", -2209, 0},

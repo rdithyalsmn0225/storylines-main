@@ -240,13 +240,39 @@ function:WeaponUpdate()
 			}
 			else if(GetPlayerWeapon(i) == 24) 
 			{
-				new astring[128];
-				if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Night_Hawk");
-				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)format(astring, sizeof(astring), "S&W_Model_29");
-				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)format(astring, sizeof(astring), "S&W_Model_625");
-				PlayerTextDrawSetString(i, WeaponType[i], astring);
-				PlayerTextDrawShow(i, WeaponType[i]);
-				RemovePlayerAttachedObject(i, 7);
+				if(Inventory_Count(i, "9mm"))
+				{
+					new astring[128];
+					new tstr[128];
+					if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
+					{
+						format(astring, sizeof(astring), "Night Hawk");
+						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2204, 6, -0.036999, -0.009000, -0.021000, 0.000000, -5.499999, 6.799997, 1.043000, 1.172000, 1.069999);
+					}
+					else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)
+					{
+						format(astring, sizeof(astring), "Deagle");
+						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2205, 6, -0.023000, -0.007000, -0.006000, 0.000000, 0.000000, -1.400000, 1.390999, 1.513000, 1.172000);
+					}
+					else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)
+					{
+						format(astring, sizeof(astring), "Glock_P80");
+						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2206, 6, 0.000000, -0.010999, 0.000000, 0.000000, -11.199995, 8.399997, 1.231001, 1.625002, 1.128000);
+					}
+						
+					PlayerTextDrawSetString(i, WeaponType[i], astring);
+					PlayerTextDrawShow(i, WeaponType[i]);
+
+					format(tstr, sizeof(tstr), "%d", Inventory_Count(i, "9mm"));
+					PlayerTextDrawSetString(i, WeaponAmmo[i], tstr);
+					PlayerTextDrawShow(i, WeaponAmmo[i]);
+				}
+				else
+				{
+					PlayerInfo[i][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+					ResetPlayerWeapons(i);
+					PlayerTextDrawHide(i, WeaponAmmo[i]);
+				}
 			}
 
 			//RUBBER

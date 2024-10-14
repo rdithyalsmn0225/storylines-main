@@ -11,6 +11,7 @@
 #define MAC11           7000
 #define MAC10           7500
 #define SOCIMIT821      7500
+#define DEAGLES          7000
 #define PMARIJUANA       2000
 #define PCOCAINE         2500
 #define PHEROIN          2500

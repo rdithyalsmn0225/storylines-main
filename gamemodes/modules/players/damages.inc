@@ -45,6 +45,7 @@ function:OnPlayerWounded(playerid, killerid, reason)
 	SendTipMessage(playerid, "To accept death, type: /acceptdeath."); 
 
 	SetPlayerPosEx(playerid, x, y, z);
+	RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 	return 1;
 }
 
@@ -95,6 +96,7 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 		}
 	}
 	SetPlayerPosEx(playerid, x, y, z);
+	RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 	return 1;
 }
 

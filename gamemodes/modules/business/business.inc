@@ -366,7 +366,6 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Glock 19", -2205, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 50);
-				GiveMoney(playerid, -2000);
 				SaveCharacter(playerid);
 			}
 			else
@@ -375,7 +374,6 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Glock 19", -2205, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 50);
-				GiveMoney(playerid, -2000);
 
 				SaveCharacter(playerid);
 			}
@@ -394,7 +392,6 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Glock 17", -2204, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 55);
-				GiveMoney(playerid, -2000);
 
 				SaveCharacter(playerid);
 			}
@@ -404,7 +401,6 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Glock 17", -2204, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 55);
-				GiveMoney(playerid, -2000);
 
 				SaveCharacter(playerid);
 			}
@@ -423,7 +419,6 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Glock P80", -2206, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 60);
-				GiveMoney(playerid, -2000);
 
 				SaveCharacter(playerid);
 			}
@@ -433,7 +428,32 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Glock P80", -2206, 1);
 				Inventory_Add(playerid, "9mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 60);
-				GiveMoney(playerid, -2000);
+
+				SaveCharacter(playerid);
+			}
+		}
+		if(weapon == WEAPON_DEAGLE && type == 2)
+		{
+			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
+				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+
+			if(Inventory_Count(playerid, "Materials") < 80)
+				return SendErrorMessage(playerid, "You must have 50 gram of materials.");
+
+			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
+			{
+				GiveMoney(playerid, -price);
+				Inventory_Add(playerid, "Deagle", 348, 1);
+				Inventory_Add(playerid, "9mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 80);
+				SaveCharacter(playerid);
+			}
+			else
+			{
+				GiveMoney(playerid, -price);
+				Inventory_Add(playerid, "Glock 19", -2205, 1);
+				Inventory_Add(playerid, "9mm", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 50);
 
 				SaveCharacter(playerid);
 			}
@@ -452,7 +472,6 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Mac 11", -2207, 1);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 100);
-				GiveMoney(playerid, -2500);
 
 				SaveCharacter(playerid);
 			}
@@ -462,7 +481,6 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Mac 11", -2207, 1);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 100);
-				GiveMoney(playerid, -2500);
 
 				SaveCharacter(playerid);
 			}
@@ -481,7 +499,6 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Mac 12", -2208, 1);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 110);
-				GiveMoney(playerid, -2500);
 
 				SaveCharacter(playerid);
 			}
@@ -491,7 +508,6 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Mac 12", -2208, 1);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 110);
-				GiveMoney(playerid, -2500);
 
 				SaveCharacter(playerid);
 			}
@@ -510,7 +526,6 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Socimi Type 821", -2209, 1);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 120);
-				GiveMoney(playerid, -2500);
 
 				SaveCharacter(playerid);
 			}
@@ -520,7 +535,6 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Socimi Type 821", -2209);
 				Inventory_Add(playerid, "9x19mm", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 120);
-				GiveMoney(playerid, -2500);
 
 				SaveCharacter(playerid);
 			}

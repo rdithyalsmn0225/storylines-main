@@ -362,6 +362,19 @@ public OnPlayerDisconnect(playerid, reason)
 			ReportInfo[i][E_REPORT_BY] = INVALID_PLAYER_ID;
 		}
 	}
+
+	if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == true)
+	{
+		new Float:x, Float:y, Float:z;
+		GetPlayerPos(playerid, x, y, z);
+
+		PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
+		InsertPacket(x, y, z-1);
+		foreach(new p : Player) if(PlayerInfo[p][E_CHARACTER_JOBS] == JOB_SMUGGLER)
+		{
+			SendClientMessage(p, COLOR_DARKGREEN, "[Word on the Streetz] Smuggler packet has been spawned '/findpacket' to track packet");
+		}
+	}
 	
 	if (PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
 	    LeaveTaxi(playerid, PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER]);
@@ -3421,7 +3434,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
 	if(newkeys & KEY_WALK)
 	{
-		if(!IsPlayerInRangeOfPoint(playerid, 2.0, packetpos[0], packetpos[1], packetpos[2]))
+		if(IsPlayerInRangeOfPoint(playerid, 2.0, packetpos[0], packetpos[1], packetpos[2]))
 		{
 			if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_SMUGGLER) 
         		return SendErrorMessage(playerid, "You aren't smugglers.");
@@ -3445,6 +3458,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			packetpos[1] = 0.0;
 			packetpos[2] = -10.0;
 		}
+
 		if(IsPlayerNearestTree(playerid) != -1)
 		{
 			new Float:x, Float:y, Float:z;

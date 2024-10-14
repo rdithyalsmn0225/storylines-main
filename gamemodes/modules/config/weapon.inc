@@ -19,7 +19,7 @@ stock GetWeaponType(playerid, weaponid)
 	else if(GetPlayerWeapon(weaponid) == 24)
  	{ 
  		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Night Hawk .50c");
- 		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)format(astring, sizeof(astring), "S&W Model 29");
+ 		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)format(astring, sizeof(astring), "Desert Eagle");
  		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)format(astring, sizeof(astring), "S&W Model 625");
 	}
 	else if(GetPlayerWeapon(weaponid) == 28)

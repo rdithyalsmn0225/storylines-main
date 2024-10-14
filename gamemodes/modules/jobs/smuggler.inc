@@ -130,20 +130,46 @@ CMD:storepacket(playerid, params[])
 	if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_SMUGGLER) 
         return SendErrorMessage(playerid, "You aren't smugglers.");
 
-	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 122.0707,-319.1785,1.5781) || !IsPlayerInRangeOfPoint(playerid, 3.0, -576.3427,-505.8364,25.5234)) return SendErrorMessage(playerid, "You are not nearest materials / drugs point!");
-
-	if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == false) return SendErrorMessage(playerid, "You are not carrying your packet.");
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, 122.0707,-319.1785,1.5781) )
+    {
+        if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == false) return SendErrorMessage(playerid, "You are not carrying your packet.");
 	
-	ApplyAnimation(playerid,"BOMBER","BOM_Plant",4.0,0 ,0,0,0,0,1);
-	new bonus = randomEx(800, 1000);
-	new price = bonus+2;
-	GiveMoney(playerid, price);
-	RemovePlayerAttachedObject(playerid, 3);
-    DisablePlayerCheckpoint(playerid);
+        ApplyAnimation(playerid,"BOMBER","BOM_Plant",4.0,0 ,0,0,0,0,1);
+        new bonus = randomEx(800, 1000);
+        new price = bonus+2;
 
-	SendServerMessage(playerid, "You has stored packet and earn %s", FormatMoney(price));
+        new rand = randomEx(3, 5);
 
-	PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
+        GiveMoney(playerid, price);
+        RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+        DisablePlayerCheckpoint(playerid);
+
+        ServerData_Plus(INDUSTRY_DRUGS, rand);
+
+        SendServerMessage(playerid, "You has stored packet and earn %s", FormatMoney(price));
+
+        PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
+    } 
+    if(IsPlayerInRangeOfPoint(playerid, 3.0, -576.3427,-505.8364,25.5234))
+    {
+        if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == false) return SendErrorMessage(playerid, "You are not carrying your packet.");
+	
+        ApplyAnimation(playerid,"BOMBER","BOM_Plant",4.0,0 ,0,0,0,0,1);
+        new bonus = randomEx(800, 1000);
+        new price = bonus+2;
+        new rand = randomEx(3, 5);
+
+        GiveMoney(playerid, price);
+        RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+        DisablePlayerCheckpoint(playerid);
+
+        ServerData_Plus(INDUSTRY_MATERIALS, rand);
+
+        SendServerMessage(playerid, "You has stored packet and earn %s", FormatMoney(price));
+
+        PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
+    }
+	
 	return 1;
 }
 
@@ -164,5 +190,6 @@ CMD:droppacket(playerid, params[])
 			SendClientMessage(p, COLOR_DARKGREEN, "[Word on the Streetz] Smuggler packet has been spawned '/findpacket' to track packet");
 		}
 	}
+    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
     return 1;
 }

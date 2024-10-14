@@ -1,34 +1,5 @@
 //Functions
 
-stock Items_Color(const name[])
-{
-    new color;
-
-    if (strfind(name, "Cellphone", true) != -1 || strfind(name, "Portable Radio", true) != -1)
-        color = 0xdcd5e5FF;
-	//Weapons
-	else if (strfind(name, "Broken Bottle", true) != -1 || strfind(name, "Glass", true) != -1 || strfind(name, "Knife", true) != -1)
-        color = 0xe5d5d6FF;
-	else if (strfind(name, "Spike Bat", true) != -1 || strfind(name, "Nail Bat", true) != -1 || strfind(name, "Wooden", true) != -1)
-        color = 0xe5d5d6FF;
-	else if (strfind(name, "Glock 17", true) != -1 || strfind(name, "Glock 19", true) != -1 || strfind(name, "Glock P80", true) != -1)
-        color = 0xe5d5d6FF;
-	else if (strfind(name, "Mac 11", true) != -1 || strfind(name, "Mac 12", true) != -1 || strfind(name, "Socimi Type 821", true) != -1)
-        color = 0xe5d5d6FF;
-	else if (strfind(name, "Night Hawk", true) != -1 || strfind(name, "9mm", true) != -1 || strfind(name, "9x19mm", true) != -1)
-        color = 0xe5d5d6FF;
-	else if (strfind(name, "12G Rubber", true) != -1)
-        color = 0xe5d5d6FF;
-	else if (strfind(name, "Marijuana", true) != -1 || strfind(name, "Cocaine", true) != -1 || strfind(name, "Heroin", true) != -1)
-        color = 0xD9B7CCFF;
-	else if (strfind(name, "PCP", true) != -1 || strfind(name, "Cocaine Crack", true) != -1)
-        color = 0xD9B7CCFF;
-    else
-        color = 0xd5e1e5FF;
-
-    return color;
-}
-
 stock Inventory_Clear(playerid)
 {
 	static
@@ -510,6 +481,20 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	}
 	//Deagle
 	else if(!strcmp(name, "Night Hawk"))
+	{
+		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+		{
+			if(!Inventory_Count(playerid, "9mm"))
+				return SendErrorMessage(playerid, "You don't have 9mm magazine in your inventory");
+
+			GivePlayerWeapon(playerid, 24, 999999);
+			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = DEAGLE;
+		}
+		else SendErrorMessage(playerid, "You must store your items in inventory first.");
+	}
+	//Deagle
+	else if(!strcmp(name, "Deagle"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
