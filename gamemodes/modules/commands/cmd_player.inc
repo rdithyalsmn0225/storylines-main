@@ -1733,8 +1733,8 @@ CMD:property(playerid, params[])
 		
 	if(sscanf(params, "s[90]S()[90]S()[60]", str, bstr, cstr))
 	{
-		SendUsageMessage(playerid, "/property [action]");
-		SendClientMessage(playerid, COLOR_RED, "[Actions] info, cashbox"); 
+		SendUsageMessage(playerid, "/property [types]");
+		SendClientMessage(playerid, COLOR_WHITE, "Types: info, cashbox, safe"); 
 		return 1;
 	}
 	
@@ -1793,6 +1793,10 @@ CMD:property(playerid, params[])
 			SaveProperty(id); 
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 
+	}
+	else if(!strcmp(str, "safe"))
+	{
+		Property_ShowItems(playerid, id);
 	}
 	else return SendErrorMessage(playerid, "Invalid Paramater."); 
 		
@@ -2342,12 +2346,6 @@ CMD:buybiz(playerid, params[])
 		
 		BusinessInfo[id][E_BUSINESS_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID]; 
 		GiveMoney(playerid, -BusinessInfo[id][E_BUSINESS_PRICE]); 
-		
-		if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DINNER)
-		{
-			DestroyDynamicPickup(BusinessInfo[id][E_BUSINESS_PICKUP]); 
-			BusinessInfo[id][E_BUSINESS_PICKUP] = CreateDynamicPickup(19198, 1, BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][2], 0); 
-		}
 		
 		SaveBusiness(id); SaveCharacter(playerid); 
 	}

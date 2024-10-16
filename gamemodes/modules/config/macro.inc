@@ -60,6 +60,7 @@
 #define MAX_GARBAGE					(20)
 #define MAX_RELATIONS 				(100)
 #define MAX_TREES 					(100)
+#define MAX_PROPERTY_STORAGE 		(10)
 
 
 LoadCustomModels()

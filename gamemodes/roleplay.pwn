@@ -96,6 +96,7 @@ main ()  {}
 #include "modules\business\robbery.inc"
 
 #include "modules\properties\property.inc"
+#include "modules\properties\property_storage.inc"
 
 #include "modules\entrance\entrance.inc"
 
@@ -3889,7 +3890,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 		}
 	}
-	if(newkeys == KEY_FIRE && newkeys == KEY_LOOK_BEHIND && IsPlayerInAnyVehicle(playerid))
+	if ((newkeys & KEY_FIRE) && (newkeys & KEY_LOOK_BEHIND) && IsPlayerInAnyVehicle(playerid))
 	{
 		new vehicleid = GetPlayerVehicleID(playerid);
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)

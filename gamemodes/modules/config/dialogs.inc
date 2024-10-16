@@ -1416,6 +1416,26 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						}
 						PlayerInfo[playerid][E_CHARACTER_STORAGESELECT] = 0;
 					}
+					case 2:
+					{
+						if ((id = IsPlayerInProperty(playerid)) != -1 && (PropertyInfo[id][E_PROPERTY_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID]))
+						{
+							if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+							{
+								Property_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
+								Inventory_Remove(playerid, name);
+
+								Property_ShowItems(playerid, id);
+							}
+							else 
+							{
+								new str[512];
+								format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
+								Dialog_Show(playerid, PropertyDeposit, DIALOG_STYLE_INPUT, "Property Safe Place:", str, "Store", "Back");
+							}
+						}
+						PlayerInfo[playerid][E_CHARACTER_STORAGESELECT] = 0;
+					}
 				}
 			}
 		}

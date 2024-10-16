@@ -39,10 +39,14 @@ function:Query_LoadProperties()
 		
 		cache_get_value_name_int(i, "PropertyCashbox", PropertyInfo[i+1][E_PROPERTY_CASH]);
 		PropertyInfo[i+1][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][2], 0, 0, -1, 5.0); 
+		PropertyInfo[i+1][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[i+1][E_PROPERTY_ADDRESS], COLOR_POINT, PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][2], 5.0);
+		
+		new str[512];
+		format(str, sizeof(str), "SELECT * FROM `propertiesstorage` WHERE `ID` = '%d'", PropertyInfo[i+1][E_PROPERTY_DBID]);
+		mysql_pquery(ourConnection, str, "Query_LoadPropertiesStorage", "d", i+1);
 
 		countProperties++; 
 	}
-	
 	printf("[SERVER]: %i properties were loaded from \"%s\" database...", countProperties, SQL_DATABASE);
 	return 1;
 }
@@ -73,13 +77,16 @@ function:OnEntranceChange(playerid, response, property)
 		if(IsValidDynamicPickup(PropertyInfo[property][E_PROPERTY_PICKUP]))
 			DestroyDynamicPickup(PropertyInfo[property][E_PROPERTY_PICKUP]); 
 
+		if(IsValidDynamic3DTextLabel(PropertyInfo[property][E_PROPERTY_3DTEXT]))
+			DestroyDynamic3DTextLabel(PropertyInfo[property][E_PROPERTY_3DTEXT]); 
+
 		PropertyInfo[property][E_PROPERTY_ENTRANCEINTERIOR] = GetPlayerInterior(playerid);
 		PropertyInfo[property][E_PROPERTY_ENTRANCEWORLD] = GetPlayerVirtualWorld(playerid);
 
 		format(PropertyInfo[property][E_PROPERTY_ADDRESS], 128, "%dth %s", property, ReturnLocationStreet(playerid));
 
 		PropertyInfo[property][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2]+0.8, 0, 0, -1, 5.0); 
-		
+		PropertyInfo[property][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[property][E_PROPERTY_ADDRESS], COLOR_POINT, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2], 5.0);
 		SaveProperty(property);
 		SendServerMessage(playerid, "You set Property %i's entrance.", property);
 	}
@@ -207,7 +214,7 @@ CMD:editproperty(playerid, params[])
 	{
 		SendUsageMessage(playerid, "/editproperty [property id] [configuration]");
 		SendClientMessage(playerid, COLOR_WHITE, "Entrance, Faction,");
-		SendClientMessage(playerid, COLOR_WHITE, "Type, price, Level.");
+		SendClientMessage(playerid, COLOR_WHITE, "Type, Price, Level.");
 		return 1; 
 	}
 	
@@ -253,6 +260,7 @@ CMD:editproperty(playerid, params[])
 		
 		PropertyInfo[id][E_PROPERTY_TYPE] = vartype;
 		SaveProperty(id);
+		Property_RemoveAllItems(id);
 		
 		SendServerMessage(playerid, "You set Property %i's type to %s.", id, typeName);	
 	}
