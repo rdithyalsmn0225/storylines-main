@@ -29,18 +29,18 @@ stock Property_ShowItems(playerid, houseid)
 	for (new i = 0; i != MAX_PROPERTY_STORAGE; i ++)
 	{
 	    if (!PropertyStorage[houseid][i][E_PSTORAGE_EXISTS])
-	        format(string, sizeof(string), "%sEmpty Slot\n", string);
+	        format(string, sizeof(string), "%s[SLOT]: <Empty>\n", string);
 
 		else {
 			strunpack(name, PropertyStorage[houseid][i][E_PSTORAGE_NAME]);
 
 			if (PropertyStorage[houseid][i][E_PSTORAGE_QUANTITY] == 1) {
-			    format(string, sizeof(string), "%s%s\n", string, name);
+			    format(string, sizeof(string), "%s[SLOT]: %s\n", string, name);
 			}
-			else format(string, sizeof(string), "%s%s (%d)\n", string, name, PropertyStorage[houseid][i][E_PSTORAGE_QUANTITY]);
+			else format(string, sizeof(string), "%s[SLOT]: %s\t%d\n", string, name, PropertyStorage[houseid][i][E_PSTORAGE_QUANTITY]);
 		}
 	}
-	Dialog_Show(playerid, PropertyItems, DIALOG_STYLE_LIST, "Item Storage", string, "Select", "Cancel");
+	Dialog_Show(playerid, PropertyItems, DIALOG_STYLE_LIST, "Item Storage:", string, "Select", "Cancel");
 	return 1;
 }
 
