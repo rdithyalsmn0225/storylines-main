@@ -3,7 +3,7 @@ static rumorcooldown = 0;
 
 InsertAdvertise() 
 {
-	CreateDynamic3DTextLabel("[Advertisement]\n{ffffff}Available commands: /advert, /rumour", COLOR_DARKGREEN, 1743.3409,-1457.5900,13.5181, 10.0);
+	CreateDynamic3DTextLabel("[Advertisement]\n{ffffff}Available commands: /advert, /rumour", COLOR_POINT, 1743.3409,-1457.5900,13.5181, 10.0);
 
 	CreateDynamicPickup(1239, 1,  1743.3409,-1457.5900,13.5181);
 	CreateDynamicMapIcon(1743.3409,-1457.5900,13.5181, 36, 0, -1, -1, -1, 999999.0);

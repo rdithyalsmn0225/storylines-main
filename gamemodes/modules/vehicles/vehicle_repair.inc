@@ -26,7 +26,7 @@ CMD:repairkits(playerid, params[])
 	GetPlayerPos(playerid, x, y, z);
 	TogglePlayerControllable(playerid, false);
 	ApplyAnimation(playerid, "CAR", "Fixn_Car_Loop", 4.1, 1, 0, 0, 0, 0, 1);
-	PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+	PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
 	PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
 	PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 

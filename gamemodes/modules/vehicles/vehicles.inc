@@ -385,7 +385,8 @@ function:Query_LoadPrivateVehicle(playerid)
 				format(str, sizeof(str), "VehicleMods%d", m);
 				cache_get_value_name_int(i, str, VehicleInfo[vehicleid][E_VEHICLE_MODS][m]);
 
-				if(VehicleInfo[vehicleid][E_VEHICLE_MODS][m] && IsVehicleUpgradeCompatible(VehicleInfo[vehicleid][E_VEHICLE_MODEL], VehicleInfo[vehicleid][E_VEHICLE_MODS][m])) AddVehicleComponent(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_MODS][m]);
+				if(VehicleInfo[vehicleid][E_VEHICLE_MODS][m] && IsVehicleUpgradeCompatible(VehicleInfo[vehicleid][E_VEHICLE_MODEL], VehicleInfo[vehicleid][E_VEHICLE_MODS][m])) 
+				AddVehicleComponent(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_MODS][m]);
 			}
 			cache_get_value_name_int(i, "VehicleWheels", VehicleInfo[vehicleid][E_VEHICLE_WHEELS]);
 			cache_get_value_name_int(i, "VehicleHydraulics", VehicleInfo[vehicleid][E_VEHICLE_HYDRAULICS]);
@@ -411,6 +412,7 @@ function:Query_LoadPrivateVehicle(playerid)
 				SetVehiclePos(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][0], VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][1], VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][2]);
 				SetVehicleZAngle(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][3]); 
 			}
+
 			ChangeVehiclePaintjob(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB]);
 			ChangeVehicleColor(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_COLOR1], VehicleInfo[vehicleid][E_VEHICLE_COLOR2]);
 			SetVehicleHealthEx(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_HEALTH]);
@@ -482,23 +484,23 @@ function:Query_ShowVehicleList(playerid)
 	new dialogText[1024]; 
 	format(dialogText, sizeof(dialogText), "ID\tModel\tPlate\tStatus\n");
 
-	for(new i = 0; i < rows; i++)
+	for (new i = 0; i < rows; i++)
 	{
 		cache_get_value_name_int(i, "VehicleDBID", vehicleDBID);
 		cache_get_value_name_int(i, "VehicleModel", vehicleModel);
-		cache_get_value_name(i, "VehiclePlates", vehiclePlates, 32);
+		cache_get_value_name(i, "VehiclePlates", vehiclePlates, sizeof(vehiclePlates));
 
 		isSpawned = false;
-		for(new id = 1; id < MAX_PLAYER_VEHICLES; id++)
+		for (new id = 1; id < MAX_PLAYER_VEHICLES; id++)
 		{
-			if(VehicleInfo[id][E_VEHICLE_DBID] == vehicleDBID)
+			if (VehicleInfo[id][E_VEHICLE_DBID] == vehicleDBID)
 			{
 				isSpawned = true;
 				break;
 			}
 		}
 
-		if(isSpawned)
+		if (isSpawned)
 			format(color, sizeof(color), "{5B9460}Spawned");
 		else
 			format(color, sizeof(color), "{FF6347}Despawned");
@@ -521,10 +523,13 @@ Dialog:VehicleList(playerid, response, listitem, inputtext[])
 			
 		new threadLoad[128]; 
 		
-		if(VehicleInfo[PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem]][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem])
-			return SendErrorMessage(playerid, "This vehicle's already spawned.");
+		for(new i; i < MAX_VEHICLES; i++)
+		{
+			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem+1])
+				return SendErrorMessage(playerid, "This vehicle's already spawned.");
+		}
 
-		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem]);
+		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem+1]);
 		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
 	}
 	return 1;
@@ -693,31 +698,53 @@ stock ShowVehicleList(playerid)
 	new query[512]; 
 	
 	format(query, sizeof(query), "SELECT * FROM vehicles WHERE VehicleDBID IN (");
-	
+
 	new hasVehicle = false;
-	for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
+	for (new i = 1; i < MAX_PLAYER_VEHICLES; i++)
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
+		if (PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
 		{
-			if(hasVehicle)
+			
+			if (hasVehicle)
 			{
 				strcat(query, ", ");
 			}
+
 			format(thread, sizeof(thread), "%i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i]);
 			strcat(query, thread);
 			hasVehicle = true;
 		}
 	}
 
-	strcat(query, ")");
-
-	if(hasVehicle)
+	if (hasVehicle)
 	{
+		strcat(query, ") ORDER BY FIELD(VehicleDBID, ");
+
+		
+		hasVehicle = false;
+		for (new i = 1; i < MAX_PLAYER_VEHICLES; i++)
+		{
+			if (PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
+			{
+				if (hasVehicle)
+				{
+					strcat(query, ", ");
+				}
+
+				format(thread, sizeof(thread), "%i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i]);
+				strcat(query, thread);
+				hasVehicle = true;
+			}
+		}
+
+		strcat(query, ")"); 
+
+		
 		mysql_pquery(ourConnection, query, "Query_ShowVehicleList", "i", playerid);
 	}
 	else
 	{
-		SendErrorMessage(playerid, "You don't own any vehicles");
+		SendErrorMessage(playerid, "You don't own any vehicles"); 
 	}
 
 	return 1;

@@ -161,8 +161,25 @@ function:PlayersUpdates()
 			{
 				new str[128], stri[128];
 				format(str, sizeof(str), "%.0f", fSpeed);
-				format(stri, sizeof(stri), "%.0f", vhealth);
-				ShowCustomHud(playerid, "KM/H", "FUEL", "HEALTH", str, stri, VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
+
+				if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 100.0)
+					format(stri, sizeof(stri), "-~n~-~n~-~n~-~n~-~n~-~n~-~n~");
+				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 80.0)
+					format(stri, sizeof(stri), "-~n~-~n~-~n~-~n~-~n~-~n~");
+				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 70.0)
+					format(stri, sizeof(stri), "-~n~-~n~-~n~-~n~-~n~");
+				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 40.0)
+					format(stri, sizeof(stri), "-~n~-~n~-~n~-~n~");
+				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 30.0)
+					format(stri, sizeof(stri), "-~n~-~n~-~n~");
+				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 20.0)
+					format(stri, sizeof(stri), "-~n~-~n~");
+				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 0.0)
+					format(stri, sizeof(stri), "-~n~");
+				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] <= 0.0)
+					format(stri, sizeof(stri), "");
+
+				ShowCustomHud(playerid, "MPH", "I", "ld_dual:white", "ld_dual:white", "0", str, stri);
 			}
 			RealTime_SyncPlayerWorldTime(playerid);
 		}

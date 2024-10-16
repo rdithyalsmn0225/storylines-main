@@ -18,7 +18,7 @@
 #include <a_mysql>
 #include <a_http>
 #include <streamer>
-#include <progress2>
+//#include <progress2>
 #include <easyDialog>
 #include <PreviewModelDialog>
 #include <strlib>
@@ -3093,7 +3093,7 @@ public OnPlayerUpdate(playerid)
 	}
 	else if(GetPlayerTeam(playerid) == PLAYER_STATE_DEAD)
 	{
-		SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_DARKGREEN, 30.0, 2500); 
+		SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_POINT, 30.0, 2500); 
 	}
 	
 	if(!IsPlayerInAnyVehicle(playerid))
@@ -3491,7 +3491,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				{
 					PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 					PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-					PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading cutting trees process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+					PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading cutting trees process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
 					PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("CutTree", 500, true, "dd", playerid, id);
 					TogglePlayerControllable(playerid, false);
 					ApplyAnimation(playerid,"BASEBALL", "Bat_M", 4.1, 1, 0, 0, 1, 0, 1);
@@ -3505,7 +3505,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 				PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 				PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-				PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take timber process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+				PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take timber process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
 				PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("CreateTimber", 1000, true, "dd", playerid, id);
 				TogglePlayerControllable(playerid, false);
 				TreeInfo[id][E_TREE_CUT] = true;

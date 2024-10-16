@@ -387,8 +387,6 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
 	PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] = 0;
 
-	PlayerInfo[playerid][E_CHARACTER_DEFAULTHUDBAR] = INVALID_PLAYER_BAR_ID;
-
 	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
 	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
     PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;

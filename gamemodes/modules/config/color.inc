@@ -11,6 +11,7 @@
 #define COLOR_GAMES         (0xb6b9e1FF)
 #define COLOR_TIP           (0x73B3EDFF)
 #define COLOR_HEADER		(0x90D7F0FF)
+#define COLOR_POINT         (0x73B3EDFF)
 
 #define COLOR_YELLOW 		(0xFFFF00FF)
 
