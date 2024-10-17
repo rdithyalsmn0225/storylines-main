@@ -4,14 +4,16 @@ function:Query_LoadPropertiesStorage(houseid)
 	new rows, fields; 
 	cache_get_row_count(rows);
 	cache_get_field_count(fields);
-
+	new countpsafe = 0;
 	for (new i = 0; i != rows; i ++) {
 		PropertyStorage[houseid][i][E_PSTORAGE_EXISTS] = true;
         cache_get_value_name_int(i, "itemID", PropertyStorage[houseid][i][E_PSTORAGE_ITEMID]);
         cache_get_value_name_int(i, "itemModel", PropertyStorage[houseid][i][E_PSTORAGE_MODEL]);
         cache_get_value_name_int(i, "itemQuantity", PropertyStorage[houseid][i][E_PSTORAGE_QUANTITY]);
         cache_get_value_name(i, "itemName", PropertyStorage[houseid][i][E_PSTORAGE_NAME], 128);
+		countpsafe++;
 	}
+	printf("[SERVER]: %i property storage were loaded from \"%s\" database...", countpsafe, SQL_DATABASE);
 	return 1;
 }
 

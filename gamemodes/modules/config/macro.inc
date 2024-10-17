@@ -18,6 +18,7 @@
 #define PLAYER_MOTD "Please read the rules first!"
 
 #define PRESSED(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
+#define percent(%0,%1)  floatround((float((%0)) / 100) * (%1))
 #define PRESSING(%0,%1) (%0 & (%1))
 
 #if !defined IsValidVehicle
@@ -61,6 +62,7 @@
 #define MAX_RELATIONS 				(100)
 #define MAX_TREES 					(100)
 #define MAX_PROPERTY_STORAGE 		(10)
+#define MAX_FURNITURE 				(300)
 
 
 LoadCustomModels()

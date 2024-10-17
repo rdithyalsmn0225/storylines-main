@@ -725,23 +725,6 @@ stock ShowGeneralList(playerid, type)
 	return 1;
 }
 
-stock ShowFurnitureList(playerid, type)
-{
-	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
-		return SendErrorMessage(playerid, "This business is out of stock"); 
-		
-	new str[128];
-
-	switch(type)
-	{
-		case 1:
-		{
-			
-		}
-	}
-	return 1;
-}
-
 stock ShowBeerlist(playerid)
 { 
 	new str[128];

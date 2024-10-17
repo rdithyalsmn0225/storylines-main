@@ -97,6 +97,7 @@ main ()  {}
 
 #include "modules\properties\property.inc"
 #include "modules\properties\property_storage.inc"
+#include "modules\properties\property_furniture.inc"
 
 #include "modules\entrance\entrance.inc"
 
@@ -217,6 +218,7 @@ public OnGameModeInit()
 	//Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
 	mysql_pquery(ourConnection, "SELECT * FROM properties ORDER BY PropertyDBID", "Query_LoadProperties");
+	mysql_pquery(ourConnection, "SELECT * FROM furniture", "Query_LoadFurniture", "i", 0);
 	mysql_pquery(ourConnection, "SELECT * FROM businesses ORDER BY BusinessDBID ASC", "Query_LoadBusinesses"); 
 	mysql_pquery(ourConnection, "SELECT * FROM entrance ORDER BY ID", "Query_LoadEntrance");
 	mysql_pquery(ourConnection, "SELECT * FROM `court`", "Query_CourtLoad", "");
@@ -4549,7 +4551,65 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					SendServerMessage(playerid, "You're moved business point."); 
 				}
 			}
+			case 7:
+			{
+				if(response == EDIT_RESPONSE_CANCEL)
+				{
+					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
+					PlayerInfo[playerid][E_CHARACTER_OBJECTID] = 0;
+					PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = 0;
+					PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY] = 0;
+					PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
+					format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
+
+					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
+					SendErrorMessage(playerid, "You're no longer moved a furniture."); 
+				}
+				if(response == EDIT_RESPONSE_FINAL)
+				{
+					new houseid = IsPlayerInProperty(playerid);
+
+					if(houseid >= 0 && PropertyInfo[houseid][E_PROPERTY_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID])
+					{
+					    if(PlayerInfo[playerid][E_CHARACTER_MONEY] < g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_PRICE])
+		                    return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_PRICE]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+
+					    new
+					        queryBuffer[512];
+
+					    GiveMoney(playerid, -g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_PRICE]);
+
+						mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "INSERT INTO furniture VALUES(null, %i, %i, '%e', %i, '%f', '%f', '%f', '%f', '%f', '%f', %i, %i, 0, 0)", PropertyInfo[houseid][E_PROPERTY_DBID], g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_MODEL], g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_NAME], g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_PRICE], x, y, z, rx, ry, rz, PropertyInfo[houseid][E_PROPERTY_INTERIORINTERIOR], PropertyInfo[houseid][E_PROPERTY_INTERIORWORLD]);
+						mysql_pquery(ourConnection, queryBuffer);
+
+						mysql_pquery(ourConnection, "SELECT * FROM furniture WHERE id = LAST_INSERT_ID()", "Query_LoadFurniture", "i", PropertyInfo[houseid][E_PROPERTY_LABELS]);
+					}
+					
+					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
+					PlayerInfo[playerid][E_CHARACTER_OBJECTID] = 0;
+					PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = 0;
+					PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY] = 0;
+					PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
+					format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
+				}
+			}
+			case 8:
+			{
+				if(response == EDIT_RESPONSE_FINAL)
+				{
+					new queryBuffer[512];
+					mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "UPDATE furniture SET pos_x = '%f', pos_y = '%f', pos_z = '%f', rot_x = '%f', rot_y = '%f', rot_z = '%f' WHERE id = %i", x, y, z, rx, ry, rz, Streamer_GetExtraInt(objectid, 1));
+					mysql_tquery(ourConnection, queryBuffer);
+
+					ReloadFurniture(objectid, PropertyInfo[PlayerInfo[playerid][E_CHARACTER_SELECTINDEX]][E_PROPERTY_LABELS]);
+				}
+				if(response == EDIT_RESPONSE_CANCEL)
+				{
+					ReloadFurniture(objectid, PropertyInfo[PlayerInfo[playerid][E_CHARACTER_SELECTINDEX]][E_PROPERTY_LABELS]);
+				}
+			}
 		}
+		
 	}
 
 	return 1;
