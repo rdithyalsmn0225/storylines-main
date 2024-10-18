@@ -274,14 +274,14 @@ stock ReturnDBIDName(dbid)
 {
 	new query[120], returnString[60];
 	
-	mysql_format(ourConnection, query, sizeof(query), "SELECT char_masters FROM characters WHERE char_dbid = %i", dbid); 
+	mysql_format(ourConnection, query, sizeof(query), "SELECT char_name FROM characters WHERE char_dbid = %i", dbid); 
 	new Cache:cache = mysql_query(ourConnection, query);
 	
 	if(!cache_num_rows())
 		returnString = "None";
 		
 	else
-		cache_get_value_name(0, "char_masters", returnString);
+		cache_get_value_name(0, "char_name", returnString);
 	
 	cache_delete(cache);
 	return returnString;

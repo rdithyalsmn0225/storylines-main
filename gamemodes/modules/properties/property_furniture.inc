@@ -36,10 +36,10 @@ GetPropertyFurniture(propid)
 
 RemoveFurniture(objectid)
 {
-    if(IsValidDynamicObject(objectid) && Streamer_GetExtraInt(objectid, 0) == 0)
+    if(IsValidDynamicObject(objectid) && Streamer_GetExtraInt(objectid, E_OBJECT_TYPE) == E_OBJECT_FURNITURE)
 	{
  		new
-	        id = Streamer_GetExtraInt(objectid, 1);
+	        id = Streamer_GetExtraInt(objectid, E_OBJECT_INDEX_ID);
 
 	    DeleteFurnitureObject(objectid);
 
@@ -51,9 +51,9 @@ RemoveFurniture(objectid)
 
 DeleteFurnitureObject(objectid)
 {
-	if(IsValidDynamicObject(objectid) && Streamer_GetExtraInt(objectid, 0) == 0)
+	if(IsValidDynamicObject(objectid) && Streamer_GetExtraInt(objectid, E_OBJECT_TYPE) == E_OBJECT_FURNITURE)
 	{
-    	new Text3D:textid = Text3D:Streamer_GetExtraInt(objectid, 3);
+    	new Text3D:textid = Text3D:Streamer_GetExtraInt(objectid, E_OBJECT_3DTEXT_ID);
 
         if(IsValidDynamic3DTextLabel(textid))
         {
@@ -68,7 +68,7 @@ RemoveAllFurniture(propid)
 {  
 	for(new i = 0; i <= Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i ++)
 	{
-		if(IsValidDynamicObject(i) && Streamer_GetExtraInt(i, 0) == 0 && Streamer_GetExtraInt(i, 2) == PropertyInfo[propid][E_PROPERTY_DBID])
+		if(IsValidDynamicObject(i) && Streamer_GetExtraInt(i, E_OBJECT_TYPE) == E_OBJECT_FURNITURE && Streamer_GetExtraInt(i, E_OBJECT_EXTRA_ID) == PropertyInfo[propid][E_PROPERTY_DBID])
 		{
 			DeleteFurnitureObject(i);
 		}
@@ -82,10 +82,10 @@ RemoveAllFurniture(propid)
 
 ReloadFurniture(objectid, labels)
 {
-	if(IsValidDynamicObject(objectid) && Streamer_GetExtraInt(objectid, 0) == 0)
+	if(IsValidDynamicObject(objectid) && Streamer_GetExtraInt(objectid, E_OBJECT_TYPE) == E_OBJECT_FURNITURE)
 	{
 	    new
-	        id = Streamer_GetExtraInt(objectid, 1);
+	        id = Streamer_GetExtraInt(objectid, E_OBJECT_INDEX_ID);
 
 	    DeleteFurnitureObject(objectid);
 
@@ -99,7 +99,7 @@ ReloadAllFurniture(propid)
 {
 	for(new i = 0; i <= Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i ++)
 	{
-		if(IsValidDynamicObject(i) && Streamer_GetExtraInt(i, 0) == 0 && Streamer_GetExtraInt(i, 2) == PropertyInfo[propid][E_PROPERTY_DBID])
+		 if(IsValidDynamicObject(i) && Streamer_GetExtraInt(i, E_OBJECT_TYPE) == E_OBJECT_FURNITURE && Streamer_GetExtraInt(i, E_OBJECT_EXTRA_ID) == PropertyInfo[propid][E_PROPERTY_DBID])
 		{
 			DeleteFurnitureObject(i);
 		}
@@ -112,39 +112,38 @@ ReloadAllFurniture(propid)
 
 function:Query_LoadFurniture(labels)
 {
-	new rows;
+	new rows; 
 	cache_get_row_count(rows);
-	for(new i = 0; i < rows; i ++)
+	
+	for(new i = 0; i < rows; i++)
 	{
 		new Float: pos[6], dbid, propdbid, modelid, world, int, prices;
+		cache_get_value_name_int(i, "id", dbid);
+		cache_get_value_name_int(i, "propertydbid", propdbid);
+		cache_get_value_name_int(i, "modelid", modelid);
+		cache_get_value_name_int(i, "price", prices);
 		cache_get_value_name_float(i, "pos_x", pos[0]);
 		cache_get_value_name_float(i, "pos_y", pos[1]);
 		cache_get_value_name_float(i, "pos_z", pos[2]);
 		cache_get_value_name_float(i, "rot_x", pos[3]);
 		cache_get_value_name_float(i, "rot_y", pos[4]);
-		cache_get_value_name_float(i, "rot_z", pos[5]);
-		cache_get_value_name_int(i, "id", dbid);
-		cache_get_value_name_int(i, "price", prices);
-		cache_get_value_name_int(i, "modelid", modelid);
-		cache_get_value_name_int(i, "propertydbid", propdbid);
+		cache_get_value_name_float(i, "rot_z", pos[5]);		
 		cache_get_value_name_int(i, "world", world);
 		cache_get_value_name_int(i, "interior", int);
-
+		
 		new objectid = CreateDynamicObject(modelid, pos[0], pos[1], pos[2], pos[3], pos[4], pos[5], world, int);
 
-		Streamer_SetExtraInt(objectid, 0, 0);
-		Streamer_SetExtraInt(objectid, 1, dbid);
-		Streamer_SetExtraInt(objectid, 2, propdbid);
+		Streamer_SetExtraInt(objectid, E_OBJECT_TYPE, E_OBJECT_FURNITURE);
+		Streamer_SetExtraInt(objectid, E_OBJECT_INDEX_ID, dbid);
+		Streamer_SetExtraInt(objectid, E_OBJECT_EXTRA_ID, propdbid);
 
-		if(labels)
+		if(labels == 1)
 		{
-			new
-				string[48];
-
-			cache_get_value_name(i, "name", string);
-
-			format(string, sizeof(string), "[%i]\t{ffffff}%s", objectid, string);
-			Streamer_SetExtraInt(objectid, 3, _:CreateDynamic3DTextLabel(string, COLOR_POINT, pos[0], pos[1], pos[2], pos[3], pos[4], pos[5], 10.0, .worldid = world, .interiorid = int));
+			new string[128], name[128], Text3D:text3ds;
+			cache_get_value_name(i, "name", name, 128);
+			format(string, sizeof(string), "[%i]\n{ffffff}%s", objectid, name);
+			text3ds = CreateDynamic3DTextLabel(string, COLOR_POINT, pos[0], pos[1], pos[2], 10.0, .worldid = world, .interiorid = int);
+			Streamer_SetExtraInt(objectid, E_OBJECT_3DTEXT_ID, text3ds);
 		}
 	}
 	return 1;
@@ -223,13 +222,15 @@ Dialog:FurniturePurchase(playerid, response, listitem, inputtext[])
 {
 	if(response)
 	{
-		new string[1024];
+		new string[1024], counter = 0;
 
 		for(new i = 0; i < sizeof(g_aFurnitureArray); i++)
 	    {
 			if(g_aFurnitureCategories[listitem][0] == g_aFurnitureArray[i][E_FURNITUREVAR_CATEGORY])
 			{
 				format(string, sizeof(string), "%s%d\t~g~$%s~w~\n", string, g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], FormatMoney(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE]));
+				SubFurnitureHolderArr[playerid][counter] = i;
+				counter++;
 			}
 		}
 
@@ -242,29 +243,27 @@ Dialog:FurniturePurchases(playerid, response, listitem, inputtext[])
 {
 	if(response)
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_MONEY] < g_aFurnitureArray[listitem][E_FURNITUREVAR_PRICE])
-		{
-			return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(g_aFurnitureArray[listitem][E_FURNITUREVAR_PRICE]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
-		}
-		else
-		{
-			new
-				Float:x,
-				Float:y,
-				Float:z,
-				Float:a;
+		new i = SubFurnitureHolderArr[playerid][listitem];
+		if(PlayerInfo[playerid][E_CHARACTER_MONEY] < g_aFurnitureArray[i][E_FURNITUREVAR_PRICE])
+			return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+		
+		
+		new
+			Float:x,
+			Float:y,
+			Float:z,
+			Float:a;
 
-			GetPlayerPos(playerid, x, y, z);
-			GetPlayerFacingAngle(playerid, a);
+		GetPlayerPos(playerid, x, y, z);
+		GetPlayerFacingAngle(playerid, a);
 
-			PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 7;
-			PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(g_aFurnitureArray[listitem][E_FURNITUREVAR_MODEL], x + 2.0 * floatsin(-a, degrees), y + 2.0 * floatcos(-a, degrees), z + 1.0, 0.0, 0.0, ((19353 <= g_aFurnitureArray[listitem][E_FURNITUREVAR_MODEL] <= 19417) || (19426 <= g_aFurnitureArray[listitem][E_FURNITUREVAR_MODEL] <= 19465)) ? (a + 90.0) : (a), GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid));
-			PlayerInfo[playerid][E_CHARACTER_LISTITEM] = listitem;
+		PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 7;
+		PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], x + 2.0 * floatsin(-a, degrees), y + 2.0 * floatcos(-a, degrees), z + 1.0, 0.0, 0.0, ((19353 <= g_aFurnitureArray[i][E_FURNITUREVAR_MODEL] <= 19417) || (19426 <= g_aFurnitureArray[i][E_FURNITUREVAR_MODEL] <= 19465)) ? (a + 90.0) : (a), GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid));
+		PlayerInfo[playerid][E_CHARACTER_LISTITEM] = i;
 
-			SendServerMessage(playerid, "You are now previewing %s. This furniture item costs $%i to purchase.", g_aFurnitureArray[listitem][E_FURNITUREVAR_NAME], FormatMoney(g_aFurnitureArray[listitem][E_FURNITUREVAR_PRICE]));
-			SendTipMessage(playerid, "Use your cursor to control the editor interface. Click the save icon to save changes.");
-			EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
-		}
+		SendServerMessage(playerid, "You are now previewing %s. This furniture item costs $%i to purchase.", g_aFurnitureArray[i][E_FURNITUREVAR_NAME], FormatMoney(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE]));
+		SendTipMessage(playerid, "Use your cursor to control the editor interface. Click the save icon to save changes.");
+		EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
 	}
 	return 1;
 }

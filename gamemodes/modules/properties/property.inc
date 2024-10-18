@@ -41,6 +41,8 @@ function:Query_LoadProperties()
 		PropertyInfo[i+1][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][2], 0, 0, -1, 5.0); 
 		PropertyInfo[i+1][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[i+1][E_PROPERTY_ADDRESS], COLOR_POINT, PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][2], 5.0);
 		
+		PropertyInfo[i+1][E_PROPERTY_LABELS] = 0;
+
 		new str[512];
 		mysql_format(ourConnection, str, sizeof(str), "SELECT * FROM `propertiesstorage` WHERE `ID` = '%d'", PropertyInfo[i+1][E_PROPERTY_DBID]);
 		mysql_pquery(ourConnection, str, "Query_LoadPropertiesStorage", "d", PropertyInfo[i+1][E_PROPERTY_DBID]);
@@ -260,6 +262,7 @@ CMD:editproperty(playerid, params[])
 		PropertyInfo[id][E_PROPERTY_TYPE] = vartype;
 		SaveProperty(id);
 		Property_RemoveAllItems(id);
+		RemoveAllFurniture(id);
 		
 		SendServerMessage(playerid, "You set Property %i's type to %s.", id, typeName);	
 	}
@@ -313,7 +316,7 @@ CMD:property(playerid, params[])
 	if(sscanf(params, "s[90]S()[90]S()[60]", str, bstr, cstr))
 	{
 		SendUsageMessage(playerid, "/property [types]");
-		SendClientMessage(playerid, COLOR_WHITE, "Types: info, cashbox, safe"); 
+		SendClientMessage(playerid, COLOR_WHITE, "Types: info, cashbox, safe, furniture"); 
 		return 1;
 	}
 	
@@ -338,7 +341,7 @@ CMD:property(playerid, params[])
 		new pick[30], amount;
 		
 		if(sscanf(bstr, "s[30]", pick))
-			return SendUsageMessage(playerid, "/property cashbox [Info, Place, Take]"); 
+			return SendUsageMessage(playerid, "/property cashbox [Info, Place, Take, Furniture]"); 
 			
 		if(!strcmp(pick, "info"))
 		{
@@ -384,9 +387,9 @@ CMD:property(playerid, params[])
 		new pick[30];
 		
 		if(sscanf(bstr, "s[30]", pick))
-			return SendUsageMessage(playerid, "/property furniture [Buy, Edit, Sell, Clear, Labels]"); 
+			return SendUsageMessage(playerid, "/property furniture [Add, Edit, Destroy, Clear, Labels]"); 
 			
-		if(!strcmp(pick, "buy"))
+		if(!strcmp(pick, "add"))
 		{
 			new queryBuffer[512];
 			mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "SELECT COUNT(*) FROM furniture WHERE propertydbid = %i", PropertyInfo[id][E_PROPERTY_DBID]);
@@ -399,10 +402,10 @@ CMD:property(playerid, params[])
 			if(sscanf(cstr, "i", objectid))
 				return SendUsageMessage(playerid, "/property furniture edit [objectid]");
 
-			if(!IsValidDynamicObject(objectid) || Streamer_GetExtraInt(objectid, 0) != 0)
+			if(!IsValidDynamicObject(objectid) || Streamer_GetExtraInt(objectid, E_OBJECT_TYPE) != E_OBJECT_FURNITURE)
 				return SendErrorMessage(playerid, "Invalid object. You can find the object IDs for your furniture by enabling labels. [/property furniture labels]");
 
-			if(Streamer_GetExtraInt(objectid, 2) != PropertyInfo[id][E_PROPERTY_DBID])
+			if(Streamer_GetExtraInt(objectid, E_OBJECT_EXTRA_ID) != PropertyInfo[id][E_PROPERTY_DBID])
 				return SendErrorMessage(playerid, "Invalid object. This furniture object is not inside of your house.");
 
 			PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 8;
@@ -411,17 +414,17 @@ CMD:property(playerid, params[])
 
 			EditDynamicObject(playerid, objectid);
 		}
-		else if(!strcmp(pick, "sell"))
+		else if(!strcmp(pick, "destroy"))
 		{
 			new objectid, queryBuffer[512];
 
 			if(sscanf(cstr, "i", objectid))
-				return SendUsageMessage(playerid, "/property furniture sell [objectid]");
+				return SendUsageMessage(playerid, "/property furniture destroy [objectid]");
 
-			if(!IsValidDynamicObject(objectid) || Streamer_GetExtraInt(objectid, 0) != 0)
-				return SendErrorMessage(playerid, "Invalid object. You can find the object IDs for your furniture by enabling labels. [/furniture labels]");
+			if(!IsValidDynamicObject(objectid) || Streamer_GetExtraInt(objectid, E_OBJECT_TYPE) != E_OBJECT_FURNITURE)
+				return SendErrorMessage(playerid, "Invalid object. You can find the object IDs for your furniture by enabling labels. [/property furniture labels]");
 			
-			if(Streamer_GetExtraInt(objectid, 2) != PropertyInfo[id][E_PROPERTY_DBID])
+			if(Streamer_GetExtraInt(objectid, E_OBJECT_EXTRA_ID) != PropertyInfo[id][E_PROPERTY_DBID])
 				return SendErrorMessage(playerid, "Invalid object. This furniture object is not inside of your properties.");
 
 			PlayerInfo[playerid][E_CHARACTER_LISTITEM] = objectid;
@@ -433,7 +436,7 @@ CMD:property(playerid, params[])
 		{	
 			if(isnull(cstr) || strcmp(cstr, "confirm", true) != 0)
 			{
-				SendUsageMessage(playerid, "/furniture clear [confirm]");
+				SendUsageMessage(playerid, "/property furniture clear [confirm]");
 				SendTipMessage(playerid, "This sells all of your furniture in your properties. This action is irreversible.");
 				return 1;
 			}
@@ -442,20 +445,39 @@ CMD:property(playerid, params[])
 			mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "SELECT price FROM furniture WHERE propertydbid = %i", PropertyInfo[id][E_PROPERTY_DBID]);
 			mysql_pquery(ourConnection, queryBuffer, "FurnitureClear", "i", playerid);
 		}
+		else if(!strcmp(pick, "edit"))
+		{	
+			new objectid, texture;
+
+			if(sscanf(cstr, "i", objectid, texture))
+				return SendUsageMessage(playerid, "/property furniture edit [objectid]");
+
+			if(!IsValidDynamicObject(objectid) || Streamer_GetExtraInt(objectid, E_OBJECT_TYPE) != E_OBJECT_FURNITURE)
+				return SendErrorMessage(playerid, "Invalid object. You can find the object IDs for your furniture by enabling labels. [/property furniture labels]");
+
+			if(Streamer_GetExtraInt(objectid, E_OBJECT_EXTRA_ID) != PropertyInfo[id][E_PROPERTY_DBID])
+				return SendErrorMessage(playerid, "Invalid object. This furniture object is not inside of your house.");
+
+			PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 8;
+			PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = objectid;
+			PlayerInfo[playerid][E_CHARACTER_SELECTINDEX] = id;
+
+			EditDynamicObject(playerid, objectid);
+		}
 		else if(!strcmp(pick, "labels"))
 		{
 			if(!PropertyInfo[id][E_PROPERTY_LABELS])
 			{
 				PropertyInfo[id][E_PROPERTY_LABELS] = 1;
+				ReloadAllFurniture(id);
 				SendServerMessage(playerid, "You will now see labels appear above all of your furniture.");
 			}
 			else
 			{
 				PropertyInfo[id][E_PROPERTY_LABELS] = 0;
+				ReloadAllFurniture(id);
 				SendServerMessage(playerid, "You will no longer see any labels appear above your furniture.");
 			}
-
-			ReloadAllFurniture(id);
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 
 	}

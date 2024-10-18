@@ -417,6 +417,20 @@ enum E_FURNITUREVAR_DATA
     E_FURNITUREVAR_PRICE
 };
 
+
+enum
+{
+ 	E_OBJECT_TYPE,
+	E_OBJECT_INDEX_ID,
+	E_OBJECT_EXTRA_ID,
+	E_OBJECT_3DTEXT_ID
+};
+
+enum
+{
+	E_OBJECT_FURNITURE
+};
+
 enum PropertyInt
 {
 	E_INT_TYPE,
@@ -598,8 +612,8 @@ enum E_TREE_DATA
 	Float:E_TREE_POS[6],
 	E_TREE_TIMER,
 	bool:E_TREE_CUTTED,
-	STREAMER_TAG_OBJECT:E_TREE_OBJECT,
-	STREAMER_TAG_AREA:E_TREE_AREA,
+	E_TREE_OBJECT,
+	E_TREE_AREA,
 	E_TREE_PROGRESS,
 	E_TREE_CUTTIMER,
 	bool:E_TREE_CUT,
@@ -794,6 +808,7 @@ new TotalPlayerDamages[MAX_PLAYERS],
 	CatDealershipHolder[MAX_PLAYERS], 
 	SubDealershipHolder[MAX_PLAYERS],
 	SubDealershipHolderArr[MAX_PLAYERS][200],
+	SubFurnitureHolderArr[MAX_PLAYERS][200],
 	DealershipLockLevel[MAX_PLAYERS],
 	DealershipCarColors[MAX_PLAYERS][2],
 	bool:PlayerPurchasingVehicle[MAX_PLAYERS],
@@ -930,9 +945,9 @@ new Float:JobPoint[][] =
 new const PropertyInteriors[][PropertyInt] =
 {
 	{0, 	9, 0.0, 0.0, 0.0, 0.0000},
-    {1, 	2, 226.7888,1240.0699,1082.1406, 0.0000}, 		//House
+    {1, 	5, 2233.6909, -1115.2598, 1050.8828, 50.0}, 		//House
 	{2, 	1,  243.7173,305.0509,999.1484, 0.0000},		//Complex
-	{3, 	8, 2365.4033,-1133.6815,1050.8750, 0.0000}		//NPC
+	{3, 	8, 2807.5889, -1174.6934, 1025.5703, 50.0}		//High House
 };
 
 new const bizInteriors[][bizInt] =
