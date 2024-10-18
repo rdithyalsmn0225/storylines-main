@@ -116,14 +116,15 @@ function:Query_LoadFurniture(labels)
 	cache_get_row_count(rows);
 	for(new i = 0; i < rows; i ++)
 	{
-		new Float: pos[6], dbid, propdbid, modelid, world, int;
+		new Float: pos[6], dbid, propdbid, modelid, world, int, prices;
 		cache_get_value_name_float(i, "pos_x", pos[0]);
 		cache_get_value_name_float(i, "pos_y", pos[1]);
 		cache_get_value_name_float(i, "pos_z", pos[2]);
 		cache_get_value_name_float(i, "rot_x", pos[3]);
-		cache_get_value_name_float(i, "rot_x", pos[4]);
-		cache_get_value_name_float(i, "rot_x", pos[5]);
+		cache_get_value_name_float(i, "rot_y", pos[4]);
+		cache_get_value_name_float(i, "rot_z", pos[5]);
 		cache_get_value_name_int(i, "id", dbid);
+		cache_get_value_name_int(i, "price", prices);
 		cache_get_value_name_int(i, "modelid", modelid);
 		cache_get_value_name_int(i, "propertydbid", propdbid);
 		cache_get_value_name_int(i, "world", world);

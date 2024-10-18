@@ -1,1 +1,0 @@
-[21:12:59] [plugins/mysql] error #1136 while executing query "INSERT INTO furniture VALUES(null, 25, 19830, 'Blender', 500, '221.576004', '1243.920898', '1081.128906', '0.000000', '0.000000', '-0.000000', 2, 9164, 0, 0)": Column count doesn't match value count at row 1 (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:4583)
