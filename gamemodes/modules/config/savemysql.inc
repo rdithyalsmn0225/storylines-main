@@ -250,7 +250,7 @@ stock SaveServerDatas(id)
 {
 	new query[400];
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE server_data SET fabric = %i, steel = %i, woods = %i, foods = %i, clothes = %i, appliaces = %i, materials = %i, drugs = %i WHERE id = %i",
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE server_data SET fabric = %i, steel = %i, woods = %i, foods = %i, clothes = %i, appliances = %i, materials = %i, drugs = %i WHERE id = %i",
 		ServerInfo[id][E_SERVER_FABRIC],
 		ServerInfo[id][E_SERVER_STEEL],
 		ServerInfo[id][E_SERVER_WOODS],

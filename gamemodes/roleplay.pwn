@@ -3894,7 +3894,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 		}
 	}
-	if ((newkeys & KEY_FIRE) && (newkeys & KEY_LOOK_BEHIND) && IsPlayerInAnyVehicle(playerid))
+	if ((newkeys & KEY_FIRE) && (newkeys & KEY_LOOK_BEHIND) && (IsPlayerInAnyVehicle(playerid)))
 	{
 		new vehicleid = GetPlayerVehicleID(playerid);
 		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
