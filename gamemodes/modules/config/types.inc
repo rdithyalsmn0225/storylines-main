@@ -9,19 +9,19 @@
 #define PROPERTY_TYPE_HIGHHOUSE (3)
 
 //Business types:
-#define BUSINESS_TYPE_DINNER (1)
-#define BUSINESS_TYPE_BAR (2)
+#define BUSINESS_TYPE_DINNER (1) // Foods
+#define BUSINESS_TYPE_BAR (2) // Foods
 #define BUSINESS_TYPE_ACID (3)
 #define BUSINESS_TYPE_GUNSTORE (4)
-#define BUSINESS_TYPE_CLUB (5)
+#define BUSINESS_TYPE_CLUB (5) // Foods
 #define BUSINESS_TYPE_BANK (6)
-#define BUSINESS_TYPE_GENERAL (7)
-#define BUSINESS_TYPE_CLOTHES (8)
+#define BUSINESS_TYPE_GENERAL (7) // Appliances
+#define BUSINESS_TYPE_CLOTHES (8) // Clothes
 #define BUSINESS_TYPE_DEALERSHIP (9)
 #define BUSINESS_TYPE_DMV (10) 
 #define BUSINESS_TYPE_HAIRCUT (11)
 #define BUSINESS_TYPE_FURNITURE (12) 
-#define BUSINESS_TYPE_GYM (13) 
+#define BUSINESS_TYPE_GYM (13)
 
 
 //Player states:

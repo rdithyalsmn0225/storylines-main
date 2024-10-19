@@ -19,5 +19,11 @@
 #define A9X19MM         1000
 
 //CARGO PRICE
-#define PRICE_PRODUCTS 8
-#define PRICE_WOODS 8
+#define PRICE_FISH 5
+#define PRICE_FABRIC 5
+#define PRICE_STEEL 6
+#define PRICE_WOODS 6
+
+#define PRICE_FOODS 6
+#define PRICE_CLOTHES 6
+#define PRICE_APPLIANCES 7

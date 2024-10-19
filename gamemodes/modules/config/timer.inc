@@ -446,19 +446,20 @@ function:WeaponUpdate()
 }
 function:FunctionPaychecks()
 {
-	new hour, minute, second;
-	gettime(hour, minute, second);
-	if(minute == 00 && second == 59)
+	foreach(new i : Player)
 	{
-		foreach(new i : Player)
+		PlayerInfo[i][E_CHARACTER_PAYCHECKTIMER]++;
+		if(PlayerInfo[i][E_CHARACTER_PAYCHECKTIMER] >= 60)
 		{
 			if(PlayerInfo[i][E_CHARACTER_AFK] && PlayerInfo[i][E_CHARACTER_AFKTIME] > 900)
-		    {
-	            return SendServerMessage(i, "You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
+			{
+				PlayerInfo[i][E_CHARACTER_PAYCHECKTIMER] = 0;
+				return SendServerMessage(i, "You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
 			}
 			else
 			{
-				CallPaycheck(); 
+				PlayerInfo[i][E_CHARACTER_PAYCHECKTIMER] = 0;
+				CallPaycheck(i); 
 			}
 		}
 	}

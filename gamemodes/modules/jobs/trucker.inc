@@ -3,27 +3,49 @@ CMD:cargobuy(playerid, params[])
 	if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TRUCKER)
         return SendErrorMessage(playerid, "You aren't truckers.");
 
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz]) || IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz])) //products
+	// Primary:
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz]))
 	{
-		if(Inventory_Count(playerid, "Woods Cargo") || Inventory_Count(playerid, "Tools Cargo") || Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Products Cargo"))
+		if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") || Inventory_Count(playerid, "Foods Cargo")
+		|| Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo") || Inventory_Count(playerid, "Fish Cargo"))
 			return SendErrorMessage(playerid, "You are already carrying your cargo.");
 
-		if(!ServerInfo[0][E_SERVER_PRODUCTS])
+		if(!ServerInfo[0][E_SERVER_FABRIC])
 			return SendErrorMessage(playerid, "This cargo storage is out of stock.");
 
-		Inventory_Add(playerid, "Products Cargo", 2912, 1);
+		Inventory_Add(playerid, "Fabric Cargo", 2912, 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
-		GiveMoney(playerid, -PRICE_PRODUCTS);
+		GiveMoney(playerid, -PRICE_FABRIC);
 
-		ServerData_Minus(INDUSTRY_PRODUCTS, 1);
+		ServerData_Minus(INDUSTRY_FABRIC, 1);
 
-		SendServerMessage(playerid, "You has purchase products cargo for %s.", FormatMoney(PRICE_PRODUCTS));
+		SendServerMessage(playerid, "You has purchase cargo for $%s.", FormatMoney(E_SERVER_FABRIC));
+		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into warehouse/ships by type /tpda.");
+	}
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz]))
+	{
+		if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") || Inventory_Count(playerid, "Foods Cargo")
+		|| Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo") || Inventory_Count(playerid, "Fish Cargo"))
+			return SendErrorMessage(playerid, "You are already carrying your cargo.");
+
+		if(!ServerInfo[0][E_SERVER_STEEL])
+			return SendErrorMessage(playerid, "This cargo storage is out of stock.");
+
+		Inventory_Add(playerid, "Steel Cargo", 2912, 1);
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
+		GiveMoney(playerid, -PRICE_STEEL);
+
+		ServerData_Minus(INDUSTRY_STEEL, 1);
+
+		SendServerMessage(playerid, "You has purchase cargo for $%s.", FormatMoney(E_SERVER_STEEL));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into warehouse/ships by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz])) //woods
 	{
-		if(Inventory_Count(playerid, "Woods Cargo") || Inventory_Count(playerid, "Tools Cargo") || Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Products Cargo"))
+		if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") || Inventory_Count(playerid, "Foods Cargo")
+		|| Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo") || Inventory_Count(playerid, "Fish Cargo"))
 			return SendErrorMessage(playerid, "You are already carrying your cargo.");
 
 		if(!ServerInfo[0][E_SERVER_WOODS])
@@ -36,7 +58,85 @@ CMD:cargobuy(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_WOODS, 1);
 
-		SendServerMessage(playerid, "You has purchase products cargo for %s.", FormatMoney(PRICE_WOODS));
+		SendServerMessage(playerid, "You has purchase cargo for $%s.", FormatMoney(PRICE_WOODS));
+		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into warehouse/ships by type /tpda.");
+	} 
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz])) //woods
+	{
+		if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") || Inventory_Count(playerid, "Foods Cargo")
+		|| Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo") || Inventory_Count(playerid, "Fish Cargo"))
+			return SendErrorMessage(playerid, "You are already carrying your cargo.");
+
+		if(!ServerInfo[0][E_SERVER_FISH])
+			return SendErrorMessage(playerid, "This cargo storage is out of stock.");
+
+		Inventory_Add(playerid, "Fish Cargo", 2912, 1);
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
+		GiveMoney(playerid, -PRICE_FISH);
+
+		ServerData_Minus(INDUSTRY_FISH, 1);
+
+		SendServerMessage(playerid, "You has purchase cargo for $%s.", FormatMoney(PRICE_WOODS));
+		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into warehouse/ships by type /tpda.");
+	} 
+
+	// Secondary:
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[4][Posx], IndustryInfo[4][Posy], IndustryInfo[4][Posz]))
+	{
+		if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") || Inventory_Count(playerid, "Foods Cargo")
+		|| Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo") || Inventory_Count(playerid, "Fish Cargo"))
+			return SendErrorMessage(playerid, "You are already carrying your cargo.");
+
+		if(!ServerInfo[0][E_SERVER_FOODS])
+			return SendErrorMessage(playerid, "This cargo storage is out of stock.");
+
+		Inventory_Add(playerid, "Foods Cargo", 2912, 1);
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
+		GiveMoney(playerid, -PRICE_FOODS);
+
+		ServerData_Minus(INDUSTRY_FOODS, 1);
+
+		SendServerMessage(playerid, "You has purchase cargo for $%s.", FormatMoney(E_SERVER_FOODS));
+		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into warehouse/ships by type /tpda.");
+	}
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[5][Posx], IndustryInfo[5][Posy], IndustryInfo[5][Posz]))
+	{
+		if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") || Inventory_Count(playerid, "Foods Cargo")
+		|| Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo") || Inventory_Count(playerid, "Fish Cargo"))
+			return SendErrorMessage(playerid, "You are already carrying your cargo.");
+
+		if(!ServerInfo[0][E_SERVER_CLOTHES])
+			return SendErrorMessage(playerid, "This cargo storage is out of stock.");
+
+		Inventory_Add(playerid, "Clothes Cargo", 2912, 1);
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
+		GiveMoney(playerid, -PRICE_CLOTHES);
+
+		ServerData_Minus(INDUSTRY_CLOTHES, 1);
+
+		SendServerMessage(playerid, "You has purchase cargo for $%s.", FormatMoney(E_SERVER_CLOTHES));
+		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into warehouse/ships by type /tpda.");
+	}
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
+	{
+		if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") || Inventory_Count(playerid, "Foods Cargo")
+		|| Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo") || Inventory_Count(playerid, "Fish Cargo"))
+			return SendErrorMessage(playerid, "You are already carrying your cargo.");
+
+		if(!ServerInfo[0][E_SERVER_APPLIANCES])
+			return SendErrorMessage(playerid, "This cargo storage is out of stock.");
+
+		Inventory_Add(playerid, "Appliances Cargo", 2912, 1);
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
+		GiveMoney(playerid, -PRICE_APPLIANCES);
+
+		ServerData_Minus(INDUSTRY_APPLIANCES, 1);
+
+		SendServerMessage(playerid, "You has purchase cargo for $%s.", FormatMoney(PRICE_APPLIANCES));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into warehouse/ships by type /tpda.");
 	}
 	return 1;
@@ -48,18 +148,92 @@ CMD:cargosell(playerid, params[])
 	if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TRUCKER)
         return SendErrorMessage(playerid, "You aren't truckers.");
 
-	if((id = IsPlayerNearBusiness(playerid)) != 0) //Products
+	// Primary Sell
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[4][Posx], IndustryInfo[4][Posy], IndustryInfo[4][Posz]))
 	{
-		if(!Inventory_Count(playerid, "Products Cargo"))
+		if(!Inventory_Count(playerid, "Fish Cargo"))
 			return SendErrorMessage(playerid, "You are not carrying your cargo.");
+
+		if(!ServerInfo[0][E_SERVER_FISH] >= 100)
+			return SendErrorMessage(playerid, "This cargo storage is full of stock.");
+
+		Inventory_Remove(playerid, "Fish Cargo", 1);
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+		GiveMoney(playerid, PRICE_FISH*5);
+
+		ServerData_Plus(INDUSTRY_FISH, 1);
+		
+		SendServerMessage(playerid, "You has sell cargo for $%s.", FormatMoney(PRICE_WOODS*5));
+	}
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[5][Posx], IndustryInfo[5][Posy], IndustryInfo[5][Posz]))
+	{
+		if(!Inventory_Count(playerid, "Fabric Cargo"))
+			return SendErrorMessage(playerid, "You are not carrying your cargo.");
+
+		if(!ServerInfo[0][E_SERVER_CLOTHES] >= 100)
+			return SendErrorMessage(playerid, "This cargo storage is full of stock.");
+
+		Inventory_Remove(playerid, "Fabric Cargo", 1);
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+		GiveMoney(playerid, PRICE_FABRIC*5);
+
+		ServerData_Plus(INDUSTRY_CLOTHES, 1);
+		
+		SendServerMessage(playerid, "You has sell cargo for $%s.", FormatMoney(PRICE_WOODS*5));
+	}
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
+	{
+		if(!Inventory_Count(playerid, "Steel Cargo"))
+			return SendErrorMessage(playerid, "You are not carrying your cargo.");
+
+		if(!ServerInfo[0][E_SERVER_APPLIANCES] >= 100)
+			return SendErrorMessage(playerid, "This cargo storage is full of stock.");
+
+		Inventory_Remove(playerid, "Steel Cargo", 1);
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+		GiveMoney(playerid, PRICE_STEEL*5);
+
+		ServerData_Plus(INDUSTRY_APPLIANCES, 1);
+		
+		SendServerMessage(playerid, "You has sell cargo for $%s.", FormatMoney(PRICE_WOODS*5));
+	}
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
+	{
+		if(!Inventory_Count(playerid, "Woods Cargo"))
+			return SendErrorMessage(playerid, "You are not carrying your cargo.");
+
+		if(!ServerInfo[0][E_SERVER_APPLIANCES] >= 100)
+			return SendErrorMessage(playerid, "This cargo storage is full of stock.");
+
+		Inventory_Remove(playerid, "Woods Cargo", 1);
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+		GiveMoney(playerid, PRICE_WOODS*5);
+
+		ServerData_Plus(INDUSTRY_APPLIANCES, 1);
+		
+		SendServerMessage(playerid, "You has sell cargo for $%s.", FormatMoney(PRICE_WOODS*5));
+	}
+
+	// Secondary Sell:
+	if((id = IsPlayerNearBusiness(playerid)) != 0)
+	{
+		if(!Inventory_Count(playerid, "Appliances Cargo"))
+			return SendErrorMessage(playerid, "You are not carrying your cargo.");
+
+		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GENERAL)
+			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");
 
 		if(BusinessInfo[id][E_BUSINESS_STOCK] > 100)
 			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");
 
-		Inventory_Remove(playerid, "Products Cargo", 1);
+		Inventory_Remove(playerid, "Appliances Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-		RemovePlayerAttachedObject(playerid, 7);
-		GiveMoney(playerid, PRICE_PRODUCTS*8);
+		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+		GiveMoney(playerid, PRICE_APPLIANCES*6);
 
 		if(BusinessInfo[id][E_BUSINESS_STOCK] > 100)
 		{
@@ -71,46 +245,64 @@ CMD:cargosell(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_STOCK]++;
 			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
 		}
-		SendServerMessage(playerid, "You has sell products cargo for %s into business.", FormatMoney(PRICE_PRODUCTS*8));
+		SendServerMessage(playerid, "You has sell cargo for $%s.", FormatMoney(PRICE_APPLIANCES*8));
 	}
-
-	else if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz]) || IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz])) //products
+	if((id = IsPlayerNearBusiness(playerid)) != 0)
 	{
-		if(!Inventory_Count(playerid, "Woods Cargo"))
+		if(!Inventory_Count(playerid, "Clothes Cargo"))
 			return SendErrorMessage(playerid, "You are not carrying your cargo.");
 
-		if(!ServerInfo[0][E_SERVER_PRODUCTS] >= 100)
-			return SendErrorMessage(playerid, "This cargo storage is full of stock.");
+		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLOTHES)
+			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");
 
-		Inventory_Remove(playerid, "Woods Cargo", 1);
+		if(BusinessInfo[id][E_BUSINESS_STOCK] > 100 || BusinessInfo[id][E_BUSINESS_CASH] < 10)
+			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");
+
+		Inventory_Remove(playerid, "Clothes Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-		RemovePlayerAttachedObject(playerid, 7);
-		GiveMoney(playerid, PRICE_WOODS*5);
+		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+		GiveMoney(playerid, PRICE_CLOTHES*6);
 
-		ServerData_Plus(INDUSTRY_PRODUCTS, 1);
-		
-		SendServerMessage(playerid, "You has sell woods cargo for %s into oceandocks ships.", FormatMoney(PRICE_WOODS*5));
+		if(BusinessInfo[id][E_BUSINESS_STOCK] > 100)
+		{
+			BusinessInfo[id][E_BUSINESS_STOCK] = 100;
+			BusinessInfo[id][E_BUSINESS_SHIPMENTS] = 0;
+		}
+		else
+		{
+			BusinessInfo[id][E_BUSINESS_STOCK]++;
+			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
+		}
+		SendServerMessage(playerid, "You has sell cargo for $%s.", FormatMoney(PRICE_CLOTHES*8));
 	}
-	return 1;
-}
-
-CMD:cargodrop(playerid, params[])
-{
-	if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TRUCKER)
-        return SendErrorMessage(playerid, "You aren't truckers.");
-
-	if(Inventory_Count(playerid, "Products Cargo"))
+	if((id = IsPlayerNearBusiness(playerid)) != 0)
 	{
-		Inventory_Remove(playerid, "Products Cargo", 1);
-		SendServerMessage(playerid, "You has dropped products cargo in your inventory.");
+		if(!Inventory_Count(playerid, "Foods Cargo"))
+			return SendErrorMessage(playerid, "You are not carrying your cargo.");
+
+		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_DINNER && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BAR && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLUB)
+			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");
+
+		if(BusinessInfo[id][E_BUSINESS_STOCK] > 100 || BusinessInfo[id][E_BUSINESS_CASH] < 10)
+			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");
+
+		Inventory_Remove(playerid, "Foods Cargo", 1);
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+		GiveMoney(playerid, PRICE_FOODS*6);
+
+		if(BusinessInfo[id][E_BUSINESS_STOCK] > 100)
+		{
+			BusinessInfo[id][E_BUSINESS_STOCK] = 100;
+			BusinessInfo[id][E_BUSINESS_SHIPMENTS] = 0;
+		}
+		else
+		{
+			BusinessInfo[id][E_BUSINESS_STOCK]++;
+			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
+		}
+		SendServerMessage(playerid, "You has sell cargo for $%s.", FormatMoney(PRICE_FOODS*8));
 	}
-	if(Inventory_Count(playerid, "Woods Cargo"))
-	{
-		Inventory_Remove(playerid, "Woods Cargo", 1);
-		SendServerMessage(playerid, "You has dropped products cargo in your inventory.");
-	}
-	else return SendErrorMessage(playerid, "You are not carrying your cargo.");
-	
 	return 1;
 }
 
@@ -132,7 +324,7 @@ Dialog:Industry(playerid, response, listitem, inputtext[])
 			case 0:
 			{
 				new str[512];
-				strcat(str, "Welcome to los santos economy!\n\nThe ship & warehouses is currently restocked product every 10 minute(s).\n\nYou can buy cargo products if stock is still available on the ship or warehouses.");
+				strcat(str, "Welcome to los santos economy!\n\nThe ship & warehouses is currently restocked product every 30 minute(s).\n\nYou can buy cargo products if stock is still available on the ship or warehouses.");
 				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Information:", str, "Confirm", "");
 			}
 			case 1:

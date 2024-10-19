@@ -202,7 +202,7 @@ public OnGameModeInit()
 
 	//Global timers:
 	SetTimer("PlayersUpdates", 1000, true); 
-	SetTimer("FunctionPaychecks", 1000, true);
+	SetTimer("FunctionPaychecks", 60000, true);
 	SetTimer("OnPlayerNearPickup", 5000, true);
 	SetTimer("OnVehicleFuelUpdate", 30000, true);
 	SetTimer("OnVehicleUpdate", 1000, true);
@@ -3082,7 +3082,7 @@ public OnPlayerUpdate(playerid)
 	if(GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED)
 	{
 		format(string, sizeof(string), "(( Has been injured %d times, /damages %d for more information. ))", TotalPlayerDamages[playerid], playerid);
-		SetPlayerChatBubble(playerid, string, COLOR_DARKGREEN, 30.0, 2500); 
+		SetPlayerChatBubble(playerid, string, COLOR_POINT, 30.0, 2500); 
 		
 		ShowBoxMessage(playerid, "Injury", 5, 1);
 		if(IsPlayerInAnyVehicle(playerid))
@@ -3154,7 +3154,9 @@ public OnPlayerUpdate(playerid)
 
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	{
-		if(Inventory_Count(playerid, "Woods Cargo") || Inventory_Count(playerid, "Tools Cargo") || Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Products Cargo"))
+		if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") 
+		|| Inventory_Count(playerid, "Foods Cargo") || Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo")
+		|| Inventory_Count(playerid, "Fish Cargo"))
 		{
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 			{
@@ -3171,7 +3173,7 @@ public OnPlayerUpdate(playerid)
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
 				RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 6, 0.000000, 0.000000, 0.000000, 0.000000, -1.799999, 0.000000, 0.188999, 0.292000, 0.256999);
+				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 			}
 		}
 		else
@@ -4579,7 +4581,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 
 					    GiveMoney(playerid, -g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_PRICE]);
 
-						mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "INSERT INTO furniture VALUES(null, %i, %i, '%e', %i, '%f', '%f', '%f', '%f', '%f', '%f', %i, %i, 0, 0)", PropertyInfo[houseid][E_PROPERTY_DBID], g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_MODEL], g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_NAME], g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_PRICE], x, y, z, rx, ry, rz, PropertyInfo[houseid][E_PROPERTY_INTERIORINTERIOR], PropertyInfo[houseid][E_PROPERTY_INTERIORWORLD]);
+						mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "INSERT INTO furniture (`propertydbid`, `modelid`, `name`, `price`, `pos_x`, `pos_y`, `pos_z`, `rot_x`, `rot_y`, `rot_z`, `interior`, `world`) VALUES(%i, %i, '%e', %i, '%f', '%f', '%f', '%f', '%f', '%f', %i, %i)", PropertyInfo[houseid][E_PROPERTY_DBID], g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_MODEL], g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_NAME], g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_PRICE], x, y, z, rx, ry, rz, PropertyInfo[houseid][E_PROPERTY_INTERIORINTERIOR], PropertyInfo[houseid][E_PROPERTY_INTERIORWORLD]);
 						mysql_pquery(ourConnection, queryBuffer);
 
 						mysql_pquery(ourConnection, "SELECT * FROM furniture WHERE id = LAST_INSERT_ID()", "Query_LoadFurniture", "i", PropertyInfo[houseid][E_PROPERTY_LABELS]);

@@ -445,12 +445,12 @@ CMD:property(playerid, params[])
 			mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "SELECT price FROM furniture WHERE propertydbid = %i", PropertyInfo[id][E_PROPERTY_DBID]);
 			mysql_pquery(ourConnection, queryBuffer, "FurnitureClear", "i", playerid);
 		}
-		else if(!strcmp(pick, "edit"))
+		else if(!strcmp(pick, "texture"))
 		{	
-			new objectid, texture;
+			new objectid, index;
 
-			if(sscanf(cstr, "i", objectid, texture))
-				return SendUsageMessage(playerid, "/property furniture edit [objectid]");
+			if(sscanf(cstr, "ii", objectid, index))
+				return SendUsageMessage(playerid, "/property furniture texture [objectid] [index]");
 
 			if(!IsValidDynamicObject(objectid) || Streamer_GetExtraInt(objectid, E_OBJECT_TYPE) != E_OBJECT_FURNITURE)
 				return SendErrorMessage(playerid, "Invalid object. You can find the object IDs for your furniture by enabling labels. [/property furniture labels]");
@@ -460,9 +460,15 @@ CMD:property(playerid, params[])
 
 			PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 8;
 			PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = objectid;
-			PlayerInfo[playerid][E_CHARACTER_SELECTINDEX] = id;
+			PlayerInfo[playerid][E_CHARACTER_SELECTINDEX] = index;
 
-			EditDynamicObject(playerid, objectid);
+			new str1[1524];
+			strcat(str1, "Texture Name\n");
+			forex(i, sizeof(MaterialInfo))
+			{
+				format(str1, sizeof(str1), "%s%s\n", str1, MaterialInfo[i][E_MATERIAL_NAME]);
+			}
+			Dialog_ShowPages(playerid, FurnitureTextures, DIALOG_STYLE_TABLIST_HEADERS, "Furniture Textures:", str1, "Select", "Cancel");
 		}
 		else if(!strcmp(pick, "labels"))
 		{
@@ -482,5 +488,14 @@ CMD:property(playerid, params[])
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 
 	}
 	else return SendErrorMessage(playerid, "Invalid Paramater."); 
+	return 1;
+}
+
+Dialog:FurnitureTextures(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		SetFurnitureMaterial(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT], PlayerInfo[playerid][E_CHARACTER_SELECTINDEX], listitem);
+	}
 	return 1;
 }

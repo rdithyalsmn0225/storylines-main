@@ -64,6 +64,26 @@ DeleteFurnitureObject(objectid)
 	}
 }
 
+SetFurnitureMaterial(objectid, materialslot, materialid)
+{
+	new gquery[512];
+	if(IsValidDynamicObject(objectid) && Streamer_GetExtraInt(objectid, E_OBJECT_TYPE) == E_OBJECT_FURNITURE)
+	{
+		SetDynamicObjectMaterial(objectid, materialslot, MaterialInfo[materialid][E_MATERIAL_MODEL], MaterialInfo[materialid][E_MATERIAL_TXD], MaterialInfo[materialid][E_MATERIAL_TEXTURE], HexToInt("0xFFFFFFFF"));
+
+		mysql_format(ourConnection, gquery, sizeof(gquery), "UPDATE `furniture` SET `matModel%i` = '%i', `matTxd%i` = '%e', `matTexture%i` = '%e' WHERE `id` = '%i'",
+			materialslot,
+			MaterialInfo[materialid][E_MATERIAL_MODEL],
+			materialslot,
+			MaterialInfo[materialid][E_MATERIAL_TXD],
+			materialslot,
+			MaterialInfo[materialid][E_MATERIAL_TEXTURE],
+			Streamer_GetExtraInt(objectid, E_OBJECT_INDEX_ID)
+		);
+		mysql_pquery(ourConnection, gquery);
+	}
+}
+
 RemoveAllFurniture(propid)
 {  
 	for(new i = 0; i <= Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i ++)
@@ -117,7 +137,13 @@ function:Query_LoadFurniture(labels)
 	
 	for(new i = 0; i < rows; i++)
 	{
-		new Float: pos[6], dbid, propdbid, modelid, world, int, prices;
+		new Float: pos[6], dbid, propdbid, modelid, world, int, prices, objectid;
+
+		if(IsValidDynamicObject(objectid))
+			DestroyDynamicObject(objectid);
+
+		objectid = CreateDynamicObject(modelid, pos[0], pos[1], pos[2], pos[3], pos[4], pos[5], world, int);
+
 		cache_get_value_name_int(i, "id", dbid);
 		cache_get_value_name_int(i, "propertydbid", propdbid);
 		cache_get_value_name_int(i, "modelid", modelid);
@@ -130,12 +156,26 @@ function:Query_LoadFurniture(labels)
 		cache_get_value_name_float(i, "rot_z", pos[5]);		
 		cache_get_value_name_int(i, "world", world);
 		cache_get_value_name_int(i, "interior", int);
-		
-		new objectid = CreateDynamicObject(modelid, pos[0], pos[1], pos[2], pos[3], pos[4], pos[5], world, int);
+
+		new matmodels, mattxds[32], mattexture[32], str[128], str1[128], str2[128];
 
 		Streamer_SetExtraInt(objectid, E_OBJECT_TYPE, E_OBJECT_FURNITURE);
 		Streamer_SetExtraInt(objectid, E_OBJECT_INDEX_ID, dbid);
 		Streamer_SetExtraInt(objectid, E_OBJECT_EXTRA_ID, propdbid);
+
+		for(new a; a < 15; a++)
+		{
+			format(str, sizeof(str), "matModel%d", a);
+			cache_get_value_name_int(i, str, matmodels);
+
+			format(str1, sizeof(str1), "matTxd%d", a);
+			cache_get_value_name(i, str1, mattxds, 32);
+
+			format(str2, sizeof(str2), "matTexture%d", a);
+			cache_get_value_name(i, str2, mattexture, 32);
+
+			SetDynamicObjectMaterial(objectid, a, matmodels, mattxds, mattexture, HexToInt("0xFFFFFFFF"));
+		}
 
 		if(labels == 1)
 		{
@@ -211,7 +251,7 @@ ShowFurnituresCategories(playerid)
 	new string[512];
 	for(new i = 0; i < sizeof(g_aFurnitureCategories); i ++)
 	{
-		format(string, sizeof(string), "%s\n%s", string, g_aFurnitureCategories[i]);
+		format(string, sizeof(string), "%s%s\n", string, g_aFurnitureCategories[i]);
 	}
 
 	Dialog_Show(playerid, FurniturePurchase, DIALOG_STYLE_LIST, "Furnitures Categories:", string, "Select", "Cancel");
@@ -226,7 +266,7 @@ Dialog:FurniturePurchase(playerid, response, listitem, inputtext[])
 
 		for(new i = 0; i < sizeof(g_aFurnitureArray); i++)
 	    {
-			if(g_aFurnitureCategories[listitem][0] == g_aFurnitureArray[i][E_FURNITUREVAR_CATEGORY])
+			if(!strcmp(g_aFurnitureArray[i][E_FURNITUREVAR_CATEGORY], g_aFurnitureCategories[listitem]))
 			{
 				format(string, sizeof(string), "%s%d\t~g~$%s~w~\n", string, g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], FormatMoney(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE]));
 				SubFurnitureHolderArr[playerid][counter] = i;

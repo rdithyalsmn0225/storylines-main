@@ -1,54 +1,51 @@
-function:CallPaycheck()
+CallPaycheck(playerid)
 {
-	foreach(new i : Player)
+	if(!AccountInfo[playerid][E_MASTERS_LOGGED])
+		return 0;
+		
+	new
+		str[128]; 
+
+	new gTax;
+	new paycheck = PlayerInfo[playerid][E_CHARACTER_PAYCHECK];
+	new interest, rate;
+	new tax = (paycheck / 100) * gTax; // 10% tax
+	new total = paycheck - tax;
+
+	if(PlayerInfo[playerid][E_CHARACTER_EXP] == 10)
 	{
-		if(!AccountInfo[i][E_MASTERS_LOGGED])
-			return 0;
-			
-		new
-			str[128]; 
+		PlayerInfo[playerid][E_CHARACTER_EXP] = 0;
+		PlayerInfo[playerid][E_CHARACTER_LEVEL]++;
+		format(str, sizeof(str), "Leveled up to level %i", PlayerInfo[playerid][E_CHARACTER_LEVEL]);
+		ShowBoxMessage(playerid, str, 5);
 
-		new gTax;
-		new paycheck = PlayerInfo[i][E_CHARACTER_PAYCHECK];
-    	new interest, rate;
-    	new tax = (paycheck / 100) * gTax; // 10% tax
-		new total = paycheck - tax;
-
-		if(PlayerInfo[i][E_CHARACTER_EXP] == 10)
-		{
-			PlayerInfo[i][E_CHARACTER_EXP] = 0;
-			PlayerInfo[i][E_CHARACTER_LEVEL]++;
-			format(str, sizeof(str), "Leveled up to level %i", PlayerInfo[i][E_CHARACTER_LEVEL]);
-			ShowBoxMessage(i, str, 5);
-
-			PlayerPlaySound(i, 1052, 0.0, 0.0, 0.0);
-			SetPlayerScore(i, PlayerInfo[i][E_CHARACTER_LEVEL]); 
-			SaveCharacter(i); 
-		}
-
-		PlayerInfo[i][E_CHARACTER_TIMEPLAYED]++; 
-		PlayerInfo[i][E_CHARACTER_EXP]++;
-
-		interest = (PlayerInfo[i][E_CHARACTER_BANK] / 1000) * rate;
-
-		total += interest;
-		
-		SendClientMessageEx(i, COLOR_WHITE, "SERVER TIME:[ %s ]", ReturnHour()); 
-		
-		SendClientMessage(i, COLOR_DARKGREEN, "|___ BANK STATEMENT ___|"); 
-		SendClientMessageEx(i, COLOR_GREY, "   Balance: $%s", FormatMoney(PlayerInfo[i][E_CHARACTER_BANK])); 
-		SendClientMessageEx(i, COLOR_GREY, "   Interest rate: $%s (rate: %.1f)", FormatMoney(interest), floatdiv(float(rate), 10));
-		SendClientMessageEx(i, COLOR_GREY, "   Interest Gained: $%s", FormatMoney(paycheck));
-		SendClientMessageEx(i, COLOR_GREY, "   Tax paid: $%s (%i percent)", FormatMoney(tax), gTax); 
-		SendClientMessage(i, COLOR_DARKGREEN, "|________________________|");
-		
-		PlayerInfo[i][E_CHARACTER_PAYCHECK] = 0; 
-		PlayerInfo[i][E_CHARACTER_BANK]+= total; 
-		
-		SendClientMessageEx(i, COLOR_WHITE, "   New Balance: $%s", FormatMoney(PlayerInfo[i][E_CHARACTER_BANK] + total));
-	
-		SaveCharacter(i); 
+		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
+		SetPlayerScore(playerid, PlayerInfo[playerid][E_CHARACTER_LEVEL]); 
+		SaveCharacter(playerid); 
 	}
+
+	PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]++; 
+	PlayerInfo[playerid][E_CHARACTER_EXP]++;
+
+	interest = (PlayerInfo[playerid][E_CHARACTER_BANK] / 1000) * rate;
+
+	total += interest;
+	
+	SendClientMessageEx(playerid, COLOR_WHITE, "SERVER TIME:[ %s ]", ReturnHour()); 
+	
+	SendClientMessage(playerid, COLOR_DARKGREEN, "|___ BANK STATEMENT ___|"); 
+	SendClientMessageEx(playerid, COLOR_GREY, "   Balance: $%s", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK])); 
+	SendClientMessageEx(playerid, COLOR_GREY, "   Interest rate: $%s (rate: %.1f)", FormatMoney(interest), floatdiv(float(rate), 10));
+	SendClientMessageEx(playerid, COLOR_GREY, "   Interest Gained: $%s", FormatMoney(paycheck));
+	SendClientMessageEx(playerid, COLOR_GREY, "   Tax paid: $%s (%i percent)", FormatMoney(tax), gTax); 
+	SendClientMessage(playerid, COLOR_DARKGREEN, "|________________________|");
+	
+	PlayerInfo[playerid][E_CHARACTER_PAYCHECK] = 0; 
+	PlayerInfo[playerid][E_CHARACTER_BANK]+= total; 
+	
+	SendClientMessageEx(playerid, COLOR_WHITE, "   New Balance: $%s", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK] + total));
+
+	SaveCharacter(playerid); 
 	return 1;
 }
 

@@ -217,7 +217,7 @@ CMD:timbersell(playerid, params[])
 
 		Inventory_Remove(playerid, "Woods", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-		RemovePlayerAttachedObject(playerid, 7);
+		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		GiveMoney(playerid, LUMBERJACK_SALARY*2);
 
 		ServerData_Plus(INDUSTRY_WOODS, 1);
