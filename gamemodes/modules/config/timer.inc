@@ -159,7 +159,7 @@ function:PlayersUpdates()
 
 			if(IsPlayerInAnyVehicle(playerid) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER && IsEngineVehicle(vehicleid))
 			{
-				new str[128], stri[128];
+				new str[128], stri[128], stru[128], stra[128];
 				format(str, sizeof(str), "%.0f", fSpeed);
 
 				if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 100.0)
@@ -179,7 +179,17 @@ function:PlayersUpdates()
 				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] <= 0.0)
 					format(stri, sizeof(stri), "");
 
-				ShowCustomHud(playerid, "MPH", "I", "ld_dual:white", "ld_dual:white", "0", str, stri);
+				if(VehicleInfo[vehicleid][E_VEHICLE_LIGHTS] == false)
+				{
+					format(stru, sizeof(stru), "~r~D");
+					format(stru, sizeof(stru), "~r~/~n~/~n~/");
+				}
+				else
+				{
+					format(stru, sizeof(stru), "~g~D");
+					format(stru, sizeof(stru), "~g~/~n~/~n~/");
+				}
+				ShowVehicleSpeedometer(playerid, "MPH", "I", "ld_dual:white", "ld_dual:white", "0", str, stri, stru, stra);
 			}
 			RealTime_SyncPlayerWorldTime(playerid);
 		}

@@ -18,7 +18,7 @@
 #include <a_mysql>
 #include <a_http>
 #include <streamer>
-//#include <progress2>
+#include <progress2>
 #include <easyDialog>
 #include <PreviewModelDialog>
 #include <strlib>
@@ -42,10 +42,9 @@ new MySQL:ourConnection;
 main ()  {}
 
 //Modules Headers
-#include "modules\visuals\gamebar.inc"
 #include "modules\visuals\enviroment.inc"
 #include "modules\visuals\textdraws.inc"
-
+#include "modules\visuals\gamebar.inc"
 #include "modules\config\modelselections.inc"
 #include "modules\config\types.inc"
 #include "modules\config\messages.inc"
@@ -307,8 +306,7 @@ public OnPlayerConnect(playerid)
 	CreateNotificationTextDraws(playerid);
 	CreateSelectFactionTextDraws(playerid);
 	
-	DestroyCustomHUD(playerid);
-	DestroyBarInfo(playerid);
+	HideVehicleSpeedometer(playerid);
 	DestroyGameBar(playerid);
 
 	//Player:
@@ -3596,12 +3594,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
     {
 		if(PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] == true)
 		{
-			if(PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] < 100)
+			if(PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] < 100.0)
 			{
-				PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] += 10;
-				SetPlayerGameBar(playerid, GameBar[1][playerid], PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE], GAMEBAR_PLUS);
+				PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] += 10.0;
+				SetPlayerGameBar(playerid, PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE]);
 			}
-			if(PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] == 100)
+			if(PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] == 100.0)
 			{
 				ClearAnimations(playerid);
 				Inventory_Add(playerid, "Fish", 19630, 1);
@@ -4252,7 +4250,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	if(oldstate == PLAYER_STATE_DRIVER || oldstate == PLAYER_STATE_PASSENGER && newstate == PLAYER_STATE_ONFOOT)
 	{
 		StopAudioStreamForPlayer(playerid); 
-		DestroyCustomHUD(playerid);
+		HideVehicleSpeedometer(playerid);
 
 		forex(i, 12)
 		{
@@ -5054,13 +5052,13 @@ public OnPlayerGiveDamageDynamicActor(playerid, actorid, Float:amount, weaponid,
 {
 	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR] == actorid  && PlayerInfo[playerid][E_CHARACTER_EXTORTION] == true)
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] < 100)
-			PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] += 10;
+		if(PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] < 100.0)
+			PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] += 10.0;
 
-		else if(PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] > 100)
-			PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] = 100;
+		else if(PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] > 100.0)
+			PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] = 100.0;
 
-		SetPlayerGameBar(playerid, GameBar[1][playerid], PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT], GAMEBAR_PLUS);
+		SetPlayerGameBar(playerid, PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT]);
 	}
 	return 1;
 }

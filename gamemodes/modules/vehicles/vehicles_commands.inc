@@ -230,9 +230,9 @@ CMD:carlights(playerid, params[])
 	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return SendErrorMessage(playerid, "You aren't driving a vehicle.");
 		
 	if(VehicleInfo[vehicleid][E_VEHICLE_LIGHTS] == false)
-		TogglE_VEHICLE_LIGHTS(vehicleid, true);
+		ToggleVehicleLights(vehicleid, true);
 			
-	else TogglE_VEHICLE_LIGHTS(vehicleid, false);
+	else ToggleVehicleLights(vehicleid, false);
     return 1;
 }
 

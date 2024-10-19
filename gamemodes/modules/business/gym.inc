@@ -2,7 +2,7 @@
 // FUNCTION PLAYER:
 function:PlayerGYMTimers(playerid, type)
 {
-    PlayerPointGym[playerid] -= 10;
+    PlayerPointGym[playerid] -= 10.0;
 
     if(type == 1)
     {
@@ -27,7 +27,7 @@ function:PlayerGYMTimers(playerid, type)
         }
     }
     PlayerPlaySound(playerid, 0, 0, 0, 0);
-    SetPlayerGameBar(playerid, GameBar[1][playerid], PlayerPointGym[playerid], GAMEBAR_MINUS);
+    SetPlayerGameBar(playerid, PlayerPointGym[playerid]);
     return 1;
 }
 
@@ -72,7 +72,7 @@ stock IsPlayerPlayingMachine(playerid)
 {
     if(PlayerGymMachine[playerid] == GYM_DUMBELLS)
     {
-        PlayerPointGym[playerid] += 10;  
+        PlayerPointGym[playerid] += 10.0;  
 
         if(PlayerPointGym[playerid] >= 100)
         {
@@ -92,14 +92,14 @@ stock IsPlayerPlayingMachine(playerid)
     }
     else if(PlayerGymMachine[playerid] == GYM_TREADMILLS)
     {
-        PlayerPointGym[playerid] += 10;   
+        PlayerPointGym[playerid] += 10.0;   
 
-        if(PlayerPointGym[playerid] >= 100)
+        if(PlayerPointGym[playerid] >= 100.0)
         {
 			ApplyAnimation(playerid, "gymnasium", "gym_tread_sprint", 4.1, 1, 0, 0, 1, 1, 1);	
-            PlayerPointGym[playerid] = 100;
+            PlayerPointGym[playerid] = 100.0;
         }
-        else if(PlayerPointGym[playerid] >= 30)
+        else if(PlayerPointGym[playerid] >= 30.0)
         {
             ApplyAnimation(playerid, "gymnasium", "gym_tread_jog", 4.1, 1, 0, 0, 1, 1, 1);	
         }
@@ -110,13 +110,13 @@ stock IsPlayerPlayingMachine(playerid)
     }
     else if(PlayerGymMachine[playerid] == GYM_BICYLE)
     {
-        PlayerPointGym[playerid] += 10;  
+        PlayerPointGym[playerid] += 10.0;  
 
-        if(PlayerPointGym[playerid] >= 100)
+        if(PlayerPointGym[playerid] >= 100.0)
         {
 			PlayerPlaySound(playerid, 17801, 0, 0, 0);
 			ApplyAnimation(playerid, "gymnasium", "gym_bike_faster", 4.1, 1, 0, 0, 1, 1, 1);	
-            PlayerPointGym[playerid] = 100;
+            PlayerPointGym[playerid] = 100.0;
         }
         else if(PlayerPointGym[playerid] >= 0)
         {
@@ -126,9 +126,9 @@ stock IsPlayerPlayingMachine(playerid)
     }
     else if(PlayerGymMachine[playerid] == GYM_BENCH)
     {
-        PlayerPointGym[playerid] += 10;  
+        PlayerPointGym[playerid] += 10.0;  
 
-        if(PlayerPointGym[playerid] >= 100)
+        if(PlayerPointGym[playerid] >= 100.0)
         {
             switch(random(2)) 
             {
@@ -144,13 +144,13 @@ stock IsPlayerPlayingMachine(playerid)
             PlayerPlaySound(playerid, 17807, 0, 0, 0);
             PlayerPointGym[playerid] = 0;
         }
-        else if(PlayerPointGym[playerid] == 10)
+        else if(PlayerPointGym[playerid] == 10.0)
         {
             ApplyAnimation(playerid, "benchpress", "gym_bp_down", 4.1, 0, 0, 0, 1, 0, 1);
         }
     }
     
-    SetPlayerGameBar(playerid, GameBar[1][playerid], PlayerPointGym[playerid], GAMEBAR_PLUS);
+    SetPlayerGameBar(playerid, PlayerPointGym[playerid]);
     return 1;
 }
 
@@ -275,7 +275,7 @@ stock IsPlayerUsingTreadMill(playerid, businessid, area)
 
             ApplyAnimation(playerid, "gymnasium", "gym_tread_walk", 4.1, 1, 0, 0, 1, 1, 1);	
 
-            PlayerPointGym[playerid] = 50;
+            PlayerPointGym[playerid] = 50.0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Treadmill");
         }
         case 2: //Verona Beach
@@ -289,7 +289,7 @@ stock IsPlayerUsingTreadMill(playerid, businessid, area)
 
             ApplyAnimation(playerid, "gymnasium", "gym_tread_walk", 4.1, 1, 0, 0, 1, 1, 1);	
 
-            PlayerPointGym[playerid] = 50;
+            PlayerPointGym[playerid] = 50.0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Treadmill");
         }
     }
@@ -320,7 +320,7 @@ stock IsPlayerUsingBycle(playerid, businessid, area)
             BusinessInfo[businessid][E_BUSINESS_BYCICLE] = true;
             ShowHeaderMessage(playerid, "GYM", "Use SPACE rapidly to begin pedalling the bicycle.");
 
-            PlayerPointGym[playerid] = 0;
+            PlayerPointGym[playerid] = 0.0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Bicycle");
         }
         case 2: //Verona Beach

@@ -1765,9 +1765,9 @@ CMD:setcarparams(playerid, params[])
 	else if(!strcmp(a_str, "lights"))
 	{
 		if(VehicleInfo[vehicleid][E_VEHICLE_LIGHTS] == false)
-			TogglE_VEHICLE_LIGHTS(vehicleid, true);
+			ToggleVehicleLights(vehicleid, true);
 			
-		else TogglE_VEHICLE_LIGHTS(vehicleid, false);
+		else ToggleVehicleLights(vehicleid, false);
 		
 		format(str, sizeof(str), "%s turned vehicle ID %i's lights %s.", ReturnSettingsName(playerid, playerid), vehicleid, (VehicleInfo[vehicleid][E_VEHICLE_LIGHTS] != true) ? ("off") : ("on"));
 		SendAdminMessage(3, str);

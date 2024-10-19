@@ -18,7 +18,7 @@ stock ToggleVehicleEngine(vehicleid, bool:enginestate)
 	return 1;
 }
 
-stock TogglE_VEHICLE_LIGHTS(vehicleid, bool:lightstate)
+stock ToggleVehicleLights(vehicleid, bool:lightstate)
 {
 	new engine, lights, alarm, doors, bonnet, boot, objective;
 

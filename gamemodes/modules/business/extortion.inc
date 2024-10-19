@@ -206,7 +206,7 @@ CMD:extort(playerid, params[])
 			ShowGameBar(playerid, PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT], "Extortions");
 		}
 
-		if(PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] >= 100)
+		if(PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] >= 100.0)
 		{
 			if(IsPlayerInBusiness(playerid) != PlayerInfo[playerid][E_CHARACTER_EXTORTIONID])
 				return ShowHeaderMessage(playerid, "Extortion", "You must be in the business you extorting");

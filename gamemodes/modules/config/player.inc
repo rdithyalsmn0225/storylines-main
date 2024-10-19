@@ -1189,3 +1189,30 @@ function:PlayerPosTimer(playerid)
 	TogglePlayerControllable(playerid, true);
 	return 1;
 }
+
+stock ConvertHBEColor(value) 
+{
+    new color;
+    if(value >= 90 && value <= 100)
+        color = 0x15a014FF;
+    else if(value >= 80 && value < 90)
+        color = 0x1b9913FF;
+    else if(value >= 70 && value < 80)
+        color = 0x1a7f08FF;
+    else if(value >= 60 && value < 70)
+        color = 0x326305FF;
+    else if(value >= 50 && value < 60)
+        color = 0x375d04FF;
+    else if(value >= 40 && value < 50)
+        color = 0x603304FF;
+    else if(value >= 30 && value < 40)
+        color = 0xd72800FF;
+    else if(value >= 10 && value < 30)
+        color = 0xfb3508FF;
+    else if(value >= 0 && value < 10)
+        color = 0xFF0000FF;
+    else 
+        color = COLOR_WHITE;
+
+    return color;
+}

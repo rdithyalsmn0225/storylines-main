@@ -161,11 +161,12 @@ stock ServerData_Minus(type, minus)
 stock ShowIndustry(playerid)
 {
 	new str[456];
+	strcat(str, "Industries\tCargo\tType\n");
 	forex(i, sizeof(IndustryInfo))
 	{
-		format(str, sizeof(str), "%s%s\t%s\n", str, IndustryInfo[i][Name], IndustryInfo[i][Type]);
+		format(str, sizeof(str), "%s%s\t{5B9460}%s{ffffff}\t%s\n", str, IndustryInfo[i][Name], IndustryInfo[i][Cargo], IndustryInfo[i][Type]);
 	}
-	ShowPlayerDialog(playerid, DIALOG_INDUSTRYLOC, DIALOG_STYLE_TABLIST, "Truck PDA - Industrial:", str, "Select", "Close");
+	ShowPlayerDialog(playerid, DIALOG_INDUSTRYLOC, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
 	return 1;
 }
 
