@@ -168,7 +168,7 @@ ShowTutorial(playerid)
 
             format(text, sizeof(text), "~w~The easiest way to make money, at course, is by gangbanging.~n~~n~");
             format(text, sizeof(text), "%sThat doesn't mean there aren't simpler alternatives howerver that pay out fast.~n~~n~", text);
-            format(text, sizeof(text), "%sThe ~y~Dockworker~w~, ~b~Trucking~w~, ~g~Trashmaster ~w~will have you organize to earn some money.", text);
+            format(text, sizeof(text), "%sThe ~y~Trucking~w~, ~b~Taxi Driver~w~, ~g~Lumberjack, ~w~Etc. ~w~Will have you organize to earn some money.", text);
             PlayerTextDrawSetString(playerid, tutorialtext[playerid], text);
         }
         case 12:

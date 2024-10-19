@@ -37,37 +37,20 @@ stock StartMainJobs(playerid, type)
         }
         case 2: //Trashmaster
         {
-            if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+            if(IsPlayerInRangeOfPoint(playerid, 3.0, 1529.5608,-1849.4032,13.5469))
             {
                 if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == false) //Start
                 {
-                    if(GetVehicleModel(GetPlayerVehicleID(playerid)) == 408)
-                    {
-                        PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = true;
-                        PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = GetPlayerVehicleID(playerid);
-                        Trashmaster_FetchNewPoint(playerid);
-
-                        PlayerTrashmaster[playerid] = random(sizeof(GarbageLocations));
-                        GPS_SetPlayerRaceCheckPoint(playerid, 1, GarbageLocations[PlayerTrashmaster[playerid]][0], GarbageLocations[PlayerTrashmaster[playerid]][1], GarbageLocations[PlayerTrashmaster[playerid]][2], 0.0, 0.0, 0.0);
-                        
-                        SendTipMessage(playerid, "To start trashmaster jobs press 'ALT' nearest the trashcan pickup.");
-                        ShowBoxMessage(playerid, "~w~Trashmaster job started. Colect trash in garbage around los santos", 5, 2);
-                    }
+                    PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = true;
+                    SetPlayerSkin(playerid, 16);
+                    SendTipMessage(playerid, "To start garbageman jobs press 'ALT' or '/collectgarbage' nearest the trash objects.");
+                    SendTipMessage(playerid, "To empty your garbage bag '/dumpgarbage' in HQ");
                 }
                 else if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == true) //Stop
                 {
-                    if(GetVehicleModel(GetPlayerVehicleID(playerid)) == 408)
-                    {
-                        SetVehicleToRespawnEx(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
-                        
-                        PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = false;
-                        PlayerInfo[playerid][E_CHARACTER_JOBSTIME] = 0;
-                        PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = -1;
-                        RemovePlayerFromVehicle(playerid);
-                        GPS_DisablePlayerRaceCheckPoint(playerid);
-                        RemovePlayerAttachedObject(playerid, ATTACH_HAND);
-                        ShowBoxMessage(playerid, "~w~Trashmaster job stopped.", 5, 2); 
-                    }
+                    SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]);
+                    PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = false;
+                    ShowBoxMessage(playerid, "~w~Garbageman job stopped.", 5, 2); 
                 }
             }
             return 1;
@@ -203,6 +186,20 @@ CMD:quitjobs(playerid, params[])
         PlayerInfo[playerid][E_CHARACTER_JOBS] = JOB_NONE;
         SendServerMessage(playerid, "You are now exit the jobs.");
         SaveCharacter(playerid);
+    }
+    return 1;
+}
+
+CMD:jobduty(playerid, params[])
+{
+    new vehicleid = IsPlayerInAnyVehicle(playerid);
+    if(GetVehicleModel(vehicleid) == 530)
+    {
+        StartMainJobs(playerid, 1);
+    } 
+    else if(IsPlayerInRangeOfPoint(playerid, 3.0, 1529.5608,-1849.4032,13.5469))
+    {
+        StartMainJobs(playerid, 2);
     }
     return 1;
 }

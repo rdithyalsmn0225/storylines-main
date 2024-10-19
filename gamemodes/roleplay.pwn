@@ -184,7 +184,6 @@ public OnGameModeInit()
 	InsertDealership();
 	InsertStaticArea();
 	InsertAcidGunLabs();
-	InsertTrashmaster();
 	InsertDocksWorkers();
 	InsertDonatorStars();
 	Insert3DTextLabel();
@@ -213,6 +212,8 @@ public OnGameModeInit()
 	SetTimer("TreeTimers", 1000, true);
 	SetTimer("TaxiTimers", 1000, true);
 	SetTimer("PacketTimers", 1800000, true);
+	//SetTimer("GarbageTimers", 180000, true);
+	GarbageTimers();
 	
 	//Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
@@ -475,24 +476,6 @@ function:LogPlayerIn(playerid)
 
 public OnPlayerEnterRaceCheckpoint(playerid)
 {
-	if(GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
-    {
-		if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == true && PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] == 1 && PlayerCheckpoint[playerid] == GPS_GARBAGE)
-		{
-			PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] = 0;
-			ApplyAnimation(playerid, "CARRY", "putdwn", 4.1, 0, 0, 0, 0, 0, 1);
-			RemovePlayerAttachedObject(playerid, ATTACH_HAND);
-			
-            GiveMoney(playerid, TRASHMASTER_SALARY);
-
-			new str[512];
-			format(str, sizeof(str), "~h~Job Complete~n~~w~$%d~n~Respect +", TRASHMASTER_SALARY);
-			GameTextForPlayer(playerid, str, 3000, 6);
-
-			PlayerTrashmaster[playerid] = random(sizeof(GarbageLocations));
-            GPS_SetPlayerRaceCheckPoint(playerid, 1, GarbageLocations[PlayerTrashmaster[playerid]][0], GarbageLocations[PlayerTrashmaster[playerid]][1], GarbageLocations[PlayerTrashmaster[playerid]][2], 0.0, 0.0, 0.0);
-		}
-	}
 	if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {
 		if(PlayerTakingLicense[playerid])
@@ -3537,20 +3520,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 		}
 	}
-	// TRASHMASTER:
+	// GARBAGEMAN:
 	if (newkeys & KEY_WALK && !IsPlayerInAnyVehicle(playerid))
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == true && PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] == 0)
+		if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN])
 		{
-			if(IsPlayerInRangeOfPoint(playerid, 3.0, GarbageLocations[PlayerTrashmaster[playerid]][0], GarbageLocations[PlayerTrashmaster[playerid]][1], GarbageLocations[PlayerTrashmaster[playerid]][2]))
-			{
-				PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] = 1;
-				Trashmaster_FetchNewPoint(playerid);
-
-				ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
-				SetPlayerAttachedObject(playerid, ATTACH_HAND, 1265, 6, 0.272000,0.041000,0.000000,0.000000,-58.600017,0.000000,0.500000,0.500000,0.500000);
-			}
-			else return SendErrorMessage(playerid, "You aren't near trashcan pickup.");
+			CollectGarbage(playerid);
 		}
 	}
 	// PLAYER GYM:
@@ -3853,42 +3828,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], x2, y2, z+1.2, 10.0+random(4));
 				ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 				CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_SHOOT] = 0;
-			}
-		}
-	}
-	if(newkeys == KEY_LOOK_BEHIND)
-	{
-		new vehicleid = GetPlayerVehicleID(playerid);
-		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
-        {
-			if(GetVehicleModel(vehicleid) == 530)
-            {
-				StartMainJobs(playerid, 1);
-			} 
-			else if(GetVehicleModel(vehicleid) == 408)
-            {
-				StartMainJobs(playerid, 2);
-			} 
-			else if(GetVehicleModel(vehicleid) == 498)
-            {
-				StartMainJobs(playerid, 3);
-			} 
-			else if(IsPlayerInDMVVehicle(playerid))
-			{
-				if(PlayerTakingLicense[playerid])
-					return SendErrorMessage(playerid, "You're already in middle of a test.");
-
-				PlayerTakingLicense[playerid] = true; 
-				PlayerLicenseTime[playerid] = 60;
-				
-				PlayersLicenseVehicle[playerid] = vehicleid;
-				PlayerLicensePoint[playerid] = 0; 
-				
-				ToggleVehicleEngine(vehicleid, true); 
-				VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = true;
-				
-				SendClientMessage(playerid, COLOR_GREY, "License instructor says: Follow the checkpoints and the rules of the road.");
-				GPS_SetPlayerRaceCheckPoint(playerid, 1, LicensetestInfo[0][E_CHECKPOINTX], LicensetestInfo[1][E_CHECKPOINTY], LicensetestInfo[2][E_CHECKPOINTZ], 0.0, 0.0, 0.0, GPS_DMV); 
 			}
 		}
 	}
@@ -4197,20 +4136,13 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			SendClientMessageEx(playerid, COLOR_WHITE, "Welcome to your %s.", ReturnVehicleName(GetPlayerVehicleID(playerid)));
 			
 		for(new i = 0; i < sizeof dmv_vehicles; i++) if(GetPlayerVehicleID(playerid) == dmv_vehicles[i])
-			ShowBoxMessage(playerid, "This vehicle is part of the departement of motor vehicles. in order to start it, press 2.", 5); 
+			SendTipMessage(playerid, "This vehicle is part of departement of motor vehicles. in order to start it '/licenseexam'.");
 
 		if((Jobs_vehicles[7] <= vehicleid <= Jobs_vehicles[11]))
-			ShowBoxMessage(playerid, "This vehicle is part of the dockworker job. in order to start it, press 2.", 5);
-
-		if((Jobs_vehicles[12] <= vehicleid <= Jobs_vehicles[14]))
-		{
-			Trashmaster_FetchNewPoint(playerid);
-			ShowBoxMessage(playerid, "This vehicle is part of the trashmaster job. in order to start it, press 2.", 5);
-		}
+			SendTipMessage(playerid, "This vehicle is part of dockworker job. in order to start it '/jobduty'.");
 
 		if(IsABoat(vehicleid))
 		{
-			ShowBoxMessage(playerid, "You are now entering boat, /fish to start fishing.", 5, 2);
 			SendTipMessage(playerid, "You are now entering boat, /fish to start fishing.");
 		}
 	}

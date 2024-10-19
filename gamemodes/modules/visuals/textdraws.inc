@@ -414,20 +414,6 @@ CreateBarInfoTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, GameBar[0][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, GameBar[0][playerid], 0);
 
-	GameBar[1][playerid] = CreatePlayerTextDraw(playerid, 500.000000, 117.000000, "mdl-2001:15");
-	PlayerTextDrawFont(playerid, GameBar[1][playerid], 4);
-	PlayerTextDrawLetterSize(playerid, GameBar[1][playerid], 0.600000, 2.000000);
-	PlayerTextDrawTextSize(playerid, GameBar[1][playerid], 107.500000, 12.500000);
-	PlayerTextDrawSetOutline(playerid, GameBar[1][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, GameBar[1][playerid], 0);
-	PlayerTextDrawAlignment(playerid, GameBar[1][playerid], 3);
-	PlayerTextDrawColor(playerid, GameBar[1][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, GameBar[1][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, GameBar[1][playerid], 50);
-	PlayerTextDrawUseBox(playerid, GameBar[1][playerid], 1);
-	PlayerTextDrawSetProportional(playerid, GameBar[1][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, GameBar[1][playerid], 0);
-
 	barinfotd[0][playerid] = CreatePlayerTextDraw(playerid, 59.000000, 175.000000, "_");
 	PlayerTextDrawFont(playerid, barinfotd[0][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, barinfotd[0][playerid], 0.558332, 1.250002);
@@ -485,6 +471,7 @@ CreateBarInfoTextDraws(playerid)
 	PlayerTextDrawSetSelectable(playerid, barinfotd[3][playerid], 0);
 
 	HeaderBar[playerid] = CreatePlayerProgressBar(playerid, 502.000000, 119.000000, 108.500000, 9.000000, -1, 100.000000, 0);
+	SetPlayerProgressBarValue(playerid, HeaderBar[playerid], 0.0);
 }
 
 CreateVehicleTextDraws(playerid)
@@ -1067,8 +1054,8 @@ stock HideVehicleSpeedometer(playerid)
 
 stock ShowGameBar(playerid, value, header[])
 {
+	ShowPlayerProgressBar(playerid, HeaderBar[playerid]);
 	PlayerTextDrawShow(playerid, GameBar[0][playerid]);
-	PlayerTextDrawShow(playerid, GameBar[1][playerid]);
 	PlayerTextDrawShow(playerid, GameBar[2][playerid]);
 	PlayerTextDrawSetString(playerid, GameBar[0][playerid], header);
 	SetPlayerGameBar(playerid, value);
@@ -1078,8 +1065,8 @@ stock ShowGameBar(playerid, value, header[])
 stock DestroyGameBar(playerid)
 {
 	PlayerTextDrawHide(playerid, GameBar[0][playerid]);
-	PlayerTextDrawHide(playerid, GameBar[1][playerid]);
 	PlayerTextDrawHide(playerid, GameBar[2][playerid]);
+	HidePlayerProgressBar(playerid, HeaderBar[playerid]);
 	return 1;
 }
 

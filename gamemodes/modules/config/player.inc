@@ -192,6 +192,7 @@ function:ResetPlayer(playerid)
 	
 	KillTimer(cameraTimer[playerid]);
 
+	HeaderBar[playerid] = INVALID_PLAYER_BAR_ID;
 	//Master accounts:
 	AccountInfo[playerid][E_MASTERS_DBID] = 0; 
 	AccountInfo[playerid][E_MASTERS_LOGGED] = false; 
@@ -385,7 +386,7 @@ function:ResetPlayer(playerid)
     PlayerInfo[playerid][E_CHARACTER_JOBSTIME] = 0;
     PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = false;
 	PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
-	PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] = 0;
+	PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] = 0;
 
 	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
 	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;

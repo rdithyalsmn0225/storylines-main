@@ -54,3 +54,26 @@ stock StopDriverstest(playerid)
 	GPS_DisablePlayerRaceCheckPoint(playerid);
 	return 1;
 }
+
+CMD:licenseexam(playerid, params[])
+{
+	new vehicleid = IsPlayerInAnyVehicle(playerid);
+	if(IsPlayerInDMVVehicle(playerid))
+    {
+        if(PlayerTakingLicense[playerid])
+            return SendErrorMessage(playerid, "You're already in middle of a test.");
+
+        PlayerTakingLicense[playerid] = true; 
+        PlayerLicenseTime[playerid] = 60;
+        
+        PlayersLicenseVehicle[playerid] = vehicleid;
+        PlayerLicensePoint[playerid] = 0; 
+        
+        ToggleVehicleEngine(vehicleid, true); 
+        VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = true;
+        
+        SendClientMessage(playerid, COLOR_GREY, "License instructor says: Follow the checkpoints and the rules of the road.");
+        GPS_SetPlayerRaceCheckPoint(playerid, 1, LicensetestInfo[0][E_CHECKPOINTX], LicensetestInfo[1][E_CHECKPOINTY], LicensetestInfo[2][E_CHECKPOINTZ], 0.0, 0.0, 0.0, GPS_DMV); 
+    }
+	return 1;
+}

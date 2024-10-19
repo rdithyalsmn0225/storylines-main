@@ -1706,10 +1706,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 7:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Jobs Commands __________|");
-						SendClientMessage(playerid, COLOR_SERVER, "/takejobs, /quitjobs, /loadcargo, /storecargo, /collectgarbage");
+						SendClientMessage(playerid, COLOR_SERVER, "/takejobs, /quitjobs, /jobduty, /loadcargo, /storecargo");
+						SendClientMessage(playerid, COLOR_SERVER, "/collectgarbage, /dumpgarbage");
 						SendClientMessage(playerid, COLOR_SERVER, "/fish, /sellfish, /buybait");
-						SendClientMessage(playerid, COLOR_SERVER, "Press '2' start sidejobs");
-						SendClientMessage(playerid, COLOR_SERVER, "Press 'ALT' collect trashcan");
+						SendClientMessage(playerid, COLOR_SERVER, "Press 'ALT' collect garbage");
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRUCKER)
 						{
 							SendClientMessage(playerid, COLOR_SERVER, "/tpda, /cargobuy, /cargosell, /cargodrop");

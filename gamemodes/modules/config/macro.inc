@@ -58,11 +58,11 @@
 #define MAX_SERVERDATA				(50)
 #define MAX_CONTACTS				(20)
 #define MAX_COURT					(20)
-#define MAX_GARBAGE					(20)
 #define MAX_RELATIONS 				(100)
 #define MAX_TREES 					(100)
 #define MAX_PROPERTY_STORAGE 		(10)
 #define MAX_FURNITURE 				(300)
+#define MAX_GARBAGE 				(100)
 
 
 LoadCustomModels()

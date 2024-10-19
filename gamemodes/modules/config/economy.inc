@@ -1,5 +1,5 @@
 //SALARY JOBS
-#define TRASHMASTER_SALARY      3
+#define TRASHMASTER_SALARY      5
 #define DOCKWORKER_SALARY       25
 #define FISHING_SALARY          10
 #define LUMBERJACK_SALARY       25

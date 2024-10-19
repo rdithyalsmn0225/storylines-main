@@ -106,30 +106,6 @@ function:PlayersUpdates()
 				}
 			}
 				
-			if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == true && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
-        	{
-				PlayerInfo[playerid][E_CHARACTER_JOBSTIME]--; 
-					
-				new	str[128];
-					
-				format(str, sizeof(str), "~w~%d", PlayerInfo[playerid][E_CHARACTER_JOBSTIME]);
-				GameTextForPlayer(playerid, str, 2000, 3); 
-					
-				if(PlayerInfo[playerid][E_CHARACTER_JOBSTIME] < 1)
-				{
-					SetVehicleToRespawnEx(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
-					
-					PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = false;
-					PlayerInfo[playerid][E_CHARACTER_JOBSTIME] = 0;
-					PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = -1;
-					RemovePlayerAttachedObject(playerid, ATTACH_HAND);
-					RemovePlayerFromVehicle(playerid);
-					RemovePlayerAttachedObject(playerid, ATTACH_HAND);
-					GPS_DisablePlayerRaceCheckPoint(playerid);
-					
-					ShowBoxMessage(playerid, "~w~Trashmaster job stopped.", 5, 2);
-				}
-			}
 			if(PlayerTakingLicense[playerid] && PlayerLicenseTime[playerid] <= 60)
 			{
 				PlayerLicenseTime[playerid]--; 

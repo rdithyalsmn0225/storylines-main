@@ -1,21 +1,76 @@
 
-InsertTrashmaster()
+function:GarbageTimers()
 {
-    for(new i = 0; i < sizeof(GarbageLocations); i++)
-    {
-        Garbage[i] = CreateDynamicPickup(1265, 1, GarbageLocations[i][0], GarbageLocations[i][1], GarbageLocations[i][2], -1, -1, -1, 3.0);
+    GarbageCount = 0;
+    for (new i = 0; i < sizeof(Garbage_Locations); i++) {
+        if (GarbageCount >= MAX_GARBAGE) break;
+        
+        new Float:x = Garbage_Locations[i][0];
+        new Float:y = Garbage_Locations[i][1];
+        new Float:z = Garbage_Locations[i][2];
+        new Float:rx = Garbage_Locations[i][3];
+        new Float:ry = Garbage_Locations[i][4];
+        new Float:rz = Garbage_Locations[i][5];
+
+        GarbageObject[GarbageCount] = CreateDynamicObject(2672, x, y, z, rx, ry, rz, -1, -1, -1, 800.0, 800.0);
+        GarbageCount++;
     }
     return 1;
 }
 
-Trashmaster_FetchNewPoint(playerid) 
+stock CollectGarbage(playerid) 
 {
-    if(PlayerInfo[playerid][E_CHARACTER_TRASHMASTER_VALUE] == 1)
+    new Float:x, Float:y, Float:z;
+    GetPlayerPos(playerid, x, y, z);
+
+    for (new i = 0; i < GarbageCount; i++) 
     {
-        new Float:x, Float:y, Float:z;
-		GetVehiclePos(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], x, y, z);
-		GetVehicleBoot(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], x, y, z);
-		GPS_SetPlayerRaceCheckPoint(playerid, 1, x, y, z, 0.0, 0.0, 0.0, GPS_GARBAGE);
+        if (IsValidDynamicObject(GarbageObject[i])) 
+        {
+            new Float:gx, Float:gy, Float:gz;
+            GetDynamicObjectPos(GarbageObject[i], gx, gy, gz);
+
+            if (GetDistanceBetweenPoints(x, y, z, gx, gy, gz) <= 2.0) 
+            { 
+                DestroyDynamicObject(GarbageObject[i]);
+                GarbageObject[i] = INVALID_OBJECT_ID;
+                PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]++;
+
+                if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] >= 30)
+                    return SendTipMessage(playerid, "Your garbage bag is full, take it to the HQ and empty it");
+
+                SendServerMessage(playerid, "You've picked up rubbish, current garbage bag %d x rubbish.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]);
+                SendTipMessage(playerid, "You can empty your garbage bag in HQ by type '/dumpgarbage'");
+                return 1;
+            }
+            else return SendErrorMessage(playerid, "There is no rubbish in here.");
+        }
+    }
+    
+    return 1;
+}
+
+CMD:collectgarbage(playerid, params[])
+{
+    if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN])
+    {
+        CollectGarbage(playerid);
+    }
+    return 1;
+}
+
+CMD:dumpgarbage(playerid, params[])
+{
+    if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN])
+    {
+        if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE])
+        {
+            new total = (PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] * 2);
+
+            GiveMoney(playerid, total);
+            SendServerMessage(playerid, "You've empty your garbage bag, current garbage bag %d x rubbish and earn $%s.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE], FormatMoney(total));
+            PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] = 0;
+        }
     }
     return 1;
 }
