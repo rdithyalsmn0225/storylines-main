@@ -34,19 +34,19 @@ stock CollectGarbage(playerid)
             { 
                 DestroyDynamicObject(GarbageObject[i]);
                 GarbageObject[i] = INVALID_OBJECT_ID;
+
                 PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]++;
 
                 if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] >= 30)
                     return SendTipMessage(playerid, "Your garbage bag is full, take it to the HQ and empty it");
 
+                ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 0);
                 SendServerMessage(playerid, "You've picked up rubbish, current garbage bag %d x rubbish.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]);
                 SendTipMessage(playerid, "You can empty your garbage bag in HQ by type '/dumpgarbage'");
                 return 1;
             }
-            else return SendErrorMessage(playerid, "There is no rubbish in here.");
         }
     }
-    
     return 1;
 }
 
@@ -71,6 +71,15 @@ CMD:dumpgarbage(playerid, params[])
             SendServerMessage(playerid, "You've empty your garbage bag, current garbage bag %d x rubbish and earn $%s.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE], FormatMoney(total));
             PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] = 0;
         }
+    }
+    return 1;
+}
+
+CMD:garbage(playerid, params[])
+{
+    if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN])
+    {
+        ShowGarbageLocation(playerid);
     }
     return 1;
 }

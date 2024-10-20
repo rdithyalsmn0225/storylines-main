@@ -831,7 +831,8 @@ new DrugsDealerType[MAX_PLAYERS],
 	DrugsDealerActor[MAX_PLAYERS],
 	Float: DrugsDealerPos[MAX_PLAYERS][4];
 
-new GarbageCount, GarbageObject[MAX_GARBAGE];
+new GarbageCount, 
+	GarbageObject[MAX_GARBAGE];
 
 new g_aLspdSkins[] = {
 	300, 301, 302, 310, 311, 20071, 20072, 20073, 20074
@@ -887,7 +888,7 @@ new Float: Dockworker_Store[][3] =
 };
 
 // GARBAGEMAN
-new Garbage_Locations[][6] = {
+new Float: Garbage_Locations[][6] = {
     {1930.578857, -1924.203002, 12.826881, 0.0, 0.0, 0.0},  // Lokasi 1
     {1941.571655, -1963.175292, 12.826881, 0.0, 0.0, 0.0},  // Lokasi 2
     {2027.864868, -1912.257812, 12.824050, 0.0, 0.0, 0.0},  // Lokasi 3

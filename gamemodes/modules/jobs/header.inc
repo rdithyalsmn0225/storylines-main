@@ -43,7 +43,9 @@ stock StartMainJobs(playerid, type)
                 {
                     PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = true;
                     SetPlayerSkin(playerid, 16);
+
                     SendTipMessage(playerid, "To start garbageman jobs press 'ALT' or '/collectgarbage' nearest the trash objects.");
+                    SendTipMessage(playerid, "To find the rubbish '/garbage' will show in your map.");
                     SendTipMessage(playerid, "To empty your garbage bag '/dumpgarbage' in HQ");
                 }
                 else if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == true) //Stop

@@ -158,7 +158,7 @@ function:PlayersUpdates()
 				if(VehicleInfo[vehicleid][E_VEHICLE_LIGHTS] == false)
 				{
 					format(stru, sizeof(stru), "~r~D");
-					format(stru, sizeof(stru), "~r~/~n~/~n~/");
+					format(stra, sizeof(stra), "~r~/~n~/~n~/");
 				}
 				else
 				{

@@ -1,6 +1,6 @@
 stock ShowPublicLocation(playerid)
 {
-	new str[1024];
+	new str[1524];
 	format(str, sizeof(str), "Name\tDistance\n");
 	forex(i, sizeof(PublicName))
 	{
@@ -21,13 +21,13 @@ Dialog:GpsPublic(playerid, response, listitem, inputtext[])
 
 stock ShowTreeLocation(playerid)
 {
-	new str[1012];
+	new str[1524];
 	format(str, sizeof(str), "Index\tStatus\tDistance\n");
 	forex(i, MAX_TREES) if(TreeInfo[i][E_TREE_EXISTS])
 	{
 		if(TreeInfo[i][E_TREE_TIMER] > 0)
 		{
-			format(str, sizeof(str), "%s%d\t%d seconds\t%.2f Meter\n", str, i, TreeInfo[i][E_TREE_TIMER], GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
+			format(str, sizeof(str), "%s%d\tUnavailable\t%.2f Meter\n", str, i, GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
 		}
 		else
 		{
@@ -35,6 +35,36 @@ stock ShowTreeLocation(playerid)
 		}
 	}
 	return Dialog_ShowPages(playerid, GpsTree, DIALOG_STYLE_TABLIST_HEADERS, "Tree Location", str, "Find", "Close");
+}
+
+stock ShowGarbageLocation(playerid)
+{
+	new str[1524];
+	format(str, sizeof(str), "Index\tStatus\tDistance\n");
+	forex(i, sizeof(Garbage_Locations))
+	{
+		for (new a = 0; a < GarbageCount; a++) 
+    	{
+			if(GarbageObject[a] != INVALID_OBJECT_ID)
+			{
+				format(str, sizeof(str), "%s%d\tAvailable\t%.2f Meter\n", str, i, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[i][0], Garbage_Locations[i][1], Garbage_Locations[i][2]));
+			}
+			else
+			{
+				format(str, sizeof(str), "%s%d\tUnavailable\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[i][0], Garbage_Locations[i][1], Garbage_Locations[i][2]));
+			}
+		}
+	}
+	return Dialog_ShowPages(playerid, GpsGarbage, DIALOG_STYLE_TABLIST_HEADERS, "Garbage Location", str, "Find", "Close");
+}
+
+Dialog:GpsGarbage(playerid, response, listitem, inputtext[])
+{
+	if (response)
+	{
+		GPS_SetPlayerRaceCheckPoint(playerid, 1, Garbage_Locations[listitem][0], Garbage_Locations[listitem][1], Garbage_Locations[listitem][2], 0.0, 0.0, 0.0);
+	}
+	return 1;
 }
 
 Dialog:GpsTree(playerid, response, listitem, inputtext[])
@@ -48,7 +78,7 @@ Dialog:GpsTree(playerid, response, listitem, inputtext[])
 
 stock ShowENEXLocation(playerid)
 {
-	new str[1024];
+	new str[1524];
 	format(str, sizeof(str), "Name\tDistance\n");
 	forex(i, sizeof(ENEXName))
 	{
@@ -69,7 +99,7 @@ Dialog:GpsEnex(playerid, response, listitem, inputtext[])
 
 stock ShowJobLocation(playerid)
 {
-	new str[1024];
+	new str[1524];
 	format(str, sizeof(str), "Name\tDistance\n");
 	forex(i, sizeof(JobLocName))
 	{
@@ -90,7 +120,7 @@ Dialog:GpsJobs(playerid, response, listitem, inputtext[])
 
 stock ShowBusinessLocation(playerid)
 {
-	new str[1024];
+	new str[1524];
 	format(str, sizeof(str), "Name\tDistance\n");
 	forex(i, MAX_BUSINESS) if(BusinessInfo[i][E_BUSINESS_EXISTS] && BusinessInfo[i][E_BUSINESS_TYPE] != BUSINESS_TYPE_ACID && BusinessInfo[i][E_BUSINESS_TYPE] != BUSINESS_TYPE_GUNSTORE)
 	{

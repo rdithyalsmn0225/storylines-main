@@ -36,6 +36,14 @@ DestroyPlayerActor(playerid)
 	return 1;
 }
 //Static
+
+InsertSideJobs()
+{
+    CreateDynamicPickup(1210, 1, 1529.5608,-1849.4032,13.5469, -1, -1, -1, 5.0);
+    CreateDynamic3DTextLabel("[Garbageman]\n{ffffff}Available commands: /jobduty, /collectgarbage, /dumpgarbage", COLOR_POINT, 1529.5608,-1849.4032,13.5469, 5.0);
+    CreateDynamicPickup(1210, 1, 2748.7725,-2451.0012,13.6484, -1, -1, -1, 5.0);
+    CreateDynamic3DTextLabel("[Dockworker]\n{ffffff}Available commands: /jobduty, /takecargo, /storecargo", COLOR_POINT, 2748.7725,-2451.0012,13.6484, 5.0);
+}
 Insert3DTextLabel()
 {
     new str1[512], str2[512]; 
@@ -562,6 +570,14 @@ RemoveObjects(playerid)
 
 stock InsertObjects()
 {
+    //Garbageman
+    tmpobjid = CreateDynamicObject(1411, 1536.800292, -1842.484375, 14.106877, 0.000000, 0.000000, 180.000000, -1, -1, -1, 800.00, 800.00); 
+    tmpobjid = CreateDynamicObject(1411, 1531.619018, -1842.484375, 14.106877, 0.000000, 0.000000, 180.000000, -1, -1, -1, 800.00, 800.00); 
+    tmpobjid = CreateDynamicObject(1411, 1522.150146, -1842.484375, 14.106877, 0.000000, 0.000000, 180.000000, -1, -1, -1, 800.00, 800.00); 
+    tmpobjid = CreateDynamicObject(1411, 1516.910644, -1842.484375, 14.106877, 0.000000, 0.000000, 180.000000, -1, -1, -1, 800.00, 800.00); 
+    tmpobjid = CreateDynamicObject(1411, 1511.710693, -1842.484375, 14.106877, 0.000000, 0.000000, 180.000000, -1, -1, -1, 800.00, 800.00); 
+    tmpobjid = CreateDynamicObject(1411, 1506.510986, -1842.484375, 14.106877, 0.000000, 0.000000, 180.000000, -1, -1, -1, 800.00, 800.00); 
+    tmpobjid = CreateDynamicObject(1411, 1503.030517, -1847.925903, 14.106877, 0.000000, 0.000000, 270.000000, -1, -1, -1, 800.00, 800.00); 
     //Industrial
     tmpobjid = CreateDynamicObject(19482, 2610.919921, -2443.353027, 16.571224, 0.000000, 0.000000, 90.000000, -1, -1, -1, 800.00, 800.00); 
     SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}F&M FACTORIES", 120, "Ariel", 40, 1, 0x00000000, 0x00000000, 1);

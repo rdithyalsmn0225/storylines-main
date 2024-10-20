@@ -175,6 +175,7 @@ public OnGameModeInit()
 	
 	//Insert:
 	InsertObjects();
+	InsertSideJobs();
 	InsertASGHMaps();
 	InsertEmmetInit();
 	InsertJobsPoint();
