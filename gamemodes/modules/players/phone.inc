@@ -35,7 +35,7 @@ stock Send911Message(playerid, type)
 function:SendTaxiMessage(playerid)
 {
 	PlayerInfo[playerid][E_CHARACTER_TAXICALLED] = 1;
-	SendClientMessage(playerid, COLOR_GREY, "[!] They picked up. The taxi department has been notified of your call.");
+	SendErrorMessage(playerid, "They picked up. The taxi department has been notified of your call.");
 
 	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_TAXIDUTY])
 	{
@@ -55,7 +55,7 @@ function:SendTaxiMessage(playerid)
 
 function:On911Call(playerid)
 {
-	SendClientMessage(playerid, COLOR_GREY, "[!] They picked up. You can talk now by using the chat box.");
+	SendErrorMessage(playerid, "They picked up. You can talk now by using the chat box.");
 	Player911Timer[1][playerid] = SetTimerEx("On911Pickup", 1500, false, "i", playerid);
 	return 1;
 }
@@ -75,7 +75,7 @@ function:OnPhoneCall(playerid, type)
 	{
 		case 1:
 		{
-			SendClientMessage(playerid, COLOR_GREY, "[!] The number you dialed is out of service."); 
+			SendErrorMessage(playerid, "The number you dialed is out of service."); 
 			playerPhone[playerid] = 0;
 			
 			if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USECELLPHONE){
@@ -86,7 +86,7 @@ function:OnPhoneCall(playerid, type)
 		}
 		case 2:
 		{
-			SendClientMessage(playerid, COLOR_GREY, "[!] The number you dialed cannot be reached at this time.");
+			SendErrorMessage(playerid, "The number you dialed cannot be reached at this time.");
 			playerPhone[playerid] = 0;
 			
 			if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USECELLPHONE){
@@ -97,7 +97,7 @@ function:OnPhoneCall(playerid, type)
 		}
 		case 3:
 		{
-			SendClientMessage(playerid, COLOR_GREY, "[!] You received a busy tone.");
+			SendErrorMessage(playerid, "You received a busy tone.");
 			playerPhone[playerid] = 0;
 			
 			if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USECELLPHONE){
@@ -108,7 +108,7 @@ function:OnPhoneCall(playerid, type)
 		}
 		case 4:
 		{
-			SendClientMessage(playerid, COLOR_GREY, "[!] You received a busy tone.");
+			SendErrorMessage(playerid, "You received a busy tone.");
 			playerPhone[playerid] = 0;
 			ShowPhone(playerid, 3);
 			
@@ -139,34 +139,39 @@ function:OnPhoneSMS(playerid, type, playerb, text[])
 	{
 		case 1:
 		{
-			SendClientMessage(playerid, COLOR_GREY," [!] Your text failed to deliver."); 
+			SendErrorMessage(playerid, "Your text failed to deliver."); 
 			playerText[playerid] = 0; 
 			return 1; 
 		}
 		case 2:
 		{
-			SendClientMessage(playerid, COLOR_GREY, "[!] Your text failed to deliver."); 
+			SendErrorMessage(playerid, "Your text failed to deliver."); 
 			playerText[playerid] = 0; 
 			return 1;
 		}
 		case 3:
 		{
-			if(!IsPlayerConnected(playerb)) //Possible they disconnect while timer plays;
+			if(!IsPlayerConnected(playerb))
 			{
-				SendClientMessage(playerid, COLOR_GREY, "[!] Your text failed to deliver."); 
+				SendErrorMessage(playerid, "Your text failed to deliver."); 
 				playerText[playerid] = 0; 
 				return 1;
 			}
 			
-			SendClientMessage(playerid, COLOR_GREY, "[!] Your text message delivered."); 
+			SendErrorMessage(playerid, "Your text message delivered."); 
 			
 			if(strlen(text) > 80)
 			{
-				SendClientMessageEx(playerb, COLOR_WHITE, "SMS: {73B3ED}%.80s ...", text, PlayerInfo[playerid][E_CHARACTER_PHONE]); 
-				SendClientMessageEx(playerb, COLOR_WHITE, "SMS: {73B3ED}...%s, {ffffff}Sender: %i", text[80], PlayerInfo[playerid][E_CHARACTER_PHONE]); 
+				SendClientMessageEx(playerb, COLOR_WHITE, "SMS From: {96b0ff}%i", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
+				SendClientMessageEx(playerb, COLOR_WHITE, "SMS: {96b0ff}%.80s ...", text); 
+				SendClientMessageEx(playerb, COLOR_WHITE, "Message: {96b0ff}...%s", text[80], PlayerInfo[playerid][E_CHARACTER_PHONE]); 
 			}
-			else SendClientMessageEx(playerb, COLOR_WHITE, "SMS: {73B3ED}%s, {ffffff}Sender: %i", text, PlayerInfo[playerid][E_CHARACTER_PHONE]);
-			
+			else 
+			{
+				SendClientMessageEx(playerb, COLOR_WHITE, "SMS From: {96b0ff}%i", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
+				SendClientMessageEx(playerb, COLOR_WHITE, "Message: {96b0ff}%s", text, PlayerInfo[playerid][E_CHARACTER_PHONE]);
+			}
+
 			playerText[playerid] = 0;
 			return 1;
 		}

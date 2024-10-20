@@ -435,21 +435,27 @@ CMD:engine(playerid, params[])
 
 function:TurnEngine(playerid, vehicleid)
 {
-	new dotCount[MAX_PLAYERS] = {0};
+	new dotCount[MAX_PLAYERS] = 0;
+	new message[32];
+	dotCount[playerid]++;
+	
+	if(dotCount[playerid] >= 4)
+    	format(message, sizeof(message), "~g~Turn on engine....");
+	if(dotCount[playerid] >= 3)
+    	format(message, sizeof(message), "~g~Turn on engine...");
+	if(dotCount[playerid] >= 2)
+    	format(message, sizeof(message), "~g~Turn on engine..");
+	if(dotCount[playerid] >= 1)
+    	format(message, sizeof(message), "~g~Turn on engine.");
+
+	ShowBoxMessage(playerid, message, 5);
 
 	if (dotCount[playerid] >= 5) 
 	{
-        KillTimer(PlayerEngineTimer[playerid]);
-        dotCount[playerid] = 0;
         SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {5B9460}Started");
 		ToggleVehicleEngine(vehicleid, true); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = true;
-        return 1;
+		KillTimer(PlayerEngineTimer[playerid]);
+        dotCount[playerid] = 0;
     }
-
-	new message[32];
-    format(message, sizeof(message), "Turn on engine%s", Repeat(".", dotCount[playerid]));
-	ShowBoxMessage(playerid, message, 5);
-
-	dotCount[playerid]++;
 	return 1;
 }

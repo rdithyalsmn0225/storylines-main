@@ -37,7 +37,7 @@ function:OnPlayerFinishRobbery(playerid, actorid, type)
 		}
 		else
 		{
-			SendInfoMessage(playerid, "You have successfully robbed the business for take the cash from cashiers!");
+			SendServerMessage(playerid, "BUSINESS: {ffffff}You have successfully robbed the business for take the cash from cashiers!");
 
 			BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] = 5;
 			BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = true;

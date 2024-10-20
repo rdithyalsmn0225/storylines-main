@@ -445,8 +445,8 @@ function:CheckBanList(playerid)
 	}
 	else
 	{
-		SendInfoMessage(playerid, "Your IP \"%s\" is banned from our servers.", ReturnIP(playerid));
-		SendInfoMessage(playerid, "You may appeal your ban on our forums."); 
+		SendServerMessage(playerid, "BANNED: {ffffff}Your IP \"%s\" is banned from our servers.", ReturnIP(playerid));
+		SendServerMessage(playerid, "BANNED: {ffffff}You may appeal your ban on our forums."); 
 		return KickEx(playerid);
 	}
 	return 1;
@@ -528,17 +528,17 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 			{
 				if(TreeInfo[i][E_TREE_CUTTED])
 				{
-					format(str, sizeof(str), "Press ALT to load the timber.");
+					format(str, sizeof(str), "Press '~r~ALT~w~' to load the timber.");
 				}
 				else
 				{
 					if(TreeInfo[i][E_TREE_TIMER] < 1)
 					{
-						format(str, sizeof(str), "Available to cut~n~Press ALT to begin.");
+						format(str, sizeof(str), "Available to cut~n~Press '~r~ALT~w~' to begin.");
 					}
 					else
 					{
-						format(str, sizeof(str), "Available in: %d seconds", TreeInfo[i][E_TREE_TIMER]);
+						format(str, sizeof(str), "Available in: ~g~%d~w~ seconds", TreeInfo[i][E_TREE_TIMER]);
 					}
 				}
 				ShowBoxMessage(playerid, str, 5);
@@ -896,8 +896,8 @@ function:Query_CheckBannedAccount(playerid)
 		cache_get_value_name(0, "Date", banDate, 90);
 		cache_get_value_name(0, "BannedBy", banner, 32);
 	
-		SendInfoMessage(playerid, "{ffffff}Your account \"%s\" is banned from our server.", ReturnSettingsName(playerid, playerid));
-		SendInfoMessage(playerid, "You were banned on %s by %s.", banDate, banner); 
+		SendServerMessage(playerid, "BANNED: {ffffff}Your account %s is banned from our server.", ReturnSettingsName(playerid, playerid));
+		SendServerMessage(playerid, "BANNED: {ffffff}You were banned on %s by %s.", banDate, banner); 
 		return KickEx(playerid);
 	}
 	return 1;
@@ -3834,32 +3834,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	}
 	if ((newkeys & KEY_FIRE) && (newkeys & KEY_LOOK_BEHIND) && (IsPlayerInAnyVehicle(playerid)))
 	{
-		new vehicleid = GetPlayerVehicleID(playerid);
-		if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
-        {
-			if (!IsEngineVehicle(vehicleid))
-				return SendErrorMessage(playerid, "You are not in any vehicle.");
-
-			if(VehicleInfo[vehicleid][E_VEHICLE_IMPOUND])
-				return SendErrorMessage(playerid, "Your vehicle is impounded.");
-
-			if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] < 1 && !VehicleInfo[vehicleid][E_VEHICLE_ADMIN])
-				return SendClientMessage(playerid, COLOR_RED, "Vehicle is out of fuel!"); 
-
-			if (ReturnVehicleHealth(vehicleid) > 350)
-			{
-				if(!VehicleInfo[vehicleid][E_VEHICLE_ENGINE])
-				{
-					SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s started the engine of the %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(vehicleid)); 
-					SetTimerEx("TurnEngine", 2000, false, "d", vehicleid);
-				}
-				else
-				{
-					SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s stopped the engine of the %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(vehicleid)); 
-					ToggleVehicleEngine(vehicleid, false); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = false;
-				}
-			}
-		}
+		cmd_engine(playerid, "");
 	}
 	if(newkeys == KEY_FIRE)
 	{

@@ -22,7 +22,7 @@ function:OnBusinessInteriorChange(playerid, response, businessid)
 	
 		SaveBusiness(businessid); 
 	}
-	else return SendInfoMessage(playerid, "You cancelled."); 
+	else return SendErrorMessage(playerid, "You cancelled."); 
 	return 1; 
 }
 
@@ -158,7 +158,7 @@ function:OnBusinessEntranceChange(playerid, response, businessid)
 		SendInfoMessage(playerid, "You changed Business #%i's entrance.", businessid);
 		SaveBusiness(businessid); 
 	}
-	else return SendInfoMessage(playerid, "You cancelled.");
+	else return SendErrorMessage(playerid, "You cancelled.");
 	return 1;
 }
 
@@ -174,7 +174,7 @@ function:OnBusinessPointChange(playerid, response, businessid, Float:x, Float:y,
 		SendInfoMessage(playerid, "You changed Business #%i's point.", businessid);
 		SaveBusiness(businessid); 
 	}
-	else return SendInfoMessage(playerid, "You cancelled.");
+	else return SendErrorMessage(playerid, "You cancelled.");
 	return 1;
 }
 
@@ -331,7 +331,7 @@ function:OnSellBusiness(playerid, response, businessid)
 		
 		SaveBusiness(businessid); SaveCharacter(playerid); 
 	}
-	else return SendInfoMessage(playerid, "You cancelled selling your business.");
+	else return SendErrorMessage(playerid, "You cancelled selling your business.");
 	return 1;
 }
 

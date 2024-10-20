@@ -1070,7 +1070,7 @@ CMD:clearreports(playerid, params[])
 		format(string, sizeof(string), "{FFFFFF}Are you sure you want to clear ALL active reports?\n\nThere are {FF6347}%d{FFFFFF} report(s).", reportCount);
 		ConfirmDialog(playerid, "Confirmation", string, "ClearReports", reportCount); 
 	}
-	else return SendInfoMessage(playerid, "There are no active reports to clear.");
+	else return SendErrorMessage(playerid, "There are no active reports to clear.");
 	return 1;
 }
 
@@ -1155,7 +1155,7 @@ CMD:gotoentrance(playerid, params[])
 		
 	SetPlayerPosEx(playerid, EntranceInfo[id][E_ENTRANCE_POS][0], EntranceInfo[id][E_ENTRANCE_POS][1], EntranceInfo[id][E_ENTRANCE_POS][2]);
 	
-	SendInfoMessage(playerid, "You teleported to entrance %i.", id);
+	SendInfoMessage(playerid, "You teleported to entrance #%i.", id);
 	
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1182,7 +1182,7 @@ CMD:gotoproperty(playerid, params[])
 	SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
 	SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]);
 	
-	SendInfoMessage(playerid, "You teleported to Property %i.", id);
+	SendInfoMessage(playerid, "You teleported to Property #%i.", id);
 	
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1205,7 +1205,7 @@ CMD:gotobusiness(playerid, params[])
 		return SendErrorMessage(playerid, "The business you specified doesn't exist.");
 		
 	SetPlayerPosEx(playerid, BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][2]); 
-	SendInfoMessage(playerid, "You teleported to business %i.", id); 
+	SendInfoMessage(playerid, "You teleported to business #%i.", id); 
 	
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1343,7 +1343,7 @@ CMD:spawncar(playerid, params[])
 	if(sscanf(params, "iiiI(0)", modelid, color1, color2, siren))
 	{
 		SendUsageMessage(playerid, "/spawncar [model id] [color1] [color2] [siren default 0]");
-		SendInfoMessage(playerid, "These vehicles are temporary. Siren allows you to turn sirens on using horn."); 
+		SendTipMessage(playerid, "These vehicles are temporary. Siren allows you to turn sirens on using horn."); 
 		return 1;
 	}
 	
@@ -1910,7 +1910,7 @@ CMD:editfaction(playerid, params[])
 		if(type == 2) typeName = "Police";
 		if(type == 3) typeName = "Medical";
 		
-		SendInfoMessage(playerid, "You set faction %d's type to %s.", factionid, typeName);
+		SendInfoMessage(playerid, "You set faction #%d type to %s.", factionid, typeName);
 		SaveFaction(factionid);
 	}
 	else if(!strcmp(oneString, "color"))
@@ -1920,12 +1920,12 @@ CMD:editfaction(playerid, params[])
 		if(sscanf(secString, "x", hexcolor))
 		{
 			SendUsageMessage(playerid, "/editfaction factionid color [hexcode]");
-			SendInfoMessage(playerid, "This is the color faction chat is shown in. Example: 0x8D8DFFFF"); 
+			SendTipMessage(playerid, "This is the color faction chat is shown in. Example: 0x8D8DFFFF"); 
 			return 1;
 		}
 		
 		FactionInfo[factionid][E_FACTION_COLORHEX] = hexcolor;
-		SendInfoMessage(playerid, "You set faction %d's chat color to \"%x\". ", factionid, hexcolor);
+		SendInfoMessage(playerid, "You set faction #%d chat color to \"%x\". ", factionid, hexcolor);
 		
 		SaveFaction(factionid);
 	}
@@ -1941,7 +1941,7 @@ CMD:editfaction(playerid, params[])
 		
 		else FactionInfo[factionid][E_FACTION_SPAWNWORLD] = GetPlayerVirtualWorld(playerid);
 		
-		SendInfoMessage(playerid, "You changed faction %d's spawn point.", factionid); 
+		SendInfoMessage(playerid, "You changed faction #%d spawn point.", factionid); 
 
 		if(IsValidDynamicPickup(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]))
 			DestroyDynamicPickup(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]); 

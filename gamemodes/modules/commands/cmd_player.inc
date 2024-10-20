@@ -206,9 +206,9 @@ CMD:helpup(playerid, params[])
 
 CMD:pay(playerid, params[])
 {
-	new playerb, amount, emote[90], str[128]; 
+	new playerb, amount, str[128]; 
 
-	if(sscanf(params, "uiS('None')[90]", playerb, amount, emote))
+	if(sscanf(params, "ui", playerb, amount))
 		return SendUsageMessage(playerid, "/pay [playerid OR name] [amount] [emote (Optional)]");
 
 	if(!IsPlayerConnected(playerb))
@@ -227,18 +227,13 @@ CMD:pay(playerid, params[])
 		return SendErrorMessage(playerid, "You don't have that amount of money.");
 		
 	if(gettime() - playerLastpay[playerid] < 3)
-		return SendInfoMessage(playerid, "Please wait before paying again.");
+		return SendErrorMessage(playerid, "Please wait before paying again.");
 		
 	PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0); PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
 	playerLastpay[playerid] = gettime(); 
 	
-	SendClientMessageEx(playerid, COLOR_GREY, " You have sent %s, $%s.", ReturnSettingsName(playerb, playerid), FormatMoney(amount)); 
-	SendClientMessageEx(playerb, COLOR_GREY, " You have received $%s from %s.", FormatMoney(amount), ReturnSettingsName(playerid, playerid)); 
-	
-	if(!strcmp(emote, "None"))
-		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s takes out some cash, and hands it to %s.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid)); 
-
-	else SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s %s (( Cash exchange ))", ReturnSettingsName(playerid, playerid), emote, ReturnSettingsName(playerb, playerid));
+	SendServerMessage(playerid, "PAY: {ffffff}You have sent %s, $%s.", ReturnSettingsName(playerb, playerid), FormatMoney(amount)); 
+	SendServerMessage(playerb, " PAY: {ffffff}You have received $%s from %s.", FormatMoney(amount), ReturnSettingsName(playerid, playerid)); 
 	
 	if(PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3 || amount >= 50000)
 	{
@@ -1010,7 +1005,7 @@ CMD:hangup(playerid, params[])
 	{
 		KillTimer(playerPhone[playerid]); 
 		
-		SendClientMessage(playerid, COLOR_GREY, "[!] You hung up..."); 
+		SendErrorMessage(playerid, "You hung up..."); 
 		return 1;
 	}
 	
@@ -1020,7 +1015,7 @@ CMD:hangup(playerid, params[])
 		{
 			KillTimer(Player911Timer[i][playerid]); 
 		}
-		SendClientMessage(playerid, COLOR_GREY, "[!] You hung up..."); 
+		SendErrorMessage(playerid, "You hung up..."); 
 		
 		PlayerInfo[playerid][E_CHARACTER_PHONELINE] = INVALID_PLAYER_ID;
 		PlayerInfo[playerid][E_CHARACTER_CALL] = 0;
@@ -1036,7 +1031,7 @@ CMD:hangup(playerid, params[])
 	
 	if(PlayerInfo[playerid][E_CHARACTER_CALL] && PlayerInfo[playerid][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID)
 	{	
-		SendClientMessage(playerid, COLOR_GREY, "[!] You hung up..."); 
+		SendErrorMessage(playerid, "You hung up..."); 
 		SendClientMessage(PlayerInfo[playerid][E_CHARACTER_PHONELINE], COLOR_GREY, "[!] The call was disconnected."); 
 		
 		if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USECELLPHONE){
@@ -1053,7 +1048,7 @@ CMD:hangup(playerid, params[])
 	
 	if(!PlayerInfo[playerid][E_CHARACTER_CALL] && PlayerInfo[playerid][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID)
 	{
-		SendClientMessage(playerid, COLOR_GREY, "[!] You hung up..."); 
+		SendErrorMessage(playerid, "You hung up..."); 
 		SendClientMessage(PlayerInfo[playerid][E_CHARACTER_PHONELINE], COLOR_GREY, "[!] They hung up..."); 
 		
 		printf("pPhoneline = %i", PlayerInfo[playerid][E_CHARACTER_PHONELINE]);
@@ -1243,7 +1238,7 @@ CMD:sms(playerid, params[])
 		playerb = i;
 	}
 	
-	SendClientMessage(playerid, COLOR_GREY, "[!] Your text message is being sent.");
+	SendErrorMessage(playerid, "Your text message is being sent.");
 
 	format(str, sizeof(str), "* %s takes out their cellphone.", ReturnSettingsName(playerid, playerid));
 	SetPlayerChatBubble(playerid, str, COLOR_EMOTE, 20.0, 3000); 
@@ -1909,7 +1904,7 @@ CMD:to(playerid, params[])
 	new userid, text[144];
 
 	if (sscanf(params, "k<player>s[128]", userid, text))
-		return SendInfoMessage(playerid, "/to [id] [text]" ) ;
+		return SendUsageMessage(playerid, "/to [id] [text]" ) ;
 
 	if (!IsPlayerConnected(userid))
 		return SendErrorMessage(playerid, "Player isn't connected." ) ;
@@ -2641,11 +2636,11 @@ CMD:afk(playerid, params[])
 
 	if(PlayerInfo[targetid][E_CHARACTER_AFK])
 	{
-	    SendInfoMessage(playerid, "%s has been marked as Away from keyboard for %i minutes.", ReturnSettingsName(targetid, playerid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
+	    SendServerMessage(playerid, "AFK: {ffffff}%s has been marked as Away from keyboard for %i minutes.", ReturnSettingsName(targetid, playerid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
 	}
 	else
 	{
-	    SendInfoMessage(playerid, "%s is currently not marked as Away from keyboard.", ReturnSettingsName(targetid, playerid));
+	    SendServerMessage(playerid, "AFK: {ffffff}%s is currently not marked as Away from keyboard.", ReturnSettingsName(targetid, playerid));
 	}
 
 	return 1;

@@ -89,7 +89,7 @@ function:OnEntranceChange(playerid, response, property)
 		PropertyInfo[property][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2]+0.8, 0, 0, -1, 5.0); 
 		PropertyInfo[property][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[property][E_PROPERTY_ADDRESS], COLOR_POINT, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2], 5.0);
 		SaveProperty(property);
-		SendInfoMessage(playerid, "You set Property %i's entrance.", property);
+		SendInfoMessage(playerid, "You set Property #%i's entrance.", property);
 	}
 	return 1;
 }

@@ -139,8 +139,6 @@ function:Query_LoadFurniture(labels)
 	{
 		new Float: pos[6], dbid, propdbid, modelid, world, int, prices, objectid;
 
-		objectid = CreateDynamicObject(modelid, pos[0], pos[1], pos[2], pos[3], pos[4], pos[5], world, int);
-
 		cache_get_value_name_int(i, "id", dbid);
 		cache_get_value_name_int(i, "propertydbid", propdbid);
 		cache_get_value_name_int(i, "modelid", modelid);
@@ -156,6 +154,7 @@ function:Query_LoadFurniture(labels)
 
 		new matmodels, mattxds[32], mattexture[32], str[128], str1[128], str2[128];
 
+		objectid = CreateDynamicObject(modelid, pos[0], pos[1], pos[2], pos[3], pos[4], pos[5], world, int);
 		Streamer_SetExtraInt(objectid, E_OBJECT_TYPE, E_OBJECT_FURNITURE);
 		Streamer_SetExtraInt(objectid, E_OBJECT_INDEX_ID, dbid);
 		Streamer_SetExtraInt(objectid, E_OBJECT_EXTRA_ID, propdbid);
