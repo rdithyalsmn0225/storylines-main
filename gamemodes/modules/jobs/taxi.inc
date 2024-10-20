@@ -108,30 +108,3 @@ CMD:taxicall(playerid, params[])
 	Taxi_ShowCalls(playerid);
 	return 1;
 }
-
-CMD:taxiduty(playerid, params[])
-{
-	new modelid = GetVehicleModel(GetPlayerVehicleID(playerid));
-
-    if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TAXI)
-	    return SendErrorMessage(playerid, "You don't have the appropriate job.");
-
-	if (modelid != 438 && modelid != 420)
-	    return SendErrorMessage(playerid, "You must be inside a taxi.");
-
-	if (PlayerInfo[playerid][E_CHARACTER_TAXIDUTY])
-	{
-	    foreach (new i : Player) if (PlayerInfo[i][E_CHARACTER_TAXIPLAYER] == playerid && IsPlayerInVehicle(i, GetPlayerVehicleID(playerid))) {
-	        LeaveTaxi(i, playerid);
-	    }
-	    
-        PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
-        SendServerMessage(playerid, "TAXI: {ffffff}You are no longer on taxi duty!");
-	}
-	else
-	{
-	    PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = true;
-	    SendClientMessageToAllEx(COLOR_TAXI, "[Taxi Duty]: %s is now on taxi duty. Type \"/call 111\" to call a taxi!", ReturnSettingsName(playerid, playerid));
-	}
-	return 1;
-}

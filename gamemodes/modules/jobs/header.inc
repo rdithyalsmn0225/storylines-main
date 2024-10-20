@@ -195,10 +195,31 @@ CMD:quitjobs(playerid, params[])
 CMD:jobduty(playerid, params[])
 {
     new vehicleid = IsPlayerInAnyVehicle(playerid);
+    
     if(GetVehicleModel(vehicleid) == 530)
     {
         StartMainJobs(playerid, 1);
     } 
+    else if(GetVehicleModel(vehicleid) == 420 || GetVehicleModel(vehicleid) == 438)
+    {
+        if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TAXI)
+	        return SendErrorMessage(playerid, "You aren't taxi driver.");
+
+        if (PlayerInfo[playerid][E_CHARACTER_TAXIDUTY])
+        {
+            foreach (new i : Player) if (PlayerInfo[i][E_CHARACTER_TAXIPLAYER] == playerid && IsPlayerInVehicle(i, GetPlayerVehicleID(playerid))) {
+                LeaveTaxi(i, playerid);
+            }
+            
+            PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
+            SendServerMessage(playerid, "TAXI: {ffffff}You are no longer on taxi duty!");
+        }
+        else
+        {
+            PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = true;
+            SendClientMessageToAllEx(COLOR_TAXI, "[Taxi Duty]: %s is now on taxi duty. Type \"/call 111\" to call a taxi!", ReturnSettingsName(playerid, playerid));
+        }
+    }
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 1529.5608,-1849.4032,13.5469))
     {
         StartMainJobs(playerid, 2);

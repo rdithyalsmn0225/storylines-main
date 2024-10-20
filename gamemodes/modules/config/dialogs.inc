@@ -1722,7 +1722,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TAXI)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "/taxiduty, /taxicall");
+							SendClientMessage(playerid, COLOR_ORANGE, "/jobduty, /taxicall");
 							SendTipMessage(playerid, "Taxi fare will change every 50 meters of distance.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TAXI)
