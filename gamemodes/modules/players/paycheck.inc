@@ -53,7 +53,7 @@ stock GivePaycheck(playerid, amount)
 {
 	PlayerInfo[playerid][E_CHARACTER_PAYCHECK] += amount; 
 	SaveCharacter(playerid); 
-	SendServerMessage(playerid, "$%s has been added to paycheck.", FormatMoney(amount));
+	SendServerMessage(playerid, "PAYCHECK: {ffffff}$%s has been added to paycheck.", FormatMoney(amount));
 	PlayerPlaySound(playerid, 5205, 0, 0, 0);
 	return 1;
 }

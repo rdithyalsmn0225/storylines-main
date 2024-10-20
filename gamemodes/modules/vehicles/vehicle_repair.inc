@@ -63,7 +63,7 @@ function:repairkits(playerid, vehicleid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
-		    SendServerMessage(playerid, "You've repaired the %s engine.", ReturnVehicleName(vehicleid));
+		    SendServerMessage(playerid, "VEHICLE: {ffffff}You've repaired the %s engine.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, 4);
 		}
     }

@@ -89,7 +89,7 @@ CMD:forumname(playerid, params[])
 		return SendErrorMessage(playerid, "Your forum name needs to be shorter.");
 	
 	format(AccountInfo[playerid][E_MASTERS_FORUMNAME], 60, "%s", params);
-	SendServerMessage(playerid, "Your forum name was changed to: %s.", params);  
+	SendInfoMessage(playerid, "Your forum name was changed to: %s.", params);  
 	
 	SaveCharacter(playerid);
 	return 1;
@@ -171,7 +171,7 @@ CMD:gethere(playerid, params[])
 		SetPlayerInterior(playerb, GetPlayerInterior(playerid)); 
 		
 	SendTeleportMessage(playerb);
-	SendServerMessage(playerid, "%s was teleported to you.", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "%s was teleported to you.", ReturnSettingsName(playerb, playerid));
 	
 	return 1;
 }
@@ -192,7 +192,7 @@ CMD:showmain(playerid, params[])
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "The player you specified hasn't logged in yet.");
 	
-	SendServerMessage(playerid, "%s's Master account is \"%s\" (DBID: %i).", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID]);	
+	SendInfoMessage(playerid, "%s's Master account is \"%s\" (DBID: %i).", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID]);	
 	return 1;
 }
 
@@ -223,7 +223,7 @@ CMD:kick(playerid, params[])
 	
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 	{
-		SendServerMessage(playerid, "The player (%s) you kicked was not logged in.", ReturnSettingsName(playerb, playerid));
+		SendInfoMessage(playerid, "The player (%s) you kicked was not logged in.", ReturnSettingsName(playerb, playerid));
 	}
 	
 	mysql_format(ourConnection, insertLog, sizeof(insertLog), "INSERT INTO kick_logs (`KickedDBID`, `KickedName`, `Reason`, `KickedBy`, `Date`) VALUES(%i, '%e', '%e', '%e', '%e')",
@@ -255,7 +255,7 @@ CMD:oban(playerid, params[])
 	{
 		if(!strcmp(ReturnSettingsName(i, i), playerb))
 		{
-			SendServerMessage(playerid, "%s is connected to the server. (ID: %i)", playerb, i);
+			SendInfoMessage(playerid, "%s is connected to the server. (ID: %i)", playerb, i);
 			return 1;
 		}
 	}
@@ -303,8 +303,8 @@ CMD:ban(playerid, params[])
 	
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 	{
-		SendServerMessage(playerid, "The player (%s) you selected isn't logged in.", ReturnSettingsName(playerb, playerid));
-		SendServerMessage(playerid, "Kick them OR use adminsys for further details.");
+		SendInfoMessage(playerid, "The player (%s) you selected isn't logged in.", ReturnSettingsName(playerb, playerid));
+		SendInfoMessage(playerid, "Kick them OR use adminsys for further details.");
 		return 1;
 	}
 	
@@ -336,7 +336,7 @@ CMD:oajail(playerid, params[])
 	{
 		if(!strcmp(ReturnSettingsName(i, i), playerb))
 		{
-			SendServerMessage(playerid, "%s is connected to the server. (ID: %i)", playerb, i);
+			SendInfoMessage(playerid, "%s is connected to the server. (ID: %i)", playerb, i);
 			return 1;
 		}
 	}
@@ -639,8 +639,8 @@ CMD:slap(playerid, params[])
 	SetPlayerPosEx(playerb, PlayerInfo[playerb][E_CHARACTER_LASTPOS][0], PlayerInfo[playerb][E_CHARACTER_LASTPOS][1], PlayerInfo[playerb][E_CHARACTER_LASTPOS][2] + 5); 
 	PlayNearbySound(playerb, 1130); //Slap sound;
 	
-	SendServerMessage(playerid, "%s slapped %s", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
-	if(playerb != playerid) SendServerMessage(playerb, "%s slapped %s", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "%s slapped %s", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
+	if(playerb != playerid) SendInfoMessage(playerb, "%s slapped %s", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
 
 	PauseAC(playerb);
 	return 1;
@@ -790,7 +790,7 @@ CMD:spec(playerid, params[])
 	PlayerSpectatePlayer(playerid, playerb);
 		
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = playerb; 
-	SendServerMessage(playerid, "You're now spectating %s. To stop, use \"/specoff\".", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "You're now spectating %s. To stop, use \"/specoff\".", ReturnSettingsName(playerb, playerid));
 	return 1;
 }
 
@@ -802,7 +802,7 @@ CMD:specoff(playerid, params[])
 	if (GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		return SendErrorMessage(playerid, "You aren't spectating anyone."); 
 		
-	SendServerMessage(playerid, "You stopped spectating %s.", ReturnSettingsName(PlayerInfo[playerid][E_CHARACTER_SPECTATE], playerid));
+	SendInfoMessage(playerid, "You stopped spectating %s.", ReturnSettingsName(PlayerInfo[playerid][E_CHARACTER_SPECTATE], playerid));
 	
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = INVALID_PLAYER_ID;
 	TogglePlayerSpectating(playerid, false); 
@@ -966,7 +966,7 @@ CMD:getcar(playerid, params[])
 			
 		if(GetPlayerVehicleID(i) == vehicleid)
 		{
-			SendServerMessage(i, "The vehicle you were in (%i) was teleported.", vehicleid); 
+			SendInfoMessage(i, "The vehicle you were in (%i) was teleported.", vehicleid); 
 		}
 	}
 	return 1;
@@ -1070,7 +1070,7 @@ CMD:clearreports(playerid, params[])
 		format(string, sizeof(string), "{FFFFFF}Are you sure you want to clear ALL active reports?\n\nThere are {FF6347}%d{FFFFFF} report(s).", reportCount);
 		ConfirmDialog(playerid, "Confirmation", string, "ClearReports", reportCount); 
 	}
-	else return SendServerMessage(playerid, "There are no active reports to clear.");
+	else return SendInfoMessage(playerid, "There are no active reports to clear.");
 	return 1;
 }
 
@@ -1121,7 +1121,7 @@ CMD:setinventory(playerid, params[])
 	{
         Inventory_Set(userid, g_aInventoryItems[i][E_INVENTORY_ITEM], g_aInventoryItems[i][E_INVENTORY_MODEL], amount, g_aInventoryItems[i][E_INVENTORY_TYPE]);
 
-		return SendServerMessage(playerid, "You have set %s's \"%s\" to %d.", ReturnSettingsName(userid, playerid), item, amount);
+		return SendInfoMessage(playerid, "You have set %s's \"%s\" to %d.", ReturnSettingsName(userid, playerid), item, amount);
 	}
 	SendErrorMessage(playerid, "Invalid item name (use /itemlist for a list).");
 	return 1;
@@ -1155,7 +1155,7 @@ CMD:gotoentrance(playerid, params[])
 		
 	SetPlayerPosEx(playerid, EntranceInfo[id][E_ENTRANCE_POS][0], EntranceInfo[id][E_ENTRANCE_POS][1], EntranceInfo[id][E_ENTRANCE_POS][2]);
 	
-	SendServerMessage(playerid, "You teleported to entrance %i.", id);
+	SendInfoMessage(playerid, "You teleported to entrance %i.", id);
 	
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1182,7 +1182,7 @@ CMD:gotoproperty(playerid, params[])
 	SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
 	SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]);
 	
-	SendServerMessage(playerid, "You teleported to Property %i.", id);
+	SendInfoMessage(playerid, "You teleported to Property %i.", id);
 	
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1205,7 +1205,7 @@ CMD:gotobusiness(playerid, params[])
 		return SendErrorMessage(playerid, "The business you specified doesn't exist.");
 		
 	SetPlayerPosEx(playerid, BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][2]); 
-	SendServerMessage(playerid, "You teleported to business %i.", id); 
+	SendInfoMessage(playerid, "You teleported to business %i.", id); 
 	
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1232,7 +1232,7 @@ CMD:gotofaction(playerid, params[])
 	SetPlayerVirtualWorld(playerid, FactionInfo[id][E_FACTION_SPAWNWORLD]);
 	SetPlayerInterior(playerid, FactionInfo[id][E_FACTION_SPAWNINT]); 
 	
-	SendServerMessage(playerid, "You teleported to %s's spawn point.", ReturnFactionNameEx(id)); 
+	SendInfoMessage(playerid, "You teleported to %s's spawn point.", ReturnFactionNameEx(id)); 
 
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ])
 	{
@@ -1343,12 +1343,12 @@ CMD:spawncar(playerid, params[])
 	if(sscanf(params, "iiiI(0)", modelid, color1, color2, siren))
 	{
 		SendUsageMessage(playerid, "/spawncar [model id] [color1] [color2] [siren default 0]");
-		SendServerMessage(playerid, "These vehicles are temporary. Siren allows you to turn sirens on using horn."); 
+		SendInfoMessage(playerid, "These vehicles are temporary. Siren allows you to turn sirens on using horn."); 
 		return 1;
 	}
 	
 	if(gettime() - lastVehicleSpawn[playerid] < 5)
-		return SendServerMessage(playerid, "You need to wait before spawning another vehicle.");
+		return SendInfoMessage(playerid, "You need to wait before spawning another vehicle.");
 	
 	if(modelid < 400 || modelid > 611)
 		return SendErrorMessage(playerid, "You specified an invalid model.");
@@ -1606,7 +1606,7 @@ CMD:givemoney(playerid, params[])
 		return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
 		
 	GiveMoney(playerb, value);
-	SendServerMessage(playerb, "You received $%s from Admin %s.", FormatMoney(value), ReturnSettingsName(playerid, playerid));
+	SendInfoMessage(playerb, "You received $%s from Admin %s.", FormatMoney(value), ReturnSettingsName(playerid, playerid));
 
 	format(str, sizeof(str), "%s gave $%s to %s", ReturnSettingsName(playerid, playerid), FormatMoney(value), ReturnSettingsName(playerb, playerid));
 	SendAdminMessage(3, str);
@@ -1857,10 +1857,10 @@ CMD:createfaction(playerid, params[])
 	}
 	if(idx == 0)
 	{
-		return SendServerMessage(playerid, "The server has met the maximum amount of factions."); 
+		return SendInfoMessage(playerid, "The server has met the maximum amount of factions."); 
 	}
 
-	SendServerMessage(playerid, "Creating the faction..."); 	
+	SendInfoMessage(playerid, "Creating the faction..."); 	
 	
 	new thread[256]; 
 	
@@ -1894,7 +1894,7 @@ CMD:editfaction(playerid, params[])
 		if(sscanf(secString, "d", type))
 		{
 			SendUsageMessage(playerid, "/editfaction factionid type [type id]");
-			SendServerMessage(playerid, "1. Illegal, 2. Police, 3. Medical"); 
+			SendInfoMessage(playerid, "1. Illegal, 2. Police, 3. Medical"); 
 			return 1;
 		}
 		
@@ -1910,7 +1910,7 @@ CMD:editfaction(playerid, params[])
 		if(type == 2) typeName = "Police";
 		if(type == 3) typeName = "Medical";
 		
-		SendServerMessage(playerid, "You set faction %d's type to %s.", factionid, typeName);
+		SendInfoMessage(playerid, "You set faction %d's type to %s.", factionid, typeName);
 		SaveFaction(factionid);
 	}
 	else if(!strcmp(oneString, "color"))
@@ -1920,12 +1920,12 @@ CMD:editfaction(playerid, params[])
 		if(sscanf(secString, "x", hexcolor))
 		{
 			SendUsageMessage(playerid, "/editfaction factionid color [hexcode]");
-			SendServerMessage(playerid, "This is the color faction chat is shown in. Example: 0x8D8DFFFF"); 
+			SendInfoMessage(playerid, "This is the color faction chat is shown in. Example: 0x8D8DFFFF"); 
 			return 1;
 		}
 		
 		FactionInfo[factionid][E_FACTION_COLORHEX] = hexcolor;
-		SendServerMessage(playerid, "You set faction %d's chat color to \"%x\". ", factionid, hexcolor);
+		SendInfoMessage(playerid, "You set faction %d's chat color to \"%x\". ", factionid, hexcolor);
 		
 		SaveFaction(factionid);
 	}
@@ -1941,7 +1941,7 @@ CMD:editfaction(playerid, params[])
 		
 		else FactionInfo[factionid][E_FACTION_SPAWNWORLD] = GetPlayerVirtualWorld(playerid);
 		
-		SendServerMessage(playerid, "You changed faction %d's spawn point.", factionid); 
+		SendInfoMessage(playerid, "You changed faction %d's spawn point.", factionid); 
 
 		if(IsValidDynamicPickup(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]))
 			DestroyDynamicPickup(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]); 
@@ -1983,7 +1983,7 @@ CMD:setpadmin(playerid, params[])
 	format(str, sizeof(str), "%s set %s's admin to %d.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), adminid);
 	SendAdminMessage(4, str);
 	
-	SendServerMessage(playerb, "You were set to admin %d by Admin %s.", adminid, ReturnSettingsName(playerid, playerid));
+	SendInfoMessage(playerb, "You were set to admin %d by Admin %s.", adminid, ReturnSettingsName(playerid, playerid));
 	
 	return 1;
 }
@@ -2024,7 +2024,7 @@ CMD:setpfaction(playerid, params[])
 	format(str, sizeof(str), "%s set %s's faction to %d.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), factionid);
 	SendAdminMessage(4, str);
 	
-	SendServerMessage(playerb, "You were set to faction %d by Admin %s.", factionid, ReturnSettingsName(playerid, playerid));
+	SendInfoMessage(playerb, "You were set to faction %d by Admin %s.", factionid, ReturnSettingsName(playerid, playerid));
 	
 	return 1;
 }

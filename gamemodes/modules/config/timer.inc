@@ -20,7 +20,7 @@ function:PlayersUpdates()
 						
 				if(loginTime[playerid] >= 300)
 				{
-					SendServerMessage(playerid, "You were kicked for not logging in."); 
+					SendInfoMessage(playerid, "You were kicked for not logging in."); 
 					KickEx(playerid); 
 				}
 			}
@@ -31,7 +31,7 @@ function:PlayersUpdates()
 						
 				if(registerTime[playerid] >= 300)
 				{
-					SendServerMessage(playerid, "You were kicked for not registering.");
+					SendInfoMessage(playerid, "You were kicked for not registering.");
 					KickEx(playerid); 
 				}
 			}
@@ -53,7 +53,7 @@ function:PlayersUpdates()
 					
 				if(characterPickTime[playerid] >= 300)
 				{
-					SendServerMessage(playerid, "You were kicked for not selecting a character.");
+					SendInfoMessage(playerid, "You were kicked for not selecting a character.");
 					KickEx(playerid);
 				}
 			}
@@ -67,7 +67,7 @@ function:PlayersUpdates()
 					PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] = false; 
 					PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] = 0; 
 						
-					SendServerMessage(playerid, "You served your admin jail time.");
+					SendServerMessage(playerid, "ADMIN-JAIL: {ffffff}You served your admin jail time.");
 						
 					new str[128];
 					format(str, sizeof(str), "%s was released from admin jail.", ReturnSettingsName(playerid, playerid));
@@ -90,7 +90,7 @@ function:PlayersUpdates()
 					PlayerInfo[playerid][E_CHARACTER_PRISONED] = false; 
 					PlayerInfo[playerid][E_CHARACTER_PRISON] = 0; 
 						
-					SendServerMessage(playerid, "you have been released from prison.");
+					SendServerMessage(playerid, "PRISON: {ffffff}you have been released from prison.");
 						
 					SetPlayerVirtualWorld(playerid, 0); SetPlayerInterior(playerid, 0);
 					SetPlayerPosEx(playerid, 1797.4276,-1578.8496,14.0764);
@@ -440,7 +440,7 @@ function:FunctionPaychecks()
 			if(PlayerInfo[i][E_CHARACTER_AFK] && PlayerInfo[i][E_CHARACTER_AFKTIME] > 900)
 			{
 				PlayerInfo[i][E_CHARACTER_PAYCHECKTIMER] = 0;
-				return SendServerMessage(i, "You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
+				return SendServerMessage(i, "PAYCHECK: {ffffff}You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
 			}
 			else
 			{

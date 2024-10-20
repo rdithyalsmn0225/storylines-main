@@ -48,7 +48,7 @@ CMD:carsell(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SELLVOFFER] = vehicleid;
 
 	SendTipMessage(userid, "%s has offered sell their vehicle %s for $%s, type /approve vehicle to approve.", ReturnSettingsName(playerid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
-	SendServerMessage(playerid, "You have offered sell your %s for $%s.", ReturnSettingsName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
+	SendServerMessage(playerid, "VEHICLE: {ffffff}You have offered sell your %s for $%s.", ReturnSettingsName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
 	return 1;
 }
 
@@ -79,10 +79,10 @@ CMD:carkey(playerid, params[])
 		return SendErrorMessage(playerid, "You aren't near that player."); 
 			
 	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s gives %s a key to their vehicle.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
-	SendServerMessage(playerb, "%s gave you a key to their vehicle.", ReturnSettingsName(playerid, playerid));
+	SendServerMessage(playerb, "VEHICLE: {ffffff}%s gave you a key their vehicle.", ReturnSettingsName(playerid, playerid));
 		
 	GiveMoney(playerid, -500);
-	SendServerMessage(playerid, "You gave %s a duplicatekey for $500.", ReturnSettingsName(playerb, playerid));
+	SendServerMessage(playerid, "VEHICLE: {ffffff}You gave %s a duplicatekey for $500.", ReturnSettingsName(playerb, playerid));
 		
 	PlayerInfo[playerb][E_CHARACTER_DUPLICATEKEY] = vehicleid;
     return 1;
@@ -103,7 +103,7 @@ CMD:cardespawn(playerid, params[])
 		
 	if(!IsPlayerInRangeOfPoint(playerid, 5.0, VehicleInfo[vehicleid][E_VEHICLE_POS][0], VehicleInfo[vehicleid][E_VEHICLE_POS][1], VehicleInfo[vehicleid][E_VEHICLE_POS][2]))
 	{
-		SendServerMessage(playerid, "You have to be at your vehicle's parking place.");
+		SendServerMessage(playerid, "VEHICLE: {ffffff}You have to be at your vehicle's parking place.");
 		SendClientMessage(playerid, COLOR_WHITE, "Follow the marker to your parking.");
 		
 		GPS_SetPlayerRaceCheckPoint(playerid, 1, VehicleInfo[vehicleid][E_VEHICLE_POS][0], VehicleInfo[vehicleid][E_VEHICLE_POS][1], VehicleInfo[vehicleid][E_VEHICLE_POS][2], 0.0, 0.0, 0.0);
@@ -129,7 +129,7 @@ CMD:cardespawn(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = false; 
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = INVALID_VEHICLE_ID;
 		
-	SendServerMessage(playerid, "You parked your %s.", ReturnVehicleName(vehicleid));
+	SendServerMessage(playerid, "VEHICLE: {ffffff}You parked your %s.", ReturnVehicleName(vehicleid));
 		
 	SaveVehicle(vehicleid);
 		

@@ -38,7 +38,7 @@ stock LeaveTaxi(playerid, driverid)
 	    GiveMoney(playerid, -PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
    		GiveMoney(driverid, PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 
-        SendServerMessage(driverid, "%s has exit your taxi and paid $%d.", ReturnSettingsName(playerid, driverid), PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
+        SendServerMessage(driverid, "TAXI: {ffffff}%s has exit your taxi and paid $%d.", ReturnSettingsName(playerid, driverid), PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 		SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "** %s has paid $%d to the taxi driver.", ReturnSettingsName(playerid, driverid), PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 
 	    PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 0;
@@ -91,8 +91,8 @@ Dialog:AcceptTaxi(playerid, response, listitem, inputtext[])
 		PlayerInfo[targetid][E_CHARACTER_TAXICALLED] = 0;
 		GPS_SetPlayerRaceCheckPoint(playerid, 1, x, y, z, 0.0, 0.0, 0.0);
 
-        SendServerMessage(playerid, "You have accepted %s's taxi call.", ReturnSettingsName(targetid, playerid));
-        SendServerMessage(targetid, "%s has accepted your taxi call and is on their way.", ReturnSettingsName(playerid, targetid));
+        SendServerMessage(playerid, "TAXI: {ffffff}You have accepted %s's taxi call.", ReturnSettingsName(targetid, playerid));
+        SendServerMessage(targetid, "TAXI: {ffffff}%s has accepted your taxi call and is on their way.", ReturnSettingsName(playerid, targetid));
 	}
 	return 1;
 }
@@ -126,7 +126,7 @@ CMD:taxiduty(playerid, params[])
 	    }
 	    
         PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
-        SendServerMessage(playerid, "You are no longer on taxi duty!");
+        SendServerMessage(playerid, "TAXI: {ffffff}You are no longer on taxi duty!");
 	}
 	else
 	{

@@ -41,7 +41,7 @@ function:OnPlayerWounded(playerid, killerid, reason)
 
 	SetPlayerTeam(playerid, PLAYER_STATE_WOUNDED); 
 	
-	SendServerMessage(playerid, "You have been brutally wounded. If you aren't saved, you will die.");
+	SendInfoMessage(playerid, "You have been brutally wounded. If you aren't saved, you will die.");
 	SendTipMessage(playerid, "To accept death, type: /acceptdeath."); 
 
 	SetPlayerPosEx(playerid, x, y, z);

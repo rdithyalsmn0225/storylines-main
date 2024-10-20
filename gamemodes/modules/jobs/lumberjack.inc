@@ -83,7 +83,7 @@ function:CutTree(playerid, id)
             if(TreeInfo[id][E_TREE_PROGRESS] + rand >= 100)
             {
                 TreeInfo[id][E_TREE_PROGRESS] = 0;
-                SendServerMessage(playerid, "You've successfully cutting down the Tree.");
+                SendServerMessage(playerid, "LUMBERJACK: {ffffff}You've successfully cutting down the Tree.");
                 SendTipMessage(playerid, "Press 'ALT' to create the wood timber.");
                 TreeInfo[id][E_TREE_CUTTED] = true;
 
@@ -92,7 +92,7 @@ function:CutTree(playerid, id)
             else
             {
                 TreeInfo[id][E_TREE_PROGRESS] += rand;
-                SendServerMessage(playerid, "The tree cutting progress now is %d percent", TreeInfo[id][E_TREE_PROGRESS]);
+                SendServerMessage(playerid, "LUMBERJACK: {ffffff}The tree cutting progress now is %d percent", TreeInfo[id][E_TREE_PROGRESS]);
                 SendTipMessage(playerid, "Keep cut the tree until the progress is 100 percent");
             }
         }
@@ -130,7 +130,7 @@ function:CreateTimber(playerid, id)
 
             Inventory_Add(playerid, "Woods", 1463, 1);
 
-            SendServerMessage(playerid, "You've successfully take woods timber.");
+            SendServerMessage(playerid, "LUMBERJACK: {ffffff}You've successfully take woods timber.");
             SendTipMessage(playerid, "Place the timber into your pickup vehicle.");
 
             TreeInfo[id][E_TREE_TIMER] = 3600;
@@ -222,7 +222,7 @@ CMD:timbersell(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_WOODS, 1);
 		
-		SendServerMessage(playerid, "You has sell woods for $%s into leafy hollow barn.", FormatMoney(LUMBERJACK_SALARY*2));
+		SendServerMessage(playerid, "LUMBERJACK: {ffffff}You has sell woods for $%s into leafy hollow barn.", FormatMoney(LUMBERJACK_SALARY*2));
 	}
 	return 1;
 }
@@ -243,7 +243,7 @@ CMD:buyaxe(playerid, params[])
 
     Inventory_Add(playerid, "Axe", -2211, 1);
     GiveMoney(playerid, -250);
-    SendServerMessage(playerid, "You bought a axe for $250.");
+    SendServerMessage(playerid, "LUMBERJACK: {ffffff}You bought a axe for $250.");
     SendTipMessage(playerid, "To start cutting the tree(s) /timbercut using axe.");
     return 1;
 }

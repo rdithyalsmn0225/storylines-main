@@ -5,14 +5,14 @@
 #define SendErrorMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_RED, "ERROR: "%1)
 
-#define SendServerMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_SERVER, "[!] "%1) 
+#define SendInfoMessage(%0,%1) \
+	SendClientMessageEx(%0, COLOR_INFO, "INFO:{FFFFFF} "%1) 
 
 #define SendTipMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_TIP, "Tip: "%1) 
 
-#define SendMinigamesMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_GAMES, ""%1) 
+#define SendServerMessage(%0,%1) \
+	SendClientMessageEx(%0, COLOR_INFO, ""%1) 
 
 #define SendDebugMessage(%0)	\
 	SendClientMessageToAllEx(COLOR_GREY, "Debug: "%0)
@@ -714,7 +714,7 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aHoodRatsSkins[rand];
 					ClearLines(playerid, 17); 
 									
-					SendServerMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
+					SendInfoMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
 			
 					new query[512];
 
@@ -777,7 +777,7 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aHoodRatsSkins[rand];
 					ClearLines(playerid, 17); 
 									
-					SendServerMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
+					SendInfoMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
 									
 					new query[512];
 

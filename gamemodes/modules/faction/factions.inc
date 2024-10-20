@@ -35,14 +35,14 @@ function:Query_InsertFaction(playerid, varName, varAbbrev, idx)
 	format(str, sizeof(str), "%s has created Faction ID %d.", ReturnSettingsName(playerid, playerid), idx);
 	SendAdminMessage(4, str);
 	
-	SendServerMessage(playerid, "To configure the faction, use \"/editfaction\". "); 
+	SendInfoMessage(playerid, "To configure the faction, use /editfaction. "); 
 	return 1;
 }
 
 function:Query_LoadFactions()
 {
 	if(!cache_num_rows())
-		return printf("[SERVER]: No factions were loaded from \"%s\" database...", SQL_DATABASE);
+		return printf("[SERVER]: No factions were loaded from %s database...", SQL_DATABASE);
 		
 	new newThread[1024], rows, fields; 
 	cache_get_row_count(rows);
@@ -158,11 +158,11 @@ function:OnSetFaction(playerid, response, playerb, factionid)
 		format(str, sizeof(str), "%s set %s's faction to %d.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), factionid);
 		SendAdminMessage(4, str);
 		
-		SendServerMessage(playerb, "You were set to faction %d by Admin %s.", factionid, ReturnSettingsName(playerid, playerid));
+		SendInfoMessage(playerb, "You were set to faction %d by Admin %s.", factionid, ReturnSettingsName(playerid, playerid));
 		
 		SaveCharacter(playerb);
 	}
-	else return SendServerMessage(playerid, "You disregarded the faction set.");
+	else return SendErrorMessage(playerid, "You disregarded the faction set.");
 	return 1;
 }
 

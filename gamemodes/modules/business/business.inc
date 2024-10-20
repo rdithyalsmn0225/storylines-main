@@ -10,19 +10,19 @@ function:OnBusinessInteriorChange(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR] = GetPlayerInterior(playerid);
 		BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD] = world;
 		
-		SendServerMessage(playerid, "You changed Business %i's interior ID.", businessid);
+		SendInfoMessage(playerid, "You changed Business #%i's interior ID.", businessid);
 		
 		foreach(new i : Player) if(IsPlayerInBusiness(i) == businessid)
 		{
 			SetPlayerPosEx(i, BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][0], BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][1], BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][2]);
 			SetPlayerInterior(i, GetPlayerInterior(playerid)); SetPlayerVirtualWorld(playerid, world); 
 			
-			SendServerMessage(i, "The business you were in was amended."); 
+			SendInfoMessage(i, "The business you were in was amended."); 
 		}
 	
 		SaveBusiness(businessid); 
 	}
-	else return SendServerMessage(playerid, "You cancelled."); 
+	else return SendInfoMessage(playerid, "You cancelled."); 
 	return 1; 
 }
 
@@ -155,10 +155,10 @@ function:OnBusinessEntranceChange(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2] = z;
 
 		BusinessRefresh(businessid);
-		SendServerMessage(playerid, "You changed Business %i's entrance.", businessid);
+		SendInfoMessage(playerid, "You changed Business #%i's entrance.", businessid);
 		SaveBusiness(businessid); 
 	}
-	else return SendServerMessage(playerid, "You cancelled.");
+	else return SendInfoMessage(playerid, "You cancelled.");
 	return 1;
 }
 
@@ -171,10 +171,10 @@ function:OnBusinessPointChange(playerid, response, businessid, Float:x, Float:y,
 		BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2] = z;
 		
 		BusinessRefresh(businessid);
-		SendServerMessage(playerid, "You changed Business %i's point.", businessid);
+		SendInfoMessage(playerid, "You changed Business #%i's point.", businessid);
 		SaveBusiness(businessid); 
 	}
-	else return SendServerMessage(playerid, "You cancelled.");
+	else return SendInfoMessage(playerid, "You cancelled.");
 	return 1;
 }
 
@@ -258,32 +258,32 @@ stock SendBusinessType(playerid, id)
 		case BUSINESS_TYPE_GUNSTORE:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /creategun create weapons / ammo with materials.", BusinessInfo[id][E_BUSINESS_NAME]);
-			SendClientMessage(playerid, COLOR_SERVER, str);
+			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_BANK:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /withdraw, /deposit, /balance to see bank menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			SendClientMessage(playerid, COLOR_SERVER, str);
+			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_GENERAL:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nThis is a general store you can buy anything.", BusinessInfo[id][E_BUSINESS_NAME]);
-			SendClientMessage(playerid, COLOR_SERVER, str);
+			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_CLUB:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /buybeer to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			SendClientMessage(playerid, COLOR_SERVER, str);
+			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_DINNER:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /menu to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			SendClientMessage(playerid, COLOR_SERVER, str);
+			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_BAR:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /buybeer to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			SendClientMessage(playerid, COLOR_SERVER, str);
+			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_ACID:
 		{
@@ -292,22 +292,22 @@ stock SendBusinessType(playerid, id)
 		case BUSINESS_TYPE_CLOTHES:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /clothes to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			SendClientMessage(playerid, COLOR_SERVER, str);
+			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_HAIRCUT:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /haircut to see haircut style list.", BusinessInfo[id][E_BUSINESS_NAME]);
-			SendClientMessage(playerid, COLOR_SERVER, str);
+			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_FURNITURE:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /props to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			SendClientMessage(playerid, COLOR_SERVER, str);
+			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_GYM:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /fightstyle to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			SendClientMessage(playerid, COLOR_SERVER, str);
+			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 	}
 	return 1;
@@ -327,11 +327,11 @@ function:OnSellBusiness(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_OWNERDBID] = 0; 
 		
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
-		SendServerMessage(playerid, "You sold your business and earned $%s.", FormatMoney(totalPay)); 
+		SendInfoMessage(playerid, "You sold your business and earned $%s.", FormatMoney(totalPay)); 
 		
 		SaveBusiness(businessid); SaveCharacter(playerid); 
 	}
-	else return SendServerMessage(playerid, "You cancelled selling your business.");
+	else return SendInfoMessage(playerid, "You cancelled selling your business.");
 	return 1;
 }
 
@@ -339,7 +339,7 @@ function:OnPlayerExitDealership(playerid, response)
 {
 	if(response)
 	{
-		SendServerMessage(playerid, "You exited out the dealership.");
+		SendInfoMessage(playerid, "You exited out the dealership.");
 		
 		ResetVehicleVars(DealershipPlayerCar[playerid]); 
 		DestroyVehicle(DealershipPlayerCar[playerid]); 
@@ -623,7 +623,7 @@ function:Query_InsertBusiness(playerid, newid, type)
 	BusinessInfo[newid][E_BUSINESS_INTERIORPOSWORLD] = world;  
 
 	BusinessRefresh(newid);
-	SendServerMessage(playerid, "You created business ID #%i. To configure, use \"/editbusiness\". ", newid); 
+	SendInfoMessage(playerid, "You created business ID #%i. To configure, use \"/editbusiness\". ", newid); 
 	return 1;
 }
 
@@ -773,7 +773,7 @@ CMD:editbusiness(playerid, params[])
 			return SendErrorMessage(playerid, "You can't set the businesses type to what it already is."); 
 			
 		BusinessRefresh(id);
-		SendServerMessage(playerid, "You changed business %i's type to %i.", id, type);
+		SendInfoMessage(playerid, "You changed business #%i's type to %i.", id, type);
 		SaveBusiness(id);	
 	}
 	else if(!strcmp(astr, "level"))
@@ -788,7 +788,7 @@ CMD:editbusiness(playerid, params[])
 			
 		BusinessInfo[id][E_BUSINESS_LEVEL] = level;
 		
-		SendServerMessage(playerid, "You set business %i's level to %i.", id, level);
+		SendInfoMessage(playerid, "You set business #%i's level to %i.", id, level);
 		SaveBusiness(id);
 	}
 	else if(!strcmp(astr, "entrancefee"))
@@ -803,7 +803,7 @@ CMD:editbusiness(playerid, params[])
 			
 		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = fee;
 		
-		SendServerMessage(playerid, "You set business %i's entrance fee to %i.", id, fee);
+		SendInfoMessage(playerid, "You set business #%i's entrance fee to %i.", id, fee);
 		SaveBusiness(id);
 	}
 	else if(!strcmp(astr, "name"))
@@ -813,14 +813,14 @@ CMD:editbusiness(playerid, params[])
 		if(sscanf(bstr, "s[90]", bizname))
 		{
 			SendUsageMessage(playerid, "/editbusiness %i name [business name]", id);
-			SendServerMessage(playerid, "You can use text colors (i.e ~r~Red ~b~Blue) in the name."); 
+			SendTipMessage(playerid, "You can use text colors (i.e ~r~Red ~b~Blue) in the name."); 
 			return 1;
 		}
 		
 		if(strlen(bizname) > 90)
 			return SendErrorMessage(playerid, "Stay below 90 characters.");
 			
-		SendServerMessage(playerid, "You set business %i's name from \"%s\" to \"%s\". ", id, BusinessInfo[id][E_BUSINESS_NAME], bizname); 
+		SendInfoMessage(playerid, "You set business #%i's name from \"%s\" to \"%s\". ", id, BusinessInfo[id][E_BUSINESS_NAME], bizname); 
 		
 		format(BusinessInfo[id][E_BUSINESS_NAME], 90, "%s", bizname);
 		SaveBusiness(id); 
@@ -841,7 +841,7 @@ CMD:editbusiness(playerid, params[])
 			
 		BusinessInfo[id][E_BUSINESS_PRICE] = price;
 		
-		SendServerMessage(playerid, "You set business %i's market price to $%s.", id, FormatMoney(price));
+		SendInfoMessage(playerid, "You set business #%i's market price to $%s.", id, FormatMoney(price));
 		SaveBusiness(id);
 	}
 	else return SendErrorMessage(playerid, "Invalid Parameter.");

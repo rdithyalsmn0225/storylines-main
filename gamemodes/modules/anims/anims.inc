@@ -1079,7 +1079,7 @@ CMD:stopanim(playerid, params[])
 	RemovePlayerAttachedObject(playerid, ATTACH_ANIMS2);
 
 	ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-    SendServerMessage(playerid, "Animations cleared.");
+    SendInfoMessage(playerid, "Animations cleared.");
     return 1;
 }
 

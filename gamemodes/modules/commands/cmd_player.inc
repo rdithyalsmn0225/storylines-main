@@ -79,7 +79,7 @@ CMD:fix(playerid, params[])
 CMD:hesoyam(playerid, params[])
 {
 	ShowBoxMessage(playerid, "Cheat Activated", 5);
-	SendServerMessage(playerid, "You've given $150,000 from Rockstar West!");
+	SendServerMessage(playerid, "CHEAT: {ffffff}You've given $150,000 from Rockstar West!");
 	return 1;
 }
 
@@ -227,7 +227,7 @@ CMD:pay(playerid, params[])
 		return SendErrorMessage(playerid, "You don't have that amount of money.");
 		
 	if(gettime() - playerLastpay[playerid] < 3)
-		return SendServerMessage(playerid, "Please wait before paying again.");
+		return SendInfoMessage(playerid, "Please wait before paying again.");
 		
 	PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0); PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
 	playerLastpay[playerid] = gettime(); 
@@ -296,7 +296,7 @@ CMD:charity(playerid, params[])
 	
 	GiveMoney(playerid, -charity);
 	SaveCharacter(playerid);
-	SendServerMessage(playerid, "You've charity %s for this server.", FormatMoney(charity));
+	SendServerMessage(playerid, "CHARITY: {ffffff}You've charity %s for this server.", FormatMoney(charity));
 	return 1;
 }
 
@@ -615,7 +615,7 @@ CMD:setchannel(playerid, params[])
 	
 	PlayerInfo[playerid][E_CHARACTER_RADIO][slot] = channel;
 	
-	SendServerMessage(playerid, "You're now listening to channel %i under slot %i.", channel, slot);
+	SendInfoMessage(playerid, "You're now listening to channel %i under slot %i.", channel, slot);
 	SaveCharacter(playerid); 
 	return 1;
 }
@@ -637,7 +637,7 @@ CMD:setslot(playerid, params[])
 		
 	PlayerInfo[playerid][E_CHARACTER_MAINSLOT] = slot;
 		
-	SendServerMessage(playerid, "Your local radio slot is now %i.", slot); 
+	SendInfoMessage(playerid, "Your local radio slot is now %i.", slot); 
 	SaveCharacter(playerid);
 	return 1;
 }
@@ -893,7 +893,7 @@ CMD:setspawn(playerid, params[])
 				return SendErrorMessage(playerid, "This is already your spawn point."); 
 				
 			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0; 
-			SendServerMessage(playerid, "You will now spawn at the hoodrats position."); 
+			SendInfoMessage(playerid, "You will now spawn at the hoodrats position."); 
 			SaveCharacter(playerid);
 		}
 		case 2:
@@ -902,7 +902,7 @@ CMD:setspawn(playerid, params[])
 				return SendErrorMessage(playerid, "This is already your spawn point."); 
 				
 			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 1; 
-			SendServerMessage(playerid, "You will now spawn at the last position."); 
+			SendInfoMessage(playerid, "You will now spawn at the last position."); 
 			SaveCharacter(playerid);
 		}
 		case 3:
@@ -914,7 +914,7 @@ CMD:setspawn(playerid, params[])
 				return SendErrorMessage(playerid, "You aren't in any faction.");
 				
 			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 2;
-			SendServerMessage(playerid, "You will now spawn at your faction."); 
+			SendInfoMessage(playerid, "You will now spawn at your faction."); 
 			SaveCharacter(playerid);
 		}
 	}
@@ -944,7 +944,7 @@ CMD:deposit(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_BANK]+= amount;
 	GiveMoney(playerid, -amount); 
 	
-	SendServerMessage(playerid, "You have deposited $%s into Your account, Total:$%s", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	SendInfoMessage(playerid, "You have deposited $%s into Your account, Total:$%s", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	SaveCharacter(playerid);
 	return 1; 
 }
@@ -972,7 +972,7 @@ CMD:withdraw(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_BANK]-= amount;
 	GiveMoney(playerid, amount);
 	
-	SendServerMessage(playerid, "You have withdrawn $%s from Your account, Total:$%s", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	SendInfoMessage(playerid, "You have withdrawn $%s from Your account, Total:$%s", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	SaveCharacter(playerid);
 	return 1;
 }
@@ -989,7 +989,7 @@ CMD:balance(playerid, params[])
 	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GENERAL)
 		return SendErrorMessage(playerid, "You can't do this inside this business."); 
 	
-	SendServerMessage(playerid, "You have $%s in your bank and $%s in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
+	SendInfoMessage(playerid, "You have $%s in your bank and $%s in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
 	return 1;
 }
 
@@ -1909,7 +1909,7 @@ CMD:to(playerid, params[])
 	new userid, text[144];
 
 	if (sscanf(params, "k<player>s[128]", userid, text))
-		return SendServerMessage(playerid, "/to [id] [text]" ) ;
+		return SendInfoMessage(playerid, "/to [id] [text]" ) ;
 
 	if (!IsPlayerConnected(userid))
 		return SendErrorMessage(playerid, "Player isn't connected." ) ;
@@ -2255,7 +2255,7 @@ CMD:buybiz(playerid, params[])
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 		ShowBoxMessage(playerid, "Congratulations!~n~You're now the owner of this business!", 4);
 		
-		SendServerMessage(playerid, "You purchased the %s for $%s!", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]));
+		SendInfoMessage(playerid, "You purchased the %s for $%s!", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]));
 		
 		BusinessInfo[id][E_BUSINESS_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID]; 
 		GiveMoney(playerid, -BusinessInfo[id][E_BUSINESS_PRICE]); 
@@ -2313,7 +2313,7 @@ CMD:bizfee(playerid, params[])
 		if(amount > 1500)
 			return SendErrorMessage(playerid, "The amount can't be above $1,500.");
 			
-		SendServerMessage(playerid, "You set your businesses entrance fee to $%s.", FormatMoney(amount));
+		SendInfoMessage(playerid, "You set your businesses entrance fee to $%s.", FormatMoney(amount));
 		
 		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = amount;
 		SaveBusiness(id);
@@ -2344,7 +2344,7 @@ CMD:bizcash(playerid, params[])
 			
 		if(!strcmp(astr, "balance"))
 		{
-			SendServerMessage(playerid, "You have $%s in your businesses cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH])); 
+			SendInfoMessage(playerid, "You have $%s in your businesses cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH])); 
 		}
 		else if(!strcmp(astr, "deposit"))
 		{	
@@ -2357,7 +2357,7 @@ CMD:bizcash(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_CASH]+= amount;
 			GiveMoney(playerid, -amount);
 			
-			SendServerMessage(playerid, "You deposited $%s into your business. (Total: $%s)", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+			SendInfoMessage(playerid, "You deposited $%s into your business. (Total: $%s)", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 			SaveBusiness(id); SaveCharacter(playerid);
 		}
 		else if(!strcmp(astr, "withdraw"))
@@ -2371,7 +2371,7 @@ CMD:bizcash(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_CASH] -= amount; 
 			GiveMoney(playerid, amount); 
 			
-			SendServerMessage(playerid, "You withdrew $%s from your business. (Total: $%s)", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+			SendInfoMessage(playerid, "You withdrew $%s from your business. (Total: $%s)", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 			SaveBusiness(id); SaveCharacter(playerid);
 		}
 		else return SendErrorMessage(playerid, "Invalid Parameter.");
@@ -2452,7 +2452,7 @@ CMD:approve(playerid, params[])
 		
 				
 		SendClientMessageEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED], COLOR_FACTION, "%s accepted your faction invitation.", ReturnSettingsName(playerid, playerid));
-		SendServerMessage(playerid, "You joined the %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]));
+		SendInfoMessage(playerid, "You joined the %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]));
 		
 		
 		PlayerInfo[playerid][E_CHARACTER_FACTION] = PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]; 
@@ -2535,8 +2535,8 @@ CMD:approve(playerid, params[])
 			    ApplyAnimation(targetid, "GANGS", "prtial_hndshk_biz_01", 4.0, 0, 0, 0, 0, 0, 1);
 			}
 	    }
-	    SendServerMessage(playerid, "You've accepted %s's handshake.", ReturnSettingsName(targetid, playerid));
-	    SendServerMessage(targetid, "%s accepted your handshake.", ReturnSettingsName(playerid, playerid));
+	    SendInfoMessage(playerid, "You've accepted %s's handshake.", ReturnSettingsName(targetid, playerid));
+	    SendInfoMessage(targetid, "%s accepted your handshake.", ReturnSettingsName(playerid, playerid));
 	}
 	if (!strcmp(params, "vehicle", true) && PlayerInfo[playerid][E_CHARACTER_SELLOFFER] != INVALID_PLAYER_ID)
 	{
@@ -2577,8 +2577,8 @@ CMD:approve(playerid, params[])
 
 		SaveVehicle(vehicleid);
 
-		SendServerMessage(playerid, "You've accepted %s's offered selling vehicle.", ReturnSettingsName(userid, playerid));
-	    SendServerMessage(userid, "%s accepted offered selling your vehicle.", ReturnSettingsName(playerid, playerid));
+		SendInfoMessage(playerid, "You've accepted %s's offered selling vehicle.", ReturnSettingsName(userid, playerid));
+	    SendInfoMessage(userid, "%s accepted offered selling your vehicle.", ReturnSettingsName(playerid, playerid));
 	}
 	return 1;
 }
@@ -2605,7 +2605,7 @@ CMD:handshake(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SHAKETYPE] = type;
 
 	SendTipMessage(userid, "%s has offered to shake your hand, type /approve handshake to approve.", ReturnSettingsName(playerid, playerid));
-	SendServerMessage(playerid, "You have offered to shake %s's hand.", ReturnSettingsName(userid, playerid));
+	SendInfoMessage(playerid, "You have offered to shake %s's hand.", ReturnSettingsName(userid, playerid));
 	return 1;
 }
 CMD:frisk(playerid, params[])
@@ -2625,7 +2625,7 @@ CMD:frisk(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_FRISKOFFER] = playerid;
 
 	SendTipMessage(userid, "%s has offered to frisk you, type /approve frisk to approve.", ReturnSettingsName(playerid, playerid));
-	SendServerMessage(playerid, "You have offered to frisk %s.", ReturnSettingsName(userid, playerid));
+	SendInfoMessage(playerid, "You have offered to frisk %s.", ReturnSettingsName(userid, playerid));
 	return 1;
 }
 
@@ -2641,11 +2641,11 @@ CMD:afk(playerid, params[])
 
 	if(PlayerInfo[targetid][E_CHARACTER_AFK])
 	{
-	    SendServerMessage(playerid, "%s has been marked as Away from keyboard for %i minutes.", ReturnSettingsName(targetid, playerid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
+	    SendInfoMessage(playerid, "%s has been marked as Away from keyboard for %i minutes.", ReturnSettingsName(targetid, playerid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
 	}
 	else
 	{
-	    SendServerMessage(playerid, "%s is currently not marked as Away from keyboard.", ReturnSettingsName(targetid, playerid));
+	    SendInfoMessage(playerid, "%s is currently not marked as Away from keyboard.", ReturnSettingsName(targetid, playerid));
 	}
 
 	return 1;
@@ -2682,8 +2682,8 @@ CMD:gascan(playerid, params[])
 	if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] > 50)
 		return SendErrorMessage(playerid, "This vehicle doesn't need fuel."); 
 			
-	SendServerMessage(playerid, "You're starting to refill the vehicle.");
-	SendServerMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
+	SendInfoMessage(playerid, "You're starting to refill the vehicle.");
+	SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
 		
 	VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_POINT, vx, vy, vz, 25.0, 0, 1);
 	Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 

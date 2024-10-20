@@ -65,7 +65,7 @@ function:OnPropertyCreate(playerid, newid, type)
 	PropertyInfo[newid][E_PROPERTY_INTERIORINTERIOR] = PropertyInteriors[type][E_INT_ID]; 
 	PropertyInfo[newid][E_PROPERTY_INTERIORWORLD] = world;
 
-	SendServerMessage(playerid, "You created property ID #%i. To configure, use \"/editproperty\". ", newid); 
+	SendInfoMessage(playerid, "You created property ID #%i. To configure, use \"/editproperty\". ", newid); 
 	return 1;
 }
 
@@ -89,7 +89,7 @@ function:OnEntranceChange(playerid, response, property)
 		PropertyInfo[property][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2]+0.8, 0, 0, -1, 5.0); 
 		PropertyInfo[property][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[property][E_PROPERTY_ADDRESS], COLOR_POINT, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2], 5.0);
 		SaveProperty(property);
-		SendServerMessage(playerid, "You set Property %i's entrance.", property);
+		SendInfoMessage(playerid, "You set Property %i's entrance.", property);
 	}
 	return 1;
 }
@@ -111,11 +111,11 @@ function:OnInteriorChange(playerid, response, property)
 			SetPlayerPosEx(i, PropertyInfo[property][E_PROPERTY_INTERIORPOS][0], PropertyInfo[property][E_PROPERTY_INTERIORPOS][1], PropertyInfo[property][E_PROPERTY_INTERIORPOS][2]);
 			SetPlayerInterior(i, GetPlayerInterior(playerid)); SetPlayerVirtualWorld(i, world); 
 			
-			SendServerMessage(i, "The property you were in was amended."); 
+			SendInfoMessage(i, "The property you were in was amended."); 
 		}
 		
 		SaveProperty(property);
-		SendServerMessage(playerid, "You set Property %i's interior.", property);
+		SendInfoMessage(playerid, "You set Property #%i's interior.", property);
 	}
 	return 1;
 }
@@ -239,7 +239,7 @@ CMD:editproperty(playerid, params[])
 		PropertyInfo[id][E_PROPERTY_FACTION] = factionid;
 		SaveProperty(factionid);
 		
-		SendServerMessage(playerid, "You set Property %i's faction to %i.", id, factionid);
+		SendInfoMessage(playerid, "You set Property #%i's faction to #%i.", id, factionid);
 	}
 	else if(!strcmp(indx, "type"))
 	{
@@ -264,7 +264,7 @@ CMD:editproperty(playerid, params[])
 		Property_RemoveAllItems(id);
 		RemoveAllFurniture(id);
 		
-		SendServerMessage(playerid, "You set Property %i's type to %s.", id, typeName);	
+		SendInfoMessage(playerid, "You set Property #%i's type to %s.", id, typeName);	
 	}
 	else if(!strcmp(indx, "price"))
 	{
@@ -279,7 +279,7 @@ CMD:editproperty(playerid, params[])
 		PropertyInfo[id][E_PROPERTY_PRICE] = price;
 		SaveProperty(id);
 		
-		SendServerMessage(playerid, "You set Property %i's market price to %i.", id, price);
+		SendInfoMessage(playerid, "You set Property #%i's market price to %i.", id, price);
 	}
 	else if(!strcmp(indx, "level"))
 	{
@@ -294,9 +294,9 @@ CMD:editproperty(playerid, params[])
 		PropertyInfo[id][E_PROPERTY_LEVEL] = level;
 		SaveProperty(id);
 		
-		SendServerMessage(playerid, "You set Property %i's level to %i.", id, level);
+		SendInfoMessage(playerid, "You set Property #%i's level to #%i.", id, level);
 	}
-	else return SendServerMessage(playerid, "Invalid Paramater.");	
+	else return SendErrorMessage(playerid, "Invalid Paramater.");	
 	return 1;
 }
 
@@ -334,7 +334,7 @@ CMD:property(playerid, params[])
 			type = "Apartment Complex"; 
 	
 		SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Property Info __________|");
-		SendClientMessageEx(playerid, COLOR_SERVER, "House ID:[%i], Price:[$%s], Level:[%i], Type:[%s], Furniture Capacity:[%d]", PropertyInfo[id][E_PROPERTY_DBID], FormatMoney(PropertyInfo[id][E_PROPERTY_PRICE]), PropertyInfo[id][E_PROPERTY_LEVEL], type, GetPropertyFurniture(id)); 
+		SendClientMessageEx(playerid, COLOR_ORANGE, "House ID:[%i], Price:[$%s], Level:[%i], Type:[%s], Furniture Capacity:[%d]", PropertyInfo[id][E_PROPERTY_DBID], FormatMoney(PropertyInfo[id][E_PROPERTY_PRICE]), PropertyInfo[id][E_PROPERTY_LEVEL], type, GetPropertyFurniture(id)); 
 	}
 	else if(!strcmp(str, "cashbox"))
 	{
@@ -346,7 +346,7 @@ CMD:property(playerid, params[])
 		if(!strcmp(pick, "info"))
 		{
 			SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Property Info __________|");
-			SendServerMessage(playerid, "You have $%s inside your houses' cashbox.", FormatMoney(PropertyInfo[id][E_PROPERTY_CASH])); 
+			SendInfoMessage(playerid, "You have $%s inside your houses' cashbox.", FormatMoney(PropertyInfo[id][E_PROPERTY_CASH])); 
 		}
 		else if(!strcmp(pick, "place"))
 		{	
@@ -476,13 +476,13 @@ CMD:property(playerid, params[])
 			{
 				PropertyInfo[id][E_PROPERTY_LABELS] = 1;
 				ReloadAllFurniture(id);
-				SendServerMessage(playerid, "You will now see labels appear above all of your furniture.");
+				SendServerMessage(playerid, "FURNITURE: {ffffff}You will now see labels appear above all of your furniture.");
 			}
 			else
 			{
 				PropertyInfo[id][E_PROPERTY_LABELS] = 0;
 				ReloadAllFurniture(id);
-				SendServerMessage(playerid, "You will no longer see any labels appear above your furniture.");
+				SendServerMessage(playerid, "FURNITURE: {ffffff}You will no longer see any labels appear above your furniture.");
 			}
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 

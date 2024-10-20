@@ -174,7 +174,7 @@ CMD:takejobs(playerid, params[])
                 return SendErrorMessage(playerid, "You already have jobs.");
 
             PlayerInfo[playerid][E_CHARACTER_JOBS] = i;
-            SendServerMessage(playerid, "You are now a %s use /help to see jobs commands.", JobsInfo[i][E_JOBSNAMES]);
+            SendServerMessage(playerid, "JOBS: {ffffff}You are now a %s use /help to see jobs commands.", JobsInfo[i][E_JOBSNAMES]);
             SaveCharacter(playerid);
         }
     }
@@ -186,7 +186,7 @@ CMD:quitjobs(playerid, params[])
     if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_NONE)
     {
         PlayerInfo[playerid][E_CHARACTER_JOBS] = JOB_NONE;
-        SendServerMessage(playerid, "You are now exit the jobs.");
+        SendServerMessage(playerid, "JOBS: {ffffff}You are now exit the jobs.");
         SaveCharacter(playerid);
     }
     return 1;

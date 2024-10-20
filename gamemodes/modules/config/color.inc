@@ -6,7 +6,8 @@
 
 #define COLOR_CREDITS       (0xf8b56eFF)
 
-#define COLOR_SERVER		(0xDAA650FF)
+#define COLOR_ORANGE		(0xDAA650FF)
+#define COLOR_INFO          (0x95C9DCFF)
 #define COLOR_FACTION       (0x99a5d7FF)
 #define COLOR_GAMES         (0xb6b9e1FF)
 #define COLOR_TIP           (0x73B3EDFF)

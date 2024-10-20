@@ -71,7 +71,7 @@ CMD:finvite(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_FACTIONINVITED] = playerid;
 	
 	SendTipMessage(playerb, "%s has invited you to join the %s, type /approve faction to join.", ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-	SendServerMessage(playerid, "You invited %s to join the %s.", ReturnSettingsName(playerb, playerid), ReturnFactionName(playerid));
+	SendInfoMessage(playerid, "You invited %s to join the %s.", ReturnSettingsName(playerb, playerid), ReturnFactionName(playerid));
 	return 1;
 }
 
@@ -97,8 +97,8 @@ CMD:funinvite(playerid, params[])
 	if(PlayerInfo[playerb][E_CHARACTER_FACTION] != PlayerInfo[playerid][E_CHARACTER_FACTION])
 		return SendErrorMessage(playerid, "The player you specified IS not in your faction.");
 	
-	SendServerMessage(playerid, "You were uninvited from the %s by %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTION]), ReturnSettingsName(playerid, playerid));
-	SendServerMessage(playerid, "You uninvited %s!", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "You were uninvited from the %s by %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTION]), ReturnSettingsName(playerid, playerid));
+	SendInfoMessage(playerid, "You uninvited %s!", ReturnSettingsName(playerb, playerid));
 	
 	PlayerInfo[playerb][E_CHARACTER_FACTION] = 0;
 	PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = 0;
@@ -201,8 +201,8 @@ CMD:frank(playerid, params[])
 	if(PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] > 4)
 		return SendErrorMessage(playerid, "You can't alter 4 rank.", ReturnSettingsName(playerb, playerid)); 
 		
-	SendServerMessage(playerb, "Your rank has been upgraded from %s to %s by %s!", FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank], ReturnSettingsName(playerid, playerid)); 
-	SendServerMessage(playerid, "You upgraded %s's rank from %s to %s!", ReturnSettingsName(playerb, playerid), FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank]);
+	SendInfoMessage(playerb, "Your rank has been upgraded from %s to %s by %s!", FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank], ReturnSettingsName(playerid, playerid)); 
+	SendInfoMessage(playerid, "You upgraded %s's rank from %s to %s!", ReturnSettingsName(playerb, playerid), FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank]);
 		
 	PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = rank; 
 	SaveCharacter(playerb);
@@ -378,8 +378,8 @@ CMD:handcuff(playerid, params[])
 	
 	PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = true;
 	
-	SendServerMessage(playerb, "You were handcuffed by %s.", ReturnSettingsName(playerid, playerid)); 
-	SendServerMessage(playerid, "You handcuffed %s.", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerb, "You were handcuffed by %s.", ReturnSettingsName(playerid, playerid)); 
+	SendInfoMessage(playerid, "You handcuffed %s.", ReturnSettingsName(playerb, playerid));
 	return 1;
 }
 
@@ -412,7 +412,7 @@ CMD:unhandcuff(playerid, params[])
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE); 
 	
 	PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = false;
-	SendServerMessage(playerid, "You unhandcuffed %s.", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "You unhandcuffed %s.", ReturnSettingsName(playerb, playerid));
 	return 1;
 }
 
@@ -907,7 +907,7 @@ CMD:loadinjured(playerid, params[])
     
         TogglePlayerControllable(otherid, false);
         SetPlayerHealth(otherid, 100.0);
-        SendServerMessage(otherid, "You're injured ~r~now you're on ambulance.");
+        SendInfoMessage(otherid, "You're injured ~r~now you're on ambulance.");
         return 1;
     }
     else SendErrorMessage(playerid, "You must be in an ambulance.");
@@ -942,8 +942,8 @@ CMD:dropinjured(playerid, params[])
 
         GiveMoney(playerid, -250);
 
-        SendServerMessage(playerid, "You have delivered %s to the hospital.", ReturnSettingsName(otherid, playerid));
-        SendServerMessage(otherid, "You have recovered at the nearest hospital by officer %s.", ReturnSettingsName(playerid, playerid));
+        SendInfoMessage(playerid, "You have delivered %s to the hospital.", ReturnSettingsName(otherid, playerid));
+        SendInfoMessage(otherid, "You have recovered at the nearest hospital by officer %s.", ReturnSettingsName(playerid, playerid));
     }
     else SendErrorMessage(playerid, "You must be near a hospital deliver location.");
     return 1;
@@ -979,6 +979,6 @@ CMD:rescue(playerid, params[])
 	ApplyAnimation(otherid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
 	
 	SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s has rescuered %s with medkit tools.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(otherid, playerid));
-    SendServerMessage(otherid, "Officer %s has rescue your character.", ReturnSettingsName(playerid, playerid));
+    SendInfoMessage(otherid, "Officer %s has rescue your character.", ReturnSettingsName(playerid, playerid));
 	return 1;
 }

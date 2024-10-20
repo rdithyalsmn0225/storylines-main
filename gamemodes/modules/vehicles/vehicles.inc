@@ -136,8 +136,8 @@ function:OnVehicleScrap(playerid, response, dbid, cash_back)
 		mysql_format(ourConnection, delQuery, sizeof(delQuery), "DELETE FROM vehicles WHERE VehicleDBID = %i", dbid);
 		mysql_pquery(ourConnection, delQuery); 
 		
-		SendServerMessage(playerid, "Your %s has been permanently deleted.", ReturnVehicleName(GetPlayerVehicleID(playerid))); 
-		SendServerMessage(playerid, "You earned $%s from scrapping it.", FormatMoney(cash_back));
+		SendServerMessage(playerid, "VEHICLE: {ffffff}Your %s has been permanently deleted.", ReturnVehicleName(GetPlayerVehicleID(playerid))); 
+		SendServerMessage(playerid, "VEHICLE: {ffffff}You earned $%s from scrapping it.", FormatMoney(cash_back));
 		
 		GiveMoney(playerid, cash_back); 
 		
@@ -157,7 +157,7 @@ function:OnVehicleScrap(playerid, response, dbid, cash_back)
 		}
 	}
 	
-	else return SendServerMessage(playerid, "This action was aborted.");
+	else return SendErrorMessage(playerid, "This action was aborted.");
 	return 1;
 }
 
@@ -168,7 +168,7 @@ function:OnVehicleTow(playerid)
 	if(IsVehicleOccupied(vehicleid))
 	{
 		KillTimer(playerTowTimer[playerid]);
-		SendServerMessage(playerid, "Your vehicle tow was interrupted."); 
+		SendServerMessage(playerid, "VEHICLE: {ffffff}Your vehicle tow was interrupted."); 
 		
 		playerTowingVehicle[playerid] = false;	
 		Delete3DTextLabel(VehicleInfo[vehicleid][E_VEHICLE_TOW]);
@@ -192,7 +192,7 @@ function:OnVehicleTow(playerid)
 	
 	if(VehicleInfo[vehicleid][E_VEHICLE_TOWCOUNT] == 9)
 	{
-		SendServerMessage(playerid, "Your vehicle has been towed.");
+		SendServerMessage(playerid, "VEHICLE: {ffffff}Your vehicle has been towed.");
 		GiveMoney(playerid, -2000);
 		
 		playerTowingVehicle[playerid] = false;	
@@ -257,7 +257,7 @@ function:OnGascanRefill(playerid, vehicleid, x, y, z)
 			VehicleInfo[vehicleid][E_VEHICLE_FUEL] += 50.0;
 			Inventory_Remove(playerid, "Gascan", 1);
 			
-			SendServerMessage(playerid, "You refilled the %s to 50 percent fuel.", ReturnVehicleName(vehicleid)); 
+			SendServerMessage(playerid, "VEHICLE: {ffffff}You refilled the %s to 50 percent fuel.", ReturnVehicleName(vehicleid)); 
 			return 1;
 		}
 	}
@@ -317,7 +317,7 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid;
 	}
 	
-	SendServerMessage(playerid, "You successfully bought a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(DealershipTotalCost[playerid]));
+	SendServerMessage(playerid, "VEHICLE: {ffffff}You successfully bought a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(DealershipTotalCost[playerid]));
 	
 	PlayerPurchasingVehicle[playerid] = false;
 	ResetDealershipVars(playerid); 
@@ -438,7 +438,7 @@ function:Query_LoadPrivateVehicle(playerid)
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = true;
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid; 
 	
-	SendServerMessage(playerid, "%s has been spawned at its parking place.", ReturnVehicleName(vehicleid));
+	SendServerMessage(playerid, "VEHICLE: {ffffff}%s has been spawned at its parking place.", ReturnVehicleName(vehicleid));
 	if(VehicleInfo[vehicleid][E_VEHICLE_IMPOUND]) SendClientMessage(playerid, COLOR_RED, "Your vehicle is impounded.");
 	GPS_SetPlayerRaceCheckPoint(playerid, 1, VehicleInfo[vehicleid][E_VEHICLE_POS][0], VehicleInfo[vehicleid][E_VEHICLE_POS][1], VehicleInfo[vehicleid][E_VEHICLE_POS][2], 0.0, 0.0, 0.0);
 	return 1;
@@ -448,8 +448,8 @@ function:Query_AddPlayerVehicle(playerid, playerb)
 {
 	PlayerInfo[playerb][E_CHARACTER_OWNEDVEHICLE][playerInsertID[playerb]] = cache_insert_id(); 
 	
-	SendServerMessage(playerb, "You received a vehicle from %s in slot %i.", ReturnSettingsName(playerid, playerid), playerInsertID[playerb]);
-	SendServerMessage(playerid, "You issued %s a new vehicle.", ReturnSettingsName(playerb, playerid));
+	SendServerMessage(playerb, "VEHICLE: {ffffff}You received a vehicle from %s in slot %i.", ReturnSettingsName(playerid, playerid), playerInsertID[playerb]);
+	SendServerMessage(playerid, "VEHICLE: {ffffff}You issued %s a new vehicle.", ReturnSettingsName(playerb, playerid));
 	
 	playerInsertID[playerb] = 0;
 	SaveCharacter(playerb);
@@ -591,7 +591,7 @@ stock NotifyVehicleOwner(vehicleid)
 	}
 	if(playerid != INVALID_PLAYER_ID)
 	{
-		SendServerMessage(playerid, "SMS: Your vehicle alarm has been set off, Sender: Vehicle Alarm (Unknown)");
+		SendInfoMessage(playerid, "SMS: Your vehicle alarm has been set off, Sender: Vehicle Alarm (Unknown)");
 	}
 	else return 1;
 	return 1;

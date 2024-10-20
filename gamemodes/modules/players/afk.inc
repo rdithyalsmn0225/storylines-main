@@ -20,7 +20,7 @@ AFKCheck(playerid)
 			new str[512];
 	    	format(str, sizeof(str), "[PAUSED]", PlayerInfo[playerid][E_CHARACTER_AFKTIME]);
 	    	SetPlayerChatBubble(playerid, str, COLOR_DARKGREEN, 3.0, 10000);
-		    SendServerMessage(playerid, "You are now marked as away from keyboard as you haven't moved in one minute.");
+		    SendServerMessage(playerid, "AFK: {ffffff}You are now marked as away from keyboard as you haven't moved in one minute.");
 		    PlayerInfo[playerid][E_CHARACTER_AFK] = 1;
 		}
 	}
@@ -30,11 +30,11 @@ AFKCheck(playerid)
 		{
 		    if(PlayerInfo[playerid][E_CHARACTER_AFKTIME] < 120) 
 		    {
-		    	SendServerMessage(playerid, "You are no longer marked as away from keyboard after %i seconds.", PlayerInfo[playerid][E_CHARACTER_AFKTIME]);
+		    	SendServerMessage(playerid, "AFK: {ffffff}You are no longer marked as away from keyboard after %i seconds.", PlayerInfo[playerid][E_CHARACTER_AFKTIME]);
 			} 
 			else 
 			{
-			    SendServerMessage(playerid, "You are no longer marked as away from keyboard after %i minutes.", PlayerInfo[playerid][E_CHARACTER_AFKTIME] / 60);
+			    SendServerMessage(playerid, "AFK: {ffffff}You are no longer marked as away from keyboard after %i minutes.", PlayerInfo[playerid][E_CHARACTER_AFKTIME] / 60);
 			}
 			PlayerInfo[playerid][E_CHARACTER_AFK] = 0;
 		}

@@ -445,8 +445,8 @@ function:CheckBanList(playerid)
 	}
 	else
 	{
-		SendServerMessage(playerid, "Your IP \"%s\" is banned from our servers.", ReturnIP(playerid));
-		SendServerMessage(playerid, "You may appeal your ban on our forums."); 
+		SendInfoMessage(playerid, "Your IP \"%s\" is banned from our servers.", ReturnIP(playerid));
+		SendInfoMessage(playerid, "You may appeal your ban on our forums."); 
 		return KickEx(playerid);
 	}
 	return 1;
@@ -484,7 +484,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 			if(PlayerCheckpoint[playerid] == GPS_DMVFINISH)
 			{
 				StopDriverstest(playerid);
-				SendServerMessage(playerid, "Congratulations %s, you've passed your test.", ReturnSettingsName(playerid, playerid)); 
+				SendServerMessage(playerid, "DMV: {ffffff}Congratulations %s, you've passed your test.", ReturnSettingsName(playerid, playerid)); 
 				
 				PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE] = 1;
 				SaveCharacter(playerid);
@@ -824,7 +824,7 @@ function:OnPlayerRegister(playerid)
 	
 	new str[1024];
 	format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
-	SendServerMessage(playerid, "You successfully registered as %s. You need to login to continue:", ReturnSettingsName(playerid, playerid)); 
+	SendInfoMessage(playerid, "You successfully registered as %s. You need to login to continue:", ReturnSettingsName(playerid, playerid)); 
 	return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 }
 
@@ -896,8 +896,8 @@ function:Query_CheckBannedAccount(playerid)
 		cache_get_value_name(0, "Date", banDate, 90);
 		cache_get_value_name(0, "BannedBy", banner, 32);
 	
-		SendServerMessage(playerid, "{ffffff}Your account \"%s\" is banned from our server.", ReturnSettingsName(playerid, playerid));
-		SendServerMessage(playerid, "You were banned on %s by %s.", banDate, banner); 
+		SendInfoMessage(playerid, "{ffffff}Your account \"%s\" is banned from our server.", ReturnSettingsName(playerid, playerid));
+		SendInfoMessage(playerid, "You were banned on %s by %s.", banDate, banner); 
 		return KickEx(playerid);
 	}
 	return 1;
@@ -914,7 +914,7 @@ function:DB_ListCharacters(playerid)
 
 	if(!rows)
 	{
-		SendServerMessage(playerid, "You don't have any existing characters.");
+		SendInfoMessage(playerid, "You don't have any existing characters.");
 		
 		PlayerTextDrawSetString(playerid, SelectFactionName[playerid], "Hoodrats");
 		PlayerTextDrawSetString(playerid, SelectFactionLocation[playerid], "Empty_Characters");
@@ -1146,7 +1146,7 @@ stock LoadCharacter(playerid)
 			PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = false; 
 			
 		else
-			SendServerMessage(playerid, "Your vehicle is still spawned.");
+			SendInfoMessage(playerid, "Your vehicle is still spawned.");
 	}
 	
 	SetCameraBehindPlayer(playerid);
@@ -1267,19 +1267,19 @@ public OnPlayerDeath(playerid, killerid, reason)
 					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
 					return 0;
 				}
-				SendServerMessage(killerid, "You have been killed %s at %s.", ReturnSettingsName(playerid, playerid), ReturnLocationStreet(playerid));
-				SendServerMessage(playerid, "You has been killed by %s at %s.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
+				SendInfoMessage(killerid, "You have been killed %s at %s.", ReturnSettingsName(playerid, playerid), ReturnLocationStreet(playerid));
+				SendInfoMessage(playerid, "You has been killed by %s at %s.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
 			}
 			else
 			{
 				if(killerid == INVALID_PLAYER_ID)
 				{
-					SendServerMessage(playerid, "You has been killed by unknown at %s.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(playerid, "You has been killed by unknown at %s.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
 				}
 				else
 				{
-					SendServerMessage(killerid, "You have been killed %s at %s.", ReturnSettingsName(playerid, playerid), ReturnLocationStreet(playerid));
-					SendServerMessage(playerid, "You has been killed by %s at %s.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(killerid, "You have been killed %s at %s.", ReturnSettingsName(playerid, playerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(playerid, "You has been killed by %s at %s.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
 				}
 				PlayerInfo[playerid][E_CHARACTER_DIEUNKNOWN] = true;
 			}
@@ -2114,7 +2114,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 		{
 			if(!IsPlayerNearPlayer(playerid, hitid, 15.0))
 			{
-				SendServerMessage(playerid, "You aren't close enough to hit %s with your taser.", ReturnSettingsName(hitid, hitid));
+				SendInfoMessage(playerid, "You aren't close enough to hit %s with your taser.", ReturnSettingsName(hitid, hitid));
 				return 0;
 			}
 			
@@ -2124,8 +2124,8 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's taser.", ReturnSettingsName(hitid, hitid), ReturnSettingsName(playerid, playerid)); 
 			GameTextForPlayer(hitid, "~b~You Are Tasered", 2500, 3);
 			
-			SendServerMessage(hitid, "You were just hit by a taser. 10,000 volts go through your body.");
-			SendServerMessage(playerid, "You hit %s with your taser!", ReturnSettingsName(hitid, hitid)); 
+			SendInfoMessage(hitid, "You were just hit by a taser. 10,000 volts go through your body.");
+			SendInfoMessage(playerid, "You hit %s with your taser!", ReturnSettingsName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
 			SetTimerEx("OnPlayerTasered", 1200, false, "i", hitid); 
@@ -2138,7 +2138,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 		{
 			if(!IsPlayerNearPlayer(playerid, hitid, 15.0))
 			{
-				SendServerMessage(playerid, "You aren't close enough to hit %s with your riot gun.", ReturnSettingsName(hitid, hitid));
+				SendInfoMessage(playerid, "You aren't close enough to hit %s with your riot gun.", ReturnSettingsName(hitid, hitid));
 				return 0;
 			}
 			
@@ -2146,8 +2146,8 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			
 			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's riot gun.", ReturnSettingsName(hitid, hitid), ReturnSettingsName(playerid, playerid)); 
 			
-			SendServerMessage(hitid, "You were just hit by a riot gun. rubber bullet go through your body.");
-			SendServerMessage(playerid, "You hit %s with your taser!", ReturnSettingsName(hitid, hitid)); 
+			SendInfoMessage(hitid, "You were just hit by a riot gun. rubber bullet go through your body.");
+			SendInfoMessage(playerid, "You hit %s with your taser!", ReturnSettingsName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
 			SetTimerEx("OnPlayerRubber", 1200, false, "i", hitid); 
@@ -2984,7 +2984,7 @@ public OnPlayerSpawn(playerid)
 		SetPlayerPosEx(playerid, -10.5146,2337.2961,24.3034);
 		SetPlayerInterior(playerid, 0); SetPlayerVirtualWorld(playerid, 1338);
 		
-		SendServerMessage(playerid, "You're currently admin jailed. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
+		SendServerMessage(playerid, "ADMIN-JAIL: {ffffff}You're currently admin jailed. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
 	}
 	else if(PlayerInfo[playerid][E_CHARACTER_PRISONED] == true)
 	{
@@ -2992,7 +2992,7 @@ public OnPlayerSpawn(playerid)
 		
 		SetPlayerInPrison(playerid);
 		
-		SendServerMessage(playerid, "You're currently prison. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
+		SendServerMessage(playerid, "PRISON: {ffffff}You're currently prison. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
 	}
 	else
 	{
@@ -3588,7 +3588,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				TogglePlayerControllable(playerid, true);
 				
 				ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-				SendServerMessage(playerid, "You caught a 1.kg of fish.");
+				SendServerMessage(playerid, "FISHING: {ffffff}You caught a 1.kg of fish.");
 				
 			}
 		}
@@ -4154,8 +4154,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 
-	    SendServerMessage(driverid, "%s has entered your taxi as a passenger.", ReturnSettingsName(playerid, driverid));
-		SendServerMessage(playerid, "You have entered %s's taxi.", ReturnSettingsName(driverid, playerid));
+	    SendServerMessage(driverid, "TAXI: {ffffff}%s has entered your taxi as a passenger.", ReturnSettingsName(playerid, driverid));
+		SendServerMessage(playerid, "TAXI: {ffffff}You have entered %s's taxi.", ReturnSettingsName(driverid, playerid));
 	}
  	if (oldstate == PLAYER_STATE_PASSENGER && PlayerInfo[playerid][E_CHARACTER_TAXITIMER] != 0 && PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
 	{
@@ -4218,7 +4218,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	    }
 	    
         PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
-        SendServerMessage(playerid, "You are no longer on taxi duty!");
+        SendServerMessage(playerid, "TAXI: {ffffff}You are no longer on taxi duty!");
 	}
 
     if(Jobs_vehicles[7] <= vehicleid <= Jobs_vehicles[11])
@@ -4353,7 +4353,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
 					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
 
-					SendServerMessage(playerid, "You're set shooting ball red team."); 
+					SendInfoMessage(playerid, "You're set shooting ball red team."); 
 					return 1;
 				}
 			}
@@ -4384,7 +4384,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
 
 					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
-					SendServerMessage(playerid, "You're set shooting ball blue team."); 
+					SendInfoMessage(playerid, "You're set shooting ball blue team."); 
 					return 1;
 				}
 			}
@@ -4416,7 +4416,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 
 					Tree_Save(PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
 					Tree_Refresh(PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
-					SendServerMessage(playerid, "You're created tree ID #%d", PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
+					SendInfoMessage(playerid, "You're created tree ID #%d", PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
 					return 1;
 				}
 			}
@@ -4449,7 +4449,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
 					format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
 					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
-					SendServerMessage(playerid, "You're moved dropped items."); 
+					SendInfoMessage(playerid, "You're moved dropped items."); 
 					return 1;
 				}
 			}
@@ -4479,7 +4479,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
 
 					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
-					SendServerMessage(playerid, "You're moved business point."); 
+					SendInfoMessage(playerid, "You're moved business point."); 
 				}
 			}
 			case 7:
@@ -4560,7 +4560,7 @@ function:RefreshCharacters(playerid)
 	if (!IsPlayerConnected(playerid))
 	    return 0;
 
-	SendServerMessage(playerid, "Your character list has been refreshed."); 
+	SendInfoMessage(playerid, "Your character list has been refreshed."); 
 	
 	new 
 		fetchChars[128];

@@ -100,7 +100,7 @@ function:OnCourtCreate(playerid, cid, Float:posx, Float:posy, Float:posz)
     CourtInfo[cid][E_RED_BALL][2] = 0.0;
 
 	Court_Refresh(cid);
-	SendServerMessage(playerid, "You created court ID %i. To configure, use \"/editcourt\". ", cid); 
+	SendInfoMessage(playerid, "You created court ID #%i. To configure, use \"/editcourt\". ", cid); 
 	return 1;
 }
 CMD:resetcourt(playerid, params[])
@@ -108,7 +108,7 @@ CMD:resetcourt(playerid, params[])
 	if(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] == 999)
 	{
 		Court_Refresh(PlayerInfo[playerid][E_CHARACTER_COURT]);
-		SendServerMessage(playerid, "You've reset the basketball court.");
+		SendInfoMessage(playerid, "You've reset the basketball court.");
 	}
 	return 1;
 }
@@ -178,7 +178,7 @@ CMD:editcourt(playerid, params[])
 
 		Court_Save(id);
 		Court_Refresh(id);
-		SendServerMessage(playerid, "You're set position blue team in %f, %f, %f.", pos[0], pos[1], pos[2]);
+		SendInfoMessage(playerid, "You're set position blue team in %f, %f, %f.", pos[0], pos[1], pos[2]);
 	}
 	else if(!strcmp(indx, "redpos"))
 	{
@@ -191,7 +191,7 @@ CMD:editcourt(playerid, params[])
 
 		Court_Save(id);
 		Court_Refresh(id);
-		SendServerMessage(playerid, "You're set position red team in %f, %f, %f.", pos[0], pos[1], pos[2]);
+		SendInfoMessage(playerid, "You're set position red team in %f, %f, %f.", pos[0], pos[1], pos[2]);
 	}
 	else if(!strcmp(indx, "bluering"))
 	{
@@ -226,13 +226,13 @@ CMD:court(playerid, params[])
 		{
 			PlayerInfo[playerid][E_CHARACTER_COURT] = IsPlayerNearCourt(playerid, 1);
 			PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 1;
-			SendMinigamesMessage(playerid, "You've joined the basketball as blue team.");
+			SendServerMessage(playerid, "BASKET: {ffffff}You've joined the basketball as blue team.");
 		}
 		else if(IsPlayerNearCourt(playerid, 2))
 		{
 			PlayerInfo[playerid][E_CHARACTER_COURT] = IsPlayerNearCourt(playerid, 2);
 			PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 2;
-			SendMinigamesMessage(playerid, "You've joined the basketball as red team.");
+			SendServerMessage(playerid, "BASKET: {ffffff}You've joined the basketball as red team.");
 		}
 		else return SendErrorMessage(playerid, "You aren't near court.");
 	}
@@ -242,7 +242,7 @@ CMD:court(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
 		CourtInfo[cid][E_BALLER] = 999;
 		CourtInfo[cid][E_BALL_SHOOT] = 0;
-		SendMinigamesMessage(playerid, "You've leave the game.");
+		SendServerMessage(playerid, "BASKET: {ffffff}You've leave the game.");
 	}
 	return 1;
 }
