@@ -116,47 +116,47 @@ Dialog:BuyGuns(playerid, response, listitem, inputtext[])
             case 0:
             {
                 format(str, sizeof(str), "Are you sure you want to purchase a Glock 19 for $%d?", GLOCK19);
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_COLT45, 10, GLOCK19, 1); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_COLT45, 10, GLOCK19, 1); 
             }
             case 1:
             {
                 format(str, sizeof(str), "Are you sure you want to purchase a Glock 17 for $%d?", GLOCK17);
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_COLT45, 10, GLOCK17, 2); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_COLT45, 10, GLOCK17, 2); 
             }
             case 2:
             {
                 format(str, sizeof(str), "Are you sure you want to purchase a Glock P80 for $%d?", GLOCKP80);
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_COLT45, 10, GLOCKP80, 3); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_COLT45, 10, GLOCKP80, 3); 
             }
             case 3:
             {
                 format(str, sizeof(str), "Are you sure you want to purchase a Mac-11 for $%d?", MAC11);
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_UZI, 10, MAC11, 1); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_UZI, 10, MAC11, 1); 
             }
             case 4:
             {
                 format(str, sizeof(str), "Are you sure you want to purchase a Mac-11 for $%d?", MAC10);
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_UZI, 10, MAC10, 2); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_UZI, 10, MAC10, 2); 
             }
             case 5:
             {
                 format(str, sizeof(str), "Are you sure you want to purchase a Mac-11 for $%d?", SOCIMIT821);
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_UZI, 10, SOCIMIT821, 3); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_UZI, 10, SOCIMIT821, 3); 
             }
             case 6:
             {
                 format(str, sizeof(str), "Are you sure you want to purchase a Deagle for $%d?", SOCIMIT821);
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_DEAGLE, 10, DEAGLES, 2); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_DEAGLE, 10, DEAGLES, 2); 
             }
             case 7:
             {
                 format(str, sizeof(str), "Are you sure you want to buy ammo for $%d?", A9MM); 
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseAmmo", 0, 50, A9MM); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 0, 50, A9MM); 
             }
             case 8:
             {
                 format(str, sizeof(str), "Are you sure you want to buy ammo for $%d?", A9X19MM); 
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseAmmo", 1, 100, A9X19MM); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 1, 100, A9X19MM); 
             }
         }
     }
@@ -173,13 +173,13 @@ Dialog:Emmets(playerid, response, listitem, inputtext[])
             {
                 new str[512];
                 format(str, sizeof(str), "Are you sure you want to purchase a Emmet Pistol for $%d?", 4000);
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseWeapon", WEAPON_COLT45, 25, 4000, 1); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_COLT45, 25, 4000, 1); 
             }
             case 1:
             {
                 new str[512];
                 format(str, sizeof(str), "Are you sure you want to buy ammo for $%d?", A9MM); 
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseAmmo", 0, 25, A9MM); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 0, 25, A9MM); 
             }
         }
     }

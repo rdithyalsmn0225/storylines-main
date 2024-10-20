@@ -733,7 +733,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						if(!toyToggle[playerid][toySelect[playerid]])
 						{
-							ShowBoxMessage(playerid, "Accessory attached", 3);
+							ShowBoxMessage(playerid, "Accessory attached", 5);
 
 							SetPlayerAttachedObject(playerid,
 							toySelect[playerid],
@@ -754,7 +754,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						else
 						{
 							RemovePlayerAttachedObject(playerid, toySelect[playerid]);
-							ShowBoxMessage(playerid, "Accessory deattached", 3);
+							ShowBoxMessage(playerid, "Accessory deattached", 5);
 
 							toyToggle[playerid][toySelect[playerid]] = false;
 						}
@@ -777,7 +777,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							RemovePlayerAttachedObject(playerid, toySelect[playerid]);
 						}
 						pToys[playerid][toySelect[playerid]][E_TOY_MODEL] = 0;
-						ShowBoxMessage(playerid, "Accessory removed!", 3);
+						ShowBoxMessage(playerid, "Accessory removed!", 5);
 						SavePlayerToys(playerid);
 					}
 				}
@@ -1633,7 +1633,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					if (PickupItem(playerid, id))
 					{
-						format(string, sizeof(string), "~g~%s~w~ added to inventory!", DroppedInfo[id][E_DROPPED_ITEM]);
+						format(string, sizeof(string), "%s added to inventory!", DroppedInfo[id][E_DROPPED_ITEM]);
 		 				ShowBoxMessage(playerid, string, 5);
 					}
 					else

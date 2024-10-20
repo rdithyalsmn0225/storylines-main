@@ -309,7 +309,7 @@ function:AntiCheatCheck()
                 new gstr[512], str1[512];
 				format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Jetpack Hack]", ReturnSettingsName(playerid, playerid));
                 SendClientMessageToAll(COLOR_YELLOW, gstr);
-                KickEx(playerid);
+                Kick(playerid);
 
                 format(str1, sizeof(str1), "%s has been detected for using program hack [Jetpack Hack]", ReturnSettingsName(playerid, playerid)); 
 		        SendAdminMessage(1, str1);
@@ -328,7 +328,7 @@ function:AntiCheatCheck()
                     new gstr[512];
                     format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Vehicle WARP Hack]", ReturnSettingsName(playerid, playerid));
                     SendClientMessageToAll(COLOR_YELLOW, gstr);
-                    KickEx(playerid);
+                    Kick(playerid);
 
                     new str1[512];
                     format(str1, sizeof(str1), "%s has been detected for using program hack [Vehicle WARP Hack]", ReturnSettingsName(playerid, playerid)); 
@@ -346,7 +346,7 @@ function:AntiCheatCheck()
                     new gstr[512];
                     format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Crash Hack]", ReturnSettingsName(playerid, playerid));
                     SendClientMessageToAll(COLOR_YELLOW, gstr);
-                    KickEx(playerid);
+                    Kick(playerid);
 
                     new str1[512];
                     format(str1, sizeof(str1), "%s has been detected for using program hack [Crash Hack]", ReturnSettingsName(playerid, playerid)); 
@@ -365,7 +365,7 @@ function:AntiCheatCheck()
 				{
 					format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Money Hack]", ReturnSettingsName(playerid, playerid));
                     SendClientMessageToAll(COLOR_YELLOW, gstr);
-                    KickEx(playerid);
+                    Kick(playerid);
                     new str1[512];
                     format(str1, sizeof(str1), "%s has been detected for using program hack [Money Hack]", ReturnSettingsName(playerid, playerid)); 
 		            SendAdminMessage(1, str1);
@@ -391,7 +391,7 @@ function:AntiCheatCheck()
                             
                             format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Weapon Hack]", ReturnSettingsName(playerid, playerid));
                             SendClientMessageToAll(COLOR_YELLOW, gstr);
-                            KickEx(playerid);
+                            Kick(playerid);
 
                             new str1[512];
                             format(str1, sizeof(str1), "%s has been detected for using program hack [Weapon Hack]", ReturnSettingsName(playerid, playerid)); 
@@ -417,7 +417,7 @@ function:AntiCheatCheck()
                             SetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
                             format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Vehicle Fly Hack]", ReturnSettingsName(playerid, playerid));
                             SendClientMessageToAll(COLOR_YELLOW, gstr);
-                            KickEx(playerid);
+                            Kick(playerid);
 
                             new str1[512];
                             format(str1, sizeof(str1), "%s has been detected for using program hack [Vehicle Fly Hack]", ReturnSettingsName(playerid, playerid)); 
@@ -440,7 +440,7 @@ function:AntiCheatCheck()
                                     SetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
                                     format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Fly Hack]", ReturnSettingsName(playerid, playerid));
                                     SendClientMessageToAll(COLOR_YELLOW, gstr);
-                                    KickEx(playerid);
+                                    Kick(playerid);
 
                                     new str1[512];
                                     format(str1, sizeof(str1), "%s has been detected for using program hack [Fly Hack]", ReturnSettingsName(playerid, playerid)); 
@@ -466,7 +466,7 @@ function:AntiCheatCheck()
 
 						format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Health Hack]", ReturnSettingsName(playerid, playerid));
                         SendClientMessageToAll(COLOR_YELLOW, gstr);
-                        KickEx(playerid);
+                        Kick(playerid);
 
                         new str1[512];
                         format(str1, sizeof(str1), "%s has been detected for using program hack [Health Hack]", ReturnSettingsName(playerid, playerid)); 
@@ -488,7 +488,7 @@ function:AntiCheatCheck()
                         SetPlayerArmourEx(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 						format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Armour Hack]", ReturnSettingsName(playerid, playerid));
                         SendClientMessageToAll(COLOR_YELLOW, gstr);
-                        KickEx(playerid);
+                        Kick(playerid);
 
                         new str1[512];
                         format(str1, sizeof(str1), "%s has been detected for using program hack [Armour Hack]", ReturnSettingsName(playerid, playerid)); 
@@ -513,7 +513,7 @@ function:AntiCheatCheck()
 
                         format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Vehicle Repair]", ReturnSettingsName(playerid, playerid));
                         SendClientMessageToAll(COLOR_YELLOW, gstr);
-                        KickEx(playerid);
+                        Kick(playerid);
 
                         new str1[512];
                         format(str1, sizeof(str1), "%s has been detected for using program hack [Vehicle Repair]", ReturnSettingsName(playerid, playerid)); 
@@ -588,7 +588,7 @@ IPacket:PLAYER_SYNC(playerid, BitStream:bs) {
                         new gstr[512];
                         format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Teleport On-Foot]", ReturnSettingsName(playerid, playerid));
                         SendClientMessageToAll(COLOR_YELLOW, gstr);
-                        KickEx(playerid);
+                        Kick(playerid);
                     }
                 }
 
@@ -630,7 +630,7 @@ IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
                         new gstr[512];
                         format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Teleport In-Vehicle]", ReturnSettingsName(playerid, playerid));
                         SendClientMessageToAll(COLOR_YELLOW, gstr);
-                        KickEx(playerid);
+                        Kick(playerid);
                     }
                 }
 

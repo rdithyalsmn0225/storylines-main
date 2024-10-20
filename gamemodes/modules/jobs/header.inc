@@ -16,7 +16,7 @@ stock StartMainJobs(playerid, type)
                         PlayerDockworkerCollect[playerid] = random(sizeof(Dockworker_Collect));
                         GPS_SetPlayerRaceCheckPoint(playerid, 1, Dockworker_Collect[PlayerDockworkerCollect[playerid]][0], Dockworker_Collect[PlayerDockworkerCollect[playerid]][1], Dockworker_Collect[PlayerDockworkerCollect[playerid]][2], 0.0, 0.0, 0.0);
 
-                        ShowBoxMessage(playerid, "~w~Dock Worker job started. Take the package in oceandocks import warehouse and deliver it to export warehouse", 5, 2);
+                        ShowBoxMessage(playerid, "~w~Dock Worker job started. Take the package in oceandocks import warehouse and deliver it to export warehouse", 5);
                     }                
                      
                 }
@@ -28,7 +28,7 @@ stock StartMainJobs(playerid, type)
                         PlayerDockworkerCollect[playerid] = 0;
                         PlayerDockworkerStore[playerid] = 0;
                         GPS_DisablePlayerRaceCheckPoint(playerid);
-                        ShowBoxMessage(playerid, "~w~Dock Worker job stopped.", 5, 2); 
+                        ShowBoxMessage(playerid, "~r~Dock Worker job stopped.", 5); 
                     }
                     
                 }
@@ -52,7 +52,7 @@ stock StartMainJobs(playerid, type)
                 {
                     SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]);
                     PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = false;
-                    ShowBoxMessage(playerid, "~w~Garbageman job stopped.", 5, 2); 
+                    ShowBoxMessage(playerid, "~r~Garbageman job stopped.", 5); 
                 }
             }
             return 1;
@@ -65,7 +65,7 @@ stock InsertJobsPoint()
 {
     for(new i = 0; i < sizeof(JobsInfo); i++)
     {
-        CreateDynamicPickup(1239, 1, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], -1, -1, -1, 5.0);
+        CreateDynamicPickup(1210, 1, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], -1, -1, -1, 5.0);
         CreateDynamic3DTextLabel("[Jobs Point]\n{ffffff}Available commands: /takejobs /quitjobs", COLOR_POINT, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], 5.0);
     }
     return 1;

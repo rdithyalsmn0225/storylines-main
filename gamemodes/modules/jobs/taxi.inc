@@ -62,9 +62,9 @@ function:TaxiTimers()
 		        PlayerInfo[i][E_CHARACTER_TAXIFARE] += 1;
 		    }
             new str[512];
-		    format(str, sizeof(str), "~y~Taxi Fare: $%d", PlayerInfo[i][E_CHARACTER_TAXIFARE], PlayerInfo[i][E_CHARACTER_TAXITIMER]);
-            ShowBoxMessage(i, str, 5, 2);
-            ShowBoxMessage(GetVehicleDriver(GetPlayerVehicleID(i)), str, 5, 2);
+		    format(str, sizeof(str), "~y~Taxi Fare: ~g~$%d", PlayerInfo[i][E_CHARACTER_TAXIFARE], PlayerInfo[i][E_CHARACTER_TAXITIMER]);
+            ShowBoxMessage(i, str, 5);
+            ShowBoxMessage(GetVehicleDriver(GetPlayerVehicleID(i)), str, 5);
 		}
     }
 }

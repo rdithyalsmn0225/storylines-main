@@ -163,7 +163,7 @@ function:PlayersUpdates()
 				else
 				{
 					format(stru, sizeof(stru), "~g~D");
-					format(stru, sizeof(stru), "~g~/~n~/~n~/");
+					format(stra, sizeof(stra), "~g~/~n~/~n~/");
 				}
 				ShowVehicleSpeedometer(playerid, "MPH", "I", "ld_dual:white", "ld_dual:white", "0", str, stri, stru, stra);
 			}
@@ -466,24 +466,24 @@ function:OnPlayerNearPickup()
 			if(!BusinessInfo[id][E_BUSINESS_OWNERDBID])
 			{
 				if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV)
-					format(str, sizeof(str), "Porch of %s, %s.~n~%s enter the vehicle to start drivetest.", ReturnLocationStreet(i), ReturnLocation(i), BusinessInfo[id][E_BUSINESS_NAME], BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]); 
+					format(str, sizeof(str), "~b~%s~n~~w~enter the vehicle to start drivetest.", BusinessInfo[id][E_BUSINESS_NAME], BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]); 
 				else if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_HAIRCUT || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_GUNSTORE || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_ACID)
-					format(str, sizeof(str), "Porch of %s, %s.~n~%s Owned By: NPC~n~Entrance Fee: $%s.~n~~n~To enter, use RETURN.", ReturnLocationStreet(i), ReturnLocation(i), BusinessInfo[id][E_BUSINESS_NAME], BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]); 
+					format(str, sizeof(str), "~b~%s~n~~w~Owned By: NPC~n~~y~Entrance Fee: $%s.~n~~w~Press 'RETURN' to enter.", BusinessInfo[id][E_BUSINESS_NAME], BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]); 
 				else if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK)
-					format(str, sizeof(str), "Porch of %s, %s.~n~%s Owned By: Goverment~n~Entrance Fee: $%s.~n~~n~To enter, use RETURN.", ReturnLocationStreet(i), ReturnLocation(i), BusinessInfo[id][E_BUSINESS_NAME], BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]); 
+					format(str, sizeof(str), "~b~%s~n~~w~Owned By: Goverments~n~~y~Entrance Fee: $%s.~n~~w~Press 'RETURN' to enter.", BusinessInfo[id][E_BUSINESS_NAME], BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]); 
 						
-				else format(str, sizeof(str), "Porch of %s, %s.~n~%s This business is for sale price: $%s.~n~~n~To enter, use RETURN.", ReturnLocationStreet(i), ReturnLocation(i), BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]), BusinessInfo[id][E_BUSINESS_LEVEL]); 
+				else format(str, sizeof(str), "~b~%s~n~~y~This business is for sale price: $%s.~n~~w~Press 'RETURN' to enter.", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]), BusinessInfo[id][E_BUSINESS_LEVEL]); 
 			}
-			else format(str, sizeof(str), "Porch of %s, %s.~n~%s Owned By: %s~n~Entrance Fee: $%s.~n~~n~To enter, use RETURN.", ReturnLocationStreet(i), ReturnLocation(i), BusinessInfo[id][E_BUSINESS_NAME], ReturnDBIDName(BusinessInfo[id][E_BUSINESS_OWNERDBID]), FormatMoney(BusinessInfo[id][E_BUSINESS_ENTRANCEFEE])); 
+			else format(str, sizeof(str), "~b~%s~n~~w~Owned By: %s~n~~y~Entrance Fee: $%s.~n~~w~Press 'RETURN' to enter.", BusinessInfo[id][E_BUSINESS_NAME], ReturnDBIDName(BusinessInfo[id][E_BUSINESS_OWNERDBID]), FormatMoney(BusinessInfo[id][E_BUSINESS_ENTRANCEFEE])); 
 			
-			ShowBoxMessage(i, str, 3, 0); 	
+			ShowBoxMessage(i, str, 5); 	
 		}
 		if((id = IsPlayerNearEntrance(i)) != 0)
 		{
 			if(!EntranceInfo[id][E_ENTRANCE_DBID])
 				continue;
-			format(str, sizeof(str), "Porch of %s, %s.~n~~n~To enter, use RETURN.", ReturnLocationStreet(i), ReturnLocation(i), BusinessInfo[id][E_BUSINESS_NAME], ReturnDBIDName(BusinessInfo[id][E_BUSINESS_OWNERDBID]), FormatMoney(BusinessInfo[id][E_BUSINESS_ENTRANCEFEE])); 
-			ShowBoxMessage(i, str, 3, 0); 	
+			format(str, sizeof(str), "~b~Entrance point~n~~w~Press 'RETURN' to enter."); 
+			ShowBoxMessage(i, str, 5); 	
 		}
 		for(new p = 1; p < MAX_PROPERTY; p++)
 		{		
@@ -500,13 +500,13 @@ function:OnPlayerNearPickup()
 		
 				if(!PropertyInfo[p][E_PROPERTY_OWNERDBID])
 				{
-					format(str, sizeof(str), "Porch of %s, %s.~n~This property is for sale price: $%s~n~~n~To enter, use RETURN.", PropertyInfo[p][E_PROPERTY_ADDRESS], ReturnLocation(i), FormatMoney(PropertyInfo[p][E_PROPERTY_PRICE]));
+					format(str, sizeof(str), "~b~%s, %s~n~~y~This property is for sale price: $%s~n~~w~Press 'RETURN' to enter.", PropertyInfo[p][E_PROPERTY_ADDRESS], ReturnLocation(i), FormatMoney(PropertyInfo[p][E_PROPERTY_PRICE]));
 					ShowBoxMessage(i, str, 5);
 				}
 				else
 				{
-					format(str, sizeof(str), "Porch of %s, %s.~n~You're standing on %s's porch~n~~n~To enter, use RETURN.", PropertyInfo[p][E_PROPERTY_ADDRESS], ReturnLocation(i),  ReturnDBIDName(PropertyInfo[p][E_PROPERTY_OWNERDBID]));
-					ShowBoxMessage(i, str, 3, 0);
+					format(str, sizeof(str), "~b~%s, %s~n~~w~You're standing on %s's porch~n~~w~Press 'RETURN' to enter.", PropertyInfo[p][E_PROPERTY_ADDRESS], ReturnLocation(i),  ReturnDBIDName(PropertyInfo[p][E_PROPERTY_OWNERDBID]));
+					ShowBoxMessage(i, str, 5);
 				}	
 			}
 		}

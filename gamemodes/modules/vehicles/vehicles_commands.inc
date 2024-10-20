@@ -214,7 +214,7 @@ CMD:carlock(playerid, params[])
 			VehicleInfo[vehicleid][E_VEHICLE_LOCKED] = true;
 		}
 
-		ShowBoxMessage(playerid, statusString, 5, 2);
+		ShowBoxMessage(playerid, statusString, 5);
 	}
 	else SendErrorMessage(playerid, "You aren't near a vehicle OR the vehicle isn't synced.");
     return 1;
@@ -400,6 +400,7 @@ CMD:carradio(playerid, params[])
     return 1;
 }
 
+new PlayerEngineTimer[MAX_PLAYERS];
 CMD:engine(playerid, params[])
 {
 	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER)
@@ -419,17 +420,36 @@ CMD:engine(playerid, params[])
 			return SendClientMessage(playerid, COLOR_RED, "Vehicle is out of fuel!"); 
 		
 		if(!VehicleInfo[vehicleid][E_VEHICLE_ENGINE])
-		{	
-			SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s started the engine of the %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(vehicleid)); 
-			SetTimerEx("TurnEngine", 2000, false, "dd", playerid, vehicleid);
+		{	ShowBoxMessage(playerid, "Turn on engine.", 5);
+			PlayerEngineTimer[playerid] = SetTimerEx("TurnEngine", 500, true, "dd", playerid, vehicleid);
 		}
 		else
 		{
-			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {FF6347}Stopped", ReturnVehicleName(vehicleid));	
-			SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s stopped the engine of the %s.", ReturnSettingsName(playerid, playerid), ReturnVehicleName(vehicleid)); 
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {FF6347}Stopped");	
 			ToggleVehicleEngine(vehicleid, false); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = false;
 		}
 	}
 	else ShowBoxMessage(playerid, "This vehicle is ~r~totalled~w~ and needs repairing.", 3);
+	return 1;
+}
+
+function:TurnEngine(playerid, vehicleid)
+{
+	new dotCount[MAX_PLAYERS] = {0};
+
+	if (dotCount[playerid] >= 5) 
+	{
+        KillTimer(PlayerEngineTimer[playerid]);
+        dotCount[playerid] = 0;
+        SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {5B9460}Started");
+		ToggleVehicleEngine(vehicleid, true); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = true;
+        return 1;
+    }
+
+	new message[32];
+    format(message, sizeof(message), "Turn on engine%s", Repeat(".", dotCount[playerid]));
+	ShowBoxMessage(playerid, message, 5);
+
+	dotCount[playerid]++;
 	return 1;
 }

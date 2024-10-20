@@ -18,7 +18,7 @@ function:OnPlayerWounded(playerid, killerid, reason)
 	{
 		ApplyAnimation(playerid, "WUZI", "CS_Dead_Guy", 4.1, 0, 1, 1, 1, 0, 1);	
 	}	
-	ShowBoxMessage(playerid, "Injury", 5, 1);
+	ShowBoxMessage(playerid, "~r~Injury...", 5);
 	SetPlayerHealthEx(playerid, 26); 
 	PlayerInfo[playerid][E_CHARACTER_INJURED] = 1;
 	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
@@ -61,7 +61,7 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 		SendAdminMessageEx(COLOR_RED, 1, str); 
 	}
 	
-	ShowBoxMessage(playerid, "Wasted", 5, 1);
+	ShowBoxMessage(playerid, "~r~Died...", 5);
 	SetPlayerTeam(playerid, PLAYER_STATE_DEAD); 
 	PlayerInfo[playerid][E_CHARACTER_RESPAWNTIME] = gettime(); 
 	PlayerInfo[playerid][E_CHARACTER_DEATH] = 1;

@@ -304,7 +304,7 @@ function:BallDowns(playerid, type)
 			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_BALL][0], CourtInfo[cid][E_BLUE_BALL][1], CourtInfo[cid][E_BLUE_BALL][2], 10.0+random(3));
 			CourtInfo[cid][E_BALLER] = 999;
 			CourtInfo[cid][E_BALL_SHOOT] = 0;
-			ShowBoxMessage(playerid, "Red Team Point +1", 3, 2);
+			ShowBoxMessage(playerid, "Red Team Point +1", 5);
 			CourtInfo[cid][E_BALL_BOUNCE] = 9;
 			PlayNearbySound(playerid, 4604);
 		}
@@ -313,7 +313,7 @@ function:BallDowns(playerid, type)
 			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_BALL][0], CourtInfo[cid][E_RED_BALL][1], CourtInfo[cid][E_RED_BALL][2], 10.0+random(3));
 			CourtInfo[cid][E_BALLER] = 999;
 			CourtInfo[cid][E_BALL_SHOOT] = 0;
-			ShowBoxMessage(playerid, "Blue Team Point +1", 3, 2);
+			ShowBoxMessage(playerid, "Blue Team Point +1", 5);
 			CourtInfo[cid][E_BALL_BOUNCE] = 9;
 			PlayNearbySound(playerid, 4604);
 		}
@@ -321,7 +321,7 @@ function:BallDowns(playerid, type)
 		{
 			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_POS][0]+random(2),CourtInfo[cid][E_BLUE_POS][1]+random(2),CourtInfo[cid][E_BLUE_POS][2]+0.8, 10.0+random(3));
 			CourtInfo[cid][E_BALLER] = 999;
-			ShowBoxMessage(playerid, "Miss Shoot", 3, 2);
+			ShowBoxMessage(playerid, "Miss Shoot", 5);
 			CourtInfo[cid][E_BALL_SHOOT] = 0;
 			CourtInfo[cid][E_BALL_BOUNCE] = 1;
 			PlayNearbySound(playerid, 4603);
@@ -330,7 +330,7 @@ function:BallDowns(playerid, type)
 		{
 			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_POS][0]+random(2),CourtInfo[cid][E_RED_POS][1]+random(2),CourtInfo[cid][E_RED_POS][2]+0.8, 10.0+random(3));
 			CourtInfo[cid][E_BALLER] = 999;
-			ShowBoxMessage(playerid, "Miss Shoot", 3, 2);
+			ShowBoxMessage(playerid, "Miss Shoot", 5);
 			CourtInfo[cid][E_BALL_SHOOT] = 0;
 			CourtInfo[cid][E_BALL_BOUNCE] = 1;
 			PlayNearbySound(playerid, 4603);

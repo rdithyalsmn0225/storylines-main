@@ -24,7 +24,7 @@ CreatePlayerActor(playerid, skin)
 	if(IsValidDynamicActor(PlayerActor[playerid]))
 		DestroyDynamicActor(PlayerActor[playerid]);
 
-	PlayerActor[playerid] = CreateDynamicActor(skin, 228.1842,66.9219,1005.0391,270.9520); //hood
+	PlayerActor[playerid] = CreateDynamicActor(skin, 1673.8185,-2325.6941,-2.6797,271.9806); //hood
 	ApplyDynamicActorAnimation(PlayerActor[playerid], "DEALER", "DEALER_IDLE", 4.1, 1, 0, 0, 0, 0);
 	SetDynamicActorVirtualWorld(PlayerActor[playerid], vwid);
 	return 1;
@@ -105,11 +105,6 @@ InsertStaticVehicles()
 	Jobs_vehicles[10] = CreateVehicle(530, 2640.8159,-2389.7834,13.3978,85.6932, 11, 0, -1); SetVehicleNumberPlate(Jobs_vehicles[10], "DOCK");
 	Jobs_vehicles[11] = CreateVehicle(530, 2446.9351,-2431.2043,13.3915,225.1755, 11, 0, -1); SetVehicleNumberPlate(Jobs_vehicles[11], "DOCK");
 
-	//Garbage
-	Jobs_vehicles[12] = CreateVehicle(408,2189.7869,-1995.8069,14.0930,88.8796,6, 6, -1); SetVehicleNumberPlate(Jobs_vehicles[12], "GARBAGE");
-	Jobs_vehicles[13] = CreateVehicle(408,2190.3909,-1990.3845,14.0929,88.0486,6, 6, -1); SetVehicleNumberPlate(Jobs_vehicles[13], "GARBAGE");
-	Jobs_vehicles[14] = CreateVehicle(408,2190.0566,-1985.0049,14.0975,90.3632,6, 6, -1); SetVehicleNumberPlate(Jobs_vehicles[14], "GARBAGE");
-	
 	for (new i = 0; i < 15; i ++) if (IsValidVehicle(Jobs_vehicles[i])) 
 	{
 		VehicleInfo[Jobs_vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
@@ -118,49 +113,6 @@ InsertStaticVehicles()
 		VehicleInfo[Jobs_vehicles[i]][E_VEHICLE_TRASHMASTER] = 0;
 
 	}
-
-	//Static
-	g_Vehicle[0] = CreateVehicle(591, 2062.8889, -1940.2619, 13.9858, 89.9758, 1, 0, -1); //Trailer C
-	g_Vehicle[1] = CreateVehicle(591, 2028.6773, -1940.3161, 13.9363, 89.1962, 1, 0, -1); //Trailer C
-
-	g_Vehicle[2] = CreateVehicle(481, 2233.7578, -1673.7036, 14.4241, 164.1705, 0, 0, -1); //BMX
-	g_Vehicle[3] = CreateVehicle(481, 2232.0830, -1691.7159, 13.4066, 83.9132, 0, 0, -1); //BMX
-	g_Vehicle[4] = CreateVehicle(481, 1954.5018, -1145.2349, 25.3644, 79.2205, 0, 0, -1); //BMX
-	g_Vehicle[5] = CreateVehicle(481, 1949.7686, -1145.3051, 25.2439, 96.6447, 0, 0, -1); //BMX
-	g_Vehicle[6] = CreateVehicle(481, 2763.4172, -2006.7130, 13.0710, 0.0000, 0, 0, -1); //BMX
-	g_Vehicle[7] = CreateVehicle(481, 2672.4475, -1922.8100, 13.0612, 268.3999, 0, 0, -1); //BMX
-	g_Vehicle[8] = CreateVehicle(481, 2723.7163, -2007.7385, 13.0690, 178.1805, 0, 0, -1); //BMX
-	g_Vehicle[9] = CreateVehicle(481, 1813.4281, -2041.3507, 13.0699, 0.9607, 0, 0, -1); //BMX
-	g_Vehicle[10] = CreateVehicle(481, 1813.4915, -2031.5114, 13.0724, 0.0474, 0, 0, -1); //BMX
-	g_Vehicle[11] = CreateVehicle(481, 1813.6887, -2052.5441, 13.0613, 359.2406, 0, 0, -1); //BMX
-	g_Vehicle[12] = CreateVehicle(481, 2463.6838, -1353.9309, 24.2022, 89.1558, 0, 0, -1); //BMX
-	g_Vehicle[13] = CreateVehicle(481, 2460.6013, -1365.0794, 23.4984, 0.0250, 0, 0, -1); //BMX
-	g_Vehicle[14] = CreateVehicle(481, 2204.8662, -1313.1074, 23.4989, 0.0000, 0, 0, -1); //BMX
-	g_Vehicle[15] = CreateVehicle(481, 2242.1848, -1263.0550, 23.4598, 267.4012, 0, 0, -1); //BMX
-
-	g_Vehicle[16] = CreateVehicle(481, 1948.2949, -2073.0600, 13.0614, 88.1823, 0, 0, -1); //BMX
-	g_Vehicle[17] = CreateVehicle(481, 2416.6606, -1470.2977, 23.4979, 272.1199, 0, 0, -1); //BMX
-	g_Vehicle[18] = CreateVehicle(481, 2383.5585, -1508.3507, 23.5146, 359.9949, 0, 0, -1); //BMX
-	g_Vehicle[19] = CreateVehicle(481, 2353.0952, -1467.0678, 23.5146, 0.0000, 0, 0, -1); //BMX
-	g_Vehicle[20] = CreateVehicle(481, 2519.4697, -1947.7603, 13.1962, 0.2285, 0, 0, -1); //BMX
-	g_Vehicle[21] = CreateVehicle(481, 2228.0476, -1867.3701, 13.0614, 0.0000, 0, 0, -1); //BMX
-	g_Vehicle[22] = CreateVehicle(481, 1836.3259, -1888.8200, 12.9363, 88.7467, 0, 0, -1); //BMX
-	g_Vehicle[23] = CreateVehicle(481, 1979.4620, -2050.7692, 13.0599, 88.0991, 0, 0, -1); //BMX
-	g_Vehicle[24] = CreateVehicle(481, 1939.4611, -1982.0015, 13.0612, 84.6999, 0, 0, -1); //BMX
-	g_Vehicle[25] = CreateVehicle(481, 1952.7302, -1907.4423, 13.0614, 0.0000, 0, 0, -1); //BMX
-	g_Vehicle[26] = CreateVehicle(481, 2358.5290, -1289.1805, 23.5259, 266.2498, 0, 0, -1); //BMX
-	g_Vehicle[27] = CreateVehicle(481, 2324.7565, -1374.8699, 23.5311, 263.4043, 0, 0, -1); //BMX
-	g_Vehicle[28] = CreateVehicle(481, 2212.8432, -1365.5156, 23.5032, 0.0028, 0, 0, -1); //BMX
-
-	g_Vehicle[29] = CreateVehicle(473,2937.6396,-2103.8728,-0.2721,259.0053,0, 0, -1); // boat
-	g_Vehicle[30] = CreateVehicle(453,2932.1443,-2115.2156,-0.3427,270.0765,0, 0, -1); // boat
-	g_Vehicle[31] = CreateVehicle(452,2937.7739,-2058.9788,-0.2453,267.4742,0, 0, -1); // boat
-	g_Vehicle[32] = CreateVehicle(473,2899.9417,-1835.0874,-0.2598,0.2502,0, 0, -1); // boat
-	g_Vehicle[33] = CreateVehicle(473,129.5652,-1803.0558,-0.2381,359.8999,0, 0, -1); // boat
-	g_Vehicle[34] = CreateVehicle(454,129.1682,-1940.8101,0.0906,0.1088,0, 0, -1); // boat
-	g_Vehicle[35] = CreateVehicle(453,170.2965,-1919.6825,-0.3462,359.9013,0, 0, -1); // boat
-	g_Vehicle[36] = CreateVehicle(484,2718.6948,-2306.7476,0.2115,0.2194,0, 0, -1); // boat
-	g_Vehicle[37] = CreateVehicle(453,2492.3928,-2277.1829,-0.4793,359.8600,0, 0, -1); // boat
 
 	for (new i = 0; i < 38; i ++) if (IsValidVehicle(g_Vehicle[i])) 
 	{

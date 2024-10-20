@@ -215,7 +215,7 @@ public OnGameModeInit()
 	SetTimer("PacketTimers", 1800000, true);
 	//SetTimer("GarbageTimers", 180000, true);
 	GarbageTimers();
-	
+
 	//Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
 	mysql_pquery(ourConnection, "SELECT * FROM properties ORDER BY PropertyDBID", "Query_LoadProperties");
@@ -636,7 +636,7 @@ Dialog:ModShops(playerid, response, listitem, inputtext[])
 			}
 			else 
 			{
-				ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5, 2);
+				ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5);
 				
 				ChangeVehiclePaintjob(GetPlayerVehicleID(playerid), 0);
 				VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_PAINTJOB] = 0;
@@ -664,7 +664,7 @@ Dialog:ModShops(playerid, response, listitem, inputtext[])
 			}
 			else 
 			{
-				ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5, 2);
+				ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5);
 				
 				ChangeVehiclePaintjob(GetPlayerVehicleID(playerid), 1);
 				VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_PAINTJOB] = 1;
@@ -692,7 +692,7 @@ Dialog:ModShops(playerid, response, listitem, inputtext[])
 			}
 			else 
 			{
-				ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5, 2);
+				ShowBoxMessage(playerid, "Hope you like new paintjob!!", 5);
 				
 				ChangeVehiclePaintjob(GetPlayerVehicleID(playerid), 2);
 				VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_PAINTJOB] = 2;
@@ -910,7 +910,7 @@ function:DB_ListCharacters(playerid)
 	
 	new vwid = AccountInfo[playerid][E_MASTERS_DBID];
 	SetPlayerVirtualWorld(playerid, vwid);
-	SetPlayerInterior(playerid, 6);
+	SetPlayerInterior(playerid, 0);
 
 	if(!rows)
 	{
@@ -1216,12 +1216,12 @@ public OnPlayerRequestClass(playerid, classid)
 public OnVehicleDeath(vehicleid, killerid)
 {
 	new Float: vehicle_health;
-	TotalledCheck();
 	GetVehicleHealth(vehicleid, vehicle_health); 
+	TotalledCheck();
 
 	printf("[DEBUG] Vehicle ID: %i (%s) (Health: %.2f) destroyed by %s", vehicleid, ReturnVehicleName(vehicleid), vehicle_health, ReturnSettingsName(killerid, killerid)); 
 		
-	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_DBID] == VehicleInfo[i][E_VEHICLE_OWNERDBID])
+	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_DBID] == VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID])
 	{
 		SendClientMessageEx(i, COLOR_RED, "Your %s was destroyed.", ReturnVehicleName(vehicleid)); 
 			
@@ -3066,7 +3066,7 @@ public OnPlayerUpdate(playerid)
 		format(string, sizeof(string), "(( Has been injured %d times, /damages %d for more information. ))", TotalPlayerDamages[playerid], playerid);
 		SetPlayerChatBubble(playerid, string, COLOR_POINT, 30.0, 2500); 
 		
-		ShowBoxMessage(playerid, "Injury", 5, 1);
+		ShowBoxMessage(playerid, "Injury", 5);
 		if(IsPlayerInAnyVehicle(playerid))
 		{
 			ApplyAnimation(playerid, "ped", "CAR_dead_LHS", 4.1, 0, 0, 0, 1, 0, 1);
@@ -3309,7 +3309,7 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 		VehicleInfo[vehicleid][E_VEHICLE_COLOR1] = modelid;
 		VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = color;
 		SaveVehicle(vehicleid);
-		ShowBoxMessage(playerid, "Hope you like new color!!", 5, 2);
+		ShowBoxMessage(playerid, "Hope you like new color!!", 5);
 		GiveMoney(playerid, -150);
 		PauseAC(playerid);
 		TogglePlayerControllable(playerid, true);
@@ -3327,7 +3327,7 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 		VehicleInfo[vehicleid][E_VEHICLE_COLOR1] = color;
 		VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = modelid;
 		SaveVehicle(vehicleid);
-		ShowBoxMessage(playerid, "Hope you like new color!!", 5, 2);
+		ShowBoxMessage(playerid, "Hope you like new color!!", 5);
 		GiveMoney(playerid, -150);
 		PauseAC(playerid);
 		TogglePlayerControllable(playerid, true);
@@ -3337,7 +3337,7 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 	{
 		new vehicleid = GetPlayerVehicleID(playerid), str[512];
 		format(str, sizeof(str), "Hope you like new mods!!");
-		ShowBoxMessage(playerid, str, 5, 2);
+		ShowBoxMessage(playerid, str, 5);
 		VehicleInfo[vehicleid][E_VEHICLE_MODS][GetVehicleComponentType(modelid)] = modelid;
 		SaveVehicle(vehicleid);
 		AddVehicleComponent(vehicleid, modelid);
@@ -3356,7 +3356,7 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 		format(str, sizeof(str), "Hope you like new wheels!!");
 		GiveMoney(playerid, -350);
 		PauseAC(playerid);
-		ShowBoxMessage(playerid, str, 5, 2);
+		ShowBoxMessage(playerid, str, 5);
 		PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
 		return true;
 	}
@@ -3621,7 +3621,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				ApplyAnimation(playerid, "PAULNMAC", "wank_loop", 4.1, 0, 0, 0, 0, 0, 1);
 				pCBugging[playerid] = true;
 
-				ShowBoxMessage(playerid, "CBUG FOO!", 3, 2);
+				ShowBoxMessage(playerid, "CBUG FOO!", 5);
 
 				KillTimer(ptmCBugFreezeOver[playerid]);
 				ptmCBugFreezeOver[playerid] = SetTimerEx("CBugFreezeOver", 1500, false, "i", playerid);
@@ -4058,8 +4058,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				{
 					if (PickupItem(playerid, id))
 					{
-						format(string, sizeof(string), "%s~w~ added to inventory!", DroppedInfo[id][E_DROPPED_ITEM]);
-						ShowBoxMessage(playerid, string, 5, 2);
+						format(string, sizeof(string), "%s added to inventory!", DroppedInfo[id][E_DROPPED_ITEM]);
+						ShowBoxMessage(playerid, string, 5);
 					}
 					else
 						SendErrorMessage(playerid, "You don't have any slot in your inventory.");
@@ -4124,12 +4124,10 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
 		if(!VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_ENGINE] && IsEngineVehicle(vehicleid)){
-			ShowBoxMessage(playerid, "The engine is off press 'ALT' + '2' or /engine to turn on vehicle", 5, 2);
 			SendTipMessage(playerid, "The engine is off press 'ALT' + '2' or /engine to turn on vehicle");
 	   	}
 
 	   	if (ReturnVehicleHealth(vehicleid) <= 350){
-	    	ShowBoxMessage(playerid, "This vehicle is ~r~totalled~w~ and needs repairing.", 5, 2);
 			SendTipMessage(playerid, "This vehicle is totalled and needs repairing call mechanic or buy repairkits in pawnshop.");
 		}
 	
@@ -4226,7 +4224,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
     if(Jobs_vehicles[7] <= vehicleid <= Jobs_vehicles[11])
     {
         PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
-        ShowBoxMessage(playerid, "~w~Dockworker job stopped.", 5, 2); 
+        ShowBoxMessage(playerid, "~r~Dockworker job stopped.", 5); 
 		SetVehicleToRespawnEx(vehicleid);
     }   
 	else if(Jobs_vehicles[12] <= vehicleid <= Jobs_vehicles[14])

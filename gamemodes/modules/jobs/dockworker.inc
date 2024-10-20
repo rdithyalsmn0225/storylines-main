@@ -42,7 +42,7 @@ function:DockWorkers(playerid, type)
 
                     CrateObject[vehicleid] = CreateDynamicObject(1221,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
                     AttachDynamicObjectToVehicle(CrateObject[vehicleid], vehicleid, 0.000, 0.630, 0.360, 0.000, 0.000, 0.000);
-                    ShowBoxMessage(playerid, "~w~You've succesfully take the package. Deliver it to warehouse", 5, 2); 
+                    ShowBoxMessage(playerid, "~w~You've succesfully take the package. Deliver it to warehouse", 5); 
                     VehicleInfo[vehicleid][E_VEHICLE_CRATES] = 1;
                 }
             }
@@ -73,13 +73,9 @@ function:DockWorkers(playerid, type)
                     KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
                     DestroyDynamicObject(CrateObject[vehicleid]);
-                    ShowBoxMessage(playerid, "~w~You've succesfully store the package.", 5, 2); 
+                    ShowBoxMessage(playerid, "~w~You've succesfully store the package.", 5); 
                     GivePaycheck(playerid, DOCKWORKER_SALARY);
 
-                    PlayerInfo[playerid][E_CHARACTER_RESPECT]++;
-                    new str[512];
-                    format(str, sizeof(str), "~h~Job Complete~n~~w~$%d~n~Respect +", DOCKWORKER_SALARY);
-                    GameTextForPlayer(playerid, str, 3000, 6);
                     VehicleInfo[vehicleid][E_VEHICLE_CRATES] = 0;
                 }
             }

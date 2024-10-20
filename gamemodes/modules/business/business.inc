@@ -258,57 +258,56 @@ stock SendBusinessType(playerid, id)
 		case BUSINESS_TYPE_GUNSTORE:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /creategun create weapons / ammo with materials.", BusinessInfo[id][E_BUSINESS_NAME]);
-			ShowBoxMessage(playerid, str, 5);
+			SendClientMessage(playerid, COLOR_SERVER, str);
 		}
 		case BUSINESS_TYPE_BANK:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /withdraw, /deposit, /balance to see bank menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			ShowBoxMessage(playerid, str, 5);
+			SendClientMessage(playerid, COLOR_SERVER, str);
 		}
 		case BUSINESS_TYPE_GENERAL:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nThis is a general store you can buy anything.", BusinessInfo[id][E_BUSINESS_NAME]);
-			ShowBoxMessage(playerid, str, 5);
+			SendClientMessage(playerid, COLOR_SERVER, str);
 		}
 		case BUSINESS_TYPE_CLUB:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /buybeer to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			ShowBoxMessage(playerid, str, 5);
+			SendClientMessage(playerid, COLOR_SERVER, str);
 		}
 		case BUSINESS_TYPE_DINNER:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /menu to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			ShowBoxMessage(playerid, str, 5);
+			SendClientMessage(playerid, COLOR_SERVER, str);
 		}
 		case BUSINESS_TYPE_BAR:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /buybeer to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			ShowBoxMessage(playerid, str, 5);
+			SendClientMessage(playerid, COLOR_SERVER, str);
 		}
 		case BUSINESS_TYPE_ACID:
 		{
 			SendClientMessageEx(playerid, COLOR_DARKGREEN, "Welcome to %s\nAvailable commands: /production to opens the production menu", BusinessInfo[id][E_BUSINESS_NAME]);
-			SendClientMessage(playerid, COLOR_WHITE, "Available commands: /menu."); 
 		}
 		case BUSINESS_TYPE_CLOTHES:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /clothes to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			ShowBoxMessage(playerid, str, 5);
+			SendClientMessage(playerid, COLOR_SERVER, str);
 		}
 		case BUSINESS_TYPE_HAIRCUT:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /haircut to see haircut style list.", BusinessInfo[id][E_BUSINESS_NAME]);
-			ShowBoxMessage(playerid, str, 5);
+			SendClientMessage(playerid, COLOR_SERVER, str);
 		}
 		case BUSINESS_TYPE_FURNITURE:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /props to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			ShowBoxMessage(playerid, str, 5);
+			SendClientMessage(playerid, COLOR_SERVER, str);
 		}
 		case BUSINESS_TYPE_GYM:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /fightstyle to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
-			ShowBoxMessage(playerid, str, 5);
+			SendClientMessage(playerid, COLOR_SERVER, str);
 		}
 	}
 	return 1;
@@ -352,7 +351,7 @@ function:OnPlayerExitDealership(playerid, response)
 	return 1;
 }
 
-function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
+function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 {
 	if(response)
 	{
@@ -547,19 +546,7 @@ function:OnPlayerPurchaseWeapon(playerid, response, weapon, ammo, price, type)
 	return 1;
 }
 
-function:OnPlayerPurchaseArmor(playerid, response)
-{
-	if(response)
-	{
-		if(2000 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-			return SendErrorMessage(playerid, "You can't afford this. (Cost: $2,000, Total: $%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
-			
-		SetPlayerArmour(playerid, 50); 
-	}
-	return 1;
-}
-
-function:OnPlayerPurchaseAmmo(playerid, response, type, ammo, price)
+function:OnPlayerCreateAmmo(playerid, response, type, ammo, price)
 {
 	if(response)
 	{

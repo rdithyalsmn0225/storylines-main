@@ -831,13 +831,6 @@ function:StartThief(playerid, vehicleid)
 	return 1;
 }
 
-function:TurnEngine(playerid, vehicleid)
-{
-	SendClientMessageEx(playerid, COLOR_WHITE, "> %s {5B9460}Started", ReturnVehicleName(vehicleid));
-	ToggleVehicleEngine(vehicleid, true); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = true;
-	return 1;
-}
-
 stock IsVehicleUpgradeCompatible(model, componentid) // by AirKite
 {
 	switch(model)

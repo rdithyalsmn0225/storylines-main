@@ -646,7 +646,7 @@ stock IsNumeric(const str[])
 
 stock ShowPlayerPlates(playerid, str[])
 {
-	ShowBoxMessage(playerid, str, 5, 0);
+	ShowBoxMessage(playerid, str, 5);
 	return 1;
 }
 
@@ -1180,7 +1180,7 @@ stock SetPlayerPosEx(playerid, Float:x, Float:y, Float:z)
 	PauseAC(playerid);
     SetPlayerPos(playerid, x, y, z - 0.3);
 	TogglePlayerControllable(playerid, false);
-	ShowBoxMessage(playerid, "Please wait....", 3, 2);
+	ShowBoxMessage(playerid, "Please wait....", 3);
 	SetTimerEx("PlayerPosTimer", 2500, false, "i", playerid);
     return 1;
 }
@@ -1216,4 +1216,14 @@ stock ConvertHBEColor(value)
         color = COLOR_WHITE;
 
     return color;
+}
+
+stock Repeat(const text[], count)
+{
+    new result[32];
+    for (new i = 0; i < count; i++) 
+	{
+        strcat(result, text);
+    }
+    return result;
 }

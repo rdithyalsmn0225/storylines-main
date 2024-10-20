@@ -27,11 +27,11 @@ stock ShowTreeLocation(playerid)
 	{
 		if(TreeInfo[i][E_TREE_TIMER] > 0)
 		{
-			format(str, sizeof(str), "%s%d\tUnavailable\t%.2f Meter\n", str, i, GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
+			format(str, sizeof(str), "%s%d\t{FF6347}Unavailable{ffffff}\t%.2f Meter\n", str, i, GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
 		}
 		else
 		{
-			format(str, sizeof(str), "%s%d\tAvailable\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
+			format(str, sizeof(str), "%s%d\t{5B9460}Available{ffffff}\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
 		}
 	}
 	return Dialog_ShowPages(playerid, GpsTree, DIALOG_STYLE_TABLIST_HEADERS, "Tree Location", str, "Find", "Close");
@@ -47,11 +47,11 @@ stock ShowGarbageLocation(playerid)
     	{
 			if(GarbageObject[a] != INVALID_OBJECT_ID)
 			{
-				format(str, sizeof(str), "%s%d\tAvailable\t%.2f Meter\n", str, i, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[i][0], Garbage_Locations[i][1], Garbage_Locations[i][2]));
+				format(str, sizeof(str), "%s%d\t{5B9460}Available{ffffff}\t%.2f Meter\n", str, i, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[i][0], Garbage_Locations[i][1], Garbage_Locations[i][2]));
 			}
 			else
 			{
-				format(str, sizeof(str), "%s%d\tUnavailable\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[i][0], Garbage_Locations[i][1], Garbage_Locations[i][2]));
+				format(str, sizeof(str), "%s%d\t{FF6347}Unavailable{ffffff}\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[i][0], Garbage_Locations[i][1], Garbage_Locations[i][2]));
 			}
 		}
 	}
@@ -148,7 +148,7 @@ CMD:gps(playerid, params[])
 
 GPS_SetPlayerRaceCheckPoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, gps = GPS_NONE)
 {
-	ShowBoxMessage(playerid, "Go to checkpoint on your maps.", 5, 2);
+	ShowBoxMessage(playerid, "Go to checkpoint on your maps.", 5);
 	PlayerCheckpoint[playerid] = gps;
 	return SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, 2.0);
 }

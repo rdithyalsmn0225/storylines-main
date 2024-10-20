@@ -2,7 +2,6 @@
 new PlayerText:ServerName[2][MAX_PLAYERS];
 new PlayerText:VehicleName[MAX_PLAYERS];
 new PlayerText:loginscreen[3][MAX_PLAYERS];
-new PlayerText:Notification[2][MAX_PLAYERS];
 new PlayerText:HeaderTD[2][MAX_PLAYERS];
 new Text:Times;
 new PlayerText:Street[2][MAX_PLAYERS];
@@ -254,37 +253,9 @@ CreatePhoneTextDraws(playerid)
 
 CreateNotificationTextDraws(playerid)
 {
-	Notification[0][playerid] = CreatePlayerTextDraw(playerid, 9.000000, 198.000000, "To beggin running, use SPACE to rapidly. Do not allow your power bar to empty or you will fall of the treadmill.");
-	PlayerTextDrawFont(playerid, Notification[0][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Notification[0][playerid], 0.220825, 1.399994);
-	PlayerTextDrawTextSize(playerid, Notification[0][playerid], 158.500000, 26.000000);
-	PlayerTextDrawSetOutline(playerid, Notification[0][playerid], 0);
-	PlayerTextDrawSetShadow(playerid, Notification[0][playerid], 0);
-	PlayerTextDrawAlignment(playerid, Notification[0][playerid], 1);
-	PlayerTextDrawColor(playerid, Notification[0][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, Notification[0][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, Notification[0][playerid], 185);
-	PlayerTextDrawUseBox(playerid, Notification[0][playerid], 1);
-	PlayerTextDrawSetProportional(playerid, Notification[0][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, Notification[0][playerid], 0);
-
-	Notification[1][playerid] = CreatePlayerTextDraw(playerid, 319.000000, 140.000000, "Injured");
-	PlayerTextDrawFont(playerid, Notification[1][playerid], 0);
-	PlayerTextDrawLetterSize(playerid, Notification[1][playerid], 1.024991, 3.599987);
-	PlayerTextDrawTextSize(playerid, Notification[1][playerid], 191.000000, 23.500000);
-	PlayerTextDrawSetOutline(playerid, Notification[1][playerid], 2);
-	PlayerTextDrawSetShadow(playerid, Notification[1][playerid], 0);
-	PlayerTextDrawAlignment(playerid, Notification[1][playerid], 2);
-	PlayerTextDrawColor(playerid, Notification[1][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, Notification[1][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, Notification[1][playerid], 200);
-	PlayerTextDrawUseBox(playerid, Notification[1][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, Notification[1][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, Notification[1][playerid], 0);
-
-	Subtitles[playerid] = CreatePlayerTextDraw(playerid, 320.000000, 376.000000, "the engine is off use /engine or N to turn on the engine");
+	Subtitles[playerid] = CreatePlayerTextDraw(playerid, 321.000000, 376.000000, "~b~Ganton Binco~n~~y~This business is for sell~n~~w~Press 'ENTER' to enter business");
 	PlayerTextDrawFont(playerid, Subtitles[playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Subtitles[playerid], 0.241664, 1.099998);
+	PlayerTextDrawLetterSize(playerid, Subtitles[playerid], 0.199997, 1.249996);
 	PlayerTextDrawTextSize(playerid, Subtitles[playerid], 502.500000, 306.500000);
 	PlayerTextDrawSetOutline(playerid, Subtitles[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, Subtitles[playerid], 0);
@@ -954,43 +925,18 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawSetSelectable(playerid, SelectFactionClick[2][playerid], 1);
 }
 
-stock ShowBoxMessage(playerid, string[], time, type=0)
+stock ShowBoxMessage(playerid, string[], time)
 {
 	new validtime = time*1000;
 
-	if(type == 0)
-	{
-		PlayerTextDrawSetString(playerid, Notification[0][playerid], string);
-		PlayerTextDrawShow(playerid, Notification[0][playerid]);
-		SetTimerEx("HideBoxMessage", validtime, false, "d", playerid);
-	}
-	else if(type == 1)
-	{
-		PlayerTextDrawSetString(playerid, Notification[1][playerid], string);
-		PlayerTextDrawShow(playerid, Notification[1][playerid]);
-		SetTimerEx("HideBoxMessage1", validtime, false, "d", playerid);
-	}
-	else if(type == 2)
-	{
-		PlayerTextDrawSetString(playerid, Subtitles[playerid], string);
-		PlayerTextDrawShow(playerid, Subtitles[playerid]);
-		SetTimerEx("HideBoxMessage2", validtime, false, "d", playerid);
-	}
+	PlayerTextDrawSetString(playerid, Subtitles[playerid], string);
+	PlayerTextDrawShow(playerid, Subtitles[playerid]);
+	SetTimerEx("HideBoxMessage", validtime, false, "d", playerid);
+
 	PlayerPlaySound(playerid, 1054, 0.0, 0.0, 0.0);
 	return 1;
 }
-
 function:HideBoxMessage(playerid)
-{
-	return PlayerTextDrawHide(playerid, Notification[0][playerid]);
-}
-
-function:HideBoxMessage1(playerid)
-{
-	return PlayerTextDrawHide(playerid, Notification[1][playerid]);
-}
-
-function:HideBoxMessage2(playerid)
 {
 	return PlayerTextDrawHide(playerid, Subtitles[playerid]);
 }
