@@ -38,7 +38,7 @@ stock LeaveTaxi(playerid, driverid)
 	    GiveMoney(playerid, -PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
    		GiveMoney(driverid, PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 
-        SendServerMessage(driverid, "TAXI: {ffffff}%s has exit your taxi and paid $%d.", ReturnSettingsName(playerid, driverid), PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
+        SendServerMessage(driverid, "TAXI: {ffffff}%s has exit your taxi and paid {5B9460}$%d{ffffff}.", ReturnSettingsName(playerid, driverid), PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 		SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "** %s has paid $%d to the taxi driver.", ReturnSettingsName(playerid, driverid), PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 
 	    PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 0;

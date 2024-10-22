@@ -86,7 +86,7 @@ function:OnEntranceChange(playerid, response, property)
 
 		format(PropertyInfo[property][E_PROPERTY_ADDRESS], 128, "%dth %s", property, ReturnLocationStreet(playerid));
 
-		PropertyInfo[property][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2]+0.8, 0, 0, -1, 5.0); 
+		PropertyInfo[property][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2], 0, 0, -1, 5.0); 
 		PropertyInfo[property][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[property][E_PROPERTY_ADDRESS], COLOR_POINT, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2], 5.0);
 		SaveProperty(property);
 		SendInfoMessage(playerid, "You set Property #%i's entrance.", property);
@@ -334,7 +334,7 @@ CMD:property(playerid, params[])
 			type = "Apartment Complex"; 
 	
 		SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Property Info __________|");
-		SendClientMessageEx(playerid, COLOR_ORANGE, "House ID:[%i], Price:[$%s], Level:[%i], Type:[%s], Furniture Capacity:[%d]", PropertyInfo[id][E_PROPERTY_DBID], FormatMoney(PropertyInfo[id][E_PROPERTY_PRICE]), PropertyInfo[id][E_PROPERTY_LEVEL], type, GetPropertyFurniture(id)); 
+		SendClientMessageEx(playerid, COLOR_ORANGE, "House ID:[%i], Price:[{5B9460}$%s{ffffff}], Level:[%i], Type:[%s], Furniture Capacity:[%d]", PropertyInfo[id][E_PROPERTY_DBID], FormatMoney(PropertyInfo[id][E_PROPERTY_PRICE]), PropertyInfo[id][E_PROPERTY_LEVEL], type, GetPropertyFurniture(id)); 
 	}
 	else if(!strcmp(str, "cashbox"))
 	{
@@ -346,7 +346,7 @@ CMD:property(playerid, params[])
 		if(!strcmp(pick, "info"))
 		{
 			SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Property Info __________|");
-			SendInfoMessage(playerid, "You have $%s inside your houses' cashbox.", FormatMoney(PropertyInfo[id][E_PROPERTY_CASH])); 
+			SendInfoMessage(playerid, "You have {5B9460}$%s{ffffff} inside your houses' cashbox.", FormatMoney(PropertyInfo[id][E_PROPERTY_CASH])); 
 		}
 		else if(!strcmp(pick, "place"))
 		{	
@@ -359,7 +359,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, -amount);
 			PropertyInfo[id][E_PROPERTY_CASH]+= amount; 
 			
-			SendClientMessageEx(playerid, COLOR_WHITE, "Property: You added $%s to your cashbox.", amount); 
+			SendClientMessageEx(playerid, COLOR_WHITE, "Property: You added {5B9460}$%s{ffffff} to your cashbox.", amount); 
 			SaveProperty(id);
 		}
 		else if(!strcmp(pick, "take"))
@@ -373,7 +373,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, amount);
 			PropertyInfo[id][E_PROPERTY_CASH]-= amount;
 			
-			SendClientMessageEx(playerid, COLOR_WHITE, "Property: You took $%s from your cashbox.", amount); 
+			SendClientMessageEx(playerid, COLOR_WHITE, "Property: You took {5B9460}$%s{ffffff} from your cashbox.", amount); 
 			SaveProperty(id); 
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 

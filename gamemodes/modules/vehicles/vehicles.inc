@@ -137,7 +137,7 @@ function:OnVehicleScrap(playerid, response, dbid, cash_back)
 		mysql_pquery(ourConnection, delQuery); 
 		
 		SendServerMessage(playerid, "VEHICLE: {ffffff}Your %s has been permanently deleted.", ReturnVehicleName(GetPlayerVehicleID(playerid))); 
-		SendServerMessage(playerid, "VEHICLE: {ffffff}You earned $%s from scrapping it.", FormatMoney(cash_back));
+		SendServerMessage(playerid, "VEHICLE: {ffffff}You earned {5B9460}$%s{ffffff} from scrapping it.", FormatMoney(cash_back));
 		
 		GiveMoney(playerid, cash_back); 
 		
@@ -317,7 +317,7 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid;
 	}
 	
-	SendServerMessage(playerid, "VEHICLE: {ffffff}You successfully bought a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(DealershipTotalCost[playerid]));
+	SendServerMessage(playerid, "VEHICLE: {ffffff}You successfully bought a %s for {5B9460}$%s{ffffff}.", ReturnVehicleName(vehicleid), FormatMoney(DealershipTotalCost[playerid]));
 	
 	PlayerPurchasingVehicle[playerid] = false;
 	ResetDealershipVars(playerid); 

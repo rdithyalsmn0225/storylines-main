@@ -47,8 +47,8 @@ CMD:carsell(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SELLOFFER] = playerid;
 	PlayerInfo[userid][E_CHARACTER_SELLVOFFER] = vehicleid;
 
-	SendTipMessage(userid, "%s has offered sell their vehicle %s for $%s, type /approve vehicle to approve.", ReturnSettingsName(playerid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
-	SendServerMessage(playerid, "VEHICLE: {ffffff}You have offered sell your %s for $%s.", ReturnSettingsName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
+	SendTipMessage(userid, "%s has offered sell their vehicle %s for {5B9460}$%s{ffffff}, type /approve vehicle to approve.", ReturnSettingsName(playerid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
+	SendServerMessage(playerid, "VEHICLE: {ffffff}You have offered sell your %s for {5B9460}$%s{ffffff}.", ReturnSettingsName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
 	return 1;
 }
 
@@ -165,7 +165,7 @@ CMD:carscrap(playerid, params[])
 		}
 	}
 			
-	format(str, sizeof(str), "Are you sure you want to scrap your %s?\nYou'll receive a cashback of: $%s\n\n{FF6347}This action is permanent and cannot be undone.", ReturnVehicleName(vehicleid), FormatMoney(cash_back)); 
+	format(str, sizeof(str), "Are you sure you want to scrap your %s?\nYou'll receive a cashback of: {5B9460}$%s{ffffff}\n\n{FF6347}This action is permanent and cannot be undone.", ReturnVehicleName(vehicleid), FormatMoney(cash_back)); 
 	ConfirmDialog(playerid, "Confirmation", str, "OnVehicleScrap", VehicleInfo[vehicleid][E_VEHICLE_DBID], cash_back);
     return 1;
 }
@@ -400,7 +400,7 @@ CMD:carradio(playerid, params[])
     return 1;
 }
 
-new PlayerEngineTimer[MAX_PLAYERS];
+new PlayerEngineTimer[MAX_PLAYERS], PlayerEngineValue[MAX_PLAYERS];
 CMD:engine(playerid, params[])
 {
 	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER)
@@ -420,7 +420,8 @@ CMD:engine(playerid, params[])
 			return SendClientMessage(playerid, COLOR_RED, "Vehicle is out of fuel!"); 
 		
 		if(!VehicleInfo[vehicleid][E_VEHICLE_ENGINE])
-		{	ShowBoxMessage(playerid, "Turn on engine.", 5);
+		{	ShowBoxMessage(playerid, "~g~Turn on engine.", 5);
+			PlayerEngineValue[playerid] = 0;
 			PlayerEngineTimer[playerid] = SetTimerEx("TurnEngine", 500, true, "dd", playerid, vehicleid);
 		}
 		else
@@ -435,27 +436,23 @@ CMD:engine(playerid, params[])
 
 function:TurnEngine(playerid, vehicleid)
 {
-	new dotCount[MAX_PLAYERS] = 0;
 	new message[32];
-	dotCount[playerid]++;
-	
-	if(dotCount[playerid] >= 4)
-    	format(message, sizeof(message), "~g~Turn on engine....");
-	if(dotCount[playerid] >= 3)
-    	format(message, sizeof(message), "~g~Turn on engine...");
-	if(dotCount[playerid] >= 2)
-    	format(message, sizeof(message), "~g~Turn on engine..");
-	if(dotCount[playerid] >= 1)
-    	format(message, sizeof(message), "~g~Turn on engine.");
+	PlayerEngineValue[playerid]++;
+	switch(PlayerEngineValue[playerid])
+	{
+		case 1: format(message, sizeof(message), "~g~Turn on engine.");
+		case 2: format(message, sizeof(message), "~g~Turn on engine..");
+		case 3: format(message, sizeof(message), "~g~Turn on engine...");
+		case 4: format(message, sizeof(message), "~g~Turn on engine....");
+		case 5:
+		{
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {5B9460}Started");
+			ToggleVehicleEngine(vehicleid, true); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = true;
+			KillTimer(PlayerEngineTimer[playerid]);
+			PlayerEngineValue[playerid] = 0;
+		}
+	}
 
 	ShowBoxMessage(playerid, message, 5);
-
-	if (dotCount[playerid] >= 5) 
-	{
-        SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {5B9460}Started");
-		ToggleVehicleEngine(vehicleid, true); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = true;
-		KillTimer(PlayerEngineTimer[playerid]);
-        dotCount[playerid] = 0;
-    }
 	return 1;
 }

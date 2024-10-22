@@ -101,11 +101,11 @@ CMD:carbuy(playerid, params[])
 		new larstr[512],
 			counter = 0;
 
-        CatDealershipHolder[playerid] = DEALERSHIP_CATEGORY_VANS; 
+        CatDealershipHolder[playerid] = DEALERSHIP_CATEGORY_INDUSTRIAL; 
 
 		for(new i = 0; i < sizeof(g_aDealershipData); i++)
 	    {
-			if(DEALERSHIP_CATEGORY_VANS == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
+			if(DEALERSHIP_CATEGORY_INDUSTRIAL == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
 				format(larstr, sizeof(larstr), "%s%d\t~g~$%s~w~\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(g_aDealershipData[i][E_DEALERSHIP_PRICE]));
 						

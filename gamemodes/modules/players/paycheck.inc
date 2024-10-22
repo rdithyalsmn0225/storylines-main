@@ -34,16 +34,16 @@ CallPaycheck(playerid)
 	SendClientMessageEx(playerid, COLOR_WHITE, "SERVER TIME:[ %s ]", ReturnHour()); 
 	
 	SendClientMessage(playerid, COLOR_DARKGREEN, "|___ BANK STATEMENT ___|"); 
-	SendClientMessageEx(playerid, COLOR_GREY, "   Balance: $%s", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK])); 
-	SendClientMessageEx(playerid, COLOR_GREY, "   Interest rate: $%s (rate: %.1f)", FormatMoney(interest), floatdiv(float(rate), 10));
-	SendClientMessageEx(playerid, COLOR_GREY, "   Interest Gained: $%s", FormatMoney(paycheck));
-	SendClientMessageEx(playerid, COLOR_GREY, "   Tax paid: $%s (%i percent)", FormatMoney(tax), gTax); 
+	SendClientMessageEx(playerid, COLOR_GREY, "   Balance: {5B9460}$%s{ffffff}", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK])); 
+	SendClientMessageEx(playerid, COLOR_GREY, "   Interest rate: {5B9460}$%s{ffffff} (rate: %.1f)", FormatMoney(interest), floatdiv(float(rate), 10));
+	SendClientMessageEx(playerid, COLOR_GREY, "   Interest Gained: {5B9460}$%s{ffffff}", FormatMoney(paycheck));
+	SendClientMessageEx(playerid, COLOR_GREY, "   Tax paid: {5B9460}$%s{ffffff} (%i percent)", FormatMoney(tax), gTax); 
 	SendClientMessage(playerid, COLOR_DARKGREEN, "|________________________|");
 	
 	PlayerInfo[playerid][E_CHARACTER_PAYCHECK] = 0; 
 	PlayerInfo[playerid][E_CHARACTER_BANK]+= total; 
 	
-	SendClientMessageEx(playerid, COLOR_WHITE, "   New Balance: $%s", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK] + total));
+	SendClientMessageEx(playerid, COLOR_WHITE, "   New Balance: {5B9460}$%s{ffffff}", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK] + total));
 
 	SaveCharacter(playerid); 
 	return 1;
@@ -53,7 +53,7 @@ stock GivePaycheck(playerid, amount)
 {
 	PlayerInfo[playerid][E_CHARACTER_PAYCHECK] += amount; 
 	SaveCharacter(playerid); 
-	SendServerMessage(playerid, "PAYCHECK: {ffffff}$%s has been added to paycheck.", FormatMoney(amount));
+	SendServerMessage(playerid, "PAYCHECK: {ffffff}{5B9460}$%s{ffffff} has been added to paycheck.", FormatMoney(amount));
 	PlayerPlaySound(playerid, 5205, 0, 0, 0);
 	return 1;
 }

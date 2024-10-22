@@ -920,7 +920,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						
 						format(dstr, sizeof(dstr), "Models:\t%s\n", ReturnVehicleName(vehicleid));
 						strcat(str, dstr);
-						format(dstr, sizeof(dstr), "Value:\t{FFFFFF}$%s\n", FormatMoney(g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_PRICE]));
+						format(dstr, sizeof(dstr), "Price:\t{FFFFFF}{5B9460}$%s{ffffff}\n", FormatMoney(g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_PRICE]));
 						strcat(str, dstr);
 						format(dstr, sizeof(dstr), "Max Speed:\t{FFFFFF}%.1f\n", GetVehicleTopSpeed(DealershipPlayerCar[playerid])); 
 						strcat(str, dstr); 
@@ -1997,7 +1997,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "Cocaine Crack", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received $%d from selling crack.", cost);
+						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {5B9460}$%d{ffffff} from selling crack.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2015,7 +2015,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "Marijuana", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received $%d from selling marijuana.", cost);
+						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {5B9460}$%d{ffffff} from selling marijuana.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2033,7 +2033,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "Heroin", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received $%d from selling heroin.", cost);
+						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {5B9460}$%d{ffffff} from selling heroin.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2051,7 +2051,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "PCP", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received $%d from selling pcp.", cost);
+						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {5B9460}$%d{ffffff} from selling pcp.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2416,7 +2416,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] -= rand;
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = false;
 							BusinessRefresh(IsPlayerInBusiness(playerid));
-							SendServerMessage(playerid, "BUSINESS: {ffffff}You've got money $%d from take cash money on cashiers.", rand);
+							SendServerMessage(playerid, "BUSINESS: {ffffff}You've got money {5B9460}$%d{ffffff} from take cash money on cashiers.", rand);
 						}
 					}
 				}

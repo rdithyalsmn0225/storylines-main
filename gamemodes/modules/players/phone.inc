@@ -162,14 +162,14 @@ function:OnPhoneSMS(playerid, type, playerb, text[])
 			
 			if(strlen(text) > 80)
 			{
-				SendClientMessageEx(playerb, COLOR_WHITE, "SMS From: {96b0ff}%i", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
-				SendClientMessageEx(playerb, COLOR_WHITE, "SMS: {96b0ff}%.80s ...", text); 
-				SendClientMessageEx(playerb, COLOR_WHITE, "Message: {96b0ff}...%s", text[80], PlayerInfo[playerid][E_CHARACTER_PHONE]); 
+				SendClientMessageEx(playerb, COLOR_WHITE, "SMS From: {a0d0ff}%i", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
+				SendClientMessageEx(playerb, COLOR_WHITE, "SMS: {a0d0ff}%.80s ...", text); 
+				SendClientMessageEx(playerb, COLOR_WHITE, "Message: {a0d0ff}...%s", text[80], PlayerInfo[playerid][E_CHARACTER_PHONE]); 
 			}
 			else 
 			{
-				SendClientMessageEx(playerb, COLOR_WHITE, "SMS From: {96b0ff}%i", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
-				SendClientMessageEx(playerb, COLOR_WHITE, "Message: {96b0ff}%s", text, PlayerInfo[playerid][E_CHARACTER_PHONE]);
+				SendClientMessageEx(playerb, COLOR_WHITE, "SMS From: {a0d0ff}%i", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
+				SendClientMessageEx(playerb, COLOR_WHITE, "Message: {a0d0ff}%s", text, PlayerInfo[playerid][E_CHARACTER_PHONE]);
 			}
 
 			playerText[playerid] = 0;
