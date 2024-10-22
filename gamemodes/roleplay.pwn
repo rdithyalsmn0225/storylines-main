@@ -3029,7 +3029,7 @@ public OnPlayerUpdate(playerid)
 	if(GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED)
 	{
 		format(string, sizeof(string), "(( Has been injured %d times, /damages %d for more information. ))", TotalPlayerDamages[playerid], playerid);
-		SetPlayerChatBubble(playerid, string, COLOR_POINT, 30.0, 2500); 
+		SetPlayerChatBubble(playerid, string, COLOR_ORANGE, 30.0, 2500); 
 		
 		ShowBoxMessage(playerid, "Injury", 5);
 		if(IsPlayerInAnyVehicle(playerid))
@@ -3043,7 +3043,7 @@ public OnPlayerUpdate(playerid)
 	}
 	else if(GetPlayerTeam(playerid) == PLAYER_STATE_DEAD)
 	{
-		SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_POINT, 30.0, 2500); 
+		SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_ORANGE, 30.0, 2500); 
 	}
 	
 	if(!IsPlayerInAnyVehicle(playerid))
@@ -3272,16 +3272,17 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 		if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
 			return SendErrorMessage(playerid, "You aren't near a vehicle.");
 
-	    PlayerPlaySound(playerid, 1134, 0, 0, 0);
-	    new color = VehicleInfo[vehicleid][E_VEHICLE_COLOR2];
-		ChangeVehicleColor(vehicleid, modelid, color);
-		VehicleInfo[vehicleid][E_VEHICLE_COLOR1] = modelid;
-		VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = color;
-		SaveVehicle(vehicleid);
-		ShowBoxMessage(playerid, "Hope you like new color!!", 5);
-		GiveMoney(playerid, -150);
-		PauseAC(playerid);
-		TogglePlayerControllable(playerid, true);
+		new Float:x, Float:y, Float:z;
+		GetPlayerPos(playerid, x, y, z);
+		TogglePlayerControllable(playerid, false);
+		ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
+
+		PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+		PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+		PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+		PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintexterior", 2000, true, "iii", playerid, vehicleid, modelid);
+
 		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
 	}
 	if ((response) && (extraid == MODEL_SELECTION_COLOR2))
@@ -3293,17 +3294,18 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 				
 		if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
 			return SendErrorMessage(playerid, "You aren't near a vehicle.");
+		
+		new Float:x, Float:y, Float:z;
+		GetPlayerPos(playerid, x, y, z);
+		TogglePlayerControllable(playerid, false);
+		ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
 
-	    PlayerPlaySound(playerid, 1134, 0, 0, 0);
-	    new color = VehicleInfo[vehicleid][E_VEHICLE_COLOR1];
-		ChangeVehicleColor(vehicleid, color, modelid);
-		VehicleInfo[vehicleid][E_VEHICLE_COLOR1] = color;
-		VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = modelid;
-		SaveVehicle(vehicleid);
-		ShowBoxMessage(playerid, "Hope you like new color!!", 5);
-		GiveMoney(playerid, -150);
-		PauseAC(playerid);
-		TogglePlayerControllable(playerid, true);
+		PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+		PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+		PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+		PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintinterior", 2000, true, "ii", playerid, vehicleid);
+		
 		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
 	}
 	if((response) && (extraid == MODEL_SELECTION_MODS))
@@ -3451,7 +3453,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				{
 					PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 					PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-					PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading cutting trees process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
+					PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading cutting trees process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
 					PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("CutTree", 500, true, "dd", playerid, id);
 					TogglePlayerControllable(playerid, false);
 					ApplyAnimation(playerid,"BASEBALL", "Bat_M", 4.1, 1, 0, 0, 1, 0, 1);
@@ -3465,7 +3467,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 				PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 				PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-				PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take timber process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
+				PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take timber process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
 				PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("CreateTimber", 1000, true, "dd", playerid, id);
 				TogglePlayerControllable(playerid, false);
 				TreeInfo[id][E_TREE_CUT] = true;

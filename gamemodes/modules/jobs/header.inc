@@ -220,14 +220,14 @@ CMD:jobduty(playerid, params[])
             StartMainJobs(playerid, 2);
         }
     }
-    if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && IsPlayerInAnyVehicle(playerid))
+    else if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && IsPlayerInAnyVehicle(playerid))
     {
-        new vehicleid = IsPlayerInAnyVehicle(playerid);
+        new vehicleid = GetPlayerVehicleID(playerid);
         if(GetVehicleModel(vehicleid) == 530)
         {
             StartMainJobs(playerid, 1);
         } 
-        if(GetVehicleModel(vehicleid) == 420 || GetVehicleModel(vehicleid) == 438)
+        else if(GetVehicleModel(vehicleid) == 420 || GetVehicleModel(vehicleid) == 438)
         {
             if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TAXI)
                 return SendErrorMessage(playerid, "You aren't taxi driver.");
@@ -247,7 +247,7 @@ CMD:jobduty(playerid, params[])
                 SendClientMessageToAllEx(COLOR_TAXI, "[Taxi Duty]: %s is now on taxi duty. Type \"/call 111\" to call a taxi!", ReturnSettingsName(playerid, playerid));
             }
         }
-        if(GetVehicleModel(vehicleid) == 525)
+        else if(GetVehicleModel(vehicleid) == 525)
         {
             if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_MECHANIC)
                 return SendErrorMessage(playerid, "You aren't mechanic.");

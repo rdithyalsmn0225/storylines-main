@@ -106,7 +106,7 @@ CMD:takecargo(playerid, params[])
 
             PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take cargo process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
+	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take cargo process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("DockWorkers", 500, true, "ii", playerid, 0);
 	        TogglePlayerControllable(playerid, false);
         }
@@ -136,7 +136,7 @@ CMD:storecargo(playerid, params[])
 
             PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take cargo process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
+	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take cargo process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("DockWorkers", 500, true, "ii", playerid, 1);
 	        TogglePlayerControllable(playerid, false);
         }

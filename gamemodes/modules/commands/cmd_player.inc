@@ -2683,7 +2683,7 @@ CMD:gascan(playerid, params[])
 	SendInfoMessage(playerid, "You're starting to refill the vehicle.");
 	SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
 		
-	VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_POINT, vx, vy, vz, 25.0, 0, 1);
+	VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_DARKGREEN, vx, vy, vz, 25.0, 0, 1);
 	Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
 
 	VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 1;

@@ -60,7 +60,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "BD_FIRE", "wash_up", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
@@ -94,7 +94,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "TATTOOS", "TAT_Che_Pose_T", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
@@ -128,11 +128,42 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
                 PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairtire", 2000, true, "ii", playerid, vehicleid);
+            }
+            case 3:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+                    return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+                if(!Inventory_Count(playerid, "Spraycan"))
+                    return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You're can't use this right now."); 
+
+                static
+				    colors[256];
+
+                for (new i = 0; i < sizeof(colors); i ++) {
+                    colors[i] = i;
+                }
+                ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR1, colors);
             }
             case 4:
             {
@@ -157,23 +188,20 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
                     return SendErrorMessage(playerid, "You're can't use this right now."); 
 
-                new Float:x, Float:y, Float:z;
-                GetPlayerPos(playerid, x, y, z);
-                TogglePlayerControllable(playerid, false);
-                ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
+                static
+				    colors[256];
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
-                PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-
-                PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintexterior", 2000, true, "ii", playerid, vehicleid);
+                for (new i = 0; i < sizeof(colors); i ++) {
+                    colors[i] = i;
+                }
+                ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR2, colors);
             }
             case 5:
             {
                 if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
                     return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
 
-                if(!Inventory_Count(playerid, "Spraycan"))
+                if(Inventory_Count(playerid, "Spraycan") < 2)
                     return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
 
                 new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
@@ -188,6 +216,9 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
                     return SendErrorMessage(playerid, "You aren't near a vehicle.");
 
+                if(!IsSuitablePaintjobCar(vehicleid)) 
+                    return SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
+
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
                     return SendErrorMessage(playerid, "You're can't use this right now."); 
 
@@ -196,18 +227,18 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintinterior", 2000, true, "ii", playerid, vehicleid);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob1", 2000, true, "ii", playerid, vehicleid);
             }
             case 6:
             {
                 if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
                     return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
 
-                if(!Inventory_Count(playerid, "Spraycan"))
+                if(Inventory_Count(playerid, "Spraycan") < 2)
                     return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
 
                 new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
@@ -233,18 +264,18 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob1", 2000, true, "ii", playerid, vehicleid);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob2", 2000, true, "ii", playerid, vehicleid);
             }
             case 7:
             {
                 if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
                     return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
 
-                if(!Inventory_Count(playerid, "Spraycan"))
+                if(Inventory_Count(playerid, "Spraycan") < 2)
                     return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
 
                 new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
@@ -270,44 +301,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
-                PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-
-                PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob2", 2000, true, "ii", playerid, vehicleid);
-            }
-            case 8:
-            {
-                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
-                    return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
-
-                if(!Inventory_Count(playerid, "Spraycan"))
-                    return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
-
-                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
-                GetVehiclePos(vehicleid, vx, vy, vz);
-
-                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
-                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
-
-                if(IsPlayerInAnyVehicle(playerid))
-                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
-                            
-                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
-                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
-
-                if(!IsSuitablePaintjobCar(vehicleid)) 
-                    return SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
-
-                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-                    return SendErrorMessage(playerid, "You're can't use this right now."); 
-
-                new Float:x, Float:y, Float:z;
-                GetPlayerPos(playerid, x, y, z);
-                TogglePlayerControllable(playerid, false);
-                ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
-
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_POINT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
@@ -348,6 +342,11 @@ function:repairengine(playerid, vehicleid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
+            if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+			{
+				ResetVarInventory(playerid);
+			}
+
 		    SendServerMessage(playerid, "VEHICLE: {ffffff}You've repaired the %s engine.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
@@ -385,6 +384,11 @@ function:repairbody(playerid, vehicleid)
 
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
+
+            if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+			{
+				ResetVarInventory(playerid);
+			}
 
 		    SendServerMessage(playerid, "VEHICLE: {ffffff}You've repaired the %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
@@ -424,6 +428,11 @@ function:repairtire(playerid, vehicleid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
+            if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+			{
+				ResetVarInventory(playerid);
+			}
+
 		    SendServerMessage(playerid, "VEHICLE: {ffffff}You've repaired the %s tires.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
@@ -431,7 +440,7 @@ function:repairtire(playerid, vehicleid)
     Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
 }
 
-function:repaintexterior(playerid, vehicleid)
+function:repaintexterior(playerid, vehicleid, modelid)
 {
 	new text[256];
     PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT]++;
@@ -452,17 +461,21 @@ function:repaintexterior(playerid, vehicleid)
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
             Inventory_Remove(playerid, "Spraycan", 1);
-           
-            static
-				colors[256];
 
-			for (new i = 0; i < sizeof(colors); i ++) {
-				colors[i] = i;
-			}
-			ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR1, colors);
-
+            PlayerPlaySound(playerid, 1134, 0, 0, 0);
+            new color = VehicleInfo[vehicleid][E_VEHICLE_COLOR2];
+            ChangeVehicleColor(vehicleid, modelid, color);
+            VehicleInfo[vehicleid][E_VEHICLE_COLOR1] = modelid;
+            VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = color;
+            SaveVehicle(vehicleid);
+            PauseAC(playerid);
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
+
+            if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+			{
+				ResetVarInventory(playerid);
+			}
 
 		    SendServerMessage(playerid, "VEHICLE: {ffffff}You've repaint the %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
@@ -471,7 +484,7 @@ function:repaintexterior(playerid, vehicleid)
     Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
 }
 
-function:repaintinterior(playerid, vehicleid)
+function:repaintinterior(playerid, vehicleid, modelid)
 {
 	new text[256];
     PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT]++;
@@ -493,16 +506,18 @@ function:repaintinterior(playerid, vehicleid)
 
             Inventory_Remove(playerid, "Spraycan", 1);
            
-            static
-				colors[256];
+            PlayerPlaySound(playerid, 1134, 0, 0, 0);
+            new color = VehicleInfo[vehicleid][E_VEHICLE_COLOR1];
+            ChangeVehicleColor(vehicleid, color, modelid);
+            VehicleInfo[vehicleid][E_VEHICLE_COLOR1] = color;
+            VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = modelid;
+            SaveVehicle(vehicleid);
+            PauseAC(playerid);
 
-			for (new i = 0; i < sizeof(colors); i ++) {
-				colors[i] = i;
+            if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+			{
+				ResetVarInventory(playerid);
 			}
-			ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR2, colors);
-
-			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
-			SaveVehicle(vehicleid);
 
 		    SendServerMessage(playerid, "VEHICLE: {ffffff}You've repaint the %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
@@ -538,6 +553,11 @@ function:repaintpaintjob1(playerid, vehicleid)
             SaveVehicle(vehicleid);
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
+            if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+			{
+				ResetVarInventory(playerid);
+			}
+
 		    SendServerMessage(playerid, "VEHICLE: {ffffff}You've repaintjob the %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
@@ -572,6 +592,11 @@ function:repaintpaintjob2(playerid, vehicleid)
             SaveVehicle(vehicleid);
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
+            if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+			{
+				ResetVarInventory(playerid);
+			}
+
 		    SendServerMessage(playerid, "VEHICLE: {ffffff}You've repaintjob the %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
@@ -605,6 +630,11 @@ function:repaintpaintjob3(playerid, vehicleid)
             VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = 2;
             SaveVehicle(vehicleid);
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
+
+            if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+			{
+				ResetVarInventory(playerid);
+			}
 
 		    SendServerMessage(playerid, "VEHICLE: {ffffff}You've repaintjob the %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
