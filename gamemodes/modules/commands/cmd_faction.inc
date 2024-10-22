@@ -825,9 +825,9 @@ CMD:checkvehicle(playerid, params[])
 	if(!PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
 		return SendUnauthMessage(playerid);
 
-	new carid = GetNearestVehicle(playerid);
+	new carid = IsPlayerNearVehicle(playerid);
 
-	if(!IsPlayerInAnyVehicle(playerid) && GetNearestVehicle(playerid) != INVALID_VEHICLE_ID)
+	if(!IsPlayerInAnyVehicle(playerid) && IsPlayerNearVehicle(playerid) != INVALID_VEHICLE_ID)
 	{
 		CheckVehicleStorage(playerid, carid);
 	}

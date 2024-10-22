@@ -2660,13 +2660,13 @@ CMD:gascan(playerid, params[])
 	if(IsPlayerInAnyVehicle(playerid))
 		return SendErrorMessage(playerid, "You can't be in a vehicle.");
 			
-	if(GetNearestVehicle(playerid) == INVALID_VEHICLE_ID)
+	if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
 		return SendErrorMessage(playerid, "You aren't near a vehicle."); 
 			
 	if(playerRefillingVehicle[playerid])
 		return SendErrorMessage(playerid, "You're already refilling a vehicle."); 
 			
-	new vehicleid = GetNearestVehicle(playerid), Float:vx, Float:vy, Float:vz;
+	new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
 
 		
 	GetVehicleModelInfo(GetVehicleModel(vehicleid), VEHICLE_MODEL_INFO_PETROLCAP, vx, vy, vz); 

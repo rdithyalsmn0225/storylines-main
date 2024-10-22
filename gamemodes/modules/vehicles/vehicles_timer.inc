@@ -49,6 +49,12 @@ function:OnVehicleUpdate()
 		GetVehiclePos(i, x, y, z);
 		GetVehicleZAngle(i, a);
 
+		new panels, doors, lights, tires;
+		GetVehicleDamageStatus(i, panels, doors, lights, tires);
+		UpdateVehicleDamageStatus(i, panels, doors, lights, tires);
+		VehicleInfo[i][E_VEHICLE_BODY] = panels;
+		VehicleInfo[i][E_VEHICLE_TIRE] = tires;
+
 		VehicleInfo[i][E_VEHICLE_POS][0] = x;
 		VehicleInfo[i][E_VEHICLE_POS][1] = y;
 		VehicleInfo[i][E_VEHICLE_POS][2] = z;

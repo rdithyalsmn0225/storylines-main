@@ -1275,7 +1275,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1:
 					{
-						if ((id = GetNearestVehicle(playerid)) != -1 && !VehicleInfo[id][E_VEHICLE_LOCKED])
+						if ((id = IsPlayerNearVehicle(playerid)) != -1 && !VehicleInfo[id][E_VEHICLE_LOCKED])
 						{
 							if(GetVehicleModel(id) == 459 || GetVehicleModel(id) == 482 || GetVehicleModel(id) == 440 || GetVehicleModel(id) == 413)
 							{
@@ -1725,7 +1725,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							SendClientMessage(playerid, COLOR_ORANGE, "/jobduty, /taxicall");
 							SendTipMessage(playerid, "Taxi fare will change every 50 meters of distance.");
 						}
-						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TAXI)
+						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_MECHANIC)
+						{
+							SendClientMessage(playerid, COLOR_ORANGE, "/jobduty, /mechmenu");
+							SendTipMessage(playerid, "Repairing, Repaint vehicles and maintenace road safety.");
+						}
+						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_SMUGGLER)
 						{
 							SendClientMessage(playerid, COLOR_ORANGE, "/findpacket, /storepacket");
 							SendTipMessage(playerid, "Press 'ALT' to pickup packet.");
@@ -2428,7 +2433,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				carid = -1,
 				string[64];
 
-			if ((carid = GetNearestVehicle(playerid)) != -1 && !VehicleInfo[carid][E_VEHICLE_LOCKED])
+			if ((carid = IsPlayerNearVehicle(playerid)) != -1 && !VehicleInfo[carid][E_VEHICLE_LOCKED])
 			{
 				if (response)
 				{
@@ -2463,7 +2468,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				itemid = -1,
 				string[32];
 
-			if ((carid = GetNearestVehicle(playerid)) != -1 && !VehicleInfo[carid][E_VEHICLE_LOCKED])
+			if ((carid = IsPlayerNearVehicle(playerid)) != -1 && !VehicleInfo[carid][E_VEHICLE_LOCKED])
 			{
 				itemid = PlayerInfo[playerid][E_CHARACTER_STORAGEITEM];
 
@@ -2699,7 +2704,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				string[32];
 
 			carid = GetPlayerVehicleID(playerid);
-			if ((carid = GetNearestVehicle(playerid)) != -1 && !VehicleInfo[carid][E_VEHICLE_LOCKED])
+			if ((carid = IsPlayerNearVehicle(playerid)) != -1 && !VehicleInfo[carid][E_VEHICLE_LOCKED])
 			{
 				strunpack(string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_ITEM]);
 
@@ -2728,7 +2733,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				carid = -1,
 				string[32];
 
-			if ((carid = GetNearestVehicle(playerid)) != -1 && !VehicleInfo[carid][E_VEHICLE_LOCKED])
+			if ((carid = IsPlayerNearVehicle(playerid)) != -1 && !VehicleInfo[carid][E_VEHICLE_LOCKED])
 			{
 				strunpack(string, VstorageInfo[carid][PlayerInfo[playerid][E_CHARACTER_STORAGEITEM]][E_VEHICLE_TRUNKNAME]);
 

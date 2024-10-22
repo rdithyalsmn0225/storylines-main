@@ -6,7 +6,7 @@ CMD:repairkits(playerid, params[])
 	if(!Inventory_Count(playerid, "Repair Kits"))
 		return SendErrorMessage(playerid, "You don't have any repair kits in your inventory."); 
 
-	new vehicleid = GetNearestVehicle(playerid), Float:vx, Float:vy, Float:vz;
+	new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
 	GetVehicleHood(vehicleid, vx, vy, vz);  
 	GetVehiclePos(vehicleid, vx, vy, vz);
 
@@ -16,7 +16,7 @@ CMD:repairkits(playerid, params[])
 	if(IsPlayerInAnyVehicle(playerid))
 		return SendErrorMessage(playerid, "You can't be in a vehicle.");
 				
-	if(GetNearestVehicle(playerid) == INVALID_VEHICLE_ID)
+	if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
 		return SendErrorMessage(playerid, "You aren't near a vehicle.");
 
 	if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)

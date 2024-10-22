@@ -122,6 +122,21 @@ ReturnJobSkill(playerid, jobid)
             else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 0)
                 format(name, 32, "Driver Trainee");
 	    }
+        case JOB_MECHANIC:
+		{
+			if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 10)
+                format(name, 32, "Professional Mechanic Technician");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 8)
+                format(name, 32, "Mechanic Technician");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 6)
+                format(name, 32, "Mechanic Technician Trainee");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 4)
+                format(name, 32, "Professional Mechanic");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 2)
+                format(name, 32, "Mechanic");
+            else if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 0)
+                format(name, 32, "Mechanic Trainee");
+	    }
         case JOB_SMUGGLER:
 		{
 			if(PlayerInfo[playerid][E_CHARACTER_LEVEL] >= 10)
@@ -153,6 +168,10 @@ ReturnJobName(jobid)
         case JOB_TAXI:
         {
             format(name, 32, "Taxi Driver");
+        }
+        case JOB_MECHANIC:
+        {
+            format(name, 32, "Mechanic");
         }
         case JOB_SMUGGLER:
         {
@@ -194,35 +213,56 @@ CMD:quitjobs(playerid, params[])
 
 CMD:jobduty(playerid, params[])
 {
-    new vehicleid = IsPlayerInAnyVehicle(playerid);
-    
-    if(GetVehicleModel(vehicleid) == 530)
+    if(GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
     {
-        StartMainJobs(playerid, 1);
-    } 
-    else if(GetVehicleModel(vehicleid) == 420 || GetVehicleModel(vehicleid) == 438)
-    {
-        if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TAXI)
-	        return SendErrorMessage(playerid, "You aren't taxi driver.");
-
-        if (PlayerInfo[playerid][E_CHARACTER_TAXIDUTY])
+        if(IsPlayerInRangeOfPoint(playerid, 3.0, 1529.5608,-1849.4032,13.5469))
         {
-            foreach (new i : Player) if (PlayerInfo[i][E_CHARACTER_TAXIPLAYER] == playerid && IsPlayerInVehicle(i, GetPlayerVehicleID(playerid))) {
-                LeaveTaxi(i, playerid);
-            }
-            
-            PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
-            SendServerMessage(playerid, "TAXI: {ffffff}You are no longer on taxi duty!");
-        }
-        else
-        {
-            PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = true;
-            SendClientMessageToAllEx(COLOR_TAXI, "[Taxi Duty]: %s is now on taxi duty. Type \"/call 111\" to call a taxi!", ReturnSettingsName(playerid, playerid));
+            StartMainJobs(playerid, 2);
         }
     }
-    else if(IsPlayerInRangeOfPoint(playerid, 3.0, 1529.5608,-1849.4032,13.5469))
+    if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && IsPlayerInAnyVehicle(playerid))
     {
-        StartMainJobs(playerid, 2);
+        new vehicleid = IsPlayerInAnyVehicle(playerid);
+        if(GetVehicleModel(vehicleid) == 530)
+        {
+            StartMainJobs(playerid, 1);
+        } 
+        if(GetVehicleModel(vehicleid) == 420 || GetVehicleModel(vehicleid) == 438)
+        {
+            if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TAXI)
+                return SendErrorMessage(playerid, "You aren't taxi driver.");
+
+            if (PlayerInfo[playerid][E_CHARACTER_TAXIDUTY])
+            {
+                foreach (new i : Player) if (PlayerInfo[i][E_CHARACTER_TAXIPLAYER] == playerid && IsPlayerInVehicle(i, GetPlayerVehicleID(playerid))) {
+                    LeaveTaxi(i, playerid);
+                }
+                
+                PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
+                SendServerMessage(playerid, "TAXI: {ffffff}You are no longer on taxi duty!");
+            }
+            else
+            {
+                PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = true;
+                SendClientMessageToAllEx(COLOR_TAXI, "[Taxi Duty]: %s is now on taxi duty. Type \"/call 111\" to call a taxi!", ReturnSettingsName(playerid, playerid));
+            }
+        }
+        if(GetVehicleModel(vehicleid) == 525)
+        {
+            if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_MECHANIC)
+                return SendErrorMessage(playerid, "You aren't mechanic.");
+
+            if (PlayerInfo[playerid][E_CHARACTER_MECHDUTY])
+            {
+                PlayerInfo[playerid][E_CHARACTER_MECHDUTY] = false;
+                SendServerMessage(playerid, "MECHANIC: {ffffff}You are no longer on mechanic duty!");
+            }
+            else
+            {
+                PlayerInfo[playerid][E_CHARACTER_MECHDUTY] = true;
+                SendServerMessage(playerid, "MECHANIC: {ffffff}You are now mechanic duty!");
+            }
+        }
     }
     return 1;
 }

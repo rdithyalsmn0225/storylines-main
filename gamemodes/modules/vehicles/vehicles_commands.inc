@@ -261,12 +261,12 @@ CMD:cartrunk(playerid, params[])
 		
 	new engine, lights, alarm, doors, bonnet, boot, objective;
 	
-	if(!IsPlayerInAnyVehicle(playerid) && GetNearestVehicle(playerid) != INVALID_VEHICLE_ID)
+	if(!IsPlayerInAnyVehicle(playerid) && IsPlayerNearVehicle(playerid) != INVALID_VEHICLE_ID)
 	{
-		GetVehicleBoot(GetNearestVehicle(playerid), x, y, z); 
+		GetVehicleBoot(IsPlayerNearVehicle(playerid), x, y, z); 
 			
 		new 
-			vehicleid = GetNearestVehicle(playerid);
+			vehicleid = IsPlayerNearVehicle(playerid);
 				
 		if(VehicleInfo[vehicleid][E_VEHICLE_LOCKED])
 			return SendErrorMessage(playerid, "This vehicle is locked."); 
@@ -281,7 +281,7 @@ CMD:cartrunk(playerid, params[])
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, 1, objective);
 				
 			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {5B9460}Opened");	
-			ShowVehicleStorage(playerid, GetNearestVehicle(playerid));
+			ShowVehicleStorage(playerid, IsPlayerNearVehicle(playerid));
 		}
 		else
 		{
@@ -326,12 +326,12 @@ CMD:carhood(playerid, params[])
 		
 	new engine, lights, alarm, doors, bonnet, boot, objective;
 	
-	if(!IsPlayerInAnyVehicle(playerid) && GetNearestVehicle(playerid) != INVALID_VEHICLE_ID)
+	if(!IsPlayerInAnyVehicle(playerid) && IsPlayerNearVehicle(playerid) != INVALID_VEHICLE_ID)
 	{
-		GetVehicleHood(GetNearestVehicle(playerid), x, y, z); 
+		GetVehicleHood(IsPlayerNearVehicle(playerid), x, y, z); 
 			
 		new 
-			vehicleid = GetNearestVehicle(playerid);
+			vehicleid = IsPlayerNearVehicle(playerid);
 				
 		if(VehicleInfo[vehicleid][E_VEHICLE_LOCKED])
 			return SendErrorMessage(playerid, "This vehicle is locked."); 

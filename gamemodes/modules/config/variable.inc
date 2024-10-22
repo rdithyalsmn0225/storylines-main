@@ -37,6 +37,7 @@ enum
     JOB_TRUCKER,
 	JOB_LUMBERJACK,
 	JOB_TAXI,
+	JOB_MECHANIC,
 	JOB_SMUGGLER
 };
 
@@ -259,6 +260,7 @@ enum P_ACCOUNT_DATA
 	bool:E_CHARACTER_POLICEDUTY,
 	bool:E_CHARACTER_MEDICDUTY,
 	bool:E_CHARACTER_TAXIDUTY,
+	bool:E_CHARACTER_MECHDUTY,
 	bool:E_CHARACTER_HASRADIO,
 	bool:E_CHARACTER_DIEUNKNOWN,
 	bool:E_CHARACTER_POLICEGUN,
@@ -343,6 +345,8 @@ enum E_VEHICLE_DATA
 	E_VEHICLE_HYDRAULICS,
 	E_VEHICLE_VCTIMER,
 	E_VEHICLE_WINDOWS,
+	E_VEHICLE_BODY,
+	E_VEHICLE_TIRE,
 	E_VEHICLE_MODS[14],
 	E_VEHICLE_OBJECTS[6],
 	E_VEHICLE_PLATES[32], 
@@ -975,12 +979,13 @@ new Float: ENEXPoint[][] =
 
 new Float:JobPoint[][] = 
 {
-	{1793.2362,-1691.9686,13.4858}, //Truckers
-	{-1438.6829,-1543.6034,101.7578}, //Lumberjack
-	{685.7347,-1421.4628,14.6839}, //Taxi Driver
-	{1529.5608,-1849.4032,13.5469}, //Garbageman
-	{2748.7725,-2451.0012,13.6484},  //Dockworker
-	{2924.4316,-2052.0808,3.5480}  //Fishing
+	{1793.2362,-1691.9686,13.4858}, 	//Truckers
+	{-1438.6829,-1543.6034,101.7578}, 	//Lumberjack
+	{685.7347,-1421.4628,14.6839}, 		//Taxi Driver
+	{1034.9865,-1027.6021,32.1016}, 	//Mechanic
+	{1529.5608,-1849.4032,13.5469}, 	//Garbageman
+	{2748.7725,-2451.0012,13.6484},  	//Dockworker
+	{2924.4316,-2052.0808,3.5480}  		//Fishing
 };
 
 new const PropertyInteriors[][PropertyInt] =
@@ -1099,6 +1104,7 @@ new const JobsInfo[][E_JOBS_LOCATIONS] =
 	{"Truckers", -76.8248,-1136.7188,1.0781},
 	{"Lumberjack", -1438.6829,-1543.6034,101.7578},
 	{"Taxi Drivers", 685.7347,-1421.4628,14.6839},
+	{"Mechanic", 1034.9865,-1027.6021,32.1016},
 	{"Smugglers", -540.1035,-540.0248,25.5234}
 };
 
@@ -2292,9 +2298,10 @@ new const JobLocName[][62] =
 	"Trucking.co (Job: Trucking)",
 	"Leafy Hollow Barn.co (Job: Lumberjack)",
 	"Royal Cab.co (Job: Taxi Drivers)",
-    "G&S Garbage.co (SideJob: Trashmaster)",
+	"Autopart's.co (Job: Mechanic)",
+    "G&S Garbage.co (SideJob: Garbageman)",
 	"Sheroline's Dockswork.co (SideJob: Dockworker)",
-	"Royal Fishers.co (SideJob: Fishing)"
+	"Royal Fishers.co (Activity: Fishing)"
 };
 
 new const IndustryInfo[][E_INDUSTRY_DATA] = 

@@ -130,6 +130,7 @@ main ()  {}
 #include "modules\jobs\trucker.inc"
 #include "modules\jobs\lumberjack.inc"
 #include "modules\jobs\taxi.inc"
+#include "modules\jobs\mechanic.inc"
 #include "modules\jobs\smuggler.inc"
 #include "modules\jobs\fishing.inc"
 #include "modules\jobs\trashmaster.inc"
@@ -554,7 +555,7 @@ public OnPlayerEnterDynamicCP(playerid, checkpointid)
     {
     	if(IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerid)))
     	{
-			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Respray Exterior\t$150\nRespray Interior\t$150\nRespray Paintjob type 1\t$300\nRespray Paintjob type 2\t$300\nRespray Paintjob type 3\t$300\nRepair Bodywork\t$250\nRepair Engine\t$500\nRepair Tires\t$250\nAdd Modifications\t$350\nAdd Wheels\t$350\nAdd Hydraulics\t$500", "Select", "Close");
+			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Respray Paintjob type 1\t$300\nRespray Paintjob type 2\t$300\nRespray Paintjob type 3\t$300\nRepair Bodywork\t$250\nRepair Engine\t$500\nRepair Tires\t$250\nAdd Modifications\t$350\nAdd Wheels\t$350\nAdd Hydraulics\t$500", "Select", "Close");
     		TogglePlayerControllable(playerid, false);
     		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = true;
     	}
@@ -563,7 +564,7 @@ public OnPlayerEnterDynamicCP(playerid, checkpointid)
     {
     	if(IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerid)))
     	{
-			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Respray Exterior\t$150\nRespray Interior\t$150\nRespray Paintjob type 1\t$300\nRespray Paintjob type 2\t$300\nRespray Paintjob type 3\t$300\nRepair Bodywork\t$250\nRepair Engine\t$500\nRepair Tires\t$250\nAdd Modifications\t$350\nAdd Wheels\t$350\nAdd Hydraulics\t$500", "Select", "Close");
+			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Respray Paintjob type 1\t$300\nRespray Paintjob type 2\t$300\nRespray Paintjob type 3\t$300\nRepair Bodywork\t$250\nRepair Engine\t$500\nRepair Tires\t$250\nAdd Modifications\t$350\nAdd Wheels\t$350\nAdd Hydraulics\t$500", "Select", "Close");
     		TogglePlayerControllable(playerid, false);
     		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = true;
     	}
@@ -572,7 +573,7 @@ public OnPlayerEnterDynamicCP(playerid, checkpointid)
     {
     	if(IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerid)))
     	{
-			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Respray Exterior\t$150\nRespray Interior\t$150\nRespray Paintjob type 1\t$300\nRespray Paintjob type 2\t$300\nRespray Paintjob type 3\t$300\nRepair Bodywork\t$250\nRepair Engine\t$500\nRepair Tires\t$250\nAdd Modifications\t$350\nAdd Wheels\t$350\nAdd Hydraulics\t$500", "Select", "Close");
+			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Respray Paintjob type 1\t$300\nRespray Paintjob type 2\t$300\nRespray Paintjob type 3\t$300\nRepair Bodywork\t$250\nRepair Engine\t$500\nRepair Tires\t$250\nAdd Modifications\t$350\nAdd Wheels\t$350\nAdd Hydraulics\t$500", "Select", "Close");
     		TogglePlayerControllable(playerid, false);
     		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = true;
     	}
@@ -585,42 +586,6 @@ Dialog:ModShops(playerid, response, listitem, inputtext[])
 	new vehicleid = GetPlayerVehicleID(playerid);
 	switch(listitem)
 	{
-		case 0: 
-		{
-			if(!response)
-				return TogglePlayerControllable(playerid, true);
-
-			if (!IsPlayerInAnyVehicle(playerid))
-				return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-			static
-				colors[256];
-
-			for (new i = 0; i < sizeof(colors); i ++) {
-				colors[i] = i;
-			}
-			ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR1, colors);
-			TogglePlayerControllable(playerid, true);
-			PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-		}
-		case 1: 
-		{
-			if(!response)
-				return TogglePlayerControllable(playerid, true);
-
-			if (!IsPlayerInAnyVehicle(playerid))
-				return SendErrorMessage(playerid, "You aren't in any vehicle.");
-
-			static
-				colors[256];
-
-			for (new i = 0; i < sizeof(colors); i ++) {
-				colors[i] = i;
-			}
-			ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR2, colors);
-			TogglePlayerControllable(playerid, true);
-			PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-		}
 		case 2: 
 		{
 			if(!response)
@@ -3299,9 +3264,13 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 {
 	if ((response) && (extraid == MODEL_SELECTION_COLOR1))
 	{
-		new vehicleid = GetPlayerVehicleID(playerid);
-		if (!IsPlayerInAnyVehicle(playerid))
-	    	return SendErrorMessage(playerid, "You aren't in any vehicle.");
+		new vehicleid = IsPlayerNearVehicle(playerid);
+
+		if(IsPlayerInAnyVehicle(playerid))
+			return SendErrorMessage(playerid, "You can't be in a vehicle.");
+				
+		if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+			return SendErrorMessage(playerid, "You aren't near a vehicle.");
 
 	    PlayerPlaySound(playerid, 1134, 0, 0, 0);
 	    new color = VehicleInfo[vehicleid][E_VEHICLE_COLOR2];
@@ -3317,9 +3286,13 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 	}
 	if ((response) && (extraid == MODEL_SELECTION_COLOR2))
 	{
-		new vehicleid = GetPlayerVehicleID(playerid);
-		if (!IsPlayerInAnyVehicle(playerid))
-	    	return SendErrorMessage(playerid, "You aren't in any vehicle.");
+		new vehicleid = IsPlayerNearVehicle(playerid);
+		
+		if(IsPlayerInAnyVehicle(playerid))
+			return SendErrorMessage(playerid, "You can't be in a vehicle.");
+				
+		if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+			return SendErrorMessage(playerid, "You aren't near a vehicle.");
 
 	    PlayerPlaySound(playerid, 1134, 0, 0, 0);
 	    new color = VehicleInfo[vehicleid][E_VEHICLE_COLOR1];

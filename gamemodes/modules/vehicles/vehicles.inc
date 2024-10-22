@@ -371,6 +371,8 @@ function:Query_LoadPrivateVehicle(playerid)
 			cache_get_value_name_int(i, "VehicleSirens", VehicleInfo[vehicleid][E_VEHICLE_SIRENS]);
 			cache_get_value_name_int(i, "VehicleTimesDestroyed", VehicleInfo[vehicleid][E_VEHICLE_DESTROYED]);		
 			cache_get_value_name_float(i, "VehicleHealth", VehicleInfo[vehicleid][E_VEHICLE_HEALTH]);
+			cache_get_value_name_int(i, "VehicleBody", VehicleInfo[vehicleid][E_VEHICLE_BODY]);
+			cache_get_value_name_int(i, "VehicleTire", VehicleInfo[vehicleid][E_VEHICLE_TIRE]);
 			for(new d = 1; d < 5; d++)
 			{
 				format(str, sizeof(str), "VehicleLastDrivers%d", d);
@@ -415,9 +417,12 @@ function:Query_LoadPrivateVehicle(playerid)
 
 			ChangeVehiclePaintjob(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB]);
 			ChangeVehicleColor(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_COLOR1], VehicleInfo[vehicleid][E_VEHICLE_COLOR2]);
-			SetVehicleHealthEx(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_HEALTH]);
+		
 			AddVehicleComponent(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_HYDRAULICS]);
 			AddVehicleComponent(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_WHEELS]);
+
+			SetVehicleHealthEx(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_HEALTH]);
+			UpdateVehicleDamageStatus(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_BODY], VehicleInfo[vehicleid][E_VEHICLE_BODY], VehicleInfo[vehicleid][E_VEHICLE_BODY], VehicleInfo[vehicleid][E_VEHICLE_TIRE]);
 			
 			if(VehicleInfo[vehicleid][E_VEHICLE_LOCKED] == false)
 				SetVehicleParamsEx(vehicleid, 0, 0, 0, 0, 0, 0, 0);
@@ -604,7 +609,7 @@ GetVehicleDriver(vehicleid) {
 	return INVALID_PLAYER_ID;
 }
 
-stock GetNearestVehicle(playerid)
+stock IsPlayerNearVehicle(playerid)
 {
  	new
 	 	Float:fX,
