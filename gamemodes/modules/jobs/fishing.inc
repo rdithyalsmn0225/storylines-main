@@ -112,7 +112,7 @@ CMD:sellfish(playerid, params[])
 		
 	new str[356];
 	
-	format(str, sizeof(str), "You have %d fish in your inventory are you sure you want to sell it for {5B9460}$%s{ffffff}", Inventory_Count(playerid, "Fish"), FormatMoney(FISHING_SALARY * Inventory_Count(playerid, "Fish")));
+	format(str, sizeof(str), "You have %d fish in your inventory are you sure you want to sell it for {B3C99E}$%s{ffffff}", Inventory_Count(playerid, "Fish"), FormatMoney(FISHING_SALARY * Inventory_Count(playerid, "Fish")));
 	ShowPlayerDialog(playerid, DIALOG_SELLFISH, DIALOG_STYLE_MSGBOX, "Sell Fish:", str, "Sell", "Cancel");
 	return 1;
 }
@@ -136,7 +136,7 @@ CMD:buybait(playerid, params[])
 		return SendErrorMessage(playerid, "Invalid bait amount!");
 	
 	Inventory_Add(playerid, "Fish Bait", 19566, amount);
-	SendServerMessage(playerid, "FISHING: {ffffff}You have successfully purchase %d Fish bait for {5B9460}$%s{ffffff}", amount, FormatMoney(amount));
+	SendServerMessage(playerid, "FISHING: {ffffff}You have successfully purchase %d Fish bait for {B3C99E}$%s{ffffff}", amount, FormatMoney(amount));
 	GiveMoney(playerid, -amount);
 	return 1;
 }

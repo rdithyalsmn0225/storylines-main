@@ -22,19 +22,19 @@ stock IndustryRefresh(id)
 	}
 	
 
-    format(str, sizeof(str), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price: {5B9460}{5B9460}$%d{ffffff}{ffffff} / unit", IndustryInfo[0][Cargo], ServerInfo[id][E_SERVER_FABRIC], IndustryInfo[0][Price]);
+    format(str, sizeof(str), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price: {B3C99E}{B3C99E}$%d{ffffff}{ffffff} / unit", IndustryInfo[0][Cargo], ServerInfo[id][E_SERVER_FABRIC], IndustryInfo[0][Price]);
     
-	format(str1, sizeof(str1), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {5B9460}$%d{ffffff} / unit", IndustryInfo[1][Cargo], ServerInfo[id][E_SERVER_STEEL], IndustryInfo[1][Price]);
+	format(str1, sizeof(str1), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {B3C99E}$%d{ffffff} / unit", IndustryInfo[1][Cargo], ServerInfo[id][E_SERVER_STEEL], IndustryInfo[1][Price]);
 
-	format(str2, sizeof(str2), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {5B9460}$%d{ffffff} / unit", IndustryInfo[2][Cargo], ServerInfo[id][E_SERVER_WOODS], IndustryInfo[2][Price]);
+	format(str2, sizeof(str2), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {B3C99E}$%d{ffffff} / unit", IndustryInfo[2][Cargo], ServerInfo[id][E_SERVER_WOODS], IndustryInfo[2][Price]);
 
-	format(str3, sizeof(str3), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {5B9460}$%d{ffffff} / unit", IndustryInfo[3][Cargo], ServerInfo[id][E_SERVER_FISH], IndustryInfo[3][Price]);
+	format(str3, sizeof(str3), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {B3C99E}$%d{ffffff} / unit", IndustryInfo[3][Cargo], ServerInfo[id][E_SERVER_FISH], IndustryInfo[3][Price]);
 
-	format(str4, sizeof(str4), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {5B9460}$%d{ffffff} / unit", IndustryInfo[4][Cargo], ServerInfo[id][E_SERVER_FOODS], IndustryInfo[4][Price]);
+	format(str4, sizeof(str4), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {B3C99E}$%d{ffffff} / unit", IndustryInfo[4][Cargo], ServerInfo[id][E_SERVER_FOODS], IndustryInfo[4][Price]);
 
-	format(str5, sizeof(str5), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {5B9460}$%d{ffffff} / unit", IndustryInfo[5][Cargo], ServerInfo[id][E_SERVER_CLOTHES], IndustryInfo[5][Price]);
+	format(str5, sizeof(str5), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {B3C99E}$%d{ffffff} / unit", IndustryInfo[5][Cargo], ServerInfo[id][E_SERVER_CLOTHES], IndustryInfo[5][Price]);
 
-	format(str6, sizeof(str6), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {5B9460}$%d{ffffff} / unit", IndustryInfo[6][Cargo], ServerInfo[id][E_SERVER_APPLIANCES], IndustryInfo[6][Price]);
+	format(str6, sizeof(str6), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {B3C99E}$%d{ffffff} / unit", IndustryInfo[6][Cargo], ServerInfo[id][E_SERVER_APPLIANCES], IndustryInfo[6][Price]);
 
 
 	ServerInfo[id][E_SERVER_3DTEXT][0] = CreateDynamic3DTextLabel(str, COLOR_POINT, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz], 5.0);
@@ -164,7 +164,7 @@ stock ShowIndustry(playerid)
 	strcat(str, "Industries\tCargo\tType\n");
 	forex(i, sizeof(IndustryInfo))
 	{
-		format(str, sizeof(str), "%s%s\t{5B9460}%s{ffffff}\t%s\n", str, IndustryInfo[i][Name], IndustryInfo[i][Cargo], IndustryInfo[i][Type]);
+		format(str, sizeof(str), "%s%s\t{B3C99E}%s{ffffff}\t%s\n", str, IndustryInfo[i][Name], IndustryInfo[i][Cargo], IndustryInfo[i][Type]);
 	}
 	ShowPlayerDialog(playerid, DIALOG_INDUSTRYLOC, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
 	return 1;

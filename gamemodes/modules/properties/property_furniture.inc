@@ -64,24 +64,25 @@ DeleteFurnitureObject(objectid)
 	}
 }
 
-SetFurnitureMaterial(objectid, materialslot, materialid)
+SetFurnitureMaterial(playerid, objectid, materialslot, modelid, txd[], texturename[])
 {
 	new gquery[512];
 	if(IsValidDynamicObject(objectid) && Streamer_GetExtraInt(objectid, E_OBJECT_TYPE) == E_OBJECT_FURNITURE)
 	{
-		SetDynamicObjectMaterial(objectid, materialslot, MaterialInfo[materialid][E_MATERIAL_MODEL], MaterialInfo[materialid][E_MATERIAL_TXD], MaterialInfo[materialid][E_MATERIAL_TEXTURE], HexToInt("0xFFFFFFFF"));
+		SetDynamicObjectMaterial(objectid, materialslot, modelid, txd, texturename, HexToInt("0xFFFFFFFF"));
 
 		mysql_format(ourConnection, gquery, sizeof(gquery), "UPDATE `furniture` SET `matModel%i` = '%i', `matTxd%i` = '%e', `matTexture%i` = '%e' WHERE `id` = '%i'",
 			materialslot,
-			MaterialInfo[materialid][E_MATERIAL_MODEL],
+			modelid,
 			materialslot,
-			MaterialInfo[materialid][E_MATERIAL_TXD],
+			txd,
 			materialslot,
-			MaterialInfo[materialid][E_MATERIAL_TEXTURE],
+			texturename,
 			Streamer_GetExtraInt(objectid, E_OBJECT_INDEX_ID)
 		);
 		mysql_pquery(ourConnection, gquery);
 	}
+	SendServerMessage(playerid, "PROPERTY: {ffffff}You are added material texture for #%d index #%d set into %d %s %s.", objectid, materialslot, modelid, txd, texturename);
 }
 
 RemoveAllFurniture(propid)

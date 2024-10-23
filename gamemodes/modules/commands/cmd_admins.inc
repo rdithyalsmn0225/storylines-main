@@ -1532,7 +1532,7 @@ CMD:setstats(playerid, params[])
 			if(value == -1)
 				return SendUsageMessage(playerid, "/setstats [playerid OR name] 3 [value required]"); 
 		
-			format(str, sizeof(str), "%s set %s's bank money: {5B9460}$%s{ffffff} (Previously {5B9460}$%s{ffffff})", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), FormatMoney(value), FormatMoney(PlayerInfo[playerb][E_CHARACTER_BANK])); 
+			format(str, sizeof(str), "%s set %s's bank money: {B3C99E}$%s{ffffff} (Previously {B3C99E}$%s{ffffff})", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), FormatMoney(value), FormatMoney(PlayerInfo[playerb][E_CHARACTER_BANK])); 
 			SendAdminMessage(3, str);
 			
 			PlayerInfo[playerb][E_CHARACTER_BANK] = value;
@@ -1606,7 +1606,7 @@ CMD:givemoney(playerid, params[])
 		return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
 		
 	GiveMoney(playerb, value);
-	SendInfoMessage(playerb, "You received {5B9460}$%s{ffffff} from Admin %s.", FormatMoney(value), ReturnSettingsName(playerid, playerid));
+	SendInfoMessage(playerb, "You received {B3C99E}$%s{ffffff} from Admin %s.", FormatMoney(value), ReturnSettingsName(playerid, playerid));
 
 	format(str, sizeof(str), "%s gave $%s to %s", ReturnSettingsName(playerid, playerid), FormatMoney(value), ReturnSettingsName(playerb, playerid));
 	SendAdminMessage(3, str);

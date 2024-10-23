@@ -20,7 +20,7 @@ CMD:cargobuy(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_FABRIC, 1);
 
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {5B9460}$%s{ffffff}.", FormatMoney(E_SERVER_FABRIC));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {B3C99E}$%s{ffffff}.", FormatMoney(E_SERVER_FABRIC));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz]))
@@ -39,7 +39,7 @@ CMD:cargobuy(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_STEEL, 1);
 
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {5B9460}$%s{ffffff}.", FormatMoney(E_SERVER_STEEL));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {B3C99E}$%s{ffffff}.", FormatMoney(E_SERVER_STEEL));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz])) //woods
@@ -58,7 +58,7 @@ CMD:cargobuy(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_WOODS, 1);
 
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {5B9460}$%s{ffffff}.", FormatMoney(PRICE_WOODS));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {B3C99E}$%s{ffffff}.", FormatMoney(PRICE_WOODS));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	} 
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz])) //woods
@@ -77,7 +77,7 @@ CMD:cargobuy(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_FISH, 1);
 
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {5B9460}$%s{ffffff}.", FormatMoney(PRICE_WOODS));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {B3C99E}$%s{ffffff}.", FormatMoney(PRICE_WOODS));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	} 
 
@@ -98,7 +98,7 @@ CMD:cargobuy(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_FOODS, 1);
 
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {5B9460}$%s{ffffff}.", FormatMoney(E_SERVER_FOODS));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {B3C99E}$%s{ffffff}.", FormatMoney(E_SERVER_FOODS));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[5][Posx], IndustryInfo[5][Posy], IndustryInfo[5][Posz]))
@@ -117,7 +117,7 @@ CMD:cargobuy(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_CLOTHES, 1);
 
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {5B9460}$%s{ffffff}.", FormatMoney(E_SERVER_CLOTHES));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {B3C99E}$%s{ffffff}.", FormatMoney(E_SERVER_CLOTHES));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
@@ -136,7 +136,7 @@ CMD:cargobuy(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_APPLIANCES, 1);
 
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {5B9460}$%s{ffffff}.", FormatMoney(PRICE_APPLIANCES));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has purchase cargo for {B3C99E}$%s{ffffff}.", FormatMoney(PRICE_APPLIANCES));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	return 1;
@@ -164,7 +164,7 @@ CMD:cargosell(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_FISH, 1);
 		
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {5B9460}$%s{ffffff}.", FormatMoney(PRICE_FISH*5));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {B3C99E}$%s{ffffff}.", FormatMoney(PRICE_FISH*5));
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[5][Posx], IndustryInfo[5][Posy], IndustryInfo[5][Posz]))
 	{
@@ -181,7 +181,7 @@ CMD:cargosell(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_CLOTHES, 1);
 		
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {5B9460}$%s{ffffff}.", FormatMoney(PRICE_FABRIC*5));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {B3C99E}$%s{ffffff}.", FormatMoney(PRICE_FABRIC*5));
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
 	{
@@ -198,7 +198,7 @@ CMD:cargosell(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_APPLIANCES, 1);
 		
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {5B9460}$%s{ffffff}.", FormatMoney(PRICE_STEEL*5));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {B3C99E}$%s{ffffff}.", FormatMoney(PRICE_STEEL*5));
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
 	{
@@ -215,7 +215,7 @@ CMD:cargosell(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_APPLIANCES, 1);
 		
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {5B9460}$%s{ffffff}.", FormatMoney(PRICE_WOODS*5));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {B3C99E}$%s{ffffff}.", FormatMoney(PRICE_WOODS*5));
 	}
 
 	// Secondary Sell:
@@ -245,7 +245,7 @@ CMD:cargosell(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_STOCK]++;
 			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
 		}
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {5B9460}$%s{ffffff}.", FormatMoney(PRICE_APPLIANCES*6));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {B3C99E}$%s{ffffff}.", FormatMoney(PRICE_APPLIANCES*6));
 	}
 	if((id = IsPlayerNearBusiness(playerid)) != 0)
 	{
@@ -273,7 +273,7 @@ CMD:cargosell(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_STOCK]++;
 			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
 		}
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {5B9460}$%s{ffffff}.", FormatMoney(PRICE_CLOTHES*6));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {B3C99E}$%s{ffffff}.", FormatMoney(PRICE_CLOTHES*6));
 	}
 	if((id = IsPlayerNearBusiness(playerid)) != 0)
 	{
@@ -301,7 +301,7 @@ CMD:cargosell(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_STOCK]++;
 			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
 		}
-		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {5B9460}$%s{ffffff}.", FormatMoney(PRICE_FOODS*8));
+		SendServerMessage(playerid, "TRUCKER: {ffffff}You has sell cargo for {B3C99E}$%s{ffffff}.", FormatMoney(PRICE_FOODS*8));
 	}
 	return 1;
 }

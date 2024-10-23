@@ -139,9 +139,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendClientMessage(playerid, COLOR_WHITE, "You selected an empty character slot!");
 				
 				SendClientMessage(playerid, -1, "This process will guide you through creating your character.");
-				SendClientMessage(playerid, -1, "Please begin by typing your characters first and last name. i.e: {5B9460}George_Jefferson");
+				SendClientMessage(playerid, -1, "Please begin by typing your characters first and last name. i.e: {B3C99E}George_Jefferson");
 				SendClientMessage(playerid, -1, "Your characters name must be in Firstname_Lastname format with no numbers or special characters.");
-				SendClientMessage(playerid, -1, "Press {5B9460}'T'{ffffff} to inputtext for character creation.");
+				SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
 				
 				playerMakingCharacter[playerid] = true;
 				playerCharacterStep[playerid] = 1; 
@@ -158,7 +158,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				playerMakingCharacter[playerid] = false;
 				playerCharacterStep[playerid] = 0; 
 				
-				format(string, sizeof(string), "You selected the character {5B9460}%s{FFFFFF}.", characterLister[playerid][listitem]);
+				format(string, sizeof(string), "You selected the character {B3C99E}%s{FFFFFF}.", characterLister[playerid][listitem]);
 				SendClientMessage(playerid, -1, string);
 
 				UpdateTabListForOthers(playerid);
@@ -876,7 +876,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					
 				DealershipTotalCost[playerid] = g_aDealershipData[i][E_DEALERSHIP_PRICE];
 				
-				format(caption, 60, "%s - {5B9460}%s:", g_aDealershipData[i][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+				format(caption, 60, "%s - {B3C99E}%s:", g_aDealershipData[i][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 				strcat(str, "Colors\n");
 				strcat(str, "{FFFF00}Purchase Vehicle\n"); 
 				
@@ -895,7 +895,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				caption[60],
 				str[400]; 
 			
-			format(caption, 60, "%s - {5B9460}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+			format(caption, 60, "%s - {B3C99E}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 			
 			if(response)
 			{
@@ -920,7 +920,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						
 						format(dstr, sizeof(dstr), "Models:\t%s\n", ReturnVehicleName(vehicleid));
 						strcat(str, dstr);
-						format(dstr, sizeof(dstr), "Price:\t{FFFFFF}{5B9460}$%s{ffffff}\n", FormatMoney(g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_PRICE]));
+						format(dstr, sizeof(dstr), "Price:\t{FFFFFF}{B3C99E}$%s{ffffff}\n", FormatMoney(g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_PRICE]));
 						strcat(str, dstr);
 						format(dstr, sizeof(dstr), "Max Speed:\t{FFFFFF}%.1f\n", GetVehicleTopSpeed(DealershipPlayerCar[playerid])); 
 						strcat(str, dstr); 
@@ -998,7 +998,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				caption[60]
 			; 
 			
-			format(caption, 60, "%s - {5B9460}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+			format(caption, 60, "%s - {B3C99E}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 		
 			if(response)
 			{
@@ -1027,7 +1027,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				color1
 			;
 			
-			format(caption, 60, "%s - {5B9460}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+			format(caption, 60, "%s - {B3C99E}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 			
 			if(response)
 			{
@@ -1074,7 +1074,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				color2
 			;
 			
-			format(caption, 60, "%s - {5B9460}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+			format(caption, 60, "%s - {B3C99E}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 			
 			if(response)
 			{
@@ -1695,7 +1695,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 5:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Vehicle Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/carlist, /engine, /carlock, /carkey, /carsell, /cardespawn, /cartrunk, /carhood");
+						SendClientMessage(playerid, COLOR_ORANGE, "/mycars, /engine, /carlock, /carkey, /carsell, /cardespawn, /cartrunk, /carhood");
 						SendClientMessage(playerid, COLOR_ORANGE, "/carlights, /carfind, /carradio, /carscrap, /carwhisper, /carb, /refill");
 					}
 					case 6:
@@ -2002,7 +2002,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "Cocaine Crack", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {5B9460}$%d{ffffff} from selling crack.", cost);
+						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {B3C99E}$%d{ffffff} from selling crack.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2020,7 +2020,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "Marijuana", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {5B9460}$%d{ffffff} from selling marijuana.", cost);
+						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {B3C99E}$%d{ffffff} from selling marijuana.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2038,7 +2038,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "Heroin", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {5B9460}$%d{ffffff} from selling heroin.", cost);
+						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {B3C99E}$%d{ffffff} from selling heroin.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2056,7 +2056,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Inventory_Remove(playerid, "PCP", DrugsDealerAmount[playerid]);
 						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {5B9460}$%d{ffffff} from selling pcp.", cost);
+						SendServerMessage(playerid, "DRUGS DEALER: {ffffff}You've received {B3C99E}$%d{ffffff} from selling pcp.", cost);
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2421,7 +2421,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] -= rand;
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = false;
 							BusinessRefresh(IsPlayerInBusiness(playerid));
-							SendServerMessage(playerid, "BUSINESS: {ffffff}You've got money {5B9460}$%d{ffffff} from take cash money on cashiers.", rand);
+							SendServerMessage(playerid, "BUSINESS: {ffffff}You've got money {B3C99E}$%d{ffffff} from take cash money on cashiers.", rand);
 						}
 					}
 				}

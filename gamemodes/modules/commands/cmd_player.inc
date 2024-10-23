@@ -43,14 +43,14 @@ CMD:cursor(playerid, params[])
 CMD:settings(playerid, params[])
 {
 	new str[512];
-	format(str, sizeof(str), "Streets TextDraws\t%s\n", (PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sJoined Logs\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGJOIN] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sAdmin Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGADMIN] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sFaction Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGFMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{5B9460}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sSwitch Namestyles\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE]) ? ("{5B9460}Fn_Ln{ffffff}") : ("{FF6347}Mixed.Name{ffffff}"));
-	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{5B9460}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
+	format(str, sizeof(str), "Streets TextDraws\t%s\n", (PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sJoined Logs\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGJOIN] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sAdmin Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGADMIN] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sFaction Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGFMS] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sSwitch Namestyles\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE]) ? ("{B3C99E}Fn_Ln{ffffff}") : ("{FF6347}Mixed.Name{ffffff}"));
+	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{B3C99E}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
 	ShowPlayerDialog(playerid, DIALOG_SETTINGS, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
 	return 1;
 }
@@ -235,8 +235,8 @@ CMD:pay(playerid, params[])
 	PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0); PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
 	playerLastpay[playerid] = gettime(); 
 	
-	SendServerMessage(playerid, "PAY: {ffffff}You have sent {5B9460}$%s{ffffff} to %s.", FormatMoney(amount), ReturnSettingsName(playerb, playerid)); 
-	SendServerMessage(playerb, "PAY: {ffffff}You have received {5B9460}$%s{ffffff} from %s.", FormatMoney(amount), ReturnSettingsName(playerid, playerid)); 
+	SendServerMessage(playerid, "PAY: {ffffff}You have sent {B3C99E}$%s{ffffff} to %s.", FormatMoney(amount), ReturnSettingsName(playerb, playerid)); 
+	SendServerMessage(playerb, "PAY: {ffffff}You have received {B3C99E}$%s{ffffff} from %s.", FormatMoney(amount), ReturnSettingsName(playerid, playerid)); 
 	
 	if(PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3 || amount >= 50000)
 	{
@@ -942,7 +942,7 @@ CMD:deposit(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_BANK]+= amount;
 	GiveMoney(playerid, -amount); 
 	
-	SendInfoMessage(playerid, "You have deposited {5B9460}$%s{ffffff} into Your account, Total:{5B9460}$%s{ffffff}", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	SendInfoMessage(playerid, "You have deposited {B3C99E}$%s{ffffff} into Your account, Total:{B3C99E}$%s{ffffff}", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	SaveCharacter(playerid);
 	return 1; 
 }
@@ -970,7 +970,7 @@ CMD:withdraw(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_BANK]-= amount;
 	GiveMoney(playerid, amount);
 	
-	SendInfoMessage(playerid, "You have withdrawn {5B9460}$%s{ffffff} from Your account, Total:{5B9460}$%s{ffffff}", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	SendInfoMessage(playerid, "You have withdrawn {B3C99E}$%s{ffffff} from Your account, Total:{B3C99E}$%s{ffffff}", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	SaveCharacter(playerid);
 	return 1;
 }
@@ -987,7 +987,7 @@ CMD:balance(playerid, params[])
 	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GENERAL)
 		return SendErrorMessage(playerid, "You can't do this inside this business."); 
 	
-	SendInfoMessage(playerid, "You have {5B9460}$%s{ffffff} in your bank and {5B9460}$%s{ffffff} in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
+	SendInfoMessage(playerid, "You have {B3C99E}$%s{ffffff} in your bank and {B3C99E}$%s{ffffff} in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
 	return 1;
 }
 
@@ -1141,8 +1141,12 @@ CMD:call(playerid, params[])
 		return SendErrorMessage(playerid, "You can't make a call right now.");
 		
 	if(sscanf(params, "i", phone_number))
-		return SendUsageMessage(playerid, "/call [phone number]"); 
-		
+	{
+		SendUsageMessage(playerid, "/call [phone number]"); 
+		SendTipMessage(playerid, "911.Emergency Service | 111.Taxi Drivers | 222.Mechanic Service");
+		return 1;
+	}	
+
 	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_PHONE] == phone_number){
 			playerb = i;
 	}
@@ -1168,9 +1172,16 @@ CMD:call(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_CALL] = 0; 
 		playerPhone[playerid] = 0;
 
+		SetTimerEx("SendMechanicMessage", 2000, false, "i", playerid);
+	}
+	if(phone_number == 222)
+	{
+		PlayerInfo[playerid][E_CHARACTER_PHONELINE] = 111;
+		PlayerInfo[playerid][E_CHARACTER_CALL] = 0; 
+		playerPhone[playerid] = 0;
+
 		SetTimerEx("SendTaxiMessage", 2000, false, "i", playerid);
 	}
-	
 	if(playerb == INVALID_PLAYER_ID)
 	{
 		playerPhone[playerid] = SetTimerEx("OnPhoneCall", 4500, false, "ii", playerid, 1); 
@@ -2253,7 +2264,7 @@ CMD:buybiz(playerid, params[])
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 		ShowBoxMessage(playerid, "Congratulations!~n~You're now the owner of this business!", 4);
 		
-		SendInfoMessage(playerid, "You purchased the %s for {5B9460}$%s{ffffff}!", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]));
+		SendInfoMessage(playerid, "You purchased the %s for {B3C99E}$%s{ffffff}!", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]));
 		
 		BusinessInfo[id][E_BUSINESS_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID]; 
 		GiveMoney(playerid, -BusinessInfo[id][E_BUSINESS_PRICE]); 
@@ -2281,9 +2292,9 @@ CMD:bizinfo(playerid, params[])
 			
 		SendClientMessage(playerid, COLOR_HEADER, "Business Info");
 		SendClientMessageEx(playerid, COLOR_WHITE, "*** %s ***", BusinessInfo[id][E_BUSINESS_NAME]); 
-		SendClientMessageEx(playerid, COLOR_GREY, "Owner:[%s] Level:[%d] Value:[{5B9460}$%s{ffffff}] Type:[%d] Locked:[%s] ID:[%d]", ReturnSettingsName(playerid, playerid), BusinessInfo[id][E_BUSINESS_LEVEL], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]),
+		SendClientMessageEx(playerid, COLOR_GREY, "Owner:[%s] Level:[%d] Value:[{B3C99E}$%s{ffffff}] Type:[%d] Locked:[%s] ID:[%d]", ReturnSettingsName(playerid, playerid), BusinessInfo[id][E_BUSINESS_LEVEL], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]),
 			BusinessInfo[id][E_BUSINESS_TYPE], (BusinessInfo[id][E_BUSINESS_LOCKED] != true) ? ("No") : ("Yes"), BusinessInfo[id][E_BUSINESS_DBID]); 
-		SendClientMessageEx(playerid, COLOR_WHITE, "Cashbox:[{5B9460}$%s{ffffff}] Entrance fee:[{5B9460}$%s{ffffff}] Products:[%d / %d]", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]), FormatMoney(BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]), BusinessInfo[id][E_BUSINESS_STOCK], MAX_BUSINESS_PRODUCTS);		
+		SendClientMessageEx(playerid, COLOR_WHITE, "Cashbox:[{B3C99E}$%s{ffffff}] Entrance fee:[{B3C99E}$%s{ffffff}] Products:[%d / %d]", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]), FormatMoney(BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]), BusinessInfo[id][E_BUSINESS_STOCK], MAX_BUSINESS_PRODUCTS);		
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business.");
 
@@ -2311,7 +2322,7 @@ CMD:bizfee(playerid, params[])
 		if(amount > 1500)
 			return SendErrorMessage(playerid, "The amount can't be above $1,500.");
 			
-		SendInfoMessage(playerid, "You set your businesses entrance fee to {5B9460}$%s{ffffff}.", FormatMoney(amount));
+		SendInfoMessage(playerid, "You set your businesses entrance fee to {B3C99E}$%s{ffffff}.", FormatMoney(amount));
 		
 		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = amount;
 		SaveBusiness(id);
@@ -2342,7 +2353,7 @@ CMD:bizcash(playerid, params[])
 			
 		if(!strcmp(astr, "balance"))
 		{
-			SendInfoMessage(playerid, "You have {5B9460}$%s{ffffff} in your businesses cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH])); 
+			SendInfoMessage(playerid, "You have {B3C99E}$%s{ffffff} in your businesses cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH])); 
 		}
 		else if(!strcmp(astr, "deposit"))
 		{	
@@ -2355,7 +2366,7 @@ CMD:bizcash(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_CASH]+= amount;
 			GiveMoney(playerid, -amount);
 			
-			SendInfoMessage(playerid, "You deposited {5B9460}$%s{ffffff} into your business. (Total: {5B9460}$%s{ffffff})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+			SendInfoMessage(playerid, "You deposited {B3C99E}$%s{ffffff} into your business. (Total: {B3C99E}$%s{ffffff})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 			SaveBusiness(id); SaveCharacter(playerid);
 		}
 		else if(!strcmp(astr, "withdraw"))
@@ -2369,7 +2380,7 @@ CMD:bizcash(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_CASH] -= amount; 
 			GiveMoney(playerid, amount); 
 			
-			SendInfoMessage(playerid, "You withdrew {5B9460}$%s{ffffff} from your business. (Total: {5B9460}$%s{ffffff})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+			SendInfoMessage(playerid, "You withdrew {B3C99E}$%s{ffffff} from your business. (Total: {B3C99E}$%s{ffffff})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 			SaveBusiness(id); SaveCharacter(playerid);
 		}
 		else return SendErrorMessage(playerid, "Invalid Parameter.");
@@ -2393,7 +2404,7 @@ CMD:sellbiz(playerid, params[])
 		if(BusinessInfo[id][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
 			return SendErrorMessage(playerid, "You don't own this business."); 
 			
-		format(str, sizeof(str), "Are you sure you want to sell your business?\nYou'll earn {5B9460}$%s{ffffff} from selling and {5B9460}$%s{ffffff} from the cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE] / 2), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+		format(str, sizeof(str), "Are you sure you want to sell your business?\nYou'll earn {B3C99E}$%s{ffffff} from selling and {B3C99E}$%s{ffffff} from the cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE] / 2), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 		ConfirmDialog(playerid, "Confirmation", str, "OnSellBusiness", id); 
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business.");

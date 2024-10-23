@@ -300,6 +300,7 @@ CMD:editproperty(playerid, params[])
 	return 1;
 }
 
+CMD:prop(playerid, params[]) return cmd_property(playerid, params);
 CMD:property(playerid, params[])
 {
 	if(!CountPlayerProperties(playerid))
@@ -334,7 +335,7 @@ CMD:property(playerid, params[])
 			type = "Apartment Complex"; 
 	
 		SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Property Info __________|");
-		SendClientMessageEx(playerid, COLOR_ORANGE, "House ID:[%i], Price:[{5B9460}$%s{ffffff}], Level:[%i], Type:[%s], Furniture Capacity:[%d]", PropertyInfo[id][E_PROPERTY_DBID], FormatMoney(PropertyInfo[id][E_PROPERTY_PRICE]), PropertyInfo[id][E_PROPERTY_LEVEL], type, GetPropertyFurniture(id)); 
+		SendClientMessageEx(playerid, COLOR_ORANGE, "House ID:[%i], Price:[$%s], Level:[%i], Type:[%s], Furniture Capacity:[%d]", PropertyInfo[id][E_PROPERTY_DBID], FormatMoney(PropertyInfo[id][E_PROPERTY_PRICE]), PropertyInfo[id][E_PROPERTY_LEVEL], type, GetPropertyFurniture(id)); 
 	}
 	else if(!strcmp(str, "cashbox"))
 	{
@@ -346,7 +347,7 @@ CMD:property(playerid, params[])
 		if(!strcmp(pick, "info"))
 		{
 			SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Property Info __________|");
-			SendInfoMessage(playerid, "You have {5B9460}$%s{ffffff} inside your houses' cashbox.", FormatMoney(PropertyInfo[id][E_PROPERTY_CASH])); 
+			SendInfoMessage(playerid, "You have $%s inside your houses' cashbox.", FormatMoney(PropertyInfo[id][E_PROPERTY_CASH])); 
 		}
 		else if(!strcmp(pick, "place"))
 		{	
@@ -359,7 +360,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, -amount);
 			PropertyInfo[id][E_PROPERTY_CASH]+= amount; 
 			
-			SendClientMessageEx(playerid, COLOR_WHITE, "Property: You added {5B9460}$%s{ffffff} to your cashbox.", amount); 
+			SendServerMessage(playerid, "PROPERTY: {ffffff}You added {B3C99E}$%s{ffffff} to your cashbox.", amount); 
 			SaveProperty(id);
 		}
 		else if(!strcmp(pick, "take"))
@@ -373,7 +374,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, amount);
 			PropertyInfo[id][E_PROPERTY_CASH]-= amount;
 			
-			SendClientMessageEx(playerid, COLOR_WHITE, "Property: You took {5B9460}$%s{ffffff} from your cashbox.", amount); 
+			SendServerMessage(playerid, "PROPERTY: {ffffff}You took {B3C99E}$%s{ffffff} from your cashbox.", amount); 
 			SaveProperty(id); 
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 
@@ -387,7 +388,7 @@ CMD:property(playerid, params[])
 		new pick[30];
 		
 		if(sscanf(bstr, "s[30]", pick))
-			return SendUsageMessage(playerid, "/property furniture [Add, Edit, Destroy, Clear, Labels]"); 
+			return SendUsageMessage(playerid, "/property furniture [Add, Edit, Destroy, Clear, Textures, Labels]"); 
 			
 		if(!strcmp(pick, "add"))
 		{
@@ -445,12 +446,17 @@ CMD:property(playerid, params[])
 			mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "SELECT price FROM furniture WHERE propertydbid = %i", PropertyInfo[id][E_PROPERTY_DBID]);
 			mysql_pquery(ourConnection, queryBuffer, "FurnitureClear", "i", playerid);
 		}
-		else if(!strcmp(pick, "texture"))
+		else if(!strcmp(pick, "textures"))
 		{	
-			new objectid, index;
+			new objectid, index, modelid, txd[32], name[32];
 
-			if(sscanf(cstr, "ii", objectid, index))
-				return SendUsageMessage(playerid, "/property furniture texture [objectid] [index]");
+			if(sscanf(cstr, "iiis[32]s[32]", objectid, index, modelid, txd, name))
+			{
+				SendUsageMessage(playerid, "/property furniture texture [objectid] [index] [modelid] [txd] [texturename]");
+				SendTipMessage(playerid, "You can see all textures availables on 'gtxd.net' or 'textures.xyin.ws'");
+				SendTipMessage(playerid, "Ex: '/property furniture texture 11177 0 10810 ap_build4e weewall256'");
+				return 1;
+			}
 
 			if(!IsValidDynamicObject(objectid) || Streamer_GetExtraInt(objectid, E_OBJECT_TYPE) != E_OBJECT_FURNITURE)
 				return SendErrorMessage(playerid, "Invalid object. You can find the object IDs for your furniture by enabling labels. [/property furniture labels]");
@@ -458,17 +464,7 @@ CMD:property(playerid, params[])
 			if(Streamer_GetExtraInt(objectid, E_OBJECT_EXTRA_ID) != PropertyInfo[id][E_PROPERTY_DBID])
 				return SendErrorMessage(playerid, "Invalid object. This furniture object is not inside of your house.");
 
-			PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 8;
-			PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = objectid;
-			PlayerInfo[playerid][E_CHARACTER_SELECTINDEX] = index;
-
-			new str1[1524];
-			strcat(str1, "Texture Name\n");
-			forex(i, sizeof(MaterialInfo))
-			{
-				format(str1, sizeof(str1), "%s%s\n", str1, MaterialInfo[i][E_MATERIAL_NAME]);
-			}
-			Dialog_ShowPages(playerid, FurnitureTextures, DIALOG_STYLE_TABLIST_HEADERS, "Furniture Textures:", str1, "Select", "Cancel");
+			SetFurnitureMaterial(playerid, objectid, index, modelid, txd, name);
 		}
 		else if(!strcmp(pick, "labels"))
 		{
@@ -488,14 +484,5 @@ CMD:property(playerid, params[])
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 
 	}
 	else return SendErrorMessage(playerid, "Invalid Paramater."); 
-	return 1;
-}
-
-Dialog:FurnitureTextures(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		SetFurnitureMaterial(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT], PlayerInfo[playerid][E_CHARACTER_SELECTINDEX], listitem);
-	}
 	return 1;
 }

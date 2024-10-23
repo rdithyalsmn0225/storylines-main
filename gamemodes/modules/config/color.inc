@@ -1,8 +1,8 @@
 //Colors:
 #define COLOR_RED 			(0xFF6347AA)
 
-#define COLOR_GREEN 		(0x5B9460FF)
-#define COLOR_DARKGREEN 	(0x5B9460FF)
+#define COLOR_GREEN 		(0xB3C99EFF)
+#define COLOR_DARKGREEN 	(0xB3C99EFF)
 
 #define COLOR_CREDITS       (0xf8b56eFF)
 
@@ -34,7 +34,8 @@
 #define COLOR_COP 			(0x8D8DFFFF)
 #define COLOR_MEDIC         (0xDFA0C1FF)
 #define COLOR_DEPT 			(0xF07A7AFF)
-#define COLOR_TAXI          (0xf1c232FF)
+#define COLOR_TAXI          (0xF1C232FF)
+#define COLOR_MECHANIC      (0xBFCD90FF)
 #define COLOR_FCHAT         (0x93C47DFF)
 
 #define COLOR_SAMP			(0xADC3E7FF)

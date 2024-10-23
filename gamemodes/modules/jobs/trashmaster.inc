@@ -68,7 +68,7 @@ CMD:dumpgarbage(playerid, params[])
             new total = (PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] * GARBAGEMAN_SALARY * 2);
 
             GiveMoney(playerid, total);
-            SendServerMessage(playerid, "GARBAGEMAN: {ffffff}You've empty your garbage bag, current garbage bag %d x rubbish and earn {5B9460}$%s{ffffff}.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE], FormatMoney(total));
+            SendServerMessage(playerid, "GARBAGEMAN: {ffffff}You've empty your garbage bag, current garbage bag %d x rubbish and earn {B3C99E}$%s{ffffff}.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE], FormatMoney(total));
             PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] = 0;
         }
     }

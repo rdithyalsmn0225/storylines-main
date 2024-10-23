@@ -222,7 +222,7 @@ CMD:timbersell(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_WOODS, 1);
 		
-		SendServerMessage(playerid, "LUMBERJACK: {ffffff}You has sell woods for {5B9460}$%s{ffffff} into leafy hollow barn.", FormatMoney(LUMBERJACK_SALARY*2));
+		SendServerMessage(playerid, "LUMBERJACK: {ffffff}You has sell woods for {B3C99E}$%s{ffffff} into leafy hollow barn.", FormatMoney(LUMBERJACK_SALARY*2));
 	}
 	return 1;
 }

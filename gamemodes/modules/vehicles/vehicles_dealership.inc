@@ -157,7 +157,7 @@ Dialog:DealershipSelect(playerid, response, listitem, inputtext)
 			
 		DealershipTotalCost[playerid] = g_aDealershipData[i][E_DEALERSHIP_PRICE];
 		
-		format(caption, 60, "%s - {5B9460}%s:", g_aDealershipData[i][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+		format(caption, 60, "%s - {B3C99E}%s:", g_aDealershipData[i][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 		strcat(str, "Colors\n");
 		strcat(str, "{FFFF00}Purchase Vehicle\n"); 
 		

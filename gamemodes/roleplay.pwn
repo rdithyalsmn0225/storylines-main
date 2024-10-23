@@ -105,7 +105,7 @@ main ()  {}
 #include "modules\vehicles\vehicles_storage.inc"
 #include "modules\vehicles\vehicles_dealership.inc"
 #include "modules\vehicles\vehicles_commands.inc"
-#include "modules\vehicles\vehicle_repair.inc"
+#include "modules\vehicles\vehicle_modshop.inc"
 
 #include "modules\faction\factions.inc"
 #include "modules\faction\mdc.inc"
@@ -178,6 +178,7 @@ public OnGameModeInit()
 	InsertObjects();
 	InsertSideJobs();
 	InsertASGHMaps();
+	InsertModshops();
 	InsertEmmetInit();
 	InsertJobsPoint();
 	InsertAntiCheat();
@@ -549,97 +550,6 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 	return 1;
 }
 
-public OnPlayerEnterDynamicCP(playerid, checkpointid)
-{
-	if(checkpointid == ModShop[0])
-    {
-    	if(IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerid)))
-    	{
-			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Add Modifications", "Select", "Close");
-    	}
-    }
-    else if(checkpointid == ModShop[1])
-    {
-    	if(IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerid)))
-    	{
-			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Add Modifications", "Select", "Close");
-    	}
-    }
-    else if(checkpointid == ModShop[2])
-    {
-    	if(IsPlayerInVehicle(playerid, GetPlayerVehicleID(playerid)))
-    	{
-			Dialog_Show(playerid, ModShops, DIALOG_STYLE_TABLIST, "Pay n Spray:", "Add Modifications", "Select", "Close");
-    	}
-    }
-	return 1;
-}
-
-Dialog:ModShops(playerid, response, listitem, inputtext[])
-{
-	switch(listitem)
-	{
-		case 0: 
-		{
-			if (!response) {
-				return TogglePlayerControllable(playerid, true);
-			}
-
-			if (!IsPlayerInAnyVehicle(playerid)) {
-				return SendErrorMessage(playerid, "You aren't in any vehicle.");
-			}
-
-			new modname[50][32], v = GetPlayerVehicleID(playerid), mods[50], count = 0;
-			new modlist[1024]; 
-
-			for(new m = 1000; m < 1193; m++)
-			{
-				if(IsVehicleUpgradeCompatible(VehicleInfo[v][E_VEHICLE_MODEL], m) && IsActualVehicleMod(m))
-				{
-					mods[count] = m;
-					format(modname[count], 32, "%s", GetVehicleModName(m));
-					
-					if(count == 0)
-						format(modlist, sizeof(modlist), "%s%d\t%s~g~$%d\n", modlist, m, modname[count], GetVehicleComponentPrice(m));
-					else
-						format(modlist, sizeof(modlist), "%s%d\t%s~g~$%d\n", modlist, m, modname[count], GetVehicleComponentPrice(m));
-					
-					SubVehicleComponentArr[playerid][count] = m; 
-					count++;
-				}
-			}
-
-			if(count == 0) return SendErrorMessage(playerid, "This vehicle does not support any bodywork modifications.");
-			
-			Dialog_Show(playerid, PaynSpray, DIALOG_STYLE_PREVIEW_MODEL, "ModShop:", modlist, "Select", "Close");
-
-			TogglePlayerControllable(playerid, true); 
-			PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false; 
-		}
-	}
-	return 1;
-}
-
-Dialog:PaynSpray(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		new vehicleid = GetPlayerVehicleID(playerid), 
-			str[512],
-			modelid = SubVehicleComponentArr[playerid][listitem];
-		
-		format(str, sizeof(str), "Hope you like new mods!!");
-		ShowBoxMessage(playerid, str, 5);
-		VehicleInfo[vehicleid][E_VEHICLE_MODS][GetVehicleComponentType(modelid)] = modelid;
-		SaveVehicle(vehicleid);
-		AddVehicleComponent(vehicleid, modelid);
-		GiveMoney(playerid, -GetVehicleComponentPrice(modelid));
-		PauseAC(playerid);
-		PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
-	}
-	return 1;
-}
-
 function:OnPlayerRegister(playerid)
 {
 	AccountInfo[playerid][E_MASTERS_DBID] = cache_insert_id(); 
@@ -880,7 +790,7 @@ function:Query_LoadCharacter(playerid)
 	mysql_pquery(ourConnection, pquery, "LoadPlayerRelations", "d", playerid);
 	
 	TogglePlayerSpectating(playerid, false);
-	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{5B9460}PUBLIC{ffffff}\n#2\tLast Position\t{5B9460}PUBLIC{ffffff}\n#3\tFaction Spawn\t{5B9460}FACTION{ffffff}", "Select", "Close");
+	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{B3C99E}PUBLIC{ffffff}\n#2\tLast Position\t{B3C99E}PUBLIC{ffffff}\n#3\tFaction Spawn\t{B3C99E}FACTION{ffffff}", "Select", "Close");
 }
 
 Dialog:Spawns(playerid, response, listitem, inputtext[])
@@ -905,7 +815,7 @@ Dialog:Spawns(playerid, response, listitem, inputtext[])
 		case 2:
 		{
 			if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
-				return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{5B9460}PUBLIC{ffffff}\n#2\tLast Position\t{5B9460}PUBLIC{ffffff}\n#3\tFaction Spawn\t{5B9460}FACTION{ffffff}", "Select", "Close");
+				return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{B3C99E}PUBLIC{ffffff}\n#2\tLast Position\t{B3C99E}PUBLIC{ffffff}\n#3\tFaction Spawn\t{B3C99E}FACTION{ffffff}", "Select", "Close");
 
 			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 2;
 			LoadCharacter(playerid);
@@ -961,10 +871,10 @@ stock LoadCharacter(playerid)
 	}	
 
 	for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
-	SendClientMessageEx(playerid, COLOR_WHITE, "Welcome to the {5B9460}GTA Storylines{ffffff}, You logged in as {5B9460}%s{ffffff}.", AccountInfo[playerid][E_MASTERS_ACCNAME]);
+	SendClientMessageEx(playerid, COLOR_WHITE, "Welcome to the {B3C99E}GTA Storylines{ffffff}, You logged in as {B3C99E}%s{ffffff}.", AccountInfo[playerid][E_MASTERS_ACCNAME]);
 	SendClientMessage(playerid, COLOR_WHITE, "The first thing we suggest you to do is to read /help or read the rules in discord server!");
 	SendClientMessage(playerid, COLOR_WHITE, "Visit us and register on our discord at sa-mp.co.id to stay updated.");
-	SendClientMessageEx(playerid, COLOR_WHITE, "[Player MOTD]: {5B9460}%s", PLAYER_MOTD);
+	SendClientMessageEx(playerid, COLOR_WHITE, "[Player MOTD]: {B3C99E}%s", PLAYER_MOTD);
 
 	if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
 	{
@@ -4368,13 +4278,13 @@ function:Query_CreateStreetNames(playerid)
 		
 		for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
 		
-		format (string, sizeof(string), "Your new characters street name will be: {5B9460}%s", playerCharactersStreetName[playerid]);
+		format (string, sizeof(string), "Your new characters street name will be: {B3C99E}%s", playerCharactersStreetName[playerid]);
 		SendClientMessage(playerid, -1, string); 
 
 		SendClientMessage(playerid, -1, " "); 
 		SendClientMessage(playerid, -1, "The next steps will require a background for your new character.");
-		SendClientMessage(playerid, -1, "Please provide your characters date of birth. The format: {5B9460}02/02/1960");
-		SendClientMessage(playerid, -1, "Press {5B9460}'T'{ffffff} to inputtext for character creation.");
+		SendClientMessage(playerid, -1, "Please provide your characters date of birth. The format: {B3C99E}02/02/1960");
+		SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
 		playerCharacterStep[playerid] = 3; 
 	}
 	return 1;
@@ -4394,14 +4304,14 @@ function:Query_CreateCharacter(playerid)
 		
 		for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
 		
-		format (string, sizeof(string), "Your new characters name will be: {5B9460}%s", playerCharactersName[playerid]);
+		format (string, sizeof(string), "Your new characters name will be: {B3C99E}%s", playerCharactersName[playerid]);
 		SendClientMessage(playerid, -1, string); 
 
 		SendClientMessage(playerid, -1, " "); 
 		SendClientMessage(playerid, -1, "The next steps will require a creating characters street name.");
-		SendClientMessage(playerid, -1, "Please begin by typing your characters street name. i.e: {5B9460}RayRay");
+		SendClientMessage(playerid, -1, "Please begin by typing your characters street name. i.e: {B3C99E}RayRay");
 		SendClientMessage(playerid, -1, "Your characters name must be in 'Streetname' format with no numbers or special characters.");
-		SendClientMessage(playerid, -1, "Press {5B9460}'T'{ffffff} to inputtext for character creation.");
+		SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
 		playerCharacterStep[playerid] = 2; 
 	}
 	return 1;

@@ -83,10 +83,6 @@ Insert3DTextLabel()
 
 InsertStaticVehicles()
 {
-	ModShop[0] = CreateDynamicCP(2332.0183,-1991.8457,13.5586, 5.0, -1, -1, -1, 3.0);
-	ModShop[1] = CreateDynamicCP(1829.3051,-1398.4575,13.4297, 5.0, -1, -1, -1, 3.0);
-	ModShop[2] = CreateDynamicCP(1621.7565,-1887.4757,13.5550, 5.0, -1, -1, -1, 3.0);
-
 	dmv_vehicles[0] = AddStaticVehicle(405, 1273.0470, -1557.0576, 13.5405, -91.0000, 1, 1); SetVehicleNumberPlate(dmv_vehicles[0], "DMV");
 	dmv_vehicles[1] = AddStaticVehicle(405, 1273.0470, -1549.9562, 13.5405, -91.0000, 1, 1); SetVehicleNumberPlate(dmv_vehicles[1], "DMV");
 	dmv_vehicles[2] = AddStaticVehicle(405, 1273.0470, -1542.8961, 13.5405, -91.0000, 1, 1); SetVehicleNumberPlate(dmv_vehicles[2], "DMV");
