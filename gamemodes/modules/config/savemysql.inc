@@ -132,13 +132,11 @@ stock SaveVehicle(vehicleid)
 			VehicleInfo[vehicleid][E_VEHICLE_DBID]);
 		mysql_pquery(ourConnection, query);	
 	}
-	for(new m = 0; m < 13; m++)
+	for(new m = 0; m < 15; m++)
 	{
-		mysql_format(ourConnection, query, sizeof(query), "UPDATE vehicles SET VehicleMods%d = %i, VehicleWheels = %i, VehicleHydraulics = %i WHERE VehicleDBID = %i",
+		mysql_format(ourConnection, query, sizeof(query), "UPDATE vehicles SET VehicleMods%d = %i WHERE VehicleDBID = %i",
 			m,
 			VehicleInfo[vehicleid][E_VEHICLE_MODS][m],
-			VehicleInfo[vehicleid][E_VEHICLE_WHEELS],
-			VehicleInfo[vehicleid][E_VEHICLE_HYDRAULICS],
 			VehicleInfo[vehicleid][E_VEHICLE_DBID]);
 		mysql_pquery(ourConnection, query);
 			

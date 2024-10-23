@@ -9,7 +9,7 @@
 	SendClientMessageEx(%0, COLOR_INFO, "INFO:{FFFFFF} "%1) 
 
 #define SendTipMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_TIP, "Tip: "%1) 
+	SendClientMessageEx(%0, COLOR_DARKGREEN, "Tip: "%1) 
 
 #define SendServerMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_INFO, ""%1) 

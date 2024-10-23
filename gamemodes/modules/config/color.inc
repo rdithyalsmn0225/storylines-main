@@ -10,7 +10,6 @@
 #define COLOR_INFO          (0xa0d0ffFF)
 #define COLOR_FACTION       (0x99A5D7FF)
 #define COLOR_GAMES         (0xb6b9e1FF)
-#define COLOR_TIP           (0xa0d0ffFF)
 #define COLOR_HEADER		(0x90D7F0FF)
 #define COLOR_POINT         (0xa0d0ffFF)
 
