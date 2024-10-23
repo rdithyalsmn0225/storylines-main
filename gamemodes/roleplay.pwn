@@ -4226,11 +4226,11 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "UPDATE furniture SET pos_x = '%f', pos_y = '%f', pos_z = '%f', rot_x = '%f', rot_y = '%f', rot_z = '%f' WHERE id = %i", x, y, z, rx, ry, rz, Streamer_GetExtraInt(objectid, E_OBJECT_INDEX_ID));
 					mysql_tquery(ourConnection, queryBuffer);
 
-					ReloadFurniture(objectid, PropertyInfo[PlayerInfo[playerid][E_CHARACTER_SELECTINDEX]][E_PROPERTY_LABELS]);
+					ReloadFurniture(objectid, PropertyInfo[IsPlayerInProperty(playerid)][E_PROPERTY_LABELS]);
 				}
 				if(response == EDIT_RESPONSE_CANCEL)
 				{
-					ReloadFurniture(objectid, PropertyInfo[PlayerInfo[playerid][E_CHARACTER_SELECTINDEX]][E_PROPERTY_LABELS]);
+					ReloadFurniture(objectid, PropertyInfo[IsPlayerInProperty(playerid)][E_PROPERTY_LABELS]);
 				}
 			}
 		}
