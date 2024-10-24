@@ -35,7 +35,7 @@ function:Query_InsertFaction(playerid, varName, varAbbrev, idx)
 	format(str, sizeof(str), "%s has created Faction ID %d.", ReturnSettingsName(playerid, playerid), idx);
 	SendAdminMessage(4, str);
 	
-	SendInfoMessage(playerid, "To configure the faction, use /editfaction. "); 
+	SendTipMessage(playerid, "To configure the faction, use /editfaction. "); 
 	return 1;
 }
 

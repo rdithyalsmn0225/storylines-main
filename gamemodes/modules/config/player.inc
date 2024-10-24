@@ -31,7 +31,7 @@ function:SetPlayerCamera(playerid)
 
 function:OnOfflineAjail(playerid, jailing[], reason[], length)
 {
-	SendServerMessage(playerid, "ADMIN-JAIL: {ffffff}%s was successfully admin jailed.", jailing); 
+	SendServerMessage(playerid, "[Jail] {cdd0d1}%s was successfully admin jailed.", jailing); 
 	
 	new
 		logQuery[256]
@@ -44,7 +44,7 @@ function:OnOfflineAjail(playerid, jailing[], reason[], length)
 
 function:OnOfflineBan(playerid, banning[], dbid, masterdbid, reason[], date[])
 {
-	SendServerMessage(playerid, "BANNED: {ffffff}%s was successfully banned.", banning);
+	SendServerMessage(playerid, "[Banned] {cdd0d1}%s was successfully banned.", banning);
 	
 	new
 		logQuery[256]
@@ -153,7 +153,7 @@ function:OnAjailRecord(playerid)
 		
 		cache_get_value_name_int(i, "Time", Time); 
 		
-		SendServerMessage(playerid, "BANNED: {ffffff}[%s] %s was admin jailed by %s for %d minutes, Reason: %s", Date, JailedName, JailedBy, Time, Reason);
+		SendInfoMessage(playerid, "[%s] %s was admin jailed by %s for %d minutes, Reason: %s", Date, JailedName, JailedBy, Time, Reason);
 	}
 		
 	return 1;

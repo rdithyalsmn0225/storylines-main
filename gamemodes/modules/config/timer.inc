@@ -67,7 +67,7 @@ function:PlayersUpdates()
 					PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] = false; 
 					PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] = 0; 
 						
-					SendServerMessage(playerid, "ADMIN-JAIL: {ffffff}You served your admin jail time.");
+					SendServerMessage(playerid, "[Jail] {cdd0d1}You served your admin jail time.");
 						
 					new str[128];
 					format(str, sizeof(str), "%s was released from admin jail.", ReturnSettingsName(playerid, playerid));
@@ -90,7 +90,7 @@ function:PlayersUpdates()
 					PlayerInfo[playerid][E_CHARACTER_PRISONED] = false; 
 					PlayerInfo[playerid][E_CHARACTER_PRISON] = 0; 
 						
-					SendServerMessage(playerid, "PRISON: {ffffff}you have been released from prison.");
+					SendServerMessage(playerid, "[Prison] {cdd0d1}you have been released from prison.");
 						
 					SetPlayerVirtualWorld(playerid, 0); SetPlayerInterior(playerid, 0);
 					SetPlayerPosEx(playerid, 1797.4276,-1578.8496,14.0764);
@@ -440,7 +440,7 @@ function:FunctionPaychecks()
 			if(PlayerInfo[i][E_CHARACTER_AFK] && PlayerInfo[i][E_CHARACTER_AFKTIME] > 900)
 			{
 				PlayerInfo[i][E_CHARACTER_PAYCHECKTIMER] = 0;
-				return SendServerMessage(i, "PAYCHECK: {ffffff}You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
+				return SendServerMessage(i, "[Paycheck] {cdd0d1}You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
 			}
 			else
 			{

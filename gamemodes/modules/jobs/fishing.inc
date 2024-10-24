@@ -94,7 +94,7 @@ function:FishingTimer(playerid, type)
 					ClearAnimations(playerid);
 					TogglePlayerControllable(playerid, true);
 					ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-					SendServerMessage(playerid, "FISHING: {ffffff}You fish swarm away in your hook.");
+					SendServerMessage(playerid, "[Fishing] {cdd0d1}You fish swarm away in your hook.");
 				}
 			}
 		}
@@ -136,7 +136,7 @@ CMD:buybait(playerid, params[])
 		return SendErrorMessage(playerid, "Invalid bait amount!");
 	
 	Inventory_Add(playerid, "Fish Bait", 19566, amount);
-	SendServerMessage(playerid, "FISHING: {ffffff}You have successfully purchase %d Fish bait for {B3C99E}$%s{ffffff}", amount, FormatMoney(amount));
+	SendServerMessage(playerid, "[Fishing] {cdd0d1}You have successfully purchase %d Fish bait for {B3C99E}$%s{cdd0d1}", amount, FormatMoney(amount));
 	GiveMoney(playerid, -amount);
 	return 1;
 }
@@ -170,6 +170,6 @@ CMD:fish(playerid, params[])
 	SetTimerEx("FishingTimer", 15000, false, "ii", playerid, 1);
 	TogglePlayerControllable(playerid, false);
 	ApplyAnimation(playerid,"SWORD","sword_block",50.0 ,0,1,0,1,1);
-	SendServerMessage(playerid, "FISHING: {ffffff}You start fishing, please wait for the moment...");
+	SendServerMessage(playerid, "[Fishing] {cdd0d1}You start fishing, please wait for the moment...");
 	return 1;
 }

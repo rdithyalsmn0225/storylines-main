@@ -78,7 +78,6 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 	{
 		if(type == 0)
 		{
-			new str[128];
 
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
@@ -88,12 +87,10 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 			
-			format(str, sizeof(str), "%s bought %d marijuana for {B3C99E}$%s{ffffff}", ReturnSettingsName(playerid, playerid), FormatMoney(amount));
-			SendAdminMessage(1, str); 
+			SendInfoMessage(playerid, "%s bought %d marijuana for {B3C99E}$%s{cdd0d1}", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
 		}
 		else if(type == 1)
 		{
-			new str[128];
 			
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
@@ -102,21 +99,18 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			Inventory_Add(playerid, "Cocaine", -2502, amount);
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
-			
-			format(str, sizeof(str), "%s bought %d cocaine for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount));
-			SendAdminMessage(1, str); 
+
+			SendInfoMessage(playerid, "%s bought %d cocaine for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
 		}
 		else if(type == 2)
 		{
-			new str[128];
 			
 			GiveMoney(playerid, -price);
 			Inventory_Add(playerid, "Heroin", -2500, amount);
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
-			
-			format(str, sizeof(str), "%s bought %d heroin for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount));
-			SendAdminMessage(1, str); 
+
+			SendInfoMessage(playerid, "%s bought %d heroin for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
 		}
 	}
 	return 1;
@@ -298,7 +292,7 @@ CMD:production(playerid, params[])
 					BusinessInfo[id][E_BUSINESS_LOADING] = false;
 					
 					Inventory_Add(playerid, "Cocaine Crack", -2502, rand);
-					SendServerMessage(playerid, "PRODUCTION: {ffffff}You've receive %d grams of Cocaine Crack.", rand);
+					SendServerMessage(playerid, "[Production] {cdd0d1}You've receive %d grams of Cocaine Crack.", rand);
 				}
 				else if(PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] == 2)
 				{
@@ -308,7 +302,7 @@ CMD:production(playerid, params[])
 					BusinessInfo[id][E_BUSINESS_LOADING] = false;
 
 					Inventory_Add(playerid, "PCP", -2500, rand);
-					SendServerMessage(playerid, "PRODUCTION: {ffffff}You've receive %d grams of PCP.", rand);
+					SendServerMessage(playerid, "[Production] {cdd0d1}You've receive %d grams of PCP.", rand);
 				}
 			}
 		}

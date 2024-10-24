@@ -193,7 +193,7 @@ CMD:takejobs(playerid, params[])
                 return SendErrorMessage(playerid, "You already have jobs.");
 
             PlayerInfo[playerid][E_CHARACTER_JOBS] = i;
-            SendServerMessage(playerid, "JOBS: {ffffff}You are now a %s use /help to see jobs commands.", JobsInfo[i][E_JOBSNAMES]);
+            SendServerMessage(playerid, "[Jobs] {cdd0d1}You are now a %s use /help to see jobs commands.", JobsInfo[i][E_JOBSNAMES]);
             SaveCharacter(playerid);
         }
     }
@@ -205,7 +205,7 @@ CMD:quitjobs(playerid, params[])
     if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_NONE)
     {
         PlayerInfo[playerid][E_CHARACTER_JOBS] = JOB_NONE;
-        SendServerMessage(playerid, "JOBS: {ffffff}You are now exit the jobs.");
+        SendServerMessage(playerid, "[Jobs] {cdd0d1}You are now exit the jobs.");
         SaveCharacter(playerid);
     }
     return 1;
@@ -239,7 +239,7 @@ CMD:jobduty(playerid, params[])
                 }
                 
                 PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
-                SendServerMessage(playerid, "TAXI: {ffffff}You are no longer on taxi duty!");
+                SendServerMessage(playerid, "[Taxi] {cdd0d1}You are no longer on taxi duty!");
             }
             else
             {
@@ -255,12 +255,12 @@ CMD:jobduty(playerid, params[])
             if (PlayerInfo[playerid][E_CHARACTER_MECHDUTY])
             {
                 PlayerInfo[playerid][E_CHARACTER_MECHDUTY] = false;
-                SendServerMessage(playerid, "MECHANIC: {ffffff}You are no longer on mechanic duty!");
+                SendServerMessage(playerid, "[Mechanic] {cdd0d1}You are no longer on mechanic duty!");
             }
             else
             {
                 PlayerInfo[playerid][E_CHARACTER_MECHDUTY] = true;
-                SendServerMessage(playerid, "MECHANIC: {ffffff}You are now mechanic duty!");
+                SendServerMessage(playerid, "[Mechanic] {cdd0d1}You are now mechanic duty!");
             }
         }
     }

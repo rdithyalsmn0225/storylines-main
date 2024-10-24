@@ -79,7 +79,7 @@ CMD:fix(playerid, params[])
 CMD:hesoyam(playerid, params[])
 {
 	ShowBoxMessage(playerid, "Cheat Activated", 5);
-	SendServerMessage(playerid, "CHEAT: {ffffff}You've given $150,000 from Rockstar West!");
+	SendServerMessage(playerid, "[Cheat] {cdd0d1}You've given $150,000 from Rockstar West!");
 	return 1;
 }
 
@@ -235,8 +235,8 @@ CMD:pay(playerid, params[])
 	PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0); PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
 	playerLastpay[playerid] = gettime(); 
 	
-	SendServerMessage(playerid, "PAY: {ffffff}You have sent {B3C99E}$%s{ffffff} to %s.", FormatMoney(amount), ReturnSettingsName(playerb, playerid)); 
-	SendServerMessage(playerb, "PAY: {ffffff}You have received {B3C99E}$%s{ffffff} from %s.", FormatMoney(amount), ReturnSettingsName(playerid, playerid)); 
+	SendServerMessage(playerid, "[Pay] {cdd0d1}You have sent {B3C99E}$%s{cdd0d1} to %s.", FormatMoney(amount), ReturnSettingsName(playerb, playerid)); 
+	SendServerMessage(playerb, "[Pay] {cdd0d1}You have received {B3C99E}$%s{cdd0d1} from %s.", FormatMoney(amount), ReturnSettingsName(playerid, playerid)); 
 	
 	if(PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3 || amount >= 50000)
 	{
@@ -294,7 +294,7 @@ CMD:charity(playerid, params[])
 	
 	GiveMoney(playerid, -charity);
 	SaveCharacter(playerid);
-	SendServerMessage(playerid, "CHARITY: {ffffff}You've charity %s for this server.", FormatMoney(charity));
+	SendServerMessage(playerid, "[Charity] {cdd0d1}You've charity %s for this server.", FormatMoney(charity));
 	return 1;
 }
 
@@ -942,7 +942,7 @@ CMD:deposit(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_BANK]+= amount;
 	GiveMoney(playerid, -amount); 
 	
-	SendInfoMessage(playerid, "You have deposited {B3C99E}$%s{ffffff} into Your account, Total:{B3C99E}$%s{ffffff}", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	SendInfoMessage(playerid, "You have deposited {B3C99E}$%s{cdd0d1} into Your account, Total:{B3C99E}$%s{cdd0d1}.", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	SaveCharacter(playerid);
 	return 1; 
 }
@@ -970,7 +970,7 @@ CMD:withdraw(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_BANK]-= amount;
 	GiveMoney(playerid, amount);
 	
-	SendInfoMessage(playerid, "You have withdrawn {B3C99E}$%s{ffffff} from Your account, Total:{B3C99E}$%s{ffffff}", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	SendInfoMessage(playerid, "You have withdrawn {B3C99E}$%s{cdd0d1} from Your account, Total:{B3C99E}$%s{cdd0d1}", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	SaveCharacter(playerid);
 	return 1;
 }
@@ -987,7 +987,7 @@ CMD:balance(playerid, params[])
 	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GENERAL)
 		return SendErrorMessage(playerid, "You can't do this inside this business."); 
 	
-	SendInfoMessage(playerid, "You have {B3C99E}$%s{ffffff} in your bank and {B3C99E}$%s{ffffff} in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
+	SendInfoMessage(playerid, "You have {B3C99E}$%s{cdd0d1} in your bank and {B3C99E}$%s{cdd0d1} in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
 	return 1;
 }
 
@@ -2236,181 +2236,6 @@ CMD:pm(playerid, params[])
 	return 1;
 }
 
-//Business commands:
-CMD:buybiz(playerid, params[])
-{
-	new
-		id
-	; 
-	
-	if((id = IsPlayerNearBusiness(playerid)) != 0)
-	{
-		if(CountPlayerBusiness(playerid) == 1)
-			return SendErrorMessage(playerid, "You can't own more than 1 business."); 
-			
-		if(BusinessInfo[id][E_BUSINESS_OWNERDBID])
-			return SendErrorMessage(playerid, "This business isn't for sale."); 
-
-		if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DEALERSHIP || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_HAIRCUT
-		|| BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_GUNSTORE || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_ACID)
-			return SendErrorMessage(playerid, "This property isn't for sale."); 
-			
-		if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < BusinessInfo[id][E_BUSINESS_LEVEL])
-			return SendErrorMessage(playerid, "You need to be level %i to buy this.", BusinessInfo[id][E_BUSINESS_LEVEL]);
-			
-		if(PlayerInfo[playerid][E_CHARACTER_MONEY] < BusinessInfo[id][E_BUSINESS_PRICE])
-			return SendErrorMessage(playerid, "You can't afford this business."); 
-			
-		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
-		ShowBoxMessage(playerid, "Congratulations!~n~You're now the owner of this business!", 4);
-		
-		SendInfoMessage(playerid, "You purchased the %s for {B3C99E}$%s{ffffff}!", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]));
-		
-		BusinessInfo[id][E_BUSINESS_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID]; 
-		GiveMoney(playerid, -BusinessInfo[id][E_BUSINESS_PRICE]); 
-		
-		SaveBusiness(id); SaveCharacter(playerid); 
-	}
-	else return SendErrorMessage(playerid, "You aren't near a business.");
-
-	return 1;
-}
-
-CMD:bizinfo(playerid, params[])
-{
-	if(!CountPlayerBusiness(playerid))
-		return SendErrorMessage(playerid, "You don't own a business.");
-		
-	new
-		id
-	;
-	
-	if((id = IsPlayerInBusiness(playerid)) != 0)
-	{
-		if(BusinessInfo[id][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
-			return SendErrorMessage(playerid, "You don't own this business."); 
-			
-		SendClientMessage(playerid, COLOR_HEADER, "Business Info");
-		SendClientMessageEx(playerid, COLOR_WHITE, "*** %s ***", BusinessInfo[id][E_BUSINESS_NAME]); 
-		SendClientMessageEx(playerid, COLOR_GREY, "Owner:[%s] Level:[%d] Value:[{B3C99E}$%s{ffffff}] Type:[%d] Locked:[%s] ID:[%d]", ReturnSettingsName(playerid, playerid), BusinessInfo[id][E_BUSINESS_LEVEL], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]),
-			BusinessInfo[id][E_BUSINESS_TYPE], (BusinessInfo[id][E_BUSINESS_LOCKED] != true) ? ("No") : ("Yes"), BusinessInfo[id][E_BUSINESS_DBID]); 
-		SendClientMessageEx(playerid, COLOR_WHITE, "Cashbox:[{B3C99E}$%s{ffffff}] Entrance fee:[{B3C99E}$%s{ffffff}] Products:[%d / %d]", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]), FormatMoney(BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]), BusinessInfo[id][E_BUSINESS_STOCK], MAX_BUSINESS_PRODUCTS);		
-	}
-	else return SendErrorMessage(playerid, "You aren't in a business.");
-
-	return 1;
-}
-
-CMD:bizfee(playerid, params[])
-{
-	if(!CountPlayerBusiness(playerid))
-		return SendErrorMessage(playerid, "You don't own a business.");
-		
-	new
-		id,
-		amount
-	;
-	
-	if((id = IsPlayerInBusiness(playerid)) != 0)
-	{
-		if(BusinessInfo[id][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
-			return SendErrorMessage(playerid, "You don't own this business."); 
-			
-		if(sscanf(params, "i", amount))
-			return SendUsageMessage(playerid, "/bizfee [amount]"); 
-			
-		if(amount > 1500)
-			return SendErrorMessage(playerid, "The amount can't be above $1,500.");
-			
-		SendInfoMessage(playerid, "You set your businesses entrance fee to {B3C99E}$%s{ffffff}.", FormatMoney(amount));
-		
-		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = amount;
-		SaveBusiness(id);
-	}
-	else return SendErrorMessage(playerid, "You aren't in a business."); 
-	return 1;
-}
-
-CMD:bizcash(playerid, params[])
-{
-	if(!CountPlayerBusiness(playerid))
-		return SendErrorMessage(playerid, "You don't own a business.");
-		
-	new
-		id,
-		amount,
-		astr[30],
-		bstr[30]
-	;
-	
-	if((id = IsPlayerInBusiness(playerid)) != 0)
-	{
-		if(BusinessInfo[id][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
-			return SendErrorMessage(playerid, "You don't own this business."); 
-			
-		if(sscanf(params, "s[30]S()[30]", astr, bstr))
-			return SendUsageMessage(playerid, "/bizcash [balance, deposit, withdraw]"); 
-			
-		if(!strcmp(astr, "balance"))
-		{
-			SendInfoMessage(playerid, "You have {B3C99E}$%s{ffffff} in your businesses cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH])); 
-		}
-		else if(!strcmp(astr, "deposit"))
-		{	
-			if(sscanf(bstr, "i", amount))
-				return SendUsageMessage(playerid, "/bizcash deposit [amount]"); 
-				
-			if(amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
-				return SendErrorMessage(playerid, "You don't have that much money.");
-				
-			BusinessInfo[id][E_BUSINESS_CASH]+= amount;
-			GiveMoney(playerid, -amount);
-			
-			SendInfoMessage(playerid, "You deposited {B3C99E}$%s{ffffff} into your business. (Total: {B3C99E}$%s{ffffff})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
-			SaveBusiness(id); SaveCharacter(playerid);
-		}
-		else if(!strcmp(astr, "withdraw"))
-		{	
-			if(sscanf(bstr, "i", amount))
-				return SendUsageMessage(playerid, "/bizcash deposit [amount]"); 
-			
-			if(amount > BusinessInfo[id][E_BUSINESS_CASH])
-				return SendErrorMessage(playerid, "Your business doesn't have that much money.");
-				
-			BusinessInfo[id][E_BUSINESS_CASH] -= amount; 
-			GiveMoney(playerid, amount); 
-			
-			SendInfoMessage(playerid, "You withdrew {B3C99E}$%s{ffffff} from your business. (Total: {B3C99E}$%s{ffffff})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
-			SaveBusiness(id); SaveCharacter(playerid);
-		}
-		else return SendErrorMessage(playerid, "Invalid Parameter.");
-	}
-	else return SendErrorMessage(playerid, "You aren't in a business."); 
-	return 1;
-}
-
-CMD:sellbiz(playerid, params[])
-{
-	new
-		id,
-		str[128]
-	;
-	
-	if(!CountPlayerBusiness(playerid))
-		return SendErrorMessage(playerid, "You don't own a business.");
-		
-	if((id = IsPlayerInBusiness(playerid)) != 0)
-	{
-		if(BusinessInfo[id][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
-			return SendErrorMessage(playerid, "You don't own this business."); 
-			
-		format(str, sizeof(str), "Are you sure you want to sell your business?\nYou'll earn {B3C99E}$%s{ffffff} from selling and {B3C99E}$%s{ffffff} from the cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE] / 2), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
-		ConfirmDialog(playerid, "Confirmation", str, "OnSellBusiness", id); 
-	}
-	else return SendErrorMessage(playerid, "You aren't in a business.");
-	return 1;
-}
-
 CMD:cc(playerid, params[])return cmd_clearchat(playerid, params);
 CMD:clearchat(playerid, params[])
 {
@@ -2650,11 +2475,11 @@ CMD:afk(playerid, params[])
 
 	if(PlayerInfo[targetid][E_CHARACTER_AFK])
 	{
-	    SendServerMessage(playerid, "AFK: {ffffff}%s has been marked as Away from keyboard for %i minutes.", ReturnSettingsName(targetid, playerid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
+	    SendServerMessage(playerid, "[Afk] {cdd0d1}%s has been marked as Away from keyboard for %i minutes.", ReturnSettingsName(targetid, playerid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
 	}
 	else
 	{
-	    SendServerMessage(playerid, "AFK: {ffffff}%s is currently not marked as Away from keyboard.", ReturnSettingsName(targetid, playerid));
+	    SendServerMessage(playerid, "[Afk] {cdd0d1}%s is currently not marked as Away from keyboard.", ReturnSettingsName(targetid, playerid));
 	}
 
 	return 1;

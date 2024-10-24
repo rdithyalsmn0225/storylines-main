@@ -226,13 +226,13 @@ CMD:court(playerid, params[])
 		{
 			PlayerInfo[playerid][E_CHARACTER_COURT] = IsPlayerNearCourt(playerid, 1);
 			PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 1;
-			SendServerMessage(playerid, "BASKET: {ffffff}You've joined the basketball as blue team.");
+			SendServerMessage(playerid, "[Basketball] {cdd0d1}You've joined the basketball as blue team.");
 		}
 		else if(IsPlayerNearCourt(playerid, 2))
 		{
 			PlayerInfo[playerid][E_CHARACTER_COURT] = IsPlayerNearCourt(playerid, 2);
 			PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 2;
-			SendServerMessage(playerid, "BASKET: {ffffff}You've joined the basketball as red team.");
+			SendServerMessage(playerid, "[Basketball] {cdd0d1}You've joined the basketball as red team.");
 		}
 		else return SendErrorMessage(playerid, "You aren't near court.");
 	}
@@ -242,7 +242,7 @@ CMD:court(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
 		CourtInfo[cid][E_BALLER] = 999;
 		CourtInfo[cid][E_BALL_SHOOT] = 0;
-		SendServerMessage(playerid, "BASKET: {ffffff}You've leave the game.");
+		SendServerMessage(playerid, "[Basketball] {cdd0d1}You've leave the game.");
 	}
 	return 1;
 }

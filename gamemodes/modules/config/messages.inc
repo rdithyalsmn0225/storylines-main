@@ -3,10 +3,10 @@
 	SendClientMessageEx(%0, COLOR_WHITE, "USAGE: "%1) 
 	
 #define SendErrorMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_RED, "ERROR: "%1)
+	SendClientMessageEx(%0, COLOR_RED, "[Error]{cdd0d1} "%1)
 
 #define SendInfoMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_INFO, "INFO:{FFFFFF} "%1) 
+	SendClientMessageEx(%0, COLOR_INFO, "[Info]{cdd0d1} "%1) 
 
 #define SendTipMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_DARKGREEN, "Tip: "%1) 

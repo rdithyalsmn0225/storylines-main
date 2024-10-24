@@ -52,7 +52,7 @@ CMD:advertise(playerid, params[])
 	new price = 1 * strlen(text);
 
 	if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
-		return SendErrorMessage(playerid, "You don't have enough money for this advertisement! You need at least {B3C99E}$%s{ffffff}.", FormatMoney(price));
+		return SendErrorMessage(playerid, "You don't have enough money for this advertisement! You need at least $%s.", FormatMoney(price));
 
 	GiveMoney(playerid, -price);
 

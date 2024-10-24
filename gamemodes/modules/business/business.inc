@@ -327,7 +327,7 @@ function:OnSellBusiness(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_OWNERDBID] = 0; 
 		
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
-		SendInfoMessage(playerid, "You sold your business and earned {B3C99E}$%s{ffffff}.", FormatMoney(totalPay)); 
+		SendInfoMessage(playerid, "You sold your business and earned {B3C99E}$%s{cdd0d1}.", FormatMoney(totalPay)); 
 		
 		SaveBusiness(businessid); SaveCharacter(playerid); 
 	}
@@ -841,7 +841,7 @@ CMD:editbusiness(playerid, params[])
 			
 		BusinessInfo[id][E_BUSINESS_PRICE] = price;
 		
-		SendInfoMessage(playerid, "You set business #%i's market price to {B3C99E}$%s{ffffff}.", id, FormatMoney(price));
+		SendInfoMessage(playerid, "You set business #%i's market price to {B3C99E}$%s{cdd0d1}.", id, FormatMoney(price));
 		SaveBusiness(id);
 	}
 	else return SendErrorMessage(playerid, "Invalid Parameter.");

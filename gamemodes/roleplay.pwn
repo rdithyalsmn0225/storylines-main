@@ -87,6 +87,7 @@ main ()  {}
 #include "modules\emmet\emmet.inc"
 
 #include "modules\business\business.inc"
+#include "modules\business\business_commands.inc"
 #include "modules\business\dmv.inc"
 #include "modules\business\gym.inc"
 #include "modules\business\buyskin.inc"
@@ -97,6 +98,7 @@ main ()  {}
 #include "modules\properties\property.inc"
 #include "modules\properties\property_storage.inc"
 #include "modules\properties\property_furniture.inc"
+#include "modules\properties\property_commands.inc"
 
 #include "modules\entrance\entrance.inc"
 
@@ -447,8 +449,8 @@ function:CheckBanList(playerid)
 	}
 	else
 	{
-		SendServerMessage(playerid, "BANNED: {ffffff}Your IP \"%s\" is banned from our servers.", ReturnIP(playerid));
-		SendServerMessage(playerid, "BANNED: {ffffff}You may appeal your ban on our forums."); 
+		SendServerMessage(playerid, "[Banned] {cdd0d1}Your IP \"%s\" is banned from our servers.", ReturnIP(playerid));
+		SendServerMessage(playerid, "[Banned] {cdd0d1}You may appeal your ban on our forums."); 
 		return KickEx(playerid);
 	}
 	return 1;
@@ -462,7 +464,7 @@ function:LogPlayerIn(playerid)
 		for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
 		
 		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
+		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
 		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 	}
 	else
@@ -471,7 +473,7 @@ function:LogPlayerIn(playerid)
 		registerTime[playerid] = 1;	
 		//ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
 		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
+		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
 		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register:", str, "Confirm", "");
 	}
 	return 1;
@@ -486,7 +488,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 			if(PlayerCheckpoint[playerid] == GPS_DMVFINISH)
 			{
 				StopDriverstest(playerid);
-				SendServerMessage(playerid, "DMV: {ffffff}Congratulations %s, you've passed your test.", ReturnSettingsName(playerid, playerid)); 
+				SendServerMessage(playerid, "[Dmv] {cdd0d1}Congratulations %s, you've passed your test.", ReturnSettingsName(playerid, playerid)); 
 				
 				PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE] = 1;
 				SaveCharacter(playerid);
@@ -559,7 +561,7 @@ function:OnPlayerRegister(playerid)
 	loginTime[playerid] = 1; 
 	
 	new str[1024];
-	format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
+	format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
 	SendInfoMessage(playerid, "You successfully registered as %s. You need to login to continue:", ReturnSettingsName(playerid, playerid)); 
 	return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 }
@@ -579,7 +581,7 @@ function:LoggingIn(playerid)
 		}
 		
 		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
+		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
 		return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 	}
 	
@@ -632,8 +634,8 @@ function:Query_CheckBannedAccount(playerid)
 		cache_get_value_name(0, "Date", banDate, 90);
 		cache_get_value_name(0, "BannedBy", banner, 32);
 	
-		SendServerMessage(playerid, "BANNED: {ffffff}Your account %s is banned from our server.", ReturnSettingsName(playerid, playerid));
-		SendServerMessage(playerid, "BANNED: {ffffff}You were banned on %s by %s.", banDate, banner); 
+		SendServerMessage(playerid, "[Banned] {cdd0d1}Your account %s is banned from our server.", ReturnSettingsName(playerid, playerid));
+		SendServerMessage(playerid, "[Banned] {cdd0d1}You were banned on %s by %s.", banDate, banner); 
 		return KickEx(playerid);
 	}
 	return 1;
@@ -2720,7 +2722,7 @@ public OnPlayerSpawn(playerid)
 		SetPlayerPosEx(playerid, -10.5146,2337.2961,24.3034);
 		SetPlayerInterior(playerid, 0); SetPlayerVirtualWorld(playerid, 1338);
 		
-		SendServerMessage(playerid, "ADMIN-JAIL: {ffffff}You're currently admin jailed. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
+		SendServerMessage(playerid, "[Jail] {cdd0d1}You're currently admin jailed. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
 	}
 	else if(PlayerInfo[playerid][E_CHARACTER_PRISONED] == true)
 	{
@@ -2728,7 +2730,7 @@ public OnPlayerSpawn(playerid)
 		
 		SetPlayerInPrison(playerid);
 		
-		SendServerMessage(playerid, "PRISON: {ffffff}You're currently prison. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
+		SendServerMessage(playerid, "[Prison] {cdd0d1}You're currently prison. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
 	}
 	else
 	{
@@ -3307,7 +3309,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				TogglePlayerControllable(playerid, true);
 				
 				ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-				SendServerMessage(playerid, "FISHING: {ffffff}You caught a 1.kg of fish.");
+				SendServerMessage(playerid, "[Fishing] {cdd0d1}You caught a 1.kg of fish.");
 				
 			}
 		}
@@ -3848,8 +3850,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 
-	    SendServerMessage(driverid, "TAXI: {ffffff}%s has entered your taxi as a passenger.", ReturnSettingsName(playerid, driverid));
-		SendServerMessage(playerid, "TAXI: {ffffff}You have entered %s's taxi.", ReturnSettingsName(driverid, playerid));
+	    SendServerMessage(driverid, "[Taxi] {cdd0d1}%s has entered your taxi as a passenger.", ReturnSettingsName(playerid, driverid));
+		SendServerMessage(playerid, "[Taxi] {cdd0d1}You have entered %s's taxi.", ReturnSettingsName(driverid, playerid));
 	}
  	if (oldstate == PLAYER_STATE_PASSENGER && PlayerInfo[playerid][E_CHARACTER_TAXITIMER] != 0 && PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
 	{
@@ -3912,7 +3914,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	    }
 	    
         PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
-        SendServerMessage(playerid, "TAXI: {ffffff}You are no longer on taxi duty!");
+        SendServerMessage(playerid, "[Taxi] {cdd0d1}You are no longer on taxi duty!");
 	}
 
     if(Jobs_vehicles[7] <= vehicleid <= Jobs_vehicles[11])
@@ -4208,14 +4210,17 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 						mysql_pquery(ourConnection, queryBuffer);
 
 						mysql_pquery(ourConnection, "SELECT * FROM furniture WHERE id = LAST_INSERT_ID()", "Query_LoadFurniture", "i", PropertyInfo[houseid][E_PROPERTY_LABELS]);
+
+						ReloadFurniture(objectid, PropertyInfo[houseid][E_PROPERTY_LABELS]);
 					}
-					
+
 					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
 					PlayerInfo[playerid][E_CHARACTER_OBJECTID] = 0;
 					PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = 0;
 					PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY] = 0;
 					PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
 					format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
+					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
 				}
 			}
 			case 8:

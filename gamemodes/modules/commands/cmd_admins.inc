@@ -16,7 +16,7 @@ CMD:ahelp(playerid, params[])
 	}
 	if(IsPlayerAdmins(playerid) >= 2)
 	{
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{ffffff} /armor, /clearreports, /p2p, /gotoproperty, /gotofaction, /xyz,");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{ffffff} /armor, /clearreports, /p2p, /gotoproperty, /gotofaction, /gotoco,");
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{ffffff} /gotobusiness, /noooc, /backup, /repair.");
 	}
 	if(IsPlayerAdmins(playerid) >= 3)
@@ -1241,7 +1241,7 @@ CMD:gotofaction(playerid, params[])
 	return 1;
 }
 
-CMD:xyz(playerid, params[])
+CMD:gotoco(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_HIGH)
 		return SendUnauthMessage(playerid);
@@ -1254,7 +1254,7 @@ CMD:xyz(playerid, params[])
 	; 
 	
 	if(sscanf(params, "fffi", x, y, z, interior))
-		return SendUsageMessage(playerid, "/xyz [x] [y] [z] [interior id]"); 
+		return SendUsageMessage(playerid, "/gotoco [x] [y] [z] [interior id]"); 
 		
 	SetPlayerPosEx(playerid, x, y, z);
 	SetPlayerInterior(playerid, interior);
@@ -1348,7 +1348,7 @@ CMD:spawncar(playerid, params[])
 	}
 	
 	if(gettime() - lastVehicleSpawn[playerid] < 5)
-		return SendInfoMessage(playerid, "You need to wait before spawning another vehicle.");
+		return SendErrorMessage(playerid, "You need to wait before spawning another vehicle.");
 	
 	if(modelid < 400 || modelid > 611)
 		return SendErrorMessage(playerid, "You specified an invalid model.");
@@ -1532,7 +1532,7 @@ CMD:setstats(playerid, params[])
 			if(value == -1)
 				return SendUsageMessage(playerid, "/setstats [playerid OR name] 3 [value required]"); 
 		
-			format(str, sizeof(str), "%s set %s's bank money: {B3C99E}$%s{ffffff} (Previously {B3C99E}$%s{ffffff})", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), FormatMoney(value), FormatMoney(PlayerInfo[playerb][E_CHARACTER_BANK])); 
+			format(str, sizeof(str), "%s set %s's bank money: $%s (Previously $%s)", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), FormatMoney(value), FormatMoney(PlayerInfo[playerb][E_CHARACTER_BANK])); 
 			SendAdminMessage(3, str);
 			
 			PlayerInfo[playerb][E_CHARACTER_BANK] = value;
@@ -1606,7 +1606,7 @@ CMD:givemoney(playerid, params[])
 		return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
 		
 	GiveMoney(playerb, value);
-	SendInfoMessage(playerb, "You received {B3C99E}$%s{ffffff} from Admin %s.", FormatMoney(value), ReturnSettingsName(playerid, playerid));
+	SendInfoMessage(playerb, "You received {B3C99E}$%s{cdd0d1} from Admin %s.", FormatMoney(value), ReturnSettingsName(playerid, playerid));
 
 	format(str, sizeof(str), "%s gave $%s to %s", ReturnSettingsName(playerid, playerid), FormatMoney(value), ReturnSettingsName(playerb, playerid));
 	SendAdminMessage(3, str);
@@ -1857,7 +1857,7 @@ CMD:createfaction(playerid, params[])
 	}
 	if(idx == 0)
 	{
-		return SendInfoMessage(playerid, "The server has met the maximum amount of factions."); 
+		return SendErrorMessage(playerid, "The server has met the maximum amount of factions."); 
 	}
 
 	SendInfoMessage(playerid, "Creating the faction..."); 	
@@ -1949,7 +1949,7 @@ CMD:editfaction(playerid, params[])
 			DestroyDynamic3DTextLabel(FactionInfo[factionid][E_FACTION_SPAWNTEXT]);
 
 		FactionInfo[factionid][E_FACTION_SPAWNPICKUP] = CreateDynamicPickup(1239, 1, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
-		FactionInfo[factionid][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel("Faction Spawn Point\n{ffffff}Available Commands: Use /factionhelp to see faction commands", COLOR_POINT, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
+		FactionInfo[factionid][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel("[Faction Spawn Point]\n{ffffff}Available Commands: Use /factionhelp to see faction commands", COLOR_POINT, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
 
 		SaveFaction(factionid);
 	}

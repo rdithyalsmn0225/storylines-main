@@ -19,7 +19,7 @@ function:SetPlayerSkinAndExit(playerid, skinid)
     MoveDynamicObject(fittingRoomDoor, 216.760360, -97.310455, 1005.337768, 0.01, 0.0, 0.0, 360.0); //tutup
     ApplyAnimation(playerid, "CLOTHES", "CLO_Pose_In_O", 4.0, 0, 0, 0, 0, 0);
     
-    SendServerMessage(playerid, "BUSINESS: {ffffff}You bought clothes for $250."); 
+    SendServerMessage(playerid, "[Business] {cdd0d1}You bought clothes for $250."); 
 	SetPlayerSkin(playerid, skinid);
 	PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = skinid;
 
