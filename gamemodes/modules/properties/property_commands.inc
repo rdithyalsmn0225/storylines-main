@@ -179,7 +179,7 @@ CMD:property(playerid, params[])
 		if(!strcmp(pick, "info"))
 		{
 			SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Property Info __________|");
-			SendInfoMessage(playerid, "You have $%s inside your houses' cashbox.", FormatMoney(PropertyInfo[id][E_PROPERTY_CASH])); 
+			SendClientMessageEx(playerid, COLOR_ORANGE, "You have $%s inside your houses' cashbox.", FormatMoney(PropertyInfo[id][E_PROPERTY_CASH])); 
 		}
 		else if(!strcmp(pick, "place"))
 		{	

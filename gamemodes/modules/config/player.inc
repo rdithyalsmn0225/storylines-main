@@ -153,7 +153,7 @@ function:OnAjailRecord(playerid)
 		
 		cache_get_value_name_int(i, "Time", Time); 
 		
-		SendInfoMessage(playerid, "[%s] %s was admin jailed by %s for %d minutes, Reason: %s", Date, JailedName, JailedBy, Time, Reason);
+		SendServerMessage(playerid, "[Jail] {cdd0d1}[%s] %s was admin jailed by {d7d292}%s{cdd0d1} for {d7d292}%d{cdd0d1} minutes, Reason: {d7d292}%d{cdd0d1}", Date, JailedName, JailedBy, Time, Reason);
 	}
 		
 	return 1;
@@ -452,11 +452,16 @@ stock ShowCharacterStats(playerid, playerb)
 	new 
 		vehicle_key[20],
 		duplicate_key[20],
-		business_key[20] = "None";
+		business_key[20] = "None",
+		gender[20];
 	
 	if(!PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED])
 		vehicle_key = "None";
 	else format(vehicle_key, 32, "%d", PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN]);
+
+	if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1) format(gender, 20, "Male");
+	else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2) format(gender, 20, "Female");
+	else format(gender, 20, "Unknown");
 	
 	if(PlayerInfo[playerid][E_CHARACTER_DUPLICATEKEY] == INVALID_VEHICLE_ID)
 		duplicate_key = "None";
@@ -473,7 +478,7 @@ stock ShowCharacterStats(playerid, playerb)
 	
 	SendClientMessageEx(playerid, COLOR_DARKGREEN, "|______________________________ (%d) %s Statistics ______________________________|", playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
 	SendClientMessageEx(playerb, COLOR_WHITE, "[ACCOUNT]:{ffffff} [Streetname: %s] - [Account: %s] - [Date: %s]", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());	
-	SendClientMessageEx(playerb, COLOR_GREY, "[SESSION]:{ffffff} [Level: %d] [EXP: %d/10] [Time played: %d hours]", PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
+	SendClientMessageEx(playerb, COLOR_GREY, "[SESSION]:{ffffff} [Gender: %s] [Level: %d] [EXP: %d/10] [Time played: %d hours]", gender, PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
 	SendClientMessageEx(playerb, COLOR_WHITE, "[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
 	SendClientMessageEx(playerb, COLOR_GREY, "[JOBS]:{ffffff} [Jobs: %s] [Skills: %s]", ReturnJobName(PlayerInfo[playerid][E_CHARACTER_JOBS]), ReturnJobSkill(playerid, PlayerInfo[playerid][E_CHARACTER_JOBS]));
 	SendClientMessageEx(playerb, COLOR_WHITE, "[KEYS]:{ffffff} VehicleKey:[%s] DuplicateKey:[%s] BusinessKey:[%s]", vehicle_key, duplicate_key, business_key);	
@@ -783,12 +788,24 @@ Dialog:BuySkins(playerid, response, listitem, inputtext[])
 				SetPlayerCameraPos(playerid, 214.387527, -99.966537, 1005.545410);
 				SetPlayerCameraLookAt(playerid, 217.848388, -97.962821, 1005.458129, 1);
 
-				new str[512];
-				for(new i; i < sizeof(g_aHoodRatsSkins); i++)
+				if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
 				{
-					format(str, sizeof(str), "%s%d\n", str, g_aHoodRatsSkins[i]);
+					new str[512];
+					for(new i; i < sizeof(g_aMaleSkins); i++)
+					{
+						format(str, sizeof(str), "%s%d\n", str, g_aMaleSkins[i]);
+					}
+					Dialog_Show(playerid, BuyMaleSkinsModel, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
 				}
-				Dialog_Show(playerid, BuySkinsModel, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+				else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
+				{
+					new str[512];
+					for(new i; i < sizeof(g_aFemaleSkins); i++)
+					{
+						format(str, sizeof(str), "%s%d\n", str, g_aFemaleSkins[i]);
+					}
+					Dialog_Show(playerid, BuyFemaleSkinsModel, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+				}
 			}
 			case 1:
 			{
@@ -809,7 +826,7 @@ Dialog:BuySkins(playerid, response, listitem, inputtext[])
 	return 1;
 }
 
-Dialog:BuySkinsModel(playerid, response, listitem, inputtext[])
+Dialog:BuyMaleSkinsModel(playerid, response, listitem, inputtext[])
 {
 	if(response)
 	{
@@ -826,7 +843,34 @@ Dialog:BuySkinsModel(playerid, response, listitem, inputtext[])
 			return SendErrorMessage(playerid, "This business is out of stock");
 		}
 
-		SetTimerEx("EnterFittingRoom", 1000, false, "ii", playerid, g_aHoodRatsSkins[listitem]);
+		SetTimerEx("EnterFittingRoom", 1000, false, "ii", playerid, g_aMaleSkins[listitem]);
+	}
+	else
+	{
+		SetCameraBehindPlayer(playerid);
+		TogglePlayerControllable(playerid, true);
+	}
+	return 1;
+}
+
+Dialog:BuyFemaleSkinsModel(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		{
+			SetCameraBehindPlayer(playerid);
+			SendErrorMessage(playerid, "You can't afford a clothes.");
+			return 1;
+		}
+
+		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
+		{
+			SetCameraBehindPlayer(playerid);
+			return SendErrorMessage(playerid, "This business is out of stock");
+		}
+
+		SetTimerEx("EnterFittingRoom", 1000, false, "ii", playerid, g_aFemaleSkins[listitem]);
 	}
 	else
 	{

@@ -87,7 +87,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 			
-			SendInfoMessage(playerid, "%s bought %d marijuana for {B3C99E}$%s{cdd0d1}", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
+			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} marijuana for {B3C99E}$%s{cdd0d1}", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
 		}
 		else if(type == 1)
 		{
@@ -100,7 +100,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 
-			SendInfoMessage(playerid, "%s bought %d cocaine for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
+			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} cocaine for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
 		}
 		else if(type == 2)
 		{
@@ -110,7 +110,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 
-			SendInfoMessage(playerid, "%s bought %d heroin for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
+			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} heroin for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
 		}
 	}
 	return 1;
@@ -292,7 +292,7 @@ CMD:production(playerid, params[])
 					BusinessInfo[id][E_BUSINESS_LOADING] = false;
 					
 					Inventory_Add(playerid, "Cocaine Crack", -2502, rand);
-					SendServerMessage(playerid, "[Production] {cdd0d1}You've receive %d grams of Cocaine Crack.", rand);
+					SendServerMessage(playerid, "[Production] {cdd0d1}You've receive {d7d292}%d{cdd0d1} grams of Cocaine Crack.", rand);
 				}
 				else if(PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] == 2)
 				{
@@ -302,7 +302,7 @@ CMD:production(playerid, params[])
 					BusinessInfo[id][E_BUSINESS_LOADING] = false;
 
 					Inventory_Add(playerid, "PCP", -2500, rand);
-					SendServerMessage(playerid, "[Production] {cdd0d1}You've receive %d grams of PCP.", rand);
+					SendServerMessage(playerid, "[Production] {cdd0d1}You've receive {d7d292}%d{cdd0d1} grams of PCP.", rand);
 				}
 			}
 		}

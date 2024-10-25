@@ -43,6 +43,9 @@ stock BusinessRefresh(businessid)
 	if(IsValidDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D]))
 		DestroyDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D]);
 
+	if(IsValidDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_FUELTEXT3D]))
+		DestroyDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_FUELTEXT3D]);
+
 	if(IsValidDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_ENTRANCETEXT3D]))
 		DestroyDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_ENTRANCETEXT3D]);
 
@@ -120,6 +123,8 @@ stock BusinessRefresh(businessid)
 
 	BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1272, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 5.0);
 	BusinessInfo[businessid][E_BUSINESS_ENTRANCETEXT3D] = CreateDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_NAME], COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 5.0);
+	BusinessInfo[businessid][E_BUSINESS_FUELTEXT3D] = CreateDynamic3DTextLabel("[Gas Station]\n{ffffff}Available Commands: '/refuel'", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_FUELPOS][0], BusinessInfo[businessid][E_BUSINESS_FUELPOS][1], BusinessInfo[businessid][E_BUSINESS_FUELPOS][2], 5.0);
+	
 	if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_GYM)
 	{
 		BusinessInfo[businessid][E_BUSINESS_RDUMBELL] = CreateObject(3071, 772.992,5.18281,999.927,0.0,90.0,90.0);
@@ -143,6 +148,7 @@ stock BusinessRefresh(businessid)
 	}
 	return 1;
 }
+
 function:OnBusinessEntranceChange(playerid, response, businessid)
 {
 	if(response)
@@ -161,6 +167,26 @@ function:OnBusinessEntranceChange(playerid, response, businessid)
 	else return SendErrorMessage(playerid, "You cancelled.");
 	return 1;
 }
+
+function:OnBusinessGasStationChange(playerid, response, businessid)
+{
+	if(response)
+	{
+		new Float:x, Float:y, Float:z;
+		GetPlayerPos(playerid, x, y, z); 
+		
+		BusinessInfo[businessid][E_BUSINESS_FUELPOS][0] = x;
+		BusinessInfo[businessid][E_BUSINESS_FUELPOS][1] = y;
+		BusinessInfo[businessid][E_BUSINESS_FUELPOS][2] = z;
+
+		BusinessRefresh(businessid);
+		SendInfoMessage(playerid, "You changed Business #%i's gas station.", businessid);
+		SaveBusiness(businessid); 
+	}
+	else return SendErrorMessage(playerid, "You cancelled.");
+	return 1;
+}
+
 
 function:OnBusinessPointChange(playerid, response, businessid, Float:x, Float:y, Float:z)
 {
@@ -193,6 +219,16 @@ stock IsPlayerNearCashiers(playerid)
 	for(new i = 1; i < MAX_BUSINESS; i++)
 	{
 		if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessInfo[i][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[i][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[i][E_BUSINESS_ENTRANCEPOINT][2]))
+			return i;
+	}
+	return 0;
+}
+
+stock IsPlayerNearGasStation(playerid)
+{
+	for(new i = 1; i < MAX_BUSINESS; i++)
+	{
+		if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessInfo[i][E_BUSINESS_FUELPOS][0], BusinessInfo[i][E_BUSINESS_FUELPOS][1], BusinessInfo[i][E_BUSINESS_FUELPOS][2]))
 			return i;
 	}
 	return 0;
@@ -657,6 +693,10 @@ function:Query_LoadBusinesses()
 		cache_get_value_name_float(i, "BusinessPointX", BusinessInfo[i+1][E_BUSINESS_ENTRANCEPOINT][0]);
 		cache_get_value_name_float(i, "BusinessPointY", BusinessInfo[i+1][E_BUSINESS_ENTRANCEPOINT][1]);
 		cache_get_value_name_float(i, "BusinessPointZ", BusinessInfo[i+1][E_BUSINESS_ENTRANCEPOINT][2]);
+
+		cache_get_value_name_float(i, "BusinessFuelX", BusinessInfo[i+1][E_BUSINESS_FUELPOS][0]);
+		cache_get_value_name_float(i, "BusinessFuelY", BusinessInfo[i+1][E_BUSINESS_FUELPOS][1]);
+		cache_get_value_name_float(i, "BusinessFuelZ", BusinessInfo[i+1][E_BUSINESS_FUELPOS][2]);
 		
 		cache_get_value_name(i, "BusinessName", BusinessInfo[i+1][E_BUSINESS_NAME], 90); 
 		cache_get_value_name_int(i, "BusinessType", BusinessInfo[i+1][E_BUSINESS_TYPE]);
@@ -674,176 +714,9 @@ function:Query_LoadBusinesses()
 		cache_get_value_name_int(i, "BusinessShipments", BusinessInfo[i+1][E_BUSINESS_SHIPMENTS]);
 
 		cache_get_value_name_int(i, "BusinessAmount", BusinessInfo[i+1][E_BUSINESS_AMOUNT]);
-
+		
 		BusinessRefresh(i+1);
 	}	
 	printf("[SERVER]: %i businesses were loaded from \"%s\" database...", rows, SQL_DATABASE);
-	return 1;
-}
-
-CMD:createbusiness(playerid, params[])
-{
-	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;		
-
-	new 
-		type_id,
-		idx,
-		query[128]
-	; 
-	
-	if(sscanf(params, "i", type_id))
-	{
-		SendUsageMessage(playerid, "/createbusiness business id [business type]"); 
-		SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Acidlabs, 4. Gunstore, 5. Club, 6. Bank, 7. General.");
-		SendClientMessage(playerid, COLOR_WHITE, "Types: 8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Furniture, 13. Gym."); 
-		return 1;
-	}
-	
-	if(type_id > 13 || type_id < 1)
-		return SendErrorMessage(playerid, "You specified an invalid type.");
-	
-	for(new i = 1; i < MAX_BUSINESS; i++)
-	{
-		if(!BusinessInfo[i][E_BUSINESS_DBID])
-		{
-			idx = i;
-			break;
-		}
-	}
-	
-	if(idx == 0)
-		return SendErrorMessage(playerid, "You can't make anymore businesses."); 
-		
-	
-	mysql_format(ourConnection, query, sizeof(query), "INSERT INTO businesses (BusinessType) VALUES(%i)", type_id); 
-	mysql_pquery(ourConnection, query, "Query_InsertBusiness", "iii", playerid, idx, type_id); 
-	return 1;
-}
-
-CMD:editbusiness(playerid, params[])
-{
-	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
-
-	new 
-		id,
-		astr[90],
-		bstr[90];
-		
-	if(sscanf(params, "is[90]S()[90]", id, astr, bstr))
-	{
-		SendUsageMessage(playerid, "/editbusiness [business ID] [configuration]");
-		SendClientMessage(playerid, COLOR_WHITE, "entrance, point, type, level, mapicon");
-		SendClientMessage(playerid, COLOR_WHITE, "entrancefee, name, bankpickup, marketprice"); 
-		return 1;
-	}
-	
-	if(!BusinessInfo[id][E_BUSINESS_DBID] || id > MAX_BUSINESS)
-		return SendErrorMessage(playerid, "You specified an invalid business ID.");
-		
-	if(!strcmp(astr, "entrance"))
-	{
-		ConfirmDialog(playerid, "Confirmation", "Are you sure you want to change this businesses entrance?", "OnBusinessEntranceChange", id); 
-	}
-	else if(!strcmp(astr, "point"))
-	{
-		new Float:x, Float:y, Float:z;
-		GetPlayerPos(playerid, x, y, z);
-		PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(1239, x, y, z, 0.0, 0.0, 0.0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid)); 
-		EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]); 
-		PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 6;
-	}
-	else if(!strcmp(astr, "type"))
-	{
-		new type;
-		
-		if(sscanf(bstr, "i", type))
-		{
-			SendUsageMessage(playerid, "/editbusiness %i [business type]"); 
-			SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Acidlabs, 4. Gunstore, 5. Club, 6. Bank, 7. General.");
-			SendClientMessage(playerid, COLOR_WHITE, "Types: 8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Furniture, 13. Gym."); 
-			return 1;
-		}
-
-		if(type > 13 || type < 1)
-			return SendErrorMessage(playerid, "You specified an invalid type.");
-			
-		if(type == BusinessInfo[id][E_BUSINESS_TYPE])
-			return SendErrorMessage(playerid, "You can't set the businesses type to what it already is."); 
-			
-		BusinessRefresh(id);
-		SendInfoMessage(playerid, "You changed business #%i's type to %i.", id, type);
-		SaveBusiness(id);	
-	}
-	else if(!strcmp(astr, "level"))
-	{
-		new level;
-		
-		if(sscanf(bstr, "i", level))
-			return SendUsageMessage(playerid, "/editbusiness %i level [level]", id);
-			
-		if(level < 1)
-			return SendErrorMessage(playerid, "You can't make the level below 1."); 
-			
-		BusinessInfo[id][E_BUSINESS_LEVEL] = level;
-		
-		SendInfoMessage(playerid, "You set business #%i's level to %i.", id, level);
-		SaveBusiness(id);
-	}
-	else if(!strcmp(astr, "entrancefee"))
-	{
-		new fee;
-		
-		if(sscanf(bstr, "i", fee))
-			return SendUsageMessage(playerid, "/editbusiness %i entrancefee [amount]", id);
-			
-		if(fee > 1500)
-			return SendErrorMessage(playerid, "The entrance fee can't be above 1500.");
-			
-		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = fee;
-		
-		SendInfoMessage(playerid, "You set business #%i's entrance fee to %i.", id, fee);
-		SaveBusiness(id);
-	}
-	else if(!strcmp(astr, "name"))
-	{
-		new bizname[90]; 
-		
-		if(sscanf(bstr, "s[90]", bizname))
-		{
-			SendUsageMessage(playerid, "/editbusiness %i name [business name]", id);
-			SendTipMessage(playerid, "You can use text colors (i.e ~r~Red ~b~Blue) in the name."); 
-			return 1;
-		}
-		
-		if(strlen(bizname) > 90)
-			return SendErrorMessage(playerid, "Stay below 90 characters.");
-			
-		SendInfoMessage(playerid, "You set business #%i's name from \"%s\" to \"%s\". ", id, BusinessInfo[id][E_BUSINESS_NAME], bizname); 
-		
-		format(BusinessInfo[id][E_BUSINESS_NAME], 90, "%s", bizname);
-		SaveBusiness(id); 
-	}
-	else if(!strcmp(astr, "bankpickup"))
-	{
-		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK)
-			return SendErrorMessage(playerid, "This business isn't a bank."); 
-			
-		ConfirmDialog(playerid, "Confirmation", "Are you sure you want to set / change this banks pickup?", "OnBusinessBankpickupChange", id);
-	}
-	else if(!strcmp(astr, "price"))
-	{
-		new price;
-		
-		if(sscanf(bstr, "i", price))
-			return SendUsageMessage(playerid, "/editbusiness %i price [amount]", id);
-			
-		BusinessInfo[id][E_BUSINESS_PRICE] = price;
-		
-		SendInfoMessage(playerid, "You set business #%i's market price to {B3C99E}$%s{cdd0d1}.", id, FormatMoney(price));
-		SaveBusiness(id);
-	}
-	else return SendErrorMessage(playerid, "Invalid Parameter.");
 	return 1;
 }

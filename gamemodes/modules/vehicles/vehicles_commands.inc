@@ -79,10 +79,9 @@ CMD:carkey(playerid, params[])
 		return SendErrorMessage(playerid, "You aren't near that player."); 
 			
 	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s gives %s a key to their vehicle.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
-	SendServerMessage(playerb, "[Vehicle] {cdd0d1}%s gave you a key their vehicle.", ReturnSettingsName(playerid, playerid));
+	SendServerMessage(playerb, "[Vehicle] {cdd0d1}{d7d292}%s{cdd0d1} gave you a key their vehicle.", ReturnSettingsName(playerid, playerid));
 		
-	GiveMoney(playerid, -500);
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You gave %s a duplicatekey for $500.", ReturnSettingsName(playerb, playerid));
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You gave {d7d292}%s{cdd0d1} a duplicatekey.", ReturnSettingsName(playerb, playerid));
 		
 	PlayerInfo[playerb][E_CHARACTER_DUPLICATEKEY] = vehicleid;
     return 1;
@@ -129,7 +128,7 @@ CMD:cardespawn(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = false; 
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = INVALID_VEHICLE_ID;
 		
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You parked your %s.", ReturnVehicleName(vehicleid));
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You parked your {d7d292}%d{cdd0d1}.", ReturnVehicleName(vehicleid));
 		
 	SaveVehicle(vehicleid);
 		
@@ -454,5 +453,83 @@ function:TurnEngine(playerid, vehicleid)
 	}
 
 	ShowBoxMessage(playerid, message, 5);
+	return 1;
+}
+
+CMD:gascan(playerid, params[])
+{
+	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != GASCAN)
+		return SendErrorMessage(playerid, "You must hold the gascan in your hands.");
+
+	if(!Inventory_Count(playerid, "Gascan"))
+		return SendErrorMessage(playerid, "You don't have any gascan in your inventory."); 
+
+	if(IsPlayerInAnyVehicle(playerid))
+		return SendErrorMessage(playerid, "You can't be in a vehicle.");
+			
+	if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+		return SendErrorMessage(playerid, "You aren't near a vehicle."); 
+			
+	if(playerRefillingVehicle[playerid])
+		return SendErrorMessage(playerid, "You're already refilling a vehicle."); 
+			
+	new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+
+		
+	GetVehicleModelInfo(GetVehicleModel(vehicleid), VEHICLE_MODEL_INFO_PETROLCAP, vx, vy, vz); 
+	GetVehiclePos(vehicleid, vx, vy, vz);
+		
+	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]); 
+				
+	if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+		return SendErrorMessage(playerid, "You aren't near the vehicles gas cap.");
+			
+	if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] > 50)
+		return SendErrorMessage(playerid, "This vehicle doesn't need fuel."); 
+			
+	SendInfoMessage(playerid, "You're starting to refill the vehicle.");
+	SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
+		
+	VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_DARKGREEN, vx, vy, vz, 25.0, 0, 1);
+	Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
+
+	VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 1;
+		
+	playerRefillingVehicle[playerid] = true; 
+	playerRefillTimer[playerid] = SetTimerEx("OnGascanRefill", 1000, true, "iifff", playerid, vehicleid, vx, vy, vz);
+	return 1;
+}
+
+CMD:refuel(playerid, params[])
+{
+	new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+
+	if(IsPlayerInAnyVehicle(playerid))
+		return SendErrorMessage(playerid, "You aren't near any vehicle.");
+
+	if(VehicleInfo[vehicleid][E_VEHICLE_ENGINE])
+		return SendErrorMessage(playerid, "You must turn off vehicle engine.");
+
+	GetVehicleModelInfo(GetVehicleModel(vehicleid), VEHICLE_MODEL_INFO_PETROLCAP, vx, vy, vz); 
+	GetVehiclePos(vehicleid, vx, vy, vz);
+		
+	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]); 
+				
+	if(!IsPlayerInRangeOfPoint(playerid, 3.0, vx, vy, vz) && !IsPlayerNearGasStation(playerid))
+		return SendErrorMessage(playerid, "You aren't near the vehicles gas cap or gas station.");
+			
+	if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] > 50)
+		return SendErrorMessage(playerid, "This vehicle doesn't need fuel."); 
+			
+	SendInfoMessage(playerid, "You're starting to refill the vehicle.");
+	SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
+		
+	VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_DARKGREEN, vx, vy, vz, 25.0, 0, 1);
+	Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
+
+	VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 1;
+		
+	playerRefillingVehicle[playerid] = true; 
+	playerRefillTimer[playerid] = SetTimerEx("OnGasStationRefill", 2000, true, "iifff", playerid, vehicleid, vx, vy, vz);
 	return 1;
 }

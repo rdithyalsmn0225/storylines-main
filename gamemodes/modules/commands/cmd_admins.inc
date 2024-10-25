@@ -89,7 +89,7 @@ CMD:forumname(playerid, params[])
 		return SendErrorMessage(playerid, "Your forum name needs to be shorter.");
 	
 	format(AccountInfo[playerid][E_MASTERS_FORUMNAME], 60, "%s", params);
-	SendInfoMessage(playerid, "Your forum name was changed to: %s.", params);  
+	SendInfoMessage(playerid, "Your forum name was changed to: {d7d292}%s{cdd0d1}.", params);  
 	
 	SaveCharacter(playerid);
 	return 1;
@@ -171,7 +171,7 @@ CMD:gethere(playerid, params[])
 		SetPlayerInterior(playerb, GetPlayerInterior(playerid)); 
 		
 	SendTeleportMessage(playerb);
-	SendInfoMessage(playerid, "%s was teleported to you.", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} was teleported to you.", ReturnSettingsName(playerb, playerid));
 	
 	return 1;
 }
@@ -192,7 +192,7 @@ CMD:showmain(playerid, params[])
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "The player you specified hasn't logged in yet.");
 	
-	SendInfoMessage(playerid, "%s's Master account is \"%s\" (DBID: %i).", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID]);	
+	SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} Master account is {d7d292}%s{cdd0d1} (DBID: %i).", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID]);	
 	return 1;
 }
 
@@ -639,8 +639,8 @@ CMD:slap(playerid, params[])
 	SetPlayerPosEx(playerb, PlayerInfo[playerb][E_CHARACTER_LASTPOS][0], PlayerInfo[playerb][E_CHARACTER_LASTPOS][1], PlayerInfo[playerb][E_CHARACTER_LASTPOS][2] + 5); 
 	PlayNearbySound(playerb, 1130); //Slap sound;
 	
-	SendInfoMessage(playerid, "%s slapped %s", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
-	if(playerb != playerid) SendInfoMessage(playerb, "%s slapped %s", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} slapped {d7d292}%s{cdd0d1}", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
+	if(playerb != playerid) SendInfoMessage(playerb, "{d7d292}%s{cdd0d1} slapped {d7d292}%s{cdd0d1}", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
 
 	PauseAC(playerb);
 	return 1;
@@ -790,7 +790,7 @@ CMD:spec(playerid, params[])
 	PlayerSpectatePlayer(playerid, playerb);
 		
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = playerb; 
-	SendInfoMessage(playerid, "You're now spectating %s. To stop, use \"/specoff\".", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "You're now spectating {d7d292}%s{cdd0d1}. To stop, use '/specoff'.", ReturnSettingsName(playerb, playerid));
 	return 1;
 }
 
@@ -802,7 +802,7 @@ CMD:specoff(playerid, params[])
 	if (GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		return SendErrorMessage(playerid, "You aren't spectating anyone."); 
 		
-	SendInfoMessage(playerid, "You stopped spectating %s.", ReturnSettingsName(PlayerInfo[playerid][E_CHARACTER_SPECTATE], playerid));
+	SendInfoMessage(playerid, "You stopped spectating {d7d292}%s{cdd0d1}.", ReturnSettingsName(PlayerInfo[playerid][E_CHARACTER_SPECTATE], playerid));
 	
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = INVALID_PLAYER_ID;
 	TogglePlayerSpectating(playerid, false); 
@@ -1121,7 +1121,7 @@ CMD:setinventory(playerid, params[])
 	{
         Inventory_Set(userid, g_aInventoryItems[i][E_INVENTORY_ITEM], g_aInventoryItems[i][E_INVENTORY_MODEL], amount, g_aInventoryItems[i][E_INVENTORY_TYPE]);
 
-		return SendInfoMessage(playerid, "You have set %s's \"%s\" to %d.", ReturnSettingsName(userid, playerid), item, amount);
+		return SendInfoMessage(playerid, "You have set {d7d292}%s{cdd0d1} {d7d292}%s{cdd0d1} to {d7d292}%d{cdd0d1}.", ReturnSettingsName(userid, playerid), item, amount);
 	}
 	SendErrorMessage(playerid, "Invalid item name (use /itemlist for a list).");
 	return 1;
@@ -1232,7 +1232,7 @@ CMD:gotofaction(playerid, params[])
 	SetPlayerVirtualWorld(playerid, FactionInfo[id][E_FACTION_SPAWNWORLD]);
 	SetPlayerInterior(playerid, FactionInfo[id][E_FACTION_SPAWNINT]); 
 	
-	SendInfoMessage(playerid, "You teleported to %s's spawn point.", ReturnFactionNameEx(id)); 
+	SendInfoMessage(playerid, "You teleported to {d7d292}%s{cdd0d1} spawn point.", ReturnFactionNameEx(id)); 
 
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ])
 	{
@@ -1606,7 +1606,7 @@ CMD:givemoney(playerid, params[])
 		return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
 		
 	GiveMoney(playerb, value);
-	SendInfoMessage(playerb, "You received {B3C99E}$%s{cdd0d1} from Admin %s.", FormatMoney(value), ReturnSettingsName(playerid, playerid));
+	SendInfoMessage(playerb, "You received {B3C99E}$%s{cdd0d1} from Admin {d7d292}%s{cdd0d1}.", FormatMoney(value), ReturnSettingsName(playerid, playerid));
 
 	format(str, sizeof(str), "%s gave $%s to %s", ReturnSettingsName(playerid, playerid), FormatMoney(value), ReturnSettingsName(playerb, playerid));
 	SendAdminMessage(3, str);
@@ -1828,135 +1828,6 @@ CMD:gotomark(playerid, params[])
     return 1;
 }
 
-CMD:createfaction(playerid, params[])
-{
-	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
-		
-	new varAbbrev[32], varName[128]; 
-	
-	if(sscanf(params, "s[30]s[90]", varAbbrev, varName))
-	{
-		SendUsageMessage(playerid, "/createfaction [faction abbreviation] [faction name]");
-		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} Do not use spaces for the abbreviation.");
-		return 1; 
-	}
-	
-	if(strlen(varName) > 90)
-		return SendErrorMessage(playerid, "Your factions name needs to be shorter."); 
-		
-	new idx = 0;
-	
-	for (new i = 1; i < MAX_FACTIONS; i ++)
-	{
-		if(!FactionInfo[i][E_FACTION_DBID])
-		{
-			idx = i; 
-			break;
-		}
-	}
-	if(idx == 0)
-	{
-		return SendErrorMessage(playerid, "The server has met the maximum amount of factions."); 
-	}
-
-	SendInfoMessage(playerid, "Creating the faction..."); 	
-	
-	new thread[256]; 
-	
-	mysql_format(ourConnection, thread, sizeof(thread), "INSERT INTO factions (`FactionName`, `FactionAbbrev`) VALUES('%s', '%s')", varName, varAbbrev);
-	mysql_pquery(ourConnection, thread, "Query_InsertFaction", "issi", playerid, varName, varAbbrev, idx);
-	
-	return 1;
-}
-
-CMD:editfaction(playerid, params[])
-{
-	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
-		
-	new factionid, oneString[60], secString[90]; 
-		
-	if (sscanf(params, "ds[60]S()[90]", factionid, oneString, secString))
-	{
-		SendUsageMessage(playerid, "/editfaction [faction id] [configuration]");
-		SendClientMessage(playerid, COLOR_WHITE, "type, color, spawn"); 
-		return 1;
-	}
-	
-	if(!FactionInfo[factionid][E_FACTION_DBID])
-		return SendErrorMessage(playerid, "The faction you specified doesn't exist.");
-	
-	if(!strcmp(oneString, "type"))
-	{
-		new type;
-		
-		if(sscanf(secString, "d", type))
-		{
-			SendUsageMessage(playerid, "/editfaction factionid type [type id]");
-			SendInfoMessage(playerid, "1. Illegal, 2. Police, 3. Medical"); 
-			return 1;
-		}
-		
-		if(type > 3 || type < 1)
-			return SendErrorMessage(playerid, "You specified an invalid faction type."); 
-			
-		FactionInfo[factionid][E_FACTION_TYPE] = type; 
-		
-		new 
-			typeName[32];
-		
-		if(type == 1) typeName = "Illegal";
-		if(type == 2) typeName = "Police";
-		if(type == 3) typeName = "Medical";
-		
-		SendInfoMessage(playerid, "You set faction #%d type to %s.", factionid, typeName);
-		SaveFaction(factionid);
-	}
-	else if(!strcmp(oneString, "color"))
-	{
-		new hexcolor; 
-		
-		if(sscanf(secString, "x", hexcolor))
-		{
-			SendUsageMessage(playerid, "/editfaction factionid color [hexcode]");
-			SendTipMessage(playerid, "This is the color faction chat is shown in. Example: 0x8D8DFFFF"); 
-			return 1;
-		}
-		
-		FactionInfo[factionid][E_FACTION_COLORHEX] = hexcolor;
-		SendInfoMessage(playerid, "You set faction #%d chat color to \"%x\". ", factionid, hexcolor);
-		
-		SaveFaction(factionid);
-	}
-	else if(!strcmp(oneString, "spawn"))
-	{
-		GetPlayerPos(playerid, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2]);
-		
-		FactionInfo[factionid][E_FACTION_SPAWNINT] = GetPlayerInterior(playerid);
-		FactionInfo[factionid][E_FACTION_SPAWNWORLD] = GetPlayerVirtualWorld(playerid);
-		
-		if(GetPlayerInterior(playerid) != 0)
-			FactionInfo[factionid][E_FACTION_SPAWNWORLD] = 0; 
-		
-		else FactionInfo[factionid][E_FACTION_SPAWNWORLD] = GetPlayerVirtualWorld(playerid);
-		
-		SendInfoMessage(playerid, "You changed faction #%d spawn point.", factionid); 
-
-		if(IsValidDynamicPickup(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]))
-			DestroyDynamicPickup(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]); 
-		if(IsValidDynamic3DTextLabel(FactionInfo[factionid][E_FACTION_SPAWNTEXT]))
-			DestroyDynamic3DTextLabel(FactionInfo[factionid][E_FACTION_SPAWNTEXT]);
-
-		FactionInfo[factionid][E_FACTION_SPAWNPICKUP] = CreateDynamicPickup(1239, 1, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
-		FactionInfo[factionid][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel("[Faction Spawn Point]\n{ffffff}Available Commands: Use /factionhelp to see faction commands", COLOR_POINT, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
-
-		SaveFaction(factionid);
-	}
-	else return SendErrorMessage(playerid, "Invalid Parameter.");
-	return 1;
-}
-
 CMD:setpadmin(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
@@ -1983,66 +1854,7 @@ CMD:setpadmin(playerid, params[])
 	format(str, sizeof(str), "%s set %s's admin to %d.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), adminid);
 	SendAdminMessage(4, str);
 	
-	SendInfoMessage(playerb, "You were set to admin %d by Admin %s.", adminid, ReturnSettingsName(playerid, playerid));
+	SendInfoMessage(playerb, "You were set to admin {d7d292}%s{cdd0d1} by Admin {d7d292}%s{cdd0d1}.", adminid, ReturnSettingsName(playerid, playerid));
 	
-	return 1;
-}
-
-CMD:setpfaction(playerid, params[])
-{
-	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
-		return SendUnauthMessage(playerid);
-		
-	new playerb, factionid, str[128];
-	
-	if(sscanf(params, "ud", playerb, factionid))
-		return SendUsageMessage(playerid, "/setpfaction [playerid OR name] [faction id]");
-		
-	if(!IsPlayerConnected(playerb))
-		return SendErrorMessage(playerid, "The player you specified isn't connected.");
-		
-	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
-		return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
-		
-	if(!FactionInfo[factionid][E_FACTION_DBID]) return SendErrorMessage(playerid, "The faction you specified doesn't exist.");
-	
-	if(PlayerInfo[playerb][E_CHARACTER_FACTION] != 0)
-	{
-		new detailStr[128];
-		
-		format(detailStr, sizeof(detailStr), "{FFFFFF}%s is already in a faction. Would you like to continue?", ReturnSettingsName(playerb, playerid));
-		ConfirmDialog(playerid, "Confirmation", detailStr, "OnSetFaction", playerb, factionid);
-		return 1;
-	}
-	
-
-	PlayerInfo[playerb][E_CHARACTER_FACTION] = factionid;
-	PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = 4; 
-	
-	SaveCharacter(playerb);
-		
-	format(str, sizeof(str), "%s set %s's faction to %d.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), factionid);
-	SendAdminMessage(4, str);
-	
-	SendInfoMessage(playerb, "You were set to faction %d by Admin %s.", factionid, ReturnSettingsName(playerid, playerid));
-	
-	return 1;
-}
-
-CMD:afklist(playerid, params[])
-{
-	if(IsPlayerAdmins(playerid) < ADMINS_HIGH)
-	    return 0;
-
-	SendClientMessage(playerid, COLOR_GREY, "AFK List:");
-
-	foreach(new i : Player)
-	{
-	    if(PlayerInfo[i][E_CHARACTER_AFK])
-	    {
-	        SendClientMessageEx(playerid, COLOR_DARKGREEN, "(ID: %i) %s - Time: %i seconds", i, ReturnSettingsName(i, i), PlayerInfo[i][E_CHARACTER_AFKTIME]);
-		}
-	}
-
 	return 1;
 }

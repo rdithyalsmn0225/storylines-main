@@ -26,7 +26,7 @@ CMD:buybiz(playerid, params[])
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 		ShowBoxMessage(playerid, "Congratulations!~n~You're now the owner of this business!", 4);
 		
-		SendInfoMessage(playerid, "You purchased the %s for {B3C99E}$%s{cdd0d1}!", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]));
+		SendInfoMessage(playerid, "You purchased the {d7d292}%s{cdd0d1} for {B3C99E}$%s{cdd0d1}!", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]));
 		
 		BusinessInfo[id][E_BUSINESS_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID]; 
 		GiveMoney(playerid, -BusinessInfo[id][E_BUSINESS_PRICE]); 
@@ -170,5 +170,176 @@ CMD:sellbiz(playerid, params[])
 		ConfirmDialog(playerid, "Confirmation", str, "OnSellBusiness", id); 
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business.");
+	return 1;
+}
+
+CMD:createbusiness(playerid, params[])
+{
+	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
+		return 0;		
+
+	new 
+		type_id,
+		idx,
+		query[128]
+	; 
+	
+	if(sscanf(params, "i", type_id))
+	{
+		SendUsageMessage(playerid, "/createbusiness business id [business type]"); 
+		SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Acidlabs, 4. Gunstore, 5. Club, 6. Bank, 7. General.");
+		SendClientMessage(playerid, COLOR_WHITE, "Types: 8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Furniture, 13. Gym."); 
+		return 1;
+	}
+	
+	if(type_id > 13 || type_id < 1)
+		return SendErrorMessage(playerid, "You specified an invalid type.");
+	
+	for(new i = 1; i < MAX_BUSINESS; i++)
+	{
+		if(!BusinessInfo[i][E_BUSINESS_DBID])
+		{
+			idx = i;
+			break;
+		}
+	}
+	
+	if(idx == 0)
+		return SendErrorMessage(playerid, "You can't make anymore businesses."); 
+		
+	
+	mysql_format(ourConnection, query, sizeof(query), "INSERT INTO businesses (BusinessType) VALUES(%i)", type_id); 
+	mysql_pquery(ourConnection, query, "Query_InsertBusiness", "iii", playerid, idx, type_id); 
+	return 1;
+}
+
+CMD:editbusiness(playerid, params[])
+{
+	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
+		return 0;
+
+	new 
+		id,
+		astr[90],
+		bstr[90];
+		
+	if(sscanf(params, "is[90]S()[90]", id, astr, bstr))
+	{
+		SendUsageMessage(playerid, "/editbusiness [business ID] [configuration]");
+		SendClientMessage(playerid, COLOR_WHITE, "entrance, point, fuel, type, level, mapicon");
+		SendClientMessage(playerid, COLOR_WHITE, "entrancefee, name, marketprice"); 
+		return 1;
+	}
+	
+	if(!BusinessInfo[id][E_BUSINESS_DBID] || id > MAX_BUSINESS)
+		return SendErrorMessage(playerid, "You specified an invalid business ID.");
+		
+	if(!strcmp(astr, "entrance"))
+	{
+		ConfirmDialog(playerid, "Confirmation", "Are you sure you want to change this businesses entrance?", "OnBusinessEntranceChange", id); 
+	}
+	else if(!strcmp(astr, "point"))
+	{
+		new Float:x, Float:y, Float:z;
+		GetPlayerPos(playerid, x, y, z);
+		PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(1239, x, y, z, 0.0, 0.0, 0.0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid)); 
+		EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]); 
+		PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 6;
+	}
+	else if(!strcmp(astr, "fuel"))
+	{
+		ConfirmDialog(playerid, "Confirmation", "Are you sure you want to change this businesses gas station?", "OnBusinessGasStationChange", id); 
+	}
+	else if(!strcmp(astr, "type"))
+	{
+		new type;
+		
+		if(sscanf(bstr, "i", type))
+		{
+			SendUsageMessage(playerid, "/editbusiness %i [business type]"); 
+			SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Acidlabs, 4. Gunstore, 5. Club, 6. Bank, 7. General.");
+			SendClientMessage(playerid, COLOR_WHITE, "Types: 8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Furniture, 13. Gym."); 
+			return 1;
+		}
+
+		if(type > 13 || type < 1)
+			return SendErrorMessage(playerid, "You specified an invalid type.");
+			
+		if(type == BusinessInfo[id][E_BUSINESS_TYPE])
+			return SendErrorMessage(playerid, "You can't set the businesses type to what it already is."); 
+			
+		BusinessRefresh(id);
+		SendInfoMessage(playerid, "You changed business #%i's type to %i.", id, type);
+		SaveBusiness(id);	
+	}
+	else if(!strcmp(astr, "level"))
+	{
+		new level;
+		
+		if(sscanf(bstr, "i", level))
+			return SendUsageMessage(playerid, "/editbusiness %i level [level]", id);
+			
+		if(level < 1)
+			return SendErrorMessage(playerid, "You can't make the level below 1."); 
+			
+		BusinessInfo[id][E_BUSINESS_LEVEL] = level;
+		
+		SendInfoMessage(playerid, "You set business #%i's level to %i.", id, level);
+		SaveBusiness(id);
+	}
+	else if(!strcmp(astr, "entrancefee"))
+	{
+		new fee;
+		
+		if(sscanf(bstr, "i", fee))
+			return SendUsageMessage(playerid, "/editbusiness %i entrancefee [amount]", id);
+			
+		if(fee > 1500)
+			return SendErrorMessage(playerid, "The entrance fee can't be above 1500.");
+			
+		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = fee;
+		
+		SendInfoMessage(playerid, "You set business #%i's entrance fee to %i.", id, fee);
+		SaveBusiness(id);
+	}
+	else if(!strcmp(astr, "name"))
+	{
+		new bizname[90]; 
+		
+		if(sscanf(bstr, "s[90]", bizname))
+		{
+			SendUsageMessage(playerid, "/editbusiness %i name [business name]", id);
+			SendTipMessage(playerid, "You can use text colors (i.e ~r~Red ~b~Blue) in the name."); 
+			return 1;
+		}
+		
+		if(strlen(bizname) > 90)
+			return SendErrorMessage(playerid, "Stay below 90 characters.");
+			
+		SendInfoMessage(playerid, "You set business #%i's name from \"%s\" to \"%s\". ", id, BusinessInfo[id][E_BUSINESS_NAME], bizname); 
+		
+		format(BusinessInfo[id][E_BUSINESS_NAME], 90, "%s", bizname);
+		SaveBusiness(id); 
+	}
+	else if(!strcmp(astr, "bankpickup"))
+	{
+		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK)
+			return SendErrorMessage(playerid, "This business isn't a bank."); 
+			
+		ConfirmDialog(playerid, "Confirmation", "Are you sure you want to set / change this banks pickup?", "OnBusinessBankpickupChange", id);
+	}
+	else if(!strcmp(astr, "price"))
+	{
+		new price;
+		
+		if(sscanf(bstr, "i", price))
+			return SendUsageMessage(playerid, "/editbusiness %i price [amount]", id);
+			
+		BusinessInfo[id][E_BUSINESS_PRICE] = price;
+		
+		SendInfoMessage(playerid, "You set business #%i's market price to {B3C99E}$%s{cdd0d1}.", id, FormatMoney(price));
+		SaveBusiness(id);
+	}
+	else return SendErrorMessage(playerid, "Invalid Parameter.");
 	return 1;
 }

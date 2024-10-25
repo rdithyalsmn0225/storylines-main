@@ -110,6 +110,7 @@ main ()  {}
 #include "modules\vehicles\vehicle_modshop.inc"
 
 #include "modules\faction\factions.inc"
+#include "modules\faction\factions_commands.inc"
 #include "modules\faction\mdc.inc"
 
 #include "modules\props\spraytags.inc"
@@ -449,7 +450,7 @@ function:CheckBanList(playerid)
 	}
 	else
 	{
-		SendServerMessage(playerid, "[Banned] {cdd0d1}Your IP \"%s\" is banned from our servers.", ReturnIP(playerid));
+		SendServerMessage(playerid, "[Banned] {cdd0d1}Your IP {d7d292}%s{cdd0d1} is banned from our servers.", ReturnIP(playerid));
 		SendServerMessage(playerid, "[Banned] {cdd0d1}You may appeal your ban on our forums."); 
 		return KickEx(playerid);
 	}
@@ -488,7 +489,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 			if(PlayerCheckpoint[playerid] == GPS_DMVFINISH)
 			{
 				StopDriverstest(playerid);
-				SendServerMessage(playerid, "[Dmv] {cdd0d1}Congratulations %s, you've passed your test.", ReturnSettingsName(playerid, playerid)); 
+				SendServerMessage(playerid, "[Dmv] {cdd0d1}Congratulations {d7d292}%s{cdd0d1}, you've passed your test.", ReturnSettingsName(playerid, playerid)); 
 				
 				PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE] = 1;
 				SaveCharacter(playerid);
@@ -562,7 +563,7 @@ function:OnPlayerRegister(playerid)
 	
 	new str[1024];
 	format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
-	SendInfoMessage(playerid, "You successfully registered as %s. You need to login to continue:", ReturnSettingsName(playerid, playerid)); 
+	SendInfoMessage(playerid, "You successfully registered as {d7d292}%s{cdd0d1}. You need to login to continue:", ReturnSettingsName(playerid, playerid)); 
 	return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 }
 
@@ -634,8 +635,8 @@ function:Query_CheckBannedAccount(playerid)
 		cache_get_value_name(0, "Date", banDate, 90);
 		cache_get_value_name(0, "BannedBy", banner, 32);
 	
-		SendServerMessage(playerid, "[Banned] {cdd0d1}Your account %s is banned from our server.", ReturnSettingsName(playerid, playerid));
-		SendServerMessage(playerid, "[Banned] {cdd0d1}You were banned on %s by %s.", banDate, banner); 
+		SendServerMessage(playerid, "[Banned] {cdd0d1}Your account {d7d292}%s{cdd0d1} is banned from our server.", ReturnSettingsName(playerid, playerid));
+		SendServerMessage(playerid, "[Banned] {cdd0d1}You were banned on {d7d292}%s{cdd0d1} by {d7d292}%s{cdd0d1}.", banDate, banner); 
 		return KickEx(playerid);
 	}
 	return 1;
@@ -706,6 +707,7 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name(0, "char_masters", PlayerInfo[playerid][E_CHARACTER_STREETNAME], 32);
 	cache_get_value_name_int(0, "pAdmin", PlayerInfo[playerid][E_CHARACTER_ADMIN]);
 	cache_get_value_name_int(0, "pLastSkin", PlayerInfo[playerid][E_CHARACTER_LASTSKIN]);
+	cache_get_value_name_int(0, "pGender", PlayerInfo[playerid][E_CHARACTER_GENDER]);
 	cache_get_value_name_int(0, "pFacSkin", PlayerInfo[playerid][E_CHARACTER_FACSKIN]);
 	cache_get_value_name_float(0, "pLastPosX", PlayerInfo[playerid][E_CHARACTER_LASTPOS][0]);
 	cache_get_value_name_float(0, "pLastPosY", PlayerInfo[playerid][E_CHARACTER_LASTPOS][1]);
@@ -1005,19 +1007,19 @@ public OnPlayerDeath(playerid, killerid, reason)
 					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
 					return 0;
 				}
-				SendInfoMessage(killerid, "You have been killed %s at %s.", ReturnSettingsName(playerid, playerid), ReturnLocationStreet(playerid));
-				SendInfoMessage(playerid, "You has been killed by %s at %s.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
+				SendInfoMessage(killerid, "You have been killed {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerid, playerid), ReturnLocationStreet(playerid));
+				SendInfoMessage(playerid, "You has been killed by {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
 			}
 			else
 			{
 				if(killerid == INVALID_PLAYER_ID)
 				{
-					SendInfoMessage(playerid, "You has been killed by unknown at %s.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(playerid, "You has been killed by unknown at {d7d292}%s{cdd0d1}.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
 				}
 				else
 				{
-					SendInfoMessage(killerid, "You have been killed %s at %s.", ReturnSettingsName(playerid, playerid), ReturnLocationStreet(playerid));
-					SendInfoMessage(playerid, "You has been killed by %s at %s.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(killerid, "You have been killed {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerid, playerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(playerid, "You has been killed by {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
 				}
 				PlayerInfo[playerid][E_CHARACTER_DIEUNKNOWN] = true;
 			}
@@ -1852,7 +1854,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 		{
 			if(!IsPlayerNearPlayer(playerid, hitid, 15.0))
 			{
-				SendInfoMessage(playerid, "You aren't close enough to hit %s with your taser.", ReturnSettingsName(hitid, hitid));
+				SendInfoMessage(playerid, "You aren't close enough to hit {d7d292}%s{cdd0d1} with your taser.", ReturnSettingsName(hitid, hitid));
 				return 0;
 			}
 			
@@ -1863,7 +1865,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			GameTextForPlayer(hitid, "~b~You Are Tasered", 2500, 3);
 			
 			SendInfoMessage(hitid, "You were just hit by a taser. 10,000 volts go through your body.");
-			SendInfoMessage(playerid, "You hit %s with your taser!", ReturnSettingsName(hitid, hitid)); 
+			SendInfoMessage(playerid, "You hit {d7d292}%s{cdd0d1} with your taser!", ReturnSettingsName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
 			SetTimerEx("OnPlayerTasered", 1200, false, "i", hitid); 
@@ -1876,7 +1878,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 		{
 			if(!IsPlayerNearPlayer(playerid, hitid, 15.0))
 			{
-				SendInfoMessage(playerid, "You aren't close enough to hit %s with your riot gun.", ReturnSettingsName(hitid, hitid));
+				SendInfoMessage(playerid, "You aren't close enough to hit {d7d292}%s{cdd0d1} with your riot gun.", ReturnSettingsName(hitid, hitid));
 				return 0;
 			}
 			
@@ -1885,7 +1887,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's riot gun.", ReturnSettingsName(hitid, hitid), ReturnSettingsName(playerid, playerid)); 
 			
 			SendInfoMessage(hitid, "You were just hit by a riot gun. rubber bullet go through your body.");
-			SendInfoMessage(playerid, "You hit %s with your taser!", ReturnSettingsName(hitid, hitid)); 
+			SendInfoMessage(playerid, "You hit {d7d292}%s{cdd0d1} with your taser!", ReturnSettingsName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
 			SetTimerEx("OnPlayerRubber", 1200, false, "i", hitid); 
@@ -2722,7 +2724,7 @@ public OnPlayerSpawn(playerid)
 		SetPlayerPosEx(playerid, -10.5146,2337.2961,24.3034);
 		SetPlayerInterior(playerid, 0); SetPlayerVirtualWorld(playerid, 1338);
 		
-		SendServerMessage(playerid, "[Jail] {cdd0d1}You're currently admin jailed. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
+		SendServerMessage(playerid, "[Jail] {cdd0d1}You're currently admin jailed. You have {d7d292}%i{cdd0d1} minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
 	}
 	else if(PlayerInfo[playerid][E_CHARACTER_PRISONED] == true)
 	{
@@ -2730,7 +2732,7 @@ public OnPlayerSpawn(playerid)
 		
 		SetPlayerInPrison(playerid);
 		
-		SendServerMessage(playerid, "[Prison] {cdd0d1}You're currently prison. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
+		SendServerMessage(playerid, "[Prison] {cdd0d1}You're currently prison. You have {d7d292}%i{cdd0d1} minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
 	}
 	else
 	{
@@ -3120,7 +3122,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 	{
 		if(strlen(cmdtext) > 50)
 		{
-			SendClientMessage(playerid, COLOR_RED, "ERROR: The command you entered doesn't exist. Use /help to see a list of available commands."); 
+			SendErrorMessage(playerid, "The command you entered doesn't exist. Use /help to see a list of available commands."); 
 			PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][1] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][2] = 0.0;
@@ -3131,7 +3133,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 			PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][1] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][2] = 0.0;
-			SendClientMessageEx(playerid, COLOR_RED, "ERROR: The command you entered \"%s\" doesn't exist. Use /help to see a list of available commands.", cmdtext);
+			SendErrorMessage(playerid, "The command you entered \"%s\" doesn't exist. Use /help to see a list of available commands.", cmdtext);
 		}
 	}
 	return 1;
@@ -3309,7 +3311,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				TogglePlayerControllable(playerid, true);
 				
 				ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-				SendServerMessage(playerid, "[Fishing] {cdd0d1}You caught a 1.kg of fish.");
+				SendServerMessage(playerid, "[Fishing] {cdd0d1}You caught a {d7d292}1.kg{cdd0d1} of fish.");
 				
 			}
 		}
@@ -3850,8 +3852,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 
-	    SendServerMessage(driverid, "[Taxi] {cdd0d1}%s has entered your taxi as a passenger.", ReturnSettingsName(playerid, driverid));
-		SendServerMessage(playerid, "[Taxi] {cdd0d1}You have entered %s's taxi.", ReturnSettingsName(driverid, playerid));
+	    SendServerMessage(driverid, "[Taxi] {cdd0d1}{d7d292}%s{cdd0d1} has entered your taxi as a passenger.", ReturnSettingsName(playerid, driverid));
+		SendServerMessage(playerid, "[Taxi] {cdd0d1}You have entered {d7d292}%s's{cdd0d1} taxi.", ReturnSettingsName(driverid, playerid));
 	}
  	if (oldstate == PLAYER_STATE_PASSENGER && PlayerInfo[playerid][E_CHARACTER_TAXITIMER] != 0 && PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
 	{
@@ -4212,6 +4214,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 						mysql_pquery(ourConnection, "SELECT * FROM furniture WHERE id = LAST_INSERT_ID()", "Query_LoadFurniture", "i", PropertyInfo[houseid][E_PROPERTY_LABELS]);
 
 						ReloadFurniture(objectid, PropertyInfo[houseid][E_PROPERTY_LABELS]);
+						SendTipMessage(playerid, "Type '/prop furniture labels' to refresh the objects.");
 					}
 
 					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
@@ -4361,9 +4364,10 @@ function:SaveCharacter(playerid)
 		AccountInfo[playerid][E_MASTERS_DBID]);
 	mysql_pquery(ourConnection, query);
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pAdmin = %i, pLastSkin = %i, pFacSkin = %i, pLevel = %i, pMoney = %i, pBank = %i, pPaycheck = %i, pPhone = %i, pLastOnline = '%e', pLastOnlineTime = %i, pAdminjailed = %i, pAdminJailTime = %i WHERE char_dbid = %i",
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pAdmin = %i, pLastSkin = %i, pGender = %i, pFacSkin = %i, pLevel = %i, pMoney = %i, pBank = %i, pPaycheck = %i, pPhone = %i, pLastOnline = '%e', pLastOnlineTime = %i, pAdminjailed = %i, pAdminJailTime = %i WHERE char_dbid = %i",
 		PlayerInfo[playerid][E_CHARACTER_ADMIN],
 		PlayerInfo[playerid][E_CHARACTER_LASTSKIN],
+		PlayerInfo[playerid][E_CHARACTER_GENDER],
 		PlayerInfo[playerid][E_CHARACTER_FACSKIN],
 		PlayerInfo[playerid][E_CHARACTER_LEVEL],
 		PlayerInfo[playerid][E_CHARACTER_MONEY],

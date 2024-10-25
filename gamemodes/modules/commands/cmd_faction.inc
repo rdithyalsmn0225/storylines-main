@@ -71,7 +71,7 @@ CMD:finvite(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_FACTIONINVITED] = playerid;
 	
 	SendTipMessage(playerb, "%s has invited you to join the %s, type /approve faction to join.", ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-	SendInfoMessage(playerid, "You invited %s to join the %s.", ReturnSettingsName(playerb, playerid), ReturnFactionName(playerid));
+	SendInfoMessage(playerid, "You invited {d7d292}%s{cdd0d1} to join the {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerb, playerid), ReturnFactionName(playerid));
 	return 1;
 }
 
@@ -97,8 +97,8 @@ CMD:funinvite(playerid, params[])
 	if(PlayerInfo[playerb][E_CHARACTER_FACTION] != PlayerInfo[playerid][E_CHARACTER_FACTION])
 		return SendErrorMessage(playerid, "The player you specified IS not in your faction.");
 	
-	SendInfoMessage(playerid, "You were uninvited from the %s by %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTION]), ReturnSettingsName(playerid, playerid));
-	SendInfoMessage(playerid, "You uninvited %s!", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "You were uninvited from the {d7d292}%s{cdd0d1} by {d7d292}%s{cdd0d1}!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTION]), ReturnSettingsName(playerid, playerid));
+	SendInfoMessage(playerid, "You uninvited {d7d292}%s{cdd0d1}!", ReturnSettingsName(playerb, playerid));
 	
 	PlayerInfo[playerb][E_CHARACTER_FACTION] = 0;
 	PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = 0;
@@ -201,8 +201,8 @@ CMD:frank(playerid, params[])
 	if(PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] > 4)
 		return SendErrorMessage(playerid, "You can't alter 4 rank.", ReturnSettingsName(playerb, playerid)); 
 		
-	SendInfoMessage(playerb, "Your rank has been upgraded from %s to %s by %s!", FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank], ReturnSettingsName(playerid, playerid)); 
-	SendInfoMessage(playerid, "You upgraded %s's rank from %s to %s!", ReturnSettingsName(playerb, playerid), FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank]);
+	SendInfoMessage(playerb, "Your rank has been upgraded from {d7d292}%s{cdd0d1} to {d7d292}%s{cdd0d1} by {d7d292}%s{cdd0d1}!", FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank], ReturnSettingsName(playerid, playerid)); 
+	SendInfoMessage(playerid, "You upgraded {d7d292}%s{cdd0d1} rank from {d7d292}%s{cdd0d1} to {d7d292}%s{cdd0d1}!", ReturnSettingsName(playerb, playerid), FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank]);
 		
 	PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = rank; 
 	SaveCharacter(playerb);
@@ -378,8 +378,8 @@ CMD:handcuff(playerid, params[])
 	
 	PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = true;
 	
-	SendInfoMessage(playerb, "You were handcuffed by %s.", ReturnSettingsName(playerid, playerid)); 
-	SendInfoMessage(playerid, "You handcuffed %s.", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerb, "You were handcuffed by {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerid, playerid)); 
+	SendInfoMessage(playerid, "You handcuffed {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerb, playerid));
 	return 1;
 }
 
@@ -412,7 +412,7 @@ CMD:unhandcuff(playerid, params[])
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE); 
 	
 	PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = false;
-	SendInfoMessage(playerid, "You unhandcuffed %s.", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "You unhandcuffed {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerb, playerid));
 	return 1;
 }
 
@@ -489,21 +489,45 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
             {
                 if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
                 {
-					new str[512];
-					for(new i; i < sizeof(g_aLspdSkins); i++)
+					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
 					{
-						format(str, sizeof(str), "%s%d\n", str, g_aLspdSkins[i]);
+						new str[512];
+						for(new i; i < sizeof(g_aLspdSkins); i++)
+						{
+							format(str, sizeof(str), "%s%d\n", str, g_aLspdSkins[i]);
+						}
+						Dialog_Show(playerid, LSPDMaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
 					}
-					Dialog_Show(playerid, LSPDSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+					else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
+					{
+						new str[512];
+						for(new i; i < sizeof(g_aLspdFemSkins); i++)
+						{
+							format(str, sizeof(str), "%s%d\n", str, g_aLspdFemSkins[i]);
+						}
+						Dialog_Show(playerid, LSPDFemaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+					}
                 }
                 if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
                 {
-					new str[512];
-					for(new i; i < sizeof(g_aLsmdSkins); i++)
+					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
-						format(str, sizeof(str), "%s%d\n", str, g_aLsmdSkins[i]);
+						new str[512];
+						for(new i; i < sizeof(g_aLsmdSkins); i++)
+						{
+							format(str, sizeof(str), "%s%d\n", str, g_aLsmdSkins[i]);
+						}
+						Dialog_Show(playerid, LSMDMaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
 					}
-					Dialog_Show(playerid, LSMDSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+					else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
+					{
+						new str[512];
+						for(new i; i < sizeof(g_aLsmdFemSkins); i++)
+						{
+							format(str, sizeof(str), "%s%d\n", str, g_aLsmdFemSkins[i]);
+						}
+						Dialog_Show(playerid, LSMDFemaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+					}
                 }
             }
         }
@@ -511,7 +535,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
     return 1;
 }
 
-Dialog:LSPDSkins(playerid, response, listitem, inputtext[])
+Dialog:LSPDMaleSkins(playerid, response, listitem, inputtext[])
 {
 	if(response)
     {
@@ -522,12 +546,34 @@ Dialog:LSPDSkins(playerid, response, listitem, inputtext[])
 	return 1;
 }
 
-Dialog:LSMDSkins(playerid, response, listitem, inputtext[])
+Dialog:LSPDFemaleSkins(playerid, response, listitem, inputtext[])
+{
+	if(response)
+    {
+		SetPlayerSkin(playerid, g_aLspdFemSkins[listitem]);
+		PlayerInfo[playerid][E_CHARACTER_FACSKIN] = g_aLspdFemSkins[listitem];
+		SaveCharacter(playerid);
+	}
+	return 1;
+}
+
+Dialog:LSMDMaleSkins(playerid, response, listitem, inputtext[])
 {
 	if(response)
     {
 		SetPlayerSkin(playerid, g_aLsmdSkins[listitem]);
 		PlayerInfo[playerid][E_CHARACTER_FACSKIN] = g_aLsmdSkins[listitem];
+		SaveCharacter(playerid);
+	}
+	return 1;
+}
+
+Dialog:LSMDFemaleSkins(playerid, response, listitem, inputtext[])
+{
+	if(response)
+    {
+		SetPlayerSkin(playerid, g_aLsmdFemSkins[listitem]);
+		PlayerInfo[playerid][E_CHARACTER_FACSKIN] = g_aLsmdFemSkins[listitem];
 		SaveCharacter(playerid);
 	}
 	return 1;
@@ -907,7 +953,7 @@ CMD:loadinjured(playerid, params[])
     
         TogglePlayerControllable(otherid, false);
         SetPlayerHealth(otherid, 100.0);
-        SendInfoMessage(otherid, "You're injured ~r~now you're on ambulance.");
+        SendInfoMessage(otherid, "You're injured now you're on ambulance.");
         return 1;
     }
     else SendErrorMessage(playerid, "You must be in an ambulance.");
@@ -942,8 +988,8 @@ CMD:dropinjured(playerid, params[])
 
         GiveMoney(playerid, -250);
 
-        SendInfoMessage(playerid, "You have delivered %s to the hospital.", ReturnSettingsName(otherid, playerid));
-        SendInfoMessage(otherid, "You have recovered at the nearest hospital by officer %s.", ReturnSettingsName(playerid, playerid));
+        SendInfoMessage(playerid, "You have delivered {d7d292}%s{cdd0d1} to the hospital.", ReturnSettingsName(otherid, playerid));
+        SendInfoMessage(otherid, "You have recovered at the nearest hospital by officer {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerid, playerid));
     }
     else SendErrorMessage(playerid, "You must be near a hospital deliver location.");
     return 1;
@@ -979,6 +1025,6 @@ CMD:rescue(playerid, params[])
 	ApplyAnimation(otherid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
 	
 	SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s has rescuered %s with medkit tools.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(otherid, playerid));
-    SendInfoMessage(otherid, "Officer %s has rescue your character.", ReturnSettingsName(playerid, playerid));
+    SendInfoMessage(otherid, "Officer {d7d292}%s{cdd0d1} has rescue your character.", ReturnSettingsName(playerid, playerid));
 	return 1;
 }

@@ -76,13 +76,6 @@ CMD:fix(playerid, params[])
 	return 1;
 }
 
-CMD:hesoyam(playerid, params[])
-{
-	ShowBoxMessage(playerid, "Cheat Activated", 5);
-	SendServerMessage(playerid, "[Cheat] {cdd0d1}You've given $150,000 from Rockstar West!");
-	return 1;
-}
-
 CMD:stats(playerid, params[])
 {
 	new playerb;
@@ -235,8 +228,8 @@ CMD:pay(playerid, params[])
 	PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0); PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
 	playerLastpay[playerid] = gettime(); 
 	
-	SendServerMessage(playerid, "[Pay] {cdd0d1}You have sent {B3C99E}$%s{cdd0d1} to %s.", FormatMoney(amount), ReturnSettingsName(playerb, playerid)); 
-	SendServerMessage(playerb, "[Pay] {cdd0d1}You have received {B3C99E}$%s{cdd0d1} from %s.", FormatMoney(amount), ReturnSettingsName(playerid, playerid)); 
+	SendServerMessage(playerid, "[Pay] {cdd0d1}You have sent {B3C99E}$%s{cdd0d1} to {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnSettingsName(playerb, playerid)); 
+	SendServerMessage(playerb, "[Pay] {cdd0d1}You have received {B3C99E}$%s{cdd0d1} from {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnSettingsName(playerid, playerid)); 
 	
 	if(PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3 || amount >= 50000)
 	{
@@ -294,7 +287,7 @@ CMD:charity(playerid, params[])
 	
 	GiveMoney(playerid, -charity);
 	SaveCharacter(playerid);
-	SendServerMessage(playerid, "[Charity] {cdd0d1}You've charity %s for this server.", FormatMoney(charity));
+	SendServerMessage(playerid, "[Charity] {cdd0d1}You've charity {d7d292}%s{cdd0d1} for this server.", FormatMoney(charity));
 	return 1;
 }
 
@@ -613,7 +606,7 @@ CMD:setchannel(playerid, params[])
 	
 	PlayerInfo[playerid][E_CHARACTER_RADIO][slot] = channel;
 	
-	SendInfoMessage(playerid, "You're now listening to channel %i under slot %i.", channel, slot);
+	SendInfoMessage(playerid, "You're now listening to channel {d7d292}%d{cdd0d1} under slot {d7d292}%d{cdd0d1}.", channel, slot);
 	SaveCharacter(playerid); 
 	return 1;
 }
@@ -635,7 +628,7 @@ CMD:setslot(playerid, params[])
 		
 	PlayerInfo[playerid][E_CHARACTER_MAINSLOT] = slot;
 		
-	SendInfoMessage(playerid, "Your local radio slot is now %i.", slot); 
+	SendInfoMessage(playerid, "Your local radio slot is now {d7d292}%d{cdd0d1}.", slot); 
 	SaveCharacter(playerid);
 	return 1;
 }
@@ -2286,7 +2279,7 @@ CMD:approve(playerid, params[])
 		
 				
 		SendClientMessageEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED], COLOR_FACTION, "%s accepted your faction invitation.", ReturnSettingsName(playerid, playerid));
-		SendInfoMessage(playerid, "You joined the %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]));
+		SendInfoMessage(playerid, "You joined the {d7d292}%s{cdd0d1}!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]));
 		
 		
 		PlayerInfo[playerid][E_CHARACTER_FACTION] = PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]; 
@@ -2369,8 +2362,8 @@ CMD:approve(playerid, params[])
 			    ApplyAnimation(targetid, "GANGS", "prtial_hndshk_biz_01", 4.0, 0, 0, 0, 0, 0, 1);
 			}
 	    }
-	    SendInfoMessage(playerid, "You've accepted %s's handshake.", ReturnSettingsName(targetid, playerid));
-	    SendInfoMessage(targetid, "%s accepted your handshake.", ReturnSettingsName(playerid, playerid));
+	    SendInfoMessage(playerid, "You've accepted {d7d292}%s{cdd0d1} handshake.", ReturnSettingsName(targetid, playerid));
+	    SendInfoMessage(targetid, "{d7d292}%s{cdd0d1} accepted your handshake.", ReturnSettingsName(playerid, playerid));
 	}
 	if (!strcmp(params, "vehicle", true) && PlayerInfo[playerid][E_CHARACTER_SELLOFFER] != INVALID_PLAYER_ID)
 	{
@@ -2411,8 +2404,8 @@ CMD:approve(playerid, params[])
 
 		SaveVehicle(vehicleid);
 
-		SendInfoMessage(playerid, "You've accepted %s's offered selling vehicle.", ReturnSettingsName(userid, playerid));
-	    SendInfoMessage(userid, "%s accepted offered selling your vehicle.", ReturnSettingsName(playerid, playerid));
+		SendInfoMessage(playerid, "You've accepted {d7d292}%s{cdd0d1} offered selling vehicle.", ReturnSettingsName(userid, playerid));
+	    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} accepted offered selling your vehicle.", ReturnSettingsName(playerid, playerid));
 	}
 	return 1;
 }
@@ -2438,8 +2431,8 @@ CMD:handshake(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SHAKEOFFER] = playerid;
 	PlayerInfo[userid][E_CHARACTER_SHAKETYPE] = type;
 
-	SendTipMessage(userid, "%s has offered to shake your hand, type /approve handshake to approve.", ReturnSettingsName(playerid, playerid));
-	SendInfoMessage(playerid, "You have offered to shake %s's hand.", ReturnSettingsName(userid, playerid));
+	SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to shake your hand, type /approve handshake to approve.", ReturnSettingsName(playerid, playerid));
+	SendInfoMessage(playerid, "You have offered to shake {d7d292}%s{cdd0d1} hand.", ReturnSettingsName(userid, playerid));
 	return 1;
 }
 CMD:frisk(playerid, params[])
@@ -2458,8 +2451,8 @@ CMD:frisk(playerid, params[])
 
 	PlayerInfo[userid][E_CHARACTER_FRISKOFFER] = playerid;
 
-	SendTipMessage(userid, "%s has offered to frisk you, type /approve frisk to approve.", ReturnSettingsName(playerid, playerid));
-	SendInfoMessage(playerid, "You have offered to frisk %s.", ReturnSettingsName(userid, playerid));
+	SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to frisk you, type /approve frisk to approve.", ReturnSettingsName(playerid, playerid));
+	SendInfoMessage(playerid, "You have offered to frisk {d7d292}%s{cdd0d1}.", ReturnSettingsName(userid, playerid));
 	return 1;
 }
 
@@ -2475,56 +2468,12 @@ CMD:afk(playerid, params[])
 
 	if(PlayerInfo[targetid][E_CHARACTER_AFK])
 	{
-	    SendServerMessage(playerid, "[Afk] {cdd0d1}%s has been marked as Away from keyboard for %i minutes.", ReturnSettingsName(targetid, playerid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
+	    SendServerMessage(playerid, "[Afk] {cdd0d1}{d7d292}%s{cdd0d1} has been marked as Away from keyboard for {d7d292}%i{cdd0d1} minutes.", ReturnSettingsName(targetid, playerid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
 	}
 	else
 	{
-	    SendServerMessage(playerid, "[Afk] {cdd0d1}%s is currently not marked as Away from keyboard.", ReturnSettingsName(targetid, playerid));
+	    SendServerMessage(playerid, "[Afk] {cdd0d1}{d7d292}%s{cdd0d1} is currently not marked as Away from keyboard.", ReturnSettingsName(targetid, playerid));
 	}
 
-	return 1;
-}
-
-CMD:gascan(playerid, params[])
-{
-	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != GASCAN)
-		return SendErrorMessage(playerid, "You must hold the gascan in your hands.");
-
-	if(!Inventory_Count(playerid, "Gascan"))
-		return SendErrorMessage(playerid, "You don't have any gascan in your inventory."); 
-
-	if(IsPlayerInAnyVehicle(playerid))
-		return SendErrorMessage(playerid, "You can't be in a vehicle.");
-			
-	if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
-		return SendErrorMessage(playerid, "You aren't near a vehicle."); 
-			
-	if(playerRefillingVehicle[playerid])
-		return SendErrorMessage(playerid, "You're already refilling a vehicle."); 
-			
-	new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
-
-		
-	GetVehicleModelInfo(GetVehicleModel(vehicleid), VEHICLE_MODEL_INFO_PETROLCAP, vx, vy, vz); 
-	GetVehiclePos(vehicleid, vx, vy, vz);
-		
-	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]); 
-				
-	if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
-		return SendErrorMessage(playerid, "You aren't near the vehicles gas cap.");
-			
-	if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] > 50)
-		return SendErrorMessage(playerid, "This vehicle doesn't need fuel."); 
-			
-	SendInfoMessage(playerid, "You're starting to refill the vehicle.");
-	SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
-		
-	VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_DARKGREEN, vx, vy, vz, 25.0, 0, 1);
-	Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
-
-	VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 1;
-		
-	playerRefillingVehicle[playerid] = true; 
-	playerRefillTimer[playerid] = SetTimerEx("OnGascanRefill", 4500, true, "iifff", playerid, vehicleid, vx, vy, vz);
 	return 1;
 }

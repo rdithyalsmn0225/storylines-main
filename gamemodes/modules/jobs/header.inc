@@ -193,7 +193,7 @@ CMD:takejobs(playerid, params[])
                 return SendErrorMessage(playerid, "You already have jobs.");
 
             PlayerInfo[playerid][E_CHARACTER_JOBS] = i;
-            SendServerMessage(playerid, "[Jobs] {cdd0d1}You are now a %s use /help to see jobs commands.", JobsInfo[i][E_JOBSNAMES]);
+            SendServerMessage(playerid, "[Jobs] {cdd0d1}You are now a {d7d292}%d{cdd0d1} use /help to see jobs commands.", JobsInfo[i][E_JOBSNAMES]);
             SaveCharacter(playerid);
         }
     }

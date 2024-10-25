@@ -1,6 +1,6 @@
 //Client messages:
 #define SendUsageMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_WHITE, "USAGE: "%1) 
+	SendClientMessageEx(%0, COLOR_SYNTAX, "[Syntax]{cdd0d1} "%1) 
 	
 #define SendErrorMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_RED, "[Error]{cdd0d1} "%1)
@@ -680,9 +680,9 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 				SendClientMessage(playerid, -1, string);
 				
 				SendClientMessage(playerid, -1, " "); 
-				SendClientMessage(playerid, -1, "This next step will allow you the opportunity of writing a background story.");
-				SendClientMessage(playerid, -1, "In no more than three (3) paragraphs, introduce your characters story."); 
-				SendClientMessage(playerid, -1, "This step is {B3C99E}optional{FFFFFF} and not required. Type {B3C99E}\"skip\" {FFFFFF}to continue.");
+				SendClientMessage(playerid, -1, "This next step will allow you the chosen your gender.");
+				SendClientMessage(playerid, -1, "Available gender is {B3C99E}male{FFFFFF} and {B3C99E}'female'{FFFFFF}.");
+				SendClientMessage(playerid, -1, "We didn't support LGBT+ nigga, who the fuck They/Them/Neither/Croisant????."); 
 				SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
 
 				ClearLines(playerid, 2);
@@ -691,27 +691,68 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 			}
 			case 5:
 			{
+				if(!strcmp(text, "male"))
+				{
+					for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
+					
+					SendClientMessage(playerid, -1, "You have chosen 'male' your characters gender.");
+					SendClientMessage(playerid, -1, "This concludes your characters creation.");
+
+					SendClientMessage(playerid, -1, " "); 
+					SendClientMessage(playerid, -1, "This next step will allow you the opportunity of writing a background story.");
+					SendClientMessage(playerid, -1, "In no more than three (3) paragraphs, introduce your characters story."); 
+					SendClientMessage(playerid, -1, "This step is {B3C99E}optional{FFFFFF} and not required. Type {B3C99E}\"skip\" {FFFFFF}to continue.");
+					SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
+
+					ClearLines(playerid, 2);
+
+					playerCharacterGender[playerid] = 1;
+					playerCharacterStep[playerid] = 6; 
+						
+					return 0;
+				}
+				else if(!strcmp(text, "female"))
+				{
+					for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
+				
+					SendClientMessage(playerid, -1, "You have chosen 'male' your characters gender.");
+					SendClientMessage(playerid, -1, "This concludes your characters creation.");
+
+					SendClientMessage(playerid, -1, " "); 
+					SendClientMessage(playerid, -1, "This next step will allow you the opportunity of writing a background story.");
+					SendClientMessage(playerid, -1, "In no more than three (3) paragraphs, introduce your characters story."); 
+					SendClientMessage(playerid, -1, "This step is {B3C99E}optional{FFFFFF} and not required. Type {B3C99E}\"skip\" {FFFFFF}to continue.");
+					SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
+
+					ClearLines(playerid, 2);
+
+					playerCharacterGender[playerid] = 2;
+					playerCharacterStep[playerid] = 6; 
+				}
+				else 
+				{
+					SendErrorMessage(playerid, "We didn't support LGBT+ nigga, who the fuck They/Them/Neither/Croisant????.");
+					return 0;
+				}
+				return 0;
+			}
+			case 6:
+			{
 				if(!strcmp(text, "skip"))
 				{
 					for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
-					playerCharacterStep[playerid] = 6; 
 					
 					SendClientMessage(playerid, -1, "You have chosen to skip your characters background story.");
 					SendClientMessage(playerid, -1, "This concludes your characters creation.");
-					
-					SendClientMessage(playerid, -1, " "); 
-					SendClientMessage(playerid, -1, "This next step will require your characters faction details. ");
-					SendClientMessage(playerid, -1, "Please provide your characters faction. either type:");
-					SendClientMessage(playerid, -1, "- Press \"LEFT\" or \"RIGHT\" to switch faction.");
-					SendClientMessage(playerid, -1, "- Press \"SELECT\" to select.");		
+							
 
 					PlayerInfo[playerid][E_CHARACTER_FACTION] = 0;
 					characterSelection[playerid] = true;
 					playerMakingCharacter[playerid] = false;
 					playerCharacterStep[playerid] = 0; 
 					PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0;
-					new rand = random(sizeof(g_aHoodRatsSkins));
-					PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aHoodRatsSkins[rand];
+					new rand = random(sizeof(g_aMaleSkins));
+					PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aMaleSkins[rand];
 					ClearLines(playerid, 17); 
 									
 					SendInfoMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
@@ -722,8 +763,8 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 							
 					fid = PlayerInfo[playerid][E_CHARACTER_FACTION];
 									
-					mysql_format(ourConnection, query, sizeof(query), "INSERT INTO characters (`master_dbid`, `char_name`, `char_masters`, `pAge`, `pOrigin`, `pFaction`, `pLastSkin`, `pStory`, `pStoryTwo`, `create_date`, `create_ip`, `pPhone`, pSpawnPoint, pLastPosX, pLastPosY, pLastPosZ) VALUES(%i, '%e', '%e', '%e', '%e', '%d', '%d', '%e', '%e', '%e', '%e', %i, %d, %f, %f, %f)", AccountInfo[playerid][E_MASTERS_DBID], playerCharactersName[playerid], playerCharactersStreetName[playerid], playerCharactersAge[playerid],
-					playerCharacterOrigin[playerid], PlayerInfo[playerid][E_CHARACTER_FACTION], PlayerInfo[playerid][E_CHARACTER_LASTSKIN], playerCharacterStory[playerid][0], playerCharacterStory[playerid][1], ReturnDate(), ReturnIP(playerid), 94000+random(6999), PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT], FactionInfo[fid][E_FACTION_SPAWN][0], FactionInfo[fid][E_FACTION_SPAWN][1], FactionInfo[fid][E_FACTION_SPAWN][2]);				
+					mysql_format(ourConnection, query, sizeof(query), "INSERT INTO characters (`master_dbid`, `char_name`, `char_masters`, `pAge`, `pOrigin`, `pGender`, `pFaction`, `pLastSkin`, `pStory`, `pStoryTwo`, `create_date`, `create_ip`, `pPhone`, pSpawnPoint, pLastPosX, pLastPosY, pLastPosZ) VALUES(%i, '%e', '%e', '%e', '%e', '%d', '%d', '%d', '%e', '%e', '%e', '%e', %i, %d, %f, %f, %f)", AccountInfo[playerid][E_MASTERS_DBID], playerCharactersName[playerid], playerCharactersStreetName[playerid], playerCharactersAge[playerid],
+					playerCharacterOrigin[playerid], playerCharacterGender[playerid], PlayerInfo[playerid][E_CHARACTER_FACTION], PlayerInfo[playerid][E_CHARACTER_LASTSKIN], playerCharacterStory[playerid][0], playerCharacterStory[playerid][1], ReturnDate(), ReturnIP(playerid), 94000+random(6999), PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT], FactionInfo[fid][E_FACTION_SPAWN][0], FactionInfo[fid][E_FACTION_SPAWN][1], FactionInfo[fid][E_FACTION_SPAWN][2]);				
 					mysql_pquery(ourConnection, query); 
 									
 					SetTimerEx("RefreshCharacters", 1000, false, "i", playerid);
@@ -755,26 +796,14 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					format (string, sizeof(string), "Your succesfully introduce characters story.");
 					SendClientMessage(playerid, -1, string);
 					
-					SendClientMessage(playerid, -1, " "); 
-					SendClientMessage(playerid, -1, "This next step will require your characters faction details. ");
-					SendClientMessage(playerid, -1, "Please provide your characters faction. either type:");
-					SendClientMessage(playerid, -1, "- Press \"LEFT\" or \"RIGHT\" to switch faction.");
-					SendClientMessage(playerid, -1, "- Press \"SELECT\" to select.");
-					//playerCharacterStep[playerid] = 6; 
-					
-					//if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == -1) 
-					//{
-					//	PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] = SELECT_HOODRATS;
-					//}
-					//ShowCharacterSelection(playerid);
 
 					PlayerInfo[playerid][E_CHARACTER_FACTION] = 0;
 					characterSelection[playerid] = true;
 					playerMakingCharacter[playerid] = false;
 					playerCharacterStep[playerid] = 0; 
 					PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0;
-					new rand = random(sizeof(g_aHoodRatsSkins));
-					PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aHoodRatsSkins[rand];
+					new rand = random(sizeof(g_aMaleSkins));
+					PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aMaleSkins[rand];
 					ClearLines(playerid, 17); 
 									
 					SendInfoMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
@@ -785,15 +814,15 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 							
 					fid = PlayerInfo[playerid][E_CHARACTER_FACTION];
 									
-					mysql_format(ourConnection, query, sizeof(query), "INSERT INTO characters (`master_dbid`, `char_name`, `char_masters`, `pAge`, `pOrigin`, `pFaction`, `pLastSkin`, `pStory`, `pStoryTwo`, `create_date`, `create_ip`, `pPhone`, pSpawnPoint, pLastPosX, pLastPosY, pLastPosZ) VALUES(%i, '%e', '%e', '%e', '%e', '%d', '%d', '%e', '%e', '%e', '%e', %i, %d, %f, %f, %f)", AccountInfo[playerid][E_MASTERS_DBID], playerCharactersName[playerid], playerCharactersStreetName[playerid], playerCharactersAge[playerid],
-					playerCharacterOrigin[playerid], PlayerInfo[playerid][E_CHARACTER_FACTION], PlayerInfo[playerid][E_CHARACTER_LASTSKIN], playerCharacterStory[playerid][0], playerCharacterStory[playerid][1], ReturnDate(), ReturnIP(playerid), 94000+random(6999), PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT], FactionInfo[fid][E_FACTION_SPAWN][0], FactionInfo[fid][E_FACTION_SPAWN][1], FactionInfo[fid][E_FACTION_SPAWN][2]);				
+					mysql_format(ourConnection, query, sizeof(query), "INSERT INTO characters (`master_dbid`, `char_name`, `char_masters`, `pAge`, `pOrigin`, `pGender`, `pFaction`, `pLastSkin`, `pStory`, `pStoryTwo`, `create_date`, `create_ip`, `pPhone`, pSpawnPoint, pLastPosX, pLastPosY, pLastPosZ) VALUES(%i, '%e', '%e', '%e', '%e', '%d', '%d', '%d', '%e', '%e', '%e', '%e', %i, %d, %f, %f, %f)", AccountInfo[playerid][E_MASTERS_DBID], playerCharactersName[playerid], playerCharactersStreetName[playerid], playerCharactersAge[playerid],
+					playerCharacterOrigin[playerid], playerCharacterGender[playerid], PlayerInfo[playerid][E_CHARACTER_FACTION], PlayerInfo[playerid][E_CHARACTER_LASTSKIN], playerCharacterStory[playerid][0], playerCharacterStory[playerid][1], ReturnDate(), ReturnIP(playerid), 94000+random(6999), PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT], FactionInfo[fid][E_FACTION_SPAWN][0], FactionInfo[fid][E_FACTION_SPAWN][1], FactionInfo[fid][E_FACTION_SPAWN][2]);				
 					mysql_pquery(ourConnection, query); 
 									
 					SetTimerEx("RefreshCharacters", 1000, false, "i", playerid);
 				}
 				return 0;
 			}
-			case 6:
+			case 7:
 			{
 				if(GetPlayerState(playerid) != PLAYER_STATE_SPECTATING) 
 				{

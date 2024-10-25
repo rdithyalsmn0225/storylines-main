@@ -41,7 +41,7 @@ stock CollectGarbage(playerid)
                     return SendTipMessage(playerid, "Your garbage bag is full, take it to the HQ and empty it");
 
                 ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 0);
-                SendServerMessage(playerid, "[Garbageman] {cdd0d1}You've picked up rubbish, current garbage bag %d x rubbish.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]);
+                SendServerMessage(playerid, "[Garbageman] {cdd0d1}You've picked up rubbish, current garbage bag {d7d292}%d{cdd0d1} x rubbish.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]);
                 SendTipMessage(playerid, "You can empty your garbage bag in HQ by type '/dumpgarbage'");
                 return 1;
             }
@@ -68,7 +68,7 @@ CMD:dumpgarbage(playerid, params[])
             new total = (PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] * GARBAGEMAN_SALARY * 2);
 
             GiveMoney(playerid, total);
-            SendServerMessage(playerid, "[Garbageman] {cdd0d1}You've empty your garbage bag, current garbage bag %d x rubbish and earn {B3C99E}$%s{cdd0d1}.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE], FormatMoney(total));
+            SendServerMessage(playerid, "[Garbageman] {cdd0d1}You've empty your garbage bag, current garbage bag {d7d292}%d{cdd0d1} x rubbish and earn {B3C99E}$%s{cdd0d1}.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE], FormatMoney(total));
             PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] = 0;
         }
     }

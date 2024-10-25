@@ -5,7 +5,7 @@
 #define COLOR_DARKGREEN 	(0xB3C99EFF)
 
 #define COLOR_CREDITS       (0xf8b56eFF)
-
+#define COLOR_SYNTAX        (0x9fc5e8FF)
 #define COLOR_ORANGE		(0xDAA650FF)
 #define COLOR_INFO          (0x92d7a0FF)
 #define COLOR_FACTION       (0x99A5D7FF)

@@ -158,7 +158,7 @@ function:OnSetFaction(playerid, response, playerb, factionid)
 		format(str, sizeof(str), "%s set %s's faction to %d.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), factionid);
 		SendAdminMessage(4, str);
 		
-		SendInfoMessage(playerb, "You were set to faction %d by Admin %s.", factionid, ReturnSettingsName(playerid, playerid));
+		SendInfoMessage(playerb, "You were set to faction {d7d292}%d{cdd0d1} by Admin {d7d292}%s{cdd0d1}.", factionid, ReturnSettingsName(playerid, playerid));
 		
 		SaveCharacter(playerb);
 	}

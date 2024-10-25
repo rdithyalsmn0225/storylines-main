@@ -30,11 +30,11 @@ AFKCheck(playerid)
 		{
 		    if(PlayerInfo[playerid][E_CHARACTER_AFKTIME] < 120) 
 		    {
-		    	SendServerMessage(playerid, "[Afk] {cdd0d1}You are no longer marked as away from keyboard after %i seconds.", PlayerInfo[playerid][E_CHARACTER_AFKTIME]);
+		    	SendServerMessage(playerid, "[Afk] {cdd0d1}You are no longer marked as away from keyboard after {d7d292}%d{cdd0d1} seconds.", PlayerInfo[playerid][E_CHARACTER_AFKTIME]);
 			} 
 			else 
 			{
-			    SendServerMessage(playerid, "[Afk] {cdd0d1}You are no longer marked as away from keyboard after %i minutes.", PlayerInfo[playerid][E_CHARACTER_AFKTIME] / 60);
+			    SendServerMessage(playerid, "[Afk] {cdd0d1}You are no longer marked as away from keyboard after {d7d292}%d{cdd0d1} minutes.", PlayerInfo[playerid][E_CHARACTER_AFKTIME] / 60);
 			}
 			PlayerInfo[playerid][E_CHARACTER_AFK] = 0;
 		}
@@ -48,4 +48,22 @@ AFKCheck(playerid)
 	PlayerInfo[playerid][E_CHARACTER_AFKPOS][3] = cx;
 	PlayerInfo[playerid][E_CHARACTER_AFKPOS][4] = cy;
 	PlayerInfo[playerid][E_CHARACTER_AFKPOS][5] = cz;
+}
+
+CMD:afklist(playerid, params[])
+{
+	if(IsPlayerAdmins(playerid) < ADMINS_HIGH)
+	    return 0;
+
+	SendClientMessage(playerid, COLOR_GREY, "AFK List:");
+
+	foreach(new i : Player)
+	{
+	    if(PlayerInfo[i][E_CHARACTER_AFK])
+	    {
+	        SendClientMessageEx(playerid, COLOR_DARKGREEN, "(ID: %i) %s - Time: %i seconds", i, ReturnSettingsName(i, i), PlayerInfo[i][E_CHARACTER_AFKTIME]);
+		}
+	}
+
+	return 1;
 }

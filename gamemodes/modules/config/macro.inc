@@ -71,12 +71,27 @@ LoadCustomModels()
 	AddSimpleModel(-1, 19379, -2001, "misc/textdraws/idlstxt.dff", "misc/textdraws/idlstxt.txd");
 
 	//========================================Skins========================================
-	
-	AddCharModel(300, 20071, "misc/skin/lspd/lapd1.dff", "misc/skin/lspd/lapd1.txd");
-	AddCharModel(301, 20072, "misc/skin/lspd/lapd2.dff", "misc/skin/lspd/lapd2.txd");
-	AddCharModel(300, 20073, "misc/skin/lspd/lapd3.dff", "misc/skin/lspd/lapd3.txd");
-	AddCharModel(301, 20074, "misc/skin/lspd/lapd4.dff", "misc/skin/lspd/lapd4.txd");
+	AddCharModel(7, 20001, "misc/skin/citizen/bmciv1.dff", "misc/skin/citizen/bmciv1.txd");
+	AddCharModel(183, 20002, "misc/skin/citizen/bmciv2.dff", "misc/skin/citizen/bmciv2.txd");
+	AddCharModel(21, 20003, "misc/skin/citizen/bmgng1.dff", "misc/skin/citizen/bmgng1.txd");
+	AddCharModel(67, 20004, "misc/skin/citizen/hmciv1.dff", "misc/skin/citizen/hmciv1.txd");
+	AddCharModel(184, 20005, "misc/skin/citizen/hmciv2.dff", "misc/skin/citizen/hmciv2.txd");
+	AddCharModel(121, 20006, "misc/skin/citizen/mabam5.dff", "misc/skin/citizen/mabam5.txd");
+	AddCharModel(22, 20007, "misc/skin/citizen/mbciv11.dff", "misc/skin/citizen/mbciv11.txd");
+	AddCharModel(2, 20008, "misc/skin/citizen/mwacer.dff", "misc/skin/citizen/mwacer.txd");
 
+	AddCharModel(300, 20260, "misc/skin/lspd/male/amypd2.dff", "misc/skin/lspd/male/amypd2.txd");
+	AddCharModel(301, 20261, "misc/skin/lspd/male/bmopd1.dff", "misc/skin/lspd/male/bmopd1.txd");
+	AddCharModel(300, 20262, "misc/skin/lspd/male/bmypd1.dff", "misc/skin/lspd/male/bmypd1.txd");
+	AddCharModel(301, 20263, "misc/skin/lspd/male/bmypd2.dff", "misc/skin/lspd/male/bmypd2.txd");
+	AddCharModel(300, 20264, "misc/skin/lspd/male/omypd1.dff", "misc/skin/lspd/male/omypd1.txd");
+	AddCharModel(301, 20265, "misc/skin/lspd/male/fedlapd1.dff", "misc/skin/lspd/male/fedlapd1.txd");
+	AddCharModel(300, 20266, "misc/skin/lspd/male/hmypd1.dff", "misc/skin/lspd/male/hmypd1.txd");
+	AddCharModel(301, 20267, "misc/skin/lspd/male/hmypd2.dff", "misc/skin/lspd/male/hmypd2.txd");
+
+	AddCharModel(306, 20268, "misc/skin/lspd/female/ofypd1.dff", "misc/skin/lspd/female/ofypd1.txd");
+	AddCharModel(307, 20269, "misc/skin/lspd/female/wfysuit.dff", "misc/skin/lspd/female/wfysuit.txd");
+	
 	//==========================================Weapons======================================
 	AddSimpleModel(-1, 18634, -2200, "misc/weapons/hardbat.dff", "misc/weapons/hardbat.txd");
 	AddSimpleModel(-1, 18634, -2201, "misc/weapons/woodbat.dff", "misc/weapons/woodbat.txd");
@@ -274,26 +289,9 @@ LoadCustomModels()
 	AddSimpleModel(-1, 18957, -25157, "misc/cloth/Rings/silver.dff", "misc/cloth/Rings/ringtextures.txd");
 
 	//==========================================MAPSSSS==========================================
-	AddSimpleModel(-1, 5474, -25555, "maps/pizzastack/pizzastack.dff", "maps/pizzastack/pizzastack.txd");
-
-	AddSimpleModel(-1, 1923, -25567, "maps/crenshaw/crenshawfurn.dff", "maps/crenshaw/crenshawfurn.txd");
-	AddSimpleModel(-1, 1923, -25568, "maps/crenshaw/crenshawmisc.dff", "maps/crenshaw/crenshawmisc.txd");
-	AddSimpleModel(-1, 1923, -25569, "maps/crenshaw/crenshawgr.dff", "maps/crenshaw/crenshawgr.txd");
-	AddSimpleModel(-1, 8674, -25570, "maps/crenshaw/crenshawalp.dff", "maps/crenshaw/crenshawalp.txd");
-	AddSimpleModel(-1, 1923, -25571, "maps/crenshaw/crenshawex.dff", "maps/crenshaw/crenshawex.txd");
-	
-	AddSimpleModel(-1, 19379, -25596, "maps/pizzastack/pizzastack.dff", "maps/pizzastack/pizzastack.txd");
-	AddSimpleModel(-1, 19379, -25597, "maps/cluckinbell/cluckinbell1.dff", "maps/cluckinbell/cluckinbell1.txd");
-	AddSimpleModel(-1, 19379, -25598, "maps/cluckinbell/cluckinbell2.dff", "maps/cluckinbell/cluckinbell2.txd");
-	AddSimpleModel(-1, 19379, -25599, "maps/donut/donut.dff", "maps/donut/donut.txd");
-	AddSimpleModel(-1, 19379, -25600, "maps/donut/donutint.dff", "maps/donut/donutint.txd");
-	AddSimpleModel(-1, 5430, -25601, "maps/idleliquor/idleliquor.dff", "maps/idleliquor/idleliquor.txd");
-	
-	AddSimpleModel(-1, 5474, -25604, "maps/westmont/reyo_westmont1.dff", "maps/westmont/reyo_westmont1.txd");
-	AddSimpleModel(-1, 5474, -25605, "maps/westmont/reyo_westmont2.dff", "maps/westmont/reyo_westmont2.txd");
-	AddSimpleModel(-1, 5474, -25606, "maps/westmont/reyo_wm_bits.dff", "maps/westmont/reyo_wm_bits.txd");
-	AddSimpleModel(-1, 5474, -25607, "maps/westmont/w_bits2.dff", "maps/westmont/w_bits2.txd");
-	AddSimpleModel(-1, 5474, -25608, "maps/westmont/westmont_4.dff", "maps/westmont/westmont.txd");
-	AddSimpleModel(-1, 5474, -25609, "maps/westmont/westmont2.dff", "maps/westmont/westmont.txd");
+	AddSimpleModel(-1, 19475, -25555, "maps/idlewood/idlewood.dff", "maps/idlewood/idlewood.txd");
+	AddSimpleModel(-1, 19475, -25556, "maps/idlewood/alhambra_proj.dff", "maps/idlewood/alhambra_proj.txd");
+	AddSimpleModel(-1, 19475, -25557, "maps/idlewood/alhambra_floor.dff", "maps/idlewood/alhambra_floor.txd");
+	AddSimpleModel(-1, 19475, -25558, "maps/idlewood/alhambra_wall.dff", "maps/idlewood/alhambra_wall.txd"); 
     return 1;
 }

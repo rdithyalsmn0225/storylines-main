@@ -136,7 +136,7 @@ CMD:buybait(playerid, params[])
 		return SendErrorMessage(playerid, "Invalid bait amount!");
 	
 	Inventory_Add(playerid, "Fish Bait", 19566, amount);
-	SendServerMessage(playerid, "[Fishing] {cdd0d1}You have successfully purchase %d Fish bait for {B3C99E}$%s{cdd0d1}", amount, FormatMoney(amount));
+	SendServerMessage(playerid, "[Fishing] {cdd0d1}You have successfully purchase {d7d292}%d Fish bait{cdd0d1} for {B3C99E}$%s{cdd0d1}", amount, FormatMoney(amount));
 	GiveMoney(playerid, -amount);
 	return 1;
 }

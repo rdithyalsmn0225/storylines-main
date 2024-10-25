@@ -92,7 +92,7 @@ function:CutTree(playerid, id)
             else
             {
                 TreeInfo[id][E_TREE_PROGRESS] += rand;
-                SendServerMessage(playerid, "[Lumberjack] {cdd0d1}The tree cutting progress now is %d percent", TreeInfo[id][E_TREE_PROGRESS]);
+                SendServerMessage(playerid, "[Lumberjack] {cdd0d1}The tree cutting progress now is {d7d292}%d{cdd0d1} percent", TreeInfo[id][E_TREE_PROGRESS]);
                 SendTipMessage(playerid, "Keep cut the tree until the progress is 100 percent");
             }
         }
@@ -243,7 +243,7 @@ CMD:buyaxe(playerid, params[])
 
     Inventory_Add(playerid, "Axe", -2211, 1);
     GiveMoney(playerid, -250);
-    SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You bought a axe for $250.");
+    SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You bought a axe for {B3C99E}$250{cdd0d1}.");
     SendTipMessage(playerid, "To start cutting the tree(s) /timbercut using axe.");
     return 1;
 }
