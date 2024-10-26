@@ -471,6 +471,8 @@ function:OnPlayerNearPickup()
 					format(str, sizeof(str), "~b~%s~n~~w~Owned By: NPC~n~~y~Entrance Fee: $%s.~n~~w~Press 'RETURN' to enter.", BusinessInfo[id][E_BUSINESS_NAME], BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]); 
 				else if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK)
 					format(str, sizeof(str), "~b~%s~n~~w~Owned By: Goverments~n~~y~Entrance Fee: $%s.~n~~w~Press 'RETURN' to enter.", BusinessInfo[id][E_BUSINESS_NAME], BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]); 
+				else if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_RENT)
+					format(str, sizeof(str), "~b~%s~n~~w~Owned By: Goverments~n~~w~Type '/rentcars' to rent vehicle.", BusinessInfo[id][E_BUSINESS_NAME]); 
 						
 				else format(str, sizeof(str), "~b~%s~n~~y~This business is for sale price: $%s.~n~~w~Press 'RETURN' to enter.", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]), BusinessInfo[id][E_BUSINESS_LEVEL]); 
 			}

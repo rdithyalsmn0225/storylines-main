@@ -21,6 +21,42 @@ function:OnVehicleFuelUpdate()
 	}
 }
 
+function:OnVehicleRental()
+{
+	for (new i = 1; i != MAX_VEHICLES; i ++)
+	{
+		foreach(new playerid : Player)
+		{
+			VehicleInfo[i][E_VEHICLE_RENTTIMER]--;
+			if (VehicleInfo[i][E_VEHICLE_RENTTIMER] <= 0 && VehicleInfo[i][E_VEHICLE_RENTAL])
+			{
+				new delQuery[128];
+				new dbid = VehicleInfo[i][E_VEHICLE_DBID];
+			
+				mysql_format(ourConnection, delQuery, sizeof(delQuery), "DELETE FROM vehicles WHERE VehicleDBID = %i", dbid);
+				mysql_pquery(ourConnection, delQuery); 
+				
+				SendServerMessage(playerid, "[Vehicle] {cdd0d1}Your rental vehicle {d7d292}%s{cdd0d1} has been permanently deleted.", ReturnVehicleName(i)); 
+				
+				ResetVehicleVars(i); 
+				VS_RemoveAllItems(i);
+				DestroyVehicle(i); 
+				
+				PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = false;
+				PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = 0;
+				
+				for(new b = 1; b < MAX_PLAYER_VEHICLES; b++)
+				{
+					if(PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][b] == dbid)
+					{
+						PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][b] = 0;
+					}
+				}
+			}
+		}
+	}
+}
+
 stock TotalledCheck()
 {
 	static

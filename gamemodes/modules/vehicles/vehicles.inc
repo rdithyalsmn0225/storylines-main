@@ -463,6 +463,8 @@ function:Query_LoadPrivateVehicle(playerid)
 			cache_get_value_name_float(i, "VehicleHealth", VehicleInfo[vehicleid][E_VEHICLE_HEALTH]);
 			cache_get_value_name_int(i, "VehicleBody", VehicleInfo[vehicleid][E_VEHICLE_BODY]);
 			cache_get_value_name_int(i, "VehicleTire", VehicleInfo[vehicleid][E_VEHICLE_TIRE]);
+			cache_get_value_name_int(i, "VehicleRentalTimer", VehicleInfo[vehicleid][E_VEHICLE_RENTTIMER]);
+			cache_get_value_name_bool(i, "VehicleRental", VehicleInfo[vehicleid][E_VEHICLE_RENTAL]);
 			for(new d = 1; d < 5; d++)
 			{
 				format(str, sizeof(str), "VehicleLastDrivers%d", d);
@@ -865,7 +867,7 @@ stock ShowDealerAppend(playerid)
 	strcat(str, "Colors\n");
 	strcat(str, "{FFFF00}Purchase Vehicle\n"); 
 			
-	ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_APPEND, DIALOG_STYLE_LIST, caption, str, "Append", "<<"); 
+	Dialog_Show(playerid, DealershipAppend, DIALOG_STYLE_LIST, caption, str, "Append", "<<"); 
 	return 1; 
 }
 

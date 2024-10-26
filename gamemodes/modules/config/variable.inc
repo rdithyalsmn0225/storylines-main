@@ -339,12 +339,14 @@ enum E_VEHICLE_DATA
 	E_VEHICLE_WINDOWS,
 	E_VEHICLE_BODY,
 	E_VEHICLE_TIRE,
+	E_VEHICLE_RENTTIMER,
 	E_VEHICLE_MODS[16],
 	E_VEHICLE_OBJECTS[6],
 	E_VEHICLE_PLATES[32], 
 	E_VEHICLE_RADIOURL[128],
 	E_VEHICLE_LASTDRIVER[5],
 	E_VEHICLE_LASTPASSENGERS[5],
+	bool:E_VEHICLE_RENTAL,
 	bool:E_VEHICLE_EXISTS,
 	bool:E_VEHICLE_LOCKED,
 	bool:E_VEHICLE_IMPOUND,
@@ -1117,7 +1119,7 @@ new BusinessActor[][E_BUSINESS_BACTOR] =
 new cameraIndex[MAX_PLAYERS];
 new cameraTimer[MAX_PLAYERS];
 
-new possiblE_VEHICLE_PLATES[][] = 
+new possible_vehicle_plates[][] = 
 	{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 	
 new const JobsInfo[][E_JOBS_LOCATIONS] =

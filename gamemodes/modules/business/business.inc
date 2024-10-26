@@ -92,7 +92,7 @@ stock BusinessRefresh(businessid)
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /haircut to see list style haircut.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		   
-		case BUSINESS_TYPE_FURNITURE:
+		case BUSINESS_TYPE_RENT:
 		{
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: Press 'N' to pay items to clerk.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
@@ -335,7 +335,7 @@ stock SendBusinessType(playerid, id)
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /haircut to see haircut style list.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
-		case BUSINESS_TYPE_FURNITURE:
+		case BUSINESS_TYPE_RENT:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /props to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);

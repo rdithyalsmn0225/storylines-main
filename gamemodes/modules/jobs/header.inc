@@ -65,8 +65,10 @@ stock InsertJobsPoint()
 {
     for(new i = 0; i < sizeof(JobsInfo); i++)
     {
+        new str[512];
         CreateDynamicPickup(1210, 1, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], -1, -1, -1, 5.0);
-        CreateDynamic3DTextLabel("[Jobs Point]\n{ffffff}Available commands: /takejobs /quitjobs", COLOR_DARKGREEN, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], 5.0);
+        format(str, sizeof(str), "[%s]\n{ffffff}Available commands: /takejobs /quitjobs", JobsInfo[i][E_JOBSNAMES]);
+        CreateDynamic3DTextLabel(str, COLOR_DARKGREEN, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], 5.0);
     }
     return 1;
 }

@@ -104,8 +104,9 @@ main ()  {}
 #include "modules\vehicles\vehicles_timer.inc"
 #include "modules\vehicles\vehicles_storage.inc"
 #include "modules\vehicles\vehicles_dealership.inc"
+#include "modules\vehicles\vehicles_rental.inc"
 #include "modules\vehicles\vehicles_commands.inc"
-#include "modules\vehicles\vehicle_modshop.inc"
+#include "modules\vehicles\vehicles_modshop.inc"
 
 #include "modules\faction\factions.inc"
 #include "modules\faction\factions_commands.inc"
@@ -208,6 +209,7 @@ public OnGameModeInit()
 	SetTimer("OnPlayerNearPickup", 5000, true);
 	SetTimer("OnVehicleFuelUpdate", 30000, true);
 	SetTimer("OnVehicleUpdate", 1000, true);
+	SetTimer("OnVehicleRental", 60000, true);
 	SetTimer("MinutesTimes", 60000, true);
 	SetTimer("WeaponUpdate", 1000, true);
 	SetTimer("SprayTagsTimer", 60000, true);
@@ -216,8 +218,7 @@ public OnGameModeInit()
 	SetTimer("TreeTimers", 1000, true);
 	SetTimer("TaxiTimers", 1000, true);
 	SetTimer("PacketTimers", 1800000, true);
-	//SetTimer("GarbageTimers", 180000, true);
-	GarbageTimers();
+	SetTimer("GarbageTimers", 600000, true);
 
 	//Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
