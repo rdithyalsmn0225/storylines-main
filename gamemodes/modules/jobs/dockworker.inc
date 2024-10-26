@@ -2,11 +2,11 @@ InsertDocksWorkers()
 {
     for(new i; i < sizeof(Dockworker_Store); i++)
     {
-        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /storecargo", COLOR_POINT, Dockworker_Store[i][0],Dockworker_Store[i][1], Dockworker_Store[i][2], 5.0);
+        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /storecargo", COLOR_DARKGREEN, Dockworker_Store[i][0],Dockworker_Store[i][1], Dockworker_Store[i][2], 5.0);
     }
     for(new i; i < sizeof(Dockworker_Collect); i++)
     {
-        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /takecargo", COLOR_POINT, Dockworker_Collect[i][0],Dockworker_Collect[i][1], Dockworker_Collect[i][2], 5.0);
+        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /takecargo", COLOR_DARKGREEN, Dockworker_Collect[i][0],Dockworker_Collect[i][1], Dockworker_Collect[i][2], 5.0);
     }
     return 1;
 }

@@ -61,15 +61,15 @@ ApplyAnimationEx(playerid, animlib[], animname[], Float:fDelta, loop, lockx, loc
 
 CMD:animhelp(playerid, params[])
 {
-	SendClientMessage(playerid, COLOR_HEADER, "Animations List:");
-	SendClientMessage(playerid, COLOR_WHITE, "/dance, /wave, /point, /salute, /laugh, /cry, /deal, /sit, /lay, /fall, /handsup.");
-	SendClientMessage(playerid, COLOR_GREY, "/tired, /cower, /crack, /injured, /reload, /aim, /bomb, /checktime, /celebrate.");
-	SendClientMessage(playerid, COLOR_WHITE, "/dodge, /stop, /scratch, /what, /wash, /come, /hitch, /cpr, /slapass, /drunk.");
-	SendClientMessage(playerid, COLOR_GREY, "/shit, /fucku, /taichi, /shifty, /smoke, /lean, /wank, /crossarms, /angry.");
-	SendClientMessage(playerid, COLOR_WHITE, "/lowrider, /vlowrider, /lrtalk, idles, /flip, /facepalm, /pistolwhip, /jogging.");
-	SendClientMessage(playerid, COLOR_GREY, "/cmon, /recruit, /gsign, /rap, /dj, /fuckme, /bj, /kiss, /piss, /robman.");
-	SendClientMessage(playerid, COLOR_WHITE, "/getup, /gkick, /plunger, /swipe, /puke.");
-	SendClientMessage(playerid, COLOR_GREY, "/stopanim.");
+	SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Animations List __________|");
+	SendClientMessage(playerid, COLOR_ORANGE, "/dance, /wave, /point, /salute, /laugh, /cry, /deal, /sit, /lay, /fall, /handsup.");
+	SendClientMessage(playerid, COLOR_ORANGE, "/tired, /cower, /crack, /injured, /reload, /aim, /bomb, /checktime, /celebrate.");
+	SendClientMessage(playerid, COLOR_ORANGE, "/dodge, /stop, /scratch, /what, /wash, /come, /hitch, /cpr, /slapass, /drunk.");
+	SendClientMessage(playerid, COLOR_ORANGE, "/shit, /fucku, /taichi, /shifty, /smoke, /lean, /wank, /crossarms, /angry.");
+	SendClientMessage(playerid, COLOR_ORANGE, "/lowrider, /vlowrider, /lrtalk, /idles, /flip, /facepalm, /pistolwhip, /jogging.");
+	SendClientMessage(playerid, COLOR_ORANGE, "/cmon, /recruit, /gsign, /rap, /dj, /fuckme, /bj, /kiss, /piss, /robman.");
+	SendClientMessage(playerid, COLOR_ORANGE, "/getup, /gkick, /plunger, /swipe, /puke.");
+	SendClientMessage(playerid, COLOR_ORANGE, "/stopanim.");
 	return 1;
 }
 

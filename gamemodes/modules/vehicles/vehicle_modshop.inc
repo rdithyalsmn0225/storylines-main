@@ -1,10 +1,10 @@
 InsertModshops()
 {
-    CreateDynamic3DTextLabel("[ModShops]\n{ffffff}Available Commands: '/mods'", COLOR_POINT, 2331.8369,-1991.6169,13.5745, 5.0);
+    CreateDynamic3DTextLabel("[ModShops]\n{ffffff}Available Commands: '/mods'", COLOR_DARKGREEN, 2331.8369,-1991.6169,13.5745, 5.0);
     CreateDynamicPickup(1239, 1, 2331.8369,-1991.6169,13.5745, -1, -1, -1, 5.0);
-    CreateDynamic3DTextLabel("[ModShops]\n{ffffff}Available Commands: '/mods'", COLOR_POINT, 1619.4454,-1889.9126,13.5482, 5.0);
+    CreateDynamic3DTextLabel("[ModShops]\n{ffffff}Available Commands: '/mods'", COLOR_DARKGREEN, 1619.4454,-1889.9126,13.5482, 5.0);
     CreateDynamicPickup(1239, 1, 1619.4454,-1889.9126,13.5482, -1, -1, -1, 5.0);
-    CreateDynamic3DTextLabel("[ModShops]\n{ffffff}Available Commands: '/mods'", COLOR_POINT, 1828.9535,-1398.1777,13.4297, 5.0);
+    CreateDynamic3DTextLabel("[ModShops]\n{ffffff}Available Commands: '/mods'", COLOR_DARKGREEN, 1828.9535,-1398.1777,13.4297, 5.0);
     CreateDynamicPickup(1239, 1, 1828.9535,-1398.1777,13.4297, -1, -1, -1, 5.0);
 }
 

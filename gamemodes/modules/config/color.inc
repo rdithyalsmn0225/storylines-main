@@ -11,7 +11,6 @@
 #define COLOR_FACTION       (0x99A5D7FF)
 #define COLOR_GAMES         (0xb6b9e1FF)
 #define COLOR_HEADER		(0x90D7F0FF)
-#define COLOR_POINT         (0xa0d0ffFF)
 
 #define COLOR_YELLOW 		(0xFFFF00FF)
 
@@ -46,7 +45,7 @@
 #define COLOR_PMRECEIVED 	(0xFFDC18FF)
 #define COLOR_PMSENT 		(0xEEE854FF)
 
-#define COLOR_ADMIN         (0xAFD0EDFF)
+#define COLOR_ADMIN         (0xF9CB9CFF)
 
 #define COLOR_CYAN 			(0x00FFFFFF)
 #define COLOR_PINK			(0xFF8282FF)

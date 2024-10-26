@@ -66,7 +66,7 @@ stock InsertJobsPoint()
     for(new i = 0; i < sizeof(JobsInfo); i++)
     {
         CreateDynamicPickup(1210, 1, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], -1, -1, -1, 5.0);
-        CreateDynamic3DTextLabel("[Jobs Point]\n{ffffff}Available commands: /takejobs /quitjobs", COLOR_POINT, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], 5.0);
+        CreateDynamic3DTextLabel("[Jobs Point]\n{ffffff}Available commands: /takejobs /quitjobs", COLOR_DARKGREEN, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], 5.0);
     }
     return 1;
 }
@@ -193,7 +193,7 @@ CMD:takejobs(playerid, params[])
                 return SendErrorMessage(playerid, "You already have jobs.");
 
             PlayerInfo[playerid][E_CHARACTER_JOBS] = i;
-            SendServerMessage(playerid, "[Jobs] {cdd0d1}You are now a {d7d292}%d{cdd0d1} use /help to see jobs commands.", JobsInfo[i][E_JOBSNAMES]);
+            SendServerMessage(playerid, "[Jobs] {cdd0d1}You are now a {d7d292}%s{cdd0d1} use /help to see jobs commands.", JobsInfo[i][E_JOBSNAMES]);
             SaveCharacter(playerid);
         }
     }

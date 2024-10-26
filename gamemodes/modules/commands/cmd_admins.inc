@@ -70,10 +70,10 @@ CMD:a(playerid, params[])
 	
 	if(strlen(params) > 89)
 	{
-		SendAdminMessageEx(COLOR_ADMIN, 1, "A-CHAT: %s (%s): %.89s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
-		SendAdminMessageEx(COLOR_ADMIN, 1, "A-CHAT: %s (%s): ... %s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params[89]);
+		SendAdminMessageEx(COLOR_ADMIN, 1, "((ADMIN: %s (%s): %.89s))", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
+		SendAdminMessageEx(COLOR_ADMIN, 1, "((ADMIN: %s (%s): ... %s))", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params[89]);
 	}
-	else SendAdminMessageEx(COLOR_ADMIN, 1, "A-CHAT: %s (%s): %s", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
+	else SendAdminMessageEx(COLOR_ADMIN, 1, "((ADMIN: %s (%s): %s))", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
 	return 1;
 }
 

@@ -372,7 +372,7 @@ CMD:tackle(playerid, params[])
 
 TacklePlayer(playerid, victimid)
 {
-	ApplyAnimationEx(victimid, "PED", "BIKE_fall_off", 4.1, 0, 0, 0, 0, 0);
+	ApplyAnimationEx(victimid, "PED", "BIKE_fall_off", 4.1, 0, 1, 1, 1, 0);
 
  	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s runs at %s and tries to tackle them to the ground.", ReturnSettingsName(playerid, victimid), ReturnSettingsName(victimid, playerid));
 	

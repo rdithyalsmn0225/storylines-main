@@ -7,11 +7,11 @@ InsertDealership()
     CreateDynamicPickup(1239, 1, 2684.1277,-2515.6733,13.1552, -1, -1, -1, 5.0); //Vans
 	CreateDynamicPickup(1239, 1, 666.1486,-1419.0734,14.0272, -1, -1, -1, 5.0);
 
-	CreateDynamic3DTextLabel("[Bikes Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_POINT, 684.6581,-1570.5861,14.2422, 5.0);
-	CreateDynamic3DTextLabel("[Two Door Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_POINT, 2132.0190,-1149.9902,24.2088, 5.0);
-	CreateDynamic3DTextLabel("[Four Door Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_POINT, 1629.6158,-1903.5123,13.5530, 5.0);
-	CreateDynamic3DTextLabel("[Industry Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_POINT, 2684.1277,-2515.6733,13.1552, 5.0);
-	CreateDynamic3DTextLabel("[Taxi Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_POINT, 666.1486,-1419.0734,14.0272, 5.0);
+	CreateDynamic3DTextLabel("[Bikes Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_DARKGREEN, 684.6581,-1570.5861,14.2422, 5.0);
+	CreateDynamic3DTextLabel("[Two Door Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_DARKGREEN, 2132.0190,-1149.9902,24.2088, 5.0);
+	CreateDynamic3DTextLabel("[Four Door Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_DARKGREEN, 1629.6158,-1903.5123,13.5530, 5.0);
+	CreateDynamic3DTextLabel("[Industry Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_DARKGREEN, 2684.1277,-2515.6733,13.1552, 5.0);
+	CreateDynamic3DTextLabel("[Taxi Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_DARKGREEN, 666.1486,-1419.0734,14.0272, 5.0);
 }
 
 CMD:carbuy(playerid, params[])
