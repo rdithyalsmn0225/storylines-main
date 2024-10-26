@@ -394,8 +394,6 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
 
 	PlayerInfo[playerid][E_CHARACTER_TUTORIALSTEP] = 0;
-
-	PlayerInfo[playerid][E_CHARACTER_VOICELINECD] = 0;
 	return 1;
 }
 
@@ -1196,25 +1194,6 @@ stock SetFacingPoint(actorid, Float:x, Float:y)
     else angle = (floatabs(angle) - 180.0);
 
     return SetDynamicActorFacingAngle(actorid, angle);
-}
-
-PlayerPlaySoundEx(playerid, sound, Float:range=20.0)
-{
-	new
-	    Float:x,
-	    Float:y,
-	    Float:z;
-
-	GetPlayerPos(playerid, x, y, z);
-
-	foreach (new i : Player)
-	{
-		if(IsPlayerInRangeOfPoint(i, range, x, y, z)) 
-		{
-			PlayerPlaySound(i, sound, x, y, z);
-		}
-	}
-	return 1;
 }
 
 stock SetPlayerPosEx(playerid, Float:x, Float:y, Float:z)

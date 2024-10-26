@@ -74,6 +74,22 @@ IsWindowedVehicle(vehicleid)
     return (g_aWindowStatus[modelid - 400]);
 }
 
+stock IsDoorVehicle(vehicleid)
+{
+	switch (GetVehicleModel(vehicleid))
+	{
+		case 400..424, 426..429, 431..440, 442..445, 451, 455, 456, 458, 459, 466, 467, 470, 474, 475:
+		    return 1;
+
+		case 477..480, 482, 483, 486, 489, 490..492, 494..496, 498..500, 502..508, 514..518, 524..529, 533..536:
+		    return 1;
+
+		case 540..547, 549..552, 554..562, 565..568, 573, 575, 576, 578..580, 582, 585, 587..589, 596..605, 609:
+			return 1;
+	}
+	return 0;
+}
+
 stock GetVehicleEngineStatus(vehicleid)
 {
 	static
@@ -114,6 +130,22 @@ stock IsEngineVehicle(vehicleid)
         return 0;
 
     return (g_aEngineStatus[modelid - 400]);
+}
+
+stock GetVehicleFromBehind(vehicleid)
+{
+	static
+	    Float:fCoords[7];
+
+	GetVehiclePos(vehicleid, fCoords[0], fCoords[1], fCoords[2]);
+	GetVehicleZAngle(vehicleid, fCoords[3]);
+
+	for (new i = 1; i != MAX_VEHICLES; i ++) if (i != vehicleid && GetVehiclePos(i, fCoords[4], fCoords[5], fCoords[6]))
+	{
+		if (floatabs(fCoords[0] - fCoords[4]) < 6 && floatabs(fCoords[1] - fCoords[5]) < 6 && floatabs(fCoords[2] - fCoords[6]) < 6)
+			return i;
+	}
+	return INVALID_VEHICLE_ID;
 }
 
 IsABike(vehicleid)

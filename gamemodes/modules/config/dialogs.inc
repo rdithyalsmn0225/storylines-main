@@ -1660,7 +1660,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Roleplay Commands __________|");
 						SendClientMessage(playerid, COLOR_ORANGE, "/me, /do, /ame, /my, /amy, /s(hout), /l(ow), /b, /pm, /deposit, /withdraw");
-						SendClientMessage(playerid, COLOR_ORANGE, "/balance, /license, /animhelp, /handshake, /frisk, /voicelines");
+						SendClientMessage(playerid, COLOR_ORANGE, "/balance, /license, /animhelp, /handshake, /frisk");
 					}
 					case 2:
 					{

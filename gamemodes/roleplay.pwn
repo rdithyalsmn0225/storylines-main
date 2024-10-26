@@ -66,8 +66,6 @@ main ()  {}
 
 #include "modules\anims\anims.inc"
 
-#include "modules\voicelines\voicelines.inc"
-
 #include "modules\players\damages.inc"
 #include "modules\players\phone.inc"
 #include "modules\players\paycheck.inc"
@@ -1946,6 +1944,12 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 		case 0:
 		{
 			amount = 2.0;
+
+			if(TackleMode[playerid])
+			{
+				TacklePlayer(playerid, damagedid);
+				return 0;
+			}
 		}
 		//Baseball bat
 		case 4:
@@ -3323,6 +3327,23 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	    PlayerJump[playerid][JumpPressed] = gettime();
 	}
 
+	//Tackle
+	if(PRESSED(KEY_FIRE))
+	{
+		new weaponid = GetPlayerWeapon(playerid);
+
+	    if(weaponid == 0)
+		{
+			if(TackleMode[playerid])
+			{
+				if(GetPlayerAnimationIndex(playerid) != 1120 && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
+				{
+					ApplyAnimationEx(playerid, "ped", "EV_dive", 4.1, 0, 0, 0, 0, 0);
+					return true;
+				}
+			}
+		}
+	}
 	// CBUG:
 	if(!pCBugging[playerid] && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
 	{

@@ -342,6 +342,44 @@ CMD:offduty(playerid, params[])
 	return 1;
 }
 
+CMD:tackle(playerid, params[])
+{
+	if(!IsPlayerFaction(playerid))
+		return SendErrorMessage(playerid, "You aren't in any faction.");
+
+    if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE)
+	    return SendErrorMessage(playerid, "You can't use this command."); 
+
+	if(TackleMode[playerid])
+	{
+	    TackleMode[playerid] = false;
+
+	    SendServerMessage(playerid, "[Tackle] {cdd0d1}Tackling mode has been disabled.");
+	    return 1;
+	}
+
+	TackleMode[playerid] = true;
+
+	SendServerMessage(playerid, "[Tackle] {cdd0d1}Tackling mode has been enabled.");
+
+	SendTipMessage(playerid, "If you punch someone, a tackle attempt will be registered.");
+	SendTipMessage(playerid, "The player you hit will have a message flashed to them indicating that a tackle has been attempted.");
+	SendTipMessage(playerid, "An automated emote will be sent in the chat that notifies the other players of the attempt.");
+	SendTipMessage(playerid, "You will be forced into a diving animation to prevent misuse of the command.");
+	SendTipMessage(playerid, "If a player doesn't role-play the tackle, make a report in-game.");
+	return 1;
+}
+
+TacklePlayer(playerid, victimid)
+{
+	ApplyAnimationEx(victimid, "PED", "BIKE_fall_off", 4.1, 0, 0, 0, 0, 0);
+
+ 	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s runs at %s and tries to tackle them to the ground.", ReturnSettingsName(playerid, victimid), ReturnSettingsName(victimid, playerid));
+	
+	ShowBoxMessage(victimid, "~r~YOU HAVE BEEN TACKLED.", 5);
+	return 1;
+}
+
 CMD:handcuff(playerid, params[])
 {
 	if(!IsPlayerFaction(playerid))
@@ -456,7 +494,7 @@ CMD:flocker(playerid, params[])
 	if(!IsPlayerFaction(playerid))
 		return SendErrorMessage(playerid, "You aren't in any faction.");
 		
-	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE || ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
+	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
 		return SendErrorMessage(playerid, "You can't use this command."); 
 		
 	if(!IsPlayerInRangeOfPoint(playerid, 5.0, FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][0], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][1], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][2]))

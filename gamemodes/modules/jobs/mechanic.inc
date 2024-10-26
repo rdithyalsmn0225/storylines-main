@@ -1,3 +1,44 @@
+CMD:untow(playerid, params[])
+{
+	if (GetVehicleModel(GetPlayerVehicleID(playerid)) != 525)
+	    return SendErrorMessage(playerid, "You are not driving a tow truck.");
+
+	if (GetPlayerState(playerid) != PLAYER_STATE_DRIVER)
+	    return SendErrorMessage(playerid, "You are not the driver.");
+
+	new
+	    trailerid = GetVehicleTrailer(GetPlayerVehicleID(playerid));
+
+    if (!trailerid)
+	    return SendErrorMessage(playerid, "There is no vehicle hooked onto the truck.");
+
+	DetachTrailerFromVehicle(GetPlayerVehicleID(playerid));
+	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s has unhooked the %s from the tow truck.", ReturnSettingsName(playerid, playerid), ReturnVehicleModelName(GetVehicleModel(trailerid)));
+
+	return 1;
+}
+
+CMD:tow(playerid, params[])
+{
+	if (GetVehicleModel(GetPlayerVehicleID(playerid)) != 525)
+	    return SendErrorMessage(playerid, "You are not driving a tow truck.");
+
+	if (GetPlayerState(playerid) != PLAYER_STATE_DRIVER)
+	    return SendErrorMessage(playerid, "You are not the driver.");
+
+	new vehicleid = GetVehicleFromBehind(GetPlayerVehicleID(playerid));
+
+	if (vehicleid == INVALID_VEHICLE_ID)
+	    return SendErrorMessage(playerid, "There is no vehicle in range.");
+
+	if (!IsDoorVehicle(vehicleid))
+	    return SendErrorMessage(playerid, "You can't tow this vehicle.");
+
+	AttachTrailerToVehicle(vehicleid, GetPlayerVehicleID(playerid));
+	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s has hooked a %s onto their tow truck.", ReturnSettingsName(playerid, playerid), ReturnVehicleModelName(GetVehicleModel(vehicleid)));
+	return 1;
+}
+
 CMD:mechmenu(playerid, params[])
 {
     if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_MECHANIC)
