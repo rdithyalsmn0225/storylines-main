@@ -187,8 +187,8 @@ CMD:createbusiness(playerid, params[])
 	if(sscanf(params, "i", type_id))
 	{
 		SendUsageMessage(playerid, "/createbusiness business id [business type]"); 
-		SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Acidlabs, 4. Gunstore, 5. Club, 6. Bank, 7. General.");
-		SendClientMessage(playerid, COLOR_WHITE, "Types: 8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Rental, 13. Gym."); 
+		SendTipMessage(playerid, "1. Dinner's, 2. Bar, 3. Acidlabs, 4. Gunstore, 5. Club, 6. Bank, 7. General.");
+		SendTipMessage(playerid, "8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Rental, 13. Gym."); 
 		return 1;
 	}
 	
@@ -226,8 +226,8 @@ CMD:editbusiness(playerid, params[])
 	if(sscanf(params, "is[90]S()[90]", id, astr, bstr))
 	{
 		SendUsageMessage(playerid, "/editbusiness [business ID] [configuration]");
-		SendClientMessage(playerid, COLOR_WHITE, "entrance, point, fuel, type, level, mapicon");
-		SendClientMessage(playerid, COLOR_WHITE, "entrancefee, name, marketprice"); 
+		SendTipMessage(playerid, "entrance, interior, point, fuel, type, level");
+		SendTipMessage(playerid, "mapicon, entrancefee, name, marketprice, actor"); 
 		return 1;
 	}
 	
@@ -237,6 +237,10 @@ CMD:editbusiness(playerid, params[])
 	if(!strcmp(astr, "entrance"))
 	{
 		ConfirmDialog(playerid, "Confirmation", "Are you sure you want to change this businesses entrance?", "OnBusinessEntranceChange", id); 
+	}
+	else if(!strcmp(astr, "interior"))
+	{
+		ConfirmDialog(playerid, "Confirmation", "Are you sure you want to change this businesses entrance?", "OnBusinessInteriorChange", id); 
 	}
 	else if(!strcmp(astr, "point"))
 	{
@@ -250,6 +254,10 @@ CMD:editbusiness(playerid, params[])
 	{
 		ConfirmDialog(playerid, "Confirmation", "Are you sure you want to change this businesses gas station?", "OnBusinessGasStationChange", id); 
 	}
+	else if(!strcmp(astr, "actor"))
+	{
+		ConfirmDialog(playerid, "Confirmation", "Are you sure you want to change this businesses gas station?", "OnBusinessActorChange", id); 
+	}
 	else if(!strcmp(astr, "type"))
 	{
 		new type;
@@ -257,8 +265,8 @@ CMD:editbusiness(playerid, params[])
 		if(sscanf(bstr, "i", type))
 		{
 			SendUsageMessage(playerid, "/editbusiness %i [business type]"); 
-			SendClientMessage(playerid, COLOR_WHITE, "Types: 1. Dinner's, 2. Bar, 3. Acidlabs, 4. Gunstore, 5. Club, 6. Bank, 7. General.");
-			SendClientMessage(playerid, COLOR_WHITE, "Types: 8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Rental, 13. Gym."); 
+			SendTipMessage(playerid, "1. Dinner's, 2. Bar, 3. Acidlabs, 4. Gunstore, 5. Club, 6. Bank, 7. General.");
+			SendTipMessage(playerid, "8. Clothes, 9. Dealership, 10. DMV, 11. Barbershop, 12. Rental, 13. Gym."); 
 			return 1;
 		}
 

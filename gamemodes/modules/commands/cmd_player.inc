@@ -473,7 +473,7 @@ CMD:haircut(playerid, params[])
 		{
 			format(str, sizeof(str), "%s%d\n", str, g_aHaircut[i]);
 		}
-		Dialog_Show(playerid, Haircuts, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+		Dialog_Show(playerid, Haircuts, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business.");
 	return 1;
@@ -576,7 +576,7 @@ CMD:setchannel(playerid, params[])
 	if(sscanf(params, "ii", channel, slot))
 	{
 		SendUsageMessage(playerid, "/setchannel [channel] [slot]"); 
-		SendClientMessage(playerid, COLOR_WHITE, "/radiochannel to see LSPD Channel List"); 
+		SendTipMessage(playerid, "/radiochannel to see LSPD Channel List"); 
 		return 1;
 	}
 		
@@ -869,7 +869,7 @@ CMD:setspawn(playerid, params[])
 	if(sscanf(params, "i", id))
 	{
 		SendUsageMessage(playerid, "/setspawn [spawn id]");
-		SendClientMessage(playerid, COLOR_WHITE, "1. Hoodrats, 2. Last Position, 3. Faction");
+		SendTipMessage(playerid, "1. Hoodrats, 2. Last Position, 3. Faction");
 		return 1;
 	}
 	
@@ -1236,7 +1236,7 @@ CMD:sms(playerid, params[])
 		return SendErrorMessage(playerid, "You can't use your phone right now."); 
 		
 	if(playerText[playerid])
-		return SendClientMessage(playerid, COLOR_WHITE, "Please Wait."); 
+		return SendClientMessage(playerid, COLOR_GREY, "Please Wait..."); 
 		
 	if(sscanf(params, "is[128]", phone_number, text))
 		return SendUsageMessage(playerid, "/sms [phone number] [text]"); 
@@ -2266,7 +2266,7 @@ CMD:approve(playerid, params[])
 	if (isnull(params))
  	{
 	 	SendUsageMessage(playerid, "/approve [name]");
-		SendClientMessage(playerid, COLOR_WHITE, "faction, frisk, handshake");
+		SendTipMessage(playerid, "faction, frisk, handshake");
 		return 1;
 	}
 	if (!strcmp(params, "faction", true) /*&& PlayerInfo[playerid][E_CHARACTER_FRISKOFFER] != INVALID_PLAYER_ID*/)

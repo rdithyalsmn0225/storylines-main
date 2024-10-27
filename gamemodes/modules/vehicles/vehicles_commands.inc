@@ -103,7 +103,7 @@ CMD:cardespawn(playerid, params[])
 	if(!IsPlayerInRangeOfPoint(playerid, 5.0, VehicleInfo[vehicleid][E_VEHICLE_POS][0], VehicleInfo[vehicleid][E_VEHICLE_POS][1], VehicleInfo[vehicleid][E_VEHICLE_POS][2]))
 	{
 		SendServerMessage(playerid, "[Vehicle] {cdd0d1}You have to be at your vehicle's parking place.");
-		SendClientMessage(playerid, COLOR_WHITE, "Follow the marker to your parking.");
+		SendTipMessage(playerid, "Follow the marker to your parking.");
 		
 		GPS_SetPlayerRaceCheckPoint(playerid, 1, VehicleInfo[vehicleid][E_VEHICLE_POS][0], VehicleInfo[vehicleid][E_VEHICLE_POS][1], VehicleInfo[vehicleid][E_VEHICLE_POS][2], 0.0, 0.0, 0.0);
 		return 1;
@@ -128,7 +128,7 @@ CMD:cardespawn(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = false; 
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = INVALID_VEHICLE_ID;
 		
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You parked your {d7d292}%d{cdd0d1}.", ReturnVehicleName(vehicleid));
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You parked your {d7d292}%s{cdd0d1}.", ReturnVehicleName(vehicleid));
 		
 	SaveVehicle(vehicleid);
 		

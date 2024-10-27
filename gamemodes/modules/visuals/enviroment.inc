@@ -1,15 +1,6 @@
 new tmpobjid;
 
 //Static
-new GSF_Vehicles[8];
-new KTB_Vehicles[5];
-new JB_Vehicles[7];
-new SBF_Vehicles[8];
-new VLA_Vehicles[6];
-new ELSV_Vehicles[6];
-new FYB_Vehicles[7];
-new TDB_Vehicles[6];
-new TDF_Vehicles[6];
 new g_Vehicle[100];
 new Jobs_vehicles[20];
 new LSPDVehicles[30];

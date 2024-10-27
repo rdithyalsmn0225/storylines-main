@@ -793,7 +793,7 @@ Dialog:BuySkins(playerid, response, listitem, inputtext[])
 					{
 						format(str, sizeof(str), "%s%d\n", str, g_aMaleSkins[i]);
 					}
-					Dialog_Show(playerid, BuyMaleSkinsModel, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+					Dialog_Show(playerid, BuyMaleSkinsModel, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
 				}
 				else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 				{
@@ -802,7 +802,7 @@ Dialog:BuySkins(playerid, response, listitem, inputtext[])
 					{
 						format(str, sizeof(str), "%s%d\n", str, g_aFemaleSkins[i]);
 					}
-					Dialog_Show(playerid, BuyFemaleSkinsModel, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+					Dialog_Show(playerid, BuyFemaleSkinsModel, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
 				}
 			}
 			case 1:
@@ -817,7 +817,7 @@ Dialog:BuySkins(playerid, response, listitem, inputtext[])
 				{
 					format(str, sizeof(str), "%s%d\n", str, g_aClothingCustom[i]);
 				}
-				Dialog_Show(playerid, BuyAccModel, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+				Dialog_Show(playerid, BuyAccModel, DIALOG_STYLE_PREVIEW_MODEL, "Choose your clothing:", str, "Select", "Close");
 			}
 		}
 	}

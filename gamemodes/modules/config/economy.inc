@@ -1,6 +1,6 @@
 //SALARY JOBS
 #define GARBAGEMAN_SALARY       5
-#define DOCKWORKER_SALARY       25
+#define DOCKWORKER_SALARY       15
 #define FISHING_SALARY          10
 #define LUMBERJACK_SALARY       25
 

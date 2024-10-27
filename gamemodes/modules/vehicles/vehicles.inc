@@ -569,18 +569,23 @@ function:Query_ShowVehicleList(playerid)
 		vehicleDBID,
 		vehicleModel,
 		vehiclePlates[32],
+		vehicleRentalTimer,
+		bool:vehicleRental,
 		bool:isSpawned = false,
-		color[512]
+		color[512],
+		rent[512]
 	;
 
 	new dialogText[1024]; 
-	format(dialogText, sizeof(dialogText), "ID\tModel\tPlate\tStatus\n");
+	format(dialogText, sizeof(dialogText), "ID\tModel\tPlate\tStatus\tRental\n");
 
 	for (new i = 0; i < rows; i++)
 	{
 		cache_get_value_name_int(i, "VehicleDBID", vehicleDBID);
 		cache_get_value_name_int(i, "VehicleModel", vehicleModel);
 		cache_get_value_name(i, "VehiclePlates", vehiclePlates, sizeof(vehiclePlates));
+		cache_get_value_name_bool(i, "VehicleRental", vehicleRental);
+		cache_get_value_name_int(i, "VehicleRentalTimer", vehicleRentalTimer);
 
 		isSpawned = false;
 		for (new id = 1; id < MAX_PLAYER_VEHICLES; id++)
@@ -596,10 +601,15 @@ function:Query_ShowVehicleList(playerid)
 			format(color, sizeof(color), "{B3C99E}Spawned");
 		else
 			format(color, sizeof(color), "{FF6347}Despawned");
+			
+		if(vehicleRental)
+			format(rent, sizeof(rent), "{FF6347}Rented (%i Minutes)", vehicleRentalTimer);
+		else
+			format(rent, sizeof(rent), "{B3C99E}Owned");
 
 		format(dialogText, sizeof(dialogText),
-			"%s%d\t%s\t%s\t%s\n",
-			dialogText, vehicleDBID, ReturnVehicleModelName(vehicleModel), vehiclePlates, color);
+			"%s%s\t%s\t%s\t%s\n",
+			dialogText, ReturnVehicleModelName(vehicleModel), vehiclePlates, color, rent);
 	}
 
 	Dialog_Show(playerid, VehicleList, DIALOG_STYLE_TABLIST_HEADERS, "Your Vehicles:", dialogText, "Spawn", "Close");
@@ -884,6 +894,14 @@ stock IsABoat(vehicleid)
 {
 	switch (GetVehicleModel(vehicleid)) {
 		case 430, 446, 452, 453, 454, 472, 473, 484, 493, 595: return 1;
+	}
+	return 0;
+}
+
+stock IsAPolice(vehicleid)
+{
+	switch (GetVehicleModel(vehicleid)) {
+		case 596, 598, 599, 597, 427: return 1;
 	}
 	return 0;
 }

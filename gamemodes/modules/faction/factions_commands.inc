@@ -50,7 +50,7 @@ CMD:editfaction(playerid, params[])
 	if (sscanf(params, "ds[60]S()[90]", factionid, oneString, secString))
 	{
 		SendUsageMessage(playerid, "/editfaction [faction id] [configuration]");
-		SendClientMessage(playerid, COLOR_WHITE, "type, color, spawn"); 
+		SendTipMessage(playerid, "type, color, spawn"); 
 		return 1;
 	}
 	

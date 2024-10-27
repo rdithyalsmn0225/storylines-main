@@ -534,7 +534,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLspdSkins[i]);
 						}
-						Dialog_Show(playerid, LSPDMaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+						Dialog_Show(playerid, LSPDMaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
 					}
 					else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
@@ -543,7 +543,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLspdFemSkins[i]);
 						}
-						Dialog_Show(playerid, LSPDFemaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+						Dialog_Show(playerid, LSPDFemaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
 					}
                 }
                 if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
@@ -555,7 +555,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLsmdSkins[i]);
 						}
-						Dialog_Show(playerid, LSMDMaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+						Dialog_Show(playerid, LSMDMaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
 					}
 					else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
@@ -564,7 +564,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLsmdFemSkins[i]);
 						}
-						Dialog_Show(playerid, LSMDFemaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Skins:", str, "Select", "Close");
+						Dialog_Show(playerid, LSMDFemaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
 					}
                 }
             }
@@ -824,7 +824,7 @@ CMD:take(playerid, params[])
 	if(sscanf(params, "us[60]", playerb, a_str))
 	{
 		SendUsageMessage(playerid, "/take [playerid OR name] [item]");
-		SendClientMessage(playerid, COLOR_WHITE, "driverlicense, weaponlicense, weapons"); 
+		SendTipMessage(playerid, "driverlicense, weaponlicense, weapons"); 
 		return 1;
 	}
 	

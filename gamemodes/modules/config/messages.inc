@@ -560,7 +560,6 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					SendErrorMessage(playerid, "Your characters name must be at least 3 characters and no more than %i characters.", MAX_PLAYER_NAME);
 					return 0;
 				}
-				
 				if(!IsValidRoleplayName(text))
 				{
 					SendErrorMessage(playerid, "Please follow the Firstname_Lastname format to make your character."); 
@@ -751,8 +750,17 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					playerMakingCharacter[playerid] = false;
 					playerCharacterStep[playerid] = 0; 
 					PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0;
-					new rand = random(sizeof(g_aMaleSkins));
-					PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aMaleSkins[rand];
+
+					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
+					{
+						new rand = random(sizeof(g_aMaleSkins));
+						PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aMaleSkins[rand];
+					}
+					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
+					{
+						new rand = random(sizeof(g_aFemaleSkins));
+						PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aFemaleSkins[rand];
+					}
 					ClearLines(playerid, 17); 
 									
 					SendInfoMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");

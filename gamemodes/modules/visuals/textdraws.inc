@@ -17,6 +17,8 @@ new PlayerText:SelectFactionName[MAX_PLAYERS];
 new PlayerText:SelectFaction[2][MAX_PLAYERS];
 new PlayerText:SelectFactionClick[3][MAX_PLAYERS];
 
+new PlayerText:ALPR[5][MAX_PLAYERS];
+
 new PlayerText:WeaponType[MAX_PLAYERS];
 new PlayerText:WeaponAmmo[MAX_PLAYERS];
 new PlayerText:barinfotd[4][MAX_PLAYERS];
@@ -923,6 +925,79 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawUseBox(playerid, SelectFactionClick[2][playerid], 0);
 	PlayerTextDrawSetProportional(playerid, SelectFactionClick[2][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, SelectFactionClick[2][playerid], 1);
+}
+
+CreateALPRTextdraws(playerid)
+{
+	ALPR[0][playerid] = CreatePlayerTextDraw(playerid, 555.000000, 117.000000, "_");
+	PlayerTextDrawFont(playerid, ALPR[0][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, ALPR[0][playerid], 0.600000, 5.399999);
+	PlayerTextDrawTextSize(playerid, ALPR[0][playerid], 298.500000, 106.500000);
+	PlayerTextDrawSetOutline(playerid, ALPR[0][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, ALPR[0][playerid], 0);
+	PlayerTextDrawAlignment(playerid, ALPR[0][playerid], 2);
+	PlayerTextDrawColor(playerid, ALPR[0][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, ALPR[0][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, ALPR[0][playerid], 200);
+	PlayerTextDrawUseBox(playerid, ALPR[0][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, ALPR[0][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, ALPR[0][playerid], 0);
+
+	ALPR[1][playerid] = CreatePlayerTextDraw(playerid, 552.000000, 106.000000, "~y~ALPR");
+	PlayerTextDrawFont(playerid, ALPR[1][playerid], 2);
+	PlayerTextDrawLetterSize(playerid, ALPR[1][playerid], 0.245829, 1.550009);
+	PlayerTextDrawTextSize(playerid, ALPR[1][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, ALPR[1][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, ALPR[1][playerid], 0);
+	PlayerTextDrawAlignment(playerid, ALPR[1][playerid], 2);
+	PlayerTextDrawColor(playerid, ALPR[1][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, ALPR[1][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, ALPR[1][playerid], 50);
+	PlayerTextDrawUseBox(playerid, ALPR[1][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, ALPR[1][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, ALPR[1][playerid], 0);
+
+	ALPR[2][playerid] = CreatePlayerTextDraw(playerid, 503.000000, 122.000000, "Plates: LNR-0999");
+	PlayerTextDrawFont(playerid, ALPR[2][playerid], 2);
+	PlayerTextDrawLetterSize(playerid, ALPR[2][playerid], 0.149994, 1.100008);
+	PlayerTextDrawTextSize(playerid, ALPR[2][playerid], 605.000000, 226.000000);
+	PlayerTextDrawSetOutline(playerid, ALPR[2][playerid], 0);
+	PlayerTextDrawSetShadow(playerid, ALPR[2][playerid], 0);
+	PlayerTextDrawAlignment(playerid, ALPR[2][playerid], 1);
+	PlayerTextDrawColor(playerid, ALPR[2][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, ALPR[2][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, ALPR[2][playerid], 50);
+	PlayerTextDrawUseBox(playerid, ALPR[2][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, ALPR[2][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, ALPR[2][playerid], 0);
+
+	ALPR[3][playerid] = CreatePlayerTextDraw(playerid, 503.000000, 135.000000, "Model: Sultan");
+	PlayerTextDrawFont(playerid, ALPR[3][playerid], 2);
+	PlayerTextDrawLetterSize(playerid, ALPR[3][playerid], 0.166661, 0.950008);
+	PlayerTextDrawTextSize(playerid, ALPR[3][playerid], 605.000000, 226.000000);
+	PlayerTextDrawSetOutline(playerid, ALPR[3][playerid], 0);
+	PlayerTextDrawSetShadow(playerid, ALPR[3][playerid], 0);
+	PlayerTextDrawAlignment(playerid, ALPR[3][playerid], 1);
+	PlayerTextDrawColor(playerid, ALPR[3][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, ALPR[3][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, ALPR[3][playerid], 50);
+	PlayerTextDrawUseBox(playerid, ALPR[3][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, ALPR[3][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, ALPR[3][playerid], 0);
+
+	ALPR[4][playerid] = CreatePlayerTextDraw(playerid, 503.000000, 147.000000, "Name: Jayvon_Williams");
+	PlayerTextDrawFont(playerid, ALPR[4][playerid], 2);
+	PlayerTextDrawLetterSize(playerid, ALPR[4][playerid], 0.145829, 1.000008);
+	PlayerTextDrawTextSize(playerid, ALPR[4][playerid], 605.000000, 226.000000);
+	PlayerTextDrawSetOutline(playerid, ALPR[4][playerid], 0);
+	PlayerTextDrawSetShadow(playerid, ALPR[4][playerid], 0);
+	PlayerTextDrawAlignment(playerid, ALPR[4][playerid], 1);
+	PlayerTextDrawColor(playerid, ALPR[4][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, ALPR[4][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, ALPR[4][playerid], 50);
+	PlayerTextDrawUseBox(playerid, ALPR[4][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, ALPR[4][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, ALPR[4][playerid], 0);
 }
 
 stock ShowBoxMessage(playerid, string[], time)

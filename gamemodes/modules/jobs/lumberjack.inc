@@ -158,7 +158,7 @@ CMD:timbercut(playerid, params[])
         if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_LUMBERJACK)
             return SendErrorMessage(playerid, "You aren't lumberjack.");
 
-        if(!Inventory_Count(playerid, "Axe"))
+        if(!Inventory_Count(playerid, "Chainsaw"))
             return SendErrorMessage(playerid, "You don't have any axe in inventory.");
 
         if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != AXE)
@@ -227,7 +227,7 @@ CMD:timbersell(playerid, params[])
 	return 1;
 }
 
-CMD:buyaxe(playerid, params[])
+CMD:buysaw(playerid, params[])
 {
     if(!IsPlayerInRangeOfPoint(playerid, 3.0, -1448.7738,-1530.5585,101.7578))
         return SendErrorMessage(playerid, "You aren't near leafy hollow barn.");
@@ -235,13 +235,13 @@ CMD:buyaxe(playerid, params[])
     if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_LUMBERJACK)
         return SendErrorMessage(playerid, "You aren't lumberjack.");
 
-    if(Inventory_Count(playerid, "Axe"))
+    if(Inventory_Count(playerid, "Chainsaw"))
         return SendErrorMessage(playerid, "You already own a axe.");
 
     if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
         return SendErrorMessage(playerid, "You can't afford axe.");
 
-    Inventory_Add(playerid, "Axe", -2211, 1);
+    Inventory_Add(playerid, "Chainsaw", 341, 1);
     GiveMoney(playerid, -250);
     SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You bought a axe for {B3C99E}$250{cdd0d1}.");
     SendTipMessage(playerid, "To start cutting the tree(s) /timbercut using axe.");

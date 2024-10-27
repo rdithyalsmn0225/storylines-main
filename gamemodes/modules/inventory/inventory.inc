@@ -378,7 +378,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
-	else if(!strcmp(name, "Axe"))
+	else if(!strcmp(name, "Chainsaw"))
 	{
        	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{

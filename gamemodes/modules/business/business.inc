@@ -1,31 +1,3 @@
-function:OnBusinessInteriorChange(playerid, response, businessid)
-{
-	if(response)
-	{
-		GetPlayerPos(playerid, BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][0], BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][1], BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][2]);
-		
-		new 
-			world = random(20000)+playerid+2; 
-		
-		BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR] = GetPlayerInterior(playerid);
-		BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD] = world;
-		
-		SendInfoMessage(playerid, "You changed Business #%i's interior ID.", businessid);
-		
-		foreach(new i : Player) if(IsPlayerInBusiness(i) == businessid)
-		{
-			SetPlayerPosEx(i, BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][0], BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][1], BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][2]);
-			SetPlayerInterior(i, GetPlayerInterior(playerid)); SetPlayerVirtualWorld(playerid, world); 
-			
-			SendInfoMessage(i, "The business you were in was amended."); 
-		}
-	
-		SaveBusiness(businessid); 
-	}
-	else return SendErrorMessage(playerid, "You cancelled."); 
-	return 1; 
-}
-
 stock BusinessRefresh(businessid)
 {
 	if(IsValidDynamicPickup(BusinessInfo[businessid][E_BUSINESS_PICKUP]))
@@ -56,20 +28,20 @@ stock BusinessRefresh(businessid)
 	{
 		case BUSINESS_TYPE_BANK:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /bank to see bank menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/bank' to see bank menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		case BUSINESS_TYPE_DINNER:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /menu to see food & drink menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/menu' to see food & drink menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		case BUSINESS_TYPE_BAR:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /buybeer to see menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/buybeer' to see menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
 		case BUSINESS_TYPE_ACID:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Production]\n{ffffff}Available commands: /production to opens the production menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Production]\n{ffffff}Available commands: '/production' to opens the production drugs menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_GENERAL:
@@ -79,17 +51,17 @@ stock BusinessRefresh(businessid)
 		    
 		case BUSINESS_TYPE_GUNSTORE:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Production]\n{ffffff}Available commands: /creategun to create weapons / ammo with materials..", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Production]\n{ffffff}Available commands: '/creategun' to create weapons / ammo with materials..", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_CLOTHES:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /clothes to see list clothing.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/clothes' to see list clothing.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_HAIRCUT:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /haircut to see list style haircut.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/haircut' to see list style haircut.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		   
 		case BUSINESS_TYPE_RENT:
@@ -99,31 +71,35 @@ stock BusinessRefresh(businessid)
 		    
 		case BUSINESS_TYPE_CLUB:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /buybeer to see menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/buybeer' to see menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
 		case BUSINESS_TYPE_DEALERSHIP:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /carbuy to see menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/carbuy' to see menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
 		case BUSINESS_TYPE_DMV:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /drivetest to see menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/drivetest' to see menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
 		case BUSINESS_TYPE_GYM:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: /fightstyle to learn fightstyles.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/fightstyle' to learn fightstyles.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 	}
 
-	BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_SKIN], BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_POS][0], BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_POS][1], BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_POS][2], BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_POS][3], false);
+	BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_SKIN], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][0], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][1], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][2], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][3], false);
 	SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
 
-	BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1272, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 5.0);
+	if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_RENT)
+		BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1239, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 5.0);
+	else
+		BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1272, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 5.0);
+	
 	BusinessInfo[businessid][E_BUSINESS_ENTRANCETEXT3D] = CreateDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_NAME], COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 5.0);
-	BusinessInfo[businessid][E_BUSINESS_FUELTEXT3D] = CreateDynamic3DTextLabel("[Gas Station]\n{ffffff}Available Commands: '/refuel'", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_FUELPOS][0], BusinessInfo[businessid][E_BUSINESS_FUELPOS][1], BusinessInfo[businessid][E_BUSINESS_FUELPOS][2], 5.0);
+	BusinessInfo[businessid][E_BUSINESS_FUELTEXT3D] = CreateDynamic3DTextLabel("[Gas Station]\n{ffffff}Available Commands: '/refuel' to refill vehicles fuel", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_FUELPOS][0], BusinessInfo[businessid][E_BUSINESS_FUELPOS][1], BusinessInfo[businessid][E_BUSINESS_FUELPOS][2], 5.0);
 	
 	if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_GYM)
 	{
@@ -146,6 +122,27 @@ stock BusinessRefresh(businessid)
 		DestroyDynamicObject(BusinessInfo[businessid][E_BUSINESS_CASHOBJECT]);
 		BusinessInfo[businessid][E_BUSINESS_ROBBERYCASH] = false;
 	}
+	return 1;
+}
+
+function:OnBusinessInteriorChange(playerid, response, businessid)
+{
+	if(response)
+	{
+		new Float:x, Float:y, Float:z;
+		GetPlayerPos(playerid, x, y, z);
+		new interior = GetPlayerInterior(playerid); 
+		
+		BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][0] = x; 
+		BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][1] = y; 
+		BusinessInfo[businessid][E_BUSINESS_INTERIORPOS][2] = z; 
+		BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR] = interior;
+
+		BusinessRefresh(businessid);
+		SendInfoMessage(playerid, "You changed Business #%i's interior.", businessid);
+		SaveBusiness(businessid); 
+	}
+	else return SendErrorMessage(playerid, "You cancelled.");
 	return 1;
 }
 
@@ -187,6 +184,26 @@ function:OnBusinessGasStationChange(playerid, response, businessid)
 	return 1;
 }
 
+function:OnBusinessActorChange(playerid, response, businessid)
+{
+	if(response)
+	{
+		new Float:x, Float:y, Float:z, Float:a;
+		GetPlayerPos(playerid, x, y, z); 
+		GetPlayerFacingAngle(playerid, a);
+		
+		BusinessInfo[businessid][E_BUSINESS_ACTORPOS][0] = x;
+		BusinessInfo[businessid][E_BUSINESS_ACTORPOS][1] = y;
+		BusinessInfo[businessid][E_BUSINESS_ACTORPOS][2] = z;
+		BusinessInfo[businessid][E_BUSINESS_ACTORPOS][3] = a;
+
+		BusinessRefresh(businessid);
+		SendInfoMessage(playerid, "You changed Business #%i's actor.", businessid);
+		SaveBusiness(businessid); 
+	}
+	else return SendErrorMessage(playerid, "You cancelled.");
+	return 1;
+}
 
 function:OnBusinessPointChange(playerid, response, businessid, Float:x, Float:y, Float:z)
 {
@@ -652,10 +669,10 @@ function:Query_InsertBusiness(playerid, newid, type)
  
  	format(BusinessInfo[newid][E_BUSINESS_NAME], 90, "Unknown");
 	
-	BusinessInfo[newid][E_BUSINESS_INTERIORPOS][0] = bizInteriors[type][E_INT_X]; 
-	BusinessInfo[newid][E_BUSINESS_INTERIORPOS][1] = bizInteriors[type][E_INT_Y]; 
-	BusinessInfo[newid][E_BUSINESS_INTERIORPOS][2] = bizInteriors[type][E_INT_Z]; 
-	BusinessInfo[newid][E_BUSINESS_INTERIORPOSINTERIOR] = bizInteriors[type][E_INT_ID];
+	BusinessInfo[newid][E_BUSINESS_INTERIORPOS][0] = 0; 
+	BusinessInfo[newid][E_BUSINESS_INTERIORPOS][1] = 0; 
+	BusinessInfo[newid][E_BUSINESS_INTERIORPOS][2] = 0; 
+	BusinessInfo[newid][E_BUSINESS_INTERIORPOSINTERIOR] = 0;
 	BusinessInfo[newid][E_BUSINESS_INTERIORPOSWORLD] = world;  
 
 	BusinessRefresh(newid);
@@ -697,6 +714,11 @@ function:Query_LoadBusinesses()
 		cache_get_value_name_float(i, "BusinessFuelX", BusinessInfo[i+1][E_BUSINESS_FUELPOS][0]);
 		cache_get_value_name_float(i, "BusinessFuelY", BusinessInfo[i+1][E_BUSINESS_FUELPOS][1]);
 		cache_get_value_name_float(i, "BusinessFuelZ", BusinessInfo[i+1][E_BUSINESS_FUELPOS][2]);
+
+		cache_get_value_name_float(i, "BusinessActorX", BusinessInfo[i+1][E_BUSINESS_ACTORPOS][0]);
+		cache_get_value_name_float(i, "BusinessActorY", BusinessInfo[i+1][E_BUSINESS_ACTORPOS][1]);
+		cache_get_value_name_float(i, "BusinessActorZ", BusinessInfo[i+1][E_BUSINESS_ACTORPOS][2]);
+		cache_get_value_name_float(i, "BusinessActorZ", BusinessInfo[i+1][E_BUSINESS_ACTORPOS][3]);
 		
 		cache_get_value_name(i, "BusinessName", BusinessInfo[i+1][E_BUSINESS_NAME], 90); 
 		cache_get_value_name_int(i, "BusinessType", BusinessInfo[i+1][E_BUSINESS_TYPE]);

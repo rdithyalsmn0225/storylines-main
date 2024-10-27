@@ -236,7 +236,7 @@ stock SaveBusiness(id)
 		BusinessInfo[id][E_BUSINESS_DBID]);
 	mysql_pquery(ourConnection, query);
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE businesses SET BusinessEntranceX = %f, BusinessEntranceY = %f, BusinessEntranceZ = %f, BusinessPointX = %f, BusinessPointY = %f, BusinessPointZ = %f, BusinessFuelX = %f, BusinessFuelY = %f, BusinessFuelZ = %f WHERE BusinessDBID = %i",
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE businesses SET BusinessEntranceX = %f, BusinessEntranceY = %f, BusinessEntranceZ = %f, BusinessPointX = %f, BusinessPointY = %f, BusinessPointZ = %f, BusinessFuelX = %f, BusinessFuelY = %f, BusinessFuelZ = %f, BusinessActorX = %f, BusinessActorY = %f, BusinessActorZ = %f, BusinessActorA = %f WHERE BusinessDBID = %i",
 		BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][0],
 		BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][1],
 		BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][2],
@@ -246,6 +246,10 @@ stock SaveBusiness(id)
 		BusinessInfo[id][E_BUSINESS_FUELPOS][0],
 		BusinessInfo[id][E_BUSINESS_FUELPOS][1],
 		BusinessInfo[id][E_BUSINESS_FUELPOS][2],
+		BusinessInfo[id][E_BUSINESS_ACTORPOS][0],
+		BusinessInfo[id][E_BUSINESS_ACTORPOS][1],
+		BusinessInfo[id][E_BUSINESS_ACTORPOS][2],
+		BusinessInfo[id][E_BUSINESS_ACTORPOS][3],
 		BusinessInfo[id][E_BUSINESS_DBID]);
 	mysql_pquery(ourConnection, query);
 	return 1;

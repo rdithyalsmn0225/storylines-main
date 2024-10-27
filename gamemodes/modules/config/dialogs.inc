@@ -248,28 +248,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
-		case DIALOG_POLICE_SKINS:
-		{
-			if(response)
-			{
-				switch(listitem)
-				{
-					case 0: SetPlayerSkin(playerid, 280);
-					case 1: SetPlayerSkin(playerid, 300);
-					case 2: SetPlayerSkin(playerid, 281);
-					case 3: SetPlayerSkin(playerid, 301);
-					case 4: SetPlayerSkin(playerid, 306);
-					case 5: SetPlayerSkin(playerid, 307);
-					case 6: SetPlayerSkin(playerid, 265);
-					case 7: SetPlayerSkin(playerid, 267);
-					case 8: SetPlayerSkin(playerid, 266);
-					case 9: SetPlayerSkin(playerid, 284);
-					case 10: SetPlayerSkin(playerid, 61);
-					case 11: SetPlayerSkin(playerid, 93);
-				}
-			}
-			return 1;
-		}
 		case DIALOG_INTERIOR:
 		{
 			if (response)
@@ -805,7 +783,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						pToys[playerid][toySelect[playerid]][E_TOY_SX],
 						pToys[playerid][toySelect[playerid]][E_TOY_SY],
 						pToys[playerid][toySelect[playerid]][E_TOY_SZ]);
-				SendServerMessage(playerid, "[Accesory] {cdd0d1}Accessories bone position now is {d7d292}%s{cdd0d1}", Bone_Name[listitem + 1]);
+				SendServerMessage(playerid, "[Clothing] {cdd0d1}Accessories bone position now is {d7d292}%s{cdd0d1}", Bone_Name[listitem + 1]);
 			}
 		}
 		case DIALOG_FIGHTSTYLE:
@@ -1503,7 +1481,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					Inventory_Set(playerid, "Fish", 19630, 0);
 				}
 				GiveMoney(playerid, total);
-				SendClientMessageEx(playerid, COLOR_WHITE, "Fishing: You have sold all the fish and earn %s.", FormatMoney(total));
+				SendServerMessage(playerid, "[Fishing] {cdd0d1}You have sold all the fish and earn {B3C99E}$%s{cdd0d1}.", FormatMoney(total));
 			}
 		}
 		case DIALOG_SETTINGS:
@@ -1517,12 +1495,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGHUD])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGHUD] = false;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Streets TextDraws has been Enable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Streets TextDraws has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGHUD] = true;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Streets TextDraws has been Disable.");
+							SendServerMessage(playerid, "[Fishing] {cdd0d1}Streets TextDraws has been Disable.");
 						}
 					}
 					case 1:
@@ -1530,12 +1508,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGJOIN])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGJOIN] = false;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Joined Logs has been Enable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Joined Logs has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGJOIN] = true;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Joined Logs has been Disable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Joined Logs has been Disable.");
 						}
 					}
 					case 2:
@@ -1543,12 +1521,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGADMIN])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGADMIN] = false;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Admin Messages has been Enable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Admin Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGADMIN] = true;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Admin Messages has been Disable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Admin Messages has been Disable.");
 						}
 					}
 					case 3:
@@ -1556,12 +1534,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGFMS])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGFMS] = false;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Faction Messages has been Enable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Faction Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGFMS] = true;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Faction Messages has been Disable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Faction Messages has been Disable.");
 						}
 					}
 					case 4:
@@ -1569,12 +1547,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGPMS])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGPMS] = false;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Private Messages has been Enable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Private Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGPMS] = true;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Private Messages has been Disable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Private Messages has been Disable.");
 						}
 					}
 					case 5:
@@ -1582,12 +1560,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGDMS])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDMS] = false;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Damages Messages has been Enable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Damages Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDMS] = true;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Damages Messages has been Disable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Damages Messages has been Disable.");
 						}
 					}
 					case 6:
@@ -1596,13 +1574,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE] = false;
 							UpdateTabListForPlayer(playerid);
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: switched your namestyle to streetnames tags.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}switched your namestyle to streetnames tags.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE] = true;
 							UpdateTabListForPlayer(playerid);
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: switched your namestyle to Firstname_Lastname.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}switched your namestyle to Firstname_Lastname.");
 						}
 					}
 					case 7:
@@ -1610,13 +1588,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGDD])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDD] = false;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Draw Distance has been set to Low.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Draw Distance has been set to Low.");
 							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 5000, playerid);
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDD] = true;
-							SendClientMessage(playerid, COLOR_WHITE, "Settings: Draw Distance has been set to High.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Draw Distance has been set to High.");
 							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 10000, playerid);
 						}
 					}

@@ -80,8 +80,6 @@ main ()  {}
 #include "modules\players\accessories.inc"
 #include "modules\players\afk.inc"
 
-//#include "modules\turfs\turfs.inc"
-
 #include "modules\emmet\emmet.inc"
 
 #include "modules\business\business.inc"
@@ -111,6 +109,7 @@ main ()  {}
 #include "modules\faction\factions.inc"
 #include "modules\faction\factions_commands.inc"
 #include "modules\faction\mdc.inc"
+#include "modules\faction\alpr.inc"
 
 #include "modules\props\spraytags.inc"
 #include "modules\props\bbq.inc"
@@ -125,6 +124,7 @@ main ()  {}
 #include "modules\inventory\dropitem.inc"
 
 #include "modules\minigames\basketball.inc"
+#include "modules\minigames\blackjack.inc"
 
 #include "modules\industry\industry.inc"
 
@@ -304,6 +304,7 @@ public OnPlayerConnect(playerid)
 	//Visuals:
 	CreateTextdraws(playerid);
 	CreateHUDTextDraws(playerid);
+	CreateALPRTextdraws(playerid);
 	CreatePhoneTextDraws(playerid);
 	CreateVehicleTextDraws(playerid);
 	CreateBarInfoTextDraws(playerid);
@@ -356,6 +357,11 @@ public OnPlayerDisconnect(playerid, reason)
 			ReportInfo[i][E_REPORT_EXISTS] = false; 
 			ReportInfo[i][E_REPORT_BY] = INVALID_PLAYER_ID;
 		}
+	}
+
+	if(BlackJackPlay[playerid])
+	{
+		ResetBlackjackVar(playerid);
 	}
 
 	if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == true)
@@ -1008,6 +1014,33 @@ public OnPlayerDeath(playerid, killerid, reason)
 				}
 				SendInfoMessage(killerid, "You have been killed {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerid, playerid), ReturnLocationStreet(playerid));
 				SendInfoMessage(playerid, "You has been killed by {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
+			}
+			else if(reason == 51)
+			{
+				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+				{	
+					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
+					return 0;
+				}
+				SendInfoMessage(playerid, "You has been killed by {d7d292}Exploded{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnLocationStreet(playerid));
+			}
+			else if(reason == 50)
+			{
+				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+				{	
+					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
+					return 0;
+				}
+				SendInfoMessage(playerid, "You has been killed by {d7d292}Helicopter Bladed{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnLocationStreet(playerid));
+			}
+			else if(reason == 54)
+			{
+				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+				{	
+					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
+					return 0;
+				}
+				SendInfoMessage(playerid, "You has been killed by {d7d292}Splat{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnLocationStreet(playerid));
 			}
 			else
 			{
@@ -2845,6 +2878,22 @@ public OnPlayerUpdate(playerid)
 		}
 	}
 
+	if(IsPlayerInAnyVehicle(playerid))
+	{
+		new vehicleid = GetPlayerVehicleID(playerid);
+		if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE && IsAPolice(vehicleid))
+		{
+			DetectVehicleInFront(playerid);
+		}
+	}
+	else
+	{
+		for(new i = 0; i < 6; i++)
+        {
+            PlayerTextDrawHide(playerid, ALPR[i][playerid]);
+        }
+	}
+
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	{
 		if(PlayerJump[playerid][JumpPressed])
@@ -3185,7 +3234,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_LUMBERJACK)
 				return SendErrorMessage(playerid, "You aren't lumberjack.");
 
-			if(!Inventory_Count(playerid, "Axe"))
+			if(!Inventory_Count(playerid, "Chainsaw"))
 				return SendErrorMessage(playerid, "You don't have any axe in inventory.");
 
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != AXE)
@@ -3620,133 +3669,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			ResetVarInventory(playerid);
 		}
 
-		new id, b_id, e_id, str[128]; 
-		//Enter
-		if((id = IsPlayerNearProperty(playerid)) != 0)
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-				return SendErrorMessage(playerid, "You can't leave while editing an object.");
-					
-			if(PropertyInfo[id][E_PROPERTY_LOCKED])
-				return GameTextForPlayer(playerid, "~r~Locked", 3000, 3);
-					
-			PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = id;
-
-			SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_INTERIORPOS][0], PropertyInfo[id][E_PROPERTY_INTERIORPOS][1], PropertyInfo[id][E_PROPERTY_INTERIORPOS][2]);
-				
-			SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_INTERIORWORLD]);
-			SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_INTERIORINTERIOR]);
-		}
-		if((e_id = IsPlayerNearEntrance(playerid)) != 0)
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-				return SendErrorMessage(playerid, "You can't leave while editing an object.");
-					
-			PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = e_id;
-
-			SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_INT][0], EntranceInfo[e_id][E_ENTRANCE_INT][1], EntranceInfo[e_id][E_ENTRANCE_INT][2]);
-				
-			SetPlayerVirtualWorld(playerid, EntranceInfo[e_id][E_ENTRANCE_WORLD]);
-			SetPlayerInterior(playerid, EntranceInfo[e_id][E_ENTRANCE_INTERIOR]); 
-				
-			TogglePlayerControllable(playerid, false);	
-		}
-
-		if((b_id = IsPlayerNearBusiness(playerid)) != 0)
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-				return SendErrorMessage(playerid, "You can't leave while editing an object.");
-
-			if(BusinessInfo[b_id][E_BUSINESS_LOCKED])
-				return GameTextForPlayer(playerid, "~r~Locked", 3000, 3); 
-				
-			if(BusinessInfo[b_id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DEALERSHIP || BusinessInfo[b_id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV)
-				return GameTextForPlayer(playerid, "~r~Closed", 3000, 3); 
-				
-			if(BusinessInfo[b_id][E_BUSINESS_ENTRANCEFEE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-				return GameTextForPlayer(playerid, "~r~You can't afford this.", 3000, 1); 
-				
-			if(PlayerInfo[playerid][E_CHARACTER_DBID] != BusinessInfo[b_id][E_BUSINESS_OWNERDBID] && BusinessInfo[b_id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK)
-			{
-				GiveMoney(playerid, -BusinessInfo[b_id][E_BUSINESS_ENTRANCEFEE]); 
-				BusinessInfo[b_id][E_BUSINESS_CASH]+= BusinessInfo[b_id][E_BUSINESS_ENTRANCEFEE]; 
-			}
-				
-			format(str, sizeof(str), "%s", BusinessInfo[b_id][E_BUSINESS_NAME]); 
-			GameTextForPlayer(playerid, str, 3000, 1); 
-			
-			SetPlayerPosEx(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][0], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][1], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][2]); 
-			
-			SetPlayerInterior(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSINTERIOR]); 
-			SetPlayerVirtualWorld(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSWORLD]); 
-			
-			PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = b_id; 
-			
-			SendBusinessType(playerid, b_id);
-			return 1;
-		}
-
-		//Exit
-		if((id = IsPlayerInProperty(playerid)) != 0)
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-				return SendErrorMessage(playerid, "You can't leave while editing an object.");
-
-			if(IsPlayerInRangeOfPoint(playerid, 3.0, PropertyInfo[id][E_PROPERTY_INTERIORPOS][0], PropertyInfo[id][E_PROPERTY_INTERIORPOS][1], PropertyInfo[id][E_PROPERTY_INTERIORPOS][2]))
-			{
-				SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][2]);
-				
-				SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
-				SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]); 
-				
-				PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = 0;
-			}
-			return 1;
-		}
-
-		if((e_id = IsPlayerInEntrance(playerid)) != 0)
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-				return SendErrorMessage(playerid, "You can't leave while editing an object.");
-
-			if(IsPlayerInRangeOfPoint(playerid, 2.0, EntranceInfo[e_id][E_ENTRANCE_INT][0], EntranceInfo[e_id][E_ENTRANCE_INT][1], EntranceInfo[e_id][E_ENTRANCE_INT][2]))
-			{
-				SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_POS][0], EntranceInfo[e_id][E_ENTRANCE_POS][1], EntranceInfo[e_id][E_ENTRANCE_POS][2]);
-				
-				SetPlayerVirtualWorld(playerid, 0);
-				SetPlayerInterior(playerid, 0); 
-				
-				PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0;
-			}
-			return 1;
-		}
-		
-		if((b_id = IsPlayerInBusiness(playerid)) != 0)
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
-				return SendErrorMessage(playerid, "You can't leave while editing an object.");
-
-			if(IsPlayerInRangeOfPoint(playerid, 3.0, BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][0], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][1], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][2]))
-			{
-				if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] > 0)
-				{
-					SaveCharacter(playerid);
-				}
-			
-				SetPlayerPosEx(playerid, BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][2]);
-				
-				SetPlayerVirtualWorld(playerid, 0);
-				SetPlayerInterior(playerid, 0);
-				
-				PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
-				if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] > 0)
-				{
-					Relations_Remove(playerid, BusinessInfo[b_id][E_BUSINESS_NAME], 30);
-					PlayerInfo[playerid][E_CHARACTER_PURCHASE] = 0;
-				}
-			}
-			return 1;
-		}
+		cmd_enter(playerid, "");
 	}
 	if (newkeys & KEY_YES)
 	{
@@ -3860,6 +3783,12 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		if((Jobs_vehicles[7] <= vehicleid <= Jobs_vehicles[11]))
 			SendTipMessage(playerid, "This vehicle is part of dockworker job. in order to start it '/jobduty'.");
 
+		if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && IsAPolice(vehicleid))
+		{
+			SetVehicleToRespawnEx(vehicleid);
+			RemovePlayerFromVehicle(playerid);
+			SendErrorMessage(playerid, "You aren't apart of police departement.");
+		}
 		if(IsABoat(vehicleid))
 		{
 			SendTipMessage(playerid, "You are now entering boat, /fish to start fishing.");

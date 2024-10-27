@@ -860,8 +860,7 @@ CMD:respawncar(playerid, params[])
 		{
 	    	if(IsValidVehicle(i) && !IsVehicleOccupied(i))
 		    {
-		        if((GSF_Vehicles[0] <= i <= GSF_Vehicles[6]) || (KTB_Vehicles[0] <= i <= KTB_Vehicles[4]) || (JB_Vehicles[0] <= i <= JB_Vehicles[6]) || (SBF_Vehicles[0] <= i <= SBF_Vehicles[6]) || (VLA_Vehicles[0] <= i <= VLA_Vehicles[5]) || (ELSV_Vehicles[0] <= i <= ELSV_Vehicles[5]) \
-				|| (FYB_Vehicles[0] <= i <= FYB_Vehicles[5]) || (TDB_Vehicles[0] <= i <= TDB_Vehicles[5]) || (TDF_Vehicles[0] <= i <= TDF_Vehicles[5]) || (LSPDVehicles[0] <= i <= LSPDVehicles[17]))
+		        if((LSPDVehicles[0] <= i <= LSPDVehicles[17]))
 		        {
 	        		SetVehicleToRespawnEx(i);
 				}
@@ -1490,8 +1489,8 @@ CMD:setstats(playerid, params[])
 	if(sscanf(params, "uiI(-1)", playerb, statid, value))
 	{
 		SendUsageMessage(playerid, "/setstats [playerid OR name] [stat code] [value]"); 
-		SendClientMessage(playerid, COLOR_WHITE, "1. Faction Rank, 2. Radio, 3. Bank Money, 4. Level,");
-		SendClientMessage(playerid, COLOR_WHITE, "5. Paycheck, 6. Jobs, 7. Hoodrats");
+		SendTipMessage(playerid, "1. Faction Rank, 2. Radio, 3. Bank Money, 4. Level,");
+		SendTipMessage(playerid, "5. Paycheck, 6. Jobs, 7. Hoodrats");
 		return 1;
 	}
 	
@@ -1624,7 +1623,7 @@ CMD:setcar(playerid, params[])
 	if(sscanf(params, "is[60]S()[60]", vehicleid, a_str, b_str))
 	{
 		SendUsageMessage(playerid, "/setcar [vehicleid] [params]");
-		SendClientMessage(playerid, COLOR_WHITE, "timesdestroyed, color1, color2, paintjob, plates");
+		SendTipMessage(playerid, "timesdestroyed, color1, color2, paintjob, plates");
 
 		return 1;
 	}
@@ -1658,7 +1657,7 @@ CMD:setcar(playerid, params[])
 		format(str, sizeof(str), "%s set vehicle ID %i's color1 to %i. (Previously %i)", ReturnSettingsName(playerid, playerid), vehicleid, value, VehicleInfo[vehicleid][E_VEHICLE_COLOR1]);
 		SendAdminMessage(3, str);
 		
-		SendClientMessage(playerid, COLOR_WHITE, "The vehicle needs to be respawned to take affect.");
+		SendTipMessage(playerid, "The vehicle needs to be respawned to take affect.");
 		
 		VehicleInfo[vehicleid][E_VEHICLE_COLOR1] = value;
 		SaveVehicle(vehicleid);
@@ -1674,7 +1673,7 @@ CMD:setcar(playerid, params[])
 		format(str, sizeof(str), "%s set vehicle ID %i's color2 to %i. (Previously %i)", ReturnSettingsName(playerid, playerid), vehicleid, value, VehicleInfo[vehicleid][E_VEHICLE_COLOR2]);
 		SendAdminMessage(3, str);
 		
-		SendClientMessage(playerid, COLOR_WHITE, "The vehicle needs to be respawned to take affect.");
+		SendTipMessage(playerid, "The vehicle needs to be respawned to take affect.");
 		
 		VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = value;
 		SaveVehicle(vehicleid);
@@ -1690,7 +1689,7 @@ CMD:setcar(playerid, params[])
 		format(str, sizeof(str), "%s set vehicle ID %i's paintjob to %i. (Previously %i)", ReturnSettingsName(playerid, playerid), vehicleid, value, VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB]);
 		SendAdminMessage(3, str);
 		
-		SendClientMessage(playerid, COLOR_WHITE, "The vehicle needs to be respawned to take affect.");
+		SendTipMessage(playerid, "The vehicle needs to be respawned to take affect.");
 		
 		VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = value;
 		SaveVehicle(vehicleid);
