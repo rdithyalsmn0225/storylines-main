@@ -1047,8 +1047,6 @@ CMD:hangup(playerid, params[])
 		SendErrorMessage(playerid, "You hung up..."); 
 		SendClientMessage(PlayerInfo[playerid][E_CHARACTER_PHONELINE], COLOR_GREY, "[!] They hung up..."); 
 		
-		printf("pPhoneline = %i", PlayerInfo[playerid][E_CHARACTER_PHONELINE]);
-		
 		if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USECELLPHONE){
 			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_STOPUSECELLPHONE);
 		}
@@ -1151,6 +1149,9 @@ CMD:call(playerid, params[])
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USECELLPHONE);
 	PlayerPlaySound(playerid, 3600, 0.0, 0.0, 0.0);
 	
+	if (!phone_number)
+	    return SendErrorMessage(playerid, "The specified phone number is not in service.");
+
 	if(phone_number == 911)
 	{
 		PlayerInfo[playerid][E_CHARACTER_PHONELINE] = 999;
@@ -1195,6 +1196,9 @@ CMD:call(playerid, params[])
 	
 	if(PlayerInfo[playerb][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID)
 	{
+		if (playerb == playerid)
+	        return SendErrorMessage(playerid, "You can't call yourself!");
+
 		playerPhone[playerid] = SetTimerEx("OnPhoneCall", 3300, false, "ii", playerid, 4);
 		return 1;
 	}
@@ -1262,7 +1266,7 @@ CMD:sms(playerid, params[])
 		return 1;
 	}
 		
-	playerText[playerid] = SetTimerEx("OnPhoneSMS", 1500, false, "iiis", playerid, 3, playerb, text); 
+	playerText[playerid] = SetTimerEx("OnPhoneSMS", 1500, false, "iiis[128]", playerid, 3, playerb, text); 
 	return 1;
 }
 
@@ -1381,7 +1385,7 @@ CMD:rcp(playerid, params[])
 
 CMD:enter(playerid, params[])
 {
-	new id, b_id, e_id, str[128]; 
+	new id, b_id, e_id; 
 
 	//Enter
 	if((id = IsPlayerNearProperty(playerid)) != 0)
@@ -1422,9 +1426,6 @@ CMD:enter(playerid, params[])
 			GiveMoney(playerid, -BusinessInfo[b_id][E_BUSINESS_ENTRANCEFEE]); 
 			BusinessInfo[b_id][E_BUSINESS_CASH]+= BusinessInfo[b_id][E_BUSINESS_ENTRANCEFEE]; 
 		}
-			
-		format(str, sizeof(str), "%s", BusinessInfo[b_id][E_BUSINESS_NAME]); 
-		GameTextForPlayer(playerid, str, 3000, 1); 
 		
 		SetPlayerPosEx(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][0], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][1], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][2]); 
 		

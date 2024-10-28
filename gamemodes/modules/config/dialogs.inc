@@ -1987,37 +1987,34 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				if (response)
+				if (isnull(inputtext))
 				{
-					if (isnull(inputtext))
-					{
-						return ShowPlayerDialog(playerid, DIALOG_SMSTEXT, DIALOG_STYLE_INPUT, "Text Message:", "Please enter a message to send.\n\nPlease enter the message to send to:", "Send", "Back");
-					}
-					new targetid = PlayerInfo[playerid][E_CHARACTER_CONTACT];
-
-					if (!IsPlayerConnected(targetid) || !PlayerInfo[targetid][E_CHARACTER_PHONE])
-						return SendErrorMessage(playerid, "The specified phone number went offline.");
-
-					SendErrorMessage(playerid, "Your text message is being sent.");
-
-					new str[512];
-					format(str, sizeof(str), "* %s takes out their cellphone.", ReturnSettingsName(playerid, playerid));
-					SetPlayerChatBubble(playerid, str, COLOR_EMOTE, 20.0, 3000); 
-					
-					if(targetid == INVALID_PLAYER_ID)
-					{
-						playerText[playerid] = SetTimerEx("OnPhoneSMS", 3000, false, "ii", playerid, 1); 
-						return 1;
-					}
-					
-					if(PlayerInfo[targetid][E_CHARACTER_PHONEOFF])
-					{
-						playerText[playerid] = SetTimerEx("OnPhoneSMS", 3000, false, "ii", playerid, 2);
-						return 1;
-					}
-						
-					playerText[playerid] = SetTimerEx("OnPhoneSMS", 1500, false, "iiis", playerid, 3, targetid, inputtext); 
+					return ShowPlayerDialog(playerid, DIALOG_SMSTEXT, DIALOG_STYLE_INPUT, "Text Message:", "Please enter a message to send.\n\nPlease enter the message to send to:", "Send", "Back");
 				}
+				new targetid = PlayerInfo[playerid][E_CHARACTER_CONTACT];
+
+				if (!IsPlayerConnected(targetid) || !PlayerInfo[targetid][E_CHARACTER_PHONE])
+					return SendErrorMessage(playerid, "The specified phone number went offline.");
+
+				SendErrorMessage(playerid, "Your text message is being sent.");
+
+				new str[512];
+				format(str, sizeof(str), "* %s takes out their cellphone.", ReturnSettingsName(playerid, playerid));
+				SetPlayerChatBubble(playerid, str, COLOR_EMOTE, 20.0, 3000); 
+				
+				if(targetid == INVALID_PLAYER_ID)
+				{
+					playerText[playerid] = SetTimerEx("OnPhoneSMS", 3000, false, "ii", playerid, 1); 
+					return 1;
+				}
+				
+				if(PlayerInfo[targetid][E_CHARACTER_PHONEOFF])
+				{
+					playerText[playerid] = SetTimerEx("OnPhoneSMS", 3000, false, "ii", playerid, 2);
+					return 1;
+				}
+					
+				playerText[playerid] = SetTimerEx("OnPhoneSMS", 1500, false, "iiis[128]", playerid, 3, targetid, inputtext); 
 			}
 		}
 		case DIALOG_CONTACTS:

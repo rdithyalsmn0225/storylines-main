@@ -862,6 +862,8 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 	new vehicleid = GetPlayerVehicleID(playerid);
 	new string[256];
 
+	new phoneline = PlayerInfo[playerid][E_CHARACTER_PHONELINE];
+
 	if(PlayerInfo[playerid][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID && !PlayerInfo[playerid][E_CHARACTER_CALL])
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_PHONELINE] == 911)
@@ -945,6 +947,7 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 
 								if (PlayerInfo[playerid][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID) {
 									format ( string, sizeof ( string ), "(Windows Closed) %s{DEDEDE} says (phone): %s", ReturnSettingsName(playerid, targetid, true), text ) ;
+									SendClientMessageEx(phoneline, COLOR_YELLOW, "Caller says (Phone): %s", text);
 								}
 								else {
 
@@ -981,6 +984,8 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 						{
 							format(string, sizeof(string), "says (phone): %s", text);
 							ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "(Windows Open)", string, .showtagcolor=true, .annonated=true, .chat=true);
+							
+							SendClientMessageEx(phoneline, COLOR_YELLOW, "Caller says (Phone): %s", text);
 						}
 					}
 				}
@@ -993,6 +998,8 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "", string, .showtagcolor=true, .annonated=true, .chat=true);
 				}
 				else ProxDetectorEx(playerid, 10.0, 0xDEDEDEFF, "", string, .showtagcolor=true, .annonated=true, .chat=true);
+
+				SendClientMessageEx(phoneline, COLOR_YELLOW, "Caller says (Phone): %s", text);
 			}
 		}
 	}

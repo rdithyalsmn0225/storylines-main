@@ -154,20 +154,18 @@ function:OnSuccessCall(playerid)
 	return 0;
 }
 
-function:OnPhoneSMS(playerid, type, playerb, text[])
+function:OnPhoneSMS(playerid, type, playerb, const text[])
 {
 	switch(type)
 	{
 		case 1:
 		{
 			SendClientMessage(playerid, COLOR_GREY, "[ ! ] Your text failed to deliver."); 
-			playerText[playerid] = 0; 
 			return 1; 
 		}
 		case 2:
 		{
 			SendClientMessage(playerid, COLOR_GREY, "[ ! ] Your text failed to deliver."); 
-			playerText[playerid] = 0; 
 			return 1;
 		}
 		case 3:
@@ -175,25 +173,22 @@ function:OnPhoneSMS(playerid, type, playerb, text[])
 			if(!IsPlayerConnected(playerb))
 			{
 				SendClientMessage(playerid, COLOR_GREY, "[ ! ] Your text failed to deliver."); 
-				playerText[playerid] = 0; 
 				return 1;
 			}
 			
 			SendClientMessage(playerid, COLOR_GREY, "[ ! ] Your text message delivered."); 
 			
-			if(strlen(text) > 80)
+			if(strlen(text) > 64)
 			{
 				SendClientMessageEx(playerb, COLOR_WHITE, "SMS From: {a0d0ff}%i", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
-				SendClientMessageEx(playerb, COLOR_WHITE, "SMS: {a0d0ff}%.80s ...", text); 
-				SendClientMessageEx(playerb, COLOR_WHITE, "Message: {a0d0ff}...%s", text[80], PlayerInfo[playerid][E_CHARACTER_PHONE]); 
+				SendClientMessageEx(playerb, COLOR_WHITE, "Messages: {a0d0ff}%.64s...", text); 
+				SendClientMessageEx(playerb, COLOR_WHITE, "Messages: {a0d0ff}...%s", text[64]); 
 			}
 			else 
 			{
 				SendClientMessageEx(playerb, COLOR_WHITE, "SMS From: {a0d0ff}%i", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
-				SendClientMessageEx(playerb, COLOR_WHITE, "Message: {a0d0ff}%s", text, PlayerInfo[playerid][E_CHARACTER_PHONE]);
+				SendClientMessageEx(playerb, COLOR_WHITE, "Messages: {a0d0ff}%s", text);
 			}
-
-			playerText[playerid] = 0;
 			return 1;
 		}
 	}

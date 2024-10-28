@@ -310,12 +310,12 @@ stock SendBusinessType(playerid, id)
 	{
 		case BUSINESS_TYPE_GUNSTORE:
 		{
-			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /creategun create weapons / ammo with materials.", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s.\nThis is a gun store you can create gun/ammo.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_BANK:
 		{
-			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /withdraw, /deposit, /balance to see bank menu.", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s.\nThis is a bank you can withdraw, deposit, or see balance your money in bank.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_GENERAL:
@@ -325,41 +325,42 @@ stock SendBusinessType(playerid, id)
 		}
 		case BUSINESS_TYPE_CLUB:
 		{
-			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /buybeer to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s.\nThis is a club you can buy anything beer.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_DINNER:
 		{
-			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /menu to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s.\nThis is a restaurant you can buy anything food or drink if you hungry and thirsty.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_BAR:
 		{
-			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /buybeer to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s.\nThis is a bar you can buy anything beer.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_ACID:
 		{
-			SendClientMessageEx(playerid, COLOR_DARKGREEN, "Welcome to %s\nAvailable commands: /production to opens the production menu", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s\nThis is a acid labs you can produce drugs or something.", BusinessInfo[id][E_BUSINESS_NAME]);
+			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_CLOTHES:
 		{
-			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /clothes to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s.\nThis is a clothes store you can buy anything clothing or skins.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_HAIRCUT:
 		{
-			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /haircut to see haircut style list.", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s.\nThis is a haircuts you can buy anything wigs or cuts your stylish hair.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_RENT:
 		{
-			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /props to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s.\nThis is a rental you can rent anything vehicles.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 		case BUSINESS_TYPE_GYM:
 		{
-			format(str, sizeof(str), "Welcome to %s.\nAvailable commands: /fightstyle to see business menu.", BusinessInfo[id][E_BUSINESS_NAME]);
+			format(str, sizeof(str), "Welcome to %s.\nThis is a gym you can learn fightsyle and increase your muscles.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
 		}
 	}
