@@ -529,7 +529,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
                 {
 					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
 					{
-						new str[512];
+						new str[1024];
 						for(new i; i < sizeof(g_aLspdSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLspdSkins[i]);
@@ -538,7 +538,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 					}
 					else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
-						new str[512];
+						new str[1024];
 						for(new i; i < sizeof(g_aLspdFemSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLspdFemSkins[i]);

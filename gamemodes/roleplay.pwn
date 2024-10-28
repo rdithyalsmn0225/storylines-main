@@ -2857,6 +2857,7 @@ public OnPlayerUpdate(playerid)
 			ApplyAnimation(playerid, "WUZI", "CS_Dead_Guy", 4.1, 0, 1, 1, 1, 0, 1);	
 		}	
 	}
+
 	else if(GetPlayerTeam(playerid) == PLAYER_STATE_DEAD)
 	{
 		SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_ORANGE, 30.0, 2500); 
@@ -2881,20 +2882,12 @@ public OnPlayerUpdate(playerid)
 		}
 	}
 
-	if(IsPlayerInAnyVehicle(playerid))
+	if(IsPlayerInAnyVehicle(playerid) && IsAPolice(GetPlayerVehicleID(playerid)))
 	{
-		new vehicleid = GetPlayerVehicleID(playerid);
-		if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE && IsAPolice(vehicleid))
+		if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
 		{
 			DetectVehicleInFront(playerid);
 		}
-	}
-	else
-	{
-		for(new i = 0; i < 6; i++)
-        {
-            PlayerTextDrawHide(playerid, ALPR[i][playerid]);
-        }
 	}
 
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)

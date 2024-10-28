@@ -226,7 +226,7 @@ CMD:editbusiness(playerid, params[])
 	if(sscanf(params, "is[90]S()[90]", id, astr, bstr))
 	{
 		SendUsageMessage(playerid, "/editbusiness [business ID] [configuration]");
-		SendTipMessage(playerid, "entrance, interior, point, fuel, type, level");
+		SendTipMessage(playerid, "entrance, interior, point, fuel, type, level, stock");
 		SendTipMessage(playerid, "mapicon, entrancefee, name, marketprice, actor"); 
 		return 1;
 	}
@@ -293,6 +293,21 @@ CMD:editbusiness(playerid, params[])
 		BusinessInfo[id][E_BUSINESS_LEVEL] = level;
 		
 		SendInfoMessage(playerid, "You set business #%i's level to %i.", id, level);
+		SaveBusiness(id);
+	}
+	else if(!strcmp(astr, "stock"))
+	{
+		new products;
+		
+		if(sscanf(bstr, "i", products))
+			return SendUsageMessage(playerid, "/editbusiness %i level [level]", id);
+			
+		if(products < 1)
+			return SendErrorMessage(playerid, "You can't make the stock below 1."); 
+			
+		BusinessInfo[id][E_BUSINESS_STOCK] = products;
+		
+		SendInfoMessage(playerid, "You set business #%i's level to %i.", id, products);
 		SaveBusiness(id);
 	}
 	else if(!strcmp(astr, "entrancefee"))

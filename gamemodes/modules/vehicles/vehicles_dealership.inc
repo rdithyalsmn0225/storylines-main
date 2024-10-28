@@ -38,7 +38,7 @@ CMD:carbuy(playerid, params[])
 			
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, 684.6581,-1570.5861,14.2422))
 	{		
-		new larstr[512],
+		new larstr[1024],
 			counter = 0;
 
         CatDealershipHolder[playerid] = DEALERSHIP_CATEGORY_BIKES; 
@@ -58,7 +58,7 @@ CMD:carbuy(playerid, params[])
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 2132.0190,-1149.9902,24.2088))
 	{		
-		new larstr[512],
+		new larstr[1024],
 			counter = 0;
 
         CatDealershipHolder[playerid] = DEALERSHIP_CATEGORY_TWODOOR; 
@@ -78,7 +78,7 @@ CMD:carbuy(playerid, params[])
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 1629.6158,-1903.5123,13.5530))
 	{		
-		new larstr[512],
+		new larstr[1024],
 			counter = 0;
 
         CatDealershipHolder[playerid] = DEALERSHIP_CATEGORY_FOURDOOR; 
@@ -98,7 +98,7 @@ CMD:carbuy(playerid, params[])
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 2684.1277,-2515.6733,13.1552))
 	{		
-		new larstr[512],
+		new larstr[1024],
 			counter = 0;
 
         CatDealershipHolder[playerid] = DEALERSHIP_CATEGORY_INDUSTRIAL; 
@@ -118,7 +118,7 @@ CMD:carbuy(playerid, params[])
 	}
 	else if(IsPlayerInRangeOfPoint(playerid, 3.0, 666.1486,-1419.0734,14.0272))
 	{		
-		new larstr[512],
+		new larstr[1024],
 			counter = 0;
 
         CatDealershipHolder[playerid] = DEALERSHIP_CATEGORY_TAXI; 
