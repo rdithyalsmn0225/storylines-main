@@ -1,138 +1,6 @@
+//STATIC OBJECTS
 new tmpobjid;
 
-//Static
-new g_Vehicle[100];
-new Jobs_vehicles[20];
-new LSPDVehicles[30];
-new dmv_vehicles[4]; 
-
-new PlayerActor[MAX_PLAYERS];
-
-CreatePlayerActor(playerid, skin)
-{
-	new vwid = AccountInfo[playerid][E_MASTERS_DBID];
-
-	if(IsValidDynamicActor(PlayerActor[playerid]))
-		DestroyDynamicActor(PlayerActor[playerid]);
-
-	PlayerActor[playerid] = CreateDynamicActor(skin, 1673.8185,-2325.6941,-2.6797,271.9806); //hood
-	ApplyDynamicActorAnimation(PlayerActor[playerid], "DEALER", "DEALER_IDLE", 4.1, 1, 0, 0, 0, 0);
-	SetDynamicActorVirtualWorld(PlayerActor[playerid], vwid);
-	return 1;
-}
-
-DestroyPlayerActor(playerid)
-{
-	DestroyDynamicActor(PlayerActor[playerid]);
-	return 1;
-}
-//Static
-
-InsertSideJobs()
-{
-    CreateDynamicPickup(1210, 1, 1529.5608,-1849.4032,13.5469, -1, -1, -1, 5.0);
-    CreateDynamic3DTextLabel("[Garbageman]\n{ffffff}Available commands: /jobduty, /collectgarbage, /dumpgarbage", COLOR_DARKGREEN, 1529.5608,-1849.4032,13.5469, 5.0);
-    CreateDynamicPickup(1210, 1, 2748.7725,-2451.0012,13.6484, -1, -1, -1, 5.0);
-    CreateDynamic3DTextLabel("[Dockworker]\n{ffffff}Available commands: /jobduty, /takecargo, /storecargo", COLOR_DARKGREEN, 2748.7725,-2451.0012,13.6484, 5.0);
-}
-Insert3DTextLabel()
-{
-    new str1[512], str2[512]; 
-    
-    format(str1, sizeof(str1), "[Gunstore Materials]\n{ffffff}Available stock: %d / 1000\nMaterials Price $5 / gram", ServerInfo[0][E_SERVER_MATERIALS]);
-    CreateDynamic3DTextLabel(str1, COLOR_DARKGREEN, -576.3427,-505.8364,25.5234, 5.0);
-
-    format(str2, sizeof(str2), "[Drugs Labs]\n{ffffff}Available stock: %d / 100\nMarijuana Price $3000 / 25 gram\nCocaine Price $5000 / 30 gram\nHeroin Price $5000 / 30 gram", ServerInfo[0][E_SERVER_DRUGS]);
-    CreateDynamic3DTextLabel(str2, COLOR_DARKGREEN, 122.0707,-319.1785,1.5781, 5.0);
-
-	fittingRoomDoor = CreateDynamicObject(2877, 216.760360, -97.310455, 1005.337768, 0.0, 0.0, 360.0, .interiorid = 15);
-
-	CreateDynamic3DTextLabel("[Leafy Hollow Barn]\n{ffffff}Available Commands: '/buyaxe'", COLOR_DARKGREEN, -1448.7738,-1530.5585,101.7578, 5.0);
-
-	CreateDynamic3DTextLabel("[Drop Injured]\n{ffffff}Available Commands: '/dropinjured'", COLOR_DARKGREEN, 2035.0732,-1414.0488,16.9922, 5.0);
-
-	CreateDynamic3DTextLabel("[Vehicle Graveyard & Scrapyard]\n{ffffff}Available Commands: '/carscrap'", COLOR_DARKGREEN, 2412.9312,-1425.4226,23.9835, 5.0);
-
-	CreateDynamic3DTextLabel("[Clothes store]\n{ffffff}Available Commands: '/clothes'", COLOR_DARKGREEN, 217.5163,-98.4308,1005.2578, 5.0);
-
-	CreateDynamic3DTextLabel("[Los Santos Prison]\n{ffffff}Available Commands: '/charge'", COLOR_DARKGREEN, 252.9687,90.9530,1002.4453, 5.0);
-
-	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -48.4748,-1.1597,203.2633, 5.0);
-	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -53.7980,2.8393,203.2633, 5.0);
-	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -51.4530,5.4811,203.2633, 5.0);
-	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -48.1108,5.5907,203.2633, 5.0);
-	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -53.7646,5.2118,203.2633, 5.0);
-
-	CreateDynamic3DTextLabel("[Furniture Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, 1359.4304,1703.7946,434.9792, 5.0);
-	CreateDynamic3DTextLabel("[Furniture Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, 1359.4393,1710.9224,434.9792, 5.0);
-	CreateDynamic3DTextLabel("[Furniture Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, 1362.5713,1711.0144,434.9792, 5.0);
-
-	CreateDynamic3DTextLabel("[Haircut]\n{ffffff}Available Commands: '/haircut'", COLOR_DARKGREEN, 2064.5574,-1794.9839,13.4599, 5.0);
-
-	CreateDynamic3DTextLabel("[Fish Factory]\n{ffffff}Available Commands: '/buybait'\n{ffffff}Available Commands: '/sellfish'", COLOR_DARKGREEN, 2895.6743,-2135.5847,3.6525, 5.0);
-}
-
-InsertStaticVehicles()
-{
-	dmv_vehicles[0] = AddStaticVehicle(405, 1273.0470, -1557.0576, 13.5405, -91.0000, 1, 1); SetVehicleNumberPlate(dmv_vehicles[0], "DMV");
-	dmv_vehicles[1] = AddStaticVehicle(405, 1273.0470, -1549.9562, 13.5405, -91.0000, 1, 1); SetVehicleNumberPlate(dmv_vehicles[1], "DMV");
-	dmv_vehicles[2] = AddStaticVehicle(405, 1273.0470, -1542.8961, 13.5405, -91.0000, 1, 1); SetVehicleNumberPlate(dmv_vehicles[2], "DMV");
-	dmv_vehicles[3] = AddStaticVehicle(405, 1273.0470, -1536.0962, 13.5405, -91.0000, 1, 1); SetVehicleNumberPlate(dmv_vehicles[3], "DMV");
-
-	for (new i = 0; i < 4; i ++) if (IsValidVehicle(dmv_vehicles[i])) 
-	{
-		VehicleInfo[dmv_vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[dmv_vehicles[i]][E_VEHICLE_FUEL] = 99999;
-	}
-
-	//DockWrorker
-	Jobs_vehicles[7] = CreateVehicle(530, 2744.6150,-2444.0518,13.4080, 268.9370, 11, 0, -1); SetVehicleNumberPlate(Jobs_vehicles[7], "DOCK");
-	Jobs_vehicles[8] = CreateVehicle(530, 2746.6934,-2467.3901,13.4124, 91.9786, 11, 0, -1); SetVehicleNumberPlate(Jobs_vehicles[8], "DOCK");
-	Jobs_vehicles[9] = CreateVehicle(530, 2672.1262,-2421.1860,13.3976, 1.2609, 11, 0, -1); SetVehicleNumberPlate(Jobs_vehicles[9], "DOCK");
-	Jobs_vehicles[10] = CreateVehicle(530, 2640.8159,-2389.7834,13.3978,85.6932, 11, 0, -1); SetVehicleNumberPlate(Jobs_vehicles[10], "DOCK");
-	Jobs_vehicles[11] = CreateVehicle(530, 2446.9351,-2431.2043,13.3915,225.1755, 11, 0, -1); SetVehicleNumberPlate(Jobs_vehicles[11], "DOCK");
-
-	for (new i = 0; i < 15; i ++) if (IsValidVehicle(Jobs_vehicles[i])) 
-	{
-		VehicleInfo[Jobs_vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[Jobs_vehicles[i]][E_VEHICLE_FUEL] = 99999;
-		VehicleInfo[Jobs_vehicles[i]][E_VEHICLE_CRATES] = 0;
-		VehicleInfo[Jobs_vehicles[i]][E_VEHICLE_TRASHMASTER] = 0;
-
-	}
-
-	for (new i = 0; i < 38; i ++) if (IsValidVehicle(g_Vehicle[i])) 
-	{
-		VehicleInfo[g_Vehicle[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[g_Vehicle[i]][E_VEHICLE_FUEL] = 99999;
-	}
-
-	//Police
-	LSPDVehicles[0] = AddStaticVehicleEx(596,1585.8813,-1667.5236,5.5589,268.9741,36,1, 60000); // Cruiser HC
-	LSPDVehicles[1] = AddStaticVehicleEx(596,1585.6987,-1671.8832,5.5520,271.2573,15,1, 60000); // Cruiser Command Team
-	LSPDVehicles[2] = AddStaticVehicleEx(596,1585.7786,-1675.9716,5.5531,270.9127,108,1, 60000); // Cruiser Supervisor 1
-	LSPDVehicles[3] = AddStaticVehicleEx(596,1585.8177,-1679.6355,5.5674,270.8011,108,1, 60000); // Cruiser Supervisor 2
-	LSPDVehicles[4] = AddStaticVehicleEx(596,1602.5104,-1684.0599,5.5721,91.0629,0,1, 60000); // Cruiser
-	LSPDVehicles[5] = AddStaticVehicleEx(596,1602.5287,-1688.0629,5.5712,88.9105,0,1, 60000); // Cruiser
-	LSPDVehicles[6] = AddStaticVehicleEx(596,1602.4117,-1692.0302,5.5735,88.5088,0,1, 60000); // Cruiser
-	LSPDVehicles[7] = AddStaticVehicleEx(596,1602.4979,-1696.1620,5.5303,92.1094,0,1, 60000); // Cruiser
-	LSPDVehicles[8] = AddStaticVehicleEx(596,1602.3427,-1700.1394,5.5328,89.7606,0,1, 60000); // Cruiser
-	LSPDVehicles[9] = AddStaticVehicleEx(596,1602.3191,-1704.4431,5.5304,88.5293,0,1, 60000); // Cruiser
-	LSPDVehicles[10] = AddStaticVehicleEx(599,1595.4366,-1711.3505,5.9677,0.7363,0,1, 60000); // Bear 1
-	LSPDVehicles[11] = AddStaticVehicleEx(599,1591.4089,-1711.5291,5.9700,359.3976,0,1, 60000); // Bear 2
-	LSPDVehicles[12] = AddStaticVehicleEx(468,1566.6353,-1708.4395,5.5598,359.7773,0,0, 60000, 1); // Marry 1
-	LSPDVehicles[13] = AddStaticVehicleEx(468,1566.9927,-1711.9053,5.5516,359.1170,0,0, 60000, 1); // Marry 2
-	LSPDVehicles[14] = AddStaticVehicleEx(490,1545.6080,-1676.0394,6.0064,89.7384,0,1, 60000); // DAVID 3
-	LSPDVehicles[15] = AddStaticVehicleEx(426,1528.6735,-1684.0107,5.6811,269.4669,198,198, 60000, 1); // TEU Premier 1
-	LSPDVehicles[16] = AddStaticVehicleEx(426,1528.6068,-1687.9893,5.6737,271.4348,1,1, 60000, 1); // TEU Premier 2
-	LSPDVehicles[17] = AddStaticVehicleEx(497,1566.6866,-1696.0535,28.6456,269.6936,0,1, 60000, 1);
-
-	for (new i = 0; i < 18; i ++) if (IsValidVehicle(LSPDVehicles[i])) 
-	{
-		VehicleInfo[LSPDVehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
-		VehicleInfo[LSPDVehicles[i]][E_VEHICLE_FUEL] = 100;
-	}
-}
 RemoveObjects(playerid)
 {
     //Industrial
@@ -1269,9 +1137,9 @@ InsertAcidGunLabs(){
 	tmpobjid = CreateDynamicObject(2068, 1470.539672, 1567.722412, 110.886863, 0.000000, 0.000000, 0.000000, -1, 11, -1, 800.00, 800.00); 
 
 }
-InsertEmmetMaps() {
-    
-    // Families Emmet (pull original mapping)
+
+InsertEmmetMaps() 
+{
     new g_Object[151];
     g_Object[0] = CreateDynamicObject(1448, 2440.3666, -1967.6428, 12.6197, 0.0000, 0.0000, 0.0000); //DYN_CRATE_1
     g_Object[1] = CreateDynamicObject(2968, 2440.1203, -1967.8758, 12.9933, 0.0000, 0.0000, 0.0000); //cm_box

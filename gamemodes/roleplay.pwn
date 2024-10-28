@@ -13,7 +13,6 @@
   #Special thanks to GTA-Chronicles / SP-RP / SOLS for credits the Environment.
 ================================================================================================== */
 
-
 #include <a_samp>
 #include <a_mysql>
 #include <a_http>
@@ -43,8 +42,12 @@ main ()  {}
 
 //Modules Headers
 #include "modules\visuals\enviroment.inc"
+#include "modules\visuals\static_3dtext"
+#include "modules\visuals\static_actor"
+#include "modules\visuals\static_vehicles"
 #include "modules\visuals\textdraws.inc"
 #include "modules\visuals\gamebar.inc"
+
 #include "modules\config\modelselections.inc"
 #include "modules\config\types.inc"
 #include "modules\config\messages.inc"

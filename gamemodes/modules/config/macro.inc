@@ -64,7 +64,6 @@
 #define MAX_FURNITURE 				(300)
 #define MAX_GARBAGE 				(100)
 
-
 LoadCustomModels()
 {
     //======================================Textdraws======================================
@@ -79,6 +78,11 @@ LoadCustomModels()
 	AddCharModel(121, 20006, "misc/skin/citizen/mabam5.dff", "misc/skin/citizen/mabam5.txd");
 	AddCharModel(22, 20007, "misc/skin/citizen/mbciv11.dff", "misc/skin/citizen/mbciv11.txd");
 	AddCharModel(2, 20008, "misc/skin/citizen/mwacer.dff", "misc/skin/citizen/mwacer.txd");
+	AddCharModel(121, 20009, "misc/skin/citizen/bmpretty1.dff", "misc/skin/citizen/bmpretty1.txd");
+	AddCharModel(184, 20010, "misc/skin/citizen/bmpretty2.dff", "misc/skin/citizen/bmpretty2.txd");
+	AddCharModel(67, 20011, "misc/skin/citizen/bmpretty3.dff", "misc/skin/citizen/bmpretty3.txd");
+	AddCharModel(184, 20012, "misc/skin/citizen/bmpretty4.dff", "misc/skin/citizen/bmpretty4.txd");
+	AddCharModel(67, 20013, "misc/skin/citizen/hmyec3.dff", "misc/skin/citizen/hmyec3.txd");
 
 	AddCharModel(300, 20260, "misc/skin/lspd/male/amypd2.dff", "misc/skin/lspd/male/amypd2.txd");
 	AddCharModel(301, 20261, "misc/skin/lspd/male/bmopd1.dff", "misc/skin/lspd/male/bmopd1.txd");

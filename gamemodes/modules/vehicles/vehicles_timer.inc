@@ -2,7 +2,7 @@ function:OnVehicleFuelUpdate()
 {
 	for (new i = 1; i != MAX_VEHICLES; i ++) if (IsEngineVehicle(i) && GetVehicleEngineStatus(i))
 	{
-		if(VehicleInfo[i][E_VEHICLE_ADMIN]) //kalo kendaraan admin ga bisa ngurang ye.
+		if(VehicleInfo[i][E_VEHICLE_ADMIN]) //kalo kendaraan admin ga bisa ngurang.
 			return 0;
 
 	    if(VehicleInfo[i][E_VEHICLE_FUEL] > 1.0)
@@ -85,8 +85,8 @@ function:OnVehicleUpdate()
 
 	for(new i = 1, j = GetVehiclePoolSize(); i <= j; i++)
     {
-		if(VehicleInfo[i][E_VEHICLE_ADMIN])
-			continue;
+		if(VehicleInfo[i][E_VEHICLE_ADMIN]) //kalo kendaraan admin ga bisa ngurang.
+			return 0;
 			
 		GetVehicleHealth(i, vehicle_health); 
 		GetVehiclePos(i, x, y, z);

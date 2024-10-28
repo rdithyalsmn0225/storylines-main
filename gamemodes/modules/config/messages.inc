@@ -680,7 +680,7 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 				
 				SendClientMessage(playerid, -1, " "); 
 				SendClientMessage(playerid, -1, "This next step will allow you the chosen your gender.");
-				SendClientMessage(playerid, -1, "Available gender is {B3C99E}male{FFFFFF} and {B3C99E}'female'{FFFFFF}.");
+				SendClientMessage(playerid, -1, "Available gender is {B3C99E}'male'{FFFFFF} and {B3C99E}'female'{FFFFFF}.");
 				SendClientMessage(playerid, -1, "We didn't support LGBT+ nigga, who the fuck They/Them/Neither/Croisant????."); 
 				SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
 
@@ -703,7 +703,6 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					SendClientMessage(playerid, -1, "This step is {B3C99E}optional{FFFFFF} and not required. Type {B3C99E}\"skip\" {FFFFFF}to continue.");
 					SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
 
-					ClearLines(playerid, 2);
 
 					playerCharacterGender[playerid] = 1;
 					playerCharacterStep[playerid] = 6; 
@@ -722,8 +721,6 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					SendClientMessage(playerid, -1, "In no more than three (3) paragraphs, introduce your characters story."); 
 					SendClientMessage(playerid, -1, "This step is {B3C99E}optional{FFFFFF} and not required. Type {B3C99E}\"skip\" {FFFFFF}to continue.");
 					SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
-
-					ClearLines(playerid, 2);
 
 					playerCharacterGender[playerid] = 2;
 					playerCharacterStep[playerid] = 6; 
@@ -751,12 +748,12 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					playerCharacterStep[playerid] = 0; 
 					PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0;
 
-					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
+					if(playerCharacterGender[playerid] == 1)
 					{
 						new rand = random(sizeof(g_aMaleSkins));
 						PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aMaleSkins[rand];
 					}
-					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
+					if(playerCharacterGender[playerid] == 2)
 					{
 						new rand = random(sizeof(g_aFemaleSkins));
 						PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aFemaleSkins[rand];
@@ -810,8 +807,17 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					playerMakingCharacter[playerid] = false;
 					playerCharacterStep[playerid] = 0; 
 					PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0;
-					new rand = random(sizeof(g_aMaleSkins));
-					PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aMaleSkins[rand];
+
+					if(playerCharacterGender[playerid] == 1)
+					{
+						new rand = random(sizeof(g_aMaleSkins));
+						PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aMaleSkins[rand];
+					}
+					if(playerCharacterGender[playerid] == 2)
+					{
+						new rand = random(sizeof(g_aFemaleSkins));
+						PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = g_aFemaleSkins[rand];
+					}
 					ClearLines(playerid, 17); 
 									
 					SendInfoMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
