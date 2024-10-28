@@ -184,6 +184,7 @@ public OnGameModeInit()
 	InsertSideJobs();
 	InsertASGHMaps();
 	InsertModshops();
+	InsertBlackjack();
 	InsertEmmetInit();
 	InsertJobsPoint();
 	InsertAntiCheat();
@@ -362,9 +363,9 @@ public OnPlayerDisconnect(playerid, reason)
 		}
 	}
 
-	if(BlackJackPlay[playerid])
+	if(blackjackPlay[playerid])
 	{
-		ResetBlackjackVar(playerid);
+		ResetBlackjack(playerid);
 	}
 
 	if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == true)

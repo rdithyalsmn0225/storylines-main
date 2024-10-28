@@ -1,69 +1,158 @@
-new BlackJackBets[MAX_PLAYERS],
-    BlackJackCard[MAX_PLAYERS][2][2],
-    BlackJackCount[MAX_PLAYERS],
-    bool:BlackJackPlay[MAX_PLAYERS],
-    DealerCards[2][2];
+new
+    blackjackPlayerScore[MAX_PLAYERS],
+    blackjackDealerScore[MAX_PLAYERS],
+    blackjackPlayerCards[MAX_PLAYERS][10],
+    blackjackDealerCards[MAX_PLAYERS][10],
+    blackjackPlayerCardsCount[MAX_PLAYERS],
+    blackjackDealerCardsCount[MAX_PLAYERS],
+    bool:blackjackPlay[MAX_PLAYERS],
+    playerBet[MAX_PLAYERS];
 
-stock GetCardValue(card[]) {
-    if (card[0] == 1) return 11; // AS = 11
-    if (card[0] > 10) return 10; // CARD 10, Jack, Queen, King
-    return card[0];
-}
 
-stock GetPlayerBlackJackScore(playerid) {
-    new score = 0;
-    for (new i = 0; i < BlackJackCount[playerid]; i++) {
-        score += GetCardValue(BlackJackCard[playerid][i]);
-    }
-    return score;
-}
-
-GetDealerBlackJackScore(businessid) {
-    new score = 0;
-    for (new i = 0; i < BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT]; i++) {
-        score += GetCardValue(DealerCards[i]);
-    }
-    return score;
+InsertBlackjack()
+{
+    CreateDynamic3DTextLabel("[Blackjack]\n{ffffff}Available commands: /blackjack", COLOR_DARKGREEN, 1128.7081,-1.6211,1000.6797, 5.0);
 }
 
 StartBlackjack(playerid) 
 {
-    new businessid = IsPlayerInBusiness(playerid);
-
-    BlackJackBets[playerid] = 0;
-    BlackJackCount[playerid] = 0;
-    BlackJackPlay[playerid] = true;
-    BusinessInfo[businessid][E_BUSINESS_BLACKJACK] = true;
+    ResetBlackjack(playerid);
     Dialog_Show(playerid, BlackjackBet, DIALOG_STYLE_INPUT, "Blackjack:", "{ffffff}Welcome to Blackjack! Please enter the amount you wish to bet.\nRemember if you win you will get 2x the bet, and if you lose you will lose all your bets", "Enter", "Cancel");
     return 1;
 }
 
 ShowBlackjackStatus(playerid) 
 {
-    new str[1024];
-    format(str, sizeof(str), "{ffffff}Your cards: {d7d292}%d{ffffff} and {d7d292}%d{ffffff}\nYour current score: {d7d292}%d{ffffff}\nDealer's cards: {d7d292}%d{ffffff} and {d7d292}?{ffffff}\nChoose your next move by typing {d7d292}'Hit'{ffffff} to draw another card or {d7d292}'Stand'{ffffff} to keep your current hand.", 
-    BlackJackCard[playerid][0][0], BlackJackCard[playerid][1][0], GetPlayerBlackJackScore(playerid), DealerCards[0][0]);
+    new businessid = IsPlayerInBusiness(playerid);
+    blackjackPlay[playerid] = true;
+    BusinessInfo[businessid][E_BUSINESS_BLACKJACK] = true;
 
+    DealInitialCards(playerid);
+
+    new str[1024];
+    format(str, sizeof(str), "Your current score: {d7d292}%d{ffffff}\nDealer's current score: {d7d292}%d{ffffff}\nChoose your next move by typing {d7d292}'Hit'{ffffff} to draw another card or {d7d292}'Stand'{ffffff} to keep your current hand.", 
+    blackjackPlayerScore[playerid], blackjackDealerScore[playerid]);
     Dialog_Show(playerid, Blackjacks, DIALOG_STYLE_MSGBOX, "Blackjack:", str, "Hit", "Stand");
     return 1;
+}
+
+ResetBlackjack(playerid)
+{
+    new businessid = IsPlayerInBusiness(playerid);
+    BusinessInfo[businessid][E_BUSINESS_BLACKJACK] = false;
+
+    blackjackPlayerScore[playerid] = 0;
+    blackjackDealerScore[playerid] = 0;
+    blackjackPlayerCardsCount[playerid] = 0;
+    blackjackDealerCardsCount[playerid] = 0;
+    blackjackPlay[playerid] = false;
+}
+
+DealInitialCards(playerid)
+{
+    new cardDeck[52];
+    InitializeDeck(cardDeck);
+
+    GiveCardToPlayer(playerid, cardDeck);
+    GiveCardToDealer(playerid, cardDeck);
+    GiveCardToPlayer(playerid, cardDeck);
+}
+
+InitializeDeck(cardDeck[])
+{
+    for (new i = 0; i < 52; i++) cardDeck[i] = i + 1;
+    for (new i = 0; i < 52; i++)
+    {
+        new randIdx = random(52);
+        new temp = cardDeck[i];
+        cardDeck[i] = cardDeck[randIdx];
+        cardDeck[randIdx] = temp;
+    }
+}
+
+GiveCardToPlayer(playerid, cardDeck[])
+{
+    blackjackPlayerCards[playerid][blackjackPlayerCardsCount[playerid]++] = cardDeck[blackjackPlayerCardsCount[playerid] + blackjackDealerCardsCount[playerid]];
+    blackjackPlayerScore[playerid] = CalculateScore(blackjackPlayerCards[playerid], blackjackPlayerCardsCount[playerid]);
+}
+
+GiveCardToDealer(playerid, cardDeck[])
+{
+    blackjackDealerCards[playerid][blackjackDealerCardsCount[playerid]++] = cardDeck[blackjackPlayerCardsCount[playerid] + blackjackDealerCardsCount[playerid]];
+    blackjackDealerScore[playerid] = CalculateScore(blackjackDealerCards[playerid], blackjackDealerCardsCount[playerid]);
+}
+
+DealerTurn(playerid)
+{
+    new cardDeck[52];
+    InitializeDeck(cardDeck);
+    while(blackjackDealerScore[playerid] < 17)
+    {
+        GiveCardToDealer(playerid, cardDeck);
+    }
+}
+
+DetermineWinner(playerid)
+{
+    if(blackjackDealerScore[playerid] > 21 || blackjackPlayerScore[playerid] > blackjackDealerScore[playerid])
+    {
+        new reward = playerBet[playerid] * 2;
+        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You won! Your reward is {B3C99E}$%s{cdd0d1}.", FormatMoney(reward));
+        GiveMoney(playerid, reward);
+        ResetBlackjack(playerid);
+        return 1;
+    }
+    else if(blackjackDealerScore[playerid] == blackjackPlayerScore[playerid])
+    {
+        SendServerMessage(playerid, "[Blackjack] {cdd0d1}It's a draw!");
+        ResetBlackjack(playerid);
+        return 1;
+    }
+    else
+    {
+        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You lost!");
+        ResetBlackjack(playerid);
+        return 1;
+    }
+}
+
+
+CalculateScore(cards[], cardCount)
+{
+    new score = 0;
+    for(new i = 0; i < cardCount; i++)
+    {
+        new cardValue = (cards[i] % 13) + 1;
+        if(cardValue > 10) cardValue = 10;
+        score += cardValue;
+    }
+    return score;
 }
 
 Dialog:BlackjackBet(playerid, response, listitem, inputtext[])
 {
     if (response) 
     {
-        new bet = strval(inputtext);
+        playerBet[playerid] = strval(inputtext);
 
-        if(bet > PlayerInfo[playerid][E_CHARACTER_MONEY])
-            return SendErrorMessage(playerid, "You can't bet blackjack rightnow.");
+        if(!IsNumeric(inputtext))
+        {
+            StartBlackjack(playerid);
+            SendErrorMessage(playerid, "Please enter a valid numeric amount for your bet.");
+            return 1;
+        }
 
-        if (bet < 0) 
-            return SendErrorMessage(playerid, "Your bet must be higher than 0!");
-        
-        BlackJackBets[playerid] = bet;
-        GiveMoney(playerid, -bet);
-        StartGame(playerid);
+        if(playerBet[playerid] <= 0)
+        {
+            StartBlackjack(playerid);
+            SendErrorMessage(playerid, "Invalid bet amount! Please try again.");
+            return 1;
+        }
+
+        GiveMoney(playerid, -strval(inputtext));
+        ShowBlackjackStatus(playerid);
     }
+    else ResetBlackjack(playerid);
     return 1;
 }
 
@@ -71,110 +160,22 @@ Dialog:Blackjacks(playerid, response, listitem, inputtext[])
 {   
     if(!response)
     {
-        Stand(playerid);
+        DealerTurn(playerid);
+        DetermineWinner(playerid);
     }
 
-    Hit(playerid);
-    return 1;
-}
-
-StartGame(playerid) 
-{
-    new businessid = IsPlayerInBusiness(playerid);
-
-    for (new i = 0; i < 2; i++) {
-        BlackJackCard[playerid][i][0] = random(10) + 1; // Card 1-10
-        BlackJackCard[playerid][i][1] = BlackJackCard[playerid][i][0]; // Storing value
-    }
-    BlackJackCount[playerid] = 2;
-
-    BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT] = 0;
-    BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE] = 0;
-
-    for (new i = 0; i < 2; i++) 
+    if(blackjackPlayerScore[playerid] > 21)
     {
-        DealerCards[i][0] = random(10) + 1; // Card 1-10
-        DealerCards[i][1] = DealerCards[i][0]; // Storing value
+        ResetBlackjack(playerid);
+        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You lost! Your score exceeded 21.");
+        return 1;
     }
-    BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT] = 2;
 
+    new cardDeck[52];
+    InitializeDeck(cardDeck);
+    GiveCardToPlayer(playerid, cardDeck);
     ShowBlackjackStatus(playerid);
     return 1;
-}
-
-Hit(playerid) 
-{
-    if (BlackJackCount[playerid] < 5) 
-    {
-        ShowBlackjackStatus(playerid);
-        return SendErrorMessage(playerid, "You can only have a maximum of 5 cards!");
-    }
-
-    BlackJackCard[playerid][BlackJackCount[playerid]][0] = random(10) + 1; // Card 1-10
-    BlackJackCard[playerid][BlackJackCount[playerid]][1] = BlackJackCard[playerid][BlackJackCount[playerid]][0];
-    BlackJackCount[playerid]++;
-    ShowBlackjackStatus(playerid);
-
-    // Check if the player loses
-    if (GetPlayerBlackJackScore(playerid) > 21) 
-    {
-        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You lossee! Your score exceeds 21.");
-        ResetBlackjackVar(playerid);
-    }
-    return 1;
-}
-
-Stand(playerid) 
-{
-    new businessid = IsPlayerInBusiness(playerid);
-
-    // Dealer draws cards until reaching 17
-    while(BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE] < 17) 
-    {
-        DealerCards[BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT]][0] = random(10) + 1; // Card 1-10
-        DealerCards[BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT]][1] = DealerCards[BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT]][0]; // Storing value
-        BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT]++;
-    }
-
-    BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE] = GetDealerBlackJackScore(businessid);
-    ShowBlackjackResult(playerid);
-    return 1;
-}
-
-ShowBlackjackResult(playerid) 
-{
-    new businessid = IsPlayerInBusiness(playerid);
-
-    SendServerMessage(playerid, "[Blackjack] {cdd0d1}Your final score: {d7d292}%d{cdd0d1} Dealer's final score: {d7d292}%d{cdd0d1}", GetPlayerBlackJackScore(playerid), BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE]);
-
-    if (GetPlayerBlackJackScore(playerid) > 21) 
-    {
-        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You busted! You lose!");
-    } 
-    else if (BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE] > 21 || GetPlayerBlackJackScore(playerid) > BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE]) 
-    {
-        SendServerMessage(playerid, "[Blackjack] {cdd0d1}Congratulations! You win!");
-    } 
-    else if (GetPlayerBlackJackScore(playerid) < BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE]) 
-    {
-        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You lose! Better luck next time!");
-    } 
-    else 
-    {
-        SendServerMessage(playerid, "[Blackjack] {cdd0d1}It's a tie! No winners this time.");
-    }
-
-    ResetBlackjackVar(playerid);
-}
-
-stock ResetBlackjackVar(playerid) 
-{
-    new businessid = IsPlayerInBusiness(playerid);
-    BlackJackBets[playerid] = 0;
-    BlackJackCount[playerid] = 0;
-    BlackJackPlay[playerid] = false;
-    BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT] = 0;
-    BusinessInfo[businessid][E_BUSINESS_BLACKJACK] = false;
 }
 
 CMD:blackjack(playerid, params[])
@@ -189,6 +190,9 @@ CMD:blackjack(playerid, params[])
 
     if(BusinessInfo[businessid][E_BUSINESS_BLACKJACK])
         return SendErrorMessage(playerid, "There is player using this table.");
+
+    if(!IsPlayerInRangeOfPoint(playerid, 2.0, 1128.7081,-1.6211,1000.6797))
+        return SendErrorMessage(playerid, "You aren't near blackjack table.");
 
     StartBlackjack(playerid);
     return 1;
