@@ -370,6 +370,12 @@ CMD:tackle(playerid, params[])
 	return 1;
 }
 
+function:TackleModes(playerid)
+{
+	ApplyAnimationEx(playerid, "ped", "EV_dive", 4.1, 0, 0, 0, 0, 0);
+	return 1;
+}
+
 TacklePlayer(playerid, victimid)
 {
 	ApplyAnimationEx(victimid, "PED", "BIKE_fall_off", 4.1, 0, 1, 1, 1, 0);

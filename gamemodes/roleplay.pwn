@@ -128,6 +128,7 @@ main ()  {}
 
 #include "modules\minigames\basketball.inc"
 #include "modules\minigames\blackjack.inc"
+#include "modules\minigames\lottery.inc"
 
 #include "modules\industry\industry.inc"
 
@@ -223,6 +224,7 @@ public OnGameModeInit()
 	SetTimer("TaxiTimers", 1000, true);
 	SetTimer("PacketTimers", 1800000, true);
 	SetTimer("GarbageTimers", 600000, true);
+	SetTimer("StartLottery", 1800000, false);
 
 	//Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
@@ -367,6 +369,7 @@ public OnPlayerDisconnect(playerid, reason)
 	{
 		ResetBlackjack(playerid);
 	}
+	ResetLotteryVar(playerid);
 
 	if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == true)
 	{
@@ -3385,7 +3388,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			{
 				if(GetPlayerAnimationIndex(playerid) != 1120 && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
 				{
-					ApplyAnimationEx(playerid, "ped", "EV_dive", 4.1, 0, 0, 0, 0, 0);
+					SetTimerEx("TackleModes", 3000, false, "i", playerid);
 					return true;
 				}
 			}

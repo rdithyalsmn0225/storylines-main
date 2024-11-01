@@ -394,6 +394,8 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
 
 	PlayerInfo[playerid][E_CHARACTER_TUTORIALSTEP] = 0;
+
+	ResetLotteryVar(playerid);
 	return 1;
 }
 

@@ -287,7 +287,7 @@ CMD:charity(playerid, params[])
 	
 	GiveMoney(playerid, -charity);
 	SaveCharacter(playerid);
-	SendServerMessage(playerid, "[Charity] {cdd0d1}You've charity {d7d292}%s{cdd0d1} for this server.", FormatMoney(charity));
+	SendServerMessage(playerid, "[Charity] {cdd0d1}You've charity {B3C99E}%s{cdd0d1} for this server.", FormatMoney(charity));
 	return 1;
 }
 
@@ -1266,7 +1266,8 @@ CMD:sms(playerid, params[])
 		return 1;
 	}
 		
-	playerText[playerid] = SetTimerEx("OnPhoneSMS", 1500, false, "iiis[128]", playerid, 3, playerb, text); 
+	format(playerSMS[playerid], 128, text);
+	playerText[playerid] = SetTimerEx("OnPhoneSMS", 1500, false, "iii", playerid, 3, playerb); 
 	return 1;
 }
 

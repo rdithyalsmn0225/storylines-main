@@ -1424,7 +1424,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 6:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Minigames Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/court, /resetcourt");
+						SendClientMessage(playerid, COLOR_ORANGE, "/court, /resetcourt, /blackjack, /buylottery");
 					}
 					case 7:
 					{
@@ -2013,8 +2013,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					playerText[playerid] = SetTimerEx("OnPhoneSMS", 3000, false, "ii", playerid, 2);
 					return 1;
 				}
-					
-				playerText[playerid] = SetTimerEx("OnPhoneSMS", 1500, false, "iiis[128]", playerid, 3, targetid, inputtext); 
+				format(playerSMS[playerid], 128, inputtext);
+				playerText[playerid] = SetTimerEx("OnPhoneSMS", 1500, false, "iii", playerid, 3, targetid); 
 			}
 		}
 		case DIALOG_CONTACTS:

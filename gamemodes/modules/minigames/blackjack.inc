@@ -86,7 +86,7 @@ DealerTurn(playerid)
 {
     new cardDeck[52];
     InitializeDeck(cardDeck);
-    while(blackjackDealerScore[playerid] < 17)
+    while(blackjackDealerScore[playerid] <= 17)
     {
         GiveCardToDealer(playerid, cardDeck);
     }
@@ -163,8 +163,8 @@ Dialog:Blackjacks(playerid, response, listitem, inputtext[])
         DealerTurn(playerid);
         DetermineWinner(playerid);
     }
-
-    if(blackjackPlayerScore[playerid] > 21)
+    
+    if(blackjackPlayerScore[playerid] >= 21)
     {
         ResetBlackjack(playerid);
         SendServerMessage(playerid, "[Blackjack] {cdd0d1}You lost! Your score exceeded 21.");
