@@ -641,6 +641,12 @@ CMD:tracenumber(playerid, params[])
 {
 	new targetNumber, targetid;
 
+	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE)
+		return SendUnauthMessage(playerid);
+		
+	if(!PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
+		return SendUnauthMessage(playerid);
+
 	if(sscanf(params, "i", targetNumber))
         return SendUsageMessage(playerid, "/tracenumber [phone number]");
 
@@ -886,7 +892,24 @@ CMD:givelicense(playerid, params[])
 	return 1;
 }
 
-CMD:checkvehicle(playerid, params[])
+CMD:searchproperty(playerid, params[])
+{
+	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE)
+		return SendUnauthMessage(playerid);
+		
+	if(!PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
+		return SendUnauthMessage(playerid);
+
+	new propid = IsPlayerInProperty(playerid);
+
+	if(!IsPlayerInProperty(playerid))
+		return SendErrorMessage(playerid, "You aren't in any property");
+
+	Property_ShowItems(playerid, propid);
+	return 1;
+}
+
+CMD:checktrunk(playerid, params[])
 {
 	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE)
 		return SendUnauthMessage(playerid);
