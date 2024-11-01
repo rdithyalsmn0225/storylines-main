@@ -129,53 +129,22 @@ stock ReturnDate()
 	return sendString;
 }
 
-GetPlayerNametagPreference(playerid) {
-
-	return PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE];
-}
-
-ReturnRPName(playerid) 
-{ // Returns "Firstname_Lastname"
-    new name[64];
-    
-
-    if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY]) 
-	{
-        format(name, sizeof(name), "%s", AccountInfo[playerid][E_MASTERS_ACCNAME]);
-        return name;
-    }
-
-    format(name, sizeof(name), PlayerInfo[playerid][E_CHARACTER_NAME]);
-
-    for (new i = 0, len = strlen(name); i < len; i ++) 
-    {
-        if (name[i] == '_') name[i] = ' ';
-    }
-    
-    return name;
-}
-
-TEMP_ReturnPlayerName(playerid) 
+ReturnName(playerid, underscore=1)
 {
-	new name [MAX_PLAYER_NAME];
+	static
+	    name[MAX_PLAYER_NAME + 1];
 
 	GetPlayerName(playerid, name, sizeof(name));
-	return name ;
-}
 
-ReturnSettingsName(fromplayerid, toplayerid, color=false) 
-{
-    new name[64];
-    if (AccountInfo[fromplayerid][E_MASTERS_LOGGED] && PlayerInfo[fromplayerid][E_CHARACTER_DBID] > 0) 
-	{
-        switch(GetPlayerNametagPreference(toplayerid)) 
-		{
-            case 0: format(name, sizeof(name), "%s", ReturnMixedName(fromplayerid));
-            case 1:	format(name, sizeof(name), "%s", ReturnRPName(fromplayerid));
-        }
-    }
-    else format(name, sizeof(name), "%s", TEMP_ReturnPlayerName(fromplayerid));
-    return name;
+	if (!underscore) {
+	    for (new i = 0, len = strlen(name); i < len; i ++) {
+	        if (name[i] == '_') name[i] = ' ';
+		}
+	}
+	if (PlayerInfo[playerid][E_CHARACTER_MASKON])
+	    format(name, sizeof(name), "Mask_#%d", PlayerInfo[playerid][E_CHARACTER_MASKID]);
+
+	return name;
 }
 
 static stock g_arrVehicleNames[][] = {

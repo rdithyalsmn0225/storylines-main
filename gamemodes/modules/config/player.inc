@@ -37,7 +37,7 @@ function:OnOfflineAjail(playerid, jailing[], reason[], length)
 		logQuery[256]
 	;
 	
-	mysql_format(ourConnection, logQuery, sizeof(logQuery), "INSERT INTO ajail_logs (JailedDBID, JailedName, Reason, Date, JailedBy) VALUES(%i, '%e', '%e', '%e', '%e')", ReturnDBIDFromName(jailing), jailing, reason, ReturnDate(), ReturnSettingsName(playerid, playerid));
+	mysql_format(ourConnection, logQuery, sizeof(logQuery), "INSERT INTO ajail_logs (JailedDBID, JailedName, Reason, Date, JailedBy) VALUES(%i, '%e', '%e', '%e', '%e')", ReturnDBIDFromName(jailing), jailing, reason, ReturnDate(), ReturnName(playerid));
 	mysql_pquery(ourConnection, logQuery); 
 	return 1;
 }
@@ -284,10 +284,8 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_STORAGESELECT] = 0;
 	PlayerInfo[playerid][E_CHARACTER_STORAGEITEM] = 0;
 
-	PlayerInfo[playerid][E_CHARACTER_MASKID][0] = 200000+random(199991);
-	PlayerInfo[playerid][E_CHARACTER_MASKID][1] = 40+random(59);
+	PlayerInfo[playerid][E_CHARACTER_MASKID] = 200000+random(199991);
 
-	
 	PlayerInfo[playerid][E_CHARACTER_OFFJAILED] = false;
 	
 	PlayerInfo[playerid][E_CHARACTER_LASTDAMAGE] = 0;
@@ -477,7 +475,7 @@ stock ShowCharacterStats(playerid, playerb)
 	}
 	
 	SendClientMessageEx(playerid, COLOR_DARKGREEN, "|______________________________ (%d) %s Statistics ______________________________|", playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
-	SendClientMessageEx(playerb, COLOR_WHITE, "[ACCOUNT]:{ffffff} [Streetname: %s] - [Account: %s] - [Date: %s]", ReturnSettingsName(playerid, playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());	
+	SendClientMessageEx(playerb, COLOR_WHITE, "[ACCOUNT]:{ffffff} [Streetname: %s] - [Account: %s] - [Date: %s]", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());	
 	SendClientMessageEx(playerb, COLOR_GREY, "[SESSION]:{ffffff} [Gender: %s] [Level: %d] [EXP: %d/10] [Time played: %d hours]", gender, PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
 	SendClientMessageEx(playerb, COLOR_WHITE, "[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
 	SendClientMessageEx(playerb, COLOR_GREY, "[JOBS]:{ffffff} [Jobs: %s] [Skills: %s]", ReturnJobName(PlayerInfo[playerid][E_CHARACTER_JOBS]), ReturnJobSkill(playerid, PlayerInfo[playerid][E_CHARACTER_JOBS]));
@@ -999,13 +997,6 @@ stock IsPlayerFactionRank(playerid)
 stock randomEx(min, max)
 {
     return random(max - min) + min;
-}
-
-function:RefreshNamesFunc(playerid)
-{
-	UpdateTabListForOthers(playerid);
-	UpdateTabListForPlayer(playerid);
-	return 1;
 }
 
 stock GetCount() { return GetTickCount(); }

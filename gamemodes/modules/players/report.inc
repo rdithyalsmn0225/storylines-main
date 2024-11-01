@@ -22,10 +22,10 @@ function:OnPlayerReport(playerid, reportid, const text[])
 		
 	if(strlen(text) > 67)
 	{
-		SendAdminMessageEx(COLOR_REPORT, 1, "[Report: %d] %s (%d): %.75s", reportid, ReturnSettingsName(playerid, playerid), playerid, text);
+		SendAdminMessageEx(COLOR_REPORT, 1, "[Report: %d] %s (%d): %.75s", reportid, ReturnName(playerid), playerid, text);
 		SendAdminMessageEx(COLOR_REPORT, 1, "[Report: %d] ...%s", reportid, text[75]);
 	}
-	else SendAdminMessageEx(COLOR_REPORT, 1, "[Report: %d] %s (%d): %s", reportid, ReturnSettingsName(playerid, playerid), playerid, text);
+	else SendAdminMessageEx(COLOR_REPORT, 1, "[Report: %d] %s (%d): %s", reportid, ReturnName(playerid), playerid, text);
 		
 	if(strfind(text, "hack", true) != -1 || strfind(text, "cheat", true) != -1)
 	{
@@ -51,7 +51,7 @@ function:ClearReports(playerid, response, reports)
 		
 		new str[128];
 		
-		format(str, sizeof(str), "%s cleared %d active reports.", ReturnSettingsName(playerid, playerid), reports);
+		format(str, sizeof(str), "%s cleared %d active reports.", ReturnName(playerid), reports);
 		SendAdminMessage(1, str); 
 	}
 	else return SendClientMessageEx(playerid, COLOR_WHITE, "Report: You cancelled the confirmation.");

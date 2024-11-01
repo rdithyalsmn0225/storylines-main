@@ -46,6 +46,7 @@ ResetBlackjack(playerid)
     blackjackPlayerCardsCount[playerid] = 0;
     blackjackDealerCardsCount[playerid] = 0;
     blackjackPlay[playerid] = false;
+    return 1;
 }
 
 DealInitialCards(playerid)
@@ -56,6 +57,7 @@ DealInitialCards(playerid)
     GiveCardToPlayer(playerid, cardDeck);
     GiveCardToDealer(playerid, cardDeck);
     GiveCardToPlayer(playerid, cardDeck);
+    return 1;
 }
 
 InitializeDeck(cardDeck[])
@@ -68,6 +70,7 @@ InitializeDeck(cardDeck[])
         cardDeck[i] = cardDeck[randIdx];
         cardDeck[randIdx] = temp;
     }
+    return 1;
 }
 
 GiveCardToPlayer(playerid, cardDeck[])
@@ -90,6 +93,7 @@ DealerTurn(playerid)
     {
         GiveCardToDealer(playerid, cardDeck);
     }
+    return 1;
 }
 
 DetermineWinner(playerid)
@@ -97,15 +101,15 @@ DetermineWinner(playerid)
     if(blackjackDealerScore[playerid] > 21 || blackjackPlayerScore[playerid] > blackjackDealerScore[playerid])
     {
         new reward = playerBet[playerid] * 2;
-        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You won! Your reward is {B3C99E}$%s{cdd0d1}.", FormatMoney(reward));
         GiveMoney(playerid, reward);
         ResetBlackjack(playerid);
+        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You won! Your reward is {B3C99E}$%s{cdd0d1}.", FormatMoney(reward));
         return 1;
     }
     else if(blackjackDealerScore[playerid] == blackjackPlayerScore[playerid])
     {
-        SendServerMessage(playerid, "[Blackjack] {cdd0d1}It's a draw!");
         ResetBlackjack(playerid);
+        SendServerMessage(playerid, "[Blackjack] {cdd0d1}It's a draw!");
         return 1;
     }
     else
@@ -152,7 +156,7 @@ Dialog:BlackjackBet(playerid, response, listitem, inputtext[])
         GiveMoney(playerid, -strval(inputtext));
         ShowBlackjackStatus(playerid);
     }
-    else ResetBlackjack(playerid);
+    else return ResetBlackjack(playerid);
     return 1;
 }
 
@@ -163,18 +167,20 @@ Dialog:Blackjacks(playerid, response, listitem, inputtext[])
         DealerTurn(playerid);
         DetermineWinner(playerid);
     }
-    
-    if(blackjackPlayerScore[playerid] >= 21)
+    else 
     {
-        ResetBlackjack(playerid);
-        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You lost! Your score exceeded 21.");
-        return 1;
-    }
+        if(blackjackPlayerScore[playerid] >= 21)
+        {
+            ResetBlackjack(playerid);
+            SendServerMessage(playerid, "[Blackjack] {cdd0d1}You lost! Your score exceeded 21.");
+            return 1;
+        }
 
-    new cardDeck[52];
-    InitializeDeck(cardDeck);
-    GiveCardToPlayer(playerid, cardDeck);
-    ShowBlackjackStatus(playerid);
+        new cardDeck[52];
+        InitializeDeck(cardDeck);
+        GiveCardToPlayer(playerid, cardDeck);
+        ShowBlackjackStatus(playerid);
+    }
     return 1;
 }
 

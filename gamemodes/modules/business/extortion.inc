@@ -14,7 +14,7 @@ function:LoadPlayerRelations(playerid)
 		cache_get_value_name_int(i, "BusinessID", RelationsInfo[playerid][i][E_RELATIONS_BUSINESSID]);
         cache_get_value_name_int(i, "RelationsPoints", RelationsInfo[playerid][i][E_RELATIONS_POINTS]);
 	}
-	printf("[SERVER]: %s relations were loaded from \"%s\" database...", ReturnSettingsName(playerid, playerid), SQL_DATABASE);
+	printf("[SERVER]: %s relations were loaded from \"%s\" database...", ReturnName(playerid), SQL_DATABASE);
 	return 1;
 }
 

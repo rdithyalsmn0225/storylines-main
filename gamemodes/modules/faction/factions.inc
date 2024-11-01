@@ -9,7 +9,7 @@ stock IsPoliceVehicle(vehicleid)
 
 function:OnPlayerAddCharge(playerid, playerb, charge[])
 {
-	SendPoliceMessage(COLOR_COP, "Wanted: Suspect: %s Charger: %s Reason: %s", ReturnSettingsName(playerb, playerid), ReturnSettingsName(playerid, playerid), charge);
+	SendPoliceMessage(COLOR_COP, "Wanted: Suspect: %s Charger: %s Reason: %s", ReturnName(playerb), ReturnName(playerid), charge);
 	PlayerInfo[playerb][E_CHARACTER_ACTIVELIST]++; 
 	
 	new 
@@ -32,7 +32,7 @@ function:Query_InsertFaction(playerid, varName, varAbbrev, idx)
 	format(FactionInfo[idx][E_FACTION_NAME], 128, "%s", varName);
 	format(FactionInfo[idx][E_FACTION_ABBREV], 32, "%s", varAbbrev); 
 		
-	format(str, sizeof(str), "%s has created Faction ID %d.", ReturnSettingsName(playerid, playerid), idx);
+	format(str, sizeof(str), "%s has created Faction ID %d.", ReturnName(playerid), idx);
 	SendAdminMessage(4, str);
 	
 	SendTipMessage(playerid, "To configure the faction, use /editfaction. "); 
@@ -149,16 +149,12 @@ function:OnSetFaction(playerid, response, playerb, factionid)
 		
 		PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = 4; 
 
-		new thread[512];
-		mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM characters WHERE char_name = '%e'", ReturnSettingsName(playerb, playerid));
-		mysql_pquery(ourConnection, thread, "RefreshNamesFunc", "i", playerb);
-		
 		new str[128];
 		
-		format(str, sizeof(str), "%s set %s's faction to %d.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid), factionid);
+		format(str, sizeof(str), "%s set %s's faction to %d.", ReturnName(playerid), ReturnName(playerb), factionid);
 		SendAdminMessage(4, str);
 		
-		SendInfoMessage(playerb, "You were set to faction {d7d292}%d{cdd0d1} by Admin {d7d292}%s{cdd0d1}.", factionid, ReturnSettingsName(playerid, playerid));
+		SendInfoMessage(playerb, "You were set to faction {d7d292}%d{cdd0d1} by Admin {d7d292}%s{cdd0d1}.", factionid, ReturnName(playerid));
 		
 		SaveCharacter(playerb);
 	}

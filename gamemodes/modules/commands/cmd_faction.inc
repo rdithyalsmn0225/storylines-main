@@ -29,19 +29,19 @@ CMD:f(playerid, params[])
 			
 		if(strlen(params) > 79)
 		{
-			SendFactionMessage(playerid, "**(( %s %s: %.79s ))**", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), params); 
-			SendFactionMessage(playerid, "**(( %s %s: ...%s ))**", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), params[79]); 
+			SendFactionMessage(playerid, "**(( %s %s: %.79s ))**", IsPlayerFactionRank(playerid), ReturnName(playerid), params); 
+			SendFactionMessage(playerid, "**(( %s %s: ...%s ))**", IsPlayerFactionRank(playerid), ReturnName(playerid), params[79]); 
 		}
-		else SendFactionMessage(playerid, "**(( %s %s: %s ))**", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), params); 
+		else SendFactionMessage(playerid, "**(( %s %s: %s ))**", IsPlayerFactionRank(playerid), ReturnName(playerid), params); 
 		return 1;
 	}
 	
 	if(strlen(params) > 79)
 	{
-		SendFactionMessage(playerid, "**(( %s %s: %.79s ))**", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), params); 
-		SendFactionMessage(playerid, "**(( %s %s: ...%s ))**", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), params[79]); 
+		SendFactionMessage(playerid, "**(( %s %s: %.79s ))**", IsPlayerFactionRank(playerid), ReturnName(playerid), params); 
+		SendFactionMessage(playerid, "**(( %s %s: ...%s ))**", IsPlayerFactionRank(playerid), ReturnName(playerid), params[79]); 
 	}
-	else SendFactionMessage(playerid, "**(( %s %s: %s ))**", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), params); 		
+	else SendFactionMessage(playerid, "**(( %s %s: %s ))**", IsPlayerFactionRank(playerid), ReturnName(playerid), params); 		
 	return 1;
 }
 
@@ -70,8 +70,8 @@ CMD:finvite(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_FACTIONINVITE] = PlayerInfo[playerid][E_CHARACTER_FACTION];	
 	PlayerInfo[playerb][E_CHARACTER_FACTIONINVITED] = playerid;
 	
-	SendTipMessage(playerb, "%s has invited you to join the %s, type /approve faction to join.", ReturnSettingsName(playerid, playerid), ReturnFactionName(playerid));
-	SendInfoMessage(playerid, "You invited {d7d292}%s{cdd0d1} to join the {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerb, playerid), ReturnFactionName(playerid));
+	SendTipMessage(playerb, "%s has invited you to join the %s, type /approve faction to join.", ReturnName(playerid), ReturnFactionName(playerid));
+	SendInfoMessage(playerid, "You invited {d7d292}%s{cdd0d1} to join the {d7d292}%s{cdd0d1}.", ReturnName(playerb), ReturnFactionName(playerid));
 	return 1;
 }
 
@@ -97,16 +97,12 @@ CMD:funinvite(playerid, params[])
 	if(PlayerInfo[playerb][E_CHARACTER_FACTION] != PlayerInfo[playerid][E_CHARACTER_FACTION])
 		return SendErrorMessage(playerid, "The player you specified IS not in your faction.");
 	
-	SendInfoMessage(playerid, "You were uninvited from the {d7d292}%s{cdd0d1} by {d7d292}%s{cdd0d1}!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTION]), ReturnSettingsName(playerid, playerid));
-	SendInfoMessage(playerid, "You uninvited {d7d292}%s{cdd0d1}!", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "You were uninvited from the {d7d292}%s{cdd0d1} by {d7d292}%s{cdd0d1}!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTION]), ReturnName(playerid));
+	SendInfoMessage(playerid, "You uninvited {d7d292}%s{cdd0d1}!", ReturnName(playerb));
 	
 	PlayerInfo[playerb][E_CHARACTER_FACTION] = 0;
 	PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = 0;
 
-	new thread[128];
-	mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM characters WHERE char_name = '%e'", ReturnSettingsName(playerb, playerid));
-	mysql_pquery(ourConnection, thread, "RefreshNamesFunc", "i", playerb);
-	
 	SetPlayerSkin(playerb, PlayerInfo[playerb][E_CHARACTER_LASTSKIN]);
 	SaveCharacter(playerb);
 	return 1;
@@ -127,9 +123,9 @@ CMD:founinvite(playerid, params[])
 		
 	foreach(new i : Player)
 	{
-		if(!strcmp(ReturnSettingsName(i, i), params))
+		if(!strcmp(ReturnName(i, i), params))
 		{
-			SendClientMessageEx(playerid, COLOR_FACTION, "%s is connected to the server. (ID: %i)", ReturnSettingsName(i, i), i);
+			SendClientMessageEx(playerid, COLOR_FACTION, "%s is connected to the server. (ID: %i)", ReturnName(i, i), i);
 			return 1;
 		}
 	}
@@ -199,10 +195,10 @@ CMD:frank(playerid, params[])
 		return SendErrorMessage(playerid, "The player you specified Is not in your faction.");
 		
 	if(PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] > 4)
-		return SendErrorMessage(playerid, "You can't alter 4 rank.", ReturnSettingsName(playerb, playerid)); 
+		return SendErrorMessage(playerid, "You can't alter 4 rank.", ReturnName(playerb)); 
 		
-	SendInfoMessage(playerb, "Your rank has been upgraded from {d7d292}%s{cdd0d1} to {d7d292}%s{cdd0d1} by {d7d292}%s{cdd0d1}!", FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank], ReturnSettingsName(playerid, playerid)); 
-	SendInfoMessage(playerid, "You upgraded {d7d292}%s{cdd0d1} rank from {d7d292}%s{cdd0d1} to {d7d292}%s{cdd0d1}!", ReturnSettingsName(playerb, playerid), FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank]);
+	SendInfoMessage(playerb, "Your rank has been upgraded from {d7d292}%s{cdd0d1} to {d7d292}%s{cdd0d1} by {d7d292}%s{cdd0d1}!", FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank], ReturnName(playerid)); 
+	SendInfoMessage(playerid, "You upgraded {d7d292}%s{cdd0d1} rank from {d7d292}%s{cdd0d1} to {d7d292}%s{cdd0d1}!", ReturnName(playerb), FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank]);
 		
 	PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = rank; 
 	SaveCharacter(playerb);
@@ -231,13 +227,13 @@ CMD:factionon(playerid, params[])
 				
 			if(PlayerInfo[i][E_CHARACTER_ADMINDUTY])
 			{
-				format(lstr, sizeof(lstr), "%s(%d)\t%s\t%s", lstr, i, IsPlayerFactionRank(i), ReturnSettingsName(i, i));
+				format(lstr, sizeof(lstr), "%s(%d)\t%s\t%s", lstr, i, IsPlayerFactionRank(i), ReturnName(i, i));
 				format(lstr, sizeof(lstr), "%s\n", lstr);
 				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Faction Online:", lstr, "Close", "");
 			}	
 			else
 			{
-				format(lstr, sizeof(lstr), "%s(%d)\t%s\t%s", lstr, i, IsPlayerFactionRank(i), ReturnSettingsName(i, i));
+				format(lstr, sizeof(lstr), "%s(%d)\t%s\t%s", lstr, i, IsPlayerFactionRank(i), ReturnName(i, i));
 				format(lstr, sizeof(lstr), "%s\n", lstr);
 				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, str, lstr, "Close", "");
 			}
@@ -276,7 +272,7 @@ CMD:fduty(playerid, params[])
 	
     if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
     {
-        SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid));
+        SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid));
         SendClientMessage(playerid, COLOR_FACTION, "You can use /tazer or /riotgun.");
         
         SetPlayerHealthEx(playerid, 100);
@@ -294,7 +290,7 @@ CMD:fduty(playerid, params[])
     }
     if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
     {
-        SendMedicMessage(COLOR_MEDIC, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid));
+        SendMedicMessage(COLOR_MEDIC, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid));
         
         SetPlayerHealthEx(playerid, 100);
         SetPlayerArmourEx(playerid, 100);
@@ -327,7 +323,7 @@ CMD:offduty(playerid, params[])
 	
 	ResetPlayerWeapons(playerid); 
 	
-	SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now Off Duty! **", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid)); 
+	SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now Off Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid)); 
 	
 	SetPlayerArmour(playerid, 0);
 	SetPlayerHealthEx(playerid, 100); 
@@ -339,50 +335,6 @@ CMD:offduty(playerid, params[])
 		Inventory_Remove(playerid, "Night Hawk", 1);
 	}
 	Inventory_Remove(playerid, "9mm", 50);
-	return 1;
-}
-
-CMD:tackle(playerid, params[])
-{
-	if(!IsPlayerFaction(playerid))
-		return SendErrorMessage(playerid, "You aren't in any faction.");
-
-    if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE)
-	    return SendErrorMessage(playerid, "You can't use this command."); 
-
-	if(TackleMode[playerid])
-	{
-	    TackleMode[playerid] = false;
-
-	    SendServerMessage(playerid, "[Tackle] {cdd0d1}Tackling mode has been disabled.");
-	    return 1;
-	}
-
-	TackleMode[playerid] = true;
-
-	SendServerMessage(playerid, "[Tackle] {cdd0d1}Tackling mode has been enabled.");
-
-	SendTipMessage(playerid, "If you punch someone, a tackle attempt will be registered.");
-	SendTipMessage(playerid, "The player you hit will have a message flashed to them indicating that a tackle has been attempted.");
-	SendTipMessage(playerid, "An automated emote will be sent in the chat that notifies the other players of the attempt.");
-	SendTipMessage(playerid, "You will be forced into a diving animation to prevent misuse of the command.");
-	SendTipMessage(playerid, "If a player doesn't role-play the tackle, make a report in-game.");
-	return 1;
-}
-
-function:TackleModes(playerid)
-{
-	ApplyAnimationEx(playerid, "ped", "EV_dive", 4.1, 0, 0, 0, 0, 0);
-	return 1;
-}
-
-TacklePlayer(playerid, victimid)
-{
-	ApplyAnimationEx(victimid, "PED", "BIKE_fall_off", 4.1, 0, 1, 1, 1, 0);
-
- 	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s runs at %s and tries to tackle them to the ground.", ReturnSettingsName(playerid, victimid), ReturnSettingsName(victimid, playerid));
-	
-	ShowBoxMessage(victimid, "~r~YOU HAVE BEEN TACKLED.", 5);
 	return 1;
 }
 
@@ -422,8 +374,8 @@ CMD:handcuff(playerid, params[])
 	
 	PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = true;
 	
-	SendInfoMessage(playerb, "You were handcuffed by {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerid, playerid)); 
-	SendInfoMessage(playerid, "You handcuffed {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerb, "You were handcuffed by {d7d292}%s{cdd0d1}.", ReturnName(playerid)); 
+	SendInfoMessage(playerid, "You handcuffed {d7d292}%s{cdd0d1}.", ReturnName(playerb));
 	return 1;
 }
 
@@ -456,7 +408,7 @@ CMD:unhandcuff(playerid, params[])
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE); 
 	
 	PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = false;
-	SendInfoMessage(playerid, "You unhandcuffed {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerb, playerid));
+	SendInfoMessage(playerid, "You unhandcuffed {d7d292}%s{cdd0d1}.", ReturnName(playerb));
 	return 1;
 }
 
@@ -484,9 +436,9 @@ CMD:badge(playerid, params[])
 		return SendErrorMessage(playerid, "You aren't near that player.");
 		
 	if(playerb == playerid)
-		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s looks at their badge.", ReturnSettingsName(playerid, playerid));
+		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s looks at their badge.", ReturnName(playerid));
 	
-	else SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s shows %s their badge.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
+	else SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s shows %s their badge.", ReturnName(playerid), ReturnName(playerb));
 	
 	SendClientMessage(playerb, COLOR_COP, "|__________ Badge __________|");
 	SendClientMessageEx(playerb, COLOR_WHITE, "  Name: %s", ReturnMixedName(playerid));
@@ -638,7 +590,7 @@ CMD:megaphone(playerid, params[])
 	if(isnull(params))
 		return SendUsageMessage(playerid, "/megaphone [text]"); 
 		
-	SendNearbyMessage(playerid, 40.0, COLOR_YELLOW, "[ (MEGAPHONE)%s %s: %s ]", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), params);
+	SendNearbyMessage(playerid, 40.0, COLOR_YELLOW, "[ (MEGAPHONE)%s %s: %s ]", IsPlayerFactionRank(playerid), ReturnName(playerid), params);
 	return 1;
 }
 
@@ -663,7 +615,7 @@ CMD:department(playerid, params[])
 			
 		if(FactionInfo[factionid][E_FACTION_TYPE] == FACTION_TYPE_POLICE || FactionInfo[factionid][E_FACTION_TYPE] == FACTION_TYPE_MEDICAL)
 		{
-			SendClientMessageEx(playerid, COLOR_DEPT, "** [%s] %s %s: %s", FactionInfo[factionid][E_FACTION_ABBREV], IsPlayerFactionRank(i), ReturnSettingsName(playerid, playerid), params); 
+			SendClientMessageEx(playerid, COLOR_DEPT, "** [%s] %s %s: %s", FactionInfo[factionid][E_FACTION_ABBREV], IsPlayerFactionRank(i), ReturnName(playerid), params); 
 		}
 	}
 	
@@ -677,7 +629,7 @@ CMD:department(playerid, params[])
 
 		else if(IsPlayerInRangeOfPoint(i, 20.0, posx,posy,posz))
 		{
-  			SendClientMessageEx(i, COLOR_GRAD1, "%s says (radio): %s", ReturnSettingsName(playerid, playerid), params);
+  			SendClientMessageEx(i, COLOR_GRAD1, "%s says (radio): %s", ReturnName(playerid), params);
  		}
 	}
 		
@@ -846,23 +798,23 @@ CMD:take(playerid, params[])
 	if(!strcmp(a_str, "driverlicense"))
 	{
 		if(!PlayerInfo[playerb][E_CHARACTER_DRIVELICENSE])
-			return SendErrorMessage(playerid, "%s doesn't have a driver's license.", ReturnSettingsName(playerb, playerid)); 
+			return SendErrorMessage(playerid, "%s doesn't have a driver's license.", ReturnName(playerb)); 
 			
 		PlayerInfo[playerb][E_CHARACTER_DRIVELICENSE] = 0;
-		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s took %s's driver's license.", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
+		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s took %s's driver's license.", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb));
 	}
 	else if(!strcmp(a_str, "weaponlicense"))
 	{
 		if(!PlayerInfo[playerb][E_CHARACTER_WEAPLICENSE])
-			return SendErrorMessage(playerid, "%s doesn't have a weapons license.", ReturnSettingsName(playerb, playerid)); 
+			return SendErrorMessage(playerid, "%s doesn't have a weapons license.", ReturnName(playerb)); 
 			
 		PlayerInfo[playerb][E_CHARACTER_WEAPLICENSE] = 0;
-		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s took %s's weapons license.", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
+		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s took %s's weapons license.", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb));
 	}
 	else if(!strcmp(a_str, "weapons"))
 	{
 		ResetPlayerWeapons(playerid);
-		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s took %s's weapons.", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
+		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s took %s's weapons.", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb));
 		return 1;
 	}
 	else return SendErrorMessage(playerid, "Invalid Parameter.");
@@ -896,12 +848,12 @@ CMD:givelicense(playerid, params[])
 	if(!PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE]) {
 		PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE] = 1;
 		
-		SendPoliceMessage(COLOR_COP, "** HQ: %s %s issued %s a weapon's license! **", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid)); 
+		SendPoliceMessage(COLOR_COP, "** HQ: %s %s issued %s a weapon's license! **", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb)); 
 	}
 	else {
 		PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE] = 0; 
 		
-		SendPoliceMessage(COLOR_COP, "** HQ: %s %s removed %s's weapon's license! **", IsPlayerFactionRank(playerid), ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid)); 
+		SendPoliceMessage(COLOR_COP, "** HQ: %s %s removed %s's weapon's license! **", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb)); 
 	}
 		
 	return 1;
@@ -951,7 +903,7 @@ CMD:impound(playerid, params[])
 	SendClientMessageEx(playerid, COLOR_DARKGREEN, "You impounded %s's %s", ReturnDBIDName(VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID]), ReturnVehicleName(vehicleid)); 
 	
 	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_DBID] == VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID])
-		SendClientMessageEx(i, COLOR_DARKGREEN, "Your %s was impounded by %s", ReturnVehicleName(vehicleid), ReturnSettingsName(playerid, playerid)); 
+		SendClientMessageEx(i, COLOR_DARKGREEN, "Your %s was impounded by %s", ReturnVehicleName(vehicleid), ReturnName(playerid)); 
 
 	return 1;
 }
@@ -1032,8 +984,8 @@ CMD:dropinjured(playerid, params[])
 
         GiveMoney(playerid, -250);
 
-        SendInfoMessage(playerid, "You have delivered {d7d292}%s{cdd0d1} to the hospital.", ReturnSettingsName(otherid, playerid));
-        SendInfoMessage(otherid, "You have recovered at the nearest hospital by officer {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerid, playerid));
+        SendInfoMessage(playerid, "You have delivered {d7d292}%s{cdd0d1} to the hospital.", ReturnName(otherid, playerid));
+        SendInfoMessage(otherid, "You have recovered at the nearest hospital by officer {d7d292}%s{cdd0d1}.", ReturnName(playerid));
     }
     else SendErrorMessage(playerid, "You must be near a hospital deliver location.");
     return 1;
@@ -1068,7 +1020,7 @@ CMD:rescue(playerid, params[])
     ClearAnimations(otherid);
 	ApplyAnimation(otherid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
 	
-	SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s has rescuered %s with medkit tools.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(otherid, playerid));
-    SendInfoMessage(otherid, "Officer {d7d292}%s{cdd0d1} has rescue your character.", ReturnSettingsName(playerid, playerid));
+	SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s has rescuered %s with medkit tools.", ReturnName(playerid), ReturnName(otherid, playerid));
+    SendInfoMessage(otherid, "Officer {d7d292}%s{cdd0d1} has rescue your character.", ReturnName(playerid));
 	return 1;
 }

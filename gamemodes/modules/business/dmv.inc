@@ -16,7 +16,7 @@ stock ReturnLicenses(playerid, playerb)
 	else wep_str = "{E2FFFF}Weapons License : Yes";
 	
 	SendClientMessage(playerb, COLOR_DARKGREEN, "______Identification_______");
-	SendClientMessageEx(playerb, COLOR_GRAD2, "Name : %s", ReturnSettingsName(playerid, playerid)); 
+	SendClientMessageEx(playerb, COLOR_GRAD2, "Name : %s", ReturnName(playerid)); 
 	SendClientMessageEx(playerb, COLOR_GRAD2, "%s", driver_str);
 	SendClientMessageEx(playerb, COLOR_GRAD2, "%s", wep_str); 
 	SendClientMessage(playerb, COLOR_DARKGREEN, "___________________________"); 

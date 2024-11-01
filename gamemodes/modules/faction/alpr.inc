@@ -34,7 +34,7 @@ stock DetectVehicleInFront(playerid)
             new str3[128];
             if (driverID != INVALID_PLAYER_ID)
             {
-                format(str3, sizeof(str3), "Name: %s", ReturnSettingsName(driverID, playerid));
+                format(str3, sizeof(str3), "Name: %s", ReturnName(driverID, playerid));
             }
             else
             {

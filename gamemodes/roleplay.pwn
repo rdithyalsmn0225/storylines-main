@@ -33,6 +33,7 @@
 //Database establisher:
 new MySQL:ourConnection; 
 
+// CONFIG HEADERS MODULES
 #include "modules\config\macro.inc"
 #include "modules\config\color.inc"
 #include "modules\config\variable.inc"
@@ -40,14 +41,14 @@ new MySQL:ourConnection;
 
 main ()  {}
 
-//Modules Headers
+// VISUALS MODULES
 #include "modules\visuals\enviroment.inc"
 #include "modules\visuals\static_3dtext"
 #include "modules\visuals\static_actor"
 #include "modules\visuals\static_vehicles"
 #include "modules\visuals\textdraws.inc"
 #include "modules\visuals\gamebar.inc"
-
+// CONFIG MODULES
 #include "modules\config\modelselections.inc"
 #include "modules\config\types.inc"
 #include "modules\config\messages.inc"
@@ -62,13 +63,13 @@ main ()  {}
 #include "modules\config\toggle.inc"
 #include "modules\config\timer.inc"
 #include "modules\config\zones.inc"
-
+// LOGS MODULES
 #include "modules\serverlogs\serverlogs.inc"
-
+// TAGS MODULES
 #include "modules\tags\tablist.inc"
-
+// ANIMS MODULES
 #include "modules\anims\anims.inc"
-
+// PLAYERS MODULES
 #include "modules\players\damages.inc"
 #include "modules\players\phone.inc"
 #include "modules\players\paycheck.inc"
@@ -82,9 +83,9 @@ main ()  {}
 #include "modules\players\gps.inc"
 #include "modules\players\accessories.inc"
 #include "modules\players\afk.inc"
-
+// EMMET MODULES
 #include "modules\emmet\emmet.inc"
-
+// BUSINESS MODULES
 #include "modules\business\business.inc"
 #include "modules\business\business_commands.inc"
 #include "modules\business\dmv.inc"
@@ -93,14 +94,14 @@ main ()  {}
 #include "modules\business\buyhair.inc"
 #include "modules\business\extortion.inc"
 #include "modules\business\robbery.inc"
-
+// PROPERTY MODULES
 #include "modules\properties\property.inc"
 #include "modules\properties\property_storage.inc"
 #include "modules\properties\property_furniture.inc"
 #include "modules\properties\property_commands.inc"
-
+// ENTRANCE MODULES
 #include "modules\entrance\entrance.inc"
-
+// VEHICLE MODULES
 #include "modules\vehicles\vehicles.inc"
 #include "modules\vehicles\vehicles_timer.inc"
 #include "modules\vehicles\vehicles_storage.inc"
@@ -108,30 +109,30 @@ main ()  {}
 #include "modules\vehicles\vehicles_rental.inc"
 #include "modules\vehicles\vehicles_commands.inc"
 #include "modules\vehicles\vehicles_modshop.inc"
-
+// FACTIONS MODULES
 #include "modules\faction\factions.inc"
 #include "modules\faction\factions_commands.inc"
 #include "modules\faction\mdc.inc"
 #include "modules\faction\alpr.inc"
-
+#include "modules\faction\tackle.inc"
+// PROPS MODULES
 #include "modules\props\spraytags.inc"
-#include "modules\props\bbq.inc"
 #include "modules\props\advertise.inc"
 #include "modules\props\props.inc"
 #include "modules\props\tree.inc"
-
+// DRUGS MODULES
 #include "modules\drugs\drugs.inc"
 #include "modules\drugs\drugsdealing.inc"
-
+// INVENTORY MODULES
 #include "modules\inventory\inventory.inc"
 #include "modules\inventory\dropitem.inc"
-
+// MINIGAMES MODULES
 #include "modules\minigames\basketball.inc"
 #include "modules\minigames\blackjack.inc"
 #include "modules\minigames\lottery.inc"
-
+// INDUSTRIAL MODULES
 #include "modules\industry\industry.inc"
-
+// JOBS MODULES
 #include "modules\jobs\header.inc"
 #include "modules\jobs\trucker.inc"
 #include "modules\jobs\lumberjack.inc"
@@ -141,7 +142,7 @@ main ()  {}
 #include "modules\jobs\fishing.inc"
 #include "modules\jobs\trashmaster.inc"
 #include "modules\jobs\dockworker.inc"
-
+// COMMANDS MODULES
 #include "modules\commands\globalooc.inc"
 #include "modules\commands\cmd_admins.inc"
 #include "modules\commands\cmd_player.inc"
@@ -175,7 +176,7 @@ public OnGameModeInit()
 	//Disabling singleplayer entities:
 	ShowPlayerMarkers(PLAYER_MARKERS_MODE_OFF);
 	SetNameTagDrawDistance(20.0);
-	ShowNameTags(true);
+	ShowNameTags(false);
 	EnableStuntBonusForAll(0);
 	ManualVehicleEngineAndLights();
 	DisableInteriorEnterExits();
@@ -322,10 +323,12 @@ public OnPlayerConnect(playerid)
 	HideVehicleSpeedometer(playerid);
 	DestroyGameBar(playerid);
 
+	NameTagsConnect(playerid);
+
 	//Player:
 	SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	SetPlayerArmourEx(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
-	SetPlayerColor(playerid, COLOR_GREY);
+	SetPlayerColor(playerid, COLOR_WHITE);
 
 	LastEnteredVehicle[playerid] = INVALID_VEHICLE_ID;
 
@@ -356,6 +359,8 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
+	NameTagsDisconnect(playerid);
+
 	for (new i = 0; i < sizeof(ReportInfo); i ++)
 	{
 		if(ReportInfo[i][E_REPORT_BY] == playerid)
@@ -430,9 +435,9 @@ public OnPlayerDisconnect(playerid, reason)
 
 	switch(reason)
 	{
-	    case 0: SendNearbyMessage(playerid, 20.0, COLOR_DARKGREEN, "** %s has left the GTA Storylines. (Timeout)", ReturnSettingsName(playerid, playerid));
-	    case 1: SendNearbyMessage(playerid, 20.0, COLOR_DARKGREEN, "** %s has left the GTA Storylines. (Leaving)", ReturnSettingsName(playerid, playerid));
-	    case 2: SendNearbyMessage(playerid, 20.0, COLOR_DARKGREEN, "** %s has left the GTA Storylines. (Kicked)", ReturnSettingsName(playerid, playerid));
+	    case 0: SendNearbyMessage(playerid, 20.0, COLOR_DARKGREEN, "** %s has left the GTA Storylines. (Timeout)", ReturnName(playerid));
+	    case 1: SendNearbyMessage(playerid, 20.0, COLOR_DARKGREEN, "** %s has left the GTA Storylines. (Leaving)", ReturnName(playerid));
+	    case 2: SendNearbyMessage(playerid, 20.0, COLOR_DARKGREEN, "** %s has left the GTA Storylines. (Kicked)", ReturnName(playerid));
 	}
 	return 1; 
 }
@@ -457,7 +462,7 @@ function:CheckBanList(playerid)
 		new existCheck[512];
 		//for(new i = 0; i < 3; i ++) {PlayerTextDrawShow(playerid, loginscreen[i][playerid]);}
 		
-		mysql_format(ourConnection, existCheck, sizeof(existCheck), "SELECT acc_dbid, secret_word, verified FROM masters WHERE acc_name = '%e'", ReturnSettingsName(playerid, playerid));
+		mysql_format(ourConnection, existCheck, sizeof(existCheck), "SELECT acc_dbid, secret_word, verified FROM masters WHERE acc_name = '%e'", ReturnName(playerid));
 		mysql_pquery(ourConnection, existCheck, "LogPlayerIn", "i", playerid);
 	}
 	else
@@ -477,7 +482,7 @@ function:LogPlayerIn(playerid)
 		for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
 		
 		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
+		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnName(playerid));
 		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 	}
 	else
@@ -486,7 +491,7 @@ function:LogPlayerIn(playerid)
 		registerTime[playerid] = 1;	
 		//ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
 		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
+		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnName(playerid));
 		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register:", str, "Confirm", "");
 	}
 	return 1;
@@ -501,7 +506,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 			if(PlayerCheckpoint[playerid] == GPS_DMVFINISH)
 			{
 				StopDriverstest(playerid);
-				SendServerMessage(playerid, "[Dmv] {cdd0d1}Congratulations {d7d292}%s{cdd0d1}, you've passed your test.", ReturnSettingsName(playerid, playerid)); 
+				SendServerMessage(playerid, "[Dmv] {cdd0d1}Congratulations {d7d292}%s{cdd0d1}, you've passed your test.", ReturnName(playerid)); 
 				
 				PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE] = 1;
 				SaveCharacter(playerid);
@@ -568,14 +573,14 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 function:OnPlayerRegister(playerid)
 {
 	AccountInfo[playerid][E_MASTERS_DBID] = cache_insert_id(); 
-	format(AccountInfo[playerid][E_MASTERS_ACCNAME], 32, "%s", ReturnSettingsName(playerid, playerid)); 
+	format(AccountInfo[playerid][E_MASTERS_ACCNAME], 32, "%s", ReturnName(playerid)); 
 	
 	registerTime[playerid] = 0;
 	loginTime[playerid] = 1; 
 	
 	new str[1024];
-	format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
-	SendInfoMessage(playerid, "You successfully registered as {d7d292}%s{cdd0d1}. You need to login to continue:", ReturnSettingsName(playerid, playerid)); 
+	format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnName(playerid));
+	SendInfoMessage(playerid, "You successfully registered as {d7d292}%s{cdd0d1}. You need to login to continue:", ReturnName(playerid)); 
 	return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 }
 
@@ -594,7 +599,7 @@ function:LoggingIn(playerid)
 		}
 		
 		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
+		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnName(playerid));
 		return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 	}
 	
@@ -610,7 +615,7 @@ function:LoggingIn(playerid)
 	cache_get_value_name_int(0, "secret_word", AccountInfo[playerid][E_MASTERS_CODE]);
 	cache_get_value_name(0, "active_ip", ActiveIP);
 	
-	format(AccountInfo[playerid][E_MASTERS_ACCNAME], 32, "%s", ReturnSettingsName(playerid, playerid));
+	format(AccountInfo[playerid][E_MASTERS_ACCNAME], 32, "%s", ReturnName(playerid));
 
 	if (AccountInfo[playerid][E_MASTERS_LOGGED] == false)
 	{
@@ -647,7 +652,7 @@ function:Query_CheckBannedAccount(playerid)
 		cache_get_value_name(0, "Date", banDate, 90);
 		cache_get_value_name(0, "BannedBy", banner, 32);
 	
-		SendServerMessage(playerid, "[Banned] {cdd0d1}Your account {d7d292}%s{cdd0d1} is banned from our server.", ReturnSettingsName(playerid, playerid));
+		SendServerMessage(playerid, "[Banned] {cdd0d1}Your account {d7d292}%s{cdd0d1} is banned from our server.", ReturnName(playerid));
 		SendServerMessage(playerid, "[Banned] {cdd0d1}You were banned on {d7d292}%s{cdd0d1} by {d7d292}%s{cdd0d1}.", banDate, banner); 
 		return KickEx(playerid);
 	}
@@ -706,7 +711,7 @@ function:Query_SelectCharacter(playerid)
 	
 	if(rows)
 	{
-		mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM characters WHERE char_name = '%e'", ReturnSettingsName(playerid, playerid));
+		mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM characters WHERE char_name = '%e'", ReturnName(playerid));
 		mysql_pquery(ourConnection, thread, "Query_LoadCharacter", "i", playerid);
 	}
 	return 1;
@@ -746,8 +751,7 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_bool(0, "pVehicleSpawned", PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED]);
 	cache_get_value_name_int(0, "pVehicleSpawnedID", PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN]);
 	cache_get_value_name_int(0, "pTimeplayed", PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
-	cache_get_value_name_int(0, "pMaskID", PlayerInfo[playerid][E_CHARACTER_MASKID][0]);
-	cache_get_value_name_int(0, "pMaskIDEx", PlayerInfo[playerid][E_CHARACTER_MASKID][1]);
+	cache_get_value_name_int(0, "pMaskID", PlayerInfo[playerid][E_CHARACTER_MASKID]);
 	cache_get_value_name_int(0, "pInProperty", PlayerInfo[playerid][E_CHARACTER_INSIDEPROP]);
 	cache_get_value_name_int(0, "pInBusiness", PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ]);
 	cache_get_value_name_int(0, "pMainSlot", PlayerInfo[playerid][E_CHARACTER_MAINSLOT]);
@@ -790,8 +794,7 @@ function:Query_LoadCharacter(playerid)
 	
 	if(!PlayerInfo[playerid][E_CHARACTER_MASKID])
 	{
-		PlayerInfo[playerid][E_CHARACTER_MASKID][0] = 200000+random(199991);
-		PlayerInfo[playerid][E_CHARACTER_MASKID][1] = 40+random(59);
+		PlayerInfo[playerid][E_CHARACTER_MASKID] = 200000+random(199991);
 	}
 	new query[256];
 	mysql_format(ourConnection, query, sizeof(query), "SELECT * FROM `inventory` WHERE `ID` = '%d'", PlayerInfo[playerid][E_CHARACTER_DBID]);
@@ -909,10 +912,10 @@ stock LoadCharacter(playerid)
 	{
 		if(strlen(PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON]) > 1)
 		{
-			SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by SYSTEM for %d minutes, Reason: %.56s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60, PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON]);
+			SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by SYSTEM for %d minutes, Reason: %.56s", ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60, PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON]);
 			SendClientMessageToAllEx(COLOR_RED, "AdmCmd: ...%s", PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON][56]); 
 		}
-		else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by SYSTEM for %d minutes, Reason: %s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60, PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON]);
+		else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by SYSTEM for %d minutes, Reason: %s", ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60, PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON]);
 		
 		ClearAnimations(playerid);
 		
@@ -927,12 +930,9 @@ stock LoadCharacter(playerid)
 	SetPlayerFightingStyle(playerid, PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE]);
 	format(PlayerInfo[playerid][E_CHARACTER_ACTIVEIP], 60, "%s", ReturnIP(playerid)); 
 
-	/*new str[1024];
-    format(str, sizeof(str), "%s%s", IsPlayerStreetName(playerid), PlayerInfo[playerid][E_CHARACTER_STREETNAME]);
-    SetPlayerName(playerid, str);*/
-
-	UpdateTabListForOthers(playerid);
-	UpdateTabListForPlayer(playerid);
+	new str[1024];
+    format(str, sizeof(str), "%s", PlayerInfo[playerid][E_CHARACTER_NAME]);
+    SetPlayerName(playerid, str);
 
 	KillTimer(cameraTimer[playerid]);
 	SetCameraBehindPlayer(playerid); 
@@ -971,7 +971,7 @@ public OnVehicleDeath(vehicleid, killerid)
 	GetVehicleHealth(vehicleid, vehicle_health); 
 	TotalledCheck();
 
-	printf("[DEBUG] Vehicle ID: %i (%s) (Health: %.2f) destroyed by %s", vehicleid, ReturnVehicleName(vehicleid), vehicle_health, ReturnSettingsName(killerid, killerid)); 
+	printf("[DEBUG] Vehicle ID: %i (%s) (Health: %.2f) destroyed by %s", vehicleid, ReturnVehicleName(vehicleid), vehicle_health, ReturnName(killerid, killerid)); 
 		
 	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_DBID] == VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID])
 	{
@@ -996,7 +996,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 {
 	PlayerInfo[playerid][E_CHARACTER_SPAWNED] = false;
 
-	printf("Callback OnPlayerDeath called for player %s (ID: %i)", ReturnSettingsName(playerid, playerid), playerid); 
+	printf("Callback OnPlayerDeath called for player %s (ID: %i)", ReturnName(playerid), playerid); 
 
 	if(killerid == INVALID_PLAYER_ID && reason >= 49)
 	{
@@ -1019,8 +1019,8 @@ public OnPlayerDeath(playerid, killerid, reason)
 					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
 					return 0;
 				}
-				SendInfoMessage(killerid, "You have been killed {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerid, playerid), ReturnLocationStreet(playerid));
-				SendInfoMessage(playerid, "You has been killed by {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
+				SendInfoMessage(killerid, "You have been killed {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnName(playerid), ReturnLocationStreet(playerid));
+				SendInfoMessage(playerid, "You has been killed by {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
 			}
 			else if(reason == 51)
 			{
@@ -1053,12 +1053,12 @@ public OnPlayerDeath(playerid, killerid, reason)
 			{
 				if(killerid == INVALID_PLAYER_ID)
 				{
-					SendInfoMessage(playerid, "You has been killed by unknown at {d7d292}%s{cdd0d1}.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(playerid, "You has been killed by unknown at {d7d292}%s{cdd0d1}.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
 				}
 				else
 				{
-					SendInfoMessage(killerid, "You have been killed {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnSettingsName(playerid, playerid), ReturnLocationStreet(playerid));
-					SendInfoMessage(playerid, "You has been killed by {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnSettingsName(killerid, killerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(killerid, "You have been killed {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnName(playerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(playerid, "You has been killed by {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
 				}
 				PlayerInfo[playerid][E_CHARACTER_DIEUNKNOWN] = true;
 			}
@@ -1893,18 +1893,18 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 		{
 			if(!IsPlayerNearPlayer(playerid, hitid, 15.0))
 			{
-				SendInfoMessage(playerid, "You aren't close enough to hit {d7d292}%s{cdd0d1} with your taser.", ReturnSettingsName(hitid, hitid));
+				SendInfoMessage(playerid, "You aren't close enough to hit {d7d292}%s{cdd0d1} with your taser.", ReturnName(hitid, hitid));
 				return 0;
 			}
 			
 			SetPlayerDrunkLevel(hitid, 4000); 
 			TogglePlayerControllable(playerid, true);
 			
-			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's taser.", ReturnSettingsName(hitid, hitid), ReturnSettingsName(playerid, playerid)); 
+			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's taser.", ReturnName(hitid, hitid), ReturnName(playerid)); 
 			GameTextForPlayer(hitid, "~b~You Are Tasered", 2500, 3);
 			
 			SendInfoMessage(hitid, "You were just hit by a taser. 10,000 volts go through your body.");
-			SendInfoMessage(playerid, "You hit {d7d292}%s{cdd0d1} with your taser!", ReturnSettingsName(hitid, hitid)); 
+			SendInfoMessage(playerid, "You hit {d7d292}%s{cdd0d1} with your taser!", ReturnName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
 			SetTimerEx("OnPlayerTasered", 1200, false, "i", hitid); 
@@ -1917,16 +1917,16 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 		{
 			if(!IsPlayerNearPlayer(playerid, hitid, 15.0))
 			{
-				SendInfoMessage(playerid, "You aren't close enough to hit {d7d292}%s{cdd0d1} with your riot gun.", ReturnSettingsName(hitid, hitid));
+				SendInfoMessage(playerid, "You aren't close enough to hit {d7d292}%s{cdd0d1} with your riot gun.", ReturnName(hitid, hitid));
 				return 0;
 			}
 			
 			TogglePlayerControllable(playerid, true);
 			
-			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's riot gun.", ReturnSettingsName(hitid, hitid), ReturnSettingsName(playerid, playerid)); 
+			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's riot gun.", ReturnName(hitid, hitid), ReturnName(playerid)); 
 			
 			SendInfoMessage(hitid, "You were just hit by a riot gun. rubber bullet go through your body.");
-			SendInfoMessage(playerid, "You hit {d7d292}%s{cdd0d1} with your taser!", ReturnSettingsName(hitid, hitid)); 
+			SendInfoMessage(playerid, "You hit {d7d292}%s{cdd0d1} with your taser!", ReturnName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
 			SetTimerEx("OnPlayerRubber", 1200, false, "i", hitid); 
@@ -2834,7 +2834,7 @@ public OnPlayerText(playerid, text[])
 
 public OnPlayerUpdate(playerid)
 {
-	UpdateNametagsTick(playerid);
+	UpdateNameTagsTicks(playerid);
 
 	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
 	{
@@ -3159,13 +3159,13 @@ public OnPlayerCommandReceived(playerid, cmdtext[])
 	    PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
     	PlayerInfo[playerid][E_CHARACTER_AFKPOS][1] = 0.0;
     	PlayerInfo[playerid][E_CHARACTER_AFKPOS][2] = 0.0;
-		printf("Player [%s] sent command: %s", ReturnSettingsName(playerid, playerid), cmdtext);
+		printf("Player [%s] sent command: %s", ReturnName(playerid), cmdtext);
 		return 1;
 	}
 	else
 	{
 		SendErrorMessage(playerid, "You need to be logged in to use commands.");
-		printf("Player [%s] tried to send command: %s (During login, denied access)", ReturnSettingsName(playerid, playerid), cmdtext);
+		printf("Player [%s] tried to send command: %s (During login, denied access)", ReturnName(playerid), cmdtext);
 		return 0;
 	}
 }
@@ -3214,7 +3214,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
 			SetPlayerAttachedObject(playerid, ATTACH_HAND, 11745, 6, 0.129999, 0.051000, 0.000000, 103.700004, -64.600059, 0.000000, 0.501999, 1.0, 1.0);
 
-			SendNearbyMessage(playerid, 30.0, COLOR_PURPLE, "* %s has picked up a Packet.", ReturnSettingsName(playerid, playerid));
+			SendNearbyMessage(playerid, 30.0, COLOR_PURPLE, "* %s has picked up a Packet.", ReturnName(playerid));
 
 			SendTipMessage(playerid, "You've picked up packet, Type '/deliverypacket' to materials / drugs point.");
 			ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
@@ -3803,8 +3803,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 
-	    SendServerMessage(driverid, "[Taxi] {cdd0d1}{d7d292}%s{cdd0d1} has entered your taxi as a passenger.", ReturnSettingsName(playerid, driverid));
-		SendServerMessage(playerid, "[Taxi] {cdd0d1}You have entered {d7d292}%s's{cdd0d1} taxi.", ReturnSettingsName(driverid, playerid));
+	    SendServerMessage(driverid, "[Taxi] {cdd0d1}{d7d292}%s{cdd0d1} has entered your taxi as a passenger.", ReturnName(playerid, driverid));
+		SendServerMessage(playerid, "[Taxi] {cdd0d1}You have entered {d7d292}%s's{cdd0d1} taxi.", ReturnName(driverid, playerid));
 	}
  	if (oldstate == PLAYER_STATE_PASSENGER && PlayerInfo[playerid][E_CHARACTER_TAXITIMER] != 0 && PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
 	{
@@ -4087,7 +4087,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 
 				if(response == EDIT_RESPONSE_FINAL)
 				{
-					DropItem(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY], x, y, z, rx, ry, rz, GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE]);
+					DropItem(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY], x, y, z, rx, ry, rz, GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE]);
 					Inventory_Remove(playerid, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY]);
 					ApplyAnimation(playerid, "GRENADE", "WEAPON_throwu", 4.1, 0, 0, 0, 0, 0, 1);
 
@@ -4332,15 +4332,14 @@ function:SaveCharacter(playerid)
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pFaction = %i, pFactionRank = %i, pFactionSubsets = %i, pVehicleSpawned = %i, pVehicleSpawnedID = %i, pTimeplayed = %i, pMaskID = %i, pMaskIDEx = %i, pOfflinejailed = 0, pHasAoe = %i WHERE char_dbid = %i", 
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pFaction = %i, pFactionRank = %i, pFactionSubsets = %i, pVehicleSpawned = %i, pVehicleSpawnedID = %i, pTimeplayed = %i, pMaskID = %i, pOfflinejailed = 0, pHasAoe = %i WHERE char_dbid = %i", 
 		PlayerInfo[playerid][E_CHARACTER_FACTION], 
 		PlayerInfo[playerid][E_CHARACTER_FACTIONRANK], 
 		PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS], 
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED],
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN],
 		PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED],
-		PlayerInfo[playerid][E_CHARACTER_MASKID][0],
-		PlayerInfo[playerid][E_CHARACTER_MASKID][1],
+		PlayerInfo[playerid][E_CHARACTER_MASKID],
 		PlayerInfo[playerid][E_CHARACTER_AOE],
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
@@ -4423,7 +4422,7 @@ public OnIncomingRPC(playerid, rpcid, BitStream:bs)
                 if (player_rpc_count[playerid] >= 5)
                 {
                     new gstr[512];
-                    format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Rem.cs]", ReturnSettingsName(playerid, playerid));
+                    format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Rem.cs]", ReturnName(playerid));
                     SendClientMessageToAll(COLOR_YELLOW, gstr);
 
                     player_rpc_count[playerid] = 0;
@@ -4654,7 +4653,7 @@ public OnVehicleMod(playerid, vehicleid, componentid)
 	new vehicleide = GetVehicleModel(vehicleid);
     new modok = islegalcarmod(vehicleide, componentid);
     if (!modok && ACPauseTimer[playerid] == 0 && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true) {
-        format(str1, sizeof(str1), "%s has been detected for using program hack [Vehicle Mod Hack]", ReturnSettingsName(playerid, playerid)); 
+        format(str1, sizeof(str1), "%s has been detected for using program hack [Vehicle Mod Hack]", ReturnName(playerid)); 
 		SendAdminMessage(1, str1);
         return 0; 
     }

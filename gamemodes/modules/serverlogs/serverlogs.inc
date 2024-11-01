@@ -11,10 +11,10 @@ stock GetLogsName(logType)
 CreateLogs(playerid, type, result[])
 {
     new query[512], str[512];
-    mysql_format(ourConnection, query, sizeof(query), "INSERT INTO logs (type, name, result) VALUES('%s', '%s', '%s')", GetLogsName(type), ReturnSettingsName(playerid, playerid), result); 
+    mysql_format(ourConnection, query, sizeof(query), "INSERT INTO logs (type, name, result) VALUES('%s', '%s', '%s')", GetLogsName(type), ReturnName(playerid), result); 
     mysql_pquery(ourConnection, query); 
 
-    format(str, sizeof(str), "%s has using %s (%s)", ReturnSettingsName(playerid, playerid), GetLogsName(type), result);
+    format(str, sizeof(str), "%s has using %s (%s)", ReturnName(playerid), GetLogsName(type), result);
     SendAdminMessage(1, str);
     return 1;
 }

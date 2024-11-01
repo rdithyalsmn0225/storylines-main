@@ -12,7 +12,7 @@ CMD:noooc(playerid, params[])
 		
 	if(!oocEnabled)
 	{
-		format(str, sizeof(str), "%s enabled OOC chat.", ReturnSettingsName(playerid, playerid));
+		format(str, sizeof(str), "%s enabled OOC chat.", ReturnName(playerid));
 		SendAdminMessage(1, str); 
 		
 		SendClientMessageToAll(COLOR_GREY, "OOC chat has been enabled by an admin."); 
@@ -20,7 +20,7 @@ CMD:noooc(playerid, params[])
 	}
 	else
 	{
-		format(str, sizeof(str), "%s disabled OOC chat.", ReturnSettingsName(playerid, playerid));
+		format(str, sizeof(str), "%s disabled OOC chat.", ReturnName(playerid));
 		SendAdminMessage(1, str); 
 		
 		SendClientMessageToAll(COLOR_GREY, "OOC chat has been disabled by an admin."); 
@@ -44,7 +44,7 @@ CMD:ooc(playerid, params[]) {
 
 	foreach(new targetid: Player) 
 	{
-		format(string, sizeof(string), "(( [GLOBAL] (%d) %s{AAC4E5}: %s ))",  playerid, ReturnSettingsName(playerid, targetid, false), text);
+		format(string, sizeof(string), "(( [GLOBAL] (%d) %s{AAC4E5}: %s ))",  playerid, ReturnName(playerid), text);
 		SendClientMessage(targetid, COLOR_OOC, string);
 	}
 	return 1;

@@ -9,7 +9,7 @@
 	SendClientMessageEx(%0, COLOR_INFO, "[Info]{cdd0d1} "%1) 
 
 #define SendTipMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_DARKGREEN, "Tip: "%1) 
+	SendClientMessageEx(%0, COLOR_TIP, "[Tip]{cdd0d1} "%1) 
 
 #define SendServerMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_INFO, ""%1) 
@@ -444,7 +444,7 @@ stock SendTeleportMessage(playerid)
 }
 
 //Local functions:
-ProxDetectorEx(playerid, Float:max_range, color, const prefix[], const string[], showid = false, annonated=false, inverted=false, showtagcolor=false, autospacing=true, chat=false) 
+ProxDetectorEx(playerid, Float:max_range, color, const prefix[], const string[], showid = false, annonated=false, inverted=false, autospacing=true, chat=false) 
 {
 	
 	new prox[256];
@@ -480,34 +480,34 @@ ProxDetectorEx(playerid, Float:max_range, color, const prefix[], const string[],
 
 		if(strlen(prefix) < 1) {
 			if(autospacing) {
-				if(showid) format(prox, sizeof(prox), "(%d) %s{%06x} %s", playerid, ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8), string);
-				else format(prox, sizeof(prox), "%s{%06x} %s", ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8), string);
+				if(showid) format(prox, sizeof(prox), "(%d) %s{%06x} %s", playerid, ReturnName(playerid, 0), (final_color >>> 8), string);
+				else format(prox, sizeof(prox), "%s{%06x} %s", ReturnName(playerid, 0), (final_color >>> 8), string);
 
 				if(inverted) {
-					format(prox, sizeof(prox), "%s (( %s{%06x} ))", string, ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8));
+					format(prox, sizeof(prox), "%s (( %s{%06x} ))", string, ReturnName(playerid, 0), (final_color >>> 8));
 				}
 			} else {
-				if(showid) format(prox, sizeof(prox), "(%d) %s{%06x}%s", playerid, ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8), string);
-				else format(prox, sizeof(prox), "%s{%06x}%s", ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8), string);
+				if(showid) format(prox, sizeof(prox), "(%d) %s{%06x}%s", playerid, ReturnName(playerid, 0), (final_color >>> 8), string);
+				else format(prox, sizeof(prox), "%s{%06x}%s", ReturnName(playerid, 0), (final_color >>> 8), string);
 
 				if(inverted) {
-					format(prox, sizeof(prox), "%s (( %s{%06x} ))", string, ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8));
+					format(prox, sizeof(prox), "%s (( %s{%06x} ))", string, ReturnName(playerid, 0), (final_color >>> 8));
 				}
 			}
 		} else {
 			if(autospacing) {
-				if(showid) format(prox, sizeof(prox), "%s (%d) %s{%06x} %s", prefix, playerid, ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8), string);
-				else format(prox, sizeof(prox), "%s %s{%06x} %s", prefix, ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8), string);
+				if(showid) format(prox, sizeof(prox), "%s (%d) %s{%06x} %s", prefix, playerid, ReturnName(playerid, 0), (final_color >>> 8), string);
+				else format(prox, sizeof(prox), "%s %s{%06x} %s", prefix, ReturnName(playerid, 0), (final_color >>> 8), string);
 
 				if(inverted) {
-					format(prox, sizeof(prox), "%s %s (( %s{%06x} )) %s", prefix, string, ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8));
+					format(prox, sizeof(prox), "%s %s (( %s{%06x} )) %s", prefix, string, ReturnName(playerid, 0), (final_color >>> 8));
 				}
 			} else {
-				if(showid) format(prox, sizeof(prox), "%s (%d) %s{%06x}%s", prefix, playerid, ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8), string);
-				else format(prox, sizeof(prox), "%s %s{%06x}%s", prefix, ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8), string);
+				if(showid) format(prox, sizeof(prox), "%s (%d) %s{%06x}%s", prefix, playerid, ReturnName(playerid, 0), (final_color >>> 8), string);
+				else format(prox, sizeof(prox), "%s %s{%06x}%s", prefix, ReturnName(playerid, 0), (final_color >>> 8), string);
 
 				if(inverted) {
-					format(prox, sizeof(prox), "%s %s (( %s{%06x} ))", prefix, string, ReturnSettingsName(playerid, i, showtagcolor), (final_color >>> 8));
+					format(prox, sizeof(prox), "%s %s (( %s{%06x} ))", prefix, string, ReturnName(playerid, 0), (final_color >>> 8));
 				}
 			}
 		}
@@ -568,7 +568,7 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 				
 				foreach (new i : Player)
 				{
-					if(!strcmp(text, ReturnSettingsName(i, playerid)))
+					if(!strcmp(text, ReturnName(i, playerid)))
 					{
 						SendErrorMessage(playerid, "That character already exists. Please try again."); 
 						return 0;
@@ -596,7 +596,7 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 				
 				foreach (new i : Player)
 				{
-					if(!strcmp(text, ReturnSettingsName(i, playerid)))
+					if(!strcmp(text, ReturnName(i, playerid)))
 					{
 						SendErrorMessage(playerid, "That characters street name already exists. Please try again."); 
 						return 0;
@@ -869,7 +869,7 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 		if(PlayerInfo[playerid][E_CHARACTER_PHONELINE] == 911)
 		{
 			format(string, sizeof(string), "says (phone): %s", text);
-			ProxDetectorEx(playerid, 10.0, 0xDEDEDEFF, "", string, .showtagcolor=true, .annonated=true, .chat=true);
+			ProxDetectorEx(playerid, 10.0, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
 
 			switch(Player911Type[playerid])
 			{
@@ -946,19 +946,19 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 							if (GetPlayerVehicleID(targetid) == GetPlayerVehicleID(playerid)) {
 
 								if (PlayerInfo[playerid][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID) {
-									format ( string, sizeof ( string ), "(Windows Closed) %s{DEDEDE} says (phone): %s", ReturnSettingsName(playerid, targetid, true), text ) ;
+									format ( string, sizeof ( string ), "(Windows Closed) %s{DEDEDE} says (phone): %s", ReturnName(playerid, 0), text ) ;
 									SendClientMessageEx(phoneline, COLOR_YELLOW, "Caller says (Phone): %s", text);
 								}
 								else {
 
 									if (toid != INVALID_PLAYER_ID) {
 										if(playerid == toid) {
-											format (string, sizeof (string), "(Windows Closed) %s says (to self): %s",  ReturnSettingsName(playerid, targetid, true), text ) ;
+											format (string, sizeof (string), "(Windows Closed) %s says (to self): %s",  ReturnName(playerid, 0), text ) ;
 										} 
-										else format (string, sizeof (string), "(Windows Closed) %s says (to %s): %s",  ReturnSettingsName(playerid, targetid, true), ReturnSettingsName(toid, targetid, true), text ) ;
+										else format (string, sizeof (string), "(Windows Closed) %s says (to %s): %s",  ReturnName(playerid, 0), ReturnName(toid), text ) ;
 									}
 
-									else format (string, sizeof(string), "(Windows Closed) %s{DEDEDE} says: %s",  ReturnSettingsName(playerid, targetid, true), text ) ;
+									else format (string, sizeof(string), "(Windows Closed) %s{DEDEDE} says: %s",  ReturnName(playerid, 0), text ) ;
 								}
 
 								SendClientMessageEx(targetid, 0xDEDEDEFF, string);
@@ -971,19 +971,19 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 						{
 							if (toid != INVALID_PLAYER_ID) {
 								format(string, sizeof(string), "says (to %s): %s", ReturnMixedName(toid), text);
-								ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "(Windows Open)", string, .showtagcolor=true, .annonated=true, .chat=true);
+								ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "(Windows Open)", string, .annonated=true, .chat=true);
 							} 
 							else 
 							{
 								format(string, sizeof(string), "says: %s", text);
-								ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "(Windows Open)", string, .showtagcolor=true, .annonated=true, .chat=true);
+								ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "(Windows Open)", string, .annonated=true, .chat=true);
 							}
 						}
 
 						else 
 						{
 							format(string, sizeof(string), "says (phone): %s", text);
-							ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "(Windows Open)", string, .showtagcolor=true, .annonated=true, .chat=true);
+							ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "(Windows Open)", string, .annonated=true, .chat=true);
 							
 							SendClientMessageEx(phoneline, COLOR_YELLOW, "Caller says (Phone): %s", text);
 						}
@@ -995,9 +995,9 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 				format(string, sizeof(string), "says (phone): %s", text);
 
 				if ( GetPlayerVirtualWorld(playerid) == 0) {
-					ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "", string, .showtagcolor=true, .annonated=true, .chat=true);
+					ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
 				}
-				else ProxDetectorEx(playerid, 10.0, 0xDEDEDEFF, "", string, .showtagcolor=true, .annonated=true, .chat=true);
+				else ProxDetectorEx(playerid, 10.0, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
 
 				SendClientMessageEx(phoneline, COLOR_YELLOW, "Caller says (Phone): %s", text);
 			}
@@ -1013,12 +1013,12 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 		if(toid != INVALID_PLAYER_ID) 
 		{
 			format(string, sizeof(string), "says (to %s): %s", ReturnMixedName(toid), text);
-			ProxDetectorEx(playerid, range, 0xDEDEDEFF, "", string, .showtagcolor=true, .annonated=true, .chat=true);
+			ProxDetectorEx(playerid, range, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
 		} 
 		else 
 		{
 			format(string, sizeof(string), "says: %s", text);
-			ProxDetectorEx(playerid, range, 0xDEDEDEFF, "", string, .showtagcolor=true, .annonated=true, .chat=true);
+			ProxDetectorEx(playerid, range, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
 			ChatAnimation(playerid, strlen(text));
 		}
 	}

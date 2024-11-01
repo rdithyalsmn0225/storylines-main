@@ -87,7 +87,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 			
-			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} marijuana for {B3C99E}$%s{cdd0d1}", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
+			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} marijuana for {B3C99E}$%s{cdd0d1}", ReturnName(playerid), FormatMoney(amount)); 
 		}
 		else if(type == 1)
 		{
@@ -100,7 +100,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 
-			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} cocaine for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
+			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} cocaine for $%s", ReturnName(playerid), FormatMoney(amount)); 
 		}
 		else if(type == 2)
 		{
@@ -110,7 +110,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 
-			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} heroin for $%s", ReturnSettingsName(playerid, playerid), FormatMoney(amount)); 
+			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} heroin for $%s", ReturnName(playerid), FormatMoney(amount)); 
 		}
 	}
 	return 1;

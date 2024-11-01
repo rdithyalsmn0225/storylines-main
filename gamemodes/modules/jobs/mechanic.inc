@@ -13,7 +13,7 @@ CMD:untow(playerid, params[])
 	    return SendErrorMessage(playerid, "There is no vehicle hooked onto the truck.");
 
 	DetachTrailerFromVehicle(GetPlayerVehicleID(playerid));
-	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s has unhooked the %s from the tow truck.", ReturnSettingsName(playerid, playerid), ReturnVehicleModelName(GetVehicleModel(trailerid)));
+	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s has unhooked the %s from the tow truck.", ReturnName(playerid), ReturnVehicleModelName(GetVehicleModel(trailerid)));
 
 	return 1;
 }
@@ -35,7 +35,7 @@ CMD:tow(playerid, params[])
 	    return SendErrorMessage(playerid, "You can't tow this vehicle.");
 
 	AttachTrailerToVehicle(vehicleid, GetPlayerVehicleID(playerid));
-	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s has hooked a %s onto their tow truck.", ReturnSettingsName(playerid, playerid), ReturnVehicleModelName(GetVehicleModel(vehicleid)));
+	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s has hooked a %s onto their tow truck.", ReturnName(playerid), ReturnVehicleModelName(GetVehicleModel(vehicleid)));
 	return 1;
 }
 

@@ -719,7 +719,7 @@ function:Query_LoadBusinesses()
 		cache_get_value_name_float(i, "BusinessActorX", BusinessInfo[i+1][E_BUSINESS_ACTORPOS][0]);
 		cache_get_value_name_float(i, "BusinessActorY", BusinessInfo[i+1][E_BUSINESS_ACTORPOS][1]);
 		cache_get_value_name_float(i, "BusinessActorZ", BusinessInfo[i+1][E_BUSINESS_ACTORPOS][2]);
-		cache_get_value_name_float(i, "BusinessActorZ", BusinessInfo[i+1][E_BUSINESS_ACTORPOS][3]);
+		cache_get_value_name_float(i, "BusinessActorA", BusinessInfo[i+1][E_BUSINESS_ACTORPOS][3]);
 		
 		cache_get_value_name(i, "BusinessName", BusinessInfo[i+1][E_BUSINESS_NAME], 90); 
 		cache_get_value_name_int(i, "BusinessType", BusinessInfo[i+1][E_BUSINESS_TYPE]);

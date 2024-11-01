@@ -94,13 +94,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			
 			new str[1024];
-			format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
+			format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnName(playerid));
 			new insert[256]; 
 			
 			if(strlen(inputtext) > 128 || strlen(inputtext) < 3)
 				return ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register:", str, "Confirm", "");
 				
-			mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO `masters` (`acc_name`, `acc_pass`, `register_date`, `register_ip`, `forum_name`) VALUES ('%e', sha1('%e'), '%e', '%e', '%e')", ReturnSettingsName(playerid, playerid), inputtext, ReturnDate(), ReturnIP(playerid), ReturnSettingsName(playerid, playerid));
+			mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO `masters` (`acc_name`, `acc_pass`, `register_date`, `register_ip`, `forum_name`) VALUES ('%e', sha1('%e'), '%e', '%e', '%e')", ReturnName(playerid), inputtext, ReturnDate(), ReturnIP(playerid), ReturnName(playerid));
     		mysql_pquery(ourConnection, insert, "OnPlayerRegister", "i", playerid);
 		}
 		case DIALOG_LOGIN:
@@ -114,7 +114,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			new continueCheck[211]; 
 			
 			mysql_format(ourConnection, continueCheck, sizeof(continueCheck), "SELECT acc_dbid, forum_name, secret_word, active_ip FROM masters WHERE acc_name = '%e' AND acc_pass = sha1('%e') LIMIT 1", 
-				ReturnSettingsName(playerid, playerid), inputtext);
+				ReturnName(playerid), inputtext);
 				
 			mysql_pquery(ourConnection, continueCheck, "LoggingIn", "i", playerid);
 			return 1;
@@ -161,9 +161,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				format(string, sizeof(string), "You selected the character {B3C99E}%s{FFFFFF}.", characterLister[playerid][listitem]);
 				SendClientMessage(playerid, -1, string);
 
-				UpdateTabListForOthers(playerid);
-				UpdateTabListForPlayer(playerid);
-				
 				mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM characters WHERE char_name = '%e' LIMIT 1", characterLister[playerid][listitem]);
 				mysql_pquery(ourConnection, thread, "Query_SelectCharacter", "i", playerid); 
 			}
@@ -899,7 +896,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", inputtext); 
 
 				new str[512];
-				format(str, sizeof(str), "Please enter the description of the crime committed by %s:", ReturnSettingsName(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], playerid));
+				format(str, sizeof(str), "Please enter the description of the crime committed by %s:", ReturnName(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], playerid));
 				ShowPlayerDialog(playerid, DIALOG_MDC_PLACECH, DIALOG_STYLE_INPUT, "Place Charge:", str, "Search", "Back");
 			}
 			else
@@ -916,13 +913,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				if (isnull(inputtext))
 				{
 					new str[512];
-					format(str, sizeof(str), "Please enter the description of the crime committed by %s:", ReturnSettingsName(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], playerid));
+					format(str, sizeof(str), "Please enter the description of the crime committed by %s:", ReturnName(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], playerid));
 					return ShowPlayerDialog(playerid, DIALOG_MDC_PLACECH, DIALOG_STYLE_INPUT, "Place Charge:", str, "Enter", "Back");
 				}
 					
 				AddWanted(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
 
-				SendFactionMessage(playerid, "%s has placed a charge on %s for \"%s\".", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
+				SendFactionMessage(playerid, "%s has placed a charge on %s for \"%s\".", ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
 				ShowPlayerDialog(playerid, DIALOG_MDC, DIALOG_STYLE_LIST, "Mobile Data Computer:", "Place Charges\nView Chargers\nView Plates", "Select", "Cancel");
 			}
 			else
@@ -941,7 +938,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					return ShowPlayerDialog(playerid, DIALOG_MDC_VIEW, DIALOG_STYLE_INPUT, "View Charges:", "Please enter the name of the player:", "Search", "Back");
 
 				if (IsNumeric(inputtext) && IsPlayerConnected(strval(inputtext))) {
-					ViewCharges(playerid, ReturnSettingsName(strval(inputtext), playerid));
+					ViewCharges(playerid, ReturnName(strval(inputtext), playerid));
 				}
 				else if (!IsNumeric(inputtext)) {
 					ViewCharges(playerid, inputtext);
@@ -962,7 +959,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					registerTime[playerid] = 1;	
 					
 					new str[1024];
-					format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnSettingsName(playerid, playerid));
+					format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnName(playerid));
 					ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register:", str, "Confirm", "");
 				}
 				else
@@ -1272,15 +1269,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    if (id == -1)
 						return SendErrorMessage(playerid, "That player doesn't have anymore inventory slots.");
 
-				    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnSettingsName(playerid, playerid), string, ReturnSettingsName(userid, playerid));
-				    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} has given you {d7d292}%s{cdd0d1} (added to inventory).", ReturnSettingsName(playerid, playerid), string);
+				    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnName(playerid), string, ReturnName(userid, playerid));
+				    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} has given you {d7d292}%s{cdd0d1} (added to inventory).", ReturnName(playerid), string);
 
 					Inventory_Remove(playerid, string);
 		  		}
 				else
 				{
 					new str[152];
-					format(str, sizeof(str), "Item: %s (Amount: %d)\n\nPlease enter the amount of this item you wish to give %s:", string, InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY], ReturnSettingsName(userid, playerid));
+					format(str, sizeof(str), "Item: %s (Amount: %d)\n\nPlease enter the amount of this item you wish to give %s:", string, InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY], ReturnName(userid, playerid));
 				    ShowPlayerDialog(playerid, DIALOG_INVGIVEAMOUNT, DIALOG_STYLE_INPUT, "Give Item:", str, "Give", "Cancel");
 				    PlayerInfo[playerid][E_CHARACTER_TARGET] = userid;
 				}
@@ -1325,11 +1322,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				strunpack(string, InventoryInfo[playerid][itemid][E_INVENTORY_ITEM]);
 
 				if (isnull(inputtext))
-					return format(str, sizeof(str), "Item: %s (Amount: %d)\n\nPlease enter the amount of this item you wish to give %s:", string, InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY], ReturnSettingsName(userid, playerid)),
+					return format(str, sizeof(str), "Item: %s (Amount: %d)\n\nPlease enter the amount of this item you wish to give %s:", string, InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY], ReturnName(userid, playerid)),
 					ShowPlayerDialog(playerid, DIALOG_INVGIVEAMOUNT, DIALOG_STYLE_INPUT, "Give Item", str, "Give", "Cancel");
 
 				if (strval(inputtext) < 1 || strval(inputtext) > InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY])
-				    return format(str, sizeof(str), "ERROR: You don't have that much.\n\nItem: %s (Amount: %d)\n\nPlease enter the amount of this item you wish to give %s:", string, InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY], ReturnSettingsName(userid, playerid)),
+				    return format(str, sizeof(str), "ERROR: You don't have that much.\n\nItem: %s (Amount: %d)\n\nPlease enter the amount of this item you wish to give %s:", string, InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY], ReturnName(userid, playerid)),
 					ShowPlayerDialog(playerid, DIALOG_INVGIVEAMOUNT, DIALOG_STYLE_INPUT, "Give Item:", str, "Give", "Cancel");
 
 		        new id = Inventory_Add(userid, string, InventoryInfo[playerid][itemid][E_INVENTORY_MODEL], strval(inputtext));
@@ -1337,8 +1334,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    if (id == -1)
 					return SendErrorMessage(playerid, "That player doesn't have anymore inventory slots.");
 
-			    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnSettingsName(playerid, playerid), string, ReturnSettingsName(userid, playerid));
-			    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} has given you {d7d292}%s{cdd0d1} (added to inventory).", ReturnSettingsName(playerid, playerid), string);
+			    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnName(playerid), string, ReturnName(userid, playerid));
+			    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} has given you {d7d292}%s{cdd0d1} (added to inventory).", ReturnName(playerid), string);
 
 				Inventory_Remove(playerid, string, strval(inputtext));
 			}
@@ -1573,13 +1570,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE] = false;
-							UpdateTabListForPlayer(playerid);
 							SendServerMessage(playerid, "[Settings] {cdd0d1}switched your namestyle to streetnames tags.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE] = true;
-							UpdateTabListForPlayer(playerid);
 							SendServerMessage(playerid, "[Settings] {cdd0d1}switched your namestyle to Firstname_Lastname.");
 						}
 					}
@@ -1589,13 +1584,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDD] = false;
 							SendServerMessage(playerid, "[Settings] {cdd0d1}Draw Distance has been set to Low.");
-							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 5000, playerid);
+							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 2000, playerid);
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDD] = true;
 							SendServerMessage(playerid, "[Settings] {cdd0d1}Draw Distance has been set to High.");
-							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 10000, playerid);
+							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 5000, playerid);
 						}
 					}
 				}
@@ -1906,12 +1901,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								cmd_hangup(playerid, "");
 							}
 							PlayerInfo[playerid][E_CHARACTER_PHONEOFF] = true;
-							SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered off their cellphone.", ReturnSettingsName(playerid, playerid));
+							SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered off their cellphone.", ReturnName(playerid));
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_PHONEOFF] = false;
-							SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered on their cellphone.", ReturnSettingsName(playerid, playerid));
+							SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered on their cellphone.", ReturnName(playerid));
 						}
 					}
 				}
@@ -1979,7 +1974,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				PlayerInfo[playerid][E_CHARACTER_CONTACT] = GetNumberOwner(number);
 
 				new str[512];
-				format(str, sizeof(str), "Please enter the message to send to %s:", ReturnSettingsName(PlayerInfo[playerid][E_CHARACTER_CONTACT], playerid));
+				format(str, sizeof(str), "Please enter the message to send to %s:", ReturnName(PlayerInfo[playerid][E_CHARACTER_CONTACT], playerid));
 				ShowPlayerDialog(playerid, DIALOG_SMSTEXT, DIALOG_STYLE_INPUT, "Text Message:", str, "Send", "Back");
 			}
 		}
@@ -1999,7 +1994,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendErrorMessage(playerid, "Your text message is being sent.");
 
 				new str[512];
-				format(str, sizeof(str), "* %s takes out their cellphone.", ReturnSettingsName(playerid, playerid));
+				format(str, sizeof(str), "* %s takes out their cellphone.", ReturnName(playerid));
 				SetPlayerChatBubble(playerid, str, COLOR_EMOTE, 20.0, 3000); 
 				
 				if(targetid == INVALID_PLAYER_ID)

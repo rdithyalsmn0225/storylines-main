@@ -265,7 +265,7 @@ function:LoadPlayerItems(playerid)
 		cache_get_value_name(i, "invItem", name, sizeof(name));
 		strpack(InventoryInfo[playerid][i][E_INVENTORY_ITEM], name, 32 char);
 	}
-	printf("[SERVER]: %s inventory were loaded from \"%s\" database...", ReturnSettingsName(playerid, playerid), SQL_DATABASE);
+	printf("[SERVER]: %s inventory were loaded from \"%s\" database...", ReturnName(playerid), SQL_DATABASE);
 	return 1;
 }
 

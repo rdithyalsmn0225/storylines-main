@@ -70,7 +70,7 @@ function:PlayersUpdates()
 					SendServerMessage(playerid, "[Jail] {cdd0d1}You served your admin jail time.");
 						
 					new str[128];
-					format(str, sizeof(str), "%s was released from admin jail.", ReturnSettingsName(playerid, playerid));
+					format(str, sizeof(str), "%s was released from admin jail.", ReturnName(playerid));
 					SendAdminMessage(1, str);
 						
 					SetPlayerVirtualWorld(playerid, 0); SetPlayerInterior(playerid, 0);

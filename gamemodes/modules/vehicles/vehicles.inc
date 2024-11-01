@@ -540,8 +540,8 @@ function:Query_AddPlayerVehicle(playerid, playerb)
 {
 	PlayerInfo[playerb][E_CHARACTER_OWNEDVEHICLE][playerInsertID[playerb]] = cache_insert_id(); 
 	
-	SendServerMessage(playerb, "[Vehicle] {cdd0d1}You received a vehicle from {d7d292}%s{cdd0d1} in slot {d7d292}%d{cdd0d1}.", ReturnSettingsName(playerid, playerid), playerInsertID[playerb]);
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You issued {d7d292}%s{cdd0d1} a new vehicle.", ReturnSettingsName(playerb, playerid));
+	SendServerMessage(playerb, "[Vehicle] {cdd0d1}You received a vehicle from {d7d292}%s{cdd0d1} in slot {d7d292}%d{cdd0d1}.", ReturnName(playerid), playerInsertID[playerb]);
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You issued {d7d292}%s{cdd0d1} a new vehicle.", ReturnName(playerb));
 	
 	playerInsertID[playerb] = 0;
 	SaveCharacter(playerb);
@@ -686,7 +686,7 @@ stock NotifyVehicleOwner(vehicleid)
 
 	foreach(new i : Player)
 	{
-		if(!strcmp(ReturnSettingsName(i, i), ReturnDBIDName(VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID])))
+		if(!strcmp(ReturnName(i, i), ReturnDBIDName(VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID])))
 		{
 			playerid = i;
 		}

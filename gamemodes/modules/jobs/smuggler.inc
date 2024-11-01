@@ -120,7 +120,7 @@ CMD:respawnpacket(playerid)
     }
 
     new str[128];
-    format(str, sizeof(str), "%s has been spawned smuggler packet.", ReturnSettingsName(playerid, playerid));
+    format(str, sizeof(str), "%s has been spawned smuggler packet.", ReturnName(playerid));
     SendAdminMessage(3, str);
     return 1;
 }

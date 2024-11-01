@@ -61,7 +61,7 @@ CMD:afklist(playerid, params[])
 	{
 	    if(PlayerInfo[i][E_CHARACTER_AFK])
 	    {
-	        SendClientMessageEx(playerid, COLOR_DARKGREEN, "(ID: %i) %s - Time: %i seconds", i, ReturnSettingsName(i, i), PlayerInfo[i][E_CHARACTER_AFKTIME]);
+	        SendClientMessageEx(playerid, COLOR_DARKGREEN, "(ID: %i) %s - Time: %i seconds", i, ReturnName(i, i), PlayerInfo[i][E_CHARACTER_AFKTIME]);
 		}
 	}
 

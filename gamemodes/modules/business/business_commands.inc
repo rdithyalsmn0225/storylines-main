@@ -54,7 +54,7 @@ CMD:bizinfo(playerid, params[])
 			
 		SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Business Info __________|");
 		SendClientMessageEx(playerid, COLOR_ORANGE, "*** %s ***", BusinessInfo[id][E_BUSINESS_NAME]); 
-		SendClientMessageEx(playerid, COLOR_ORANGE, "Owner:[%s] Level:[%d] Value:[$%s] Type:[%d] Locked:[%s] ID:[%d]", ReturnSettingsName(playerid, playerid), BusinessInfo[id][E_BUSINESS_LEVEL], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]),
+		SendClientMessageEx(playerid, COLOR_ORANGE, "Owner:[%s] Level:[%d] Value:[$%s] Type:[%d] Locked:[%s] ID:[%d]", ReturnName(playerid), BusinessInfo[id][E_BUSINESS_LEVEL], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]),
 			BusinessInfo[id][E_BUSINESS_TYPE], (BusinessInfo[id][E_BUSINESS_LOCKED] != true) ? ("No") : ("Yes"), BusinessInfo[id][E_BUSINESS_DBID]); 
 		SendClientMessageEx(playerid, COLOR_ORANGE, "Cashbox:[$%s] Entrance fee:[$%s] Products:[%d / %d]", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]), FormatMoney(BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]), BusinessInfo[id][E_BUSINESS_STOCK], MAX_BUSINESS_PRODUCTS);		
 	}

@@ -333,7 +333,7 @@ CMD:removefurniture(playerid, params[])
 		return SendErrorMessage(playerid, "That Property doesn't exist.");
 
 	RemoveAllFurniture(id);
-	format(str, sizeof(str), "%s has been removed all furniture properties #%d", ReturnSettingsName(playerid, playerid), id);
+	format(str, sizeof(str), "%s has been removed all furniture properties #%d", ReturnName(playerid), id);
 	SendAdminMessage(ADMINS_OPERATOR, str);
 	return 1;
 }

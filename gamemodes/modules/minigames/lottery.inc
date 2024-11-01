@@ -41,7 +41,7 @@ function:EndLottery()
     {
         GivePaycheck(winner, winningPrice);
         new string[128];
-        format(string, sizeof(string), "[Lottery] Congratulations %s! You won a lottery $%s with the number %d.", ReturnSettingsName(winner, winner), FormatMoney(winningPrice), winningNumber);
+        format(string, sizeof(string), "[Lottery] Congratulations %s! You won a lottery $%s with the number %d.", ReturnName(winner, winner), FormatMoney(winningPrice), winningNumber);
         SendClientMessageToAll(COLOR_PINK, string);
     }
     else

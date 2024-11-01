@@ -7,7 +7,7 @@ stock Send911Message(playerid, type)
 			foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_POLICEDUTY])
 			{
 				SendClientMessage(i, COLOR_CYAN, "|____________ Emergency Call ____________|");
-				SendClientMessageEx(i, COLOR_CYAN, "Caller: %s, Phone: %d, Trace: %s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_PHONE], ReturnLocation(playerid));
+				SendClientMessageEx(i, COLOR_CYAN, "Caller: %s, Phone: %d, Trace: %s", ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_PHONE], ReturnLocation(playerid));
 				SendClientMessageEx(i, COLOR_CYAN, "Service required: %s", Player911Text[playerid][0]);
 				SendClientMessageEx(i, COLOR_CYAN, "Situation: %s", Player911Text[playerid][1]);
 				SendClientMessageEx(i, COLOR_CYAN, "Location: %s", Player911Text[playerid][2]); 
@@ -18,7 +18,7 @@ stock Send911Message(playerid, type)
 			foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_MEDICDUTY])
 			{
 				SendClientMessage(i, COLOR_PINK, "|____________ Emergency Call ____________|");
-				SendClientMessageEx(i, COLOR_PINK, "Caller: %s, Phone: %d, Trace: %s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_PHONE], ReturnLocation(playerid));
+				SendClientMessageEx(i, COLOR_PINK, "Caller: %s, Phone: %d, Trace: %s", ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_PHONE], ReturnLocation(playerid));
 				SendClientMessageEx(i, COLOR_PINK, "Service required: %s", Player911Text[playerid][0]);
 				SendClientMessageEx(i, COLOR_PINK, "Situation: %s", Player911Text[playerid][1]);
 				SendClientMessageEx(i, COLOR_PINK, "Location: %s", Player911Text[playerid][2]); 
@@ -40,7 +40,7 @@ function:SendTaxiMessage(playerid)
 	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_TAXIDUTY])
 	{
 		SendClientMessage(i, COLOR_TAXI, "|____________ Taxi Call ____________|");
-		SendClientMessageEx(i, COLOR_TAXI, "Caller: %s, Phone: %d, Trace: %s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_PHONE], ReturnLocation(playerid));
+		SendClientMessageEx(i, COLOR_TAXI, "Caller: %s, Phone: %d, Trace: %s", ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_PHONE], ReturnLocation(playerid));
 		SendClientMessageEx(i, COLOR_TAXI, "Service required: Taxi Drivers");
 		SendClientMessageEx(i, COLOR_TAXI, "Location: %s", ReturnLocation(playerid)); 
 	}
@@ -61,7 +61,7 @@ function:SendMechanicMessage(playerid)
 	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_MECHDUTY])
 	{
 		SendClientMessage(i, COLOR_MECHANIC, "|____________ Mechanic Call ____________|");
-		SendClientMessageEx(i, COLOR_MECHANIC, "Caller: %s, Phone: %d, Trace: %s", ReturnSettingsName(playerid, playerid), PlayerInfo[playerid][E_CHARACTER_PHONE], ReturnLocation(playerid));
+		SendClientMessageEx(i, COLOR_MECHANIC, "Caller: %s, Phone: %d, Trace: %s", ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_PHONE], ReturnLocation(playerid));
 		SendClientMessage(i, COLOR_MECHANIC, "Service required: Mechanic Service");
 		SendClientMessageEx(i, COLOR_MECHANIC, "Location: %s", ReturnLocation(playerid)); 
 	}
@@ -221,7 +221,7 @@ function:LoadPlayerContacts(playerid)
 		cache_get_value_name_int(i, "E_CONTACT_DBID", ContactInfo[playerid][i][E_CONTACT_DBID]);
 		cache_get_value_name_int(i, "E_CONTACT_NUMBER", ContactInfo[playerid][i][E_CONTACT_NUMBER]);
 	}
-	printf("[SERVER]: %s contacts were loaded from \"%s\" database...", ReturnSettingsName(playerid, playerid), SQL_DATABASE);
+	printf("[SERVER]: %s contacts were loaded from \"%s\" database...", ReturnName(playerid), SQL_DATABASE);
 	return 1;
 }
 

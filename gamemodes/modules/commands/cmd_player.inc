@@ -57,13 +57,13 @@ CMD:settings(playerid, params[])
 
 CMD:coin(playerid, params[])
 {
-    SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s flips a coin and it lands on %s.", ReturnSettingsName(playerid, playerid), (random(2)) ? ("Heads") : ("Tails"));
+    SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s flips a coin and it lands on %s.", ReturnName(playerid), (random(2)) ? ("Heads") : ("Tails"));
 	return true;
 }
 
 CMD:dice(playerid, params[])
 {
-	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s rolls a dice and it lands on %d.", ReturnSettingsName(playerid, playerid), random(6) + 1);
+	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s rolls a dice and it lands on %d.", ReturnName(playerid), random(6) + 1);
     return true;
 }
 
@@ -122,22 +122,22 @@ CMD:admins(playerid, params[])
 	
 	if(adminOn == true)
 	{
-		SendClientMessage(playerid, COLOR_HEADER, "Admins List:");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Admins __________|");
 		foreach(new i : Player)
 		{
 			if(PlayerInfo[i][E_CHARACTER_ADMIN])
 			{
 				if(PlayerInfo[i][E_CHARACTER_ADMINDUTY])
 				{
-					SendClientMessageEx(playerid, COLOR_WHITE, "(Level: %d) %s (%s) - On Duty: Yes", PlayerInfo[i][E_CHARACTER_ADMIN], ReturnSettingsName(i, i), AccountInfo[i][E_MASTERS_FORUMNAME]);
+					SendClientMessageEx(playerid, COLOR_ORANGE, "(Level: %d) %s (%s): On-Duty", PlayerInfo[i][E_CHARACTER_ADMIN], ReturnName(i, i), AccountInfo[i][E_MASTERS_FORUMNAME]);
 				}
-				else SendClientMessageEx(playerid, COLOR_GREY, "(Level: %d) %s (%s) - On Duty: No", PlayerInfo[i][E_CHARACTER_ADMIN], ReturnSettingsName(i, i), AccountInfo[i][E_MASTERS_FORUMNAME]);
+				else SendClientMessageEx(playerid, COLOR_ORANGE, "(Level: %d) %s (%s): Roleplaying", PlayerInfo[i][E_CHARACTER_ADMIN], ReturnName(i, i), AccountInfo[i][E_MASTERS_FORUMNAME]);
 			}
 		}
 	}
 	else
 	{
-		return SendClientMessage(playerid, COLOR_GREY, "There are no administrators' online.");
+		return SendInfoMessage(playerid, "There are no administrators online.");
 	}
 
 	return 1;
@@ -228,12 +228,12 @@ CMD:pay(playerid, params[])
 	PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0); PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
 	playerLastpay[playerid] = gettime(); 
 	
-	SendServerMessage(playerid, "[Pay] {cdd0d1}You have sent {B3C99E}$%s{cdd0d1} to {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnSettingsName(playerb, playerid)); 
-	SendServerMessage(playerb, "[Pay] {cdd0d1}You have received {B3C99E}$%s{cdd0d1} from {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnSettingsName(playerid, playerid)); 
+	SendServerMessage(playerid, "[Pay] {cdd0d1}You have sent {B3C99E}$%s{cdd0d1} to {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnName(playerb)); 
+	SendServerMessage(playerb, "[Pay] {cdd0d1}You have received {B3C99E}$%s{cdd0d1} from {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnName(playerid)); 
 	
 	if(PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3 || amount >= 50000)
 	{
-		format(str, sizeof(str), "%s has paid $%s to %s.", ReturnSettingsName(playerid, playerid), FormatMoney(amount), ReturnSettingsName(playerb, playerid)); 
+		format(str, sizeof(str), "%s has paid $%s to %s.", ReturnName(playerid), FormatMoney(amount), ReturnName(playerb)); 
 		SendAdminMessage(1, str);
 	}
 	
@@ -291,7 +291,7 @@ CMD:charity(playerid, params[])
 	return 1;
 }
 
-CMD:id(playerid, params[]) // This command was a hefty test. Can be commented out if need be. 
+CMD:id(playerid, params[])
 {
 	if(isnull(params))
 		return SendUsageMessage(playerid, "/id [playerid OR name]"); 
@@ -317,7 +317,7 @@ CMD:id(playerid, params[]) // This command was a hefty test. Can be commented ou
 		if(!IsPlayerConnected(playerb))
 			return SendClientMessage(playerid, COLOR_RED, "Player not found."); 
 			
-		SendClientMessageEx(playerid, COLOR_GREY, "(ID: %i) %s | Level: %i", playerb, ReturnSettingsName(playerb, playerid), PlayerInfo[playerb][E_CHARACTER_LEVEL]); 
+		SendClientMessageEx(playerid, COLOR_GREY, "(ID: %i) %s | Level: %i", playerb, ReturnName(playerb), PlayerInfo[playerb][E_CHARACTER_LEVEL]); 
 	}
 	else
 	{
@@ -347,9 +347,9 @@ CMD:id(playerid, params[]) // This command was a hefty test. Can be commented ou
 		{
 			foreach(new b : Player)
 			{
-				if(strfind(ReturnSettingsName(b, playerid), params, true) != -1)
+				if(strfind(ReturnName(b, playerid), params, true) != -1)
 				{
-					SendClientMessageEx(playerid, COLOR_GREY, "(ID: %i) %s | Level: %i", b, ReturnSettingsName(b, playerid), PlayerInfo[b][E_CHARACTER_LEVEL]); 
+					SendClientMessageEx(playerid, COLOR_GREY, "(ID: %i) %s | Level: %i", b, ReturnName(b), PlayerInfo[b][E_CHARACTER_LEVEL]); 
 				}
 				else return SendClientMessage(playerid, COLOR_RED, "Player not found."); 
 			}
@@ -360,7 +360,7 @@ CMD:id(playerid, params[]) // This command was a hefty test. Can be commented ou
 			{
 				if(IsPlayerConnected(a))
 				{
-					if(strfind(ReturnSettingsName(a, playerid, 0), params, true) != -1)
+					if(strfind(ReturnName(a), params, true) != -1)
 					{
 						matchFound = true;
 						countMatches ++; 
@@ -372,7 +372,7 @@ CMD:id(playerid, params[]) // This command was a hefty test. Can be commented ou
 			{
 				for(new f = 0, g = GetPlayerPoolSize(), t = 0; f <= g; f++)
 				{		
-					if(IsPlayerConnected(f) && strfind(ReturnSettingsName(f, playerid), params, true) != -1)
+					if(IsPlayerConnected(f) && strfind(ReturnName(f), params, true) != -1)
 					{
 						matchesFound[t] = f;
 						t++; 
@@ -388,7 +388,7 @@ CMD:id(playerid, params[]) // This command was a hefty test. Can be commented ou
 						if(matchesFound[l] == INVALID_PLAYER_ID)
 							continue; 
 							
-						format(string, sizeof(string), "%s(ID: %i) %s, ", string, matchesFound[l], ReturnSettingsName(matchesFound[l], playerid)); 
+						format(string, sizeof(string), "%s(ID: %i) %s, ", string, matchesFound[l], ReturnName(matchesFound[l])); 
 											
 						if(l % 3 == 0 && l != 0 || l == 5-1)
 						{
@@ -399,7 +399,7 @@ CMD:id(playerid, params[]) // This command was a hefty test. Can be commented ou
 				}
 				else if(countMatches == 1)
 				{
-					SendClientMessageEx(playerid, COLOR_GREY, "(ID: %i) %s | Level: %i", matchesFound[0], ReturnSettingsName(matchesFound[0], playerid), PlayerInfo[matchesFound[0]][E_CHARACTER_LEVEL]); 
+					SendClientMessageEx(playerid, COLOR_GREY, "(ID: %i) %s | Level: %i", matchesFound[0], ReturnName(matchesFound[0]), PlayerInfo[matchesFound[0]][E_CHARACTER_LEVEL]); 
 				}
 			}
 			else return SendClientMessage(playerid, COLOR_RED, "Player not found."); 
@@ -663,9 +663,9 @@ CMD:radio(playerid, params[])
 			if(PlayerInfo[i][E_CHARACTER_RADIO][r] == channel)
 			{
 				if(r != PlayerInfo[i][E_CHARACTER_MAINSLOT])
-					SendClientMessageEx(i, COLOR_RADIOEX, "**[CH: %s, S: %d] %s says: %s", ReturnChannelName(PlayerInfo[i][E_CHARACTER_RADIO][r]), IsChannelSlot(i, channel), ReturnSettingsName(playerid, playerid), params);
+					SendClientMessageEx(i, COLOR_RADIOEX, "**[CH: %s, S: %d] %s says: %s", ReturnChannelName(PlayerInfo[i][E_CHARACTER_RADIO][r]), IsChannelSlot(i, channel), ReturnName(playerid), params);
 					
-				else SendClientMessageEx(i, COLOR_RADIO, "**[CH: %s, S: %d] %s says: %s", ReturnChannelName(PlayerInfo[i][E_CHARACTER_RADIO][r]), IsChannelSlot(i, channel), ReturnSettingsName(playerid, playerid), params);
+				else SendClientMessageEx(i, COLOR_RADIO, "**[CH: %s, S: %d] %s says: %s", ReturnChannelName(PlayerInfo[i][E_CHARACTER_RADIO][r]), IsChannelSlot(i, channel), ReturnName(playerid), params);
 			}
 		}
 	}
@@ -680,7 +680,7 @@ CMD:radio(playerid, params[])
 
 		else if(IsPlayerInRangeOfPoint(i, 20.0, posx,posy,posz))
 		{
-			SendClientMessageEx(playerid, COLOR_GRAD1, "(Radio) %s says: %s", ReturnSettingsName(playerid, playerid), params);
+			SendClientMessageEx(playerid, COLOR_GRAD1, "(Radio) %s says: %s", ReturnName(playerid), params);
 		}
 	}
 	return 1;
@@ -712,9 +712,9 @@ CMD:rlow(playerid, params[])
 			if(PlayerInfo[i][E_CHARACTER_RADIO][r] == channel)
 			{
 				if(r != PlayerInfo[i][E_CHARACTER_MAINSLOT])
-					SendClientMessageEx(i, COLOR_RADIOEX, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnSettingsName(playerid, playerid), params);
+					SendClientMessageEx(i, COLOR_RADIOEX, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnName(playerid), params);
 					
-				else SendClientMessageEx(i, COLOR_RADIO, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnSettingsName(playerid, playerid), params);
+				else SendClientMessageEx(i, COLOR_RADIO, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnName(playerid), params);
 			}
 		}
 	}
@@ -729,7 +729,7 @@ CMD:rlow(playerid, params[])
 
 		else if(IsPlayerInRangeOfPoint(i, 5.0, posx,posy,posz))
 		{
-			SendClientMessageEx(playerid, COLOR_GRAD1, "(Radio) %s says[low]: %s", ReturnSettingsName(playerid, playerid), params);
+			SendClientMessageEx(playerid, COLOR_GRAD1, "(Radio) %s says[low]: %s", ReturnName(playerid), params);
 		}
 	}
 	return 1;
@@ -759,9 +759,9 @@ CMD:r2(playerid, params[])
 			if(PlayerInfo[i][E_CHARACTER_RADIO][r] == channel)
 			{
 				if(r != PlayerInfo[i][E_CHARACTER_MAINSLOT])
-					SendClientMessageEx(i, COLOR_RADIOEX, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnSettingsName(playerid, playerid), params);
+					SendClientMessageEx(i, COLOR_RADIOEX, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnName(playerid), params);
 					
-				else SendClientMessageEx(i, COLOR_RADIO, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnSettingsName(playerid, playerid), params);
+				else SendClientMessageEx(i, COLOR_RADIO, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnName(playerid), params);
 			}
 		}
 	}
@@ -776,7 +776,7 @@ CMD:r2(playerid, params[])
 
 		else if(IsPlayerInRangeOfPoint(i, 20.0, posx,posy,posz))
 		{
-			SendClientMessageEx(playerid, COLOR_GRAD1, "(Radio) %s says: %s", ReturnSettingsName(playerid, playerid), params);
+			SendClientMessageEx(playerid, COLOR_GRAD1, "(Radio) %s says: %s", ReturnName(playerid), params);
 		}
 	}
 	return 1;
@@ -806,9 +806,9 @@ CMD:r2low(playerid, params[])
 			if(PlayerInfo[i][E_CHARACTER_RADIO][r] == channel)
 			{
 				if(r != PlayerInfo[i][E_CHARACTER_MAINSLOT])
-					SendClientMessageEx(i, COLOR_RADIOEX, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnSettingsName(playerid, playerid), params);
+					SendClientMessageEx(i, COLOR_RADIOEX, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnName(playerid), params);
 					
-				else SendClientMessageEx(i, COLOR_RADIO, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnSettingsName(playerid, playerid), params);
+				else SendClientMessageEx(i, COLOR_RADIO, "**[CH: %d, S: %d] %s says: %s", PlayerInfo[i][E_CHARACTER_RADIO][r], IsChannelSlot(i, channel), ReturnName(playerid), params);
 			}
 		}
 	}
@@ -823,7 +823,7 @@ CMD:r2low(playerid, params[])
 
 		else if(IsPlayerInRangeOfPoint(i, 6.0, posx,posy,posz))
 		{
-			SendClientMessageEx(playerid, COLOR_GRAD1, "(Radio) %s says[low]: %s", ReturnSettingsName(playerid, playerid), params);
+			SendClientMessageEx(playerid, COLOR_GRAD1, "(Radio) %s says[low]: %s", ReturnName(playerid), params);
 		}
 	}
 	return 1;
@@ -1055,10 +1055,10 @@ CMD:hangup(playerid, params[])
 			SetPlayerSpecialAction(PlayerInfo[playerid][E_CHARACTER_PHONELINE], SPECIAL_ACTION_STOPUSECELLPHONE);
 		}
 		
-		format(str, sizeof(str), "* %s puts their phone away.", ReturnSettingsName(playerid, playerid));
+		format(str, sizeof(str), "* %s puts their phone away.", ReturnName(playerid));
 		SetPlayerChatBubble(playerid, str, COLOR_EMOTE, 20.0, 3000);
 		
-		format(str, sizeof(str), "* %s puts their phone away.", ReturnSettingsName(PlayerInfo[playerid][E_CHARACTER_PHONELINE], playerid));
+		format(str, sizeof(str), "* %s puts their phone away.", ReturnName(PlayerInfo[playerid][E_CHARACTER_PHONELINE], playerid));
 		SetPlayerChatBubble(PlayerInfo[playerid][E_CHARACTER_PHONELINE], str, COLOR_EMOTE, 20.0, 3000);
 		
 		PlayerInfo[playerid][E_CHARACTER_CALL] = 0;
@@ -1142,7 +1142,7 @@ CMD:call(playerid, params[])
 			playerb = i;
 	}
 	
-	format(str, sizeof(str), "* %s dials a number on their phone.", ReturnSettingsName(playerid, playerid));
+	format(str, sizeof(str), "* %s dials a number on their phone.", ReturnName(playerid));
 	SetPlayerChatBubble(playerid, str, COLOR_EMOTE, 20.0, 3000);
 	SendClientMessage(playerid, COLOR_EMOTE, str); 
 	
@@ -1203,7 +1203,7 @@ CMD:call(playerid, params[])
 		return 1;
 	}
 	
-	SendNearbyMessage(playerb, 20.0, COLOR_EMOTE, "* %s's phone begins to ring.", ReturnSettingsName(playerid, playerid)); 
+	SendNearbyMessage(playerb, 20.0, COLOR_EMOTE, "* %s's phone begins to ring.", ReturnName(playerid)); 
 	SendClientMessageEx(playerb, COLOR_GREY, "[!] To pickup the call, use /pickup. Incoming call from %i.", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
 	
 	ShowPhone(playerid, 1);
@@ -1251,7 +1251,7 @@ CMD:sms(playerid, params[])
 	
 	SendErrorMessage(playerid, "Your text message is being sent.");
 
-	format(str, sizeof(str), "* %s takes out their cellphone.", ReturnSettingsName(playerid, playerid));
+	format(str, sizeof(str), "* %s takes out their cellphone.", ReturnName(playerid));
 	SetPlayerChatBubble(playerid, str, COLOR_EMOTE, 20.0, 3000); 
 	
 	if(playerb == INVALID_PLAYER_ID)
@@ -1284,12 +1284,12 @@ CMD:loudspeaker(playerid, params[])
 		
 	if(PlayerInfo[playerid][E_CHARACTER_PHONESPEAKER])
 	{
-		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s turns their phones loudspeaker off.", ReturnSettingsName(playerid, playerid));
+		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s turns their phones loudspeaker off.", ReturnName(playerid));
 		PlayerInfo[playerid][E_CHARACTER_PHONESPEAKER] = false;
 	}
 	else
 	{
-		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s turns their phones loudspeaker on.", ReturnSettingsName(playerid, playerid));
+		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s turns their phones loudspeaker on.", ReturnName(playerid));
 		PlayerInfo[playerid][E_CHARACTER_PHONESPEAKER] = true;
 	}
 	
@@ -1314,9 +1314,9 @@ CMD:license(playerid, params[])
 		return SendErrorMessage(playerid, "You aren't near that player."); 
 		
 	if(playerb != playerid)
-		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s shows %s their identification card.", ReturnSettingsName(playerid, playerid), ReturnSettingsName(playerb, playerid));
+		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s shows %s their identification card.", ReturnName(playerid), ReturnName(playerb));
 		
-	else SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s looks at their identification card.", ReturnSettingsName(playerid, playerid));
+	else SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s looks at their identification card.", ReturnName(playerid));
 	
 	ReturnLicenses(playerid, playerb); 	
 	return 1;
@@ -1824,7 +1824,7 @@ CMD:ame(playerid, params[])
 	format(string, sizeof(string), "> %s", text);
 	SetPlayerChatBubble(playerid, string, COLOR_EMOTE, 20.0, 3000 + (strlen(text) * 60));
 
-	format(str, sizeof(str), "> * %s %s", ReturnSettingsName(playerid, playerid), text);
+	format(str, sizeof(str), "> * %s %s", ReturnName(playerid), text);
 	SendClientMessage(playerid, COLOR_EMOTE, str);
 	return 1;
 }
@@ -1858,7 +1858,7 @@ CMD:shout(playerid, params[])
 
 	new string[256];
 	format(string, sizeof(string), "shouts: %s", text);
-	ProxDetectorEx(playerid, range, 0xFCE7AEFF, "", string, .showtagcolor=true, .annonated=true); 
+	ProxDetectorEx(playerid, range, 0xFCE7AEFF, "", string, .annonated=true); 
 
 	format(string, sizeof (string), "%s shouts: %s", ReturnMixedName(playerid), text ) ;
 	//SendMoleMessage(playerid, string);
@@ -1885,7 +1885,7 @@ CMD:low(playerid, params[])
 				{
 					if (GetPlayerVehicleID(targetid) == GetPlayerVehicleID (playerid) ) {
 
-						format(string, sizeof(string), "(Windows Closed) %s says [low]: %s", ReturnSettingsName(playerid, targetid, true), text);
+						format(string, sizeof(string), "(Windows Closed) %s says [low]: %s", ReturnName(playerid), text);
 						SendClientMessageEx(targetid, 0xDEDEDEFF, string);
 					}
 				}
@@ -1893,7 +1893,7 @@ CMD:low(playerid, params[])
 			
 			else if (!VehicleInfo[vehicleid][E_VEHICLE_WINDOWS]) {// down
 				format(string, sizeof(string), "says [low]: %s", text);
-				ProxDetectorEx(playerid, 5.0, 0xA3A3A3FF, "(Windows Open)", string, .showtagcolor=true, .annonated=true); 
+				ProxDetectorEx(playerid, 5.0, 0xA3A3A3FF, "(Windows Open)", string, .annonated=true); 
 			}
 		}
 	}
@@ -1901,7 +1901,7 @@ CMD:low(playerid, params[])
 	{
 
 		format(string, sizeof(string), "says [low]: %s", text);
-		ProxDetectorEx(playerid, 5.0, 0xA3A3A3FF, "", string, .showtagcolor=true); 
+		ProxDetectorEx(playerid, 5.0, 0xA3A3A3FF, "", string); 
 	}
 
 	ChatAnimation(playerid, strlen(text));
@@ -1943,9 +1943,9 @@ CMD:to(playerid, params[])
 					if ( GetPlayerVehicleID(targetid) == GetPlayerVehicleID ( playerid ) ) {
 
 						if(playerid == userid) {
-							format ( prox, sizeof ( prox ), "(Windows Closed) %s{DEDEDE} says (to self): %s",  ReturnSettingsName(playerid, targetid, true), text ) ;
+							format ( prox, sizeof ( prox ), "(Windows Closed) %s{DEDEDE} says (to self): %s",  ReturnName(playerid), text ) ;
 						} 
-						else format ( prox, sizeof ( prox ), "(Windows Closed) %s{DEDEDE} says (to %s{DEDEDE}): %s",  ReturnSettingsName(playerid, targetid, true), ReturnSettingsName(userid, targetid, true), text ) ;
+						else format ( prox, sizeof ( prox ), "(Windows Closed) %s{DEDEDE} says (to %s{DEDEDE}): %s",  ReturnName(playerid), ReturnName(userid), text ) ;
 		
 						SendClientMessageEx(targetid, 0xDEDEDEFF, prox);
 						
@@ -1974,9 +1974,9 @@ CMD:to(playerid, params[])
 					final_color = (color & 0xFF) | (clr_b << 8) | (clr_g << 16) | (clr_r << 24);
 								
 					if(playerid == userid) {
-						format(prox, sizeof(prox), "(Windows Open) %s{%06x} says (to self): %s", ReturnSettingsName(playerid, i, true), (final_color >>> 8), text);
+						format(prox, sizeof(prox), "(Windows Open) %s{%06x} says (to self): %s", ReturnName(playerid), (final_color >>> 8), text);
 					} 
-					else format(prox, sizeof(prox), "(Windows Open) %s{%06x} says (to %s{%06x}): %s", ReturnSettingsName(playerid, i, true), (final_color >>> 8), ReturnSettingsName(userid, i, true), (final_color >>> 8), text);
+					else format(prox, sizeof(prox), "(Windows Open) %s{%06x} says (to %s{%06x}): %s", ReturnName(playerid), (final_color >>> 8), ReturnName(userid), (final_color >>> 8), text);
 
 					SendClientMessageEx(i, final_color, prox);
 
@@ -2013,9 +2013,9 @@ CMD:to(playerid, params[])
 								
 			if(playerid == userid) 
 			{
-				format(prox, sizeof(prox), "%s{%06x} says (to self): %s", ReturnSettingsName(playerid, i, true), (final_color >>> 8), text);
+				format(prox, sizeof(prox), "%s{%06x} says (to self): %s", ReturnName(playerid), (final_color >>> 8), text);
 			} 
-			else format(prox, sizeof(prox), "%s{%06x} says (to %s{%06x}): %s", ReturnSettingsName(playerid, i, true), (final_color >>> 8), ReturnSettingsName(userid, i, true), (final_color >>> 8), text);
+			else format(prox, sizeof(prox), "%s{%06x} says (to %s{%06x}): %s", ReturnName(playerid), (final_color >>> 8), ReturnName(userid), (final_color >>> 8), text);
 
 			SendClientMessageEx(i, final_color, prox);
 
@@ -2052,13 +2052,12 @@ CMD:whisper(playerid, params[])
  
 	new string[384];
 
-	format(string, sizeof (string), "Whisper to %s{FFFF22}: %s", ReturnSettingsName(userid, playerid, true), text )  ;
+	format(string, sizeof (string), "Whisper to %s{FFFF22}: %s", ReturnName(userid), text )  ;
 	SendClientMessageEx(playerid, 0xFFFF22AA, string ); 
 
-	format(string, sizeof ( string ), "%s{FFCC22} whispers: %s", ReturnSettingsName(playerid, userid, true), text )  ;
+	format(string, sizeof ( string ), "%s{FFCC22} whispers: %s", ReturnName(playerid), text )  ;
 	SendClientMessageEx(userid, 0xFFCC2299, string );
 
-	//SendMoleMessage(playerid, string);
 	ProxDetectorEx(playerid, 5.0, COLOR_EMOTE, "", sprintf("mutters something to %s.", ReturnMixedName(userid)));
 	return 1;
 }
@@ -2086,7 +2085,7 @@ CMD:carwhisper(playerid, params[]) {
 		if ( GetPlayerVehicleID(userid) == vehicleid) 
 		{
 
-			format (string, sizeof(string), "[%s] %s {D99564}whispers: %s", ReturnVehicleName(vehicleid), ReturnSettingsName(playerid, userid, true), text);
+			format (string, sizeof(string), "[%s] %s {D99564}whispers: %s", ReturnVehicleName(vehicleid), ReturnName(playerid), text);
 			SendClientMessageEx(userid, 0xD9956499, string );
 		}
 	}
@@ -2134,8 +2133,8 @@ static SendPlayerLocalOOC(playerid, text[144], bool:islow=false, bool:insidecar 
 		{
 			if (GetPlayerVehicleID(targetid) == vehicleid)
 			{
-				if (PlayerInfo[playerid][E_CHARACTER_ADMINDUTY]) format ( string, sizeof ( string ), "(( [%s] (%d) %s{A3A3A3}: %s ))", ReturnVehicleName(vehicleid), playerid, ReturnSettingsName(playerid, targetid), text );
-				else format ( string, sizeof ( string ), "(( [%s] (%d) %s: %s ))", ReturnVehicleName(vehicleid), playerid, ReturnSettingsName(playerid, targetid), text ) ;
+				if (PlayerInfo[playerid][E_CHARACTER_ADMINDUTY]) format ( string, sizeof ( string ), "(( [%s] (%d) %s{A3A3A3}: %s ))", ReturnVehicleName(vehicleid), playerid, ReturnName(playerid, targetid), text );
+				else format ( string, sizeof ( string ), "(( [%s] (%d) %s: %s ))", ReturnVehicleName(vehicleid), playerid, ReturnName(playerid, targetid), text ) ;
 
 				SendClientMessageEx(targetid, 0xA3A3A3FF, string);
 			}
@@ -2209,24 +2208,24 @@ CMD:pm(playerid, params[])
 		
 	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
 	{
-		SendClientMessageEx(playerb, COLOR_PMRECEIVED, "(( PM from {FF9900}%s{FFDC18} (ID: %d): %s ))", ReturnSettingsName(playerid, playerid), playerid, text); 
+		SendClientMessageEx(playerb, COLOR_PMRECEIVED, "(( PM from {FF9900}%s{FFDC18} (ID: %d): %s ))", ReturnName(playerid), playerid, text); 
 		
 		if(!PlayerInfo[playerb][E_CHARACTER_ADMINDUTY])
-			SendClientMessageEx(playerid, COLOR_PMSENT, "(( PM sent to %s (ID: %d): %s ))", ReturnSettingsName(playerb, playerid), playerb, text); 
+			SendClientMessageEx(playerid, COLOR_PMSENT, "(( PM sent to %s (ID: %d): %s ))", ReturnName(playerb), playerb, text); 
 			
-		else SendClientMessageEx(playerid, COLOR_PMSENT, "(( PM sent to {FF9900}%s{EEE854} (ID: %d): %s ))", ReturnSettingsName(playerb, playerid), playerb, text); 
+		else SendClientMessageEx(playerid, COLOR_PMSENT, "(( PM sent to {FF9900}%s{EEE854} (ID: %d): %s ))", ReturnName(playerb), playerb, text); 
 	}
 	else
 	{
 		if(PlayerInfo[playerb][E_CHARACTER_ADMINDUTY])
 		{
-			SendClientMessageEx(playerb, COLOR_PMRECEIVED, "(( PM from %s (ID: %d): %s ))", ReturnSettingsName(playerid, playerid), playerid, text); 
-			SendClientMessageEx(playerid, COLOR_PMSENT, "(( PM sent to {FF9900}%s{EEE854} (ID: %d): %s ))", ReturnSettingsName(playerb, playerid), playerb, text); 
+			SendClientMessageEx(playerb, COLOR_PMRECEIVED, "(( PM from %s (ID: %d): %s ))", ReturnName(playerid), playerid, text); 
+			SendClientMessageEx(playerid, COLOR_PMSENT, "(( PM sent to {FF9900}%s{EEE854} (ID: %d): %s ))", ReturnName(playerb), playerb, text); 
 		}
 		else
 		{
-			SendClientMessageEx(playerb, COLOR_PMRECEIVED, "(( PM from %s (ID: %d): %s ))", ReturnSettingsName(playerid, playerid), playerid, text); 
-			SendClientMessageEx(playerid, COLOR_PMSENT, "(( PM sent to %s (ID: %d): %s ))", ReturnSettingsName(playerb, playerid), playerb, text); 
+			SendClientMessageEx(playerb, COLOR_PMRECEIVED, "(( PM from %s (ID: %d): %s ))", ReturnName(playerid), playerid, text); 
+			SendClientMessageEx(playerid, COLOR_PMSENT, "(( PM sent to %s (ID: %d): %s ))", ReturnName(playerb), playerb, text); 
 		}
 	}
 	return 1;
@@ -2281,7 +2280,7 @@ CMD:approve(playerid, params[])
 
 		
 				
-		SendClientMessageEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED], COLOR_FACTION, "%s accepted your faction invitation.", ReturnSettingsName(playerid, playerid));
+		SendClientMessageEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED], COLOR_FACTION, "%s accepted your faction invitation.", ReturnName(playerid));
 		SendInfoMessage(playerid, "You joined the {d7d292}%s{cdd0d1}!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]));
 		
 		
@@ -2297,9 +2296,6 @@ CMD:approve(playerid, params[])
 			new rand = randomEx(1, 3);
 			PlayerInfo[playerid][E_CHARACTER_FACTIONSUBSETS] = rand;
 		}
-		new thread[128];
-		mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM characters WHERE char_name = '%e'", ReturnSettingsName(playerid, playerid));
-		mysql_pquery(ourConnection, thread, "RefreshNamesFunc", "i", playerid);
 		
 		PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE] = 0;
 		PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED] = INVALID_PLAYER_ID;
@@ -2365,8 +2361,8 @@ CMD:approve(playerid, params[])
 			    ApplyAnimation(targetid, "GANGS", "prtial_hndshk_biz_01", 4.0, 0, 0, 0, 0, 0, 1);
 			}
 	    }
-	    SendInfoMessage(playerid, "You've accepted {d7d292}%s{cdd0d1} handshake.", ReturnSettingsName(targetid, playerid));
-	    SendInfoMessage(targetid, "{d7d292}%s{cdd0d1} accepted your handshake.", ReturnSettingsName(playerid, playerid));
+	    SendInfoMessage(playerid, "You've accepted {d7d292}%s{cdd0d1} handshake.", ReturnName(targetid));
+	    SendInfoMessage(targetid, "{d7d292}%s{cdd0d1} accepted your handshake.", ReturnName(playerid));
 	}
 	if (!strcmp(params, "vehicle", true) && PlayerInfo[playerid][E_CHARACTER_SELLOFFER] != INVALID_PLAYER_ID)
 	{
@@ -2407,8 +2403,8 @@ CMD:approve(playerid, params[])
 
 		SaveVehicle(vehicleid);
 
-		SendInfoMessage(playerid, "You've accepted {d7d292}%s{cdd0d1} offered selling vehicle.", ReturnSettingsName(userid, playerid));
-	    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} accepted offered selling your vehicle.", ReturnSettingsName(playerid, playerid));
+		SendInfoMessage(playerid, "You've accepted {d7d292}%s{cdd0d1} offered selling vehicle.", ReturnName(userid, playerid));
+	    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} accepted offered selling your vehicle.", ReturnName(playerid));
 	}
 	return 1;
 }
@@ -2434,8 +2430,8 @@ CMD:handshake(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SHAKEOFFER] = playerid;
 	PlayerInfo[userid][E_CHARACTER_SHAKETYPE] = type;
 
-	SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to shake your hand, type /approve handshake to approve.", ReturnSettingsName(playerid, playerid));
-	SendInfoMessage(playerid, "You have offered to shake {d7d292}%s{cdd0d1} hand.", ReturnSettingsName(userid, playerid));
+	SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to shake your hand, type /approve handshake to approve.", ReturnName(playerid));
+	SendInfoMessage(playerid, "You have offered to shake {d7d292}%s{cdd0d1} hand.", ReturnName(userid, playerid));
 	return 1;
 }
 CMD:frisk(playerid, params[])
@@ -2454,8 +2450,8 @@ CMD:frisk(playerid, params[])
 
 	PlayerInfo[userid][E_CHARACTER_FRISKOFFER] = playerid;
 
-	SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to frisk you, type /approve frisk to approve.", ReturnSettingsName(playerid, playerid));
-	SendInfoMessage(playerid, "You have offered to frisk {d7d292}%s{cdd0d1}.", ReturnSettingsName(userid, playerid));
+	SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to frisk you, type /approve frisk to approve.", ReturnName(playerid));
+	SendInfoMessage(playerid, "You have offered to frisk {d7d292}%s{cdd0d1}.", ReturnName(userid, playerid));
 	return 1;
 }
 
@@ -2471,11 +2467,11 @@ CMD:afk(playerid, params[])
 
 	if(PlayerInfo[targetid][E_CHARACTER_AFK])
 	{
-	    SendServerMessage(playerid, "[Afk] {cdd0d1}{d7d292}%s{cdd0d1} has been marked as Away from keyboard for {d7d292}%i{cdd0d1} minutes.", ReturnSettingsName(targetid, playerid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
+	    SendServerMessage(playerid, "[Afk] {cdd0d1}{d7d292}%s{cdd0d1} has been marked as Away from keyboard for {d7d292}%i{cdd0d1} minutes.", ReturnName(targetid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
 	}
 	else
 	{
-	    SendServerMessage(playerid, "[Afk] {cdd0d1}{d7d292}%s{cdd0d1} is currently not marked as Away from keyboard.", ReturnSettingsName(targetid, playerid));
+	    SendServerMessage(playerid, "[Afk] {cdd0d1}{d7d292}%s{cdd0d1} is currently not marked as Away from keyboard.", ReturnName(targetid));
 	}
 
 	return 1;

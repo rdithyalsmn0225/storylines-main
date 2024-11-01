@@ -22,7 +22,7 @@ stock Taxi_ShowCalls(playerid)
 	string[0] = 0;
 
 	foreach (new i : Player) if (PlayerInfo[i][E_CHARACTER_TAXICALLED]) {
-	    format(string, sizeof(string), "%s%d: %s\t%s\t%s\n", string, i, ReturnSettingsName(i, playerid), ReturnLocation(i), ReturnLocationStreet(i));
+	    format(string, sizeof(string), "%s%d: %s\t%s\t%s\n", string, i, ReturnName(i, playerid), ReturnLocation(i), ReturnLocationStreet(i));
 	}
 	if (!strlen(string)) {
 	    SendErrorMessage(playerid, "There are no taxi calls to accept.");
@@ -38,8 +38,8 @@ stock LeaveTaxi(playerid, driverid)
 	    GiveMoney(playerid, -PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
    		GiveMoney(driverid, PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 
-        SendServerMessage(driverid, "[Taxi] {cdd0d1}{d7d292}%s{cdd0d1} has exit your taxi and paid {B3C99E}$%s{cdd0d1}.", ReturnSettingsName(playerid, driverid), FormatMoney(PlayerInfo[playerid][E_CHARACTER_TAXIFARE]));
-		SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "** %s has paid $%s to the taxi driver.", ReturnSettingsName(playerid, driverid), FormatMoney(PlayerInfo[playerid][E_CHARACTER_TAXIFARE]));
+        SendServerMessage(driverid, "[Taxi] {cdd0d1}{d7d292}%s{cdd0d1} has exit your taxi and paid {B3C99E}$%s{cdd0d1}.", ReturnName(playerid, driverid), FormatMoney(PlayerInfo[playerid][E_CHARACTER_TAXIFARE]));
+		SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "** %s has paid $%s to the taxi driver.", ReturnName(playerid, driverid), FormatMoney(PlayerInfo[playerid][E_CHARACTER_TAXIFARE]));
 
 	    PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
@@ -91,8 +91,8 @@ Dialog:AcceptTaxi(playerid, response, listitem, inputtext[])
 		PlayerInfo[targetid][E_CHARACTER_TAXICALLED] = 0;
 		GPS_SetPlayerRaceCheckPoint(playerid, 1, x, y, z, 0.0, 0.0, 0.0);
 
-        SendServerMessage(playerid, "[Taxi] {cdd0d1}You have accepted {d7d292}%s's{cdd0d1} taxi call.", ReturnSettingsName(targetid, playerid));
-        SendServerMessage(targetid, "[Taxi] {cdd0d1}{d7d292}%s{cdd0d1} has accepted your taxi call and is on their way.", ReturnSettingsName(playerid, targetid));
+        SendServerMessage(playerid, "[Taxi] {cdd0d1}You have accepted {d7d292}%s's{cdd0d1} taxi call.", ReturnName(targetid));
+        SendServerMessage(targetid, "[Taxi] {cdd0d1}{d7d292}%s{cdd0d1} has accepted your taxi call and is on their way.", ReturnName(playerid, targetid));
 	}
 	return 1;
 }

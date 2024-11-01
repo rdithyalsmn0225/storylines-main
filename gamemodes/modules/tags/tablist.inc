@@ -1,105 +1,100 @@
+new Text3D:PlayerNameTags[MAX_PLAYERS];
 
-
-
-
-SetPlayerNameForPlayer(playerid, forplayerid, const name[]) 
+stock GetHealthDots(playerid)
 {
-    new BitStream:bs = BS_New();
+    new dots[64];
+    new Float:HP;
+ 
+    GetPlayerHealth(playerid, HP);
+ 
+    if(HP == 100)
+        dots = "oooooooooo";
+    else if(HP >= 90 && HP < 100)
+        dots = "ooooooooo{660000}o";
+    else if(HP >= 80 && HP < 90)
+        dots = "oooooooo{660000}oo";
+    else if(HP >= 70 && HP < 80)
+        dots = "ooooooo{660000}ooo";
+    else if(HP >= 60 && HP < 70)
+        dots = "oooooo{660000}oooo";
+    else if(HP >= 50 && HP < 60)
+        dots = "ooooo{660000}ooooo";
+    else if(HP >= 40 && HP < 50)
+        dots = "oooo{660000}oooooo";
+    else if(HP >= 30 && HP < 40)
+        dots = "ooo{660000}ooooooo";
+    else if(HP >= 20 && HP < 30)
+        dots = "oo{660000}oooooooo";
+    else if(HP >= 10 && HP < 20)
+        dots = "oo{660000}oooooooo";
+    else if(HP >= 0 && HP < 10)
+        dots = "{660000}oooooooooo";
+ 
+    return dots;
+}
+stock GetArmorDots(playerid)
+{
+    new dots[64];
+    new Float:AR;
+ 
+    GetPlayerArmour(playerid, AR);
+ 
+    if(AR == 100)
+        dots = "oooooooooo";
+    else if(AR >= 90 && AR < 100)
+        dots = "ooooooooo{666666}o";
+    else if(AR >= 80 && AR < 90)
+        dots = "oooooooo{666666}oo";
+    else if(AR >= 70 && AR < 80)
+        dots = "ooooooo{666666}ooo";
+    else if(AR >= 60 && AR < 70)
+        dots = "oooooo{666666}oooo";
+    else if(AR >= 50 && AR < 60)
+        dots = "ooooo{666666}ooooo";
+    else if(AR >= 40 && AR < 50)
+        dots = "oooo{666666}oooooo";
+    else if(AR >= 30 && AR < 40)
+        dots = "ooo{666666}ooooooo";
+    else if(AR >= 20 && AR < 30)
+        dots = "oo{666666}oooooooo";
+    else if(AR >= 10 && AR < 20)
+        dots = "oo{666666}oooooooo";
+    else if(AR >= 0 && AR < 10)
+        dots = "{666666}oooooooooo";
+ 
+    return dots;
+}
 
-    BS_WriteValue(
-        bs, 
-        PR_UINT16, playerid, 
-        PR_UINT8, strlen(name), 
-        PR_STRING, name, 
-        PR_UINT8, 1
-    );
-
-    PR_SendRPC(bs, forplayerid, 11);
-    BS_Delete(bs);
+NameTagsConnect(playerid)
+{
+    PlayerNameTags[playerid] = CreateDynamic3DTextLabel("Loading nametag...", 0xFFFFFFFF, 0.0, 0.0, 0.1, 20.0, .attachedplayer = playerid, .testlos = 1);
     return 1;
 }
 
-SetPlayerColorForPlayer(playerid, toplayerid, color, bool:force_color=true) {
-    new BitStream:bs = BS_New();
-
-    if(!force_color) 
-	{
-        if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY]) 
-		{
-            color = 0xD5A04EFF;
-		}
-    }
-
-    BS_WriteValue(
-        bs,
-        PR_UINT16, playerid,
-        PR_UINT32, color
-    );
-
-    PR_SendRPC(bs, toplayerid, 72);
-    BS_Delete(bs);
+NameTagsDisconnect(playerid)
+{
+    if(IsValidDynamic3DTextLabel(PlayerNameTags[playerid])) 
+        DestroyDynamic3DTextLabel(PlayerNameTags[playerid]); 
     return 1;
 }
 
-Faction_GetHex(faction_sqlid) 
+function:UpdateNameTagsTicks(playerid)
 {
-
-	new factionid = faction_sqlid;
-
-	if(!factionid) 
-    {
-		return COLOR_GREY;
-	}
-
-	if(factionid == -1) 
-    {
-		return COLOR_GREY;
-	}
-
-	return FactionInfo[factionid][E_FACTION_COLORHEX];
-}
-
-UpdateTabListForOthers(playerid) 
-{
-    for(new targetid=GetMaxPlayers()-1; targetid != -1; targetid--) {
-
-        if (!IsPlayerConnected(targetid) || !PlayerInfo[targetid][E_CHARACTER_SPAWNED] || !AccountInfo[targetid][E_MASTERS_LOGGED]) continue;
-        UpdateTabList(playerid, targetid);
-    }
-    return 1;
-}
-
-
-UpdateTabListForPlayer(playerid) 
-{
-    for(new targetid=GetMaxPlayers()-1; targetid != -1; targetid--) {
-
-        if (!IsPlayerConnected(targetid)  || !PlayerInfo[targetid][E_CHARACTER_SPAWNED] || !AccountInfo[targetid][E_MASTERS_LOGGED]) continue;
-        UpdateTabList(targetid, playerid);
-    }
-
-    return 1;
-}
-
-UpdateTabList(playerid, forplayerid) 
-{
-    new color = (GetPlayerNametagPreference(forplayerid) ? COLOR_GREY : Faction_GetHex(PlayerInfo[playerid][E_CHARACTER_FACTION]));
+    new i = playerid;
     
-    if (!IsPlayerConnected(forplayerid)  || !PlayerInfo[forplayerid][E_CHARACTER_SPAWNED] || !AccountInfo[forplayerid][E_MASTERS_LOGGED]) {
-        return 1;
+    if(IsPlayerConnected(i))
+    {
+        new nametag[128], Float:armour;
+        GetPlayerArmour(i, armour);
+        
+        if(PlayerInfo[i][E_CHARACTER_ADMINDUTY])
+        {
+            format(nametag, sizeof(nametag), "{F9CB9C}[ADMIN DUTY]\n{%06x}%s (%i)", GetPlayerColor(i) >>> 8, ReturnName(i, 0), i);
+        }
+        else
+        {
+            format(nametag, sizeof(nametag), "{%06x}%s (%i)", GetPlayerColor(i) >>> 8, ReturnName(i, 0), i, GetHealthDots(i));
+        }
+        UpdateDynamic3DTextLabelText(PlayerNameTags[i], 0xFFFFFFFF, nametag);
     }
-
-    new title[64];
-
-    SetPlayerNameForPlayer(playerid, forplayerid, (strlen(title) > 0) ? title : ReturnSettingsName(playerid, forplayerid));
-    SetPlayerColorForPlayer(playerid, forplayerid, color, .force_color=false); 
-    return 1;
-}
-
-UpdateNametagsTick(playerid) {
-    for(new targetid=GetMaxPlayers()-1; targetid != -1; targetid--) {
-        if (!IsPlayerConnected(targetid)  || !PlayerInfo[targetid][E_CHARACTER_SPAWNED] || !AccountInfo[targetid][E_MASTERS_LOGGED]) continue;
-        UpdateTabList(playerid, targetid);
-    }
-    return 1;
 }

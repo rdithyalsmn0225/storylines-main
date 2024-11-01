@@ -177,10 +177,10 @@ Dialog:Charges(playerid, response, listitem, inputtext[])
 		new str[256];
 		PlayerInfo[playerid][E_CHARACTER_MDCCHARGE] = PenalInfo[listitem][E_PENALCODES_CHARGES];
 		PlayerInfo[playerid][E_CHARACTER_MDCTIME] = PenalInfo[listitem][E_PENALCODES_JAILTIME];
-		format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_STREETNAME]);
+		format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_NAME]);
 		format(PlayerInfo[playerid][E_CHARACTER_MDCDESC], 128, "%s", PenalInfo[listitem][E_PENALCODES_TYPE]);
 
-		format(str, sizeof(str), "Suspect: %s\nDescription: (%s) %.150s\nCharges: {B3C99E}$%d{ffffff}\nJail Times: %d Month (Minutes)", PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_STREETNAME], PenalInfo[listitem][E_PENALCODES_TYPE], PenalInfo[listitem][E_PENALCODES_NAME], PenalInfo[listitem][E_PENALCODES_CHARGES], PenalInfo[listitem][E_PENALCODES_JAILTIME]);
+		format(str, sizeof(str), "Suspect: %s\nDescription: (%s) %.150s\nCharges: {B3C99E}$%d{ffffff}\nJail Times: %d Month (Minutes)", PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_NAME], PenalInfo[listitem][E_PENALCODES_TYPE], PenalInfo[listitem][E_PENALCODES_NAME], PenalInfo[listitem][E_PENALCODES_CHARGES], PenalInfo[listitem][E_PENALCODES_JAILTIME]);
 		Dialog_Show(playerid, ChargesSelect, DIALOG_STYLE_MSGBOX, "State Penal Code (Arrest Offesenses):", str, "Enter", "Cancel");
 	}
 	return 1;

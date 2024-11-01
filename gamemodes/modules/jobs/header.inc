@@ -246,7 +246,7 @@ CMD:jobduty(playerid, params[])
             else
             {
                 PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = true;
-                SendClientMessageToAllEx(COLOR_TAXI, "[Taxi Duty]: %s is now on taxi duty. Type \"/call 111\" to call a taxi!", ReturnSettingsName(playerid, playerid));
+                SendClientMessageToAllEx(COLOR_TAXI, "[Taxi Duty]: %s is now on taxi duty. Type \"/call 111\" to call a taxi!", ReturnName(playerid));
             }
         }
         else if(GetVehicleModel(vehicleid) == 525)

@@ -7,7 +7,7 @@ function:OnPlayerWounded(playerid, killerid, reason)
 	
 	PlayerInfo[playerid][E_CHARACTER_DEATHFIX] = 1; 
 	
-	format(str, sizeof(str), "%s has been brutally wounded by %s. (%s)", ReturnSettingsName(playerid, playerid), ReturnSettingsName(killerid, killerid), ReturnWeaponName(reason)); 
+	format(str, sizeof(str), "%s has been brutally wounded by %s. (%s)", ReturnName(playerid), ReturnName(killerid, killerid), ReturnWeaponName(reason)); 
 	SendAdminMessageEx(COLOR_RED, 1, str); 
 
 	if(IsPlayerInAnyVehicle(playerid))
@@ -57,7 +57,7 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 	
 	if(executed == 1)
 	{
-		format(str, sizeof(str), "%s has been executed by %s. (%s)", ReturnSettingsName(playerid, playerid), ReturnSettingsName(killerid, killerid), ReturnWeaponName(reason)); 
+		format(str, sizeof(str), "%s has been executed by %s. (%s)", ReturnName(playerid), ReturnName(killerid, killerid), ReturnWeaponName(reason)); 
 		SendAdminMessageEx(COLOR_RED, 1, str); 
 	}
 	
@@ -161,7 +161,7 @@ stock ShowPlayerDamages(damageid, playerid, adminView)
 		longstr[512]
 	; 
 	
-	format(caption, sizeof(caption), "%s:", ReturnSettingsName(damageid, playerid));
+	format(caption, sizeof(caption), "%s:", ReturnName(damageid, playerid));
 	
 	if (TotalPlayerDamages[damageid] < 1)
 		return ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, caption, "There aren't any damages to show.", "<<", ""); 
