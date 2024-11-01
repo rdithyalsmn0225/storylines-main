@@ -26,8 +26,8 @@ CMD:ahelp(playerid, params[])
 	if(IsPlayerAdmins(playerid) >= 4)
 	{
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createfaction, /editfaction, /createproperty, /editproperty.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createbusiness, /editbusiness, /callpaycheck, /gotomark, /loadturf, /turfwarscancel, /editturfwars, /destroyturfwars, /gototurfwars.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createcourt, /editcourt.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createbusiness, /editbusiness, /callpaycheck, /gotomark.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createntrance, /editentrance, /createcourt, /editcourt.");
 	}
 	 
 	return 1; 

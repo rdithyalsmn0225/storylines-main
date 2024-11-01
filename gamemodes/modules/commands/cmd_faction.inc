@@ -636,6 +636,33 @@ CMD:department(playerid, params[])
 	return 1;
 }
 
+
+CMD:tracenumber(playerid, params[])
+{
+	new targetNumber, targetid;
+
+	if(sscanf(params, "i", targetNumber))
+        return SendUsageMessage(playerid, "/tracenumber [phone number]");
+
+    for(new i = 0; i < MAX_PLAYERS; i++)
+    {
+        if(IsPlayerConnected(i) && PlayerInfo[i][E_CHARACTER_PHONE] == targetNumber)
+        {
+            targetid = i;
+            break;
+        }
+    }
+
+	if(targetid == -1)
+        return SendErrorMessage(playerid, "No player found with this phone number.");
+
+	new Float:x, Float:y, Float:z;
+    GetPlayerPos(targetid, x, y, z);
+
+    SendServerMessage(playerid, "[Trace] {cdd0d1}Phone number {d7d292}%s{cdd0d1} belongs to {d7d292}%s{cdd0d1} located at {d7d292}%s{cdd0d1}, {d7d292}%s{cdd0d1}.", targetNumber, ReturnName(playerid, 0), ReturnLocationStreet(playerid), ReturnLocation(playerid));
+	return 1;
+}
+
 CMD:carsign(playerid, params[])
 {
 	if(!IsPlayerInAnyVehicle(playerid))
