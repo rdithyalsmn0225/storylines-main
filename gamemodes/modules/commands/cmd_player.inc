@@ -2250,11 +2250,11 @@ CMD:accessories(playerid, params[])
 	{
 		if(pToys[playerid][i][E_TOY_MODEL] != 0)
 		{
-			format(string, sizeof(string), "%s{FFFFFF}#%d\t%d\t%s\n", string, i, pToys[playerid][i][E_TOY_MODEL], Bone_Name[pToys[playerid][i][E_TOY_BONE]]);
+			format(string, sizeof(string), "%s[SLOT]: #%d\t%d\t%s\n", string, i, pToys[playerid][i][E_TOY_MODEL], Bone_Name[pToys[playerid][i][E_TOY_BONE]]);
 		}
 		else
 		{
-			format(string, sizeof(string), "%s{AFAFAF}Empty Slot\n", string);
+			format(string, sizeof(string), "%s[SLOT]: <EMPTY>\n", string);
 		}
 	}
 	ShowPlayerDialog(playerid, DIALOG_CLOTHSHOW, DIALOG_STYLE_TABLIST_HEADERS, "Accessory Menu:", string, "Select", "Close");

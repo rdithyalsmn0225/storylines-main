@@ -64,6 +64,7 @@
 #define MAX_FURNITURE 				(300)
 #define MAX_GARBAGE 				(100)
 #define MAX_BARRICADES 				(50)
+#define MAX_TICKETS					(10)
 
 LoadCustomModels()
 {

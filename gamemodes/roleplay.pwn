@@ -116,6 +116,7 @@ main ()  {}
 #include "modules\faction\alpr.inc"
 #include "modules\faction\tackle.inc"
 #include "modules\faction\roadblock.inc"
+#include "modules\faction\ticket.inc"
 // PROPS MODULES
 #include "modules\props\spraytags.inc"
 #include "modules\props\advertise.inc"
@@ -807,7 +808,11 @@ function:Query_LoadCharacter(playerid)
 
 	new pquery[256];
 	mysql_format(ourConnection, pquery, sizeof(qquery), "SELECT * FROM `relations` WHERE `relationsID` = '%i'", PlayerInfo[playerid][E_CHARACTER_DBID]);
-	mysql_pquery(ourConnection, pquery, "LoadPlayerRelations", "d", playerid);
+	mysql_pquery(ourConnection, pquery, "Query_LoadRelations", "d", playerid);
+
+	new rquery[256];
+	mysql_format(ourConnection, rquery, sizeof(qquery), "SELECT * FROM `tickets` WHERE `ID` = '%i'", PlayerInfo[playerid][E_CHARACTER_DBID]);
+	mysql_pquery(ourConnection, rquery, "Query_LoadTicket", "d", playerid);
 	
 	TogglePlayerSpectating(playerid, false);
 	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{B3C99E}PUBLIC{ffffff}\n#2\tLast Position\t{B3C99E}PUBLIC{ffffff}\n#3\tFaction Spawn\t{B3C99E}FACTION{ffffff}", "Select", "Close");

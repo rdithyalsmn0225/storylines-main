@@ -1,4 +1,4 @@
-function:LoadPlayerRelations(playerid)
+function:Query_LoadRelations(playerid)
 {
 	new rows, fields;
 	cache_get_row_count(rows);
