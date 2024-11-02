@@ -919,7 +919,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					
 				AddWanted(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
 
-				SendFactionMessage(playerid, "%s has placed a charge on %s for \"%s\".", ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
+				SendPoliceMessage(COLOR_COP, "** HQ: %s has placed a charge on %s for \"%s\".", ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
 				ShowPlayerDialog(playerid, DIALOG_MDC, DIALOG_STYLE_LIST, "Mobile Data Computer:", "Place Charges\nView Chargers\nView Plates", "Select", "Cancel");
 			}
 			else

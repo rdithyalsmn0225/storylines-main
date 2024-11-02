@@ -115,6 +115,7 @@ main ()  {}
 #include "modules\faction\mdc.inc"
 #include "modules\faction\alpr.inc"
 #include "modules\faction\tackle.inc"
+#include "modules\faction\roadblock.inc"
 // PROPS MODULES
 #include "modules\props\spraytags.inc"
 #include "modules\props\advertise.inc"

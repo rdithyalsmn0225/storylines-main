@@ -166,6 +166,19 @@ function:PlayersUpdates()
 					format(stra, sizeof(stra), "~g~/~n~/~n~/");
 				}
 				ShowVehicleSpeedometer(playerid, "MPH", "I", "ld_dual:white", "ld_dual:white", "0", str, stri, stru, stra);
+
+				for (new i = 0; i != MAX_BARRICADES; i ++) if (BarricadeInfo[i][E_CADE_EXISTS] && BarricadeInfo[i][E_CADE_TYPE] == 1 && IsPlayerInRangeOfPoint(playerid, 3.0, BarricadeInfo[i][E_CADE_POS][0], BarricadeInfo[i][E_CADE_POS][1], BarricadeInfo[i][E_CADE_POS][2]))
+				{
+					new
+						tires[4];
+
+					GetVehicleDamageStatus(vehicleid, tires[0], tires[1], tires[2], tires[3]);
+
+					if (tires[3] != 1111) {
+						UpdateVehicleDamageStatus(vehicleid, tires[0], tires[1], tires[2], 1111);
+					}
+					break;
+				}
 			}
 			RealTime_SyncPlayerWorldTime(playerid);
 		}
