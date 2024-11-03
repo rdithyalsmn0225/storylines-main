@@ -241,40 +241,6 @@ CMD:pay(playerid, params[])
 	return 1;
 }
 
-CMD:respect(playerid, params[])
-{
-	new playerb, amount; 
-
-	if(sscanf(params, "ui", playerb, amount))
-		return SendUsageMessage(playerid, "/respect [playerid OR name] [amount]");
-
-	if(!IsPlayerConnected(playerb))
-		return SendErrorMessage(playerid, "The player you specified isn't connected.");
-		
-	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
-		return SendErrorMessage(playerid, "The player you specified isn't logged in.");
-		
-	if(!IsPlayerNearPlayer(playerid, playerb, 5.0))
-		return SendErrorMessage(playerid, "You aren't near that player."); 
-		
-	if(amount > PlayerInfo[playerid][E_CHARACTER_RESPECT])
-		return SendErrorMessage(playerid, "You don't have that amount of respect.");
-
-	if(amount < 1)
-		return SendErrorMessage(playerid, "You don't have that amount of money.");
-		
-	new str[64], str1[64];
-    format(str, sizeof(str), "~h~Respected~n~~w~Respect +");
-    GameTextForPlayer(playerb, str, 3, 6);
-
-	format(str1, sizeof(str1), "~h~Respected~n~~w~Respect -");
-    GameTextForPlayer(playerid, str1, 3, 6);
-
-	PlayerInfo[playerid][E_CHARACTER_RESPECT] -= amount;
-	PlayerInfo[playerb][E_CHARACTER_RESPECT] += amount;
-	return 1;
-}
-
 CMD:charity(playerid, params[])
 {
 	new charity;

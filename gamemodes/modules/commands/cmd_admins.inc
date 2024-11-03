@@ -10,7 +10,7 @@ CMD:ahelp(playerid, params[])
 	{
 		SendClientMessage(playerid, COLOR_HEADER, "Staff Commands:");
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /aduty, /forumname, /goto, /gethere, /bring, /a (achat), /showmain, /kick, /(o)ban, /(o)ajail,"); 
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /rjail, /rprison, /setint, /setvw, /skin, /health, /reports, /ar (accept), /dr (disregard),"); 
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /rjail, /rprison, /setint, /setvw, /skin, /sethp, /setar, /reports, /ar (accept), /dr (disregard),"); 
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /slap, /mute, /freeze, /unfreeze, /spec, /specoff, /stats (id), /gotols, /respawncar, /respawnstatic,"); 
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /gotocar, /getcar, /listmasks, /aooc, /revive, /listweapons");
 	}
@@ -522,7 +522,7 @@ CMD:skin(playerid, params[])
 	return 1;
 }
 
-CMD:health(playerid, params[])
+CMD:sethp(playerid, params[])
 {
 	if(!IsPlayerAdmins(playerid))
 		return SendUnauthMessage(playerid); 
@@ -530,7 +530,7 @@ CMD:health(playerid, params[])
 	new playerb, health, str[128];
 	
 	if (sscanf(params, "ud", playerb, health)) 
-		return SendUsageMessage(playerid, "/health [playerid OR name] [health]"); 
+		return SendUsageMessage(playerid, "/sethp [playerid OR name] [health]"); 
 	
 	if(!IsPlayerConnected(playerb))
 		return SendErrorMessage(playerid, "The player you specified isn't connected."); 
@@ -1020,7 +1020,7 @@ CMD:revive(playerid, params[])
 }
 
 //Level 2 Admin commands:
-CMD:armor(playerid, params[])
+CMD:setar(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_HIGH)
 		return SendUnauthMessage(playerid); 

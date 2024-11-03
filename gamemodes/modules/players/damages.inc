@@ -154,6 +154,34 @@ stock CallbackDamages(playerid, issuerid, bodypart, weaponid, Float:amount)
 	return 1; 
 }
 
+stock ShowPlayerCondition(playerid, targetid)
+{
+	new str[1024], str2[512];
+
+	
+	strcat(str2, "%s Condition", ReturnName(targetid, 0));
+
+	strcat(str, "|__________ Body Part Status __________|\n");
+	strcat(str, "Part : Chest");
+	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_BODY]));
+	strcat(str, "Part : Torso");
+	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_TORSO]));
+	strcat(str, "Part : Groin");
+	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_GROIN]));
+	strcat(str, "Part : Right Arm");
+	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTARM]));
+	strcat(str, "Part : Left Arm");
+	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTARM]));
+	strcat(str, "Part : Right Leg");
+	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTLEG]));
+	strcat(str, "Part : Left Leg");
+	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTLEG]));
+	strcat(str, "Part : Head");
+	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_HEAD]));
+
+	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, str2, str, "Close", "");
+	return 1;
+}
 stock ShowPlayerDamages(damageid, playerid, adminView)
 {
 	new
@@ -244,4 +272,38 @@ CMD:damages(playerid, params[])
 		ShowPlayerDamages(playerb, playerid, 0); 
 	}
 	return 1;
+}
+
+CMD:health(playerid, params[])
+{
+	if(IsPlayerAdmins(playerid))
+	{
+		if (sscanf(params, "I(-1)", playerb))
+			return 1; 
+			
+		if(playerb == -1)
+		{
+			return ShowPlayerCondition(playerid, playerid)
+		}
+		else
+		{
+			if(!IsPlayerConnected(playerb))
+				return SendErrorMessage(playerid, "The player you specified isn't connected.");
+				
+			if(AccountInfo[playerid][E_MASTERS_LOGGED] == false)
+				return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
+				
+			ShowPlayerCondition(playerid, playerb)
+		}
+	}
+	else return ShowPlayerCondition(playerid, playerid);
+	return 1;
+}
+
+stock GetConditionStatus(condition)
+{
+	if (condition >= 0) return "Broken";
+	else if (condition >= 50) return "Bleeding";
+    else if (condition >= 80) return "Normal";
+    return "Unknown";
 }

@@ -760,13 +760,15 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_float(0, "pArmor", PlayerInfo[playerid][E_CHARACTER_ARMOUR]); 
 	cache_get_value_name_int(0, "pFightstyle", PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE]); 
 	cache_get_value_name_int(0, "pHasAoe", PlayerInfo[playerid][E_CHARACTER_AOE]); 
-	cache_get_value_name_int(0, "pHungry", PlayerInfo[playerid][E_CHARACTER_HUNGRY]); 
-	cache_get_value_name_int(0, "pThirsty", PlayerInfo[playerid][E_CHARACTER_THIRSTY]); 
-	cache_get_value_name_int(0, "pStamina", PlayerInfo[playerid][E_CHARACTER_STAMINA]); 
-	cache_get_value_name_int(0, "pMuscle", PlayerInfo[playerid][E_CHARACTER_MUSCLE]); 
+	cache_get_value_name_int(0, "pBody", PlayerInfo[playerid][E_CHARACTER_BODY]); 
+	cache_get_value_name_int(0, "pTorso", PlayerInfo[playerid][E_CHARACTER_TORSO]); 
+	cache_get_value_name_int(0, "pGroin", PlayerInfo[playerid][E_CHARACTER_GROIN]); 
+	cache_get_value_name_int(0, "pRightArm", PlayerInfo[playerid][E_CHARACTER_RIGHTARM]); 
+	cache_get_value_name_int(0, "pLeftArm", PlayerInfo[playerid][E_CHARACTER_LEFTARM]); 
+	cache_get_value_name_int(0, "pRightLeg", PlayerInfo[playerid][E_CHARACTER_RIGHTLEG]); 
+	cache_get_value_name_int(0, "pLeftLeg", PlayerInfo[playerid][E_CHARACTER_LEFTLEG]); 
+	cache_get_value_name_int(0, "pHead", PlayerInfo[playerid][E_CHARACTER_HEAD]); 
 	cache_get_value_name_int(0, "pEXP", PlayerInfo[playerid][E_CHARACTER_EXP]); 
-	cache_get_value_name_int(0, "pFear", PlayerInfo[playerid][E_CHARACTER_FEAR]); 
-	cache_get_value_name_int(0, "pRespect", PlayerInfo[playerid][E_CHARACTER_RESPECT]); 
 	cache_get_value_name_int(0, "pJobs", PlayerInfo[playerid][E_CHARACTER_JOBS]); 
 	cache_get_value_name_int(0, "pTutorial", PlayerInfo[playerid][E_CHARACTER_TUTORIAL]); 
 
@@ -2862,25 +2864,6 @@ public OnPlayerUpdate(playerid)
 	{
 		SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_ORANGE, 30.0, 2500); 
 	}
-	
-	if(!IsPlayerInAnyVehicle(playerid))
-	{
-		if(IsPlayerRunning(playerid))
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_STAMINA] > 0)
-			{
-				if(!IsPlayerExhausted(playerid))
-				{
-					PlayerInfo[playerid][E_CHARACTER_STAMINA] -= 10;
-				}
-
-				if(PlayerInfo[playerid][E_CHARACTER_STAMINA] < 1)
-				{
-					SetTimerEx("SetPlayerExhausted", 4000, false, "ib", playerid, true);
-				}
-			}
-		}
-	}
 
 	if(IsPlayerInAnyVehicle(playerid) && IsAPolice(GetPlayerVehicleID(playerid)))
 	{
@@ -4422,16 +4405,18 @@ function:SaveCharacter(playerid)
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
 
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pHungry = %d, pThirsty = %d, pStamina = %d, pMuscle = %d, pEXP = %d, pFear = %d, pRespect = %d, pJobs = %d, pTutorial = %d WHERE char_dbid = %i",
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY],
-		PlayerInfo[playerid][E_CHARACTER_THIRSTY],
-		PlayerInfo[playerid][E_CHARACTER_STAMINA],
-		PlayerInfo[playerid][E_CHARACTER_MUSCLE],
-		PlayerInfo[playerid][E_CHARACTER_EXP],
-		PlayerInfo[playerid][E_CHARACTER_FEAR],
-		PlayerInfo[playerid][E_CHARACTER_RESPECT],
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pBody = %d, pTorso = %d, pGroin = %d, pRightArm = %d, pLeftArm = %d, pRightLeg = %d, pLeftLeg = %d, pHeadLeg = %d, pJobs = %d, pTutorial = %d, pEXP = %d WHERE char_dbid = %i",
+		PlayerInfo[playerid][E_CHARACTER_BODY],
+		PlayerInfo[playerid][E_CHARACTER_TORSO],
+		PlayerInfo[playerid][E_CHARACTER_GROIN],
+		PlayerInfo[playerid][E_CHARACTER_RIGHTARM],
+		PlayerInfo[playerid][E_CHARACTER_LEFTARM],
+		PlayerInfo[playerid][E_CHARACTER_RIGHTLEG],
+		PlayerInfo[playerid][E_CHARACTER_LEFTLEG],
+		PlayerInfo[playerid][E_CHARACTER_HEAD],
 		PlayerInfo[playerid][E_CHARACTER_JOBS],
 		PlayerInfo[playerid][E_CHARACTER_TUTORIAL],
+		PlayerInfo[playerid][E_CHARACTER_EXP],
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
 	
