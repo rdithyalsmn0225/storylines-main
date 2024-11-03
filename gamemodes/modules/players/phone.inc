@@ -124,14 +124,12 @@ function:OnPhoneCall(playerid, type)
 			if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USECELLPHONE){
 				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_STOPUSECELLPHONE);
 			}
-			ShowPhone(playerid, 3);
 			return 1;
 		}
 		case 4:
 		{
 			SendClientMessage(playerid, COLOR_GREY, "[ ! ] You received a busy tone.");
 			playerPhone[playerid] = 0;
-			ShowPhone(playerid, 3);
 			
 			if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USECELLPHONE){
 				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_STOPUSECELLPHONE);
@@ -147,7 +145,6 @@ function:OnSuccessCall(playerid)
 {
 	if(playerid != INVALID_PLAYER_ID){
 		PlayNearbySound(playerid, 23000);
-		ShowPhone(playerid, 4);
 		return 1;
 	}
 	
@@ -248,44 +245,20 @@ stock ShowContacts(playerid)
 	return 1;
 }
 
-stock ShowPhone(playerid, type)
+stock ShowPlayerPhone(playerid)
 {
-	PlayerTextDrawShow(playerid, phone[0][playerid]);
-	PlayerTextDrawShow(playerid, phone[1][playerid]);
-	PlayerTextDrawShow(playerid, phone[2][playerid]);
-	PlayerTextDrawShow(playerid, phone[3][playerid]);
-	PlayerTextDrawShow(playerid, phone[4][playerid]);
-	PlayerTextDrawShow(playerid, phone[5][playerid]);
-	PlayerTextDrawShow(playerid, phone[6][playerid]);
-	PlayerTextDrawShow(playerid, phone[7][playerid]);
-	PlayerTextDrawShow(playerid, phone[8][playerid]);
-
-	switch(type)
+	forex(i, 15)
 	{
-		case 0:
-			PlayerTextDrawSetString(playerid, phone[7][playerid], "");
-		case 1:
-			PlayerTextDrawSetString(playerid, phone[7][playerid], "Calling...");
-		case 2:
-			PlayerTextDrawSetString(playerid, phone[7][playerid], "Rings...");
-		case 3:
-			PlayerTextDrawSetString(playerid, phone[7][playerid], "Busy...");
-		case 4:
-			PlayerTextDrawSetString(playerid, phone[7][playerid], "Connected...");
+		PlayerTextDrawShow(playerid, Phone[i][playerid]);
 	}
 	return 1;
 }
 
-stock HidePhone(playerid)
+stock HidePlayerPhone(playerid)
 {
-	PlayerTextDrawHide(playerid, phone[0][playerid]);
-	PlayerTextDrawHide(playerid, phone[1][playerid]);
-	PlayerTextDrawHide(playerid, phone[2][playerid]);
-	PlayerTextDrawHide(playerid, phone[3][playerid]);
-	PlayerTextDrawHide(playerid, phone[4][playerid]);
-	PlayerTextDrawHide(playerid, phone[5][playerid]);
-	PlayerTextDrawHide(playerid, phone[6][playerid]);
-	PlayerTextDrawHide(playerid, phone[7][playerid]);
-	PlayerTextDrawHide(playerid, phone[8][playerid]);
+	forex(i, 15)
+	{
+		PlayerTextDrawHide(playerid, Phone[i][playerid]);
+	}
 	return 1;
 }

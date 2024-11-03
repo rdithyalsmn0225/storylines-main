@@ -94,7 +94,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			
 			new str[1024];
-			format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnName(playerid));
+			format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnName(playerid, 0));
 			new insert[256]; 
 			
 			if(strlen(inputtext) > 128 || strlen(inputtext) < 3)
@@ -833,122 +833,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SetCameraBehindPlayer(playerid);
 			}
 		}
-		case DIALOG_MDC:
-		{
-			if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
-				return 0;
-
-			if (response)
-			{
-				switch (listitem)
-				{
-					case 0:
-					{
-						ShowPlayerDialog(playerid, DIALOG_MDC_NAMECH, DIALOG_STYLE_INPUT, "Place Charges:", "Please enter the name of the player:", "Search", "Back");
-					}
-					case 1:
-					{
-						ShowPlayerDialog(playerid, DIALOG_MDC_VIEW, DIALOG_STYLE_INPUT, "View Charges:", "Please enter the name of the player:", "Search", "Back");
-					}
-					case 2:
-					{
-						ShowPlayerDialog(playerid, DIALOG_MDC_PLATE, DIALOG_STYLE_INPUT, "View Plates:", "Please enter the vehicle plates:", "Search", "Back"); 
-					}
-				}
-			}
-		}
-		case DIALOG_MDC_PLATE:
-		{
-			if(response)
-			{
-				new query[512];
-				if(strlen(inputtext) > 6 || strlen(inputtext) < 3)
-					return ShowPlayerDialog(playerid, DIALOG_MDC_PLATE, DIALOG_STYLE_INPUT, "View Plates:", "Please enter the vehicle plates:", "Search", "Back"); 
-				
-				format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", inputtext); 
-
-				mysql_format(ourConnection, query, sizeof(query), "SELECT VehiclePlates FROM vehicles WHERE VehiclePlates LIKE '%%%e%%' LIMIT 5", PlayerInfo[playerid][E_CHARACTER_MDCPLAYER]); 
-				mysql_pquery(ourConnection, query, "OnMDCPlate", "i", playerid); 
-			}
-		}
-		case DIALOG_MDC_PLATELIST:
-		{
-			if(response)
-			{
-				new query[220];
-				mysql_format(ourConnection, query, sizeof(query), "SELECT VehicleOwnerDBID, VehicleModel, VehicleImpounded FROM vehicles WHERE VehiclePlates = '%e'", PlayerPlateSaver[playerid][listitem]);
-				mysql_pquery(ourConnection, query, "OnPlateSelect", "ii", playerid, listitem); 
-			}
-		}
-		case DIALOG_MDC_NAMECH:
-		{
-			if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
-				return 0;
-
-			if (response)
-			{
-				if(strlen(inputtext) < 3 || strlen(inputtext) > 32)
-					return ShowPlayerDialog(playerid, DIALOG_MDC_NAMECH, DIALOG_STYLE_INPUT, "Place Charges:", "Please enter the name of the player:", "Search", "Back"); 
-					
-				if(!ReturnDBIDFromName(inputtext))
-					return ShowPlayerDialog(playerid, DIALOG_MDC_NAMECH, DIALOG_STYLE_INPUT, "Place Charges:", "Invalid user specified.\nPlease enter the name of the player:", "Search", "Back"); 
-				
-				format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", inputtext); 
-
-				new str[512];
-				format(str, sizeof(str), "Please enter the description of the crime committed by %s:", ReturnName(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], playerid));
-				ShowPlayerDialog(playerid, DIALOG_MDC_PLACECH, DIALOG_STYLE_INPUT, "Place Charge:", str, "Search", "Back");
-			}
-			else
-				ShowPlayerDialog(playerid, DIALOG_MDC, DIALOG_STYLE_LIST, "Mobile Data Computer:", "Place Charges\nView Chargers\nView Plates", "Select", "Cancel");
-
-		}
-		case DIALOG_MDC_PLACECH:
-		{
-			if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
-				return 0;
-
-			if (response)
-			{
-				if (isnull(inputtext))
-				{
-					new str[512];
-					format(str, sizeof(str), "Please enter the description of the crime committed by %s:", ReturnName(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], playerid));
-					return ShowPlayerDialog(playerid, DIALOG_MDC_PLACECH, DIALOG_STYLE_INPUT, "Place Charge:", str, "Enter", "Back");
-				}
-					
-				AddWanted(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
-
-				SendPoliceMessage(COLOR_COP, "** HQ: %s has placed a charge on %s for \"%s\".", ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
-				ShowPlayerDialog(playerid, DIALOG_MDC, DIALOG_STYLE_LIST, "Mobile Data Computer:", "Place Charges\nView Chargers\nView Plates", "Select", "Cancel");
-			}
-			else
-			{
-				ShowPlayerDialog(playerid, DIALOG_MDC, DIALOG_STYLE_LIST, "Mobile Data Computer:", "Place Charges\nView Chargers\nView Plates", "Select", "Cancel");
-			}
-		}
-		case DIALOG_MDC_VIEW:
-		{
-			if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
-				return 0;
-
-			if (response)
-			{
-				if (isnull(inputtext) || strlen(inputtext) > 24)
-					return ShowPlayerDialog(playerid, DIALOG_MDC_VIEW, DIALOG_STYLE_INPUT, "View Charges:", "Please enter the name of the player:", "Search", "Back");
-
-				if (IsNumeric(inputtext) && IsPlayerConnected(strval(inputtext))) {
-					ViewCharges(playerid, ReturnName(strval(inputtext), playerid));
-				}
-				else if (!IsNumeric(inputtext)) {
-					ViewCharges(playerid, inputtext);
-				}
-				else {
-					ShowPlayerDialog(playerid, DIALOG_MDC_VIEW, DIALOG_STYLE_INPUT, "View Charges:", "Invalid user specified.\nPlease enter the name of the player:", "Search", "Back");
-				}
-			}
-		}
-
 		case DIALOG_SECRETWORD_INPUT:
 		{
 			if(response)
@@ -959,7 +843,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					registerTime[playerid] = 1;	
 					
 					new str[1024];
-					format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnName(playerid));
+					format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnName(playerid, 0));
 					ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register:", str, "Confirm", "");
 				}
 				else
@@ -1269,8 +1153,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    if (id == -1)
 						return SendErrorMessage(playerid, "That player doesn't have anymore inventory slots.");
 
-				    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnName(playerid), string, ReturnName(userid, playerid));
-				    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} has given you {d7d292}%s{cdd0d1} (added to inventory).", ReturnName(playerid), string);
+				    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnName(playerid, 0), string, ReturnName(userid, 0));
+				    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} has given you {d7d292}%s{cdd0d1} (added to inventory).", ReturnName(playerid, 0), string);
 
 					Inventory_Remove(playerid, string);
 		  		}
@@ -1334,8 +1218,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    if (id == -1)
 					return SendErrorMessage(playerid, "That player doesn't have anymore inventory slots.");
 
-			    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnName(playerid), string, ReturnName(userid, playerid));
-			    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} has given you {d7d292}%s{cdd0d1} (added to inventory).", ReturnName(playerid), string);
+			    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnName(playerid, 0), string, ReturnName(userid, 0));
+			    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} has given you {d7d292}%s{cdd0d1} (added to inventory).", ReturnName(playerid, 0), string);
 
 				Inventory_Remove(playerid, string, strval(inputtext));
 			}
@@ -1498,7 +1382,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGHUD] = true;
-							SendServerMessage(playerid, "[Fishing] {cdd0d1}Streets TextDraws has been Disable.");
+							SendServerMessage(playerid, "[Settings] {cdd0d1}Streets TextDraws has been Disable.");
 						}
 					}
 					case 1:
@@ -1568,15 +1452,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 6:
 					{
-						if(PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE])
+						if(PlayerInfo[playerid][E_CHARACTER_TOGPHONE])
 						{
-							PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE] = false;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}switched your namestyle to streetnames tags.");
+							PlayerInfo[playerid][E_CHARACTER_TOGPHONE] = false;
+							SendServerMessage(playerid, "[Settings] {cdd0d1}switched your phonestyle to old school.");
 						}
 						else
 						{
-							PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE] = true;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}switched your namestyle to Firstname_Lastname.");
+							PlayerInfo[playerid][E_CHARACTER_TOGPHONE] = true;
+							SendServerMessage(playerid, "[Settings] {cdd0d1}switched your phonestyle to modern.");
 						}
 					}
 					case 7:
@@ -1885,14 +1769,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 2:
 					{
-						if(PlayerInfo[playerid][E_CHARACTER_PHONEOFF])
-							return SendErrorMessage(playerid, "Your cellphone is turned off.");
-
-						ShowPlayerDialog(playerid, DIALOG_BACKGROUND, DIALOG_STYLE_LIST, "Choose your wallpaper:", "(1) Sanchez Riders\n(2) Let me Bounce\n(3) East Los Santos\n(4) Narcotics\n(5) Armed Weapons\n(6) Ghetto Bird", "Submit", "Cancel");
+						ShowContacts(playerid);
 					}
 					case 3:
 					{
-						ShowContacts(playerid);
+						if(PlayerInfo[playerid][E_CHARACTER_PHONEOFF])
+							return SendErrorMessage(playerid, "Your cellphone is turned off.");
+
+						ShowPlayerDialog(playerid, DIALOG_BACKGROUND, DIALOG_STYLE_LIST, "Choose Wallpaper Color:", "(1) Default\n(2) Red\n(3) Yellow\n(4) Blue\n(5) Purple\n(6) Green", "Select", "Cancel");
 					}
 					case 4:
 					{
@@ -1902,12 +1786,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								cmd_hangup(playerid, "");
 							}
 							PlayerInfo[playerid][E_CHARACTER_PHONEOFF] = true;
-							SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered off their cellphone.", ReturnName(playerid));
+							SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered off their cellphone.", ReturnName(playerid, 0));
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_PHONEOFF] = false;
-							SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered on their cellphone.", ReturnName(playerid));
+							SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered on their cellphone.", ReturnName(playerid, 0));
 						}
 					}
 				}
@@ -1921,27 +1805,27 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0:
 					{
-						PlayerTextDrawSetString(playerid, phone[1][playerid], "mdl-2001:bg_1");
+						PlayerTextDrawBoxColor(playerid, Phone[1][playerid], 1703312639);
 					}
 					case 1:
 					{
-						PlayerTextDrawSetString(playerid, phone[1][playerid], "mdl-2001:bg_2");
+						PlayerTextDrawBoxColor(playerid, Phone[1][playerid], 0x866565FF);
 					}
 					case 2:
 					{
-						PlayerTextDrawSetString(playerid, phone[1][playerid], "mdl-2001:bg_3");
+						PlayerTextDrawBoxColor(playerid, Phone[1][playerid], 0x828665FF);
 					}
 					case 3:
 					{
-						PlayerTextDrawSetString(playerid, phone[1][playerid], "mdl-2001:bg_4");
+						PlayerTextDrawBoxColor(playerid, Phone[1][playerid], 0x656E86FF);
 					}
 					case 4:
 					{
-						PlayerTextDrawSetString(playerid, phone[1][playerid], "mdl-2001:bg_5");
+						PlayerTextDrawBoxColor(playerid, Phone[1][playerid], 0x776586FF);
 					}
 					case 5:
 					{
-						PlayerTextDrawSetString(playerid, phone[1][playerid], "mdl-2001:bg_6");
+						PlayerTextDrawBoxColor(playerid, Phone[1][playerid], 0x658666FF);
 					}
 				}
 			}
@@ -1995,7 +1879,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendErrorMessage(playerid, "Your text message is being sent.");
 
 				new str[512];
-				format(str, sizeof(str), "* %s takes out their cellphone.", ReturnName(playerid));
+				format(str, sizeof(str), "* %s takes out their cellphone.", ReturnName(playerid, 0));
 				SetPlayerChatBubble(playerid, str, COLOR_EMOTE, 20.0, 3000); 
 				
 				if(targetid == INVALID_PLAYER_ID)

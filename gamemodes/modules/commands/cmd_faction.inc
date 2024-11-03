@@ -258,7 +258,7 @@ CMD:fduty(playerid, params[])
 	if(!IsPlayerFaction(playerid))
 		return SendErrorMessage(playerid, "You aren't in any faction.");
 		
-	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE || ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
+	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
 		return SendErrorMessage(playerid, "You can't use this command."); 
 		
 	if(PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
@@ -310,7 +310,7 @@ CMD:offduty(playerid, params[])
 	if(!IsPlayerFaction(playerid))
 		return SendErrorMessage(playerid, "You aren't in any faction.");
 		
-	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE)
+	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
 		return SendErrorMessage(playerid, "You can't use this command."); 
 		
 	if(!PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])

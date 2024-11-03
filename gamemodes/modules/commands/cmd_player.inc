@@ -49,7 +49,7 @@ CMD:settings(playerid, params[])
 	format(str, sizeof(str), "%sFaction Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGFMS] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sSwitch Namestyles\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE]) ? ("{B3C99E}Fn_Ln{ffffff}") : ("{FF6347}Mixed.Name{ffffff}"));
+	format(str, sizeof(str), "%sPhone Style\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPHONE] == false) ? ("{B3C99E}Modern{ffffff}") : ("{FF6347}Old School{ffffff}"));
 	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{B3C99E}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
 	ShowPlayerDialog(playerid, DIALOG_SETTINGS, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
 	return 1;
@@ -1093,9 +1093,6 @@ CMD:pickup(playerid, params[])
 	SendClientMessage(PlayerInfo[playerid][E_CHARACTER_PHONELINE], COLOR_GREY, "[!] They picked up. You can talk now by using the chat box.");
 	SendClientMessage(playerid, COLOR_FACTION, "You can talk now by using the chatbox.");	
 
-	ShowPhone(PlayerInfo[playerid][E_CHARACTER_PHONELINE], 4);
-	ShowPhone(playerid, 4);
-
 	PlayerInfo[playerid][E_CHARACTER_CALL] = 0; 
 	PlayerInfo[ PlayerInfo[playerid][E_CHARACTER_PHONELINE] ][E_CHARACTER_CALL] = 0;
 	
@@ -1205,9 +1202,6 @@ CMD:call(playerid, params[])
 	
 	SendNearbyMessage(playerb, 20.0, COLOR_EMOTE, "* %s's phone begins to ring.", ReturnName(playerid)); 
 	SendClientMessageEx(playerb, COLOR_GREY, "[!] To pickup the call, use /pickup. Incoming call from %i.", PlayerInfo[playerid][E_CHARACTER_PHONE]); 
-	
-	ShowPhone(playerid, 1);
-	ShowPhone(playerb, 2);
 
 	PlayerInfo[playerid][E_CHARACTER_CALL] = 1; PlayerInfo[playerb][E_CHARACTER_CALL] = 1;
 	

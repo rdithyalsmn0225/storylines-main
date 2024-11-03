@@ -270,7 +270,7 @@ stock ReturnDBIDFromName(name[])
 {
 	new checkQuery[128], dbid;
 	
-	mysql_format(ourConnection, checkQuery, sizeof(checkQuery), "SELECT char_dbid FROM characters WHERE char_masters = '%e'", name);
+	mysql_format(ourConnection, checkQuery, sizeof(checkQuery), "SELECT char_dbid FROM characters WHERE char_name = '%e'", name);
 	new Cache:cache = mysql_query(ourConnection, checkQuery); 
 	
 	

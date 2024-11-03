@@ -112,11 +112,12 @@ main ()  {}
 // FACTIONS MODULES
 #include "modules\faction\factions.inc"
 #include "modules\faction\factions_commands.inc"
-#include "modules\faction\mdc.inc"
-#include "modules\faction\alpr.inc"
-#include "modules\faction\tackle.inc"
-#include "modules\faction\roadblock.inc"
-#include "modules\faction\ticket.inc"
+#include "modules\faction\police\mdc.inc"
+#include "modules\faction\police\alpr.inc"
+#include "modules\faction\police\tackle.inc"
+#include "modules\faction\police\roadblock.inc"
+#include "modules\faction\police\ticket.inc"
+#include "modules\faction\police\backup.inc"
 // PROPS MODULES
 #include "modules\props\spraytags.inc"
 #include "modules\props\advertise.inc"
@@ -172,10 +173,10 @@ public OnGameModeInit()
 
 	mysql_log(ERROR | WARNING);
 	
-	//Load Custommodels:
+	// Load Custommodels:
 	LoadCustomModels();
 
-	//Disabling singleplayer entities:
+	// Disabling singleplayer entities:
 	ShowPlayerMarkers(PLAYER_MARKERS_MODE_OFF);
 	SetNameTagDrawDistance(20.0);
 	ShowNameTags(false);
@@ -183,7 +184,7 @@ public OnGameModeInit()
 	ManualVehicleEngineAndLights();
 	DisableInteriorEnterExits();
 	
-	//Insert:
+	// Insert:
 	InsertObjects();
 	InsertSideJobs();
 	InsertASGHMaps();
@@ -204,14 +205,13 @@ public OnGameModeInit()
 	InsertStaticVehicles();
 	InsertProjectPropsData();
 
-	//Timer:
+	// Timer:
 	RealTime_SetInterval(10000, false);
 	RealTime_Sync();
 	SetClock(RealTime_GetHour(), RealTime_GetMinute());
 	SetWorldTime(RealTime_GetHour()); 
-	GetWeekDay();
 
-	//Global timers:
+	// Global timers:
 	SetTimer("PlayersUpdates", 1000, true); 
 	SetTimer("FunctionPaychecks", 60000, true);
 	SetTimer("OnPlayerNearPickup", 5000, true);
@@ -229,7 +229,7 @@ public OnGameModeInit()
 	SetTimer("GarbageTimers", 600000, true);
 	SetTimer("StartLottery", 1800000, false);
 
-	//Loading systems:
+	// Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
 	mysql_pquery(ourConnection, "SELECT * FROM properties ORDER BY PropertyDBID", "Query_LoadProperties");
 	mysql_pquery(ourConnection, "SELECT * FROM furniture", "Query_LoadFurniture", "i", 0);
@@ -256,20 +256,6 @@ public OnGameModeInit()
 	TextDrawUseBox(Times, 0);
 	TextDrawSetProportional(Times, 1);
 	TextDrawSetSelectable(Times, 0);
-
-	phonetimes = TextDrawCreate(472.000000, 378.000000, "10:00");
-	TextDrawFont(phonetimes, 1);
-	TextDrawLetterSize(phonetimes, 0.154164, 0.750000);
-	TextDrawTextSize(phonetimes, 400.000000, 17.000000);
-	TextDrawSetOutline(phonetimes, 1);
-	TextDrawSetShadow(phonetimes, 0);
-	TextDrawAlignment(phonetimes, 1);
-	TextDrawColor(phonetimes, -1);
-	TextDrawBackgroundColor(phonetimes, 255);
-	TextDrawBoxColor(phonetimes, 50);
-	TextDrawUseBox(phonetimes, 0);
-	TextDrawSetProportional(phonetimes, 1);
-	TextDrawSetSelectable(phonetimes, 0);
 	return 1;
 }
 
@@ -312,6 +298,7 @@ public OnPlayerConnect(playerid)
 
 	//Visuals:
 	CreateTextdraws(playerid);
+	CreateMDCTextDraws(playerid);
 	CreateHUDTextDraws(playerid);
 	CreateALPRTextdraws(playerid);
 	CreatePhoneTextDraws(playerid);
@@ -3039,7 +3026,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			}
 		}
 	}
-	// TUTORIAL:
+	// Tutorial:
 	if (playertextid == tutorialclick[playerid])
     {
 		if(PlayerInfo[playerid][E_CHARACTER_TUTORIAL] == 0 && PlayerInfo[playerid][E_CHARACTER_TUTORIALSTEP] != 16)
@@ -3048,32 +3035,102 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		}
 		return 1;
     }
-	// PHONE:
-	if (playertextid == phone[6][playerid])
-    {
-		new str[60];
-		format(str, sizeof(str), "Phone Config #%d", PlayerInfo[playerid][E_CHARACTER_PHONE]);
-        ShowPlayerDialog(playerid, DIALOG_PHONE, DIALOG_STYLE_LIST, str, "Dial Number\nSend Text Message\nChange background\nMy Contacts\nTurn on/off", "Select", "Close");
-        return 1;
-    }
-	if (playertextid == phone[3][playerid])
-    {
-        cmd_pickup(playerid, "");
-        return 1;
-    }
-	if (playertextid == phone[4][playerid])
-    {
-        cmd_hangup(playerid, "");
-        return 1;
-    }
-	if (playertextid == phone[8][playerid])
-    {
-        HidePhone(playerid);
-		CancelSelectTextDraw(playerid);
 
-		ResetVarInventory(playerid);
+	// Dial Number
+	if (playertextid == Phone[3][playerid])
+    {
+        if(PlayerInfo[playerid][E_CHARACTER_PHONEOFF])
+			return SendErrorMessage(playerid, "Your cellphone is turned off.");
+
+		ShowPlayerDialog(playerid, DIALOG_DIALNUMBER, DIALOG_STYLE_INPUT, "Dial Number:", "Please enter the number that you wish to dial below:", "Submit", "Cancel");
         return 1;
     }
+	// Send Text
+	if (playertextid == Phone[4][playerid])
+    {
+        if(PlayerInfo[playerid][E_CHARACTER_PHONEOFF])
+			return SendErrorMessage(playerid, "Your cellphone is turned off.");
+
+		ShowPlayerDialog(playerid, DIALOG_SMS, DIALOG_STYLE_INPUT, "Send Text Message:", "Please enter the number that you wish to send a text message to:", "Submit", "Cancel");
+        return 1;
+    }
+	if (playertextid == Phone[5][playerid])
+    {
+		if(PlayerInfo[playerid][E_CHARACTER_PHONEOFF])
+			return SendErrorMessage(playerid, "Your cellphone is turned off.");
+
+        ShowContacts(playerid);
+        return 1;
+    }
+	if (playertextid == Phone[6][playerid])
+    {
+        if(PlayerInfo[playerid][E_CHARACTER_PHONEOFF])
+			return SendErrorMessage(playerid, "Your cellphone is turned off.");
+
+		ShowPlayerDialog(playerid, DIALOG_BACKGROUND, DIALOG_STYLE_LIST, "Choose Wallpaper Color:", "(1) Default\n(2) Red\n(3) Yellow\n(4) Blue\n(5) Purple\n(6) Green", "Select", "Cancel");
+        return 1;
+    }
+	if (playertextid == Phone[7][playerid])
+    {
+        if (!PlayerInfo[playerid][E_CHARACTER_PHONEOFF])
+		{
+			if (PlayerInfo[playerid][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID) {
+				cmd_hangup(playerid, "");
+			}
+			PlayerInfo[playerid][E_CHARACTER_PHONEOFF] = true;
+			SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered off their cellphone.", ReturnName(playerid));
+		}
+		else
+		{
+			HidePlayerPhone(playerid);
+			PlayerInfo[playerid][E_CHARACTER_PHONEOFF] = false;
+			SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered on their cellphone.", ReturnName(playerid));
+		}
+        return 1;
+    }
+
+	if (playertextid == MDC[9][playerid])
+    {
+        if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
+			return 0;
+
+		Dialog_Show(playerid, MdcName, DIALOG_STYLE_INPUT, "Place Charges:", "Please enter the name of the player:", "Search", "Back");
+        return 1;
+    }
+	if (playertextid == MDC[10][playerid])
+    {
+        if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
+			return 0;
+
+		Dialog_Show(playerid, MdcView, DIALOG_STYLE_INPUT, "View Charges:", "Please enter the name of the player:", "Search", "Back");
+        return 1;
+    }
+	if (playertextid == MDC[11][playerid])
+    {
+        if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
+			return 0;
+
+		Dialog_Show(playerid, MdcPlate, DIALOG_STYLE_INPUT, "View Plates:", "Please enter the vehicle plates:", "Search", "Back"); 
+        return 1;
+    }
+	if (playertextid == MDC[12][playerid])
+    {
+        if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
+			return 0;
+		
+		RequestPoliceBackup(playerid);
+        return 1;
+    }
+	if (playertextid == MDC[13][playerid])
+    {
+        if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
+			return 0;
+		
+		HidePlayerMDC(playerid);
+		CancelSelectTextDraw(playerid);
+        return 1;
+    }
+
 	if (playertextid == VehicleClose[playerid])
     {
 		PlayerTextDrawHide(playerid, VehicleBox[playerid]);

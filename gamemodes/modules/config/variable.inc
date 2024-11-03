@@ -9,10 +9,7 @@ new bool:pCBugging[MAX_PLAYERS],
 	InSprung[MAX_PLAYERS] = 0,
 	TimerIDSprung;
 
-new GlobalTurf, 
-	GlobalTurfStart,
-	GlobalTurfEnd,
-	ImpoundLotArea;
+new ImpoundLotArea;
 
 new fittingRoomDoor;
 
@@ -280,7 +277,7 @@ enum P_ACCOUNT_DATA
 	bool:E_CHARACTER_TOGTURF,
 	bool:E_CHARACTER_EXTORTION,
 	bool:E_CHARACTER_HASROBBIZ,
-	bool:E_CHARACTER_TOGNAMESTYLE,
+	bool:E_CHARACTER_TOGPHONE,
 	Text3D:E_CHARACTER_LOADINGDISPLAY,
 	E_CHARACTER_NAME[MAX_PLAYER_NAME],
 	E_CHARACTER_STREETNAME[MAX_PLAYER_NAME],

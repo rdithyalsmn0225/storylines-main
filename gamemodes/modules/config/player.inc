@@ -169,7 +169,7 @@ ResetVarInventory(playerid)
 		RemovePlayerAttachedObject(playerid, 8);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		ResetPlayerWeapons(playerid);
-		HidePhone(playerid);
+		HidePlayerPhone(playerid);
 		CancelSelectTextDraw(playerid);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
@@ -336,7 +336,7 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_EXTORTION] = false;
 	PlayerInfo[playerid][E_CHARACTER_EXTORTIONID] = 0;
 	PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] = 0;
-	PlayerInfo[playerid][E_CHARACTER_TOGNAMESTYLE] = true;
+	PlayerInfo[playerid][E_CHARACTER_TOGPHONE] = true;
 
 	pCBugging[playerid] = false;
 	KillTimer(ptmCBugFreezeOver[playerid]);
@@ -1040,127 +1040,6 @@ stock ChatAnimation(playerid, lenght)
 		}
 	}
 	return 1;
-}
-
-GetWeekDay(day=0, month=0, year=0)
-{
-	if (!day)
-		getdate(year, month, day);
-
-	new weekday_str[10], j, e, queryBuffer[1024];
-
-	if (month <= 2)
-	{
-	    month += 12;
-	  	--year;
-	}
-
-	j = year % 100;
-	e = year / 100;
-
-	switch ((day + (month+1)*26/10 + j + j/4 + e/4 - 2*e) % 7)
-	{
-	    case 0: 
-	    {
-	    	weekday_str = "Saturday";
-	    	GlobalTurf = 0;
-			GlobalTurfEnd = 2;
-			GlobalTurfStart = 0;
-
-			for (new i = 1; i < MAX_FACTIONS; i ++)
-			{
-				FactionInfo[i][E_FACTION_STORAGE] = 30;
-				SaveFaction(i);
-			}
-	    }
-	    case 1:
-	    { 
-	    	weekday_str = "Sunday";
-	    	GlobalTurf = 0;
-			GlobalTurfEnd = 1;
-			GlobalTurfStart = 0;
-
-			for (new i = 1; i < MAX_FACTIONS; i ++)
-			{
-				FactionInfo[i][E_FACTION_STORAGE] = 30;
-				SaveFaction(i);
-			}
-	    }
-	    case 2: 
-	    {
-	    	weekday_str = "Monday";
-	    	GlobalTurf = 1;
-			GlobalTurfEnd = 0;
-			GlobalTurfStart = 4;
-
-			for (new i = 1; i < MAX_FACTIONS; i ++)
-			{
-				FactionInfo[i][E_FACTION_STORAGE] = 15;
-				SaveFaction(i);
-			}
-	    }
-	    case 3:
-	    { 
-	    	weekday_str = "Tuesday";
-	    	GlobalTurf = 1;
-			GlobalTurfEnd = 0;
-			GlobalTurfStart = 3;
-
-			for (new i = 1; i < MAX_FACTIONS; i ++)
-			{
-				FactionInfo[i][E_FACTION_STORAGE] = 15;
-				SaveFaction(i);
-			}
-	    }
-	    case 4: 
-	    {
-	    	weekday_str = "Wednesday";
-	    	GlobalTurf = 1;
-			GlobalTurfEnd = 0;
-			GlobalTurfStart = 2;
-
-			for (new i = 1; i < MAX_FACTIONS; i ++)
-			{
-				FactionInfo[i][E_FACTION_STORAGE] = 15;
-				SaveFaction(i);
-			}
-	    }
-	    case 5: 
-	    {
-	    	weekday_str = "Thursday";
-	    	GlobalTurf = 1;
-			GlobalTurfEnd = 0;
-			GlobalTurfStart = 1;
-
-			for (new i = 1; i < MAX_FACTIONS; i ++)
-			{
-				FactionInfo[i][E_FACTION_STORAGE] = 15;
-				SaveFaction(i);
-			}
-	    }
-	    case 6:
-	    { 
-	    	weekday_str = "Friday";
-	    	GlobalTurf = 0;
-			GlobalTurfEnd = 3;
-			GlobalTurfStart = 0;
-
-			for (new i = 1; i < MAX_FACTIONS; i ++)
-			{
-				FactionInfo[i][E_FACTION_STORAGE] = 20;
-				SaveFaction(i);
-			}
-	    }
-	}
-	mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "UPDATE turfsglobal SET Turfwars = '%d', Start = '%d', End = '%d'", GlobalTurf, GlobalTurfStart, GlobalTurfEnd);
-	mysql_pquery(ourConnection, queryBuffer);
-
-	for (new i = 1; i < MAX_FACTIONS; i ++)
-	{
-		mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "UPDATE factions SET FactionDrugs = '%d'", FactionInfo[i][E_FACTION_STORAGE]);
-		mysql_pquery(ourConnection, queryBuffer);
-	}
-  	return weekday_str;
 }
 
 stock SetDynamicActorAngleToPlayer(actorid, playerid)
