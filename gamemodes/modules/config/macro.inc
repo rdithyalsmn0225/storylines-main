@@ -65,6 +65,8 @@
 #define MAX_GARBAGE 				(100)
 #define MAX_BARRICADES 				(50)
 #define MAX_TICKETS					(10)
+#define MAX_PRISON_CELLS 			(20)
+
 
 LoadCustomModels()
 {

@@ -750,6 +750,16 @@ enum E_TICKET_DATA {
 	E_TICKET_REASON[64]
 };
 
+enum E_PRISON_CELL_DATA
+{
+    bool:E_CELL_EXISTS,
+    E_CELL_OBJECT,
+    Float:E_CELL_POS[3],
+    bool:E_CELL_CLOSED,
+    bool:E_CELL_LOCKED,
+};
+
+new const PrisonCells[MAX_PRISON_CELLS][E_PRISON_CELL_DATA];
 
 // VAR:
 new

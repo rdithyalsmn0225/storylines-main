@@ -28,7 +28,7 @@ Insert3DTextLabel()
 
 	CreateDynamic3DTextLabel("[Clothes store]\n{ffffff}Available Commands: '/clothes'", COLOR_DARKGREEN, 217.5163,-98.4308,1005.2578, 5.0);
 
-	CreateDynamic3DTextLabel("[Los Santos Prison]\n{ffffff}Available Commands: '/charge'", COLOR_DARKGREEN, 252.9687,90.9530,1002.4453, 5.0);
+	CreateDynamic3DTextLabel("[Los Santos Correctional Facility]\n{ffffff}Available Commands: '/charge'\n{ffffff}Available Commands: '/opencell'\n{ffffff}Available Commands: '/closecell'", COLOR_DARKGREEN, 1256.9117,890.3147,1161.0986, 5.0);
 
 	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -48.4748,-1.1597,203.2633, 5.0);
 	CreateDynamic3DTextLabel("[General Store]\n{ffffff}Press 'N' to grab an items.", COLOR_DARKGREEN, -53.7980,2.8393,203.2633, 5.0);

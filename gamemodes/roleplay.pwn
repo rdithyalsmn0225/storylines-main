@@ -76,7 +76,6 @@ main ()  {}
 #include "modules\players\report.inc"
 #include "modules\players\antibunny.inc"
 #include "modules\players\selection.inc"
-#include "modules\players\prison.inc"
 #include "modules\players\tutorial.inc"
 #include "modules\players\times.inc"
 #include "modules\players\stamina.inc"
@@ -119,6 +118,7 @@ main ()  {}
 #include "modules\faction\police\roadblock.inc"
 #include "modules\faction\police\ticket.inc"
 #include "modules\faction\police\backup.inc"
+#include "modules\faction\police\prison.inc"
 // PROPS MODULES
 #include "modules\props\spraytags.inc"
 #include "modules\props\advertise.inc"
@@ -186,6 +186,7 @@ public OnGameModeInit()
 	DisableInteriorEnterExits();
 	
 	// Insert:
+	InsertPrison();
 	InsertObjects();
 	InsertSideJobs();
 	InsertASGHMaps();
@@ -196,6 +197,7 @@ public OnGameModeInit()
 	InsertAntiCheat();
 	InsertEmmetMaps();
 	InsertAdvertise();
+	InsertPrisonCell();
 	InsertDealership();
 	InsertStaticArea();
 	InsertAcidGunLabs();

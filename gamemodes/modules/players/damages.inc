@@ -97,6 +97,7 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 	}
 	SetPlayerPosEx(playerid, x, y, z);
 	RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+	ResetPlayerWeaponEx(playerid);
 	return 1;
 }
 
