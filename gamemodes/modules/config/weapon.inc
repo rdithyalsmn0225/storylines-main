@@ -74,6 +74,28 @@ stock RemovePlayerWeapon(playerid, weaponid)
 	GivePlayerWeapon(playerid, 0, 1);
 }
 
+ResetPlayerWeaponEx(playerid)
+{
+	Inventory_Set(playerid, "Broken Bottle", 2040, 0);
+	Inventory_Set(playerid, "Glass", 2040, 0);
+	Inventory_Set(playerid, "Knife", 2040, 0);
+	Inventory_Set(playerid, "Spike Bat", 2040, 0);
+	Inventory_Set(playerid, "Wooden", 2040, 0);
+	Inventory_Set(playerid, "Nail Bat", 2040, 0);
+	Inventory_Set(playerid, "Glock 17", -2204, 0);
+	Inventory_Set(playerid, "Glock 19", -2205, 0);
+	Inventory_Set(playerid, "Glock P80", -2206, 0);
+	Inventory_Set(playerid, "Deagle", 384, 0);
+	Inventory_Set(playerid, "MAC 11", -2207, 0);
+	Inventory_Set(playerid, "MAC 12", -2208, 0);
+	Inventory_Set(playerid, "Socimi Type 821", -2208, 0);
+	Inventory_Set(playerid, "Night Hawk", 348, 0);
+	Inventory_Set(playerid, "9mm", 2040, 0);
+	Inventory_Set(playerid, "9x19mm", 2040, 0);
+	Inventory_Set(playerid, "12G Rubber", 2040, 0);
+	return 1;
+}
+
 stock ReturnWeaponName(weaponid)
 {
 	new weapon[22];

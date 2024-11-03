@@ -327,7 +327,7 @@ CreateMDCTextDraws(playerid)
 {
 	MDC[0][playerid] = CreatePlayerTextDraw(playerid, 321.000000, 169.000000, "_");
 	PlayerTextDrawFont(playerid, MDC[0][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, MDC[0][playerid], 0.600000, 14.900011);
+	PlayerTextDrawLetterSize(playerid, MDC[0][playerid], 0.600000, 16.050014);
 	PlayerTextDrawTextSize(playerid, MDC[0][playerid], 298.500000, 172.500000);
 	PlayerTextDrawSetOutline(playerid, MDC[0][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, MDC[0][playerid], 0);
@@ -341,7 +341,7 @@ CreateMDCTextDraws(playerid)
 
 	MDC[1][playerid] = CreatePlayerTextDraw(playerid, 321.000000, 181.000000, "_");
 	PlayerTextDrawFont(playerid, MDC[1][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, MDC[1][playerid], 0.579165, 12.850003);
+	PlayerTextDrawLetterSize(playerid, MDC[1][playerid], 0.579164, 12.850003);
 	PlayerTextDrawTextSize(playerid, MDC[1][playerid], 298.500000, 154.000000);
 	PlayerTextDrawSetOutline(playerid, MDC[1][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, MDC[1][playerid], 0);
@@ -355,7 +355,7 @@ CreateMDCTextDraws(playerid)
 
 	MDC[2][playerid] = CreatePlayerTextDraw(playerid, 321.000000, 201.000000, "_");
 	PlayerTextDrawFont(playerid, MDC[2][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, MDC[2][playerid], 0.579165, -0.299997);
+	PlayerTextDrawLetterSize(playerid, MDC[2][playerid], 0.579164, -0.299997);
 	PlayerTextDrawTextSize(playerid, MDC[2][playerid], 298.500000, 151.500000);
 	PlayerTextDrawSetOutline(playerid, MDC[2][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, MDC[2][playerid], 0);
@@ -369,7 +369,7 @@ CreateMDCTextDraws(playerid)
 
 	MDC[3][playerid] = CreatePlayerTextDraw(playerid, 321.000000, 292.000000, "_");
 	PlayerTextDrawFont(playerid, MDC[3][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, MDC[3][playerid], 0.579165, -0.299997);
+	PlayerTextDrawLetterSize(playerid, MDC[3][playerid], 0.579164, -0.299997);
 	PlayerTextDrawTextSize(playerid, MDC[3][playerid], 298.500000, 152.500000);
 	PlayerTextDrawSetOutline(playerid, MDC[3][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, MDC[3][playerid], 0);

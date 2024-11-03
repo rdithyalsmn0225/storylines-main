@@ -166,21 +166,21 @@ Dialog:Blackjacks(playerid, response, listitem, inputtext[])
     {
         DealerTurn(playerid);
         DetermineWinner(playerid);
+        return 1;
     }
-    else 
+    
+    if(blackjackPlayerScore[playerid] >= 21)
     {
-        if(blackjackPlayerScore[playerid] >= 21)
-        {
-            ResetBlackjack(playerid);
-            SendServerMessage(playerid, "[Blackjack] {cdd0d1}You lost! Your score exceeded 21.");
-            return 1;
-        }
-
-        new cardDeck[52];
-        InitializeDeck(cardDeck);
-        GiveCardToPlayer(playerid, cardDeck);
-        ShowBlackjackStatus(playerid);
+        ResetBlackjack(playerid);
+        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You lost! Your score exceeded 21.");
+        return 1;
     }
+
+    new cardDeck[52];
+    InitializeDeck(cardDeck);
+    GiveCardToPlayer(playerid, cardDeck);
+    ShowBlackjackStatus(playerid);
+
     return 1;
 }
 
