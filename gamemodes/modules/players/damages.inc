@@ -156,28 +156,28 @@ stock CallbackDamages(playerid, issuerid, bodypart, weaponid, Float:amount)
 
 stock ShowPlayerCondition(playerid, targetid)
 {
-	new str[1024], str2[512];
+	new str[2024], str2[512];
 
 	
-	strcat(str2, "%s Condition", ReturnName(targetid, 0));
+	format(str2, sizeof(str2), "%s Condition", ReturnName(targetid, 0));
 
-	strcat(str, "|__________ Body Part Status __________|\n");
-	strcat(str, "Part : Chest");
-	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_BODY]));
-	strcat(str, "Part : Torso");
-	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_TORSO]));
-	strcat(str, "Part : Groin");
-	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_GROIN]));
-	strcat(str, "Part : Right Arm");
-	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTARM]));
-	strcat(str, "Part : Left Arm");
-	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTARM]));
-	strcat(str, "Part : Right Leg");
-	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTLEG]));
-	strcat(str, "Part : Left Leg");
-	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTLEG]));
-	strcat(str, "Part : Head");
-	strcat(str, "Condition : %s", GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_HEAD]));
+	format(str, sizeof(str), "|__________ Body Part Status __________|\n");
+	format(str, sizeof(str), "%sPart : Chest\n", str);
+	format(str, sizeof(str), "%sCondition : %s\n", str,  GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_BODY]));
+	format(str, sizeof(str), "%sPart : Torso");
+	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_TORSO]));
+	format(str, sizeof(str), "%sPart : Groin");
+	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_GROIN]));
+	format(str, sizeof(str), "%sPart : Right Arm");
+	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTARM]));
+	format(str, sizeof(str), "%sPart : Left Arm");
+	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTARM]));
+	format(str, sizeof(str), "%sPart : Right Leg");
+	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTLEG]));
+	format(str, sizeof(str), "%sPart : Left Leg");
+	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTLEG]));
+	format(str, sizeof(str), "%sPart : Head");
+	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_HEAD]));
 
 	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, str2, str, "Close", "");
 	return 1;
@@ -276,6 +276,8 @@ CMD:damages(playerid, params[])
 
 CMD:health(playerid, params[])
 {
+	new playerb;
+
 	if(IsPlayerAdmins(playerid))
 	{
 		if (sscanf(params, "I(-1)", playerb))
@@ -283,7 +285,7 @@ CMD:health(playerid, params[])
 			
 		if(playerb == -1)
 		{
-			return ShowPlayerCondition(playerid, playerid)
+			return ShowPlayerCondition(playerid, playerid);
 		}
 		else
 		{
@@ -293,7 +295,7 @@ CMD:health(playerid, params[])
 			if(AccountInfo[playerid][E_MASTERS_LOGGED] == false)
 				return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
 				
-			ShowPlayerCondition(playerid, playerb)
+			ShowPlayerCondition(playerid, playerb);
 		}
 	}
 	else return ShowPlayerCondition(playerid, playerid);
@@ -302,8 +304,9 @@ CMD:health(playerid, params[])
 
 stock GetConditionStatus(condition)
 {
-	if (condition >= 0) return "Broken";
-	else if (condition >= 50) return "Bleeding";
-    else if (condition >= 80) return "Normal";
-    return "Unknown";
+	new str[64];
+	if (condition >= 0) str = "{FF6347}Broken";
+	else if (condition >= 50) str = "{DAA650}Bleedin";
+    else if (condition >= 80) str = "{B3C99E}Normal";
+    return str;
 }

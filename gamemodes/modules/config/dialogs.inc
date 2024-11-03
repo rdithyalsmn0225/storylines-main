@@ -1257,8 +1257,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ General Commands __________|");
 						SendClientMessage(playerid, COLOR_ORANGE, "/stats, /admins, /report, /o(oc), /pay, /isafk, /time, /levelup, /rcp, /inventory");
 						SendClientMessage(playerid, COLOR_ORANGE, "/enter, /exit, /mask, /setchannel, /setslot, /radio, /licenseexam, /unimpound");
-						SendClientMessage(playerid, COLOR_ORANGE, "/damages, /acceptdeath, /helpup, /fixr, /respawnme, /setspawn, /settings, /approve");
-			        	SendClientMessage(playerid, COLOR_ORANGE, "/coin, /dice, /gascan, /repairkits, /cursor");
+						SendClientMessage(playerid, COLOR_ORANGE, "/damages, /health, /acceptdeath, /helpup, /fixr, /respawnme, /setspawn, /settings");
+			        	SendClientMessage(playerid, COLOR_ORANGE, "/approve, /coin, /dice, /gascan, /repairkits, /cursor");
 					}
 					case 1:
 					{
