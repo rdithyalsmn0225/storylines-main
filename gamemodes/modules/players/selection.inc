@@ -179,9 +179,9 @@ SelectCharacter(playerid, id)
 
 		SetPlayerVirtualWorld(playerid, 99);			
 		SendClientMessage(playerid, -1, "This process will guide you through creating your character.");
-		SendClientMessage(playerid, -1, "Please begin by typing your characters first and last name. i.e: {B3C99E}George_Jefferson");
+		SendClientMessage(playerid, -1, "Please begin by typing your characters first and last name. i.e: {93C47D}George_Jefferson");
 		SendClientMessage(playerid, -1, "Your characters name must be in Firstname_Lastname format with no numbers or special characters.");
-		SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
+		SendClientMessage(playerid, -1, "Press {93C47D}'T'{ffffff} to inputtext for character creation.");
 
 		playerMakingCharacter[playerid] = true;
 		playerCharacterStep[playerid] = 1; 
@@ -210,7 +210,7 @@ SelectCharacter(playerid, id)
 		playerCharacterStep[playerid] = 0; 
 		characterSelection[playerid] = false;
 					
-		format(string, sizeof(string), "You selected the character {B3C99E}%s{FFFFFF}.", characterLister[playerid][id]);
+		format(string, sizeof(string), "You selected the character {93C47D}%s{FFFFFF}.", characterLister[playerid][id]);
 		SendClientMessage(playerid, -1, string);
 
 		new str[256];

@@ -43,14 +43,14 @@ CMD:cursor(playerid, params[])
 CMD:settings(playerid, params[])
 {
 	new str[512];
-	format(str, sizeof(str), "Streets TextDraws\t%s\n", (PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sJoined Logs\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGJOIN] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sAdmin Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGADMIN] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sFaction Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGFMS] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{B3C99E}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sPhone Style\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPHONE] == false) ? ("{B3C99E}Modern{ffffff}") : ("{FF6347}Old School{ffffff}"));
-	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{B3C99E}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
+	format(str, sizeof(str), "Streets TextDraws\t%s\n", (PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sJoined Logs\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGJOIN] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sAdmin Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGADMIN] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sFaction Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGFMS] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sPhone Style\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPHONE] == false) ? ("{93C47D}Modern{ffffff}") : ("{FF6347}Old School{ffffff}"));
+	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{93C47D}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
 	ShowPlayerDialog(playerid, DIALOG_SETTINGS, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
 	return 1;
 }
@@ -228,8 +228,8 @@ CMD:pay(playerid, params[])
 	PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0); PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
 	playerLastpay[playerid] = gettime(); 
 	
-	SendServerMessage(playerid, "[Pay] {cdd0d1}You have sent {B3C99E}$%s{cdd0d1} to {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnName(playerb)); 
-	SendServerMessage(playerb, "[Pay] {cdd0d1}You have received {B3C99E}$%s{cdd0d1} from {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnName(playerid)); 
+	SendServerMessage(playerid, "[Pay] {cdd0d1}You have sent {93C47D}$%s{cdd0d1} to {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnName(playerb)); 
+	SendServerMessage(playerb, "[Pay] {cdd0d1}You have received {93C47D}$%s{cdd0d1} from {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnName(playerid)); 
 	
 	if(PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3 || amount >= 50000)
 	{
@@ -253,7 +253,7 @@ CMD:charity(playerid, params[])
 	
 	GiveMoney(playerid, -charity);
 	SaveCharacter(playerid);
-	SendServerMessage(playerid, "[Charity] {cdd0d1}You've charity {B3C99E}%s{cdd0d1} for this server.", FormatMoney(charity));
+	SendServerMessage(playerid, "[Charity] {cdd0d1}You've charity {93C47D}%s{cdd0d1} for this server.", FormatMoney(charity));
 	return 1;
 }
 
@@ -901,7 +901,7 @@ CMD:deposit(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_BANK]+= amount;
 	GiveMoney(playerid, -amount); 
 	
-	SendInfoMessage(playerid, "You have deposited {B3C99E}$%s{cdd0d1} into Your account, Total:{B3C99E}$%s{cdd0d1}.", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	SendInfoMessage(playerid, "You have deposited {93C47D}$%s{cdd0d1} into Your account, Total:{93C47D}$%s{cdd0d1}.", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	SaveCharacter(playerid);
 	return 1; 
 }
@@ -929,7 +929,7 @@ CMD:withdraw(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_BANK]-= amount;
 	GiveMoney(playerid, amount);
 	
-	SendInfoMessage(playerid, "You have withdrawn {B3C99E}$%s{cdd0d1} from Your account, Total:{B3C99E}$%s{cdd0d1}", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	SendInfoMessage(playerid, "You have withdrawn {93C47D}$%s{cdd0d1} from Your account, Total:{93C47D}$%s{cdd0d1}", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	SaveCharacter(playerid);
 	return 1;
 }
@@ -946,7 +946,7 @@ CMD:balance(playerid, params[])
 	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GENERAL)
 		return SendErrorMessage(playerid, "You can't do this inside this business."); 
 	
-	SendInfoMessage(playerid, "You have {B3C99E}$%s{cdd0d1} in your bank and {B3C99E}$%s{cdd0d1} in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
+	SendInfoMessage(playerid, "You have {93C47D}$%s{cdd0d1} in your bank and {93C47D}$%s{cdd0d1} in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
 	return 1;
 }
 
@@ -2227,7 +2227,7 @@ CMD:approve(playerid, params[])
 	if (isnull(params))
  	{
 	 	SendUsageMessage(playerid, "/approve [name]");
-		SendTipMessage(playerid, "faction, frisk, handshake");
+		SendTipMessage(playerid, "Faction, Frisk, Handshake, Vehicle");
 		return 1;
 	}
 	if (!strcmp(params, "faction", true) /*&& PlayerInfo[playerid][E_CHARACTER_FRISKOFFER] != INVALID_PLAYER_ID*/)
@@ -2365,6 +2365,60 @@ CMD:approve(playerid, params[])
 
 		SendInfoMessage(playerid, "You've accepted {d7d292}%s{cdd0d1} offered selling vehicle.", ReturnName(userid, playerid));
 	    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} accepted offered selling your vehicle.", ReturnName(playerid));
+	}
+	return 1;
+}
+
+CMD:deny(playerid, params[])
+{
+	if (isnull(params))
+ 	{
+	 	SendUsageMessage(playerid, "/deny [name]");
+		SendTipMessage(playerid, "Faction, Frisk, Handshake, Vehicle");
+		return 1;
+	}
+
+	if (!strcmp(params, "faction", true) && PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED] != INVALID_PLAYER_ID)
+	{
+		new targetid = PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED];
+
+		PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE] = 0;
+		PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED] = INVALID_PLAYER_ID;
+
+		SendInfoMessage(playerid, "You've denied {d7d292}%s{cdd0d1} faction invite.", ReturnName(targetid));
+	    SendInfoMessage(targetid, "{d7d292}%s{cdd0d1} denied your faction invite.", ReturnName(playerid));
+
+	}
+	if (!strcmp(params, "frisk", true) && PlayerInfo[playerid][E_CHARACTER_FRISKOFFER] != INVALID_PLAYER_ID)
+	{
+	    new targetid = PlayerInfo[playerid][E_CHARACTER_FRISKOFFER];
+
+		PlayerInfo[playerid][E_CHARACTER_FRISKOFFER] = INVALID_PLAYER_ID;
+
+		SendInfoMessage(playerid, "You've denied {d7d292}%s{cdd0d1} frisk.", ReturnName(targetid));
+	    SendInfoMessage(targetid, "{d7d292}%s{cdd0d1} denied your frisk.", ReturnName(playerid));
+		
+	}
+	if (!strcmp(params, "handshake", true) && PlayerInfo[playerid][E_CHARACTER_SHAKEOFFER] != INVALID_PLAYER_ID)
+	{
+	    new targetid = PlayerInfo[playerid][E_CHARACTER_SHAKEOFFER];
+
+		PlayerInfo[playerid][E_CHARACTER_SHAKEOFFER] = INVALID_PLAYER_ID;
+		PlayerInfo[playerid][E_CHARACTER_SHAKETYPE] = 0;
+
+	    SendInfoMessage(playerid, "You've denied {d7d292}%s{cdd0d1} handshake.", ReturnName(targetid));
+	    SendInfoMessage(targetid, "{d7d292}%s{cdd0d1} denied your handshake.", ReturnName(playerid));
+	}
+	if (!strcmp(params, "vehicle", true) && PlayerInfo[playerid][E_CHARACTER_SELLOFFER] != INVALID_PLAYER_ID)
+	{
+		new targetid = PlayerInfo[playerid][E_CHARACTER_SELLOFFER];
+
+		PlayerInfo[playerid][E_CHARACTER_PRICEOFFER] = 0;
+		PlayerInfo[playerid][E_CHARACTER_SELLVOFFER] = 0;
+		PlayerInfo[playerid][E_CHARACTER_SELLOFFER] = INVALID_PLAYER_ID;
+
+		SendInfoMessage(playerid, "You've denied {d7d292}%s{cdd0d1} offered selling vehicle.", ReturnName(targetid, playerid));
+	    SendInfoMessage(targetid, "{d7d292}%s{cdd0d1} denied offered selling your vehicle.", ReturnName(playerid));
 	}
 	return 1;
 }

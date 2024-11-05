@@ -88,8 +88,8 @@ CMD:ticket(playerid, params[])
 	new id = Ticket_Add(userid, price, reason);
 
 	if (id != -1) {
-	    SendServerMessage(playerid, "[Tickets] {cdd0d1}You have written {d7d292}%s{cdd0d1} a ticket for {B3C99E}$%s{cdd0d1}, reason: {d7d292}%s{cdd0d1}", ReturnName(userid, 0), FormatMoney(price), reason);
-	    SendServerMessage(userid, "[Tickets] {cdd0d1}{d7d292}%s{cdd0d1} has written you a ticket for {B3C99E}$%s{cdd0d1}, reason: {d7d292}%s{cdd0d1}", ReturnName(playerid, 0), FormatMoney(price), reason);
+	    SendServerMessage(playerid, "[Tickets] {cdd0d1}You have written {d7d292}%s{cdd0d1} a ticket for {93C47D}$%s{cdd0d1}, reason: {d7d292}%s{cdd0d1}", ReturnName(userid, 0), FormatMoney(price), reason);
+	    SendServerMessage(userid, "[Tickets] {cdd0d1}{d7d292}%s{cdd0d1} has written you a ticket for {93C47D}$%s{cdd0d1}, reason: {d7d292}%s{cdd0d1}", ReturnName(playerid, 0), FormatMoney(price), reason);
 
 	    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "** %s has written up a ticket for%s.", ReturnName(playerid, 0), ReturnName(userid, 0));
 	}
@@ -130,7 +130,7 @@ Dialog:Tickets(playerid, response, listitem, inputtext[])
 
 		GiveMoney(playerid, -TicketInfo[playerid][listitem][E_TICKET_FEE]);
 
-		SendServerMessage(playerid, "[Tickets] {cdd0d1}You have paid off a {B3C99E}$%s{cdd0d1} ticket for {d7d292}%s{cdd0d1}.", FormatMoney(TicketInfo[playerid][listitem][E_TICKET_FEE]), TicketInfo[playerid][listitem][E_TICKET_REASON]);
+		SendServerMessage(playerid, "[Tickets] {cdd0d1}You have paid off a {93C47D}$%s{cdd0d1} ticket for {d7d292}%s{cdd0d1}.", FormatMoney(TicketInfo[playerid][listitem][E_TICKET_FEE]), TicketInfo[playerid][listitem][E_TICKET_REASON]);
 		Ticket_Remove(playerid, listitem);
 	}
 	return 1;

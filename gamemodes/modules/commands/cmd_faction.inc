@@ -281,12 +281,6 @@ CMD:fduty(playerid, params[])
         PlayerInfo[playerid][E_CHARACTER_POLICEDUTY] = true; 
 
         SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_FACSKIN]); 
-
-        if(!Inventory_Count(playerid, "Night Hawk"))
-        {
-            Inventory_Add(playerid, "Night Hawk", 348, 1);
-        }
-        Inventory_Add(playerid, "9mm", 2040, 50);
     }
     if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
     {
@@ -294,8 +288,6 @@ CMD:fduty(playerid, params[])
         
         SetPlayerHealthEx(playerid, 100);
         SetPlayerArmourEx(playerid, 100);
-
-        Inventory_Set(playerid, "Medkits", 17738, 10);
 
         PlayerInfo[playerid][E_CHARACTER_MEDICDUTY] = true; 
 
@@ -455,19 +447,21 @@ CMD:flocker(playerid, params[])
 	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
 		return SendErrorMessage(playerid, "You can't use this command."); 
 		
-	if(!IsPlayerInRangeOfPoint(playerid, 5.0, FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][0], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][1], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][2]))
-		return SendErrorMessage(playerid, "You aren't near your faction spawn.");
-		
-    
-	if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+	if(IsPlayerInRangeOfPoint(playerid, 5.0, 253.9264,79.1226,1003.6406))
 	{
-        Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform", "Select", "Cancel");
+		if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+		{
+			Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Night Hawk (50 Ammo)", "Select", "Cancel");
+		}
 	}
-    if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+	else if(IsPlayerInRangeOfPoint(playerid, 5.0, 1833.1627,-1072.3607,41.6537) || IsPlayerInRangeOfPoint(playerid, 5.0, 1269.3730,-1307.3560,1061.1392))
 	{
-        Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform", "Select", "Cancel");
+		if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+		{
+			Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Bandage (10 Pcs)", "Select", "Cancel");
+		}
 	}
-		
+	else return SendErrorMessage(playerid, "You aren't near your faction spawn.");
 	return 1;
 }
 
@@ -524,6 +518,21 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 						}
 						Dialog_Show(playerid, LSMDFemaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
 					}
+                }
+            }
+			case 2:
+            {
+                if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+                {
+					if(!Inventory_Count(playerid, "Night Hawk"))
+					{
+						Inventory_Add(playerid, "Night Hawk", 348, 1);
+					}
+					Inventory_Add(playerid, "9mm", 2040, 50);
+                }
+                if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+                {
+					Inventory_Set(playerid, "Bandage", 17738, 10);
                 }
             }
         }
@@ -825,7 +834,7 @@ CMD:take(playerid, params[])
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "You specified a player that isn't logged in.");
 		
-	if(!IsPlayerNearPlayer(playerid, playerb, 4.0))
+	if(!IsPlayerNearPlayer(playerid, playerb, 5.0))
 		return SendErrorMessage(playerid, "You aren't near that player.");
 	
 	if(!strcmp(a_str, "driverlicense"))
@@ -958,7 +967,118 @@ CMD:impound(playerid, params[])
 	return 1;
 }
 
-// Medicals commands:
+// Medical commands:
+
+CMD:treatment(playerid, params[])
+{
+	if(ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
+        return SendUnauthMessage(playerid);
+
+	if(!PlayerInfo[playerid][E_CHARACTER_MEDICDUTY])
+		return SendErrorMessage(playerid, "You must be faction duty first!");
+
+	new targetid;
+	if(sscanf(params, "u", targetid))
+		return SendErrorMessage(playerid, "/treatment [playerid/PartOfName]");
+
+	if(!IsPlayerNearPlayer(playerid, targetid, 5.0) || targetid == INVALID_PLAYER_ID)
+		return SendErrorMessage(playerid, "You must be close to that player!");
+
+	PlayerInfo[playerid][E_CHARACTER_TARGETID] = targetid;
+	Dialog_Show(playerid, Treatment, DIALOG_STYLE_LIST, "Treatment Menu:", "Revive\nHeal\nOperate", "Select", "Close");
+	return 1;
+}
+
+Dialog:Treatment(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		new targetid = PlayerInfo[playerid][E_CHARACTER_TARGETID];
+
+		if(!IsPlayerNearPlayer(playerid, targetid, 5.0) || targetid == INVALID_PLAYER_ID)
+			return SendErrorMessage(playerid, "You must close to that player!");
+
+		if(listitem == 0)
+		{
+			if(!PlayerInfo[targetid][E_CHARACTER_INJURED])
+				return SendErrorMessage(playerid, "That player is not in injured condition!");
+
+			PlayerInfo[targetid][E_CHARACTER_INJURED] = 0;
+    		SetPlayerTeam(targetid, PLAYER_STATE_ALIVE);
+			SetPlayerHealthEx(targetid, 100.0);
+
+			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have been reviving {d7d292}%s{cdd0d1}.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been revived by {d7d292}%s{cdd0d1}.", ReturnName(playerid));
+		}
+		if(listitem == 1)
+		{
+			new Float:hp;
+			GetPlayerHealth(targetid, hp);
+			if(hp >= 100.0)
+				return SendErrorMessage(playerid, "That player already have Max Health!");
+
+			SetPlayerHealthEx(targetid, 100.0);
+			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have healing {d7d292}%s{cdd0d1}.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been healed by {d7d292}%s{cdd0d1}.", ReturnName(playerid));
+		}
+		if(listitem == 3)
+		{
+			new Float:x, Float:y, Float:z;
+			GetPlayerPos(targetid, x, y, z);
+
+			TogglePlayerControllable(playerid, false);
+			TogglePlayerControllable(targetid, false);
+
+			PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading operate process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+			PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+			PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+			PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("Treatments", 5000, true, "ii", playerid, targetid);
+
+			SendServerMessage(playerid, "[Treatment] {cdd0d1}You need waiting for a minutes to operate {d7d292}%s{cdd0d1}.", ReturnName(targetid));
+		}
+	}
+	return 1;
+}
+
+function:Treatments(playerid, targetid)
+{
+	new text[256];
+	PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT]++;
+
+	switch(PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT])
+	{
+		case 2: text = "Loading operate process\n(( ||----- ))";
+		case 3: text = "Loading operate process\n(( |||---- ))";
+		case 4: text = "Loading operate process\n(( ||||--- ))";
+		case 5: text = "Loading operate process\n(( |||||-- ))";
+		case 6: text = "Loading operate process\n(( ||||||- ))";
+		case 7: text = "Loading operate process\n(( ||||||| ))";
+		case 8:
+		{
+			TogglePlayerControllable(playerid, true);
+			TogglePlayerControllable(targetid, true);
+
+			Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
+			KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
+
+			PlayerInfo[targetid][E_CHARACTER_BODY] = 100;
+			PlayerInfo[targetid][E_CHARACTER_TORSO] = 100;
+			PlayerInfo[targetid][E_CHARACTER_GROIN] = 100;
+			PlayerInfo[targetid][E_CHARACTER_RIGHTARM] = 100;
+			PlayerInfo[targetid][E_CHARACTER_LEFTARM] = 100;
+			PlayerInfo[targetid][E_CHARACTER_RIGHTLEG] = 100;
+			PlayerInfo[targetid][E_CHARACTER_LEFTLEG] = 100;
+			PlayerInfo[targetid][E_CHARACTER_HEAD] = 100;
+			
+			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have operating {d7d292}%s{cdd0d1}.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been operated by {d7d292}%s{cdd0d1}.", ReturnName(playerid));
+		}
+	}
+	Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+	return 1;
+}
+
 CMD:loadinjured(playerid, params[])
 {
     static
@@ -971,19 +1091,17 @@ CMD:loadinjured(playerid, params[])
     if(sscanf(params, "u", otherid))
         return SendUsageMessage(playerid, "/loadinjured [playerid/PartOfName]");
 
-    if(otherid == INVALID_PLAYER_ID || !IsPlayerNearPlayer(playerid, otherid, 10.0))
-        return SendErrorMessage(playerid, "Player tersebut tidak berada didekat mu.");
+    if(otherid == INVALID_PLAYER_ID || !IsPlayerNearPlayer(playerid, otherid, 5.0))
+        return SendErrorMessage(playerid, "You aren't near of any player.");
 
     if(otherid == playerid)
         return SendErrorMessage(playerid, "You can't load yourself into an ambulance.");
 
-    if(!PlayerInfo[otherid][E_CHARACTER_INJURED] || !PlayerInfo[otherid][E_CHARACTER_DEATH])
+    if(!PlayerInfo[otherid][E_CHARACTER_INJURED] && !PlayerInfo[otherid][E_CHARACTER_DEATH])
         return SendErrorMessage(playerid, "That player is not injured or death.");
 	
 	if(!IsPlayerInAnyVehicle(playerid))
-	{
 	    return SendErrorMessage(playerid, "You must be in a Ambulance to load patient!");
-	}
 		
 	new i = GetPlayerVehicleID(playerid);
     if(GetVehicleModel(i) == 416)
@@ -1021,7 +1139,7 @@ CMD:dropinjured(playerid, params[])
     if(otherid == playerid)
         return SendErrorMessage(playerid, "You can't deliver yourself to the hospital.");
 
-    if(!PlayerInfo[otherid][E_CHARACTER_INJURED] || !PlayerInfo[otherid][E_CHARACTER_DEATH])
+    if(!PlayerInfo[otherid][E_CHARACTER_INJURED] && !PlayerInfo[otherid][E_CHARACTER_DEATH])
         return SendErrorMessage(playerid, "That player is not injured or death.");
 
     if(IsPlayerInRangeOfPoint(playerid, 5.0, 2035.0732,-1414.0488,16.9922))
@@ -1039,38 +1157,4 @@ CMD:dropinjured(playerid, params[])
     }
     else SendErrorMessage(playerid, "You must be near a hospital deliver location.");
     return 1;
-}
-
-CMD:rescue(playerid, params[])
-{
-	if(ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
-        return SendUnauthMessage(playerid);
-	
-	if(Inventory_Count(playerid, "Medkits") < 1) return SendErrorMessage(playerid, "You must have medkits.");
-
-	new otherid;
-	if(sscanf(params, "u", otherid))
-        return SendUsageMessage(playerid, "/rescue [playerid/PartOfName]");
-
-    if(otherid == INVALID_PLAYER_ID || !IsPlayerNearPlayer(playerid, otherid, 5.0))
-        return SendErrorMessage(playerid, "You aren't near of any player.");
-
-    if(otherid == playerid)
-        return SendErrorMessage(playerid, "You can't rescue yourself.");
-
-    if(!PlayerInfo[otherid][E_CHARACTER_INJURED])
-        return SendErrorMessage(playerid, "That player is not injured.");
-	
-	Inventory_Remove(playerid, "Medkits", 1);
-	
-	SetPlayerHealthEx(otherid, 50.0);
-    PlayerInfo[otherid][E_CHARACTER_INJURED] = 0;
-    SetPlayerTeam(otherid, PLAYER_STATE_ALIVE);
-
-    ClearAnimations(otherid);
-	ApplyAnimation(otherid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-	
-	SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s has rescuered %s with medkit tools.", ReturnName(playerid), ReturnName(otherid, playerid));
-    SendInfoMessage(otherid, "Officer {d7d292}%s{cdd0d1} has rescue your character.", ReturnName(playerid));
-	return 1;
 }

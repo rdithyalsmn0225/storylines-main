@@ -87,7 +87,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 			
-			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} marijuana for {B3C99E}$%s{cdd0d1}", ReturnName(playerid), FormatMoney(amount)); 
+			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} marijuana for {93C47D}$%s{cdd0d1}", ReturnName(playerid), FormatMoney(amount)); 
 		}
 		else if(type == 1)
 		{
@@ -333,17 +333,17 @@ Dialog:BuyDrugs(playerid, response, listitem, inputtext[])
         {
             case 0:
             {
-                format(str, sizeof(str), "Are you sure you want to buy this drugs for {B3C99E}$%d{ffffff}?", PMARIJUANA); 
+                format(str, sizeof(str), "Are you sure you want to buy this drugs for {93C47D}$%d{ffffff}?", PMARIJUANA); 
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 0, 25, PMARIJUANA); 
             }
             case 1:
             {
-                format(str, sizeof(str), "Are you sure you want to buy this drugs for {B3C99E}$%d{ffffff}?", PCOCAINE); 
+                format(str, sizeof(str), "Are you sure you want to buy this drugs for {93C47D}$%d{ffffff}?", PCOCAINE); 
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 1, 20, PCOCAINE); 
             }
 			case 2:
 			{
-				format(str, sizeof(str), "Are you sure you want to buy this drugs for {B3C99E}$%d{ffffff}?", PHEROIN); 
+				format(str, sizeof(str), "Are you sure you want to buy this drugs for {93C47D}$%d{ffffff}?", PHEROIN); 
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 2, 20, PHEROIN); 
 			}
 		}

@@ -1,8 +1,8 @@
 //Colors:
 #define COLOR_RED 			(0xFF6347AA)
 
-#define COLOR_GREEN 		(0xB3C99EFF)
-#define COLOR_DARKGREEN 	(0xB3C99EFF)
+#define COLOR_GREEN 		(0x93C47DFF)
+#define COLOR_DARKGREEN 	(0x93C47DFF)
 
 #define COLOR_CREDITS       (0xf8b56eFF)
 #define COLOR_SYNTAX        (0x9fc5e8FF)

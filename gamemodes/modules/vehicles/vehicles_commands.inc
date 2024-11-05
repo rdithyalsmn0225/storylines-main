@@ -48,7 +48,7 @@ CMD:carsell(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SELLVOFFER] = vehicleid;
 
 	SendTipMessage(userid, "%s has offered sell their vehicle %s for $%s, type /approve vehicle to approve.", ReturnName(playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You have offered sell your %s for {B3C99E}$%s{cdd0d1}.", ReturnName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You have offered sell your %s for {93C47D}$%s{cdd0d1}.", ReturnName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
 	return 1;
 }
 
@@ -164,7 +164,7 @@ CMD:carscrap(playerid, params[])
 		}
 	}
 			
-	format(str, sizeof(str), "Are you sure you want to scrap your %s?\nYou'll receive a cashback of: {B3C99E}$%s{ffffff}\n\n{FF6347}This action is permanent and cannot be undone.", ReturnVehicleName(vehicleid), FormatMoney(cash_back)); 
+	format(str, sizeof(str), "Are you sure you want to scrap your %s?\nYou'll receive a cashback of: {93C47D}$%s{ffffff}\n\n{FF6347}This action is permanent and cannot be undone.", ReturnVehicleName(vehicleid), FormatMoney(cash_back)); 
 	ConfirmDialog(playerid, "Confirmation", str, "OnVehicleScrap", VehicleInfo[vehicleid][E_VEHICLE_DBID], cash_back);
     return 1;
 }
@@ -201,7 +201,7 @@ CMD:carlock(playerid, params[])
 		if(VehicleInfo[vehicleid][E_VEHICLE_LOCKED])
 		{
 			format(statusString, sizeof(statusString), "~g~%s Unlocked", ReturnVehicleName(vehicleid));
-			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {B3C99E}Unlocked", ReturnVehicleName(vehicleid));
+			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {93C47D}Unlocked", ReturnVehicleName(vehicleid));
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, false, bonnet, boot, objective);
 			VehicleInfo[vehicleid][E_VEHICLE_LOCKED] = false;
 		}
@@ -279,7 +279,7 @@ CMD:cartrunk(playerid, params[])
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, 1, objective);
 				
-			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {B3C99E}Opened");	
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {93C47D}Opened");	
 			ShowVehicleStorage(playerid, IsPlayerNearVehicle(playerid));
 		}
 		else
@@ -304,7 +304,7 @@ CMD:cartrunk(playerid, params[])
 		if(!boot)
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, 1, objective);	
-			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {B3C99E}Opened");	
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {93C47D}Opened");	
 		}
 		else
 		{
@@ -343,7 +343,7 @@ CMD:carhood(playerid, params[])
 		if(!bonnet)
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, 1, boot, objective);
-			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {B3C99E}Opened");	
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {93C47D}Opened");	
 		}
 		else
 		{
@@ -367,7 +367,7 @@ CMD:carhood(playerid, params[])
 		if(!bonnet)
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, 1, boot, objective);
-			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {B3C99E}Opened");	
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {93C47D}Opened");	
 		}
 		else
 		{
@@ -445,7 +445,7 @@ function:TurnEngine(playerid, vehicleid)
 		case 4: format(message, sizeof(message), "~g~Turn on engine....");
 		case 5:
 		{
-			SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {B3C99E}Started");
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {93C47D}Started");
 			ToggleVehicleEngine(vehicleid, true); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = true;
 			KillTimer(PlayerEngineTimer[playerid]);
 			PlayerEngineValue[playerid] = 0;

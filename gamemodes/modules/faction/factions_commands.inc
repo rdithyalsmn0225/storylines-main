@@ -5,10 +5,10 @@ CMD:createfaction(playerid, params[])
 		
 	new varAbbrev[32], varName[128]; 
 	
-	if(sscanf(params, "s[30]s[90]", varAbbrev, varName))
+	if(sscanf(params, "s[32]s[90]", varAbbrev, varName))
 	{
 		SendUsageMessage(playerid, "/createfaction [faction abbreviation] [faction name]");
-		SendClientMessage(playerid, COLOR_RED, "[!]{ffffff} Do not use spaces for the abbreviation.");
+		SendTipMessage(playerid, "Do not use spaces for the abbreviation.");
 		return 1; 
 	}
 	
@@ -32,11 +32,12 @@ CMD:createfaction(playerid, params[])
 
 	SendInfoMessage(playerid, "Creating the faction..."); 	
 	
+	format(FactionInfo[idx][E_FACTION_NAME], 128, "%s", varName);
+	format(FactionInfo[idx][E_FACTION_ABBREV], 32, "%s", varAbbrev); 
+
 	new thread[256]; 
-	
-	mysql_format(ourConnection, thread, sizeof(thread), "INSERT INTO factions (`FactionName`, `FactionAbbrev`) VALUES('%s', '%s')", varName, varAbbrev);
-	mysql_pquery(ourConnection, thread, "Query_InsertFaction", "issi", playerid, varName, varAbbrev, idx);
-	
+	mysql_format(ourConnection, thread, sizeof(thread), "INSERT INTO factions (`FactionName`, `FactionAbbrev`) VALUES('%s', '%s')", FactionInfo[idx][E_FACTION_NAME], FactionInfo[idx][E_FACTION_ABBREV]);
+	mysql_pquery(ourConnection, thread, "Query_InsertFaction", "issi", playerid, FactionInfo[idx][E_FACTION_NAME], FactionInfo[idx][E_FACTION_ABBREV], idx);
 	return 1;
 }
 
@@ -118,8 +119,8 @@ CMD:editfaction(playerid, params[])
 		if(IsValidDynamic3DTextLabel(FactionInfo[factionid][E_FACTION_SPAWNTEXT]))
 			DestroyDynamic3DTextLabel(FactionInfo[factionid][E_FACTION_SPAWNTEXT]);
 
-		FactionInfo[factionid][E_FACTION_SPAWNPICKUP] = CreateDynamicPickup(1239, 1, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
-		FactionInfo[factionid][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel("[Faction Spawn Point]\n{ffffff}Available Commands: Use /factionhelp to see faction commands", COLOR_DARKGREEN, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
+		FactionInfo[factionid][E_FACTION_SPAWNPICKUP] = CreateDynamicPickup(1314, 1, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
+		FactionInfo[factionid][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel("[Faction Spawn Point]", COLOR_DARKGREEN, FactionInfo[factionid][E_FACTION_SPAWN][0], FactionInfo[factionid][E_FACTION_SPAWN][1], FactionInfo[factionid][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[factionid][E_FACTION_SPAWNWORLD], FactionInfo[factionid][E_FACTION_SPAWNINT]);
 
 		SaveFaction(factionid);
 	}

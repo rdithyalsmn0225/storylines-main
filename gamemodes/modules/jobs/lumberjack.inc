@@ -222,7 +222,7 @@ CMD:timbersell(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_WOODS, 1);
 		
-		SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You has sell woods for {B3C99E}$%s{cdd0d1} into leafy hollow barn.", FormatMoney(LUMBERJACK_SALARY*2));
+		SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You has sell woods for {93C47D}$%s{cdd0d1} into leafy hollow barn.", FormatMoney(LUMBERJACK_SALARY*2));
 	}
 	return 1;
 }
@@ -243,7 +243,7 @@ CMD:buysaw(playerid, params[])
 
     Inventory_Add(playerid, "Chainsaw", 341, 1);
     GiveMoney(playerid, -250);
-    SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You bought a axe for {B3C99E}$250{cdd0d1}.");
+    SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You bought a axe for {93C47D}$250{cdd0d1}.");
     SendTipMessage(playerid, "To start cutting the tree(s) /timbercut using axe.");
     return 1;
 }

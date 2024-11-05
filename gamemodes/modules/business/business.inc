@@ -381,7 +381,7 @@ function:OnSellBusiness(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_OWNERDBID] = 0; 
 		
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
-		SendInfoMessage(playerid, "You sold your business and earned {B3C99E}$%s{cdd0d1}.", FormatMoney(totalPay)); 
+		SendInfoMessage(playerid, "You sold your business and earned {93C47D}$%s{cdd0d1}.", FormatMoney(totalPay)); 
 		
 		SaveBusiness(businessid); SaveCharacter(playerid); 
 	}

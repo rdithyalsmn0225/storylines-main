@@ -31,9 +31,9 @@ stock IsPlayerInDMVVehicle(playerid)
 	if(!vehicleid)
 		return 0; 
 		
-	for(new i = 0; i < sizeof dmv_vehicles; i++)
+	for(new i = 0; i < sizeof DMV_Vehicles; i++)
 	{
-		if(vehicleid == dmv_vehicles[i])
+		if(vehicleid == DMV_Vehicles[i])
 			return 1;
 	}
 		

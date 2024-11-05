@@ -52,7 +52,7 @@ stock ViewCharges(playerid, name[])
 
 stock ShowPlayerMDC(playerid)
 {
-	forex(i, 15)
+	forex(i, 14)
 	{
 		PlayerTextDrawShow(playerid, MDC[i][playerid]);
 	}
@@ -61,7 +61,7 @@ stock ShowPlayerMDC(playerid)
 
 stock HidePlayerMDC(playerid)
 {
-	forex(i, 15)
+	forex(i, 14)
 	{
 		PlayerTextDrawHide(playerid, MDC[i][playerid]);
 	}
@@ -150,8 +150,8 @@ CMD:mdc(playerid, params[])
 	if(!IsPoliceVehicle(GetPlayerVehicleID(playerid)))
 		return SendErrorMessage(playerid, "This vehicle doesn't have mdc!");
 
-	ShowPlayerMDC(playerid);
 	SelectTextDraw(playerid, COLOR_YELLOW);
+	ShowPlayerMDC(playerid);
 	return 1;
 }
 
@@ -172,7 +172,7 @@ Dialog:MdcName(playerid, response, listitem, inputtext[])
 
 		new str[512];
 		format(str, sizeof(str), "Please enter the description of the crime committed by %s:", ReturnName(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], playerid));
-		Dialog_Show(playerid, MdcPlace, DIALOG_STYLE_INPUT, "Place Charge:", str, "Search", "Back");
+		Dialog_Show(playerid, MdcPlace, DIALOG_STYLE_INPUT, "Given Charge:", str, "Search", "Back");
 	}
 	return 1;
 }
@@ -188,7 +188,7 @@ Dialog:MdcPlace(playerid, response, listitem, inputtext[])
 		{
 			new str[512];
 			format(str, sizeof(str), "Please enter the name of the player:");
-			return Dialog_Show(playerid, MdcPlace, DIALOG_STYLE_INPUT, "Place Charge:", str, "Enter", "Back");
+			return Dialog_Show(playerid, MdcPlace, DIALOG_STYLE_INPUT, "Given Charge:", str, "Enter", "Back");
 		}
 			
 		AddWanted(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
@@ -204,7 +204,7 @@ Dialog:MdcPlate(playerid, response, listitem, inputtext[])
 	{
 		new query[512];
 		if(strlen(inputtext) > 6 || strlen(inputtext) < 3)
-			return Dialog_Show(playerid, MdcPlate, DIALOG_STYLE_INPUT, "View Plates:", "Please enter the vehicle plates:", "Search", "Back"); 
+			return Dialog_Show(playerid, MdcPlate, DIALOG_STYLE_INPUT, "Plates Search:", "Please enter the vehicle plates:", "Search", "Back"); 
 		
 		format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", inputtext); 
 
@@ -233,7 +233,7 @@ Dialog:MdcView(playerid, response, listitem, inputtext[])
 	if (response)
 	{
 		if (isnull(inputtext) || strlen(inputtext) > 24)
-			return Dialog_Show(playerid, MdcView, DIALOG_STYLE_INPUT, "View Charges:", "Please enter the name of the player:", "Search", "Back");
+			return Dialog_Show(playerid, MdcView, DIALOG_STYLE_INPUT, "Name Search:", "Please enter the name of the player:", "Search", "Back");
 
 		if (IsNumeric(inputtext) && IsPlayerConnected(strval(inputtext))) 
 		{
@@ -245,7 +245,7 @@ Dialog:MdcView(playerid, response, listitem, inputtext[])
 		}
 		else 
 		{
-			Dialog_Show(playerid, MdcView, DIALOG_STYLE_INPUT, "View Charges:", "Invalid user specified.\nPlease enter the name of the player:", "Search", "Back");
+			Dialog_Show(playerid, MdcView, DIALOG_STYLE_INPUT, "Name Search:", "Invalid user specified.\nPlease enter the name of the player:", "Search", "Back");
 		}
 	}
 	return 1;

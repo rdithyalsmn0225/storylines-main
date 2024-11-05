@@ -169,7 +169,7 @@ function:OnVehicleScrap(playerid, response, dbid, cash_back)
 		mysql_pquery(ourConnection, delQuery); 
 		
 		SendServerMessage(playerid, "[Vehicle] {cdd0d1}Your {d7d292}%s{cdd0d1} has been permanently deleted.", ReturnVehicleName(GetPlayerVehicleID(playerid))); 
-		SendServerMessage(playerid, "[Vehicle] {cdd0d1}You earned {B3C99E}$%s{cdd0d1} from scrapping it.", FormatMoney(cash_back));
+		SendServerMessage(playerid, "[Vehicle] {cdd0d1}You earned {93C47D}$%s{cdd0d1} from scrapping it.", FormatMoney(cash_back));
 		
 		GiveMoney(playerid, cash_back); 
 		
@@ -347,7 +347,7 @@ function:OnGasStationRefill(playerid, vehicleid, x, y, z)
 			VehicleInfo[vehicleid][E_VEHICLE_FUEL] += 50.0;
 			GiveMoney(playerid, -50);
 			
-			SendServerMessage(playerid, "[Vehicle] {cdd0d1}You refilled the {d7d292}%s{cdd0d1} to 50 percent fuel for {B3C99E}$50{cdd0d1}.", ReturnVehicleName(vehicleid)); 
+			SendServerMessage(playerid, "[Vehicle] {cdd0d1}You refilled the {d7d292}%s{cdd0d1} to 50 percent fuel for {93C47D}$50{cdd0d1}.", ReturnVehicleName(vehicleid)); 
 			return 1;
 		}
 	}
@@ -407,7 +407,7 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid;
 	}
 	
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You successfully bought a {d7d292}%s{cdd0d1} for {B3C99E}$%s{cdd0d1}.", ReturnVehicleName(vehicleid), FormatMoney(DealershipTotalCost[playerid]));
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You successfully bought a {d7d292}%s{cdd0d1} for {93C47D}$%s{cdd0d1}.", ReturnVehicleName(vehicleid), FormatMoney(DealershipTotalCost[playerid]));
 	
 	PlayerPurchasingVehicle[playerid] = false;
 	ResetDealershipVars(playerid); 
@@ -598,14 +598,14 @@ function:Query_ShowVehicleList(playerid)
 		}
 
 		if (isSpawned)
-			format(color, sizeof(color), "{B3C99E}Spawned");
+			format(color, sizeof(color), "{93C47D}Spawned");
 		else
 			format(color, sizeof(color), "{FF6347}Despawned");
 			
 		if(vehicleRental)
 			format(rent, sizeof(rent), "{FF6347}Rented (%i Minutes)", vehicleRentalTimer);
 		else
-			format(rent, sizeof(rent), "{B3C99E}Owned");
+			format(rent, sizeof(rent), "{93C47D}Owned");
 
 		format(dialogText, sizeof(dialogText),
 			"%s%s\t%s\t%s\t%s\n",

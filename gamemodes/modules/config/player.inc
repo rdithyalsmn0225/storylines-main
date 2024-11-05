@@ -129,7 +129,7 @@ function:Float:GetDistanceBetweenPoints(Float:rx1,Float:ry1,Float:rz1,Float:rx2,
 function:OnAjailRecord(playerid)
 {
 	if(!cache_num_rows())
-		return SendClientMessage(playerid, COLOR_RED, "[!] {FFFFFF}This player hasn't been admin jailed.");
+		return SendErrorMessage(playerid, "This player hasn't been admin jailed.");
 	
 	new rows, fields;
 	cache_get_row_count(rows);

@@ -451,7 +451,7 @@ CreateMDCTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, MDC[8][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, MDC[8][playerid], 0);
 
-	MDC[9][playerid] = CreatePlayerTextDraw(playerid, 245.000000, 211.000000, "- Charges");
+	MDC[9][playerid] = CreatePlayerTextDraw(playerid, 245.000000, 211.000000, "- Given Charges");
 	PlayerTextDrawFont(playerid, MDC[9][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, MDC[9][playerid], 0.254166, 1.200000);
 	PlayerTextDrawTextSize(playerid, MDC[9][playerid], 397.000000, 18.500000);
@@ -465,7 +465,7 @@ CreateMDCTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, MDC[9][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, MDC[9][playerid], 1);
 
-	MDC[10][playerid] = CreatePlayerTextDraw(playerid, 245.000000, 232.000000, "- View Charges");
+	MDC[10][playerid] = CreatePlayerTextDraw(playerid, 245.000000, 232.000000, "- Name Search");
 	PlayerTextDrawFont(playerid, MDC[10][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, MDC[10][playerid], 0.254166, 1.200000);
 	PlayerTextDrawTextSize(playerid, MDC[10][playerid], 397.000000, 18.500000);
@@ -479,7 +479,7 @@ CreateMDCTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, MDC[10][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, MDC[10][playerid], 1);
 
-	MDC[11][playerid] = CreatePlayerTextDraw(playerid, 245.000000, 253.000000, "- View Plates");
+	MDC[11][playerid] = CreatePlayerTextDraw(playerid, 245.000000, 253.000000, "- Plates Search");
 	PlayerTextDrawFont(playerid, MDC[11][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, MDC[11][playerid], 0.254166, 1.200000);
 	PlayerTextDrawTextSize(playerid, MDC[11][playerid], 397.000000, 18.500000);
@@ -493,7 +493,7 @@ CreateMDCTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, MDC[11][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, MDC[11][playerid], 1);
 
-	MDC[12][playerid] = CreatePlayerTextDraw(playerid, 245.000000, 273.000000, "- Call Police Backup");
+	MDC[12][playerid] = CreatePlayerTextDraw(playerid, 245.000000, 273.000000, "- Police Backup");
 	PlayerTextDrawFont(playerid, MDC[12][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, MDC[12][playerid], 0.254166, 1.200000);
 	PlayerTextDrawTextSize(playerid, MDC[12][playerid], 397.000000, 18.500000);

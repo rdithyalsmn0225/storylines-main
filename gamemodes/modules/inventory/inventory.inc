@@ -289,6 +289,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 			if(PlayerInfo[playerid][E_CHARACTER_TOGPHONE])
 			{
 				ShowPlayerPhone(playerid);
+				SelectTextDraw(playerid, COLOR_YELLOW);
 			}
 			else
 			{

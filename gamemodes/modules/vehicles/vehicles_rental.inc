@@ -28,7 +28,7 @@ CMD:rentcars(playerid, params[])
 		return 1;
 	}
 
-    Dialog_Show(playerid, RentalCars, DIALOG_STYLE_TABLIST, "Rental Cars:", "Faggio\t{B3C99E}$50/hours{ffffff}\nSentinel\t{B3C99E}$120/hours{ffffff}", "Select", "Cancel");
+    Dialog_Show(playerid, RentalCars, DIALOG_STYLE_TABLIST, "Rental Cars:", "Faggio\t{93C47D}$50/hours{ffffff}\nSentinel\t{93C47D}$120/hours{ffffff}", "Select", "Cancel");
     return 1;
 }
 
@@ -175,6 +175,6 @@ function:OnPlayerVehicleRental(playerid, id, modelid, cost, plates[], Float:x, F
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid;
 	}
 	
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You successfully rent a {d7d292}%s{cdd0d1} for {B3C99E}$%s{cdd0d1}.", ReturnVehicleName(vehicleid), FormatMoney(cost));
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You successfully rent a {d7d292}%s{cdd0d1} for {93C47D}$%s{cdd0d1}.", ReturnVehicleName(vehicleid), FormatMoney(cost));
 	return 1;
 }

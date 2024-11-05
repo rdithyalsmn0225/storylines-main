@@ -154,6 +154,85 @@ stock CallbackDamages(playerid, issuerid, bodypart, weaponid, Float:amount)
 	return 1; 
 }
 
+stock GetConditionStatus(condition)
+{
+	new str[64];
+	if (condition <= 20) str = "{FF6347}Broken";
+	else if (condition > 20 && condition <= 80) str = "{DAA650}Bleedin";
+    else if (condition > 80 && condition <= 100) str = "{93C47D}Normal";
+    return str;
+}
+
+function:ConditionTimers()
+{
+	foreach(new i : Player)
+	{
+		if(PlayerInfo[i][E_CHARACTER_BODY] <= 0)
+		{
+			PlayerInfo[i][E_CHARACTER_BODY] = 0;
+		}
+		if(PlayerInfo[i][E_CHARACTER_TORSO] <= 0)
+		{
+			PlayerInfo[i][E_CHARACTER_TORSO] = 0;
+		}
+		if(PlayerInfo[i][E_CHARACTER_GROIN] <= 0)
+		{
+			PlayerInfo[i][E_CHARACTER_GROIN] = 0;
+		}
+		if(PlayerInfo[i][E_CHARACTER_RIGHTARM] <= 0)
+		{
+			PlayerInfo[i][E_CHARACTER_RIGHTARM] = 0;
+		}
+		if(PlayerInfo[i][E_CHARACTER_LEFTARM] <= 0)
+		{
+			PlayerInfo[i][E_CHARACTER_RIGHTLEG] = 0;
+		}
+		if(PlayerInfo[i][E_CHARACTER_LEFTLEG] <= 0)
+		{
+			PlayerInfo[i][E_CHARACTER_LEFTLEG] = 0;
+		}
+		if(PlayerInfo[i][E_CHARACTER_HEAD] <= 0)
+		{
+			PlayerInfo[i][E_CHARACTER_HEAD] = 0;
+		}
+
+		if(PlayerInfo[i][E_CHARACTER_HEAD] <= 80)
+		{
+			SetPlayerDrunkLevel(i, 4000);
+		}
+
+		if(PlayerInfo[i][E_CHARACTER_BODY] >= 100)
+		{
+			PlayerInfo[i][E_CHARACTER_BODY] = 100;
+		}
+		if(PlayerInfo[i][E_CHARACTER_TORSO] >= 100)
+		{
+			PlayerInfo[i][E_CHARACTER_TORSO] = 100;
+		}
+		if(PlayerInfo[i][E_CHARACTER_GROIN] >= 100)
+		{
+			PlayerInfo[i][E_CHARACTER_GROIN] = 100;
+		}
+		if(PlayerInfo[i][E_CHARACTER_RIGHTARM] >= 100)
+		{
+			PlayerInfo[i][E_CHARACTER_RIGHTARM] = 100;
+		}
+		if(PlayerInfo[i][E_CHARACTER_LEFTARM] >= 100)
+		{
+			PlayerInfo[i][E_CHARACTER_RIGHTLEG] = 100;
+		}
+		if(PlayerInfo[i][E_CHARACTER_LEFTLEG] >= 100)
+		{
+			PlayerInfo[i][E_CHARACTER_LEFTLEG] = 100;
+		}
+		if(PlayerInfo[i][E_CHARACTER_HEAD] >= 100)
+		{
+			PlayerInfo[i][E_CHARACTER_HEAD] = 100;
+		}
+	}
+	return 1;
+}
+
 stock ShowPlayerCondition(playerid, targetid)
 {
 	new str[2024], str2[512];
@@ -161,27 +240,28 @@ stock ShowPlayerCondition(playerid, targetid)
 	
 	format(str2, sizeof(str2), "%s Condition", ReturnName(targetid, 0));
 
-	format(str, sizeof(str), "|__________ Body Part Status __________|\n");
-	format(str, sizeof(str), "%sPart : Chest\n", str);
-	format(str, sizeof(str), "%sCondition : %s\n", str,  GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_BODY]));
-	format(str, sizeof(str), "%sPart : Torso");
-	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_TORSO]));
-	format(str, sizeof(str), "%sPart : Groin");
-	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_GROIN]));
-	format(str, sizeof(str), "%sPart : Right Arm");
-	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTARM]));
-	format(str, sizeof(str), "%sPart : Left Arm");
-	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTARM]));
-	format(str, sizeof(str), "%sPart : Right Leg");
-	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTLEG]));
-	format(str, sizeof(str), "%sPart : Left Leg");
-	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTLEG]));
-	format(str, sizeof(str), "%sPart : Head");
-	format(str, sizeof(str), "%sCondition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_HEAD]));
+	format(str, sizeof(str), "{93C47D}|__________ Body Part Status __________|\n");
+	format(str, sizeof(str), "%s{ffffff}Part : Chest\n", str);
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str,  GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_BODY]));
+	format(str, sizeof(str), "%s{ffffff}Part : Torso\n", str);
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_TORSO]));
+	format(str, sizeof(str), "%s{ffffff}Part : Groin\n", str);
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_GROIN]));
+	format(str, sizeof(str), "%s{ffffff}Part : Right Arm\n", str);
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTARM]));
+	format(str, sizeof(str), "%s{ffffff}Part : Left Arm\n", str);
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTARM]));
+	format(str, sizeof(str), "%s{ffffff}Part : Right Leg\n", str);
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTLEG]));
+	format(str, sizeof(str), "%s{ffffff}Part : Left Leg\n", str);
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTLEG]));
+	format(str, sizeof(str), "%s{ffffff}Part : Head\n", str);
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_HEAD]));
 
 	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, str2, str, "Close", "");
 	return 1;
 }
+
 stock ShowPlayerDamages(damageid, playerid, adminView)
 {
 	new
@@ -300,13 +380,4 @@ CMD:health(playerid, params[])
 	}
 	else return ShowPlayerCondition(playerid, playerid);
 	return 1;
-}
-
-stock GetConditionStatus(condition)
-{
-	new str[64];
-	if (condition >= 0) str = "{FF6347}Broken";
-	else if (condition >= 50) str = "{DAA650}Bleedin";
-    else if (condition >= 80) str = "{B3C99E}Normal";
-    return str;
 }

@@ -186,6 +186,7 @@ public OnGameModeInit()
 	DisableInteriorEnterExits();
 	
 	// Insert:
+	InsertASGH();
 	InsertPrison();
 	InsertObjects();
 	InsertSideJobs();
@@ -230,6 +231,7 @@ public OnGameModeInit()
 	SetTimer("TaxiTimers", 1000, true);
 	SetTimer("PacketTimers", 1800000, true);
 	SetTimer("GarbageTimers", 600000, true);
+	SetTimer("ConditionTimers", 60000, true);
 	SetTimer("StartLottery", 1800000, false);
 
 	// Loading systems:
@@ -454,7 +456,7 @@ function:CheckBanList(playerid)
 		new existCheck[512];
 		//for(new i = 0; i < 3; i ++) {PlayerTextDrawShow(playerid, loginscreen[i][playerid]);}
 		
-		mysql_format(ourConnection, existCheck, sizeof(existCheck), "SELECT acc_dbid, secret_word, verified FROM masters WHERE acc_name = '%e'", ReturnName(playerid));
+		mysql_format(ourConnection, existCheck, sizeof(existCheck), "SELECT acc_dbid, secret_word, verified FROM masters WHERE acc_name = '%e'", ReturnName(playerid, 1));
 		mysql_pquery(ourConnection, existCheck, "LogPlayerIn", "i", playerid);
 	}
 	else
@@ -474,7 +476,7 @@ function:LogPlayerIn(playerid)
 		for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
 		
 		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnName(playerid));
+		format(str, sizeof(str), "{ffffff}Welcome to {93C47D}Storylines{93C47D}, {FFFFFF}%s!\n\n{93C47D}Failure to authenticate three times will result in a {E03232}kick{93C47D}.\nYou have a total of {93C47D}five minutes{93C47D} to authenticate.\n\nIn order to proceed, enter a {93C47D}password{93C47D} below to authenticate (or register).", ReturnName(playerid));
 		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 	}
 	else
@@ -483,7 +485,7 @@ function:LogPlayerIn(playerid)
 		registerTime[playerid] = 1;	
 		//ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
 		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnName(playerid));
+		format(str, sizeof(str), "{ffffff}Welcome to {93C47D}Storylines{93C47D}, {FFFFFF}%s!\n\n{93C47D}Failure to authenticate three times will result in a {E03232}kick{93C47D}.\nYou have a total of {93C47D}five minutes{93C47D} to authenticate.\n\nIn order to proceed, enter a {93C47D}password{93C47D} below to authenticate (or register).", ReturnName(playerid));
 		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register:", str, "Confirm", "");
 	}
 	return 1;
@@ -565,13 +567,13 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 function:OnPlayerRegister(playerid)
 {
 	AccountInfo[playerid][E_MASTERS_DBID] = cache_insert_id(); 
-	format(AccountInfo[playerid][E_MASTERS_ACCNAME], 32, "%s", ReturnName(playerid)); 
+	format(AccountInfo[playerid][E_MASTERS_ACCNAME], 32, "%s", ReturnName(playerid, 1)); 
 	
 	registerTime[playerid] = 0;
 	loginTime[playerid] = 1; 
 	
 	new str[1024];
-	format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnName(playerid));
+	format(str, sizeof(str), "{ffffff}Welcome to {93C47D}Storylines{93C47D}, {FFFFFF}%s!\n\n{93C47D}Failure to authenticate three times will result in a {E03232}kick{93C47D}.\nYou have a total of {93C47D}five minutes{93C47D} to authenticate.\n\nIn order to proceed, enter a {93C47D}password{93C47D} below to authenticate (or register).", ReturnName(playerid));
 	SendInfoMessage(playerid, "You successfully registered as {d7d292}%s{cdd0d1}. You need to login to continue:", ReturnName(playerid)); 
 	return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 }
@@ -591,7 +593,7 @@ function:LoggingIn(playerid)
 		}
 		
 		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {B3C99E}Storylines{B3C99E}, {FFFFFF}%s!\n\n{B3C99E}Failure to authenticate three times will result in a {E03232}kick{B3C99E}.\nYou have a total of {B3C99E}five minutes{B3C99E} to authenticate.\n\nIn order to proceed, enter a {B3C99E}password{B3C99E} below to authenticate (or register).", ReturnName(playerid));
+		format(str, sizeof(str), "{ffffff}Welcome to {93C47D}Storylines{93C47D}, {FFFFFF}%s!\n\n{93C47D}Failure to authenticate three times will result in a {E03232}kick{93C47D}.\nYou have a total of {93C47D}five minutes{93C47D} to authenticate.\n\nIn order to proceed, enter a {93C47D}password{93C47D} below to authenticate (or register).", ReturnName(playerid));
 		return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 	}
 	
@@ -607,7 +609,7 @@ function:LoggingIn(playerid)
 	cache_get_value_name_int(0, "secret_word", AccountInfo[playerid][E_MASTERS_CODE]);
 	cache_get_value_name(0, "active_ip", ActiveIP);
 	
-	format(AccountInfo[playerid][E_MASTERS_ACCNAME], 32, "%s", ReturnName(playerid));
+	format(AccountInfo[playerid][E_MASTERS_ACCNAME], 32, "%s", ReturnName(playerid, 1));
 
 	if (AccountInfo[playerid][E_MASTERS_LOGGED] == false)
 	{
@@ -703,7 +705,7 @@ function:Query_SelectCharacter(playerid)
 	
 	if(rows)
 	{
-		mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM characters WHERE char_name = '%e'", ReturnName(playerid));
+		mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM characters WHERE char_name = '%e'", ReturnName(playerid, 1));
 		mysql_pquery(ourConnection, thread, "Query_LoadCharacter", "i", playerid);
 	}
 	return 1;
@@ -807,7 +809,7 @@ function:Query_LoadCharacter(playerid)
 	mysql_pquery(ourConnection, rquery, "Query_LoadTicket", "d", playerid);
 	
 	TogglePlayerSpectating(playerid, false);
-	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{B3C99E}PUBLIC{ffffff}\n#2\tLast Position\t{B3C99E}PUBLIC{ffffff}\n#3\tFaction Spawn\t{B3C99E}FACTION{ffffff}", "Select", "Close");
+	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{93C47D}PUBLIC{ffffff}\n#2\tLast Position\t{93C47D}PUBLIC{ffffff}\n#3\tFaction Spawn\t{93C47D}FACTION{ffffff}", "Select", "Close");
 }
 
 Dialog:Spawns(playerid, response, listitem, inputtext[])
@@ -832,7 +834,7 @@ Dialog:Spawns(playerid, response, listitem, inputtext[])
 		case 2:
 		{
 			if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
-				return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{B3C99E}PUBLIC{ffffff}\n#2\tLast Position\t{B3C99E}PUBLIC{ffffff}\n#3\tFaction Spawn\t{B3C99E}FACTION{ffffff}", "Select", "Close");
+				return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{93C47D}PUBLIC{ffffff}\n#2\tLast Position\t{93C47D}PUBLIC{ffffff}\n#3\tFaction Spawn\t{93C47D}FACTION{ffffff}", "Select", "Close");
 
 			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 2;
 			LoadCharacter(playerid);
@@ -888,10 +890,10 @@ stock LoadCharacter(playerid)
 	}	
 
 	for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
-	SendClientMessageEx(playerid, COLOR_WHITE, "Welcome to the {B3C99E}GTA Storylines{ffffff}, You logged in as {B3C99E}%s{ffffff}.", AccountInfo[playerid][E_MASTERS_ACCNAME]);
+	SendClientMessageEx(playerid, COLOR_WHITE, "Welcome to the {93C47D}GTA Storylines{ffffff}, You logged in as {93C47D}%s{ffffff}.", AccountInfo[playerid][E_MASTERS_ACCNAME]);
 	SendClientMessage(playerid, COLOR_WHITE, "The first thing we suggest you to do is to read /help or read the rules in discord server!");
 	SendClientMessage(playerid, COLOR_WHITE, "Visit us and register on our discord at sa-mp.co.id to stay updated.");
-	SendClientMessageEx(playerid, COLOR_WHITE, "[Player MOTD]: {B3C99E}%s", PLAYER_MOTD);
+	SendClientMessageEx(playerid, COLOR_WHITE, "[Player MOTD]: {93C47D}%s", PLAYER_MOTD);
 
 	if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
 	{
@@ -1749,6 +1751,69 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
+		}
+		case 54:
+		{
+			PlayerInfo[playerid][E_CHARACTER_RIGHTLEG] -= 5;
+			PlayerInfo[playerid][E_CHARACTER_LEFTLEG] -= 5;
+		}
+		case 49:
+		{
+			new rand = randomEx(20, 30);
+			PlayerInfo[playerid][E_CHARACTER_BODY] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_TORSO] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_GROIN] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_RIGHTARM] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_LEFTARM] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_RIGHTLEG] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_LEFTLEG] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_HEAD] -= rand;
+		}
+		case 51:
+		{
+			new rand = randomEx(40, 70);
+			PlayerInfo[playerid][E_CHARACTER_BODY] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_TORSO] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_GROIN] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_RIGHTARM] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_LEFTARM] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_RIGHTLEG] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_LEFTLEG] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_HEAD] -= rand;
+		}
+	}
+
+	new rand = randomEx(5, 10);
+	switch(bodypart)
+	{
+		case BODY_PART_CHEST:
+		{
+			PlayerInfo[playerid][E_CHARACTER_BODY] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_GROIN] -= rand;
+		}
+		case BODY_PART_GROIN:
+		{
+			PlayerInfo[playerid][E_CHARACTER_GROIN] -= rand;
+		}
+		case BODY_PART_LEFT_ARM:
+		{
+			PlayerInfo[playerid][E_CHARACTER_LEFTARM] -= rand;
+		}
+		case BODY_PART_RIGHT_ARM:
+		{
+			PlayerInfo[playerid][E_CHARACTER_RIGHTARM] -= rand;
+		}
+		case BODY_PART_LEFT_LEG:
+		{
+			PlayerInfo[playerid][E_CHARACTER_LEFTLEG] -= rand;
+		}
+		case BODY_PART_RIGHT_LEG:
+		{
+			PlayerInfo[playerid][E_CHARACTER_RIGHTLEG] -= rand;
+		}
+		case BODY_PART_HEAD:
+		{
+			PlayerInfo[playerid][E_CHARACTER_HEAD] -= 50;
 		}
 	}
 
@@ -3063,12 +3128,14 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			if (PlayerInfo[playerid][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID) {
 				cmd_hangup(playerid, "");
 			}
+
+			CancelSelectTextDraw(playerid);
+			HidePlayerPhone(playerid);
 			PlayerInfo[playerid][E_CHARACTER_PHONEOFF] = true;
 			SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered off their cellphone.", ReturnName(playerid));
 		}
 		else
 		{
-			HidePlayerPhone(playerid);
 			PlayerInfo[playerid][E_CHARACTER_PHONEOFF] = false;
 			SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "** %s has powered on their cellphone.", ReturnName(playerid));
 		}
@@ -3111,9 +3178,9 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
     {
         if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
 			return 0;
-		
-		HidePlayerMDC(playerid);
+
 		CancelSelectTextDraw(playerid);
+		HidePlayerMDC(playerid);
         return 1;
     }
 
@@ -3826,10 +3893,10 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		if(VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID])
 			SendClientMessageEx(playerid, COLOR_WHITE, "Welcome to your %s.", ReturnVehicleName(GetPlayerVehicleID(playerid)));
 			
-		for(new i = 0; i < sizeof dmv_vehicles; i++) if(GetPlayerVehicleID(playerid) == dmv_vehicles[i])
+		for(new i = 0; i < sizeof DMV_Vehicles; i++) if(GetPlayerVehicleID(playerid) == DMV_Vehicles[i])
 			SendTipMessage(playerid, "This vehicle is part of departement of motor vehicles. in order to start it '/licenseexam'.");
 
-		if((Jobs_vehicles[7] <= vehicleid <= Jobs_vehicles[11]))
+		if((JOBS_VEHICLES[7] <= vehicleid <= JOBS_VEHICLES[11]))
 			SendTipMessage(playerid, "This vehicle is part of dockworker job. in order to start it '/jobduty'.");
 
 		if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && IsAPolice(vehicleid))
@@ -3919,13 +3986,13 @@ public OnPlayerExitVehicle(playerid, vehicleid)
         SendServerMessage(playerid, "[Taxi] {cdd0d1}You are no longer on taxi duty!");
 	}
 
-    if(Jobs_vehicles[7] <= vehicleid <= Jobs_vehicles[11])
+    if(JOBS_VEHICLES[7] <= vehicleid <= JOBS_VEHICLES[11])
     {
         PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
         ShowBoxMessage(playerid, "~r~Dockworker job stopped.", 5); 
 		SetVehicleToRespawnEx(vehicleid);
     }   
-	else if(Jobs_vehicles[12] <= vehicleid <= Jobs_vehicles[14])
+	else if(JOBS_VEHICLES[12] <= vehicleid <= JOBS_VEHICLES[14])
     {
         PlayerInfo[playerid][E_CHARACTER_JOBSTIME] = 60;
     } 
@@ -3936,7 +4003,7 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 {
 	if(!ispassenger)
 	{
-		for(new i = 0; i < sizeof dmv_vehicles; i++) if(vehicleid == dmv_vehicles[i])
+		for(new i = 0; i < sizeof DMV_Vehicles; i++) if(vehicleid == DMV_Vehicles[i])
 		{
 			if(PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE])
 			{
@@ -4286,13 +4353,13 @@ function:Query_CreateStreetNames(playerid)
 		
 		for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
 		
-		format (string, sizeof(string), "Your new characters street name will be: {B3C99E}%s", playerCharactersStreetName[playerid]);
+		format (string, sizeof(string), "Your new characters street name will be: {93C47D}%s", playerCharactersStreetName[playerid]);
 		SendClientMessage(playerid, -1, string); 
 
 		SendClientMessage(playerid, -1, " "); 
 		SendClientMessage(playerid, -1, "The next steps will require a background for your new character.");
-		SendClientMessage(playerid, -1, "Please provide your characters date of birth. The format: {B3C99E}02/02/1960");
-		SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
+		SendClientMessage(playerid, -1, "Please provide your characters date of birth. The format: {93C47D}02/02/1960");
+		SendClientMessage(playerid, -1, "Press {93C47D}'T'{ffffff} to inputtext for character creation.");
 		playerCharacterStep[playerid] = 3; 
 	}
 	return 1;
@@ -4312,14 +4379,14 @@ function:Query_CreateCharacter(playerid)
 		
 		for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
 		
-		format (string, sizeof(string), "Your new characters name will be: {B3C99E}%s", playerCharactersName[playerid]);
+		format (string, sizeof(string), "Your new characters name will be: {93C47D}%s", playerCharactersName[playerid]);
 		SendClientMessage(playerid, -1, string); 
 
 		SendClientMessage(playerid, -1, " "); 
 		SendClientMessage(playerid, -1, "The next steps will require a creating characters street name.");
-		SendClientMessage(playerid, -1, "Please begin by typing your characters street name. i.e: {B3C99E}RayRay");
+		SendClientMessage(playerid, -1, "Please begin by typing your characters street name. i.e: {93C47D}RayRay");
 		SendClientMessage(playerid, -1, "Your characters name must be in 'Streetname' format with no numbers or special characters.");
-		SendClientMessage(playerid, -1, "Press {B3C99E}'T'{ffffff} to inputtext for character creation.");
+		SendClientMessage(playerid, -1, "Press {93C47D}'T'{ffffff} to inputtext for character creation.");
 		playerCharacterStep[playerid] = 2; 
 	}
 	return 1;
@@ -4405,7 +4472,7 @@ function:SaveCharacter(playerid)
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
 
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pBody = %d, pTorso = %d, pGroin = %d, pRightArm = %d, pLeftArm = %d, pRightLeg = %d, pLeftLeg = %d, pHeadLeg = %d, pJobs = %d, pTutorial = %d, pEXP = %d WHERE char_dbid = %i",
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pBody = %d, pTorso = %d, pGroin = %d, pRightArm = %d, pLeftArm = %d, pRightLeg = %d, pLeftLeg = %d, pHead = %d, pJobs = %d, pTutorial = %d, pEXP = %d WHERE char_dbid = %i",
 		PlayerInfo[playerid][E_CHARACTER_BODY],
 		PlayerInfo[playerid][E_CHARACTER_TORSO],
 		PlayerInfo[playerid][E_CHARACTER_GROIN],

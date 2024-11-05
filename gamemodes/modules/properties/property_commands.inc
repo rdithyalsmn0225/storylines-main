@@ -192,7 +192,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, -amount);
 			PropertyInfo[id][E_PROPERTY_CASH]+= amount; 
 			
-			SendServerMessage(playerid, "[Property] {cdd0d1}You added {B3C99E}$%s{cdd0d1} to your cashbox.", amount); 
+			SendServerMessage(playerid, "[Property] {cdd0d1}You added {93C47D}$%s{cdd0d1} to your cashbox.", amount); 
 			SaveProperty(id);
 		}
 		else if(!strcmp(pick, "take"))
@@ -206,7 +206,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, amount);
 			PropertyInfo[id][E_PROPERTY_CASH]-= amount;
 			
-			SendServerMessage(playerid, "[Property] {cdd0d1}You took {B3C99E}$%s{ffffff} from your cashbox.", amount); 
+			SendServerMessage(playerid, "[Property] {cdd0d1}You took {93C47D}$%s{ffffff} from your cashbox.", amount); 
 			SaveProperty(id); 
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 

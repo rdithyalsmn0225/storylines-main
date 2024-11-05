@@ -387,7 +387,7 @@ CMD:ajail(playerid, params[])
 	new insertLog[250];
 	
 	mysql_format(ourConnection, insertLog, sizeof(insertLog), "INSERT INTO ajail_logs (`JailedDBID`, `JailedName`, `Reason`, `Date`, `JailedBy`, `Time`) VALUES(%i, '%e', '%e', '%e', '%e', %i)",
-		PlayerInfo[playerb][E_CHARACTER_DBID], ReturnName(playerb), reason, ReturnDate(), ReturnName(playerid), length);
+		PlayerInfo[playerb][E_CHARACTER_DBID], ReturnName(playerb), reason, ReturnDate(), ReturnName(playerid, 1), length);
 		
 	mysql_pquery(ourConnection, insertLog);
 	return 1;
@@ -540,9 +540,18 @@ CMD:sethp(playerid, params[])
 		
 	if(health > 150)
 		return SendErrorMessage(playerid, "You can't set health over 150."); 
-		
+
+	PlayerInfo[playerb][E_CHARACTER_BODY] = 100;
+	PlayerInfo[playerb][E_CHARACTER_TORSO] = 100;
+	PlayerInfo[playerb][E_CHARACTER_GROIN] = 100;
+	PlayerInfo[playerb][E_CHARACTER_RIGHTARM] = 100;
+	PlayerInfo[playerb][E_CHARACTER_LEFTARM] = 100;
+	PlayerInfo[playerb][E_CHARACTER_RIGHTLEG] = 100;
+	PlayerInfo[playerb][E_CHARACTER_LEFTLEG] = 100;
+	PlayerInfo[playerb][E_CHARACTER_HEAD] = 100;
+
 	SetPlayerHealthEx(playerb, health);
-	
+
 	format(str, sizeof(str), "%s set %s's health to %d.", ReturnName(playerid), ReturnName(playerb), health);
 	SendAdminMessage(1, str);
 	return 1;
@@ -553,7 +562,7 @@ CMD:reports(playerid, params[])
 	if(!IsPlayerAdmins(playerid))
 		return 0;
 		
-	SendClientMessage(playerid, COLOR_DARKGREEN, "____________________REPORTS____________________");
+	SendClientMessage(playerid, COLOR_DARKGREEN, "|____________________ Reports ____________________|");
 		
 	for (new i = 0; i < sizeof(ReportInfo); i ++)
 	{
@@ -842,7 +851,7 @@ CMD:respawncar(playerid, params[])
 		{
 	    	if(IsValidVehicle(i) && !IsVehicleOccupied(i))
 		    {
-		        if((Jobs_vehicles[0] <= i <= Jobs_vehicles[11]) || (g_Vehicle[0] <= i <= g_Vehicle[37]))
+		        if((JOBS_VEHICLES[0] <= i <= JOBS_VEHICLES[11]) || (g_Vehicle[0] <= i <= g_Vehicle[37]))
 		        {
 	        		SetVehicleToRespawnEx(i);
 				}
@@ -858,7 +867,7 @@ CMD:respawncar(playerid, params[])
 		{
 	    	if(IsValidVehicle(i) && !IsVehicleOccupied(i))
 		    {
-		        if((LSPDVehicles[0] <= i <= LSPDVehicles[17]))
+		        if((SAPD_Vehicles[0] <= i <= SAPD_Vehicles[17]))
 		        {
 	        		SetVehicleToRespawnEx(i);
 				}
@@ -1603,7 +1612,7 @@ CMD:givemoney(playerid, params[])
 		return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
 		
 	GiveMoney(playerb, value);
-	SendInfoMessage(playerb, "You received {B3C99E}$%s{cdd0d1} from Admin {d7d292}%s{cdd0d1}.", FormatMoney(value), ReturnName(playerid));
+	SendInfoMessage(playerb, "You received {93C47D}$%s{cdd0d1} from Admin {d7d292}%s{cdd0d1}.", FormatMoney(value), ReturnName(playerid));
 
 	format(str, sizeof(str), "%s gave $%s to %s", ReturnName(playerid), FormatMoney(value), ReturnName(playerb));
 	SendAdminMessage(3, str);

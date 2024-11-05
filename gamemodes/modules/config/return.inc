@@ -129,7 +129,7 @@ stock ReturnDate()
 	return sendString;
 }
 
-ReturnName(playerid, underscore=1)
+ReturnName(playerid, underscore=0)
 {
 	static
 	    name[MAX_PLAYER_NAME + 1];

@@ -1,8 +1,8 @@
 stock IsPoliceVehicle(vehicleid)
 {
-	for(new i = 0; i < sizeof LSPDVehicles; i++)
+	for(new i = 0; i < sizeof SAPD_Vehicles; i++)
 	{
-		if(vehicleid == LSPDVehicles[i]) return 1;
+		if(vehicleid == SAPD_Vehicles[i]) return 1;
 	}	
 	return 0;
 }
@@ -23,15 +23,14 @@ function:OnPlayerAddCharge(playerid, playerb, charge[])
 function:Query_InsertFaction(playerid, varName, varAbbrev, idx)
 {
 	new insertRanks[128], str[128];
-		
+	format(FactionInfo[idx][E_FACTION_NAME], 128, "%s", varName);
+	format(FactionInfo[idx][E_FACTION_ABBREV], 32, "%s", varAbbrev); 
+
 	mysql_format(ourConnection, insertRanks, sizeof(insertRanks), "INSERT INTO faction_ranks (`factionid`) VALUES(%i)", cache_insert_id()); 
 	mysql_pquery(ourConnection, insertRanks); 
 	
 	FactionInfo[idx][E_FACTION_DBID] = cache_insert_id();
-		
-	format(FactionInfo[idx][E_FACTION_NAME], 128, "%s", varName);
-	format(FactionInfo[idx][E_FACTION_ABBREV], 32, "%s", varAbbrev); 
-		
+			
 	format(str, sizeof(str), "%s has created Faction ID %d.", ReturnName(playerid), idx);
 	SendAdminMessage(4, str);
 	
@@ -78,7 +77,7 @@ function:Query_LoadFactions()
 		else
 		{
 			new str[512];
-			format(str, sizeof(str), "[Faction Spawn Point]\n{ffffff}Available Commands: /flocker to access faction locker.");
+			format(str, sizeof(str), "[Faction Spawn Point]");
 			FactionInfo[i+1][E_FACTION_SPAWNTEXT] = CreateDynamic3DTextLabel(str, COLOR_DARKGREEN, FactionInfo[i+1][E_FACTION_SPAWN][0], FactionInfo[i+1][E_FACTION_SPAWN][1], FactionInfo[i+1][E_FACTION_SPAWN][2], 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, FactionInfo[i+1][E_FACTION_SPAWNWORLD], FactionInfo[i+1][E_FACTION_SPAWNINT]);
 		}
 		mysql_format(ourConnection, newThread, sizeof(newThread), "SELECT * FROM faction_ranks WHERE factionid = %i", i+1); 

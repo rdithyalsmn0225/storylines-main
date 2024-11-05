@@ -26,7 +26,7 @@ CMD:buybiz(playerid, params[])
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 		ShowBoxMessage(playerid, "Congratulations!~n~You're now the owner of this business!", 4);
 		
-		SendInfoMessage(playerid, "You purchased the {d7d292}%s{cdd0d1} for {B3C99E}$%s{cdd0d1}!", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]));
+		SendInfoMessage(playerid, "You purchased the {d7d292}%s{cdd0d1} for {93C47D}$%s{cdd0d1}!", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]));
 		
 		BusinessInfo[id][E_BUSINESS_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID]; 
 		GiveMoney(playerid, -BusinessInfo[id][E_BUSINESS_PRICE]); 
@@ -84,7 +84,7 @@ CMD:bizfee(playerid, params[])
 		if(amount > 1500)
 			return SendErrorMessage(playerid, "The amount can't be above $1,500.");
 			
-		SendInfoMessage(playerid, "You set your businesses entrance fee to {B3C99E}$%s{cdd0d1}.", FormatMoney(amount));
+		SendInfoMessage(playerid, "You set your businesses entrance fee to {93C47D}$%s{cdd0d1}.", FormatMoney(amount));
 		
 		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = amount;
 		SaveBusiness(id);
@@ -115,7 +115,7 @@ CMD:bizcash(playerid, params[])
 			
 		if(!strcmp(astr, "balance"))
 		{
-			SendInfoMessage(playerid, "You have {B3C99E}$%s{cdd0d1} in your businesses cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH])); 
+			SendInfoMessage(playerid, "You have {93C47D}$%s{cdd0d1} in your businesses cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH])); 
 		}
 		else if(!strcmp(astr, "deposit"))
 		{	
@@ -128,7 +128,7 @@ CMD:bizcash(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_CASH]+= amount;
 			GiveMoney(playerid, -amount);
 			
-			SendInfoMessage(playerid, "You deposited {B3C99E}$%s{cdd0d1} into your business. (Total: {B3C99E}$%s{cdd0d1})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+			SendInfoMessage(playerid, "You deposited {93C47D}$%s{cdd0d1} into your business. (Total: {93C47D}$%s{cdd0d1})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 			SaveBusiness(id); SaveCharacter(playerid);
 		}
 		else if(!strcmp(astr, "withdraw"))
@@ -142,7 +142,7 @@ CMD:bizcash(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_CASH] -= amount; 
 			GiveMoney(playerid, amount); 
 			
-			SendInfoMessage(playerid, "You withdrew {B3C99E}$%s{cdd0d1} from your business. (Total: {B3C99E}$%s{cdd0d1})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+			SendInfoMessage(playerid, "You withdrew {93C47D}$%s{cdd0d1} from your business. (Total: {93C47D}$%s{cdd0d1})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 			SaveBusiness(id); SaveCharacter(playerid);
 		}
 		else return SendErrorMessage(playerid, "Invalid Parameter.");
@@ -166,7 +166,7 @@ CMD:sellbiz(playerid, params[])
 		if(BusinessInfo[id][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
 			return SendErrorMessage(playerid, "You don't own this business."); 
 			
-		format(str, sizeof(str), "Are you sure you want to sell your business?\nYou'll earn {B3C99E}$%s{ffffff} from selling and {B3C99E}$%s{ffffff} from the cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE] / 2), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+		format(str, sizeof(str), "Are you sure you want to sell your business?\nYou'll earn {93C47D}$%s{ffffff} from selling and {93C47D}$%s{ffffff} from the cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE] / 2), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 		ConfirmDialog(playerid, "Confirmation", str, "OnSellBusiness", id); 
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business.");
@@ -360,7 +360,7 @@ CMD:editbusiness(playerid, params[])
 			
 		BusinessInfo[id][E_BUSINESS_PRICE] = price;
 		
-		SendInfoMessage(playerid, "You set business #%i's market price to {B3C99E}$%s{cdd0d1}.", id, FormatMoney(price));
+		SendInfoMessage(playerid, "You set business #%i's market price to {93C47D}$%s{cdd0d1}.", id, FormatMoney(price));
 		SaveBusiness(id);
 	}
 	else return SendErrorMessage(playerid, "Invalid Parameter.");

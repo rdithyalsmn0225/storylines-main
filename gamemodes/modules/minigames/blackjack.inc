@@ -103,7 +103,7 @@ DetermineWinner(playerid)
         new reward = playerBet[playerid] * 2;
         GiveMoney(playerid, reward);
         ResetBlackjack(playerid);
-        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You won! Your reward is {B3C99E}$%s{cdd0d1}.", FormatMoney(reward));
+        SendServerMessage(playerid, "[Blackjack] {cdd0d1}You won! Your reward is {93C47D}$%s{cdd0d1}.", FormatMoney(reward));
         return 1;
     }
     else if(blackjackDealerScore[playerid] == blackjackPlayerScore[playerid])

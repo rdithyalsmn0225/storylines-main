@@ -146,7 +146,7 @@ CMD:storepacket(playerid, params[])
 
         ServerData_Plus(INDUSTRY_DRUGS, rand);
 
-        SendServerMessage(playerid, "[Smugglers] {cdd0d1}You has stored packet and earn {B3C99E}$%s{cdd0d1}", FormatMoney(price));
+        SendServerMessage(playerid, "[Smugglers] {cdd0d1}You has stored packet and earn {93C47D}$%s{cdd0d1}", FormatMoney(price));
 
         PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
     } 
@@ -165,7 +165,7 @@ CMD:storepacket(playerid, params[])
 
         ServerData_Plus(INDUSTRY_MATERIALS, rand);
 
-        SendServerMessage(playerid, "[Smugglers] {cdd0d1}You has stored packet and earn {B3C99E}$%s{cdd0d1}", FormatMoney(price));
+        SendServerMessage(playerid, "[Smugglers] {cdd0d1}You has stored packet and earn {93C47D}$%s{cdd0d1}", FormatMoney(price));
 
         PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
     }
