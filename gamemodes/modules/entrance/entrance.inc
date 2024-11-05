@@ -25,7 +25,7 @@ function:Query_LoadEntrance()
         cache_get_value_name_int(i, "icon", EntranceInfo[i+1][E_ENTRANCE_ICON]);
 		cache_get_value_name_int(i, "garage", EntranceInfo[i+1][E_ENTRANCE_GARAGE]);
 	
-		EntranceInfo[i+1][E_ENTRANCE_PICKUP][0] = CreateDynamicObject(19198, EntranceInfo[i+1][E_ENTRANCE_POS][0], EntranceInfo[i+1][E_ENTRANCE_POS][1], EntranceInfo[i+1][E_ENTRANCE_POS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 5.0); 
+		EntranceInfo[i+1][E_ENTRANCE_PICKUP] = CreateDynamicObject(19198, EntranceInfo[i+1][E_ENTRANCE_POS][0], EntranceInfo[i+1][E_ENTRANCE_POS][1], EntranceInfo[i+1][E_ENTRANCE_POS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 5.0); 
 		EntranceInfo[i+1][E_ENTRANCE_MAPICON] = CreateDynamicMapIcon(EntranceInfo[i+1][E_ENTRANCE_POS][0], EntranceInfo[i+1][E_ENTRANCE_POS][1], EntranceInfo[i+1][E_ENTRANCE_POS][2], EntranceInfo[i+1][E_ENTRANCE_ICON], 0, -1, -1, -1, 999999.0);
 		
 		countEntrance++; 
@@ -49,13 +49,13 @@ function:OnENTEntranceChange(playerid, response, newid)
 	{
 		GetPlayerPos(playerid, EntranceInfo[newid][E_ENTRANCE_POS][0], EntranceInfo[newid][E_ENTRANCE_POS][1], EntranceInfo[newid][E_ENTRANCE_POS][2]);
 		
-		if(IsValidDynamicObject(EntranceInfo[newid][E_ENTRANCE_PICKUP][0]))
-			DestroyDynamicObject(EntranceInfo[newid][E_ENTRANCE_PICKUP][0]); 
+		if(IsValidDynamicObject(EntranceInfo[newid][E_ENTRANCE_PICKUP]))
+			DestroyDynamicObject(EntranceInfo[newid][E_ENTRANCE_PICKUP]); 
         
         if(IsValidDynamicMapIcon(EntranceInfo[newid][E_ENTRANCE_MAPICON]))
 			DestroyDynamicMapIcon(EntranceInfo[newid][E_ENTRANCE_MAPICON]); 
 
-		EntranceInfo[newid][E_ENTRANCE_PICKUP][0] = CreateDynamicObject(19198, EntranceInfo[newid][E_ENTRANCE_POS][0], EntranceInfo[newid][E_ENTRANCE_POS][1], EntranceInfo[newid][E_ENTRANCE_POS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 3.0); 
+		EntranceInfo[newid][E_ENTRANCE_PICKUP] = CreateDynamicObject(19198, EntranceInfo[newid][E_ENTRANCE_POS][0], EntranceInfo[newid][E_ENTRANCE_POS][1], EntranceInfo[newid][E_ENTRANCE_POS][2]+0.8, 0.0, 0.0, 0.0, 0, 0, -1, 3.0); 
 		EntranceInfo[newid][E_ENTRANCE_MAPICON] = CreateDynamicMapIcon(EntranceInfo[newid][E_ENTRANCE_POS][0], EntranceInfo[newid][E_ENTRANCE_POS][1], EntranceInfo[newid][E_ENTRANCE_POS][2], EntranceInfo[newid][E_ENTRANCE_ICON], 0, -1, -1, -1, 999999.0);
 		
         SaveEntrance(newid);

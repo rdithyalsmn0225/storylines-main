@@ -251,25 +251,6 @@ stock IsPlayerNearGasStation(playerid)
 	return 0;
 }
 
-stock GetClosestBusiness(playerid, type)
-{
-	new
-	    Float:fDistance[2] = {99999.0, 0.0},
-	    iIndex = -1
-	;
-	for (new i = 0; i < MAX_BUSINESS; i ++) if (BusinessInfo[i][E_BUSINESS_DBID] && BusinessInfo[i][E_BUSINESS_TYPE] == type && GetPlayerInterior(playerid) == BusinessInfo[i][E_BUSINESS_INTERIORPOSINTERIOR] && GetPlayerVirtualWorld(playerid) == BusinessInfo[i][E_BUSINESS_INTERIORPOSWORLD])
-	{
-		fDistance[1] = GetPlayerDistanceFromPoint(playerid, BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][2]);
-
-		if (fDistance[1] < fDistance[0])
-		{
-		    fDistance[0] = fDistance[1];
-		    iIndex = i;
-		}
-	}
-	return iIndex;
-}
-
 stock IsPlayerInBusiness(playerid)
 {
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ])

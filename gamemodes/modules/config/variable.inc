@@ -498,7 +498,7 @@ enum E_ENTRANCE_DATA
 	E_ENTRANCE_ICON,
 	E_ENTRANCE_MAPICON,
 	E_ENTRANCE_GARAGE,
-	E_ENTRANCE_PICKUP[2],
+	E_ENTRANCE_PICKUP,
 	Float: E_ENTRANCE_POS[3],
 	Float: E_ENTRANCE_INT[3]
 }
@@ -860,6 +860,18 @@ new DrugsDealerType[MAX_PLAYERS],
 	DrugsDealerExists[MAX_PLAYERS],
 	DrugsDealerActor[MAX_PLAYERS],
 	Float: DrugsDealerPos[MAX_PLAYERS][4];
+
+new FactionLockerPickup[3],
+	SideJobsPickup[2],
+	JobsPickup,
+	ChainsawPickup,
+	DropInjuredPickup,
+	VehicleScrapPickup,
+	ClothesPickup,
+	PrisonPickup,
+	FishFactoryPickup,
+	HairCutPickup,
+	GeneralStorePickup[5];
 
 new GarbageCount, 
 	GarbageObject[MAX_GARBAGE];

@@ -51,6 +51,7 @@ main ()  {}
 // CONFIG MODULES
 #include "modules\config\modelselections.inc"
 #include "modules\config\types.inc"
+#include "modules\config\pickup.inc"
 #include "modules\config\messages.inc"
 #include "modules\config\economy.inc"
 #include "modules\config\dialogs.inc"
@@ -189,7 +190,7 @@ public OnGameModeInit()
 	InsertASGH();
 	InsertPrison();
 	InsertObjects();
-	InsertSideJobs();
+	InsertDynamicPickup();
 	InsertASGHMaps();
 	InsertModshops();
 	InsertBlackjack();
@@ -201,10 +202,11 @@ public OnGameModeInit()
 	InsertPrisonCell();
 	InsertDealership();
 	InsertStaticArea();
+	Insert3DTextLabel();
 	InsertAcidGunLabs();
 	InsertDocksWorkers();
 	InsertDonatorStars();
-	Insert3DTextLabel();
+	InsertFactionLocker();
 	InsertSelectionMaps();
 	InsertStaticVehicles();
 	InsertProjectPropsData();

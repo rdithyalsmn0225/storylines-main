@@ -1,3 +1,10 @@
+InsertFactionLocker()
+{
+	FactionLockerPickup[0] = CreateDynamicPickup(1239, 1, 253.9264,79.1226,1003.6406, -1, -1, -1, 5.0);
+	FactionLockerPickup[1] = CreateDynamicPickup(1239, 1, 1833.1627,-1072.3607,41.6537, -1, -1, -1, 5.0);
+	FactionLockerPickup[2] = CreateDynamicPickup(1239, 1, 1269.3730,-1307.3560,1061.1392, -1, -1, -1, 5.0);
+}
+
 stock IsPoliceVehicle(vehicleid)
 {
 	for(new i = 0; i < sizeof SAPD_Vehicles; i++)
