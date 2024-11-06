@@ -541,14 +541,14 @@ CMD:sethp(playerid, params[])
 	if(health > 150)
 		return SendErrorMessage(playerid, "You can't set health over 150."); 
 
-	PlayerInfo[playerb][E_CHARACTER_BODY] = 100;
-	PlayerInfo[playerb][E_CHARACTER_TORSO] = 100;
-	PlayerInfo[playerb][E_CHARACTER_GROIN] = 100;
-	PlayerInfo[playerb][E_CHARACTER_RIGHTARM] = 100;
-	PlayerInfo[playerb][E_CHARACTER_LEFTARM] = 100;
-	PlayerInfo[playerb][E_CHARACTER_RIGHTLEG] = 100;
-	PlayerInfo[playerb][E_CHARACTER_LEFTLEG] = 100;
-	PlayerInfo[playerb][E_CHARACTER_HEAD] = 100;
+	PlayerInfo[playerb][E_CHARACTER_BODYPART][0] = 100;
+	PlayerInfo[playerb][E_CHARACTER_BODYPART][1] = 100;
+	PlayerInfo[playerb][E_CHARACTER_BODYPART][2] = 100;
+	PlayerInfo[playerb][E_CHARACTER_BODYPART][3] = 100;
+	PlayerInfo[playerb][E_CHARACTER_BODYPART][4] = 100;
+	PlayerInfo[playerb][E_CHARACTER_BODYPART][5] = 100;
+	PlayerInfo[playerb][E_CHARACTER_BODYPART][6] = 100;
+	PlayerInfo[playerb][E_CHARACTER_BODYPART][7] = 100;
 
 	SetPlayerHealthEx(playerb, health);
 

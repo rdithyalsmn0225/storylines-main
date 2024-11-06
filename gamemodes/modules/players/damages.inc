@@ -154,12 +154,14 @@ stock CallbackDamages(playerid, issuerid, bodypart, weaponid, Float:amount)
 	return 1; 
 }
 
-stock GetConditionStatus(condition)
+stock GetWoundStatus(condition)
 {
 	new str[64];
-	if (condition <= 20) str = "{FF6347}Broken";
-	else if (condition > 20 && condition <= 80) str = "{DAA650}Bleedin";
-    else if (condition > 80 && condition <= 100) str = "{93C47D}Normal";
+	if (condition == WOUND_TYPE_BROKEN) str = "{FF6347}Broken";
+	else if (condition == WOUND_TYPE_BURN) str = "{FF6347}Broken";
+	else if (condition == WOUND_TYPE_BLEED) str = "{DAA650}Bullet";
+	else if (condition == WOUND_TYPE_BLEED) str = "{DAA650}Bleedin";
+    else if (condition == WOUND_TYPE_NONE) str = "{93C47D}Normal";
     return str;
 }
 
@@ -167,67 +169,67 @@ function:ConditionTimers()
 {
 	foreach(new i : Player)
 	{
-		if(PlayerInfo[i][E_CHARACTER_BODY] <= 0)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][0] <= 0)
 		{
-			PlayerInfo[i][E_CHARACTER_BODY] = 0;
+			PlayerInfo[i][E_CHARACTER_BODYPART][0] = 0;
 		}
-		if(PlayerInfo[i][E_CHARACTER_TORSO] <= 0)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][1] <= 0)
 		{
-			PlayerInfo[i][E_CHARACTER_TORSO] = 0;
+			PlayerInfo[i][E_CHARACTER_BODYPART][1] = 0;
 		}
-		if(PlayerInfo[i][E_CHARACTER_GROIN] <= 0)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][2] <= 0)
 		{
-			PlayerInfo[i][E_CHARACTER_GROIN] = 0;
+			PlayerInfo[i][E_CHARACTER_BODYPART][2] = 0;
 		}
-		if(PlayerInfo[i][E_CHARACTER_RIGHTARM] <= 0)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][3] <= 0)
 		{
-			PlayerInfo[i][E_CHARACTER_RIGHTARM] = 0;
+			PlayerInfo[i][E_CHARACTER_BODYPART][3] = 0;
 		}
-		if(PlayerInfo[i][E_CHARACTER_LEFTARM] <= 0)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][4] <= 0)
 		{
-			PlayerInfo[i][E_CHARACTER_RIGHTLEG] = 0;
+			PlayerInfo[i][E_CHARACTER_BODYPART][5] = 0;
 		}
-		if(PlayerInfo[i][E_CHARACTER_LEFTLEG] <= 0)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][6] <= 0)
 		{
-			PlayerInfo[i][E_CHARACTER_LEFTLEG] = 0;
+			PlayerInfo[i][E_CHARACTER_BODYPART][6] = 0;
 		}
-		if(PlayerInfo[i][E_CHARACTER_HEAD] <= 0)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][7] <= 0)
 		{
-			PlayerInfo[i][E_CHARACTER_HEAD] = 0;
+			PlayerInfo[i][E_CHARACTER_BODYPART][7] = 0;
 		}
 
-		if(PlayerInfo[i][E_CHARACTER_HEAD] <= 80)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][7] <= 80)
 		{
 			SetPlayerDrunkLevel(i, 4000);
 		}
 
-		if(PlayerInfo[i][E_CHARACTER_BODY] >= 100)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][0] >= 100)
 		{
-			PlayerInfo[i][E_CHARACTER_BODY] = 100;
+			PlayerInfo[i][E_CHARACTER_BODYPART][0] = 100;
 		}
-		if(PlayerInfo[i][E_CHARACTER_TORSO] >= 100)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][1] >= 100)
 		{
-			PlayerInfo[i][E_CHARACTER_TORSO] = 100;
+			PlayerInfo[i][E_CHARACTER_BODYPART][1] = 100;
 		}
-		if(PlayerInfo[i][E_CHARACTER_GROIN] >= 100)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][2] >= 100)
 		{
-			PlayerInfo[i][E_CHARACTER_GROIN] = 100;
+			PlayerInfo[i][E_CHARACTER_BODYPART][2] = 100;
 		}
-		if(PlayerInfo[i][E_CHARACTER_RIGHTARM] >= 100)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][3] >= 100)
 		{
-			PlayerInfo[i][E_CHARACTER_RIGHTARM] = 100;
+			PlayerInfo[i][E_CHARACTER_BODYPART][3] = 100;
 		}
-		if(PlayerInfo[i][E_CHARACTER_LEFTARM] >= 100)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][4] >= 100)
 		{
-			PlayerInfo[i][E_CHARACTER_RIGHTLEG] = 100;
+			PlayerInfo[i][E_CHARACTER_BODYPART][5] = 100;
 		}
-		if(PlayerInfo[i][E_CHARACTER_LEFTLEG] >= 100)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][6] >= 100)
 		{
-			PlayerInfo[i][E_CHARACTER_LEFTLEG] = 100;
+			PlayerInfo[i][E_CHARACTER_BODYPART][6] = 100;
 		}
-		if(PlayerInfo[i][E_CHARACTER_HEAD] >= 100)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][7] >= 100)
 		{
-			PlayerInfo[i][E_CHARACTER_HEAD] = 100;
+			PlayerInfo[i][E_CHARACTER_BODYPART][7] = 100;
 		}
 	}
 	return 1;
@@ -240,23 +242,41 @@ stock ShowPlayerCondition(playerid, targetid)
 	
 	format(str2, sizeof(str2), "%s Condition", ReturnName(targetid, 0));
 
-	format(str, sizeof(str), "{93C47D}|__________ Body Part Status __________|\n");
+	format(str, sizeof(str), "{93C47D}|__________ Body Condition Status __________|\n");
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Chest\n", str);
+	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str,  PlayerInfo[targetid][E_CHARACTER_BODYPART][0]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Torso\n", str);
+	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][1]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Groin\n", str);
+	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][2]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Right Arm\n", str);
+	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][3]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Left Arm\n", str);
+	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][4]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Right Leg\n", str);
+	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][5]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Left Leg\n", str);
+	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][6]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Head\n", str);
+	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][7]);
+
+	format(str, sizeof(str), "{93C47D}|__________ Body Wound Status __________|\n");
 	format(str, sizeof(str), "%s{ffffff}Part : Chest\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str,  GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_BODY]));
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
 	format(str, sizeof(str), "%s{ffffff}Part : Torso\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_TORSO]));
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][1]));
 	format(str, sizeof(str), "%s{ffffff}Part : Groin\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_GROIN]));
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][2]));
 	format(str, sizeof(str), "%s{ffffff}Part : Right Arm\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTARM]));
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][3]));
 	format(str, sizeof(str), "%s{ffffff}Part : Left Arm\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTARM]));
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][4]));
 	format(str, sizeof(str), "%s{ffffff}Part : Right Leg\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_RIGHTLEG]));
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][5]));
 	format(str, sizeof(str), "%s{ffffff}Part : Left Leg\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_LEFTLEG]));
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][6]));
 	format(str, sizeof(str), "%s{ffffff}Part : Head\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetConditionStatus(PlayerInfo[targetid][E_CHARACTER_HEAD]));
+	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][7]));
 
 	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, str2, str, "Close", "");
 	return 1;

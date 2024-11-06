@@ -60,10 +60,16 @@ stock ClosePrisonCell(id)
     return 1;
 }
 
-CMD:opencells(playerid, params[])
+CMD:opencell(playerid, params[])
 {
 	if (!IsPlayerInRangeOfPoint(playerid, 4.0, 1256.9117,890.3147,1161.0986))
 	    return SendErrorMessage(playerid, "You aren't in los santos correctional facility.");
+
+	if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
+		return SendErrorMessage(playerid, "You aren't in any faction.");
+		
+	if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_POLICE)
+		return SendErrorMessage(playerid, "You can't use this command."); 
 
     for(new i = 0; i < MAX_PRISON_CELLS; i++)
     {   
@@ -72,10 +78,16 @@ CMD:opencells(playerid, params[])
     return 1;
 }
 
-CMD:closecells(playerid, params[])
+CMD:closecell(playerid, params[])
 {
 	if (!IsPlayerInRangeOfPoint(playerid, 4.0, 1256.9117,890.3147,1161.0986))
 	    return SendErrorMessage(playerid, "You aren't in los santos correctional facility.");
+
+	if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
+		return SendErrorMessage(playerid, "You aren't in any faction.");
+		
+	if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_POLICE)
+		return SendErrorMessage(playerid, "You can't use this command."); 
 		
     for(new i = 0; i < MAX_PRISON_CELLS; i++)
     {   

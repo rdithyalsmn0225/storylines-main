@@ -1062,14 +1062,14 @@ function:Treatments(playerid, targetid)
 			Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
 			KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
-			PlayerInfo[targetid][E_CHARACTER_BODY] = 100;
-			PlayerInfo[targetid][E_CHARACTER_TORSO] = 100;
-			PlayerInfo[targetid][E_CHARACTER_GROIN] = 100;
-			PlayerInfo[targetid][E_CHARACTER_RIGHTARM] = 100;
-			PlayerInfo[targetid][E_CHARACTER_LEFTARM] = 100;
-			PlayerInfo[targetid][E_CHARACTER_RIGHTLEG] = 100;
-			PlayerInfo[targetid][E_CHARACTER_LEFTLEG] = 100;
-			PlayerInfo[targetid][E_CHARACTER_HEAD] = 100;
+			PlayerInfo[targetid][E_CHARACTER_BODYPART][0] = 100;
+			PlayerInfo[targetid][E_CHARACTER_BODYPART][1] = 100;
+			PlayerInfo[targetid][E_CHARACTER_BODYPART][2] = 100;
+			PlayerInfo[targetid][E_CHARACTER_BODYPART][3] = 100;
+			PlayerInfo[targetid][E_CHARACTER_BODYPART][4] = 100;
+			PlayerInfo[targetid][E_CHARACTER_BODYPART][5] = 100;
+			PlayerInfo[targetid][E_CHARACTER_BODYPART][6] = 100;
+			PlayerInfo[targetid][E_CHARACTER_BODYPART][7] = 100;
 			
 			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have operating {d7d292}%s{cdd0d1}.", ReturnName(targetid));
 			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been operated by {d7d292}%s{cdd0d1}.", ReturnName(playerid));

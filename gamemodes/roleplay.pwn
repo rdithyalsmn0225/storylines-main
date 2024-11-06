@@ -764,14 +764,6 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_float(0, "pArmor", PlayerInfo[playerid][E_CHARACTER_ARMOUR]); 
 	cache_get_value_name_int(0, "pFightstyle", PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE]); 
 	cache_get_value_name_int(0, "pHasAoe", PlayerInfo[playerid][E_CHARACTER_AOE]); 
-	cache_get_value_name_int(0, "pBody", PlayerInfo[playerid][E_CHARACTER_BODY]); 
-	cache_get_value_name_int(0, "pTorso", PlayerInfo[playerid][E_CHARACTER_TORSO]); 
-	cache_get_value_name_int(0, "pGroin", PlayerInfo[playerid][E_CHARACTER_GROIN]); 
-	cache_get_value_name_int(0, "pRightArm", PlayerInfo[playerid][E_CHARACTER_RIGHTARM]); 
-	cache_get_value_name_int(0, "pLeftArm", PlayerInfo[playerid][E_CHARACTER_LEFTARM]); 
-	cache_get_value_name_int(0, "pRightLeg", PlayerInfo[playerid][E_CHARACTER_RIGHTLEG]); 
-	cache_get_value_name_int(0, "pLeftLeg", PlayerInfo[playerid][E_CHARACTER_LEFTLEG]); 
-	cache_get_value_name_int(0, "pHead", PlayerInfo[playerid][E_CHARACTER_HEAD]); 
 	cache_get_value_name_int(0, "pEXP", PlayerInfo[playerid][E_CHARACTER_EXP]); 
 	cache_get_value_name_int(0, "pJobs", PlayerInfo[playerid][E_CHARACTER_JOBS]); 
 	cache_get_value_name_int(0, "pTutorial", PlayerInfo[playerid][E_CHARACTER_TUTORIAL]); 
@@ -782,6 +774,15 @@ function:Query_LoadCharacter(playerid)
 	{
 		format(str, sizeof(str), "pRadio%i", i);
 		cache_get_value_name_int(0, str, PlayerInfo[playerid][E_CHARACTER_RADIO][i]);
+	}
+
+	for(new i = 1; i < 9; i++)
+	{
+		format(str, sizeof(str), "pBodyPart%i", i);
+		cache_get_value_name_int(0, str, PlayerInfo[playerid][E_CHARACTER_BODYPART][i]);
+
+		format(str, sizeof(str), "pWound%i", i);
+		cache_get_value_name_int(0, str, PlayerInfo[playerid][E_CHARACTER_WOUND][i]);
 	}
 	
 	for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
@@ -1106,7 +1107,6 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		{
 			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 1)
 			{
-				
 				amount = 6.0;
 			}
 			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 2)
@@ -1756,66 +1756,162 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		}
 		case 54:
 		{
-			PlayerInfo[playerid][E_CHARACTER_RIGHTLEG] -= 5;
-			PlayerInfo[playerid][E_CHARACTER_LEFTLEG] -= 5;
+			new randx = randomEx(1, 2);
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][5] -= 25;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][6] -= 25;
+
+			if(PlayerInfo[playerid][E_CHARACTER_BODYPART][5] == WOUND_TYPE_BROKEN)
+			{
+				return PlayerInfo[playerid][E_CHARACTER_BODYPART][5] = WOUND_TYPE_BROKEN;
+			}
+			
+			if(PlayerInfo[playerid][E_CHARACTER_BODYPART][6] == WOUND_TYPE_BROKEN)
+			{
+				return PlayerInfo[playerid][E_CHARACTER_BODYPART][6] = WOUND_TYPE_BROKEN;
+			}	
+
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][6] = randx;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][5] = randx;
 		}
 		case 49:
 		{
 			new rand = randomEx(20, 30);
-			PlayerInfo[playerid][E_CHARACTER_BODY] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_TORSO] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_GROIN] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_RIGHTARM] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_LEFTARM] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_RIGHTLEG] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_LEFTLEG] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_HEAD] -= rand;
+			new randx = randomEx(1, 2);
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][0] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][1] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][2] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][3] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][4] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][5] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][6] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][7] -= rand;
+
+			for(new i; i < 8; i++)
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][i] = randx;
+			}
 		}
 		case 51:
 		{
 			new rand = randomEx(40, 70);
-			PlayerInfo[playerid][E_CHARACTER_BODY] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_TORSO] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_GROIN] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_RIGHTARM] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_LEFTARM] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_RIGHTLEG] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_LEFTLEG] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_HEAD] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][0] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][1] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][2] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][3] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][4] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][5] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][6] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][7] -= rand;
+
+			for(new i; i < 8; i++)
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][i] = 4;
+			}
 		}
 	}
 
+	if(GetPlayerWeapon(issuerid) >= 21 && GetPlayerWeapon(issuerid) <= 35)
+	{
+		switch(bodypart)
+		{
+			case BODY_PART_CHEST:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][0] = WOUND_TYPE_BULLET;
+				PlayerInfo[playerid][E_CHARACTER_WOUND][1] = WOUND_TYPE_BULLET;
+			}
+			case BODY_PART_GROIN:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][2] = WOUND_TYPE_BULLET;
+			}
+			case BODY_PART_LEFT_ARM:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][4] = WOUND_TYPE_BULLET;
+			}
+			case BODY_PART_RIGHT_ARM:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][3] = WOUND_TYPE_BULLET;
+			}
+			case BODY_PART_LEFT_LEG:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][6] = WOUND_TYPE_BULLET;
+			}
+			case BODY_PART_RIGHT_LEG:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][5] = WOUND_TYPE_BULLET;
+			}
+			case BODY_PART_HEAD:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][7] = WOUND_TYPE_BULLET;
+			}
+		}
+	}
+	else
+	{
+		switch(bodypart)
+		{
+			case BODY_PART_CHEST:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][0] = WOUND_TYPE_BLEED;
+				PlayerInfo[playerid][E_CHARACTER_WOUND][1] = WOUND_TYPE_BLEED;
+			}
+			case BODY_PART_GROIN:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][2] = WOUND_TYPE_BLEED;
+			}
+			case BODY_PART_LEFT_ARM:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][4] = WOUND_TYPE_BLEED;
+			}
+			case BODY_PART_RIGHT_ARM:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][3] = WOUND_TYPE_BLEED;
+			}
+			case BODY_PART_LEFT_LEG:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][6] = WOUND_TYPE_BLEED;
+			}
+			case BODY_PART_RIGHT_LEG:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][5] = WOUND_TYPE_BLEED;
+			}
+			case BODY_PART_HEAD:
+			{
+				PlayerInfo[playerid][E_CHARACTER_WOUND][7] = WOUND_TYPE_BLEED;
+			}
+		}
+	}
+	
 	new rand = randomEx(5, 10);
 	switch(bodypart)
 	{
 		case BODY_PART_CHEST:
 		{
-			PlayerInfo[playerid][E_CHARACTER_BODY] -= rand;
-			PlayerInfo[playerid][E_CHARACTER_GROIN] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][0] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][1] -= rand;
 		}
 		case BODY_PART_GROIN:
 		{
-			PlayerInfo[playerid][E_CHARACTER_GROIN] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][2] -= rand;
 		}
 		case BODY_PART_LEFT_ARM:
 		{
-			PlayerInfo[playerid][E_CHARACTER_LEFTARM] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][4] -= rand;
 		}
 		case BODY_PART_RIGHT_ARM:
 		{
-			PlayerInfo[playerid][E_CHARACTER_RIGHTARM] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][3] -= rand;
 		}
 		case BODY_PART_LEFT_LEG:
 		{
-			PlayerInfo[playerid][E_CHARACTER_LEFTLEG] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][6] -= rand;
 		}
 		case BODY_PART_RIGHT_LEG:
 		{
-			PlayerInfo[playerid][E_CHARACTER_RIGHTLEG] -= rand;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][5] -= rand;
 		}
 		case BODY_PART_HEAD:
 		{
-			PlayerInfo[playerid][E_CHARACTER_HEAD] -= 50;
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][7] -= 50;
 		}
 	}
 
@@ -3495,6 +3591,11 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	    PlayerJump[playerid][JumpPressed] = gettime();
 	}
 
+	if(PRESSED(KEY_JUMP) && PlayerInfo[playerid][E_CHARACTER_WOUND][5] && PlayerInfo[playerid][E_CHARACTER_WOUND][6] && !PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
+	{
+	    ApplyAnimation(playerid, "ped", "fall_collapse", 4.1, 0, 1, 1, 0, 0);
+	}
+
 	//Tackle
 	if(PRESSED(KEY_FIRE))
 	{
@@ -4474,15 +4575,7 @@ function:SaveCharacter(playerid)
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
 
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pBody = %d, pTorso = %d, pGroin = %d, pRightArm = %d, pLeftArm = %d, pRightLeg = %d, pLeftLeg = %d, pHead = %d, pJobs = %d, pTutorial = %d, pEXP = %d WHERE char_dbid = %i",
-		PlayerInfo[playerid][E_CHARACTER_BODY],
-		PlayerInfo[playerid][E_CHARACTER_TORSO],
-		PlayerInfo[playerid][E_CHARACTER_GROIN],
-		PlayerInfo[playerid][E_CHARACTER_RIGHTARM],
-		PlayerInfo[playerid][E_CHARACTER_LEFTARM],
-		PlayerInfo[playerid][E_CHARACTER_RIGHTLEG],
-		PlayerInfo[playerid][E_CHARACTER_LEFTLEG],
-		PlayerInfo[playerid][E_CHARACTER_HEAD],
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pJobs = %d, pTutorial = %d, pEXP = %d WHERE char_dbid = %i",
 		PlayerInfo[playerid][E_CHARACTER_JOBS],
 		PlayerInfo[playerid][E_CHARACTER_TUTORIAL],
 		PlayerInfo[playerid][E_CHARACTER_EXP],
@@ -4494,6 +4587,17 @@ function:SaveCharacter(playerid)
 		mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pRadio%i = %i WHERE char_dbid = %i", 
 			i, 
 			PlayerInfo[playerid][E_CHARACTER_RADIO][i],
+			PlayerInfo[playerid][E_CHARACTER_DBID]);
+		mysql_pquery(ourConnection, query);
+	}
+
+	for(new i = 1; i < 9; i++)
+	{
+		mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pBodyPart%i = %i, pWound%i = %i WHERE char_dbid = %i", 
+			i, 
+			PlayerInfo[playerid][E_CHARACTER_BODYPART][i],
+			i, 
+			PlayerInfo[playerid][E_CHARACTER_WOUND][i],
 			PlayerInfo[playerid][E_CHARACTER_DBID]);
 		mysql_pquery(ourConnection, query);
 	}
