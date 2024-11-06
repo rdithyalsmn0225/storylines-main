@@ -198,9 +198,14 @@ function:ConditionTimers()
 			PlayerInfo[i][E_CHARACTER_BODYPART][7] = 0;
 		}
 
-		if(PlayerInfo[i][E_CHARACTER_BODYPART][7] <= 80)
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][7] <= 50)
 		{
 			SetPlayerDrunkLevel(i, 4000);
+		}
+
+		if(PlayerInfo[i][E_CHARACTER_BODYPART][7] >= 50)
+		{
+			SetPlayerDrunkLevel(i, 0);
 		}
 
 		if(PlayerInfo[i][E_CHARACTER_BODYPART][0] >= 100)
@@ -243,40 +248,24 @@ stock ShowPlayerCondition(playerid, targetid)
 	format(str2, sizeof(str2), "%s Condition", ReturnName(targetid, 0));
 
 	format(str, sizeof(str), "{93C47D}|__________ Body Condition Status __________|\n");
-	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Chest\n", str);
-	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str,  PlayerInfo[targetid][E_CHARACTER_BODYPART][0]);
-	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Torso\n", str);
-	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][1]);
-	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Groin\n", str);
-	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][2]);
-	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Right Arm\n", str);
-	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][3]);
-	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Left Arm\n", str);
-	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][4]);
-	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Right Leg\n", str);
-	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][5]);
-	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Left Leg\n", str);
-	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][6]);
-	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Head\n", str);
-	format(str, sizeof(str), "%s{ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][7]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Chest | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][0]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Torso | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][1]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Groin | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][2]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Right Arm | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][3]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Left Arm | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][4]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Right Leg | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][5]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Left Leg | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][6]);
+	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Head | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][7]);
 
-	format(str, sizeof(str), "{93C47D}|__________ Body Wound Status __________|\n");
-	format(str, sizeof(str), "%s{ffffff}Part : Chest\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
-	format(str, sizeof(str), "%s{ffffff}Part : Torso\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][1]));
-	format(str, sizeof(str), "%s{ffffff}Part : Groin\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][2]));
-	format(str, sizeof(str), "%s{ffffff}Part : Right Arm\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][3]));
-	format(str, sizeof(str), "%s{ffffff}Part : Left Arm\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][4]));
-	format(str, sizeof(str), "%s{ffffff}Part : Right Leg\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][5]));
-	format(str, sizeof(str), "%s{ffffff}Part : Left Leg\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][6]));
-	format(str, sizeof(str), "%s{ffffff}Part : Head\n", str);
-	format(str, sizeof(str), "%s{ffffff}Condition : %s\n", str, GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][7]));
+	format(str, sizeof(str), "%s{93C47D}|__________ Body Wound Status __________|\n", str);
+	format(str, sizeof(str), "%s{ffffff}Part : Chest - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
+	format(str, sizeof(str), "%s{ffffff}Part : Torso - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
+	format(str, sizeof(str), "%s{ffffff}Part : Groin - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
+	format(str, sizeof(str), "%s{ffffff}Part : Right Arm - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
+	format(str, sizeof(str), "%s{ffffff}Part : Left Arm - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
+	format(str, sizeof(str), "%s{ffffff}Part : Right Leg - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
+	format(str, sizeof(str), "%s{ffffff}Part : Left Leg - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
+	format(str, sizeof(str), "%s{ffffff}Part : Head - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
 
 	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, str2, str, "Close", "");
 	return 1;

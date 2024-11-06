@@ -776,7 +776,7 @@ function:Query_LoadCharacter(playerid)
 		cache_get_value_name_int(0, str, PlayerInfo[playerid][E_CHARACTER_RADIO][i]);
 	}
 
-	for(new i = 1; i < 9; i++)
+	for(new i = 1; i < 8; i++)
 	{
 		format(str, sizeof(str), "pBodyPart%i", i);
 		cache_get_value_name_int(0, str, PlayerInfo[playerid][E_CHARACTER_BODYPART][i]);
@@ -4591,7 +4591,7 @@ function:SaveCharacter(playerid)
 		mysql_pquery(ourConnection, query);
 	}
 
-	for(new i = 1; i < 9; i++)
+	for(new i = 1; i < 8; i++)
 	{
 		mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pBodyPart%i = %i, pWound%i = %i WHERE char_dbid = %i", 
 			i, 

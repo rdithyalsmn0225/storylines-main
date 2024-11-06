@@ -253,82 +253,6 @@ CMD:factionon(playerid, params[])
 }
 
 // Police commands:
-CMD:fduty(playerid, params[])
-{
-	if(!IsPlayerFaction(playerid))
-		return SendErrorMessage(playerid, "You aren't in any faction.");
-		
-	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
-		return SendErrorMessage(playerid, "You can't use this command."); 
-		
-	if(PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
-		return SendErrorMessage(playerid, "You're already on duty."); 
-
-	if(!PlayerInfo[playerid][E_CHARACTER_FACSKIN])
-		return SendErrorMessage(playerid, "You don't have faction uniform");
-		
-	if(!IsPlayerInRangeOfPoint(playerid, 5.0, FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][0], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][1], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][2]))
-		return SendErrorMessage(playerid, "You aren't near your faction spawn.");
-	
-    if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
-    {
-        SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid));
-        SendClientMessage(playerid, COLOR_FACTION, "You can use /tazer or /riotgun.");
-        
-        SetPlayerHealthEx(playerid, 100);
-        SetPlayerArmourEx(playerid, 100);
-        
-        PlayerInfo[playerid][E_CHARACTER_POLICEDUTY] = true; 
-
-        SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_FACSKIN]); 
-    }
-    if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
-    {
-        SendMedicMessage(COLOR_MEDIC, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid));
-        
-        SetPlayerHealthEx(playerid, 100);
-        SetPlayerArmourEx(playerid, 100);
-
-        PlayerInfo[playerid][E_CHARACTER_MEDICDUTY] = true; 
-
-        SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_FACSKIN]); 
-    }
-	
-	return 1;
-}
-
-CMD:offduty(playerid, params[])
-{
-	if(!IsPlayerFaction(playerid))
-		return SendErrorMessage(playerid, "You aren't in any faction.");
-		
-	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
-		return SendErrorMessage(playerid, "You can't use this command."); 
-		
-	if(!PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
-		return SendErrorMessage(playerid, "You aren't on duty."); 
-		
-	if(!IsPlayerInRangeOfPoint(playerid, 5.0, FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][0], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][1], FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_SPAWN][2]))
-		return SendErrorMessage(playerid, "You aren't near your faction spawn.");
-		
-	PlayerInfo[playerid][E_CHARACTER_POLICEDUTY] = false;
-	
-	ResetPlayerWeapons(playerid); 
-	
-	SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now Off Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid)); 
-	
-	SetPlayerArmour(playerid, 0);
-	SetPlayerHealthEx(playerid, 100); 
-	
-	SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]); 
-	
-	if(Inventory_Count(playerid, "Night Hawk"))
-	{
-		Inventory_Remove(playerid, "Night Hawk", 1);
-	}
-	Inventory_Remove(playerid, "9mm", 50);
-	return 1;
-}
 
 CMD:handcuff(playerid, params[])
 {
@@ -473,7 +397,78 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
         {
             case 0:
             {
-                cmd_fduty(playerid, "");
+				if(!IsPlayerFaction(playerid))
+					return SendErrorMessage(playerid, "You aren't in any faction.");
+					
+				if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
+					return SendErrorMessage(playerid, "You can't use this command."); 
+
+				if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+				{
+					if(!PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
+					{
+						SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid));
+						SendClientMessage(playerid, COLOR_FACTION, "You can use /tazer or /riotgun.");
+						
+						SetPlayerHealthEx(playerid, 100);
+						SetPlayerArmourEx(playerid, 100);
+						
+						PlayerInfo[playerid][E_CHARACTER_POLICEDUTY] = true; 
+
+						SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_FACSKIN]); 
+					}
+					else
+					{
+						PlayerInfo[playerid][E_CHARACTER_POLICEDUTY] = false;
+	
+						ResetPlayerWeapons(playerid); 
+						
+						SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now Off Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid)); 
+						
+						SetPlayerArmourEx(playerid, 0);
+						SetPlayerHealthEx(playerid, 100); 
+						
+						SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]); 
+						
+						if(Inventory_Count(playerid, "Night Hawk"))
+						{
+							Inventory_Remove(playerid, "Night Hawk", 1);
+						}
+						Inventory_Remove(playerid, "9mm", 50);
+					}
+				}
+				else if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+				{
+					if(!PlayerInfo[playerid][E_CHARACTER_MEDICDUTY])
+					{
+						SendMedicMessage(COLOR_MEDIC, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid));
+						
+						SetPlayerHealthEx(playerid, 100);
+						SetPlayerArmourEx(playerid, 100);
+
+						PlayerInfo[playerid][E_CHARACTER_MEDICDUTY] = true; 
+
+						SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_FACSKIN]); 
+					}
+					else
+					{
+						PlayerInfo[playerid][E_CHARACTER_MEDICDUTY] = false;
+	
+						ResetPlayerWeapons(playerid); 
+						
+						SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now Off Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid)); 
+						
+						SetPlayerArmourEx(playerid, 0);
+						SetPlayerHealthEx(playerid, 100); 
+						
+						SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]); 
+						
+						if(Inventory_Count(playerid, "Bandage"))
+						{
+							Inventory_Set(playerid, "Bandage", 17738, 0);
+						}
+					}
+				}
             }
             case 1:
             {
@@ -498,7 +493,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 						Dialog_Show(playerid, LSPDFemaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
 					}
                 }
-                if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+                else if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
                 {
 					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
@@ -985,7 +980,7 @@ CMD:treatment(playerid, params[])
 		return SendErrorMessage(playerid, "You must be close to that player!");
 
 	PlayerInfo[playerid][E_CHARACTER_TARGETID] = targetid;
-	Dialog_Show(playerid, Treatment, DIALOG_STYLE_LIST, "Treatment Menu:", "Revive\nHeal\nOperate", "Select", "Close");
+	Dialog_Show(playerid, Treatment, DIALOG_STYLE_LIST, "Treatment Menu:", "Revive Patient\nHeal Patient\nSurgery Patient", "Select", "Close");
 	return 1;
 }
 
@@ -1021,7 +1016,7 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have healing {d7d292}%s{cdd0d1}.", ReturnName(targetid));
 			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been healed by {d7d292}%s{cdd0d1}.", ReturnName(playerid));
 		}
-		if(listitem == 3)
+		if(listitem == 2)
 		{
 			new Float:x, Float:y, Float:z;
 			GetPlayerPos(targetid, x, y, z);
@@ -1062,14 +1057,11 @@ function:Treatments(playerid, targetid)
 			Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
 			KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
-			PlayerInfo[targetid][E_CHARACTER_BODYPART][0] = 100;
-			PlayerInfo[targetid][E_CHARACTER_BODYPART][1] = 100;
-			PlayerInfo[targetid][E_CHARACTER_BODYPART][2] = 100;
-			PlayerInfo[targetid][E_CHARACTER_BODYPART][3] = 100;
-			PlayerInfo[targetid][E_CHARACTER_BODYPART][4] = 100;
-			PlayerInfo[targetid][E_CHARACTER_BODYPART][5] = 100;
-			PlayerInfo[targetid][E_CHARACTER_BODYPART][6] = 100;
-			PlayerInfo[targetid][E_CHARACTER_BODYPART][7] = 100;
+			for(new i; i < 8; i++)
+			{
+				PlayerInfo[targetid][E_CHARACTER_BODYPART][i] = 100;
+				PlayerInfo[targetid][E_CHARACTER_WOUND][i] = 100;
+			}
 			
 			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have operating {d7d292}%s{cdd0d1}.", ReturnName(targetid));
 			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been operated by {d7d292}%s{cdd0d1}.", ReturnName(playerid));
