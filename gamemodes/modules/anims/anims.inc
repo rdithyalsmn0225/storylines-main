@@ -69,7 +69,8 @@ CMD:animhelp(playerid, params[])
 	SendClientMessage(playerid, COLOR_ORANGE, "/lowrider, /vlowrider, /lrtalk, /idles, /flip, /facepalm, /pistolwhip, /jogging.");
 	SendClientMessage(playerid, COLOR_ORANGE, "/cmon, /recruit, /gsign, /rap, /dj, /fuckme, /bj, /kiss, /piss, /robman.");
 	SendClientMessage(playerid, COLOR_ORANGE, "/getup, /gkick, /plunger, /swipe, /puke.");
-	SendClientMessage(playerid, COLOR_ORANGE, "/stopanim.");
+	SendTipMessage(playerid, "Search animation by ID '/anim'.");
+	SendTipMessage(playerid, "To stop animation type '/stopanim'.");
 	return 1;
 }
 

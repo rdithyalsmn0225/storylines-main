@@ -898,14 +898,6 @@ stock IsABoat(vehicleid)
 	return 0;
 }
 
-stock IsAPolice(vehicleid)
-{
-	switch (GetVehicleModel(vehicleid)) {
-		case 596, 598, 599, 597, 427: return 1;
-	}
-	return 0;
-}
-
 stock IsATrucker(vehicleid)
 {
 	switch (GetVehicleModel(vehicleid)) {

@@ -851,7 +851,7 @@ CMD:respawncar(playerid, params[])
 		{
 	    	if(IsValidVehicle(i) && !IsVehicleOccupied(i))
 		    {
-		        if((JOBS_VEHICLES[0] <= i <= JOBS_VEHICLES[11]) || (g_Vehicle[0] <= i <= g_Vehicle[37]))
+		        if((JOBS_Vehicles[0] <= i <= JOBS_Vehicles[11]) || (g_Vehicle[0] <= i <= g_Vehicle[37]))
 		        {
 	        		SetVehicleToRespawnEx(i);
 				}

@@ -14,6 +14,15 @@ stock IsPoliceVehicle(vehicleid)
 	return 0;
 }
 
+IsMedicalVehicle(carid)
+{
+	for(new v = 0; v < 8; v++)
+	{
+	    if(carid == SAMD_Vehicles[v]) return 1;
+	}
+	return 0;
+}
+
 function:OnPlayerAddCharge(playerid, playerb, charge[])
 {
 	SendPoliceMessage(COLOR_COP, "Wanted: Suspect: %s Charger: %s Reason: %s", ReturnName(playerb), ReturnName(playerid), charge);

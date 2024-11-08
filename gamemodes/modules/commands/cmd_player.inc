@@ -1256,7 +1256,7 @@ CMD:loudspeaker(playerid, params[])
 	return 1; 
 }
 
-CMD:license(playerid, params[])
+CMD:mylicense(playerid, params[])
 {
 	new
 		playerb;

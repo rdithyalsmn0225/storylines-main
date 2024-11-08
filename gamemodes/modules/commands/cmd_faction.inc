@@ -493,11 +493,12 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 						Dialog_Show(playerid, LSPDFemaleSkins, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
 					}
                 }
-                else if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+				
+                if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
                 {
 					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
-						new str[512];
+						new str[1024];
 						for(new i; i < sizeof(g_aLsmdSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLsmdSkins[i]);
@@ -506,7 +507,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 					}
 					else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
-						new str[512];
+						new str[1024];
 						for(new i; i < sizeof(g_aLsmdFemSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLsmdFemSkins[i]);
@@ -947,7 +948,6 @@ CMD:impound(playerid, params[])
 	if(!VehicleInfo[vehicleid][E_VEHICLE_DBID] && !VehicleInfo[vehicleid][E_VEHICLE_ADMIN])
 		return SendErrorMessage(playerid, "This command can only be used for private vehicles. You are in a public static vehicle."); 
 		
-	
 	if(!IsPlayerInDynamicArea(playerid, ImpoundLotArea))
 		return SendErrorMessage(playerid, "You aren't in the impound lot area."); 
 		
@@ -974,13 +974,13 @@ CMD:treatment(playerid, params[])
 
 	new targetid;
 	if(sscanf(params, "u", targetid))
-		return SendErrorMessage(playerid, "/treatment [playerid/PartOfName]");
+		return SendUsageMessage(playerid, "/treatment [playerid/PartOfName]");
 
 	if(!IsPlayerNearPlayer(playerid, targetid, 5.0) || targetid == INVALID_PLAYER_ID)
 		return SendErrorMessage(playerid, "You must be close to that player!");
 
 	PlayerInfo[playerid][E_CHARACTER_TARGETID] = targetid;
-	Dialog_Show(playerid, Treatment, DIALOG_STYLE_LIST, "Treatment Menu:", "Revive Patient\nHeal Patient\nSurgery Patient", "Select", "Close");
+	Dialog_Show(playerid, Treatment, DIALOG_STYLE_LIST, "Treatment Menu:", "Check Patient\nRevive Patient\nHeal Patient\nSurgery Patient", "Select", "Close");
 	return 1;
 }
 
@@ -991,9 +991,13 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 		new targetid = PlayerInfo[playerid][E_CHARACTER_TARGETID];
 
 		if(!IsPlayerNearPlayer(playerid, targetid, 5.0) || targetid == INVALID_PLAYER_ID)
-			return SendErrorMessage(playerid, "You must close to that player!");
+			return SendErrorMessage(playerid, "You aren't near any player.");
 
 		if(listitem == 0)
+		{
+			ShowPlayerCondition(playerid, targetid);
+		}
+		if(listitem == 1)
 		{
 			if(!PlayerInfo[targetid][E_CHARACTER_INJURED])
 				return SendErrorMessage(playerid, "That player is not in injured condition!");
@@ -1005,7 +1009,7 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have been reviving {d7d292}%s{cdd0d1}.", ReturnName(targetid));
 			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been revived by {d7d292}%s{cdd0d1}.", ReturnName(playerid));
 		}
-		if(listitem == 1)
+		if(listitem == 2)
 		{
 			new Float:hp;
 			GetPlayerHealth(targetid, hp);
@@ -1016,7 +1020,7 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have healing {d7d292}%s{cdd0d1}.", ReturnName(targetid));
 			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been healed by {d7d292}%s{cdd0d1}.", ReturnName(playerid));
 		}
-		if(listitem == 2)
+		if(listitem == 3)
 		{
 			new Float:x, Float:y, Float:z;
 			GetPlayerPos(targetid, x, y, z);
@@ -1096,7 +1100,7 @@ CMD:loadinjured(playerid, params[])
 	    return SendErrorMessage(playerid, "You must be in a Ambulance to load patient!");
 		
 	new i = GetPlayerVehicleID(playerid);
-    if(GetVehicleModel(i) == 416)
+    if(IsMedicalVehicle(i))
     {
         seatid = GetAvailableSeat(i, 2);
 

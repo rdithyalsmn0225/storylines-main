@@ -32,6 +32,7 @@
 
 //Database establisher:
 new MySQL:ourConnection; 
+new g_RaceCheck[MAX_PLAYERS char];
 
 // CONFIG HEADERS MODULES
 #include "modules\config\macro.inc"
@@ -153,7 +154,7 @@ main ()  {}
 #include "modules\commands\cmd_player.inc"
 #include "modules\commands\cmd_faction.inc"
 
-//Start of functions:
+// Start of functions:
 public OnGameModeInit()
 {
 	new MySQLOpt:ourOptions = mysql_init_options();
@@ -233,7 +234,7 @@ public OnGameModeInit()
 	SetTimer("TaxiTimers", 1000, true);
 	SetTimer("PacketTimers", 1800000, true);
 	SetTimer("GarbageTimers", 600000, true);
-	SetTimer("ConditionTimers", 60000, true);
+	SetTimer("ConditionTimers", 1000, true);
 	SetTimer("StartLottery", 1800000, false);
 
 	// Loading systems:
@@ -296,7 +297,7 @@ public OnGameModeExit()
 
 public OnPlayerConnect(playerid)
 {
-	PlayAudioStreamForPlayer(playerid, "https://j.top4top.io/m_3186mo2bk1.mp3");
+	//PlayAudioStreamForPlayer(playerid, "https://j.top4top.io/m_3186mo2bk1.mp3");
 
 	ShowClock(playerid);
 	ResetPlayer(playerid);
@@ -438,8 +439,11 @@ public OnPlayerDisconnect(playerid, reason)
 	return 1; 
 }
 
-function:LoginTimer(playerid)
+function:LoginTimer(playerid, rcc)
 {
+	if(rcc != g_RaceCheck{playerid})
+	    return Kick(playerid);
+
 	cameraIndex[playerid] = 0;
 	InterpolateCameraPos(playerid, 2467.694091, -1680.678100, 22.207088, 2470.404296, -1640.607177, 23.310541, 15000, 1);
 	InterpolateCameraLookAt(playerid, 2471.343017, -1681.534667, 20.810289, 2472.477294, -1643.914062, 22.434955, 15000, 1);
@@ -953,10 +957,11 @@ stock LoadCharacter(playerid)
 
 public OnPlayerRequestClass(playerid, classid)
 {
+	g_RaceCheck{playerid}++;
 	if (AccountInfo[playerid][E_MASTERS_LOGGED] == false)
 	{
 		TogglePlayerSpectating(playerid, true);
-		SetTimerEx("LoginTimer", 1000, false, "i", playerid);
+		SetTimerEx("LoginTimer", 1000, false, "ii", playerid, g_RaceCheck{playerid});
 		return 0;
 	}
 	else if(AccountInfo[playerid][E_MASTERS_LOGGED] == true)
@@ -1810,7 +1815,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		}
 	}
 
-	if(GetPlayerWeapon(issuerid) >= 21 && GetPlayerWeapon(issuerid) <= 35)
+	if(GetPlayerWeapon(issuerid) > 21 && GetPlayerWeapon(issuerid) < 35)
 	{
 		switch(bodypart)
 		{
@@ -3028,7 +3033,7 @@ public OnPlayerUpdate(playerid)
 		SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_ORANGE, 30.0, 2500); 
 	}
 
-	if(IsPlayerInAnyVehicle(playerid) && IsAPolice(GetPlayerVehicleID(playerid)))
+	if(IsPlayerInAnyVehicle(playerid) && IsPoliceVehicle(GetPlayerVehicleID(playerid)))
 	{
 		if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
 		{
@@ -3999,15 +4004,24 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		for(new i = 0; i < sizeof DMV_Vehicles; i++) if(GetPlayerVehicleID(playerid) == DMV_Vehicles[i])
 			SendTipMessage(playerid, "This vehicle is part of departement of motor vehicles. in order to start it '/licenseexam'.");
 
-		if((JOBS_VEHICLES[7] <= vehicleid <= JOBS_VEHICLES[11]))
+		if((JOBS_Vehicles[7] <= vehicleid <= JOBS_Vehicles[11]))
 			SendTipMessage(playerid, "This vehicle is part of dockworker job. in order to start it '/jobduty'.");
 
-		if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && IsAPolice(vehicleid))
+		if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && IsPoliceVehicle(vehicleid))
 		{
 			SetVehicleToRespawnEx(vehicleid);
 			RemovePlayerFromVehicle(playerid);
 			SendErrorMessage(playerid, "You aren't apart of police departement.");
+			return 1;
 		}
+		if(ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL && IsMedicalVehicle(vehicleid))
+		{
+			SetVehicleToRespawnEx(vehicleid);
+			RemovePlayerFromVehicle(playerid);
+			SendErrorMessage(playerid, "You aren't apart of medical departement.");
+			return 1;
+		}
+
 		if(IsABoat(vehicleid))
 		{
 			SendTipMessage(playerid, "You are now entering boat, /fish to start fishing.");
@@ -4089,13 +4103,13 @@ public OnPlayerExitVehicle(playerid, vehicleid)
         SendServerMessage(playerid, "[Taxi] {cdd0d1}You are no longer on taxi duty!");
 	}
 
-    if(JOBS_VEHICLES[7] <= vehicleid <= JOBS_VEHICLES[11])
+    if(JOBS_Vehicles[7] <= vehicleid <= JOBS_Vehicles[11])
     {
         PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
         ShowBoxMessage(playerid, "~r~Dockworker job stopped.", 5); 
 		SetVehicleToRespawnEx(vehicleid);
     }   
-	else if(JOBS_VEHICLES[12] <= vehicleid <= JOBS_VEHICLES[14])
+	else if(JOBS_Vehicles[12] <= vehicleid <= JOBS_Vehicles[14])
     {
         PlayerInfo[playerid][E_CHARACTER_JOBSTIME] = 60;
     } 

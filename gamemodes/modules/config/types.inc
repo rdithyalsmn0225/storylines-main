@@ -2,6 +2,7 @@
 #define FACTION_TYPE_ILLEGAL (1)
 #define FACTION_TYPE_POLICE (2)
 #define FACTION_TYPE_MEDICAL (3)
+#define FACTION_TYPE_NEWS (4)
 
 //Property types:
 #define PROPERTY_TYPE_HOUSE (1)
