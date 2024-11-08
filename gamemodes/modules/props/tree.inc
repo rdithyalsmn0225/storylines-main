@@ -56,7 +56,7 @@ function:Query_LoadTree()
 			cache_get_value_name_int(i, "time", TreeInfo[i][E_TREE_TIMER]);
 			Tree_Spawn(i);
 		}
-		printf("[SERVER]: %i businesses were loaded from \"%s\" database...", rows, SQL_DATABASE);
+		printf("[SERVER]: %i gates were loaded from \"%s\" database...", rows, SQL_DATABASE);
 	}
 	return 1;
 }

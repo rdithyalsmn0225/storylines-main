@@ -44,6 +44,7 @@
 #define MAX_PROPERTY 				(100)
 #define MAX_BUSINESS 				(100)
 #define MAX_BUSINESS_PRODUCTS 		(50)
+#define MAX_GATES 					(100)
 #define MAX_FACTIONS 				(30)
 #define MAX_FACTION_RANKS 			(21)
 #define MAX_PLAYER_VEHICLES 		(4)

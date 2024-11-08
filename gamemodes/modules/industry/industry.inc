@@ -47,7 +47,7 @@ stock IndustryRefresh(id)
 	return 1;
 }
 
-function:Query_ServerDataLoad()
+function:Query_LoadServerData()
 {
     static
 	    rows,

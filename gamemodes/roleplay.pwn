@@ -126,6 +126,7 @@ main ()  {}
 #include "modules\props\advertise.inc"
 #include "modules\props\props.inc"
 #include "modules\props\tree.inc"
+#include "modules\props\gate.inc"
 // DRUGS MODULES
 #include "modules\drugs\drugs.inc"
 #include "modules\drugs\drugsdealing.inc"
@@ -243,17 +244,18 @@ public OnGameModeInit()
 	mysql_pquery(ourConnection, "SELECT * FROM furniture", "Query_LoadFurniture", "i", 0);
 	mysql_pquery(ourConnection, "SELECT * FROM businesses ORDER BY BusinessDBID ASC", "Query_LoadBusinesses"); 
 	mysql_pquery(ourConnection, "SELECT * FROM entrance ORDER BY ID", "Query_LoadEntrance");
-	mysql_pquery(ourConnection, "SELECT * FROM `court`", "Query_CourtLoad", "");
+	mysql_pquery(ourConnection, "SELECT * FROM `court`", "Query_LoadCourt", "");
+	mysql_pquery(ourConnection, "SELECT * FROM `gates`", "Query_LoadGates", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `tree`", "Query_LoadTree", ""); 
-	mysql_pquery(ourConnection, "SELECT * FROM `dropped`", "Query_DroppedLoad", "");
-	mysql_pquery(ourConnection, "SELECT * FROM `spray_tags`", "Query_SpraytagsLoad", "");
-	mysql_pquery(ourConnection, "SELECT * FROM `server_data`", "Query_ServerDataLoad", "");
+	mysql_pquery(ourConnection, "SELECT * FROM `dropped`", "Query_LoadDropped", "");
+	mysql_pquery(ourConnection, "SELECT * FROM `spray_tags`", "Query_LoadSpraytags", "");
+	mysql_pquery(ourConnection, "SELECT * FROM `server_data`", "Query_LoadServerData", "");
 
 	SetWeather(1);
 
-	Times = TextDrawCreate(68.000000, 426.000000, "");
+	Times = TextDrawCreate(67.000000, 426.000000, "");
 	TextDrawFont(Times, 1);
-	TextDrawLetterSize(Times, 0.199993, 1.050000);
+	TextDrawLetterSize(Times, 0.174992, 0.949998);
 	TextDrawTextSize(Times, 400.000000, 93.500000);
 	TextDrawSetOutline(Times, 1);
 	TextDrawSetShadow(Times, 0);
@@ -754,6 +756,7 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_int(0, "pMaskID", PlayerInfo[playerid][E_CHARACTER_MASKID]);
 	cache_get_value_name_int(0, "pInProperty", PlayerInfo[playerid][E_CHARACTER_INSIDEPROP]);
 	cache_get_value_name_int(0, "pInBusiness", PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ]);
+	cache_get_value_name_int(0, "pInEntrance", PlayerInfo[playerid][E_CHARACTER_INSIDEENT]);
 	cache_get_value_name_int(0, "pMainSlot", PlayerInfo[playerid][E_CHARACTER_MAINSLOT]);
 	cache_get_value_name_int(0, "pRobberyCooldown", PlayerInfo[playerid][E_CHARACTER_ROBBERYCD]);
 	cache_get_value_name_int(0, "pSpawnPoint", PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT]);
@@ -2985,6 +2988,8 @@ public OnPlayerSpawn(playerid)
 		SelectTextDraw(playerid, COLOR_YELLOW);
 		ShowTutorial(playerid);
 	}
+
+	PlayerTextDrawShow(playerid, servername[playerid]);
 	return 1;
 }
 
@@ -3596,7 +3601,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	    PlayerJump[playerid][JumpPressed] = gettime();
 	}
 
-	if(PRESSED(KEY_JUMP) && PlayerInfo[playerid][E_CHARACTER_WOUND][5] && PlayerInfo[playerid][E_CHARACTER_WOUND][6] && !PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
+	if(PRESSED(KEY_JUMP) && PlayerInfo[playerid][E_CHARACTER_WOUND][5] == 2 || PlayerInfo[playerid][E_CHARACTER_WOUND][5] == 3 || PlayerInfo[playerid][E_CHARACTER_WOUND][6] == 2 || PlayerInfo[playerid][E_CHARACTER_WOUND][6] == 3 && !PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
 	{
 	    ApplyAnimation(playerid, "ped", "fall_collapse", 4.1, 0, 1, 1, 0, 0);
 	}
@@ -4425,6 +4430,56 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					ReloadFurniture(objectid, PropertyInfo[IsPlayerInProperty(playerid)][E_PROPERTY_LABELS]);
 				}
 			}
+			case 9:
+			{
+				if(response == EDIT_RESPONSE_FINAL)
+				{
+					new id = PlayerInfo[playerid][E_CHARACTER_OBJECTID];
+					GateInfo[id][E_GATE_POS][0] = x;
+					GateInfo[id][E_GATE_POS][1] = y;
+					GateInfo[id][E_GATE_POS][2] = z;
+					GateInfo[id][E_GATE_POS][3] = rx;
+					GateInfo[id][E_GATE_POS][4] = ry;
+					GateInfo[id][E_GATE_POS][5] = rz;
+
+					Gates_Save(id);
+					Gates_Refresh(id);
+					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
+					SendInfoMessage(playerid, "You have edited the position of gate ID: #%d.", id);
+				}
+				if(response == EDIT_RESPONSE_CANCEL)
+				{
+					new id = PlayerInfo[playerid][E_CHARACTER_OBJECTID];
+					Gates_Refresh(id);
+					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
+					SendErrorMessage(playerid, "You're no longer moved a gates."); 
+				}
+			}
+			case 10:
+			{
+				if(response == EDIT_RESPONSE_FINAL)
+				{
+					new id = PlayerInfo[playerid][E_CHARACTER_OBJECTID];
+					GateInfo[id][E_GATE_MOVE][0] = x;
+					GateInfo[id][E_GATE_MOVE][1] = y;
+					GateInfo[id][E_GATE_MOVE][2] = z;
+					GateInfo[id][E_GATE_MOVE][3] = rx;
+					GateInfo[id][E_GATE_MOVE][4] = ry;
+					GateInfo[id][E_GATE_MOVE][5] = rz;
+
+					Gates_Save(id);
+					Gates_Refresh(id);
+					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
+					SendInfoMessage(playerid, "You have edited the moving of gate ID: #%d.", id);
+				}
+				if(response == EDIT_RESPONSE_CANCEL)
+				{
+					new id = PlayerInfo[playerid][E_CHARACTER_OBJECTID];
+					Gates_Refresh(id);
+					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
+					SendErrorMessage(playerid, "You're no longer moved a gates."); 
+				}
+			}
 		}
 		
 	}
@@ -4521,7 +4576,7 @@ function:SaveCharacterPos(playerid)
 	GetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	GetPlayerArmour(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 
-	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastPosX = %f, pLastPosY = %f, pLastPosZ = %f, pLastInterior = %i, pLastWorld = %i, pInProperty = %i, pInBusiness = %i, pHasInjured = %i, pHasDeath = %i, pHealth = %f, pArmor = %f WHERE char_dbid = %i",
+	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastPosX = %f, pLastPosY = %f, pLastPosZ = %f, pLastInterior = %i, pLastWorld = %i, pInProperty = %i, pInBusiness = %i, pInEntrance = %i, pHasInjured = %i, pHasDeath = %i, pHealth = %f, pArmor = %f WHERE char_dbid = %i",
 		PlayerInfo[playerid][E_CHARACTER_LASTPOS][0],
 		PlayerInfo[playerid][E_CHARACTER_LASTPOS][1],
 		PlayerInfo[playerid][E_CHARACTER_LASTPOS][2],
@@ -4529,6 +4584,7 @@ function:SaveCharacterPos(playerid)
 		GetPlayerVirtualWorld(playerid),
 		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP],
 		PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ],
+		PlayerInfo[playerid][E_CHARACTER_INSIDEENT],
 		PlayerInfo[playerid][E_CHARACTER_INJURED],
 		PlayerInfo[playerid][E_CHARACTER_DEATH],
 		PlayerInfo[playerid][E_CHARACTER_HEALTH],

@@ -33,7 +33,7 @@ stock Court_Refresh(cid)
 	return 0;
 }
 
-function:Query_CourtLoad()
+function:Query_LoadCourt()
 {
 	if(!cache_num_rows())
 		return printf("[SERVER]: No court were loaded from \"%s\" database...", SQL_DATABASE);

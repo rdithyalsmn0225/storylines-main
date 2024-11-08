@@ -1,9 +1,9 @@
 //Textdraws
-new PlayerText:ServerName[2][MAX_PLAYERS];
+new Text:Times;
+new PlayerText:servername[MAX_PLAYERS];
 new PlayerText:VehicleName[MAX_PLAYERS];
 new PlayerText:loginscreen[3][MAX_PLAYERS];
 new PlayerText:HeaderTD[2][MAX_PLAYERS];
-new Text:Times;
 new PlayerText:Street[2][MAX_PLAYERS];
 new PlayerText:Subtitles[MAX_PLAYERS];
 new PlayerText:speedo[9][MAX_PLAYERS];
@@ -44,33 +44,19 @@ new PlayerBar:HeaderBar[MAX_PLAYERS];
 
 stock CreateTextdraws(playerid)
 {
-	ServerName[0][playerid] = CreatePlayerTextDraw(playerid, 24.000000, 438.000000, "idlestreet");
-	PlayerTextDrawFont(playerid, ServerName[0][playerid], 2);
-	PlayerTextDrawLetterSize(playerid, ServerName[0][playerid], 0.179161, 0.999997);
-	PlayerTextDrawTextSize(playerid, ServerName[0][playerid], 604.000000, 17.000000);
-	PlayerTextDrawSetOutline(playerid, ServerName[0][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, ServerName[0][playerid], 0);
-	PlayerTextDrawAlignment(playerid, ServerName[0][playerid], 1);
-	PlayerTextDrawColor(playerid, ServerName[0][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, ServerName[0][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, ServerName[0][playerid], 100);
-	PlayerTextDrawUseBox(playerid, ServerName[0][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, ServerName[0][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, ServerName[0][playerid], 0);
-
-	ServerName[1][playerid] = CreatePlayerTextDraw(playerid, 72.000000, 438.000000, "~y~Los Santos");
-	PlayerTextDrawFont(playerid, ServerName[1][playerid], 2);
-	PlayerTextDrawLetterSize(playerid, ServerName[1][playerid], 0.179161, 0.999997);
-	PlayerTextDrawTextSize(playerid, ServerName[1][playerid], 604.000000, 17.000000);
-	PlayerTextDrawSetOutline(playerid, ServerName[1][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, ServerName[1][playerid], 0);
-	PlayerTextDrawAlignment(playerid, ServerName[1][playerid], 1);
-	PlayerTextDrawColor(playerid, ServerName[1][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, ServerName[1][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, ServerName[1][playerid], 100);
-	PlayerTextDrawUseBox(playerid, ServerName[1][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, ServerName[1][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, ServerName[1][playerid], 0);
+	servername[playerid] = CreatePlayerTextDraw(playerid, 320.000000, 440.000000, "GTA Storylines - ~y~Roleplay~w~ v1.12.1");
+	PlayerTextDrawFont(playerid, servername[playerid], 1);
+	PlayerTextDrawLetterSize(playerid, servername[playerid], 0.141661, 0.749996);
+	PlayerTextDrawTextSize(playerid, servername[playerid], 502.500000, 306.500000);
+	PlayerTextDrawSetOutline(playerid, servername[playerid], 1);
+	PlayerTextDrawSetShadow(playerid, servername[playerid], 0);
+	PlayerTextDrawAlignment(playerid, servername[playerid], 2);
+	PlayerTextDrawColor(playerid, servername[playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, servername[playerid], 255);
+	PlayerTextDrawBoxColor(playerid, servername[playerid], 50);
+	PlayerTextDrawUseBox(playerid, servername[playerid], 0);
+	PlayerTextDrawSetProportional(playerid, servername[playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, servername[playerid], 0);
 
 	loginscreen[0][playerid] = CreatePlayerTextDraw(playerid, 269.000000, 93.000000, "THE");
 	PlayerTextDrawFont(playerid, loginscreen[0][playerid], 3);
@@ -526,7 +512,7 @@ CreateNotificationTextDraws(playerid)
 {
 	Subtitles[playerid] = CreatePlayerTextDraw(playerid, 321.000000, 376.000000, "~b~Ganton Binco~n~~y~This business is for sell~n~~w~Press 'ENTER' to enter business");
 	PlayerTextDrawFont(playerid, Subtitles[playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Subtitles[playerid], 0.199997, 1.249996);
+	PlayerTextDrawLetterSize(playerid, Subtitles[playerid], 0.191659, 0.999993);
 	PlayerTextDrawTextSize(playerid, Subtitles[playerid], 502.500000, 306.500000);
 	PlayerTextDrawSetOutline(playerid, Subtitles[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, Subtitles[playerid], 0);
@@ -541,9 +527,9 @@ CreateNotificationTextDraws(playerid)
 
 CreateHUDTextDraws(playerid)
 {
-	Street[0][playerid] = CreatePlayerTextDraw(playerid, 614.000000, 418.000000, "South North~n~~y~SW");
+	Street[0][playerid] = CreatePlayerTextDraw(playerid, 614.000000, 422.000000, "South North~n~~y~SW");
 	PlayerTextDrawFont(playerid, Street[0][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Street[0][playerid], 0.204160, 1.249999);
+	PlayerTextDrawLetterSize(playerid, Street[0][playerid], 0.162492, 0.799999);
 	PlayerTextDrawTextSize(playerid, Street[0][playerid], 400.000000, 93.500000);
 	PlayerTextDrawSetOutline(playerid, Street[0][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, Street[0][playerid], 0);
@@ -555,9 +541,9 @@ CreateHUDTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, Street[0][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, Street[0][playerid], 0);
 
-	Street[1][playerid] = CreatePlayerTextDraw(playerid, 556.000000, 416.000000, "Westmont Avenue~n~El Corona~n~Los Santos");
+	Street[1][playerid] = CreatePlayerTextDraw(playerid, 568.000000, 422.000000, "Westmont Avenue~n~El Corona~n~Los Santos");
 	PlayerTextDrawFont(playerid, Street[1][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Street[1][playerid], 0.199993, 1.050000);
+	PlayerTextDrawLetterSize(playerid, Street[1][playerid], 0.141658, 0.799997);
 	PlayerTextDrawTextSize(playerid, Street[1][playerid], 400.000000, 93.500000);
 	PlayerTextDrawSetOutline(playerid, Street[1][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, Street[1][playerid], 0);
@@ -718,10 +704,10 @@ CreateBarInfoTextDraws(playerid)
 
 CreateVehicleTextDraws(playerid)
 {
-	VehicleName[playerid] = CreatePlayerTextDraw(playerid, 630.000000, 402.000000, "~g~BMX");
+	VehicleName[playerid] = CreatePlayerTextDraw(playerid, 613.000000, 412.000000, "~g~BMX");
 	PlayerTextDrawFont(playerid, VehicleName[playerid], 2);
-	PlayerTextDrawLetterSize(playerid, VehicleName[playerid], 0.379164, 1.599997);
-	PlayerTextDrawTextSize(playerid, VehicleName[playerid], 400.000000, 17.000000);
+	PlayerTextDrawLetterSize(playerid, VehicleName[playerid], 0.237496, 0.949996);
+	PlayerTextDrawTextSize(playerid, VehicleName[playerid], 400.000000, 133.000000);
 	PlayerTextDrawSetOutline(playerid, VehicleName[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, VehicleName[playerid], 0);
 	PlayerTextDrawAlignment(playerid, VehicleName[playerid], 3);
@@ -1198,21 +1184,7 @@ CreateSelectFactionTextDraws(playerid)
 
 CreateALPRTextdraws(playerid)
 {
-	ALPR[0][playerid] = CreatePlayerTextDraw(playerid, 555.000000, 117.000000, "_");
-	PlayerTextDrawFont(playerid, ALPR[0][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, ALPR[0][playerid], 0.600000, 5.399999);
-	PlayerTextDrawTextSize(playerid, ALPR[0][playerid], 298.500000, 106.500000);
-	PlayerTextDrawSetOutline(playerid, ALPR[0][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, ALPR[0][playerid], 0);
-	PlayerTextDrawAlignment(playerid, ALPR[0][playerid], 2);
-	PlayerTextDrawColor(playerid, ALPR[0][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, ALPR[0][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, ALPR[0][playerid], 200);
-	PlayerTextDrawUseBox(playerid, ALPR[0][playerid], 1);
-	PlayerTextDrawSetProportional(playerid, ALPR[0][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, ALPR[0][playerid], 0);
-
-	ALPR[1][playerid] = CreatePlayerTextDraw(playerid, 552.000000, 106.000000, "~y~ALPR");
+	ALPR[1][playerid] = CreatePlayerTextDraw(playerid, 552.000000, 96.000000, "~y~ALPR");
 	PlayerTextDrawFont(playerid, ALPR[1][playerid], 2);
 	PlayerTextDrawLetterSize(playerid, ALPR[1][playerid], 0.245829, 1.550009);
 	PlayerTextDrawTextSize(playerid, ALPR[1][playerid], 400.000000, 17.000000);
@@ -1226,7 +1198,7 @@ CreateALPRTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, ALPR[1][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, ALPR[1][playerid], 0);
 
-	ALPR[2][playerid] = CreatePlayerTextDraw(playerid, 503.000000, 122.000000, "Plates: LNR-0999");
+	ALPR[2][playerid] = CreatePlayerTextDraw(playerid, 503.000000, 110.000000, "Plates: LNR-0999");
 	PlayerTextDrawFont(playerid, ALPR[2][playerid], 2);
 	PlayerTextDrawLetterSize(playerid, ALPR[2][playerid], 0.149994, 1.100008);
 	PlayerTextDrawTextSize(playerid, ALPR[2][playerid], 605.000000, 226.000000);
@@ -1240,9 +1212,9 @@ CreateALPRTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, ALPR[2][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, ALPR[2][playerid], 0);
 
-	ALPR[3][playerid] = CreatePlayerTextDraw(playerid, 503.000000, 135.000000, "Model: Sultan");
+	ALPR[3][playerid] = CreatePlayerTextDraw(playerid, 503.000000, 125.000000, "Model: Sultan");
 	PlayerTextDrawFont(playerid, ALPR[3][playerid], 2);
-	PlayerTextDrawLetterSize(playerid, ALPR[3][playerid], 0.166661, 0.950008);
+	PlayerTextDrawLetterSize(playerid, ALPR[3][playerid], 0.166657, 0.950007);
 	PlayerTextDrawTextSize(playerid, ALPR[3][playerid], 605.000000, 226.000000);
 	PlayerTextDrawSetOutline(playerid, ALPR[3][playerid], 0);
 	PlayerTextDrawSetShadow(playerid, ALPR[3][playerid], 0);
@@ -1254,9 +1226,9 @@ CreateALPRTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, ALPR[3][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, ALPR[3][playerid], 0);
 
-	ALPR[4][playerid] = CreatePlayerTextDraw(playerid, 503.000000, 147.000000, "Name: Jayvon_Williams");
+	ALPR[4][playerid] = CreatePlayerTextDraw(playerid, 503.000000, 140.000000, "Name: Jayvon_Williams");
 	PlayerTextDrawFont(playerid, ALPR[4][playerid], 2);
-	PlayerTextDrawLetterSize(playerid, ALPR[4][playerid], 0.145829, 1.000008);
+	PlayerTextDrawLetterSize(playerid, ALPR[4][playerid], 0.145829, 1.000007);
 	PlayerTextDrawTextSize(playerid, ALPR[4][playerid], 605.000000, 226.000000);
 	PlayerTextDrawSetOutline(playerid, ALPR[4][playerid], 0);
 	PlayerTextDrawSetShadow(playerid, ALPR[4][playerid], 0);

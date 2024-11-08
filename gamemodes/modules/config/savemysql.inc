@@ -325,3 +325,56 @@ stock Court_Save(cid)
 	mysql_pquery(ourConnection, query);
 	return 1;
 }
+
+stock Spraytags_Save(spid)
+{
+	new
+	    query[512];
+
+	format(query, sizeof(query), "UPDATE `spray_tags` SET `posx` = '%.4f', `posy` = '%.4f', `posz` = '%.4f', `posrx` = '%.4f', `posry` = '%.4f', `posrz` = '%.4f', `interior` = '%d', `vw` = '%d', `models` = '%d', `Type` = '%d', `Text` = '%s', `Font` = '%s', `color` = '%d', `owner` = '%d'  WHERE `id` = '%d'",
+	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][0],
+	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][1],
+	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][2],
+	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][3],
+	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][4],
+	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][5],
+	    SpraytagsInfo[spid][E_SPRAYTAGS_INTERIOR],
+	    SpraytagsInfo[spid][E_SPRAYTAGS_WORLD],
+	    SpraytagsInfo[spid][E_SPRAYTAGS_OBJECTID],
+	    SpraytagsInfo[spid][E_SPRAYTAGS_TYPE],
+        SpraytagsInfo[spid][E_SPRAYTAGS_TEXT],
+        SpraytagsInfo[spid][E_SPRAYTAGS_FONT],
+        SpraytagsInfo[spid][E_SPRAYTAGS_COLOR],
+	    SpraytagsInfo[spid][E_SPRAYTAGS_OWNER],
+	    SpraytagsInfo[spid][E_SPRAYTAGS_DBID]
+	);
+	return mysql_pquery(ourConnection, query);
+}
+
+stock Gates_Save(gid)
+{
+	new
+	    query[512];
+
+	format(query, sizeof(query), "UPDATE `gates` SET `posx` = '%.4f', `posy` = '%.4f', `posz` = '%.4f', `posrx` = '%.4f', `posry` = '%.4f', `posrz` = '%.4f', `movex` = '%.4f', `movey` = '%.4f', `movez` = '%.4f', `moverx` = '%.4f', `movery` = '%.4f', `moverz` = '%.4f', `interior` = '%d', `world` = '%d', `modelid` = '%d', `faction` = '%d', `status` = '%d' WHERE `dbid` = '%d'",
+	    GateInfo[gid][E_GATE_POS][0],
+	    GateInfo[gid][E_GATE_POS][1],
+	    GateInfo[gid][E_GATE_POS][2],
+	    GateInfo[gid][E_GATE_POS][3],
+	    GateInfo[gid][E_GATE_POS][4],
+	    GateInfo[gid][E_GATE_POS][5],
+		GateInfo[gid][E_GATE_MOVE][0],
+	    GateInfo[gid][E_GATE_MOVE][1],
+	    GateInfo[gid][E_GATE_MOVE][2],
+	    GateInfo[gid][E_GATE_MOVE][3],
+	    GateInfo[gid][E_GATE_MOVE][4],
+	    GateInfo[gid][E_GATE_MOVE][5],
+	    GateInfo[gid][E_GATE_INTERIOR],
+	    GateInfo[gid][E_GATE_WORLD],
+	    GateInfo[gid][E_GATE_MODELID],
+	    GateInfo[gid][E_GATE_FACTION],
+        GateInfo[gid][E_GATE_STATUS],
+	    GateInfo[gid][E_GATE_DBID]
+	);
+	return mysql_pquery(ourConnection, query);
+}

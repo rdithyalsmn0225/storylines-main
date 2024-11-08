@@ -303,6 +303,19 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
+	else if(!strcmp(name, "Mask"))
+	{
+		if(PlayerInfo[playerid][E_CHARACTER_MASKON])
+		{
+			PlayerInfo[playerid][E_CHARACTER_MASKON] = false;
+			SendServerMessage(playerid, "[Mask] {cdd0d1}Mask has been Disable.");
+		}
+		else
+		{
+			PlayerInfo[playerid][E_CHARACTER_MASKON] = true;
+			SendServerMessage(playerid, "[Mask] {cdd0d1}Mask has been Enable.");
+		}
+	}
 	else if(!strcmp(name, "Marijuana"))
 	{
 		IsPlayerUsingDrugs(playerid, 1);

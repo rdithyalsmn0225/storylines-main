@@ -219,7 +219,7 @@ ShowTutorial(playerid)
             PlayerTextDrawSetString(playerid, tutorialclick[playerid], "FINISH");
             PlayerTextDrawSetString(playerid, tutorialheader[playerid], "Conclusion: Part 2");
 
-            format(text, sizeof(text), "~w~We are very active on ~p~Discord~w~ and highly recommend join of ~y~https://idlestreet.xyz/discord~w~.~n~~n~");
+            format(text, sizeof(text), "~w~We are very active on ~p~Discord~w~ and highly recommend join of ~y~official discord storylines~w~.~n~~n~");
             format(text, sizeof(text), "%sHere you can vote on upcoming updates and most importantly become part of the community.~n~~n~", text);
             format(text, sizeof(text), "%sHave fun and enjoy your today!.", text);
             PlayerTextDrawSetString(playerid, tutorialtext[playerid], text);

@@ -83,32 +83,7 @@ stock Spraytags_Refresh(spid)
 	return 0;
 }
 
-stock Spraytags_Save(spid)
-{
-	new
-	    query[512];
-
-	format(query, sizeof(query), "UPDATE `spray_tags` SET `posx` = '%.4f', `posy` = '%.4f', `posz` = '%.4f', `posrx` = '%.4f', `posry` = '%.4f', `posrz` = '%.4f', `interior` = '%d', `vw` = '%d', `models` = '%d', `Type` = '%d', `Text` = '%s', `Font` = '%s', `color` = '%d', `owner` = '%d'  WHERE `id` = '%d'",
-	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][0],
-	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][1],
-	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][2],
-	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][3],
-	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][4],
-	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][5],
-	    SpraytagsInfo[spid][E_SPRAYTAGS_INTERIOR],
-	    SpraytagsInfo[spid][E_SPRAYTAGS_WORLD],
-	    SpraytagsInfo[spid][E_SPRAYTAGS_OBJECTID],
-	    SpraytagsInfo[spid][E_SPRAYTAGS_TYPE],
-        SpraytagsInfo[spid][E_SPRAYTAGS_TEXT],
-        SpraytagsInfo[spid][E_SPRAYTAGS_FONT],
-        SpraytagsInfo[spid][E_SPRAYTAGS_COLOR],
-	    SpraytagsInfo[spid][E_SPRAYTAGS_OWNER],
-	    SpraytagsInfo[spid][E_SPRAYTAGS_DBID]
-	);
-	return mysql_pquery(ourConnection, query);
-}
-
-function:Query_SpraytagsLoad()
+function:Query_LoadSpraytags()
 {
     static
 	    rows,

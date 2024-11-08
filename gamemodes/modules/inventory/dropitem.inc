@@ -45,7 +45,7 @@ stock PickupItem(playerid, itemid)
 	return 1;
 }
 
-function:Query_DroppedLoad()
+function:Query_LoadDropped()
 {
 	static
 	    rows,
