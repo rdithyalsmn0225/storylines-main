@@ -1,4 +1,5 @@
 //Faction
+#define FACTION_TYPE_NONE (0)
 #define FACTION_TYPE_ILLEGAL (1)
 #define FACTION_TYPE_POLICE (2)
 #define FACTION_TYPE_MEDICAL (3)

@@ -1284,8 +1284,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
 						{
 							SendClientMessage(playerid, COLOR_ORANGE, "/fduty, /offduty, /handcuff, /unhandcuff, /badge, /flocker, /m(egaphone), /(dep)artment,");
-							SendClientMessage(playerid, COLOR_ORANGE, "/carsign, /remove_carsign, /tazer, /take, /givelicense, /impound, /checktrunk, /searchproperty, /mdc");
-							SendClientMessage(playerid, COLOR_ORANGE, "/ticket, /charge, /opencell, /closecell, /spike, /roadblock");
+							SendClientMessage(playerid, COLOR_ORANGE, "/carsign, /remove_carsign, /tazer, /riotgun, /take, /givelicense, /impound, /checktrunk, /searchproperty, /mdc");
+							SendClientMessage(playerid, COLOR_ORANGE, "/tackle, /ticket, /charge, /opencell, /closecell, /spike, /roadblock");
 						}
 						if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
 						{

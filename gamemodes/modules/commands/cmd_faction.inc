@@ -408,8 +408,10 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 					if(!PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
 					{
 						SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid));
-						SendClientMessage(playerid, COLOR_FACTION, "You can use /tazer or /riotgun.");
-						
+						SendTipMessage(playerid, "You can use '/tazer' use an electrical current to temporarily incapacitate a person.");
+						SendTipMessage(playerid, "You can use '/riotgun' suppressing riots or apprehending suspects with minimal harm or risk.");
+						SendTipMessage(playerid, "You can use '/tackle' The player you hit will have a message flashed to them indicating that a tackle has been attempted..");
+
 						SetPlayerHealthEx(playerid, 100);
 						SetPlayerArmourEx(playerid, 100);
 						

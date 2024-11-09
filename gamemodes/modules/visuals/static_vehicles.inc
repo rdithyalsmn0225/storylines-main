@@ -52,18 +52,21 @@ InsertStaticVehicles()
 	{
 		VehicleInfo[SAPD_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
 		VehicleInfo[SAPD_Vehicles[i]][E_VEHICLE_FUEL] = 100;
+		format(VehicleInfo[SAPD_Vehicles[i]][E_VEHICLE_PLATES], 32, "SAPD");
 	}
 
 	for (new i = 0; i < 8; i ++) if (IsValidVehicle(SAMD_Vehicles[i])) 
 	{
 		VehicleInfo[SAMD_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
 		VehicleInfo[SAMD_Vehicles[i]][E_VEHICLE_FUEL] = 100;
+		format(VehicleInfo[SAMD_Vehicles[i]][E_VEHICLE_PLATES], 32, "SAMD");
 	}
 
 	for (new i = 0; i < 38; i ++) if (IsValidVehicle(g_Vehicle[i])) 
 	{
 		VehicleInfo[g_Vehicle[i]][E_VEHICLE_HEALTH] = 1000.0;
 		VehicleInfo[g_Vehicle[i]][E_VEHICLE_FUEL] = 99999;
+		format(VehicleInfo[g_Vehicle[i]][E_VEHICLE_PLATES], 32, "STATIC");
 	}
 
 	for (new i = 0; i < 15; i ++) if (IsValidVehicle(JOBS_Vehicles[i])) 
@@ -72,11 +75,13 @@ InsertStaticVehicles()
 		VehicleInfo[JOBS_Vehicles[i]][E_VEHICLE_FUEL] = 99999;
 		VehicleInfo[JOBS_Vehicles[i]][E_VEHICLE_CRATES] = 0;
 		VehicleInfo[JOBS_Vehicles[i]][E_VEHICLE_TRASHMASTER] = 0;
+		format(VehicleInfo[JOBS_Vehicles[i]][E_VEHICLE_PLATES], 32, "JOBS");
 	}
 
 	for (new i = 0; i < 4; i ++) if (IsValidVehicle(DMV_Vehicles[i])) 
 	{
 		VehicleInfo[DMV_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
 		VehicleInfo[DMV_Vehicles[i]][E_VEHICLE_FUEL] = 99999;
+		format(VehicleInfo[DMV_Vehicles[i]][E_VEHICLE_PLATES], 32, "DMV");
 	}
 }

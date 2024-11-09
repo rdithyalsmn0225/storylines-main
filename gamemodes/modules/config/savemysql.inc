@@ -329,7 +329,7 @@ stock Court_Save(cid)
 stock Spraytags_Save(spid)
 {
 	new
-	    query[512];
+	    query[1024];
 
 	format(query, sizeof(query), "UPDATE `spray_tags` SET `posx` = '%.4f', `posy` = '%.4f', `posz` = '%.4f', `posrx` = '%.4f', `posry` = '%.4f', `posrz` = '%.4f', `interior` = '%d', `vw` = '%d', `models` = '%d', `Type` = '%d', `Text` = '%s', `Font` = '%s', `color` = '%d', `owner` = '%d'  WHERE `id` = '%d'",
 	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][0],
@@ -354,7 +354,7 @@ stock Spraytags_Save(spid)
 stock Gates_Save(gid)
 {
 	new
-	    query[512];
+	    query[1024];
 
 	format(query, sizeof(query), "UPDATE `gates` SET `posx` = '%.4f', `posy` = '%.4f', `posz` = '%.4f', `posrx` = '%.4f', `posry` = '%.4f', `posrz` = '%.4f', `movex` = '%.4f', `movey` = '%.4f', `movez` = '%.4f', `moverx` = '%.4f', `movery` = '%.4f', `moverz` = '%.4f', `interior` = '%d', `world` = '%d', `modelid` = '%d', `faction` = '%d', `status` = '%d' WHERE `dbid` = '%d'",
 	    GateInfo[gid][E_GATE_POS][0],

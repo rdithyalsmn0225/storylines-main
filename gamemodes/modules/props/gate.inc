@@ -1,6 +1,6 @@
 stock IsPlayerNearGates(playerid)
 {
-    for (new i = 0; i != MAX_GATES; i ++) if (IsPlayerInRangeOfPoint(playerid, 5.0, GateInfo[i][E_GATE_POS][0], GateInfo[i][E_GATE_POS][1], GateInfo[i][E_GATE_POS][2]))
+    for (new i = 0; i != MAX_GATES; i ++) if (IsPlayerInRangeOfPoint(playerid, 10.0, GateInfo[i][E_GATE_POS][0], GateInfo[i][E_GATE_POS][1], GateInfo[i][E_GATE_POS][2]))
 	{
 		if (GetPlayerInterior(playerid) == GateInfo[i][E_GATE_INTERIOR] && GetPlayerVirtualWorld(playerid) == GateInfo[i][E_GATE_WORLD])
 			return i;
@@ -13,9 +13,12 @@ function:Query_LoadGates()
     if(!cache_num_rows())
 		return printf("[SERVER]: No gates were loaded from \"%s\" database...", SQL_DATABASE); 
 
-	new rows, field;
+	static
+	    rows,
+	    fields;
+
 	cache_get_row_count(rows);
-	cache_get_field_count(field);
+	cache_get_field_count(fields);
 
     for (new i = 0; i < rows; i ++) if (i < MAX_GATES)
 	{
@@ -40,6 +43,7 @@ function:Query_LoadGates()
         cache_get_value_name_float(i, "movery", GateInfo[i][E_GATE_MOVE][4]);
         cache_get_value_name_float(i, "moverz", GateInfo[i][E_GATE_MOVE][5]);
 
+		GateInfo[i][E_GATE_EXISTS] = true;
         Gates_Refresh(i);
     }
     printf("[SERVER]: %i gates were loaded from \"%s\" database...", rows, SQL_DATABASE);
@@ -59,19 +63,19 @@ function:CloseGate(gid, Float:fX, Float:fY, Float:fZ, Float:speed, Float:fRotX, 
 
 stock Gates_Operate(gid)
 {
-	if (gid != -1)
+	if (gid != -1 && GateInfo[gid][E_GATE_EXISTS])
 	{
 		if (!GateInfo[gid][E_GATE_STATUS])
 		{
 		    GateInfo[gid][E_GATE_STATUS] = true;
-		    MoveDynamicObject(GateInfo[gid][E_GATE_OBJECT], GateInfo[gid][E_GATE_MOVE][0], GateInfo[gid][E_GATE_MOVE][1], GateInfo[gid][E_GATE_MOVE][2], 0.003, GateInfo[gid][E_GATE_MOVE][3], GateInfo[gid][E_GATE_MOVE][4], GateInfo[gid][E_GATE_MOVE][5]);
+		    MoveDynamicObject(GateInfo[gid][E_GATE_OBJECT], GateInfo[gid][E_GATE_MOVE][0], GateInfo[gid][E_GATE_MOVE][1], GateInfo[gid][E_GATE_MOVE][2], 1.7, GateInfo[gid][E_GATE_MOVE][3], GateInfo[gid][E_GATE_MOVE][4], GateInfo[gid][E_GATE_MOVE][5]);
 
-			GateInfo[gid][E_GATE_TIMER] = SetTimerEx("CloseGate", 5000, false, "dfffffff", gid, GateInfo[gid][E_GATE_POS][0], GateInfo[gid][E_GATE_POS][1], GateInfo[gid][E_GATE_POS][2], 0.003, GateInfo[gid][E_GATE_POS][3], GateInfo[gid][E_GATE_POS][4], GateInfo[gid][E_GATE_POS][5]);
+			GateInfo[gid][E_GATE_TIMER] = SetTimerEx("CloseGate", 5000, false, "dfffffff", gid, GateInfo[gid][E_GATE_POS][0], GateInfo[gid][E_GATE_POS][1], GateInfo[gid][E_GATE_POS][2], 1.7, GateInfo[gid][E_GATE_POS][3], GateInfo[gid][E_GATE_POS][4], GateInfo[gid][E_GATE_POS][5]);
 		}
 		else if (GateInfo[gid][E_GATE_STATUS])
 		{
 		    GateInfo[gid][E_GATE_STATUS] = false;
-		    MoveDynamicObject(GateInfo[gid][E_GATE_OBJECT], GateInfo[gid][E_GATE_POS][0], GateInfo[gid][E_GATE_POS][1], GateInfo[gid][E_GATE_POS][2], 0.003, GateInfo[gid][E_GATE_POS][3], GateInfo[gid][E_GATE_POS][4], GateInfo[gid][E_GATE_POS][5]);
+		    MoveDynamicObject(GateInfo[gid][E_GATE_OBJECT], GateInfo[gid][E_GATE_POS][0], GateInfo[gid][E_GATE_POS][1], GateInfo[gid][E_GATE_POS][2], 1.7, GateInfo[gid][E_GATE_POS][3], GateInfo[gid][E_GATE_POS][4], GateInfo[gid][E_GATE_POS][5]);
             
 			KillTimer(GateInfo[gid][E_GATE_TIMER]);
 		}
@@ -81,14 +85,17 @@ stock Gates_Operate(gid)
 
 stock Gates_Refresh(id)
 {
-    if(IsValidDynamicObject(GateInfo[id][E_GATE_OBJECT]))
-        DestroyDynamicObject(GateInfo[id][E_GATE_OBJECT]);
+	if(GateInfo[id][E_GATE_EXISTS])
+	{
+		if(IsValidDynamicObject(GateInfo[id][E_GATE_OBJECT]))
+			DestroyDynamicObject(GateInfo[id][E_GATE_OBJECT]);
 
-    GateInfo[id][E_GATE_OBJECT] = CreateDynamicObject(GateInfo[id][E_GATE_MODELID], GateInfo[id][E_GATE_POS][0], GateInfo[id][E_GATE_POS][1], GateInfo[id][E_GATE_POS][2], GateInfo[id][E_GATE_POS][3], GateInfo[id][E_GATE_POS][4], GateInfo[id][E_GATE_POS][5], GateInfo[id][E_GATE_WORLD], GateInfo[id][E_GATE_INTERIOR], -1, 500.0, 500.0);
-    return 1;
+		GateInfo[id][E_GATE_OBJECT] = CreateDynamicObject(GateInfo[id][E_GATE_MODELID], GateInfo[id][E_GATE_POS][0], GateInfo[id][E_GATE_POS][1], GateInfo[id][E_GATE_POS][2], GateInfo[id][E_GATE_POS][3], GateInfo[id][E_GATE_POS][4], GateInfo[id][E_GATE_POS][5], GateInfo[id][E_GATE_WORLD], GateInfo[id][E_GATE_INTERIOR], -1, 500.0, 500.0);
+	}
+	return 1;
 }
 
-stock Gates_Create(playerid, modelid)
+stock Gates_Create(playerid)
 {
 	new
 	    Float:x,
@@ -100,52 +107,56 @@ stock Gates_Create(playerid, modelid)
 	{
 		for (new i = 0; i < MAX_GATES; i ++)
 		{
-			GateInfo[i][E_GATE_MODELID] = modelid;
-			GateInfo[i][E_GATE_STATUS] = 0;
-			GateInfo[i][E_GATE_TIMER] = 0;
+			if(!GateInfo[i][E_GATE_EXISTS])
+			{
+				GateInfo[i][E_GATE_MODELID] = 970;
+				GateInfo[i][E_GATE_STATUS] = 0;
+				GateInfo[i][E_GATE_TIMER] = 0;
 
-			GateInfo[i][E_GATE_POS][0] = x + (3.0 * floatsin(-angle, degrees));
-			GateInfo[i][E_GATE_POS][1] = y + (3.0 * floatcos(-angle, degrees));
-			GateInfo[i][E_GATE_POS][2] = z;
-			GateInfo[i][E_GATE_POS][3] = 0.0;
-			GateInfo[i][E_GATE_POS][4] = 0.0;
-			GateInfo[i][E_GATE_POS][5] = angle;
+				GateInfo[i][E_GATE_POS][0] = x + (3.0 * floatsin(-angle, degrees));
+				GateInfo[i][E_GATE_POS][1] = y + (3.0 * floatcos(-angle, degrees));
+				GateInfo[i][E_GATE_POS][2] = z;
+				GateInfo[i][E_GATE_POS][3] = 0.0;
+				GateInfo[i][E_GATE_POS][4] = 0.0;
+				GateInfo[i][E_GATE_POS][5] = angle;
 
-			GateInfo[i][E_GATE_MOVE][0] = x + (3.0 * floatsin(-angle, degrees));
-			GateInfo[i][E_GATE_MOVE][1] = y + (3.0 * floatcos(-angle, degrees));
-			GateInfo[i][E_GATE_MOVE][2] = z - 10.0;
-			GateInfo[i][E_GATE_MOVE][3] = -1000.0;
-			GateInfo[i][E_GATE_MOVE][4] = -1000.0;
-			GateInfo[i][E_GATE_MOVE][5] = -1000.0;
+				GateInfo[i][E_GATE_MOVE][0] = x + (3.0 * floatsin(-angle, degrees));
+				GateInfo[i][E_GATE_MOVE][1] = y + (3.0 * floatcos(-angle, degrees));
+				GateInfo[i][E_GATE_MOVE][2] = z - 10.0;
+				GateInfo[i][E_GATE_MOVE][3] = -1000.0;
+				GateInfo[i][E_GATE_MOVE][4] = -1000.0;
+				GateInfo[i][E_GATE_MOVE][5] = -1000.0;
 
-            GateInfo[i][E_GATE_INTERIOR] = GetPlayerInterior(playerid);
-            GateInfo[i][E_GATE_WORLD] = GetPlayerVirtualWorld(playerid);
+				GateInfo[i][E_GATE_INTERIOR] = GetPlayerInterior(playerid);
+				GateInfo[i][E_GATE_WORLD] = GetPlayerVirtualWorld(playerid);
 
-            GateInfo[i][E_GATE_FACTION] = 0;
+				GateInfo[i][E_GATE_FACTION] = -1;
+				GateInfo[i][E_GATE_EXISTS] = true;
 
-            Gates_Refresh(i);
-
-			mysql_tquery(ourConnection, "INSERT INTO `gates` (`modelid`) VALUES(%d)", "OnGateCreated", "dd", i, modelid);
-			return i;
+				Gates_Refresh(i);
+				mysql_pquery(ourConnection, "INSERT INTO `gates` (`modelid`) VALUES('970')", "OnGateCreated", "d", i);
+				return i;
+			}
 		}
 	}
 	return -1;
 }
 
-function:OnGateCreated(id, modelid)
+function:OnGateCreated(id)
 {
 	GateInfo[id][E_GATE_DBID] = cache_insert_id();
 	Gates_Save(id);
+	return 1;
 }
 
 stock Gates_Delete(gid)
 {
-	if (gid != -1)
+	if (gid != -1 && GateInfo[gid][E_GATE_EXISTS])
 	{
 		new
 		    query[64];
 
-		mysql_format(ourConnection, query, sizeof(query), "DELETE FROM `gates` WHERE `E_GATE_DBID` = '%d'", GateInfo[gid][E_GATE_DBID]);
+		mysql_format(ourConnection, query, sizeof(query), "DELETE FROM `gates` WHERE `dbid` = '%d'", GateInfo[gid][E_GATE_DBID]);
 		mysql_tquery(ourConnection, query);
 
 		if (IsValidDynamicObject(GateInfo[gid][E_GATE_OBJECT]))
@@ -155,6 +166,7 @@ stock Gates_Delete(gid)
 		    KillTimer(GateInfo[gid][E_GATE_TIMER]);
 		}
 
+		GateInfo[gid][E_GATE_EXISTS] = false;
 	    GateInfo[gid][E_GATE_DBID] = 0;
 	    GateInfo[gid][E_GATE_STATUS] = 0;
 	}
@@ -167,7 +179,7 @@ CMD:gate(playerid, params[])
 
 	if (id != -1)
 	{
-        if (GateInfo[id][E_GATE_FACTION] != -1 && PlayerInfo[playerid][E_CHARACTER_FACTION] != FactionInfo[GateInfo[id][E_GATE_FACTION]][E_FACTION_DBID])
+        if (GateInfo[id][E_GATE_FACTION] != -1 && ReturnFactionType(playerid) != GateInfo[id][E_GATE_FACTION])
             return SendUnauthMessage(playerid);
 
         Gates_Operate(id);
@@ -186,13 +198,13 @@ CMD:gate(playerid, params[])
 
 CMD:creategate(playerid, params[])
 {
-	new
+	static
 	    id = -1;
 
     if(IsPlayerAdmins(playerid) < 4)
 		return 0;
 
-	id = Gates_Create(playerid, 975);
+	id = Gates_Create(playerid);
 
 	if (id == -1)
 	    return SendErrorMessage(playerid, "You can't make anymore gates.");
@@ -229,6 +241,7 @@ CMD:editgate(playerid, params[])
 
 	if(IsPlayerAdmins(playerid) < 4)
 		return 0;
+
 	if (sscanf(params, "ds[24]S()[128]", id, type, string))
  	{
 	 	SendUsageMessage(playerid, "/editgate [gates id] [configuration]");
@@ -240,7 +253,7 @@ CMD:editgate(playerid, params[])
 
 	if (!strcmp(type, "modelid", true))
 	{
-	    static
+	    new
 	        model;
 
 		if (sscanf(string, "d", model))
@@ -275,28 +288,22 @@ CMD:editgate(playerid, params[])
 	}
 	else if (!strcmp(type, "faction", true))
 	{
-	    static
+	    new
 	        factionid = -1;
 
 		if (sscanf(string, "d", factionid))
         {
             SendUsageMessage(playerid, "/editgate [id] [faction] [factionid]");
-            SendTipMessage(playerid, "Type 0 for gates factionid to 'NONE'");
+			SendTipMessage(playerid, "1.Illegal, 2.Police, 3.Medical");
 		    return 1;
         }
 
-        if ((factionid < 0 || factionid >= MAX_FACTIONS) || (factionid != 0))
-	    	return SendErrorMessage(playerid, "You have specified an invalid faction ID.");
+       	if(!FactionInfo[factionid][E_FACTION_DBID]) return SendErrorMessage(playerid, "The faction you specified doesn't exist.");
 
-        GateInfo[id][E_GATE_FACTION] = (factionid == -1) ? (-1) : (FactionInfo[factionid][E_FACTION_DBID]);
+        GateInfo[id][E_GATE_FACTION] = factionid;
 		Gates_Save(id);
 
-		if (factionid == 0)
-			SendInfoMessage(playerid, "You are now adjusting the factionid 'NONE' of gate ID: #%d.", id);
-
-		else
-		    SendInfoMessage(playerid, "You are now adjusting the faction %s of gate ID: %d.", ReturnFactionAbbrev(factionid), id);
-
+		SendInfoMessage(playerid, "You are now adjusting the faction %s of gate ID: %d.", ReturnFactionTypeEx(factionid), id);
 		return 1;
 	}
 	return 1;

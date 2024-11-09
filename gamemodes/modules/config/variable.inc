@@ -519,6 +519,7 @@ enum E_GATE_DATA
 	E_GATE_TIMER,
 	E_GATE_FACTION,
 	E_GATE_STATUS,
+	bool: E_GATE_EXISTS,
 	Float: E_GATE_POS[6],
 	Float: E_GATE_MOVE[6]
 };
@@ -840,6 +841,7 @@ new TotalPlayerDamages[MAX_PLAYERS],
 	PlayerCheckpoint[MAX_PLAYERS],
 	PlayerPlateSaver[MAX_PLAYERS][5][20],
 	PlayerDirection[8][MAX_PLAYERS],
+	bool:PlayerEnterTimer[MAX_PLAYERS],
 	characterSkin[MAX_PLAYERS][4],
 	characterPickTime[MAX_PLAYERS],
 	characterFaction[MAX_PLAYERS][4],
@@ -885,6 +887,7 @@ new FactionLockerPickup[3],
 	PrisonPickup,
 	FishFactoryPickup,
 	HairCutPickup,
+	TicketPickup,
 	GeneralStorePickup[5];
 
 new GarbageCount, 

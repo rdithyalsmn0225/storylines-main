@@ -1070,6 +1070,10 @@ stock SetFacingPoint(actorid, Float:x, Float:y)
 
 stock SetPlayerPosEx(playerid, Float:x, Float:y, Float:z)
 {	
+	if(PlayerEnterTimer[playerid])
+		return ShowBoxMessage(playerid, "Please wait....", 3);
+		
+	PlayerEnterTimer[playerid] = true;
 	PlayerTextDrawFade(playerid, Fades[playerid], 0x000000FF, 0x00000000, fade_type_box, 50, 5, 255, 0x00000000);
 	Streamer_UpdateEx(playerid, x, y, z, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid), STREAMER_TYPE_OBJECT);
 	PauseAC(playerid);
@@ -1082,6 +1086,7 @@ stock SetPlayerPosEx(playerid, Float:x, Float:y, Float:z)
 
 function:PlayerPosTimer(playerid)
 {
+	PlayerEnterTimer[playerid] = false;
 	TogglePlayerControllable(playerid, true);
 	return 1;
 }

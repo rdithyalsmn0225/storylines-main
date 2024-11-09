@@ -5,10 +5,10 @@ enum
 };
 
 stock SetPlayerGameBar(playerid, Float: value)
-{    
-    ShowPlayerProgressBar(playerid, HeaderBar[playerid]);
+{   
     SetPlayerProgressBarColour(playerid, HeaderBar[playerid], ConvertHBEColor(value));
     SetPlayerProgressBarValue(playerid, HeaderBar[playerid], value);
+    ShowPlayerProgressBar(playerid, HeaderBar[playerid]);
     return 1;
 }
 

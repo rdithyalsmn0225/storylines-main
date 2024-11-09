@@ -142,6 +142,13 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
         return 1;	
     }
 
+    if(pickupid == TicketPickup)
+    {
+        format(str, sizeof(str), "~b~Tikcets~n~~w~Type '~y~/tickets~w~' to pay your ticket."); 
+        ShowBoxMessage(playerid, str, 5); 
+        return 1;	
+    }
+
     if(pickupid == FishFactoryPickup)
     {
         format(str, sizeof(str), "~b~Fish Factory~n~~w~Type '~y~/buybait~w~' to buy fish bait~n~~w~Type '~y~/sellfish~w~' to sell fish."); 

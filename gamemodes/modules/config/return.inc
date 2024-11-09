@@ -81,11 +81,19 @@ stock ReturnFactionNameEx(factionid)
 		format(factionName, sizeof(factionName), "Hoodrats");
 	}
 	else
-
-	format(factionName, sizeof(factionName), "%s", FactionInfo[factionid][E_FACTION_NAME]);
+		format(factionName, sizeof(factionName), "%s", FactionInfo[factionid][E_FACTION_NAME]);
 	return factionName;
 }
 
+stock ReturnFactionTypeEx(factionid)
+{
+	new factionName[90];
+	if(factionid == FACTION_TYPE_NONE) format(factionName, sizeof(factionName), "Hoodrats");
+	else if(factionid == FACTION_TYPE_ILLEGAL) format(factionName, sizeof(factionName), "Illegal");
+	else if(factionid == FACTION_TYPE_POLICE) format(factionName, sizeof(factionName), "Police");
+	else if(factionid == FACTION_TYPE_MEDICAL) format(factionName, sizeof(factionName), "Medical");
+	return factionName;
+}
 stock ReturnFactionAbbrev(factionid)
 {		
 	 new facAbbrev[90];
