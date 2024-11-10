@@ -32,6 +32,11 @@ function:BusDrivers(playerid, type)
                     KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
                     PlayerBusDriverIndex[playerid]++;
+
+                    new gstr[128];
+                    format(gstr, sizeof(gstr),"~w~Passanger Entering~n~~r~%i~w~/~g~20", PlayerBusDriverIndex[playerid]);
+                    ShowBoxMessage(playerid, gstr, 5);
+                    
                     if(PlayerBusDriverIndex[playerid] == 19)
                     {
                         GPS_SetPlayerRaceCheckPoint(playerid, 1, 1564.8461, -1235.1824, 17.4044, 0.0, 0.0, 0.0, GPS_BUSDRIVER);

@@ -142,16 +142,16 @@ main ()  {}
 #include "modules\industry\industry.inc"
 // JOBS MODULES
 #include "modules\jobs\header.inc"
-#include "modules\jobs\trucker.inc"
-#include "modules\jobs\lumberjack.inc"
-#include "modules\jobs\taxi.inc"
-#include "modules\jobs\mechanic.inc"
-#include "modules\jobs\smuggler.inc"
-#include "modules\jobs\fishing.inc"
-#include "modules\jobs\trashmaster.inc"
-#include "modules\jobs\dockworker.inc"
-#include "modules\jobs\sweepers.inc"
-#include "modules\jobs\busdriver.inc"
+#include "modules\jobs\MainJobs\trucker.inc"
+#include "modules\jobs\MainJobs\lumberjack.inc"
+#include "modules\jobs\MainJobs\taxi.inc"
+#include "modules\jobs\MainJobs\mechanic.inc"
+#include "modules\jobs\MainJobs\smuggler.inc"
+#include "modules\jobs\SideJobs\fishing.inc"
+#include "modules\jobs\SideJobs\trashmaster.inc"
+#include "modules\jobs\SideJobs\dockworker.inc"
+#include "modules\jobs\SideJobs\sweepers.inc"
+#include "modules\jobs\SideJobs\busdriver.inc"
 // COMMANDS MODULES
 #include "modules\commands\globalooc.inc"
 #include "modules\commands\cmd_admins.inc"
@@ -612,10 +612,6 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 		if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] == true && PlayerCheckpoint[playerid] == GPS_BUSDRIVER)
 		{
-			new gstr[128];
-			format(gstr, sizeof(gstr),"~w~Passanger Entering~n~~r~%i~w~/~g~20", PlayerBusDriverIndex[playerid]);
-			ShowBoxMessage(playerid, gstr, 5);
-
 			SendServerMessage(playerid, "[Bus Driver] {cdd0d1}Wait at this stop for a few seconds, The marker will disappear when ready.");
 
 			new Float:x, Float:y, Float:z;
@@ -624,7 +620,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
             PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading passenger entering process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
-	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("BusDrivers", 500, true, "ii", playerid, 0);
+	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("BusDrivers", 1500, true, "ii", playerid, 0);
 	        TogglePlayerControllable(playerid, false);
 		}
 		return 1;
