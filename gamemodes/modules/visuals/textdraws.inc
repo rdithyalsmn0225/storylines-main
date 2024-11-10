@@ -711,7 +711,7 @@ CreateVehicleTextDraws(playerid)
 	PlayerTextDrawTextSize(playerid, VehicleName[playerid], 400.000000, 133.000000);
 	PlayerTextDrawSetOutline(playerid, VehicleName[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, VehicleName[playerid], 0);
-	PlayerTextDrawAlignment(playerid, VehicleName[playerid], 3);
+	PlayerTextDrawAlignment(playerid, VehicleName[playerid], 1);
 	PlayerTextDrawColor(playerid, VehicleName[playerid], 9109759);
 	PlayerTextDrawBackgroundColor(playerid, VehicleName[playerid], 255);
 	PlayerTextDrawBoxColor(playerid, VehicleName[playerid], 50);
@@ -1112,7 +1112,7 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, SelectFaction[0][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, SelectFaction[0][playerid], 0);
 
-	SelectFactionName[playerid] = CreatePlayerTextDraw(playerid, 319.000000, 377.000000, "Los santos police departement");
+	SelectFactionName[playerid] = CreatePlayerTextDraw(playerid, 319.000000, 377.000000, "San Andreas Police Departement");
 	PlayerTextDrawFont(playerid, SelectFactionName[playerid], 0);
 	PlayerTextDrawLetterSize(playerid, SelectFactionName[playerid], 0.349999, 1.250000);
 	PlayerTextDrawTextSize(playerid, SelectFactionName[playerid], 400.000000, 146.500000);
@@ -1126,7 +1126,7 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, SelectFactionName[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, SelectFactionName[playerid], 0);
 
-	SelectFaction[1][playerid] = CreatePlayerTextDraw(playerid, 280.000000, 405.000000, "Press ~w~'~y~SELECT~w~'' to select");
+	SelectFaction[1][playerid] = CreatePlayerTextDraw(playerid, 280.000000, 405.000000, "Press ~w~'~y~SELECT~w~' to select");
 	PlayerTextDrawFont(playerid, SelectFaction[1][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, SelectFaction[1][playerid], 0.191667, 1.200000);
 	PlayerTextDrawTextSize(playerid, SelectFaction[1][playerid], 400.000000, 17.000000);
@@ -1140,7 +1140,7 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, SelectFaction[1][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, SelectFaction[1][playerid], 0);
 
-	SelectFactionClick[0][playerid] = CreatePlayerTextDraw(playerid, 239.000000, 375.000000, "ld_beat:left");
+	SelectFactionClick[0][playerid] = CreatePlayerTextDraw(playerid, 228.000000, 375.000000, "ld_beat:left");
 	PlayerTextDrawFont(playerid, SelectFactionClick[0][playerid], 4);
 	PlayerTextDrawLetterSize(playerid, SelectFactionClick[0][playerid], 0.600000, 2.000000);
 	PlayerTextDrawTextSize(playerid, SelectFactionClick[0][playerid], 17.000000, 17.000000);
@@ -1154,7 +1154,7 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, SelectFactionClick[0][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, SelectFactionClick[0][playerid], 1);
 
-	SelectFactionClick[1][playerid] = CreatePlayerTextDraw(playerid, 385.000000, 375.000000, "ld_beat:right");
+	SelectFactionClick[1][playerid] = CreatePlayerTextDraw(playerid, 395.000000, 375.000000, "ld_beat:right");
 	PlayerTextDrawFont(playerid, SelectFactionClick[1][playerid], 4);
 	PlayerTextDrawLetterSize(playerid, SelectFactionClick[1][playerid], 0.600000, 2.000000);
 	PlayerTextDrawTextSize(playerid, SelectFactionClick[1][playerid], 17.000000, 17.000000);
