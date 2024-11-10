@@ -89,6 +89,7 @@ main ()  {}
 // BUSINESS MODULES
 #include "modules\business\business.inc"
 #include "modules\business\business_commands.inc"
+#include "modules\business\business_general.inc"
 #include "modules\business\business_dmv.inc"
 #include "modules\business\business_gym.inc"
 #include "modules\business\business_clothes.inc"
@@ -149,6 +150,8 @@ main ()  {}
 #include "modules\jobs\fishing.inc"
 #include "modules\jobs\trashmaster.inc"
 #include "modules\jobs\dockworker.inc"
+#include "modules\jobs\sweepers.inc"
+#include "modules\jobs\busdriver.inc"
 // COMMANDS MODULES
 #include "modules\commands\globalooc.inc"
 #include "modules\commands\cmd_admins.inc"
@@ -206,6 +209,7 @@ public OnGameModeInit()
 	InsertStaticArea();
 	Insert3DTextLabel();
 	InsertAcidGunLabs();
+	InsertSidejobsMaps();
 	InsertDocksWorkers();
 	InsertDonatorStars();
 	InsertFactionLocker();
@@ -315,6 +319,7 @@ public OnPlayerConnect(playerid)
 	CreateVehicleTextDraws(playerid);
 	CreateBarInfoTextDraws(playerid);
 	CreateTutorialTextDraws(playerid);
+	CreateFoodOrderTextDraws(playerid);
 	CreateSpectatorTextDraws(playerid);
 	CreateNotificationTextDraws(playerid);
 	CreateSelectFactionTextDraws(playerid);
@@ -432,6 +437,27 @@ public OnPlayerDisconnect(playerid, reason)
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
     if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
 
+	if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK])
+    {
+        PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
+        ShowBoxMessage(playerid, "~r~Dockworker job stopped.", 5); 
+		DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+    }   
+
+	if(PlayerInfo[playerid][E_CHARACTER_SWEEPER])
+    {
+        PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
+        ShowBoxMessage(playerid, "~r~Street Cleaner job stopped.", 5); 
+		DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+    }   
+
+	if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER])
+    {
+        PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = false;
+        ShowBoxMessage(playerid, "~r~Bus Driver job stopped.", 5); 
+		DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+    }   
+	
 	switch(reason)
 	{
 	    case 0: SendNearbyMessage(playerid, 20.0, COLOR_DARKGREEN, "** %s has left the GTA Storylines. (Timeout)", ReturnName(playerid));
@@ -531,12 +557,84 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 				PlayerCheckpoint[playerid] = GPS_DMVFINISH;
 			}
 		}
+		if(PlayerInfo[playerid][E_CHARACTER_SWEEPER] == true && PlayerCheckpoint[playerid] == GPS_SWEEPER)
+		{
+			new gstr[128];
+			PlayerSweeperIndex[playerid]++;
+			format(gstr, sizeof(gstr),"~w~Trash Collected~n~~r~%i~w~/~g~16", PlayerSweeperIndex[playerid]);
+			ShowBoxMessage(playerid, gstr, 5);
+
+			if(PlayerSweeperIndex[playerid] == 2) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[1][0], Sweeper_Index[1][1], Sweeper_Index[1][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint2
+			else if(PlayerSweeperIndex[playerid] == 3) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[2][0], Sweeper_Index[2][1], Sweeper_Index[2][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint3
+			else if(PlayerSweeperIndex[playerid] == 4) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[3][0], Sweeper_Index[3][1], Sweeper_Index[3][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint4
+			else if(PlayerSweeperIndex[playerid] == 5) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[4][0], Sweeper_Index[4][1], Sweeper_Index[4][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint5
+			else if(PlayerSweeperIndex[playerid] == 6) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[5][0], Sweeper_Index[5][1], Sweeper_Index[5][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint6
+			else if(PlayerSweeperIndex[playerid] == 7) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[6][0], Sweeper_Index[6][1], Sweeper_Index[6][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint7
+			else if(PlayerSweeperIndex[playerid] == 8) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[7][0], Sweeper_Index[7][1], Sweeper_Index[7][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint8
+			else if(PlayerSweeperIndex[playerid] == 9) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[8][0], Sweeper_Index[8][1], Sweeper_Index[8][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint9
+			else if(PlayerSweeperIndex[playerid] == 10) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[9][0], Sweeper_Index[9][1], Sweeper_Index[9][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint10
+			else if(PlayerSweeperIndex[playerid] == 11) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[10][0], Sweeper_Index[10][1], Sweeper_Index[10][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint11
+			else if(PlayerSweeperIndex[playerid] == 12) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[11][0], Sweeper_Index[11][1], Sweeper_Index[11][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint12
+			else if(PlayerSweeperIndex[playerid] == 13) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[12][0], Sweeper_Index[12][1], Sweeper_Index[12][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint13
+			else if(PlayerSweeperIndex[playerid] == 14) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[13][0], Sweeper_Index[13][1], Sweeper_Index[13][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint14
+			else if(PlayerSweeperIndex[playerid] == 15) 
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[14][0], Sweeper_Index[14][1], Sweeper_Index[14][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint15
+
+			else if(PlayerSweeperIndex[playerid] == 16)
+			{
+				new total = (PlayerSweeperIndex[playerid] * SWEEPER_SALARY * 2);
+
+            	GiveMoney(playerid, total);
+
+				ShowBoxMessage(playerid, "~r~Street Cleaner job ended.", 5); 
+				SendServerMessage(playerid, "[Street Cleaner] {cdd0d1}You've cleaned the street, current cleaned rubbish {d7d292}%d{cdd0d1} x rubbish and earn {93C47D}$%s{cdd0d1}.", PlayerSweeperIndex[playerid], FormatMoney(total));
+
+				PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
+				PlayerSweeperIndex[playerid] = 0;
+                    
+				GPS_DisablePlayerRaceCheckPoint(playerid);
+				DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+			}
+		}
+
+		if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] == true && PlayerCheckpoint[playerid] == GPS_BUSDRIVER)
+		{
+			new gstr[128];
+			format(gstr, sizeof(gstr),"~w~Passanger Entering~n~~r~%i~w~/~g~20", PlayerBusDriverIndex[playerid]);
+			ShowBoxMessage(playerid, gstr, 5);
+
+			SendServerMessage(playerid, "[Bus Driver] {cdd0d1}Wait at this stop for a few seconds, The marker will disappear when ready.");
+
+			new Float:x, Float:y, Float:z;
+            GetPlayerPos(playerid, x, y, z);
+
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
+	        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading passenger entering process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("BusDrivers", 500, true, "ii", playerid, 0);
+	        TogglePlayerControllable(playerid, false);
+		}
+		return 1;
     }
 
 	if(PlayerCheckpoint[playerid] == GPS_NONE)
 	{
     	GPS_DisablePlayerRaceCheckPoint(playerid);
 		PlayerPlaySound(playerid, 1138, 0.0, 0.0, 0.0);
+		return 1;
 	}
     return 1;
 }
@@ -2969,13 +3067,6 @@ public OnPlayerSpawn(playerid)
 	
 	PlayerInfo[playerid][E_CHARACTER_SPAWNED] = true;
 
-	if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
-	{
-		PlayerTextDrawShow(playerid, Street[0][playerid]);
-		PlayerTextDrawShow(playerid, Street[1][playerid]);
-		p_Direction[playerid] = true;
-	}
-
 	if(!PlayerInfo[playerid][E_CHARACTER_TUTORIAL])
 	{
 		TogglePlayerSpectating(playerid, true);
@@ -3043,6 +3134,22 @@ public OnPlayerUpdate(playerid)
 		if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
 		{
 			DetectVehicleInFront(playerid);
+		}
+	}
+
+	if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
+	{
+		if(IsPlayerInAnyVehicle(playerid))
+		{
+			PlayerTextDrawShow(playerid, Street[0][playerid]);
+			PlayerTextDrawShow(playerid, Street[1][playerid]);
+			p_Direction[playerid] = true;
+		}
+		else
+		{
+			PlayerTextDrawHide(playerid, Street[0][playerid]);
+			PlayerTextDrawHide(playerid, Street[1][playerid]);
+			p_Direction[playerid] = false;
 		}
 	}
 
@@ -3289,6 +3396,89 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 
 		CancelSelectTextDraw(playerid);
 		HidePlayerMDC(playerid);
+        return 1;
+    }
+
+	//Business Dinners
+	if (playertextid == FoodOrder[2][playerid])
+    {
+		new businessid = IsPlayerInBusiness(playerid);
+		if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		{
+			SendErrorMessage(playerid, "You can't afford a buster meals.");
+			return 1;
+		}
+
+		SendServerMessage(playerid, "[Business] {cdd0d1}You bought buster meals and eat it");
+		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
+
+		new Float:health;
+		GetPlayerHealth(playerid, health);
+		SetPlayerHealthEx(playerid, health+10.0);
+		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
+
+		for(new i; i < 10; i++)
+		{
+			PlayerTextDrawHide(playerid, FoodOrder[i][playerid]);
+		}
+		CancelSelectTextDraw(playerid);
+        return 1;
+    }
+	if (playertextid == FoodOrder[3][playerid])
+    {
+		new businessid = IsPlayerInBusiness(playerid);
+		if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		{
+			SendErrorMessage(playerid, "You can't afford a duoble d-luxe meals.");
+			return 1;
+		}
+
+		SendServerMessage(playerid, "[Business] {cdd0d1}You bought duoble d-luxe meals and eat it");
+		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
+
+		new Float:health;
+		GetPlayerHealth(playerid, health);
+		SetPlayerHealthEx(playerid, health+15.0);
+		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
+
+		for(new i; i < 10; i++)
+		{
+			PlayerTextDrawHide(playerid, FoodOrder[i][playerid]);
+		}
+		CancelSelectTextDraw(playerid);
+        return 1;
+    }
+	if (playertextid == FoodOrder[4][playerid])
+    {
+		new businessid = IsPlayerInBusiness(playerid);
+		if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		{
+			SendErrorMessage(playerid, "You can't afford a duoble d-luxe meals.");
+			return 1;
+		}
+
+		SendServerMessage(playerid, "[Business] {cdd0d1}You bought duoble d-luxe meals and eat it");
+		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
+
+		new Float:health;
+		GetPlayerHealth(playerid, health);
+		SetPlayerHealthEx(playerid, health+20.0);
+		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
+
+		for(new i; i < 10; i++)
+		{
+			PlayerTextDrawHide(playerid, FoodOrder[i][playerid]);
+		}
+		CancelSelectTextDraw(playerid);
+        return 1;
+    }
+	if (playertextid == FoodOrder[9][playerid])
+    {
+		for(new i; i < 10; i++)
+		{
+			PlayerTextDrawHide(playerid, FoodOrder[i][playerid]);
+		}
+		CancelSelectTextDraw(playerid);
         return 1;
     }
 
@@ -4108,16 +4298,29 @@ public OnPlayerExitVehicle(playerid, vehicleid)
         SendServerMessage(playerid, "[Taxi] {cdd0d1}You are no longer on taxi duty!");
 	}
 
-    if(JOBS_Vehicles[7] <= vehicleid <= JOBS_Vehicles[11])
+    if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK])
     {
         PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
         ShowBoxMessage(playerid, "~r~Dockworker job stopped.", 5); 
-		SetVehicleToRespawnEx(vehicleid);
+		DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+		GPS_DisablePlayerRaceCheckPoint(playerid);
     }   
-	else if(JOBS_Vehicles[12] <= vehicleid <= JOBS_Vehicles[14])
+
+	if(PlayerInfo[playerid][E_CHARACTER_SWEEPER])
     {
-        PlayerInfo[playerid][E_CHARACTER_JOBSTIME] = 60;
-    } 
+        PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
+        ShowBoxMessage(playerid, "~r~Street Cleaner job stopped.", 5); 
+		DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+		GPS_DisablePlayerRaceCheckPoint(playerid);
+    }   
+
+	if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER])
+    {
+        PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = false;
+        ShowBoxMessage(playerid, "~r~Bus Driver job stopped.", 5); 
+		DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+		GPS_DisablePlayerRaceCheckPoint(playerid);
+    }   
 	return 1;
 }
 

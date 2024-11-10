@@ -122,7 +122,8 @@ function:OnInteriorChange(playerid, response, property)
 
 function:OnPlayerEnterProperty(playerid, id)
 {
-	SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_INTERIORPOS][0], PropertyInfo[id][E_PROPERTY_INTERIORPOS][1], PropertyInfo[id][E_PROPERTY_INTERIORPOS][2]);
+	PlayerEnterTimer[playerid] = false;
+	//SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_INTERIORPOS][0], PropertyInfo[id][E_PROPERTY_INTERIORPOS][1], PropertyInfo[id][E_PROPERTY_INTERIORPOS][2]);
 	return TogglePlayerControllable(playerid, true);
 }
 

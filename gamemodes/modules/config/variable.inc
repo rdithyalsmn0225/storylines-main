@@ -82,6 +82,8 @@ enum
 enum
 {
 	GPS_NONE,
+	GPS_SWEEPER,
+	GPS_BUSDRIVER,
 	GPS_DMV,
 	GPS_DMVFINISH
 };
@@ -261,6 +263,8 @@ enum P_ACCOUNT_DATA
 	bool:E_CHARACTER_POLICEGUN,
 	bool:E_CHARACTER_LOADING,
 	bool:E_CHARACTER_DOCKSWORK,
+	bool:E_CHARACTER_SWEEPER,
+	bool:E_CHARACTER_BUSDRIVER,
 	bool:E_CHARACTER_GARBAGEMAN,
 	bool:E_CHARACTER_TAKEPACKET,
 	bool:E_CHARACTER_TOGMENU,
@@ -472,6 +476,7 @@ enum E_BUSINESS_DATA
 	E_BUSINESS_DEALER_CARDCOUNT,
 	E_BUSINESS_DEALER_SCORE,
 	E_BUSINESS_ACTORHOE[4],
+	E_BUSINESS_PRODUCTS[4],
 	E_BUSINESS_NAME[90],
 	bool:E_BUSINESS_BLACKJACK,
 	bool:E_BUSINESS_LOADING,
@@ -831,6 +836,8 @@ new TotalPlayerDamages[MAX_PLAYERS],
 	PlayersLicenseVehicle[MAX_PLAYERS], 
 	PlayerDockworkerCollect[MAX_PLAYERS],
 	PlayerDockworkerStore[MAX_PLAYERS],
+	PlayerSweeperIndex[MAX_PLAYERS],
+	PlayerBusDriverIndex[MAX_PLAYERS],
 	Player911Type[MAX_PLAYERS],
 	Player911Timer[2][MAX_PLAYERS], 
 	Player911Text[MAX_PLAYERS][3][128],
@@ -878,7 +885,7 @@ new DrugsDealerType[MAX_PLAYERS],
 	Float: DrugsDealerPos[MAX_PLAYERS][4];
 
 new FactionLockerPickup[3],
-	SideJobsPickup[2],
+	SideJobsPickup[4],
 	JobsPickup,
 	ChainsawPickup,
 	DropInjuredPickup,
@@ -974,7 +981,44 @@ new Float: Dockworker_Store[][3] =
  	{2554.2400,-2409.4878,13.6332}
 };
 
-// GARBAGEMAN
+
+// STREET CLEANER:
+new Float:Sweeper_Index[][3] =  
+{
+    {800.3212, -1341.8109, 13.1079},
+    {724.2631, -1316.9430, 13.1235},
+    {625.0167, -1349.9486, 13.1154},
+    {624.3393, -1488.5880, 14.3076},
+    {663.6299, -1589.0676, 14.0846},
+    {823.9764, -1605.3049, 13.1079},
+    {940.2209, -1574.9598, 13.1080},
+    {1064.4277, -1574.3142, 13.1032},
+    {1198.7576, -1546.3121, 13.1079},
+    {1205.9257, -1367.3153, 13.0509},
+    {1169.7753, -1278.4031, 13.2163},
+    {1062.6334, -1259.0339, 14.1021},
+    {1027.7616, -1218.4141, 16.4885},
+    {939.9344, -1298.8230, 13.6753},
+    {901.5564, -1392.4802, 12.9494},
+	{860.7480,-1372.0948,13.5469}
+};
+
+// BUS DRIVER:
+new Float: BusDriver_Index[][3] =  
+{
+    {1450.4166, -1373.4958, 13.3828}, // route market
+    {1387.3120, -1584.4423, 13.3592}, // route market
+    {1291.2565, -1391.4359, 13.2836}, // route market
+    {1013.7528, -1391.3628, 13.0986}, // route market
+    {641.6209, -1377.6575, 13.5233},  // route market
+    {702.0891, -1148.0355, 15.9234},  // route market
+    {921.0534, -983.9843, 38.1126},   // route market
+    {1232.8971, -944.7553, 42.5298},  // route market
+    {1440.9373, -1037.7975, 23.6563}, // route market
+    {1658.5164, -1164.1405, 23.7482} // route market
+};
+
+// GARBAGEMAN:
 new Float: Garbage_Locations[][6] = {
     {1930.578857, -1924.203002, 12.826881, 0.0, 0.0, 0.0},  // Lokasi 1
     {1941.571655, -1963.175292, 12.826881, 0.0, 0.0, 0.0},  // Lokasi 2
@@ -1042,7 +1086,7 @@ new Float:PublicPoint[][] =
 	{1621.7565,-1887.4757,13.5550}, //PaynSpray Downtown
 	{2312.7163,-1987.0126,13.5819}, //PaynSpray Willowfield
 	{1831.4983,-1401.7771,13.5742}, //PaynSpray Commerce
-    {2895.6743,-2135.5847,3.6525},  //East Beach Pier
+    {2610.7708,-2441.7927,13.6310},  //Fish Factory
 	{2412.9312,-1425.4226,23.9835}, //Graveyard
 	{1743.3409,-1457.5900,13.5181}, //Advertise
 	{684.6581,-1570.5861,14.2422}, //Dealership
@@ -1068,6 +1112,8 @@ new Float:JobPoint[][] =
 	{1034.9865,-1027.6021,32.1016}, 	//Mechanic
 	{1529.5608,-1849.4032,13.5469}, 	//Garbageman
 	{2748.7725,-2451.0012,13.6484},  	//Dockworker
+	{860.7480,-1372.0948,13.5469},		//Sweeper
+	{1564.8461,-1235.1824,17.4044},
 	{2924.4316,-2052.0808,3.5480}  		//Fishing
 };
 
@@ -1977,11 +2023,13 @@ new const PublicName[][128] =
 new const JobLocName[][62] =
 {
 	"Trucking.co (Job: Trucking)",
-	"Leafy Hollow Barn.co (Job: Lumberjack)",
-	"Royal Cab.co (Job: Taxi Drivers)",
+	"Leafy Hollow.co (Job: Lumberjack)",
+	"Yellow Cab.co (Job: Taxi Drivers)",
 	"Autopart's.co (Job: Mechanic)",
-    "G&S Garbage.co (SideJob: Garbageman)",
-	"Sheroline's Dockswork.co (SideJob: Dockworker)",
+    "Garbage.co (SideJob: Garbageman)",
+	"Dockswork.co (SideJob: Dockworker)",
+	"Sweepers.co (SideJob: Street Cleaner)",
+	"Transit.co (SideJob: Bus Driver)",
 	"Royal Fishers.co (Activity: Fishing)"
 };
 

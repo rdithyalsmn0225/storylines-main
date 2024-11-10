@@ -115,7 +115,7 @@ stock IsPlayerNearEntrance(playerid)
 
 function:OnPlayerEnterEntrance(playerid, id)
 {
-	SetPlayerPosEx(playerid, EntranceInfo[id][E_ENTRANCE_INT][0], EntranceInfo[id][E_ENTRANCE_INT][1], EntranceInfo[id][E_ENTRANCE_INT][2]);
+	PlayerEnterTimer[playerid] = false;
 	return TogglePlayerControllable(playerid, true);
 }
 

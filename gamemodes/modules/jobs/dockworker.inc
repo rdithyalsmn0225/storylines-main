@@ -74,7 +74,7 @@ function:DockWorkers(playerid, type)
 
                     DestroyDynamicObject(CrateObject[vehicleid]);
                     ShowBoxMessage(playerid, "~w~You've succesfully store the package.", 5); 
-                    GivePaycheck(playerid, DOCKWORKER_SALARY);
+                    GiveMoney(playerid, DOCKWORKER_SALARY);
 
                     VehicleInfo[vehicleid][E_VEHICLE_CRATES] = 0;
                 }

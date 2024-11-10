@@ -18,6 +18,7 @@ new PlayerText:SelectFaction[2][MAX_PLAYERS];
 new PlayerText:SelectFactionClick[3][MAX_PLAYERS];
 
 new PlayerText:ALPR[18][MAX_PLAYERS];
+new PlayerText:FoodOrder[10][MAX_PLAYERS];
 
 new PlayerText:WeaponType[MAX_PLAYERS];
 new PlayerText:WeaponAmmo[MAX_PLAYERS];
@@ -527,9 +528,9 @@ CreateNotificationTextDraws(playerid)
 
 CreateHUDTextDraws(playerid)
 {
-	Street[0][playerid] = CreatePlayerTextDraw(playerid, 614.000000, 422.000000, "South North~n~~y~SW");
+	Street[0][playerid] = CreatePlayerTextDraw(playerid, 156.000000, 354.000000, "South North~n~~y~SW");
 	PlayerTextDrawFont(playerid, Street[0][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Street[0][playerid], 0.162492, 0.799999);
+	PlayerTextDrawLetterSize(playerid, Street[0][playerid], 0.191658, 1.199998);
 	PlayerTextDrawTextSize(playerid, Street[0][playerid], 400.000000, 93.500000);
 	PlayerTextDrawSetOutline(playerid, Street[0][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, Street[0][playerid], 0);
@@ -541,9 +542,9 @@ CreateHUDTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, Street[0][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, Street[0][playerid], 0);
 
-	Street[1][playerid] = CreatePlayerTextDraw(playerid, 568.000000, 422.000000, "Westmont Avenue~n~El Corona~n~Los Santos");
+	Street[1][playerid] = CreatePlayerTextDraw(playerid, 156.000000, 378.000000, "Westmont Avenue~n~El Corona~n~Los Santos");
 	PlayerTextDrawFont(playerid, Street[1][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Street[1][playerid], 0.141658, 0.799997);
+	PlayerTextDrawLetterSize(playerid, Street[1][playerid], 0.191657, 0.899995);
 	PlayerTextDrawTextSize(playerid, Street[1][playerid], 400.000000, 93.500000);
 	PlayerTextDrawSetOutline(playerid, Street[1][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, Street[1][playerid], 0);
@@ -704,9 +705,9 @@ CreateBarInfoTextDraws(playerid)
 
 CreateVehicleTextDraws(playerid)
 {
-	VehicleName[playerid] = CreatePlayerTextDraw(playerid, 613.000000, 412.000000, "~g~BMX");
+	VehicleName[playerid] = CreatePlayerTextDraw(playerid,  156.000000, 405.000000, "~g~BMX");
 	PlayerTextDrawFont(playerid, VehicleName[playerid], 2);
-	PlayerTextDrawLetterSize(playerid, VehicleName[playerid], 0.237496, 0.949996);
+	PlayerTextDrawLetterSize(playerid, VehicleName[playerid], 0.237496, 0.949994);
 	PlayerTextDrawTextSize(playerid, VehicleName[playerid], 400.000000, 133.000000);
 	PlayerTextDrawSetOutline(playerid, VehicleName[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, VehicleName[playerid], 0);
@@ -1097,7 +1098,7 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, SelectFactionLocation[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, SelectFactionLocation[playerid], 0);
 
-	SelectFaction[0][playerid] = CreatePlayerTextDraw(playerid, 262.000000, 392.000000, "Press_\"~y~LEFT~w~\"_or_\"~y~RIGHT~w~\"_to_switch");
+	SelectFaction[0][playerid] = CreatePlayerTextDraw(playerid, 262.000000, 392.000000, "Press_'~y~LEFT~w~'_or_'~y~RIGHT~w~'_to_switch");
 	PlayerTextDrawFont(playerid, SelectFaction[0][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, SelectFaction[0][playerid], 0.191667, 1.200000);
 	PlayerTextDrawTextSize(playerid, SelectFaction[0][playerid], 400.000000, 17.000000);
@@ -1111,10 +1112,10 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, SelectFaction[0][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, SelectFaction[0][playerid], 0);
 
-	SelectFactionName[playerid] = CreatePlayerTextDraw(playerid, 319.000000, 377.000000, "~p~Seville Boulevard Famillies");
+	SelectFactionName[playerid] = CreatePlayerTextDraw(playerid, 319.000000, 377.000000, "Los santos police departement");
 	PlayerTextDrawFont(playerid, SelectFactionName[playerid], 0);
 	PlayerTextDrawLetterSize(playerid, SelectFactionName[playerid], 0.349999, 1.250000);
-	PlayerTextDrawTextSize(playerid, SelectFactionName[playerid], 400.000000, 115.000000);
+	PlayerTextDrawTextSize(playerid, SelectFactionName[playerid], 400.000000, 146.500000);
 	PlayerTextDrawSetOutline(playerid, SelectFactionName[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, SelectFactionName[playerid], 0);
 	PlayerTextDrawAlignment(playerid, SelectFactionName[playerid], 2);
@@ -1125,7 +1126,7 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, SelectFactionName[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, SelectFactionName[playerid], 0);
 
-	SelectFaction[1][playerid] = CreatePlayerTextDraw(playerid, 280.000000, 405.000000, "Press ~w~\"~y~SELECT~w~\" to select");
+	SelectFaction[1][playerid] = CreatePlayerTextDraw(playerid, 280.000000, 405.000000, "Press ~w~'~y~SELECT~w~'' to select");
 	PlayerTextDrawFont(playerid, SelectFaction[1][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, SelectFaction[1][playerid], 0.191667, 1.200000);
 	PlayerTextDrawTextSize(playerid, SelectFaction[1][playerid], 400.000000, 17.000000);
@@ -1139,7 +1140,7 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, SelectFaction[1][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, SelectFaction[1][playerid], 0);
 
-	SelectFactionClick[0][playerid] = CreatePlayerTextDraw(playerid, 245.000000, 375.000000, "ld_beat:left");
+	SelectFactionClick[0][playerid] = CreatePlayerTextDraw(playerid, 239.000000, 375.000000, "ld_beat:left");
 	PlayerTextDrawFont(playerid, SelectFactionClick[0][playerid], 4);
 	PlayerTextDrawLetterSize(playerid, SelectFactionClick[0][playerid], 0.600000, 2.000000);
 	PlayerTextDrawTextSize(playerid, SelectFactionClick[0][playerid], 17.000000, 17.000000);
@@ -1153,7 +1154,7 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, SelectFactionClick[0][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, SelectFactionClick[0][playerid], 1);
 
-	SelectFactionClick[1][playerid] = CreatePlayerTextDraw(playerid, 377.000000, 375.000000, "ld_beat:right");
+	SelectFactionClick[1][playerid] = CreatePlayerTextDraw(playerid, 385.000000, 375.000000, "ld_beat:right");
 	PlayerTextDrawFont(playerid, SelectFactionClick[1][playerid], 4);
 	PlayerTextDrawLetterSize(playerid, SelectFactionClick[1][playerid], 0.600000, 2.000000);
 	PlayerTextDrawTextSize(playerid, SelectFactionClick[1][playerid], 17.000000, 17.000000);
@@ -1407,6 +1408,158 @@ CreateALPRTextdraws(playerid)
 	PlayerTextDrawUseBox(playerid, ALPR[9][playerid], 0);
 	PlayerTextDrawSetProportional(playerid, ALPR[9][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, ALPR[9][playerid], 0);
+}
+
+CreateFoodOrderTextDraws(playerid)
+{
+	FoodOrder[0][playerid] = CreatePlayerTextDraw(playerid, 322.000000, 143.000000, "_");
+	PlayerTextDrawFont(playerid, FoodOrder[0][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, FoodOrder[0][playerid], 0.600000, 19.300012);
+	PlayerTextDrawTextSize(playerid, FoodOrder[0][playerid], 298.500000, 225.500000);
+	PlayerTextDrawSetOutline(playerid, FoodOrder[0][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, FoodOrder[0][playerid], 0);
+	PlayerTextDrawAlignment(playerid, FoodOrder[0][playerid], 2);
+	PlayerTextDrawColor(playerid, FoodOrder[0][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, FoodOrder[0][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, FoodOrder[0][playerid], 255);
+	PlayerTextDrawUseBox(playerid, FoodOrder[0][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, FoodOrder[0][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, FoodOrder[0][playerid], 0);
+
+	FoodOrder[1][playerid] = CreatePlayerTextDraw(playerid, 208.000000, 144.000000, "The Pizzeria");
+	PlayerTextDrawFont(playerid, FoodOrder[1][playerid], 0);
+	PlayerTextDrawLetterSize(playerid, FoodOrder[1][playerid], 0.416663, 1.949999);
+	PlayerTextDrawTextSize(playerid, FoodOrder[1][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, FoodOrder[1][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, FoodOrder[1][playerid], 0);
+	PlayerTextDrawAlignment(playerid, FoodOrder[1][playerid], 1);
+	PlayerTextDrawColor(playerid, FoodOrder[1][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, FoodOrder[1][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, FoodOrder[1][playerid], 50);
+	PlayerTextDrawUseBox(playerid, FoodOrder[1][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, FoodOrder[1][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, FoodOrder[1][playerid], 0);
+
+	FoodOrder[2][playerid] = CreatePlayerTextDraw(playerid, 209.000000, 167.000000, "Preview_Model");
+	PlayerTextDrawFont(playerid, FoodOrder[2][playerid], 5);
+	PlayerTextDrawLetterSize(playerid, FoodOrder[2][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, FoodOrder[2][playerid], 71.500000, 88.000000);
+	PlayerTextDrawSetOutline(playerid, FoodOrder[2][playerid], 0);
+	PlayerTextDrawSetShadow(playerid, FoodOrder[2][playerid], 0);
+	PlayerTextDrawAlignment(playerid, FoodOrder[2][playerid], 1);
+	PlayerTextDrawColor(playerid, FoodOrder[2][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, FoodOrder[2][playerid], 0);
+	PlayerTextDrawBoxColor(playerid, FoodOrder[2][playerid], 0);
+	PlayerTextDrawUseBox(playerid, FoodOrder[2][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, FoodOrder[2][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, FoodOrder[2][playerid], 1);
+	PlayerTextDrawSetPreviewModel(playerid, FoodOrder[2][playerid], 2218);
+	PlayerTextDrawSetPreviewRot(playerid, FoodOrder[2][playerid], -37.000000, 6.000000, 28.000000, 1.000000);
+	PlayerTextDrawSetPreviewVehCol(playerid, FoodOrder[2][playerid], 1, 1);
+
+	FoodOrder[3][playerid] = CreatePlayerTextDraw(playerid, 282.000000, 167.000000, "Preview_Model");
+	PlayerTextDrawFont(playerid, FoodOrder[3][playerid], 5);
+	PlayerTextDrawLetterSize(playerid, FoodOrder[3][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, FoodOrder[3][playerid], 71.500000, 88.000000);
+	PlayerTextDrawSetOutline(playerid, FoodOrder[3][playerid], 0);
+	PlayerTextDrawSetShadow(playerid, FoodOrder[3][playerid], 0);
+	PlayerTextDrawAlignment(playerid, FoodOrder[3][playerid], 1);
+	PlayerTextDrawColor(playerid, FoodOrder[3][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, FoodOrder[3][playerid], 0);
+	PlayerTextDrawBoxColor(playerid, FoodOrder[3][playerid], 0);
+	PlayerTextDrawUseBox(playerid, FoodOrder[3][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, FoodOrder[3][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, FoodOrder[3][playerid], 1);
+	PlayerTextDrawSetPreviewModel(playerid, FoodOrder[3][playerid], 2219);
+	PlayerTextDrawSetPreviewRot(playerid, FoodOrder[3][playerid], -37.000000, 6.000000, 28.000000, 1.000000);
+	PlayerTextDrawSetPreviewVehCol(playerid, FoodOrder[3][playerid], 1, 1);
+
+	FoodOrder[4][playerid] = CreatePlayerTextDraw(playerid, 355.000000, 168.000000, "Preview_Model");
+	PlayerTextDrawFont(playerid, FoodOrder[4][playerid], 5);
+	PlayerTextDrawLetterSize(playerid, FoodOrder[4][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, FoodOrder[4][playerid], 71.500000, 88.000000);
+	PlayerTextDrawSetOutline(playerid, FoodOrder[4][playerid], 0);
+	PlayerTextDrawSetShadow(playerid, FoodOrder[4][playerid], 0);
+	PlayerTextDrawAlignment(playerid, FoodOrder[4][playerid], 1);
+	PlayerTextDrawColor(playerid, FoodOrder[4][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, FoodOrder[4][playerid], 0);
+	PlayerTextDrawBoxColor(playerid, FoodOrder[4][playerid], 0);
+	PlayerTextDrawUseBox(playerid, FoodOrder[4][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, FoodOrder[4][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, FoodOrder[4][playerid], 1);
+	PlayerTextDrawSetPreviewModel(playerid, FoodOrder[4][playerid], 2220);
+	PlayerTextDrawSetPreviewRot(playerid, FoodOrder[4][playerid], -37.000000, 6.000000, 28.000000, 1.000000);
+	PlayerTextDrawSetPreviewVehCol(playerid, FoodOrder[4][playerid], 1, 1);
+
+	FoodOrder[5][playerid] = CreatePlayerTextDraw(playerid, 251.000000, 257.000000, "Buster~n~~r~Health +10.0~n~~b~Price $50");
+	PlayerTextDrawFont(playerid, FoodOrder[5][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, FoodOrder[5][playerid], 0.199997, 0.850000);
+	PlayerTextDrawTextSize(playerid, FoodOrder[5][playerid], 400.000000, 65.000000);
+	PlayerTextDrawSetOutline(playerid, FoodOrder[5][playerid], 0);
+	PlayerTextDrawSetShadow(playerid, FoodOrder[5][playerid], 0);
+	PlayerTextDrawAlignment(playerid, FoodOrder[5][playerid], 2);
+	PlayerTextDrawColor(playerid, FoodOrder[5][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, FoodOrder[5][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, FoodOrder[5][playerid], 50);
+	PlayerTextDrawUseBox(playerid, FoodOrder[5][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, FoodOrder[5][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, FoodOrder[5][playerid], 0);
+
+	FoodOrder[6][playerid] = CreatePlayerTextDraw(playerid, 210.000000, 167.000000, "This restaurant offers multiple meals.~n~Choose one by clicking on its pictures");
+	PlayerTextDrawFont(playerid, FoodOrder[6][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, FoodOrder[6][playerid], 0.174997, 0.849999);
+	PlayerTextDrawTextSize(playerid, FoodOrder[6][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, FoodOrder[6][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, FoodOrder[6][playerid], 0);
+	PlayerTextDrawAlignment(playerid, FoodOrder[6][playerid], 1);
+	PlayerTextDrawColor(playerid, FoodOrder[6][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, FoodOrder[6][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, FoodOrder[6][playerid], 50);
+	PlayerTextDrawUseBox(playerid, FoodOrder[6][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, FoodOrder[6][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, FoodOrder[6][playerid], 0);
+
+	FoodOrder[7][playerid] = CreatePlayerTextDraw(playerid, 327.000000, 257.000000, "Duoble D-Luxe~n~~r~Health +10.0~n~~b~Price $50");
+	PlayerTextDrawFont(playerid, FoodOrder[7][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, FoodOrder[7][playerid], 0.199997, 0.850000);
+	PlayerTextDrawTextSize(playerid, FoodOrder[7][playerid], 400.000000, 65.000000);
+	PlayerTextDrawSetOutline(playerid, FoodOrder[7][playerid], 0);
+	PlayerTextDrawSetShadow(playerid, FoodOrder[7][playerid], 0);
+	PlayerTextDrawAlignment(playerid, FoodOrder[7][playerid], 2);
+	PlayerTextDrawColor(playerid, FoodOrder[7][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, FoodOrder[7][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, FoodOrder[7][playerid], 50);
+	PlayerTextDrawUseBox(playerid, FoodOrder[7][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, FoodOrder[7][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, FoodOrder[7][playerid], 0);
+
+	FoodOrder[8][playerid] = CreatePlayerTextDraw(playerid, 401.000000, 257.000000, "Full Rack~n~~r~Health +10.0~n~~b~Price $50");
+	PlayerTextDrawFont(playerid, FoodOrder[8][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, FoodOrder[8][playerid], 0.199997, 0.850000);
+	PlayerTextDrawTextSize(playerid, FoodOrder[8][playerid], 400.000000, 65.000000);
+	PlayerTextDrawSetOutline(playerid, FoodOrder[8][playerid], 0);
+	PlayerTextDrawSetShadow(playerid, FoodOrder[8][playerid], 0);
+	PlayerTextDrawAlignment(playerid, FoodOrder[8][playerid], 2);
+	PlayerTextDrawColor(playerid, FoodOrder[8][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, FoodOrder[8][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, FoodOrder[8][playerid], 50);
+	PlayerTextDrawUseBox(playerid, FoodOrder[8][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, FoodOrder[8][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, FoodOrder[8][playerid], 0);
+
+	FoodOrder[9][playerid] = CreatePlayerTextDraw(playerid, 428.000000, 143.000000, "X");
+	PlayerTextDrawFont(playerid, FoodOrder[9][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, FoodOrder[9][playerid], 0.349997, 1.449999);
+	PlayerTextDrawTextSize(playerid, FoodOrder[9][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, FoodOrder[9][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, FoodOrder[9][playerid], 0);
+	PlayerTextDrawAlignment(playerid, FoodOrder[9][playerid], 2);
+	PlayerTextDrawColor(playerid, FoodOrder[9][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, FoodOrder[9][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, FoodOrder[9][playerid], 50);
+	PlayerTextDrawUseBox(playerid, FoodOrder[9][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, FoodOrder[9][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, FoodOrder[9][playerid], 1);
 }
 
 stock ShowBoxMessage(playerid, string[], time)

@@ -212,7 +212,7 @@ stock SaveBusiness(id)
 {
 	new query[512];
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE businesses SET BusinessOwnerDBID = %i, BusinessName = '%e', BusinessType = %i, BusinessLocked = %i, BusinessEntranceFee = %i, BusinessLevel = %i, BusinessCashbox = %i, BusinessProducts = %i, BusinessMarketPrice = %i, BusinessRobberyTime = %i, BusinessShipments = %i WHERE BusinessDBID = %i",
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE businesses SET BusinessOwnerDBID = %i, BusinessName = '%e', BusinessType = %i, BusinessLocked = %i, BusinessEntranceFee = %i, BusinessLevel = %i, BusinessCashbox = %i, BusinessStock = %i, BusinessMarketPrice = %i, BusinessRobberyTime = %i, BusinessShipments = %i WHERE BusinessDBID = %i",
 		BusinessInfo[id][E_BUSINESS_OWNERDBID],
 		BusinessInfo[id][E_BUSINESS_NAME],
 		BusinessInfo[id][E_BUSINESS_TYPE],
@@ -252,6 +252,15 @@ stock SaveBusiness(id)
 		BusinessInfo[id][E_BUSINESS_ACTORPOS][3],
 		BusinessInfo[id][E_BUSINESS_DBID]);
 	mysql_pquery(ourConnection, query);
+
+	for(new i = 1; i < 4; i++)
+	{
+		mysql_format(ourConnection, query, sizeof(query), "UPDATE businesses SET BusinessProducts%d = %d WHERE BusinessDBID = %i",
+			i,
+			BusinessInfo[id][E_BUSINESS_PRODUCTS][i],
+			BusinessInfo[id][E_BUSINESS_DBID]);
+		mysql_pquery(ourConnection, query);
+	}
 	return 1;
 }
 

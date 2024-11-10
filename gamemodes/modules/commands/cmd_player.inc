@@ -386,11 +386,7 @@ CMD:buybeer(playerid, params[])
 	{	
 		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLUB && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BAR)
 			return SendErrorMessage(playerid, "You aren't in a club or bar."); 
-		ShowBeerlist(playerid);
-	}
-	else if(IsPlayerInRangeOfPoint(playerid, 3.0, 2130.7271,-1769.0083,13.5510) || IsPlayerInRangeOfPoint(playerid, 3.0, 2139.9614,-1769.1486,13.5510))
-	{
-		ShowBeerlist(playerid);
+		ShowBusinessShop(playerid, id);
 	}
 	else
 	{
@@ -411,11 +407,8 @@ CMD:menu(playerid, params[])
 	{	
 		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_DINNER)
 			return SendErrorMessage(playerid, "You aren't in a restaurant.");
-		ShowFoodMenu(playerid);
-	}
-	else if(IsPlayerInRangeOfPoint(playerid, 3.0, 1705.7178,-1650.0876,13.5276) || IsPlayerInRangeOfPoint(playerid, 3.0, 2106.5166,-1797.5454,13.5625) || IsPlayerInRangeOfPoint(playerid, 3.0, 2414.0591,-1504.1791,24.0031) || IsPlayerInRangeOfPoint(playerid, 3.0, 2392.0125,-1905.1108,13.5234) || IsPlayerInRangeOfPoint(playerid, 3.0, 1859.9919,-1670.8585,13.3731))
-	{
-		ShowFoodMenu(playerid);
+			
+		ShowBusinessShop(playerid, id);
 	}
 	else
 	{
@@ -497,7 +490,7 @@ CMD:clothes(playerid, params[])
 	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLOTHES)
 		return SendErrorMessage(playerid, "You aren't in a clothes.");
 
-    ShowClothesMenu(playerid);
+    ShowBusinessShop(playerid, id);
 	return 1;
 }
 
@@ -1354,10 +1347,14 @@ CMD:enter(playerid, params[])
 		if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
 			return SendErrorMessage(playerid, "You can't leave while editing an object.");
 
+		if(PlayerEnterTimer[playerid])
+			return ShowBoxMessage(playerid, "Please wait....", 3);
+
 		if(PropertyInfo[id][E_PROPERTY_LOCKED])
 			return GameTextForPlayer(playerid, "~r~Locked", 3000, 3);
 				
 		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = id;
+		PlayerEnterTimer[playerid] = true;
 
 		SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_INTERIORPOS][0], PropertyInfo[id][E_PROPERTY_INTERIORPOS][1], PropertyInfo[id][E_PROPERTY_INTERIORPOS][2] - 3);
 			
@@ -1387,13 +1384,21 @@ CMD:enter(playerid, params[])
 			GiveMoney(playerid, -BusinessInfo[b_id][E_BUSINESS_ENTRANCEFEE]); 
 			BusinessInfo[b_id][E_BUSINESS_CASH]+= BusinessInfo[b_id][E_BUSINESS_ENTRANCEFEE]; 
 		}
+
+		if(PlayerEnterTimer[playerid])
+			return ShowBoxMessage(playerid, "Please wait....", 3);
+
+		PlayerEnterTimer[playerid] = true;
+
+		PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = b_id; 
 		
 		SetPlayerPosEx(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][0], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][1], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][2]); 
 		
 		SetPlayerInterior(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSINTERIOR]); 
 		SetPlayerVirtualWorld(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSWORLD]); 
 		
-		PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = b_id; 
+		TogglePlayerControllable(playerid, false);
+		SetTimerEx("OnPlayerEnterBusiness", 2000, false, "ii", playerid, e_id); 
 
 		SendBusinessType(playerid, b_id);
 		return 1;
@@ -1403,6 +1408,11 @@ CMD:enter(playerid, params[])
 		if(PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT])
 			return SendErrorMessage(playerid, "You can't leave while editing an object.");
 					
+		if(PlayerEnterTimer[playerid])
+			return ShowBoxMessage(playerid, "Please wait....", 3);
+
+		PlayerEnterTimer[playerid] = true;
+
 		PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = e_id;
 
 		SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_INT][0], EntranceInfo[e_id][E_ENTRANCE_INT][1], EntranceInfo[e_id][E_ENTRANCE_INT][2]);

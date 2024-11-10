@@ -1,3 +1,114 @@
+stock ShowBusinessShop(playerid, businessid)
+{
+	new str[512], str2[512], str3[512], str4[512];
+	if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_BAR)
+	{
+		format(str, sizeof(str), "%s:", BusinessInfo[businessid][E_BUSINESS_NAME]);
+		format(str2, sizeof(str2), "Product\tPrice\n");
+		format(str2, sizeof(str2), "%sBudWeiser (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+		format(str2, sizeof(str2), "%sCorona Extra (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+		format(str2, sizeof(str2), "%sPeroni (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+		Dialog_Show(playerid, BarStore, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
+	}
+	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_CLOTHES)
+	{
+		format(str, sizeof(str), "%s:", BusinessInfo[businessid][E_BUSINESS_NAME]);
+		format(str2, sizeof(str2), "Product\tPrice\n");
+		format(str2, sizeof(str2), "%sClassic Clothes\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+		format(str2, sizeof(str2), "%sToys\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+		Dialog_Show(playerid, BuySkins, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
+	}
+	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_CLUB)
+	{
+		format(str, sizeof(str), "%s:", BusinessInfo[businessid][E_BUSINESS_NAME]);
+		format(str2, sizeof(str2), "Product\tPrice\n");
+		format(str2, sizeof(str2), "%sBudWeiser (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+		format(str2, sizeof(str2), "%sCorona Extra (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+		format(str2, sizeof(str2), "%sPeroni (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+		Dialog_Show(playerid, BarStore, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
+	}
+	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_DINNER)
+	{
+		format(str, sizeof(str), "%s:", BusinessInfo[businessid][E_BUSINESS_NAME]);
+		PlayerTextDrawSetString(playerid, FoodOrder[1][playerid], str);
+
+		format(str2, sizeof(str2), "Buster~n~~r~Health +10.0~n~~b~Price $%s", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+		PlayerTextDrawSetString(playerid, FoodOrder[5][playerid], str2);
+		format(str3, sizeof(str3), "Duoble D-Luxe~n~~r~Health +15.0~n~~b~Price $%s", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+		PlayerTextDrawSetString(playerid, FoodOrder[7][playerid], str3);
+		format(str4, sizeof(str4), "Full Rack~n~~r~Health +20.0~n~~b~Price $%s", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+		PlayerTextDrawSetString(playerid, FoodOrder[8][playerid], str4);
+
+		for(new i; i < 10; i++)
+		{
+			PlayerTextDrawShow(playerid, FoodOrder[i][playerid]);
+		}
+		SelectTextDraw(playerid, COLOR_YELLOW);
+	}
+	return 1;
+}
+
+Dialog:BarStore(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		new businessid = IsPlayerInBusiness(playerid);
+		switch(listitem)
+		{
+			case 0:
+			{
+				if(Inventory_Count(playerid, "Beer") >= 5)
+					return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
+			
+				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+					return SendErrorMessage(playerid, "You can't afford a beer.");
+			
+				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a budweiser beer for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+				GiveMoney(playerid, BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
+				
+				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+				Inventory_Add(playerid, "Beer", 1486, 1);
+			}
+			case 1:
+			{
+				if(Inventory_Count(playerid, "Beer") >= 5)
+					return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
+			
+				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+					return SendErrorMessage(playerid, "You can't afford a beer.");
+
+			
+				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a corona extra beer for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+				GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
+				
+				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+				Inventory_Add(playerid, "Beer", 1486, 1);
+			}
+			case 2:
+			{
+				if(Inventory_Count(playerid, "Beer") >= 5)
+					return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
+			
+				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+					return SendErrorMessage(playerid, "You can't afford a beer.");
+			
+				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a peroni beer for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+				GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
+				
+				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+				Inventory_Add(playerid, "Beer", 1486, 1);
+			}
+		}
+	}
+	return 1;
+}
+
+function:OnPlayerEnterBusiness(playerid, id)
+{
+	PlayerEnterTimer[playerid] = false;
+	return TogglePlayerControllable(playerid, true);
+}
+
 stock BusinessRefresh(businessid)
 {
 	if(IsValidDynamicPickup(BusinessInfo[businessid][E_BUSINESS_PICKUP]))
@@ -457,12 +568,19 @@ function:Query_LoadBusinesses()
 		cache_get_value_name_int(i, "BusinessMarketPrice", BusinessInfo[i+1][E_BUSINESS_PRICE]);
 		
 		cache_get_value_name_int(i, "BusinessCashbox", BusinessInfo[i+1][E_BUSINESS_CASH]);
-		cache_get_value_name_int(i, "BusinessProducts", BusinessInfo[i+1][E_BUSINESS_STOCK]);
+		cache_get_value_name_int(i, "BusinessStock", BusinessInfo[i+1][E_BUSINESS_STOCK]);
 
 		cache_get_value_name_int(i, "BusinessRobberyTime", BusinessInfo[i+1][E_BUSINESS_ROBBERYTIME]);
 		cache_get_value_name_int(i, "BusinessShipments", BusinessInfo[i+1][E_BUSINESS_SHIPMENTS]);
 
 		cache_get_value_name_int(i, "BusinessAmount", BusinessInfo[i+1][E_BUSINESS_AMOUNT]);
+
+		for(new a = 1; a < 4; a++)
+		{
+			new str[512];
+			format(str, sizeof(str), "BusinessProducts%d", a);
+			cache_get_value_name_int(i, str, BusinessInfo[i+1][E_BUSINESS_PRODUCTS][a]);
+		}
 		
 		BusinessRefresh(i+1);
 	}	

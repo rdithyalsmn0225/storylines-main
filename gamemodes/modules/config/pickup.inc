@@ -95,7 +95,21 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
 
     if(pickupid == SideJobsPickup[1])
     {
-        format(str, sizeof(str), "~b~Docksworker~n~~w~Type '~y~/jobduty~w~' start garbageman~n~~w~Type '~y~/takecargo~w~' load cargo~n~~w~Type '~y~/storecargo~w~' unload cargo into warehouse."); 
+        format(str, sizeof(str), "~b~Docksworker~n~~w~Type '~y~/jobduty~w~' start dockworkers~n~~w~Type '~y~/takecargo~w~' load cargo~n~~w~Type '~y~/storecargo~w~' unload cargo into warehouse."); 
+        ShowBoxMessage(playerid, str, 5); 	
+        return 1;	
+    }
+
+    if(pickupid == SideJobsPickup[2])
+    {
+        format(str, sizeof(str), "~b~Street Cleaner~n~~w~Type '~y~/jobduty~w~' start sweepers~n~~w~Clean trash around the street."); 
+        ShowBoxMessage(playerid, str, 5); 	
+        return 1;	
+    }
+
+    if(pickupid == SideJobsPickup[3])
+    {
+        format(str, sizeof(str), "~b~Bus Driver~n~~w~Type '~y~/jobduty~w~' start bus driver~n~~w~drive around the road and get passengers at bus stops."); 
         ShowBoxMessage(playerid, str, 5); 	
         return 1;	
     }

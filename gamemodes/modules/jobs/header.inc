@@ -2,36 +2,40 @@
 stock StartMainJobs(playerid, type)
 {
     new vehicleid = GetPlayerVehicleID(playerid);
+    new Float:x, Float:y, Float:z;
+    GetPlayerPos(playerid, x, y, z);
+
     switch(type)
     {
         case 1: //Dockworker
         {
-            if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+            
+            if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] == false) //Start
             {
-                if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] == false) //Start
-                {
-                    if(GetVehicleModel(vehicleid) == 530)
-                    {
-                        PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = true;
-                        PlayerDockworkerCollect[playerid] = random(sizeof(Dockworker_Collect));
-                        GPS_SetPlayerRaceCheckPoint(playerid, 1, Dockworker_Collect[PlayerDockworkerCollect[playerid]][0], Dockworker_Collect[PlayerDockworkerCollect[playerid]][1], Dockworker_Collect[PlayerDockworkerCollect[playerid]][2], 0.0, 0.0, 0.0);
+                PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = CreateVehicle(530, x, y, z, 0.0, 1, 1, 5000, 0);
+                VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_HEALTH] = 1000.0;
+                VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_FUEL] = 1000;
 
-                        ShowBoxMessage(playerid, "~w~Dock Worker job started. Take the package in oceandocks import warehouse and deliver it to export warehouse", 5);
-                    }                
-                     
-                }
-                else if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] == true) //Stop
+                PlayerPutIntoVehicle(playerid, PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], 0);
+                PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = true;
+                PlayerDockworkerCollect[playerid] = random(sizeof(Dockworker_Collect));
+                GPS_SetPlayerRaceCheckPoint(playerid, 1, Dockworker_Collect[PlayerDockworkerCollect[playerid]][0], Dockworker_Collect[PlayerDockworkerCollect[playerid]][1], Dockworker_Collect[PlayerDockworkerCollect[playerid]][2], 0.0, 0.0, 0.0);
+
+                ShowBoxMessage(playerid, "~w~Dock Worker job started. Take the package in oceandocks import warehouse and deliver it to export warehouse.", 5);
+
+            }
+            else if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] == true) //Stop
+            {
+                if(GetVehicleModel(vehicleid) == 530)
                 {
-                    if(GetVehicleModel(vehicleid) == 530)
-                    {
-                        PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
-                        PlayerDockworkerCollect[playerid] = 0;
-                        PlayerDockworkerStore[playerid] = 0;
-                        GPS_DisablePlayerRaceCheckPoint(playerid);
-                        ShowBoxMessage(playerid, "~r~Dock Worker job stopped.", 5); 
-                    }
-                    
+                    PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
+                    PlayerDockworkerCollect[playerid] = 0;
+                    PlayerDockworkerStore[playerid] = 0;
+                    GPS_DisablePlayerRaceCheckPoint(playerid);
+                    ShowBoxMessage(playerid, "~r~Dockworker job stopped.", 5); 
+		            DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
                 }
+                
             }
             return 1;
         }
@@ -53,6 +57,68 @@ stock StartMainJobs(playerid, type)
                     SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]);
                     PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = false;
                     ShowBoxMessage(playerid, "~r~Garbageman job stopped.", 5); 
+                }
+            }
+            return 1;
+        }
+        case 3: //Sweeper
+        {
+            if(PlayerInfo[playerid][E_CHARACTER_SWEEPER] == false) //Start
+            {
+                PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = CreateVehicle(574, x, y, z, 0.0, 1, 1, 5000, 0);
+                VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_HEALTH] = 1000.0;
+                VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_FUEL] = 1000;
+                
+                PlayerPutIntoVehicle(playerid, PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], 0);
+                PlayerInfo[playerid][E_CHARACTER_SWEEPER] = true;
+                PlayerSweeperIndex[playerid] = 1;
+                
+                GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[0][0], Sweeper_Index[0][1], Sweeper_Index[0][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint1
+
+                ShowBoxMessage(playerid, "~w~Street Claner job started. Clean trash around the street.", 5);
+
+            }
+            else if(PlayerInfo[playerid][E_CHARACTER_SWEEPER] == true) //Stop
+            {
+                if(GetVehicleModel(vehicleid) == 574)
+                {
+                    PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
+                    
+                    GPS_DisablePlayerRaceCheckPoint(playerid);
+                    ShowBoxMessage(playerid, "~r~Street Cleaner job stopped.", 5); 
+		            DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+                }
+            }
+            return 1;
+        }
+        case 4: //Bus Driver
+        {
+            if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] == false) //Start
+            {
+                PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = CreateVehicle(431, x, y, z, 0.0, 1, 1, 5000, 0);
+                VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_HEALTH] = 1000.0;
+                VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_FUEL] = 1000;
+                
+                PlayerPutIntoVehicle(playerid, PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], 0);
+                PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = true;
+                PlayerSweeperIndex[playerid] = 1;
+
+                new rand = random(sizeof(BusDriver_Index));
+
+                GPS_SetPlayerRaceCheckPoint(playerid, 1, BusDriver_Index[rand][0],BusDriver_Index[rand][1], BusDriver_Index[rand][2], 0.0, 0.0, 0.0, GPS_BUSDRIVER);
+                
+                ShowBoxMessage(playerid, "~w~Bus Driver job started. Drive around the road and get passengers at bus stops.", 5);
+
+            }
+            else if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] == true) //Stop
+            {
+                if(GetVehicleModel(vehicleid) == 431)
+                {
+                    PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = false;
+                    
+                    GPS_DisablePlayerRaceCheckPoint(playerid);
+                    ShowBoxMessage(playerid, "~r~Bus Driver job stopped.", 5); 
+		            DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
                 }
             }
             return 1;
@@ -221,15 +287,25 @@ CMD:jobduty(playerid, params[])
         {
             StartMainJobs(playerid, 2);
         }
-    }
-    else if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && IsPlayerInAnyVehicle(playerid))
-    {
-        new vehicleid = GetPlayerVehicleID(playerid);
-        if(GetVehicleModel(vehicleid) == 530)
+        if(IsPlayerInRangeOfPoint(playerid, 3.0, 2748.7725,-2451.0012,13.6484))
         {
             StartMainJobs(playerid, 1);
-        } 
-        else if(GetVehicleModel(vehicleid) == 420 || GetVehicleModel(vehicleid) == 438)
+        }
+        if(IsPlayerInRangeOfPoint(playerid, 3.0, 860.7480,-1372.0948,13.5469))
+        {
+            StartMainJobs(playerid, 3);
+        }
+        if(IsPlayerInRangeOfPoint(playerid, 3.0, 1564.8461,-1235.1824,17.4044))
+        {
+            StartMainJobs(playerid, 4);
+        }
+        return 1;
+    }
+    
+    if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && IsPlayerInAnyVehicle(playerid))
+    {
+        new vehicleid = GetPlayerVehicleID(playerid);
+        if(GetVehicleModel(vehicleid) == 420 || GetVehicleModel(vehicleid) == 438)
         {
             if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TAXI)
                 return SendErrorMessage(playerid, "You aren't taxi driver.");
@@ -265,6 +341,7 @@ CMD:jobduty(playerid, params[])
                 SendServerMessage(playerid, "[Mechanic] {cdd0d1}You are now mechanic duty!");
             }
         }
+        return 1;
     }
     return 1;
 }

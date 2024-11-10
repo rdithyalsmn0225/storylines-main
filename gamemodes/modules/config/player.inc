@@ -354,6 +354,8 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_SHAKEOFFER] = INVALID_PLAYER_ID;
 	PlayerInfo[playerid][E_CHARACTER_SHAKETYPE] = 0;
 
+	PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = INVALID_VEHICLE_ID;
+
 	KillTimer(PlayerTimerGym[playerid]);
     PlayerGymMachine[playerid] = -1;
     PlayerPointGym[playerid] = 0;  
@@ -653,125 +655,6 @@ stock ShowPlayerPlates(playerid, str[])
 	return 1;
 }
 
-stock ShowGeneralList(playerid, type)
-{
-	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
-		return SendErrorMessage(playerid, "This business is out of stock"); 
-
-	new str[128];
-
-	switch(type)
-	{
-		case 0:
-		{
-			/*if(IsPlayerInRangeOfPoint(playerid, 3.0, 1861.9351,-1699.4071,13.5860) || IsPlayerInRangeOfPoint(playerid, 3.0, 1924.5963,-1770.1909,13.5988) || IsPlayerInRangeOfPoint(playerid, 3.0, 1735.7974,-1698.2885,13.5316) || IsPlayerInRangeOfPoint(playerid, 3.0, 2726.9329,-2034.2412,13.6482) || IsPlayerInRangeOfPoint(playerid, 3.0, 2427.8018,-1745.1559,13.6681))
-			{
-				//format(str, sizeof(str), "General:");
-				//ShowPlayerDialog(playerid, DIALOG_BUY_LIST, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nCellphone\t$500\n2 Slot Radio\t$1,000\nGas Can\t$500\nRepair Kits\t$500\nSpraycan\t$250\nCrowbar\t$500", "Select", "Cancel");
-			}*/
-		}
-		case 1: //Spraycan & Crowbar
-		{
-			if(IsPlayerInBusiness(playerid))
-			{	
-				if(IsPlayerInRangeOfPoint(playerid, 2.0, -48.1108,5.5907,203.2633))
-				{
-					format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-					ShowPlayerDialog(playerid, DIALOG_GENERALSTORE4, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nSpraycan\t$250\nCrowbar\t$500", "Select", "Cancel"); 
-				}
-			}
-		}
-		case 2: //Cellphone & Portable Radio
-		{
-			if(IsPlayerInBusiness(playerid))
-			{	
-				if(IsPlayerInRangeOfPoint(playerid, 2.0, -51.4530,5.4811,203.2633))
-				{
-					format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-					ShowPlayerDialog(playerid, DIALOG_GENERALSTORE1, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nCellphone\t$500\nPortable Radio\t$500\nGascan\t$250\nRepair Kits\t$500", "Select", "Cancel"); 
-				}
-			}
-		}
-		case 3: //Baseball
-		{
-			if(IsPlayerInBusiness(playerid))
-			{	
-				if(IsPlayerInRangeOfPoint(playerid, 2.0, -53.7646,5.2118,203.2633))
-				{
-					format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-					ShowPlayerDialog(playerid, DIALOG_GENERALSTORE2, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nSpike Bat\t$350\nWooded\t$500\nNail Bat\t$350", "Select", "Cancel"); 
-				}
-			}
-		}
-		case 4: //Raw Meat
-		{
-			if(IsPlayerInBusiness(playerid))
-			{	
-				if(IsPlayerInRangeOfPoint(playerid, 2.0, -48.4748,-1.1597,203.2633))
-				{
-					format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-					ShowPlayerDialog(playerid, DIALOG_GENERALSTORE3, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nRaw Meat\t$50\nParsley\t$250\nMint\t$50\nOregano\t$250\nBaking Soda\t$100", "Select", "Cancel"); 
-				}
-			}
-		}
-		case 5: //Sprunk
-		{
-			if(IsPlayerInBusiness(playerid))
-			{	
-				if(IsPlayerInRangeOfPoint(playerid, 2.0, -53.7980,2.8393,203.2633))
-				{
-					format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-					ShowPlayerDialog(playerid, DIALOG_GENERALSTORE5, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nSprunk\t$2", "Select", "Cancel"); 
-				}
-			}
-		}
-	}
-	return 1;
-}
-
-stock ShowBeerlist(playerid)
-{ 
-	new str[128];
-
-	if(IsPlayerInBusiness(playerid))
-	{	
-		format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-		ShowPlayerDialog(playerid, DIALOG_BAR, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nBudWeiser (Beer)\t$100\nCorona Extra (Beer)\t$150\nPeroni (Beer)\t$200", "Select", "Cancel");
-	}
-	else if(IsPlayerInRangeOfPoint(playerid, 3.0, 2130.7271,-1769.0083,13.5510) || IsPlayerInRangeOfPoint(playerid, 3.0, 2139.9614,-1769.1486,13.5510))
-	{
-		format(str, sizeof(str), "Liquor:");
-		ShowPlayerDialog(playerid, DIALOG_BAR, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nBudWeiser (Beer)\t$100\nCorona Extra (Beer)\t$150\nPeroni (Beer)\t$200", "Select", "Cancel");
-	}
-	return 1;
-}
-
-stock ShowFoodMenu(playerid)
-{ 
-	new str[128];
-
-	if(IsPlayerInBusiness(playerid))
-	{	
-		format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-		ShowPlayerDialog(playerid, DIALOG_DINNER, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nAmerican Classic Burger's\t$50\nAmerican Classic Pizza's\t$80\nCoca Cola Large\t$20", "Select", "Cancel");
-	}
-	else if(IsPlayerInRangeOfPoint(playerid, 3.0, 1705.7178,-1650.0876,13.5276) || IsPlayerInRangeOfPoint(playerid, 3.0, 2106.5166,-1797.5454,13.5625) || IsPlayerInRangeOfPoint(playerid, 3.0, 2414.0591,-1504.1791,24.0031) || IsPlayerInRangeOfPoint(playerid, 3.0, 2392.0125,-1905.1108,13.5234) || IsPlayerInRangeOfPoint(playerid, 3.0, 1859.9919,-1670.8585,13.3731) || IsPlayerInRangeOfPoint(playerid, 3.0, 1035.1194,-1346.8387,13.7469))
-	{
-		format(str, sizeof(str), "Food & Drinks Menu:");
-		ShowPlayerDialog(playerid, DIALOG_DINNER, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nAmerican Classic Burger's\t$50\nAmerican Classic Donut's\t$50\nAmerican Classic Pizza's\t$80\nCoca Cola Large\t$20", "Select", "Cancel");
-	}
-	return 1;
-}
-
-stock ShowClothesMenu(playerid)
-{ 
-	new id = IsPlayerInBusiness(playerid), str[128];
-
-	format(str, sizeof(str), "%s:", BusinessInfo[id][E_BUSINESS_NAME]);
-	Dialog_Show(playerid, BuySkins, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nClassic Clothes\t$250\nToys\t$500", "Select", "Cancel");
-	return 1;
-}
-
 Dialog:BuySkins(playerid, response, listitem, inputtext[])
 {
 	if(response)
@@ -828,14 +711,15 @@ Dialog:BuyMaleSkinsModel(playerid, response, listitem, inputtext[])
 {
 	if(response)
 	{
-		if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		new businessid = IsPlayerInBusiness(playerid);
+		if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		{
 			SetCameraBehindPlayer(playerid);
 			SendErrorMessage(playerid, "You can't afford a clothes.");
 			return 1;
 		}
 
-		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
+		if(BusinessInfo[businessid][E_BUSINESS_STOCK] < 1)
 		{
 			SetCameraBehindPlayer(playerid);
 			return SendErrorMessage(playerid, "This business is out of stock");
@@ -855,14 +739,15 @@ Dialog:BuyFemaleSkinsModel(playerid, response, listitem, inputtext[])
 {
 	if(response)
 	{
-		if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		new businessid = IsPlayerInBusiness(playerid);
+		if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		{
 			SetCameraBehindPlayer(playerid);
 			SendErrorMessage(playerid, "You can't afford a clothes.");
 			return 1;
 		}
 
-		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
+		if(BusinessInfo[businessid][E_BUSINESS_STOCK] < 1)
 		{
 			SetCameraBehindPlayer(playerid);
 			return SendErrorMessage(playerid, "This business is out of stock");
@@ -882,7 +767,8 @@ Dialog:BuyAccModel(playerid, response, listitem, inputtext[])
 {
 	if(response)
 	{
-		if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		new businessid = IsPlayerInBusiness(playerid);
+		if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		{
 			SetCameraBehindPlayer(playerid);
 			SendErrorMessage(playerid, "You can't afford a clothing.");
@@ -900,7 +786,7 @@ Dialog:BuyAccModel(playerid, response, listitem, inputtext[])
 			return SendErrorMessage(playerid, "You already have full slot of accessories!");
 		}
 
-		GiveMoney(playerid, -300);
+		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]);
 		ApplyAnimation(playerid, "CLOTHES", "CLO_Buy", 4.0, 0, 0, 0, 0, 0);
     	SetCameraBehindPlayer(playerid);
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;

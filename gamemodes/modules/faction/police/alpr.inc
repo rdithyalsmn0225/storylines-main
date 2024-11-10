@@ -32,8 +32,8 @@ stock DetectVehicleInFront(playerid)
         if (GetDistanceBetweenPoints(frontX, frontY, z, vX, vY, vZ) <= ALPR_RANGE || GetDistanceBetweenPoints(rearX, rearY, z, vX, vY, vZ) <= ALPR_RANGE)
         {
             new str[128];
-            format(str, sizeof(str), "%e", VehicleInfo[i][E_VEHICLE_PLATES]);
-            PlayerTextDrawSetString(playerid, ALPR[2][playerid], str);
+            format(str, sizeof(str), "%s", VehicleInfo[i][E_VEHICLE_PLATES]);
+            PlayerTextDrawSetString(playerid, ALPR[3][playerid], str);
 
             new str2[128];
             format(str2, sizeof(str2), "%s", ReturnVehicleName(i));
@@ -44,8 +44,8 @@ stock DetectVehicleInFront(playerid)
             PlayerTextDrawSetString(playerid, ALPR[12][playerid], str3);
 
             new str4[128];
-            format(str4, sizeof(str4), "%e", VehicleInfo[i][E_VEHICLE_PLATES]);
-            PlayerTextDrawSetString(playerid, ALPR[3][playerid], str4);
+            format(str4, sizeof(str4), "%s", VehicleInfo[i][E_VEHICLE_PLATES]);
+            PlayerTextDrawSetString(playerid, ALPR[4][playerid], str4);
 
             new str5[128];
             format(str5, sizeof(str5), "%s", ReturnVehicleName(i));

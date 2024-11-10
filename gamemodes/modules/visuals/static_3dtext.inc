@@ -4,6 +4,8 @@ InsertDynamicPickup()
 {
     SideJobsPickup[0] = CreateDynamicPickup(1210, 1, 1529.5608,-1849.4032,13.5469, -1, -1, -1, 5.0);
     SideJobsPickup[1] = CreateDynamicPickup(1210, 1, 2748.7725,-2451.0012,13.6484, -1, -1, -1, 5.0);
+	SideJobsPickup[2] = CreateDynamicPickup(1210, 1, 860.7480,-1372.0948,13.5469, -1, -1, -1, 5.0);
+	SideJobsPickup[3] = CreateDynamicPickup(1210, 1, 1564.8461,-1235.1824,17.4044, -1, -1, -1, 5.0);
 	ChainsawPickup = CreateDynamicPickup(1239, 1, -1448.7738,-1530.5585,101.7578, -1, -1, -1, 5.0);
 	DropInjuredPickup = CreateDynamicPickup(1240, 1, 2035.0732,-1414.0488,16.9922, -1, -1, -1, 5.0);
 	VehicleScrapPickup = CreateDynamicPickup(1254, 1, 2412.9312,-1425.4226,23.9835, -1, -1, -1, 5.0);
@@ -11,7 +13,7 @@ InsertDynamicPickup()
 	PrisonPickup = CreateDynamicPickup(1247, 1, 1256.9117,890.3147,1161.0986, -1, -1, -1, 5.0);
 	HairCutPickup = CreateDynamicPickup(2752, 1, 2064.5574,-1794.9839,13.4599, -1, -1, -1, 5.0);
 	TicketPickup = CreateDynamicPickup(1239, 1, 249.1299,67.8123,1003.6406, -1, -1, -1, 5.0);
-	FishFactoryPickup = CreateDynamicPickup(1239, 1, 2895.6743,-2135.5847,3.6525, -1, -1, -1, 5.0);
+	FishFactoryPickup = CreateDynamicPickup(1239, 1, 2610.7708,-2441.7927,13.6310, -1, -1, -1, 5.0);
 	GeneralStorePickup[0] = CreateDynamicPickup(1274, 1, -48.4748,-1.1597,203.2633, -1, -1, -1, 5.0);
 	GeneralStorePickup[1] = CreateDynamicPickup(1274, 1, -53.7980,2.8393,203.2633, -1, -1, -1, 5.0);
 	GeneralStorePickup[2] = CreateDynamicPickup(1274, 1, -51.4530,5.4811,203.2633, -1, -1, -1, 5.0);

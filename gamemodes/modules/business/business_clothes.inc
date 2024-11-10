@@ -15,6 +15,7 @@ function:CloseFittingRoomDoor(playerid)
 
 function:SetPlayerSkinAndExit(playerid, skinid)
 {
+    new businessid = IsPlayerInBusiness(playerid);
     SetPlayerPos(playerid, 217.6465,-96.5580,1005.2578);
     MoveDynamicObject(fittingRoomDoor, 216.760360, -97.310455, 1005.337768, 0.01, 0.0, 0.0, 360.0); //tutup
     ApplyAnimation(playerid, "CLOTHES", "CLO_Pose_In_O", 4.0, 0, 0, 0, 0, 0);
@@ -23,8 +24,8 @@ function:SetPlayerSkinAndExit(playerid, skinid)
 	SetPlayerSkin(playerid, skinid);
 	PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = skinid;
 
-	BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
-	GiveMoney(playerid, -250);
+	BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+	GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]);
 	SaveCharacter(playerid);
     
     SetTimerEx("ExitFittingRoom", 2500, false, "i", playerid);

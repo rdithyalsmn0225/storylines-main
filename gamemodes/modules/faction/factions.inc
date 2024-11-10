@@ -14,7 +14,7 @@ stock IsPoliceVehicle(vehicleid)
 	return 0;
 }
 
-IsMedicalVehicle(carid)
+stock IsMedicalVehicle(carid)
 {
 	for(new v = 0; v < 8; v++)
 	{

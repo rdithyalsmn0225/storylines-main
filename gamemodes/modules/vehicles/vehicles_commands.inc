@@ -413,6 +413,9 @@ CMD:engine(playerid, params[])
 	if(VehicleInfo[vehicleid][E_VEHICLE_IMPOUND])
 		return SendErrorMessage(playerid, "Your vehicle is impounded.");
 
+	if(PlayerEngineTimer[playerid])
+		return ShowBoxMessage(playerid, "Please wait....", 5);
+
 	if (ReturnVehicleHealth(vehicleid) > 400)
 	{
 		if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] < 1 && !VehicleInfo[vehicleid][E_VEHICLE_ADMIN])

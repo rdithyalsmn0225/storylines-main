@@ -148,7 +148,11 @@ CMD:gps(playerid, params[])
 
 GPS_SetPlayerRaceCheckPoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, gps = GPS_NONE)
 {
-	ShowBoxMessage(playerid, "Go to checkpoint on your maps.", 5);
+	if(gps == GPS_NONE)
+	{
+		ShowBoxMessage(playerid, "Go to checkpoint on your maps.", 5);
+	}
+	
 	PlayerCheckpoint[playerid] = gps;
 	return SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, 2.0);
 }
