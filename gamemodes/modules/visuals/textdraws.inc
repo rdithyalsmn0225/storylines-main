@@ -1637,6 +1637,7 @@ stock HideVehicleSpeedometer(playerid)
 
 stock ShowGameBar(playerid, value, header[])
 {
+	SetPlayerProgressBarColour(playerid, HeaderBar[playerid], ConvertHBEColor(value));
 	ShowPlayerProgressBar(playerid, HeaderBar[playerid]);
 	PlayerTextDrawShow(playerid, GameBar[0][playerid]);
 	PlayerTextDrawShow(playerid, GameBar[2][playerid]);

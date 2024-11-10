@@ -451,6 +451,7 @@ function:TurnEngine(playerid, vehicleid)
 			SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {93C47D}Started");
 			ToggleVehicleEngine(vehicleid, true); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = true;
 			KillTimer(PlayerEngineTimer[playerid]);
+			PlayerEngineTimer[playerid] = 0;
 			PlayerEngineValue[playerid] = 0;
 		}
 	}

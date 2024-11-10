@@ -883,7 +883,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 7:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Jobs Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/takejobs, /quitjobs, /jobduty, /loadcargo, /storecargo");
+						SendClientMessage(playerid, COLOR_ORANGE, "/takejobs, /quitjobs, /jobduty, ");
+						SendClientMessage(playerid, COLOR_ORANGE, "/loadcargo, /storecargo");
 						SendClientMessage(playerid, COLOR_ORANGE, "/collectgarbage, /dumpgarbage");
 						SendClientMessage(playerid, COLOR_ORANGE, "/fish, /sellfish, /buybait");
 						SendClientMessage(playerid, COLOR_ORANGE, "Press 'ALT' collect garbage");

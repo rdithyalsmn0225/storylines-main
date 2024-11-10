@@ -62,3 +62,20 @@ function:BusDrivers(playerid, type)
     }
     Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
 }
+
+CMD:viewroute(playerid, params[])
+{
+    new str[2024];
+    for(new i; i < sizeof(BusStop_Index); i++)
+	{
+        if(IsPlayerInRangeOfPoint(playerid, 3.0, BusStop_Index[i][0], BusStop_Index[i][1], BusStop_Index[i][2]))
+        {
+            for(new a; a < sizeof(BusStop_Index); a++)
+	        {
+                format(str, sizeof(str), "%s%s\n", str, GetZoneName(BusStop_Index[a][0], BusStop_Index[a][1], BusStop_Index[a][2]));
+            }
+            Dialog_Show(playerid, DIALOG_NONE, DIALOG_STYLE_LIST, "View Route:", str, "Close", "");
+        }
+    }
+    return 1;
+}

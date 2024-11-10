@@ -161,9 +161,10 @@ main ()  {}
 // Start of functions:
 public OnGameModeInit()
 {
-	new MySQLOpt:ourOptions = mysql_init_options();
+	SetGameModeText(SCRIPT_REV);
+	SendRconCommand("hostname "SERVER_NAME"");
 
-	SetGameModeText(SCRIPT_REV); 
+	new MySQLOpt:ourOptions = mysql_init_options(); 
 
 	mysql_set_option(ourOptions, AUTO_RECONNECT, true);
 	mysql_set_option(ourOptions, POOL_SIZE, 16);
@@ -620,7 +621,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
             PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading passenger entering process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
-	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("BusDrivers", 1500, true, "ii", playerid, 0);
+	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("BusDrivers", 500, true, "ii", playerid, 0);
 	        TogglePlayerControllable(playerid, false);
 		}
 		return 1;
@@ -4127,7 +4128,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		}
 		else
 		{
-			if(IsPlayerInBusiness(playerid) && IsPlayerNearCashiers(playerid)) //Payclerk Pawnshop
+			if(IsPlayerNearCashiers(playerid)) //Payclerk Pawnshop
 			{
 				if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
 				{

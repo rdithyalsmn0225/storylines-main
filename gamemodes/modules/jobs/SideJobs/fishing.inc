@@ -104,7 +104,7 @@ function:FishingTimer(playerid, type)
 
 CMD:sellfish(playerid, params[])
 {
-	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 2895.6743,-2135.5847,3.6525))
+	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 2610.7708,-2441.7927,13.6310))
 	    return SendErrorMessage(playerid, "You are not inside Fish Factory!");
 
  	if(!Inventory_Count(playerid, "Fish"))
@@ -119,7 +119,7 @@ CMD:sellfish(playerid, params[])
 
 CMD:buybait(playerid, params[])
 {
-	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 2900.7317,-2099.5378,2.8997))
+	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 2610.7708,-2441.7927,13.6310))
 		return SendErrorMessage(playerid, "You aren't inside the Fish factory.");
 
 	new amount;

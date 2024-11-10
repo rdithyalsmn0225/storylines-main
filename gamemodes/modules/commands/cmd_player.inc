@@ -382,7 +382,7 @@ CMD:buybeer(playerid, params[])
 	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
 		return SendErrorMessage(playerid, "This Business has been robbery.");
 
-	if(IsPlayerInBusiness(playerid) && IsPlayerNearCashiers(playerid))
+	if(IsPlayerNearCashiers(playerid))
 	{	
 		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLUB && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BAR)
 			return SendErrorMessage(playerid, "You aren't in a club or bar."); 
@@ -403,7 +403,7 @@ CMD:menu(playerid, params[])
 	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
 		return SendErrorMessage(playerid, "This Business has been robbery.");
 
-	if(IsPlayerInBusiness(playerid) && IsPlayerNearCashiers(playerid))
+	if(IsPlayerNearCashiers(playerid))
 	{	
 		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_DINNER)
 			return SendErrorMessage(playerid, "You aren't in a restaurant.");
@@ -419,7 +419,7 @@ CMD:menu(playerid, params[])
 
 CMD:haircut(playerid, params[])
 {
-	if(IsPlayerInBusiness(playerid) && IsPlayerNearCashiers(playerid))
+	if(IsPlayerNearCashiers(playerid))
 	{
 		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_TYPE] != BUSINESS_TYPE_HAIRCUT)
 			return SendErrorMessage(playerid, "You aren't in a haircut.");
@@ -484,8 +484,8 @@ CMD:clothes(playerid, params[])
 	if(BusinessInfo[id][E_BUSINESS_ROBBERYTIME] > 0)
 		return SendErrorMessage(playerid, "This Business has been robbery.");
 
-	if(!IsPlayerInBusiness(playerid) && !IsPlayerNearCashiers(playerid))
-		return SendErrorMessage(playerid, "You aren't in a business.");
+	if(!IsPlayerNearCashiers(playerid))
+		return SendErrorMessage(playerid, "You aren't near cashiers.");
 		
 	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLOTHES)
 		return SendErrorMessage(playerid, "You aren't in a clothes.");
@@ -499,7 +499,7 @@ CMD:fightstyle(playerid, params[])
 	new 
 	    id = IsPlayerInBusiness(playerid);
 
-	if(!IsPlayerInBusiness(playerid) && !IsPlayerNearCashiers(playerid))
+	if(!IsPlayerNearCashiers(playerid))
 		return SendErrorMessage(playerid, "You aren't in a business.");
 
 	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GYM)

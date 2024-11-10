@@ -170,6 +170,16 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
         return 1;	
     }
 
+    for(new i; i < sizeof(BusStop_Index); i++)
+	{
+        if(pickupid == BusStopPickup[i])
+        {
+            format(str, sizeof(str), "~b~Bus Station (Start of Service) Bus Stop~n~~w~Type '~y~/viewroute~w~' to show bus route stop."); 
+            ShowBoxMessage(playerid, str, 5); 
+            return 1;	
+        }
+    }
+
     if(pickupid == PrisonPickup)
     {
         format(str, sizeof(str), "~b~Los Santos Correctional Facility~n~~w~Type '~y~/charge~w~' to put player into prison~n~~w~Type '~y~/opencell or /closecell~w~' to open/close cell."); 

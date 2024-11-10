@@ -19,6 +19,11 @@ InsertDynamicPickup()
 	GeneralStorePickup[2] = CreateDynamicPickup(1274, 1, -51.4530,5.4811,203.2633, -1, -1, -1, 5.0);
 	GeneralStorePickup[3] = CreateDynamicPickup(1274, 1, -48.1108,5.5907,203.2633, -1, -1, -1, 5.0);
 	GeneralStorePickup[4] = CreateDynamicPickup(1274, 1, -53.7646,5.2118,203.2633, -1, -1, -1, 5.0);
+
+	for(new i; i < sizeof(BusStop_Index); i++)
+	{
+		BusStopPickup[i] = CreateDynamicPickup(1239, 1, BusStop_Index[i][0], BusStop_Index[i][1], BusStop_Index[i][2], -1, -1, -1, 5.0);
+	}
 }
 
 Insert3DTextLabel()
@@ -32,6 +37,4 @@ Insert3DTextLabel()
     CreateDynamic3DTextLabel(str2, COLOR_DARKGREEN, 122.0707,-319.1785,1.5781, 5.0);
 
 	fittingRoomDoor = CreateDynamicObject(2877, 216.760360, -97.310455, 1005.337768, 0.0, 0.0, 360.0, .interiorid = 15);
-
-	CreateDynamic3DTextLabel("[Fish Factory]\n{ffffff}Available Commands: '/buybait'\n{ffffff}Available Commands: '/sellfish'", COLOR_DARKGREEN, 2895.6743,-2135.5847,3.6525, 5.0);
 }
