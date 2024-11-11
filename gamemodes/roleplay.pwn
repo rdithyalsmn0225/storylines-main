@@ -1175,8 +1175,6 @@ public OnPlayerDeath(playerid, killerid, reason)
     PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
     if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
-	
-	//SetTimerEx("SetPlayersSpawn", 2100, false, "i", playerid); 
 	return 1; 
 }	
 
@@ -3491,23 +3489,86 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         return 1;
     }
 
-	if (playertextid == VehicleClose[playerid])
+	// Vehicle Selection:
+	if (playertextid == VehicleSelection[14][playerid])
     {
-		PlayerTextDrawHide(playerid, VehicleBox[playerid]);
-		PlayerTextDrawHide(playerid, VehicleHeader[playerid]);
-		PlayerTextDrawHide(playerid, VehicleClose[playerid]);
-		PlayerTextDrawHide(playerid, VehicleModels[0][playerid]);
-		PlayerTextDrawHide(playerid, VehiclePlate[0][playerid]);
-		PlayerTextDrawHide(playerid, VehicleClick[0][playerid]);
-		PlayerTextDrawHide(playerid, VehicleModels[1][playerid]);
-		PlayerTextDrawHide(playerid, VehiclePlate[1][playerid]);
-		PlayerTextDrawHide(playerid, VehicleClick[1][playerid]);
-		PlayerTextDrawHide(playerid, VehicleModels[2][playerid]);
-		PlayerTextDrawHide(playerid, VehiclePlate[2][playerid]);
-		PlayerTextDrawHide(playerid, VehicleClick[2][playerid]);
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
+			
+		new threadLoad[128]; 
+		
+		for(new i; i < MAX_VEHICLES; i++)
+		{
+			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][1])
+				return SendErrorMessage(playerid, "This vehicle's already spawned.");
+		}
 
+		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][1]);
+		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
+        return 1;
+    }
+	if (playertextid == VehicleSelection[15][playerid])
+    {
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
+			
+		new threadLoad[128]; 
+		
+		for(new i; i < MAX_VEHICLES; i++)
+		{
+			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][2])
+				return SendErrorMessage(playerid, "This vehicle's already spawned.");
+		}
+
+		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][2]);
+		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
+        return 1;
+    }
+	if (playertextid == VehicleSelection[16][playerid])
+    {
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
+			
+		new threadLoad[128]; 
+		
+		for(new i; i < MAX_VEHICLES; i++)
+		{
+			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][3])
+				return SendErrorMessage(playerid, "This vehicle's already spawned.");
+		}
+
+		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][3]);
+		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
+        return 1;
+    }
+	if (playertextid == VehicleSelection[17][playerid])
+    {
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
+			
+		new threadLoad[128]; 
+		
+		for(new i; i < MAX_VEHICLES; i++)
+		{
+			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][4])
+				return SendErrorMessage(playerid, "This vehicle's already spawned.");
+		}
+
+		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][4]);
+		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
+        return 1;
+    }
+
+	if (playertextid == VehicleSelection[18][playerid])
+    {
+		for(new i; i < 19; i++)
+		{
+			PlayerTextDrawHide(playerid, VehicleSelection[i][playerid]);
+		}
 		CancelSelectTextDraw(playerid);
-	}
+        return 1;
+    }
+
 	return 1;
 }
 

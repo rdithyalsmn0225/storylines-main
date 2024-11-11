@@ -553,7 +553,7 @@ function:OnVehicleAlarm(vehicleid)
 	return ToggleVehicleAlarms(vehicleid, false);
 }
 
-function:Query_ShowVehicleList(playerid)
+function:Query_ShowVehicleList(playerid, idx)
 {
 	new rows, fields;
 	cache_get_row_count(rows);
@@ -573,11 +573,7 @@ function:Query_ShowVehicleList(playerid)
 		bool:vehicleRental,
 		bool:isSpawned = false,
 		color[512],
-		rent[512]
-	;
-
-	new dialogText[1024]; 
-	format(dialogText, sizeof(dialogText), "ID\tModel\tPlate\tStatus\tRental\n");
+		rent[512];
 
 	for (new i = 0; i < rows; i++)
 	{
@@ -603,36 +599,70 @@ function:Query_ShowVehicleList(playerid)
 			format(color, sizeof(color), "{FF6347}Despawned");
 			
 		if(vehicleRental)
-			format(rent, sizeof(rent), "{FF6347}Rented (%i Minutes)", vehicleRentalTimer);
+			format(rent, sizeof(rent), "Rented %d Minutes", vehicleRentalTimer);
 		else
-			format(rent, sizeof(rent), "{93C47D}Owned");
+			format(rent, sizeof(rent), "Owned");
 
-		format(dialogText, sizeof(dialogText),
-			"%s%s\t%s\t%s\t%s\n",
-			dialogText, ReturnVehicleModelName(vehicleModel), vehiclePlates, color, rent);
-	}
-
-	Dialog_Show(playerid, VehicleList, DIALOG_STYLE_TABLIST_HEADERS, "Your Vehicles:", dialogText, "Spawn", "Close");
-	return 1;
-}
-
-Dialog:VehicleList(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
-			
-		new threadLoad[128]; 
+		new str[512], str2[512];
 		
-		for(new i; i < MAX_VEHICLES; i++)
+		if(idx == 1)
 		{
-			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem+1])
-				return SendErrorMessage(playerid, "This vehicle's already spawned.");
+			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
+			format(str2, sizeof(str2), "%s", vehiclePlates);
+			PlayerTextDrawSetString(playerid, VehicleSelection[6][playerid], str2);
+			PlayerTextDrawSetString(playerid, VehicleSelection[10][playerid], str);
+			PlayerTextDrawSetPreviewModel(playerid, VehicleSelection[2][playerid], vehicleModel);
+
+			PlayerTextDrawShow(playerid, VehicleSelection[2][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[6][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[10][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[14][playerid]);
+		}
+		else if(idx == 2)
+		{
+			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
+			format(str2, sizeof(str2), "%s", vehiclePlates);
+			PlayerTextDrawSetString(playerid, VehicleSelection[7][playerid], str2);
+			PlayerTextDrawSetString(playerid, VehicleSelection[11][playerid], str);
+			PlayerTextDrawSetPreviewModel(playerid, VehicleSelection[3][playerid], vehicleModel);
+
+			PlayerTextDrawShow(playerid, VehicleSelection[3][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[7][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[11][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[15][playerid]);
+		}
+		else if(idx == 3)
+		{
+			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
+			format(str2, sizeof(str2), "%s", vehiclePlates);
+			PlayerTextDrawSetString(playerid, VehicleSelection[8][playerid], str2);
+			PlayerTextDrawSetString(playerid, VehicleSelection[12][playerid], str);
+			PlayerTextDrawSetPreviewModel(playerid, VehicleSelection[4][playerid], vehicleModel);
+
+			PlayerTextDrawShow(playerid, VehicleSelection[4][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[8][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[12][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[16][playerid]);
+		}
+		else if(idx == 4)
+		{
+			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
+			format(str2, sizeof(str2), "%s", vehiclePlates);
+			PlayerTextDrawSetString(playerid, VehicleSelection[9][playerid], str2);
+			PlayerTextDrawSetString(playerid, VehicleSelection[13][playerid], str);
+			PlayerTextDrawSetPreviewModel(playerid, VehicleSelection[5][playerid], vehicleModel);
+
+			PlayerTextDrawShow(playerid, VehicleSelection[5][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[9][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[13][playerid]);
+			PlayerTextDrawShow(playerid, VehicleSelection[17][playerid]);
 		}
 
-		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][listitem+1]);
-		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
+		PlayerTextDrawShow(playerid, VehicleSelection[0][playerid]);
+		PlayerTextDrawShow(playerid, VehicleSelection[1][playerid]);
+		PlayerTextDrawShow(playerid, VehicleSelection[18][playerid]);
+
+		SelectTextDraw(playerid, COLOR_YELLOW);
 	}
 	return 1;
 }
@@ -797,58 +827,14 @@ stock CountPlayerVehicles(playerid)
 stock ShowVehicleList(playerid)
 {
 	new thread[128]; 
-	new query[512]; 
-	
-	format(query, sizeof(query), "SELECT * FROM vehicles WHERE VehicleDBID IN (");
-
-	new hasVehicle = false;
 	for (new i = 1; i < MAX_PLAYER_VEHICLES; i++)
 	{
-		if (PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
+		if(PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
 		{
-			
-			if (hasVehicle)
-			{
-				strcat(query, ", ");
-			}
-
-			format(thread, sizeof(thread), "%i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i]);
-			strcat(query, thread);
-			hasVehicle = true;
+			mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i]);
+			mysql_pquery(ourConnection, thread, "Query_ShowVehicleList", "ii", playerid, i);
 		}
 	}
-
-	if (hasVehicle)
-	{
-		strcat(query, ") ORDER BY FIELD(VehicleDBID, ");
-
-		
-		hasVehicle = false;
-		for (new i = 1; i < MAX_PLAYER_VEHICLES; i++)
-		{
-			if (PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
-			{
-				if (hasVehicle)
-				{
-					strcat(query, ", ");
-				}
-
-				format(thread, sizeof(thread), "%i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i]);
-				strcat(query, thread);
-				hasVehicle = true;
-			}
-		}
-
-		strcat(query, ")"); 
-
-		
-		mysql_pquery(ourConnection, query, "Query_ShowVehicleList", "i", playerid);
-	}
-	else
-	{
-		SendErrorMessage(playerid, "You don't own any vehicles"); 
-	}
-
 	return 1;
 }
 

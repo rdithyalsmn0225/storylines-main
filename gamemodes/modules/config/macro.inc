@@ -48,7 +48,7 @@
 #define MAX_GATES 					(100)
 #define MAX_FACTIONS 				(30)
 #define MAX_FACTION_RANKS 			(21)
-#define MAX_PLAYER_VEHICLES 		(4)
+#define MAX_PLAYER_VEHICLES 		(5)
 #define MAX_ZONE_NAME 				(28)
 #define MAX_TURFS					(600)
 #define MAX_SPRAYTAGS   			(500)
