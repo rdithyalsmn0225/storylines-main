@@ -413,3 +413,339 @@ bcryptPrimitives.dll	A: 0x76620000 - 0x7667F000	(C:\Windows\System32\bcryptPrimi
 pawn-memory.DLL	A: 0x74C20000 - 0x74C2A000	(F:\Radit Files\Storylines-main\plugins\pawn-memory.DLL)
 pawnraknet.DLL	A: 0x6C6D0000 - 0x6C746000	(F:\Radit Files\Storylines-main\plugins\pawnraknet.DLL)
 bcrypt.dll	A: 0x76D10000 - 0x76D29000	(C:\Windows\System32\bcrypt.dll)
+
+--------------------------
+SA-MP Server: 0.3.DL-R1
+
+Exception At Address: 0x00468EE4 Module: (samp-server.exe)
+
+Registers:
+EAX: 0x00000000	EBX: 0x0A6E9578	ECX: 0x00000000	EDX: 0x00000000
+ESI: 0x00000000	EDI: 0x02CAB518	EBP: 0x0019EC2C	ESP: 0x0019EACC
+EFLAGS: 0x00010246
+
+Stack:
++0000: 0x0047A534   0x00000000   0x02CAB518   0x0A6E9578
++0010: 0x00000001   0x00493C8E   0x004BE924   0x0019EB3C
++0020: 0x00000001   0x00000009   0x00000002   0x0100007F
++0030: 0x0049E0D4   0x00000000   0x00000000   0x02CAB518
++0040: 0x0A6EA534   0x04399E9C   0x00000001   0x007FA534
++0050: 0xE0D40100   0x0047CDE1   0x004BE924   0x02CAB518
++0060: 0x04530FD0   0x00000001   0x04530FD0   0x00000000
++0070: 0x00000080   0x00000800   0x00000000   0x0019EB4D
++0080: 0x00041E01   0x00000000   0x00000000   0x00000000
++0090: 0x00000100   0x0001FF00   0x43A08000   0x43BC0000
++00A0: 0x0019EC00   0x00000004   0x02CAB518   0x00000000
++00B0: 0x0046D8B3   0x0019EC08   0x0019EBFC   0x05DB0CFC
++00C0: 0x00000000   0xFFFFFFFF   0x004FC400   0x02CAB518
++00D0: 0x061B85B4   0x64CD6108   0x0E655D74   0x55E1D8AA
++00E0: 0x0A6E9584   0x0A6E9570   0x061B85B4   0x0E5D86C8
++00F0: 0x00621660   0x0019EC0C   0x02B70C70   0xFFFFFFFF
++0100: 0x0A6E9584   0x0A6E9570   0x0296A5ED   0x0A6E9584
++0110: 0x004FB400   0x00000000   0x00000000   0x00000400
++0120: 0x55E1DF7E   0x0296A3FC   0x0A6E9584   0x0019EC64
++0130: 0x55E1DF46   0x02CAB518   0x0A6E9578   0x00000001
+
+--------------------------
+
+Loaded Modules:
+samp-server.exe	A: 0x00400000 - 0x0051F000	(F:\Radit Files\Storylines-main\samp-server.exe)
+ntdll.dll	A: 0x76F00000 - 0x770A4000	(C:\Windows\SYSTEM32\ntdll.dll)
+KERNEL32.DLL	A: 0x756F0000 - 0x757E0000	(C:\Windows\System32\KERNEL32.DLL)
+KERNELBASE.dll	A: 0x762F0000 - 0x7652A000	(C:\Windows\System32\KERNELBASE.dll)
+SHELL32.dll	A: 0x76750000 - 0x76D06000	(C:\Windows\System32\SHELL32.dll)
+msvcp_win.dll	A: 0x75920000 - 0x7599B000	(C:\Windows\System32\msvcp_win.dll)
+ucrtbase.dll	A: 0x76DD0000 - 0x76EF0000	(C:\Windows\System32\ucrtbase.dll)
+USER32.dll	A: 0x759A0000 - 0x75B3C000	(C:\Windows\System32\USER32.dll)
+win32u.dll	A: 0x76680000 - 0x76698000	(C:\Windows\System32\win32u.dll)
+GDI32.dll	A: 0x75860000 - 0x75884000	(C:\Windows\System32\GDI32.dll)
+gdi32full.dll	A: 0x76530000 - 0x76615000	(C:\Windows\System32\gdi32full.dll)
+WSOCK32.dll	A: 0x74780000 - 0x74788000	(C:\Windows\SYSTEM32\WSOCK32.dll)
+WINMM.dll	A: 0x73C80000 - 0x73CA8000	(C:\Windows\SYSTEM32\WINMM.dll)
+msvcrt.dll	A: 0x75630000 - 0x756EF000	(C:\Windows\System32\msvcrt.dll)
+WS2_32.dll	A: 0x74E00000 - 0x74E63000	(C:\Windows\System32\WS2_32.dll)
+RPCRT4.dll	A: 0x75570000 - 0x7562F000	(C:\Windows\System32\RPCRT4.dll)
+IMM32.DLL	A: 0x752B0000 - 0x752D5000	(C:\Windows\System32\IMM32.DLL)
+mysql.DLL	A: 0x64EE0000 - 0x64F2E000	(F:\Radit Files\Storylines-main\plugins\mysql.DLL)
+libmariadb.dll	A: 0x64D10000 - 0x64DDD000	(F:\Radit Files\Storylines-main\libmariadb.dll)
+log-core.dll	A: 0x64EC0000 - 0x64EDA000	(F:\Radit Files\Storylines-main\log-core.dll)
+SHLWAPI.dll	A: 0x75520000 - 0x75565000	(C:\Windows\System32\SHLWAPI.dll)
+MSVCP140.dll	A: 0x64E50000 - 0x64EBD000	(C:\Windows\SYSTEM32\MSVCP140.dll)
+CRYPT32.dll	A: 0x75B40000 - 0x75C40000	(C:\Windows\System32\CRYPT32.dll)
+VCRUNTIME140.dll	A: 0x64CF0000 - 0x64D05000	(C:\Windows\SYSTEM32\VCRUNTIME140.dll)
+ADVAPI32.dll	A: 0x757E0000 - 0x7585C000	(C:\Windows\System32\ADVAPI32.dll)
+sechost.dll	A: 0x75890000 - 0x75906000	(C:\Windows\System32\sechost.dll)
+Secur32.dll	A: 0x73BF0000 - 0x73BFA000	(C:\Windows\SYSTEM32\Secur32.dll)
+SSPICLI.DLL	A: 0x73550000 - 0x73571000	(C:\Windows\SYSTEM32\SSPICLI.DLL)
+CRYPTBASE.DLL	A: 0x74750000 - 0x7475A000	(C:\Windows\SYSTEM32\CRYPTBASE.DLL)
+kernel.appcore.dll	A: 0x74BC0000 - 0x74BCF000	(C:\Windows\SYSTEM32\kernel.appcore.dll)
+napinsp.dll	A: 0x734F0000 - 0x73501000	(C:\Windows\system32\napinsp.dll)
+pnrpnsp.dll	A: 0x734D0000 - 0x734E6000	(C:\Windows\system32\pnrpnsp.dll)
+wshbth.dll	A: 0x734C0000 - 0x734D0000	(C:\Windows\system32\wshbth.dll)
+NLAapi.dll	A: 0x734A0000 - 0x734B6000	(C:\Windows\system32\NLAapi.dll)
+IPHLPAPI.DLL	A: 0x74BD0000 - 0x74C03000	(C:\Windows\SYSTEM32\IPHLPAPI.DLL)
+mswsock.dll	A: 0x74A90000 - 0x74AE2000	(C:\Windows\System32\mswsock.dll)
+DNSAPI.dll	A: 0x73830000 - 0x738C1000	(C:\Windows\SYSTEM32\DNSAPI.dll)
+NSI.dll	A: 0x76D30000 - 0x76D37000	(C:\Windows\System32\NSI.dll)
+winrnr.dll	A: 0x73490000 - 0x7349E000	(C:\Windows\System32\winrnr.dll)
+rasadhlp.dll	A: 0x74730000 - 0x74738000	(C:\Windows\System32\rasadhlp.dll)
+sscanf.DLL	A: 0x10000000 - 0x1000F000	(F:\Radit Files\Storylines-main\plugins\sscanf.DLL)
+streamer.DLL	A: 0x64C80000 - 0x64CED000	(F:\Radit Files\Storylines-main\plugins\streamer.DLL)
+pawnplus.DLL	A: 0x02950000 - 0x02C1E000	(F:\Radit Files\Storylines-main\plugins\pawnplus.DLL)
+bcryptPrimitives.dll	A: 0x76620000 - 0x7667F000	(C:\Windows\System32\bcryptPrimitives.dll)
+pawn-memory.DLL	A: 0x6BEB0000 - 0x6BEBA000	(F:\Radit Files\Storylines-main\plugins\pawn-memory.DLL)
+pawnraknet.DLL	A: 0x64C00000 - 0x64C76000	(F:\Radit Files\Storylines-main\plugins\pawnraknet.DLL)
+textdraw-streamer.DLL	A: 0x64BC0000 - 0x64BF1000	(F:\Radit Files\Storylines-main\plugins\textdraw-streamer.DLL)
+bcrypt.dll	A: 0x76D10000 - 0x76D29000	(C:\Windows\System32\bcrypt.dll)
+
+--------------------------
+SA-MP Server: 0.3.DL-R1
+
+Exception At Address: 0x00468EE4 Module: (samp-server.exe)
+
+Registers:
+EAX: 0x00000000	EBX: 0x0A6B6584	ECX: 0x00000000	EDX: 0x00000000
+ESI: 0x00000000	EDI: 0x02C4B518	EBP: 0x0019EC2C	ESP: 0x0019EACC
+EFLAGS: 0x00010246
+
+Stack:
++0000: 0x0047A534   0x00000000   0x02C4B518   0x0A6B6584
++0010: 0x00000001   0x00493C8E   0x004BE924   0x0019EB3C
++0020: 0x00000001   0x00000009   0x00000002   0x0100007F
++0030: 0x0049C7B9   0x00000000   0x00000000   0x02C4B518
++0040: 0x0A6B7540   0x04366E9C   0x00000001   0x007F7540
++0050: 0xC7B90100   0x0047CDE1   0x004BE924   0x02C4B518
++0060: 0x044FDFDC   0x00000001   0x044FDFDC   0x00000000
++0070: 0x00000080   0x00000800   0x00000000   0x0019EB4D
++0080: 0x00041E01   0x00000000   0x00000000   0x00000000
++0090: 0x00000100   0x0001FF00   0x43A08000   0x43BC0000
++00A0: 0x0019EC00   0x00000004   0x02C4B518   0x00000000
++00B0: 0x0046D8B3   0x0019EC08   0x0019EBFC   0x05D7DD08
++00C0: 0x00000000   0xFFFFFFFF   0x004FC400   0x02C4B518
++00D0: 0x061B85B4   0x6A9F6108   0x0E5816F4   0x16E28987
++00E0: 0x0A6B6590   0x0A6B657C   0x061B85B4   0x0E572868
++00F0: 0x00698430   0x0019EC0C   0x02AD0C70   0xFFFFFFFF
++0100: 0x0A6B6590   0x0A6B657C   0x028CA5ED   0x0A6B6590
++0110: 0x004FB400   0x00000000   0x00000000   0x00000400
++0120: 0x16E28E53   0x028CA3FC   0x0A6B6590   0x0019EC64
++0130: 0x16E28E6B   0x02C4B518   0x0A6B6584   0x00000001
+
+--------------------------
+
+Loaded Modules:
+samp-server.exe	A: 0x00400000 - 0x0051F000	(F:\Radit Files\Storylines-main\samp-server.exe)
+ntdll.dll	A: 0x76F00000 - 0x770A4000	(C:\Windows\SYSTEM32\ntdll.dll)
+KERNEL32.DLL	A: 0x756F0000 - 0x757E0000	(C:\Windows\System32\KERNEL32.DLL)
+KERNELBASE.dll	A: 0x762F0000 - 0x7652A000	(C:\Windows\System32\KERNELBASE.dll)
+SHELL32.dll	A: 0x76750000 - 0x76D06000	(C:\Windows\System32\SHELL32.dll)
+msvcp_win.dll	A: 0x75920000 - 0x7599B000	(C:\Windows\System32\msvcp_win.dll)
+ucrtbase.dll	A: 0x76DD0000 - 0x76EF0000	(C:\Windows\System32\ucrtbase.dll)
+USER32.dll	A: 0x759A0000 - 0x75B3C000	(C:\Windows\System32\USER32.dll)
+win32u.dll	A: 0x76680000 - 0x76698000	(C:\Windows\System32\win32u.dll)
+GDI32.dll	A: 0x75860000 - 0x75884000	(C:\Windows\System32\GDI32.dll)
+gdi32full.dll	A: 0x76530000 - 0x76615000	(C:\Windows\System32\gdi32full.dll)
+WINMM.dll	A: 0x73C80000 - 0x73CA8000	(C:\Windows\SYSTEM32\WINMM.dll)
+WSOCK32.dll	A: 0x74780000 - 0x74788000	(C:\Windows\SYSTEM32\WSOCK32.dll)
+msvcrt.dll	A: 0x75630000 - 0x756EF000	(C:\Windows\System32\msvcrt.dll)
+WS2_32.dll	A: 0x74E00000 - 0x74E63000	(C:\Windows\System32\WS2_32.dll)
+RPCRT4.dll	A: 0x75570000 - 0x7562F000	(C:\Windows\System32\RPCRT4.dll)
+IMM32.DLL	A: 0x752B0000 - 0x752D5000	(C:\Windows\System32\IMM32.DLL)
+mysql.DLL	A: 0x74C70000 - 0x74CBE000	(F:\Radit Files\Storylines-main\plugins\mysql.DLL)
+log-core.dll	A: 0x74C50000 - 0x74C6A000	(F:\Radit Files\Storylines-main\log-core.dll)
+libmariadb.dll	A: 0x6AA80000 - 0x6AB4D000	(F:\Radit Files\Storylines-main\libmariadb.dll)
+SHLWAPI.dll	A: 0x75520000 - 0x75565000	(C:\Windows\System32\SHLWAPI.dll)
+CRYPT32.dll	A: 0x75B40000 - 0x75C40000	(C:\Windows\System32\CRYPT32.dll)
+VCRUNTIME140.dll	A: 0x74C30000 - 0x74C45000	(C:\Windows\SYSTEM32\VCRUNTIME140.dll)
+MSVCP140.dll	A: 0x6AA10000 - 0x6AA7D000	(C:\Windows\SYSTEM32\MSVCP140.dll)
+ADVAPI32.dll	A: 0x757E0000 - 0x7585C000	(C:\Windows\System32\ADVAPI32.dll)
+sechost.dll	A: 0x75890000 - 0x75906000	(C:\Windows\System32\sechost.dll)
+Secur32.dll	A: 0x73BF0000 - 0x73BFA000	(C:\Windows\SYSTEM32\Secur32.dll)
+SSPICLI.DLL	A: 0x73550000 - 0x73571000	(C:\Windows\SYSTEM32\SSPICLI.DLL)
+CRYPTBASE.DLL	A: 0x74750000 - 0x7475A000	(C:\Windows\SYSTEM32\CRYPTBASE.DLL)
+kernel.appcore.dll	A: 0x74BC0000 - 0x74BCF000	(C:\Windows\SYSTEM32\kernel.appcore.dll)
+napinsp.dll	A: 0x734F0000 - 0x73501000	(C:\Windows\system32\napinsp.dll)
+pnrpnsp.dll	A: 0x734D0000 - 0x734E6000	(C:\Windows\system32\pnrpnsp.dll)
+wshbth.dll	A: 0x734C0000 - 0x734D0000	(C:\Windows\system32\wshbth.dll)
+NLAapi.dll	A: 0x734A0000 - 0x734B6000	(C:\Windows\system32\NLAapi.dll)
+IPHLPAPI.DLL	A: 0x74BD0000 - 0x74C03000	(C:\Windows\SYSTEM32\IPHLPAPI.DLL)
+mswsock.dll	A: 0x74A90000 - 0x74AE2000	(C:\Windows\System32\mswsock.dll)
+DNSAPI.dll	A: 0x73830000 - 0x738C1000	(C:\Windows\SYSTEM32\DNSAPI.dll)
+NSI.dll	A: 0x76D30000 - 0x76D37000	(C:\Windows\System32\NSI.dll)
+winrnr.dll	A: 0x73490000 - 0x7349E000	(C:\Windows\System32\winrnr.dll)
+rasadhlp.dll	A: 0x74730000 - 0x74738000	(C:\Windows\System32\rasadhlp.dll)
+sscanf.DLL	A: 0x10000000 - 0x1000F000	(F:\Radit Files\Storylines-main\plugins\sscanf.DLL)
+streamer.DLL	A: 0x6A9A0000 - 0x6AA0D000	(F:\Radit Files\Storylines-main\plugins\streamer.DLL)
+pawnplus.DLL	A: 0x028B0000 - 0x02B7E000	(F:\Radit Files\Storylines-main\plugins\pawnplus.DLL)
+bcryptPrimitives.dll	A: 0x76620000 - 0x7667F000	(C:\Windows\System32\bcryptPrimitives.dll)
+pawn-memory.DLL	A: 0x74C20000 - 0x74C2A000	(F:\Radit Files\Storylines-main\plugins\pawn-memory.DLL)
+pawnraknet.DLL	A: 0x6A920000 - 0x6A996000	(F:\Radit Files\Storylines-main\plugins\pawnraknet.DLL)
+textdraw-streamer.DLL	A: 0x6A8E0000 - 0x6A911000	(F:\Radit Files\Storylines-main\plugins\textdraw-streamer.DLL)
+bcrypt.dll	A: 0x76D10000 - 0x76D29000	(C:\Windows\System32\bcrypt.dll)
+
+--------------------------
+SA-MP Server: 0.3.DL-R1
+
+Exception At Address: 0x00468EE4 Module: (samp-server.exe)
+
+Registers:
+EAX: 0x00000000	EBX: 0x0A70B5A4	ECX: 0x00000000	EDX: 0x00000000
+ESI: 0x00000000	EDI: 0x02CCB518	EBP: 0x0019EC2C	ESP: 0x0019EACC
+EFLAGS: 0x00010246
+
+Stack:
++0000: 0x0047A534   0x00000000   0x02CCB518   0x0A70B5A4
++0010: 0x00000001   0x00493C8E   0x004BE924   0x0019EB3C
++0020: 0x00000001   0x00000009   0x00000002   0x0100007F
++0030: 0x0049E717   0x00000000   0x00000000   0x02CCB518
++0040: 0x0A70C560   0x043BBE9C   0x00000001   0x007FC560
++0050: 0xE7170100   0x0047CDE1   0x004BE924   0x02CCB518
++0060: 0x04552FFC   0x00000001   0x04552FFC   0x00000000
++0070: 0x00000080   0x00000800   0x00000000   0x0019EB4D
++0080: 0x00041E01   0x00000000   0x00000000   0x00000000
++0090: 0x00000100   0x0001FF00   0x43A08000   0x43BC0000
++00A0: 0x0019EC00   0x00000004   0x02CCB518   0x00000000
++00B0: 0x0046D8B3   0x0019EC08   0x0019EBFC   0x05DD2D28
++00C0: 0x00000000   0xFFFFFFFF   0x004FC400   0x02CCB518
++00D0: 0x061B85B4   0x6A9F6108   0x0E613B64   0x77736DA4
++00E0: 0x0A70B5B0   0x0A70B59C   0x061B85B4   0x0E5E6A98
++00F0: 0x008C0F10   0x0019EC0C   0x02B90C70   0xFFFFFFFF
++0100: 0x0A70B5B0   0x0A70B59C   0x0298A5ED   0x0A70B5B0
++0110: 0x004FB400   0x00000000   0x00000000   0x00000400
++0120: 0x77736A70   0x0298A3FC   0x0A70B5B0   0x0019EC64
++0130: 0x77736A48   0x02CCB518   0x0A70B5A4   0x00000001
+
+--------------------------
+
+Loaded Modules:
+samp-server.exe	A: 0x00400000 - 0x0051F000	(F:\Radit Files\Storylines-main\samp-server.exe)
+ntdll.dll	A: 0x76F00000 - 0x770A4000	(C:\Windows\SYSTEM32\ntdll.dll)
+KERNEL32.DLL	A: 0x756F0000 - 0x757E0000	(C:\Windows\System32\KERNEL32.DLL)
+KERNELBASE.dll	A: 0x762F0000 - 0x7652A000	(C:\Windows\System32\KERNELBASE.dll)
+SHELL32.dll	A: 0x76750000 - 0x76D06000	(C:\Windows\System32\SHELL32.dll)
+msvcp_win.dll	A: 0x75920000 - 0x7599B000	(C:\Windows\System32\msvcp_win.dll)
+ucrtbase.dll	A: 0x76DD0000 - 0x76EF0000	(C:\Windows\System32\ucrtbase.dll)
+USER32.dll	A: 0x759A0000 - 0x75B3C000	(C:\Windows\System32\USER32.dll)
+win32u.dll	A: 0x76680000 - 0x76698000	(C:\Windows\System32\win32u.dll)
+GDI32.dll	A: 0x75860000 - 0x75884000	(C:\Windows\System32\GDI32.dll)
+gdi32full.dll	A: 0x76530000 - 0x76615000	(C:\Windows\System32\gdi32full.dll)
+WSOCK32.dll	A: 0x74780000 - 0x74788000	(C:\Windows\SYSTEM32\WSOCK32.dll)
+msvcrt.dll	A: 0x75630000 - 0x756EF000	(C:\Windows\System32\msvcrt.dll)
+WS2_32.dll	A: 0x74E00000 - 0x74E63000	(C:\Windows\System32\WS2_32.dll)
+RPCRT4.dll	A: 0x75570000 - 0x7562F000	(C:\Windows\System32\RPCRT4.dll)
+WINMM.dll	A: 0x73C80000 - 0x73CA8000	(C:\Windows\SYSTEM32\WINMM.dll)
+IMM32.DLL	A: 0x752B0000 - 0x752D5000	(C:\Windows\System32\IMM32.DLL)
+mysql.DLL	A: 0x74C70000 - 0x74CBE000	(F:\Radit Files\Storylines-main\plugins\mysql.DLL)
+log-core.dll	A: 0x74C50000 - 0x74C6A000	(F:\Radit Files\Storylines-main\log-core.dll)
+libmariadb.dll	A: 0x6AA80000 - 0x6AB4D000	(F:\Radit Files\Storylines-main\libmariadb.dll)
+MSVCP140.dll	A: 0x6AA10000 - 0x6AA7D000	(C:\Windows\SYSTEM32\MSVCP140.dll)
+SHLWAPI.dll	A: 0x75520000 - 0x75565000	(C:\Windows\System32\SHLWAPI.dll)
+VCRUNTIME140.dll	A: 0x74C30000 - 0x74C45000	(C:\Windows\SYSTEM32\VCRUNTIME140.dll)
+CRYPT32.dll	A: 0x75B40000 - 0x75C40000	(C:\Windows\System32\CRYPT32.dll)
+ADVAPI32.dll	A: 0x757E0000 - 0x7585C000	(C:\Windows\System32\ADVAPI32.dll)
+sechost.dll	A: 0x75890000 - 0x75906000	(C:\Windows\System32\sechost.dll)
+Secur32.dll	A: 0x73BF0000 - 0x73BFA000	(C:\Windows\SYSTEM32\Secur32.dll)
+SSPICLI.DLL	A: 0x73550000 - 0x73571000	(C:\Windows\SYSTEM32\SSPICLI.DLL)
+CRYPTBASE.DLL	A: 0x74750000 - 0x7475A000	(C:\Windows\SYSTEM32\CRYPTBASE.DLL)
+kernel.appcore.dll	A: 0x74BC0000 - 0x74BCF000	(C:\Windows\SYSTEM32\kernel.appcore.dll)
+napinsp.dll	A: 0x734F0000 - 0x73501000	(C:\Windows\system32\napinsp.dll)
+pnrpnsp.dll	A: 0x734D0000 - 0x734E6000	(C:\Windows\system32\pnrpnsp.dll)
+wshbth.dll	A: 0x734C0000 - 0x734D0000	(C:\Windows\system32\wshbth.dll)
+NLAapi.dll	A: 0x734A0000 - 0x734B6000	(C:\Windows\system32\NLAapi.dll)
+IPHLPAPI.DLL	A: 0x74BD0000 - 0x74C03000	(C:\Windows\SYSTEM32\IPHLPAPI.DLL)
+mswsock.dll	A: 0x74A90000 - 0x74AE2000	(C:\Windows\System32\mswsock.dll)
+DNSAPI.dll	A: 0x73830000 - 0x738C1000	(C:\Windows\SYSTEM32\DNSAPI.dll)
+NSI.dll	A: 0x76D30000 - 0x76D37000	(C:\Windows\System32\NSI.dll)
+winrnr.dll	A: 0x73490000 - 0x7349E000	(C:\Windows\System32\winrnr.dll)
+rasadhlp.dll	A: 0x74730000 - 0x74738000	(C:\Windows\System32\rasadhlp.dll)
+sscanf.DLL	A: 0x10000000 - 0x1000F000	(F:\Radit Files\Storylines-main\plugins\sscanf.DLL)
+streamer.DLL	A: 0x6A9A0000 - 0x6AA0D000	(F:\Radit Files\Storylines-main\plugins\streamer.DLL)
+pawnplus.DLL	A: 0x02970000 - 0x02C3E000	(F:\Radit Files\Storylines-main\plugins\pawnplus.DLL)
+bcryptPrimitives.dll	A: 0x76620000 - 0x7667F000	(C:\Windows\System32\bcryptPrimitives.dll)
+pawn-memory.DLL	A: 0x74C20000 - 0x74C2A000	(F:\Radit Files\Storylines-main\plugins\pawn-memory.DLL)
+pawnraknet.DLL	A: 0x6A920000 - 0x6A996000	(F:\Radit Files\Storylines-main\plugins\pawnraknet.DLL)
+textdraw-streamer.DLL	A: 0x6A8E0000 - 0x6A911000	(F:\Radit Files\Storylines-main\plugins\textdraw-streamer.DLL)
+bcrypt.dll	A: 0x76D10000 - 0x76D29000	(C:\Windows\System32\bcrypt.dll)
+
+--------------------------
+SA-MP Server: 0.3.DL-R1
+
+Exception At Address: 0x00468EE4 Module: (samp-server.exe)
+
+Registers:
+EAX: 0x00000000	EBX: 0x0A717418	ECX: 0x00000000	EDX: 0x00000000
+ESI: 0x00000000	EDI: 0x02CFB518	EBP: 0x0019EC2C	ESP: 0x0019EACC
+EFLAGS: 0x00010246
+
+Stack:
++0000: 0x0047A534   0x00000000   0x02CFB518   0x0A717418
++0010: 0x00000001   0x00493C8E   0x004BE924   0x0019EB3C
++0020: 0x00000001   0x00000009   0x00000002   0x0100007F
++0030: 0x0049E1B2   0x00000000   0x00000000   0x02CFB518
++0040: 0x0A7183D4   0x043C7E9C   0x00000001   0x007F83D4
++0050: 0xE1B20100   0x0047CDE1   0x004BE924   0x02CFB518
++0060: 0x0455EF44   0x00000001   0x0455EF44   0x00000000
++0070: 0x00000080   0x00000800   0x00000000   0x0019EB4D
++0080: 0x00041E01   0x00000000   0x00000000   0x00000000
++0090: 0x00000100   0x0001FF00   0x43A08000   0x43BC0000
++00A0: 0x0019EC00   0x00000004   0x02CFB518   0x00000000
++00B0: 0x0046D8B3   0x0019EC08   0x0019EBFC   0x05DDEC70
++00C0: 0x00000000   0xFFFFFFFF   0x004FC400   0x02CFB518
++00D0: 0x061B84E0   0x6A9F6108   0x0E601364   0x4370D824
++00E0: 0x0A717424   0x0A717410   0x061B84E0   0x0D026FD0
++00F0: 0x008EFA78   0x0019EC0C   0x02BC0C70   0xFFFFFFFF
++0100: 0x0A717424   0x0A717410   0x029BA5ED   0x0A717424
++0110: 0x004FB400   0x00000000   0x00000000   0x00000400
++0120: 0x4370DFF0   0x029BA3FC   0x0A717424   0x0019EC64
++0130: 0x4370DFC8   0x02CFB518   0x0A717418   0x00000001
+
+--------------------------
+
+Loaded Modules:
+samp-server.exe	A: 0x00400000 - 0x0051F000	(F:\Radit Files\Storylines-main\samp-server.exe)
+ntdll.dll	A: 0x76F00000 - 0x770A4000	(C:\Windows\SYSTEM32\ntdll.dll)
+KERNEL32.DLL	A: 0x756F0000 - 0x757E0000	(C:\Windows\System32\KERNEL32.DLL)
+KERNELBASE.dll	A: 0x762F0000 - 0x7652A000	(C:\Windows\System32\KERNELBASE.dll)
+SHELL32.dll	A: 0x76750000 - 0x76D06000	(C:\Windows\System32\SHELL32.dll)
+msvcp_win.dll	A: 0x75920000 - 0x7599B000	(C:\Windows\System32\msvcp_win.dll)
+ucrtbase.dll	A: 0x76DD0000 - 0x76EF0000	(C:\Windows\System32\ucrtbase.dll)
+USER32.dll	A: 0x759A0000 - 0x75B3C000	(C:\Windows\System32\USER32.dll)
+win32u.dll	A: 0x76680000 - 0x76698000	(C:\Windows\System32\win32u.dll)
+GDI32.dll	A: 0x75860000 - 0x75884000	(C:\Windows\System32\GDI32.dll)
+gdi32full.dll	A: 0x76530000 - 0x76615000	(C:\Windows\System32\gdi32full.dll)
+WSOCK32.dll	A: 0x74780000 - 0x74788000	(C:\Windows\SYSTEM32\WSOCK32.dll)
+WINMM.dll	A: 0x73C80000 - 0x73CA8000	(C:\Windows\SYSTEM32\WINMM.dll)
+msvcrt.dll	A: 0x75630000 - 0x756EF000	(C:\Windows\System32\msvcrt.dll)
+WS2_32.dll	A: 0x74E00000 - 0x74E63000	(C:\Windows\System32\WS2_32.dll)
+RPCRT4.dll	A: 0x75570000 - 0x7562F000	(C:\Windows\System32\RPCRT4.dll)
+IMM32.DLL	A: 0x752B0000 - 0x752D5000	(C:\Windows\System32\IMM32.DLL)
+mysql.DLL	A: 0x74C70000 - 0x74CBE000	(F:\Radit Files\Storylines-main\plugins\mysql.DLL)
+log-core.dll	A: 0x74C50000 - 0x74C6A000	(F:\Radit Files\Storylines-main\log-core.dll)
+libmariadb.dll	A: 0x6AA80000 - 0x6AB4D000	(F:\Radit Files\Storylines-main\libmariadb.dll)
+SHLWAPI.dll	A: 0x75520000 - 0x75565000	(C:\Windows\System32\SHLWAPI.dll)
+CRYPT32.dll	A: 0x75B40000 - 0x75C40000	(C:\Windows\System32\CRYPT32.dll)
+ADVAPI32.dll	A: 0x757E0000 - 0x7585C000	(C:\Windows\System32\ADVAPI32.dll)
+MSVCP140.dll	A: 0x6AA10000 - 0x6AA7D000	(C:\Windows\SYSTEM32\MSVCP140.dll)
+VCRUNTIME140.dll	A: 0x74C30000 - 0x74C45000	(C:\Windows\SYSTEM32\VCRUNTIME140.dll)
+sechost.dll	A: 0x75890000 - 0x75906000	(C:\Windows\System32\sechost.dll)
+Secur32.dll	A: 0x73BF0000 - 0x73BFA000	(C:\Windows\SYSTEM32\Secur32.dll)
+SSPICLI.DLL	A: 0x73550000 - 0x73571000	(C:\Windows\SYSTEM32\SSPICLI.DLL)
+CRYPTBASE.DLL	A: 0x74750000 - 0x7475A000	(C:\Windows\SYSTEM32\CRYPTBASE.DLL)
+kernel.appcore.dll	A: 0x74BC0000 - 0x74BCF000	(C:\Windows\SYSTEM32\kernel.appcore.dll)
+napinsp.dll	A: 0x734F0000 - 0x73501000	(C:\Windows\system32\napinsp.dll)
+pnrpnsp.dll	A: 0x734D0000 - 0x734E6000	(C:\Windows\system32\pnrpnsp.dll)
+wshbth.dll	A: 0x734C0000 - 0x734D0000	(C:\Windows\system32\wshbth.dll)
+NLAapi.dll	A: 0x734A0000 - 0x734B6000	(C:\Windows\system32\NLAapi.dll)
+IPHLPAPI.DLL	A: 0x74BD0000 - 0x74C03000	(C:\Windows\SYSTEM32\IPHLPAPI.DLL)
+mswsock.dll	A: 0x74A90000 - 0x74AE2000	(C:\Windows\System32\mswsock.dll)
+DNSAPI.dll	A: 0x73830000 - 0x738C1000	(C:\Windows\SYSTEM32\DNSAPI.dll)
+NSI.dll	A: 0x76D30000 - 0x76D37000	(C:\Windows\System32\NSI.dll)
+winrnr.dll	A: 0x73490000 - 0x7349E000	(C:\Windows\System32\winrnr.dll)
+rasadhlp.dll	A: 0x74730000 - 0x74738000	(C:\Windows\System32\rasadhlp.dll)
+sscanf.DLL	A: 0x10000000 - 0x1000F000	(F:\Radit Files\Storylines-main\plugins\sscanf.DLL)
+streamer.DLL	A: 0x6A9A0000 - 0x6AA0D000	(F:\Radit Files\Storylines-main\plugins\streamer.DLL)
+pawnplus.DLL	A: 0x029A0000 - 0x02C6E000	(F:\Radit Files\Storylines-main\plugins\pawnplus.DLL)
+bcryptPrimitives.dll	A: 0x76620000 - 0x7667F000	(C:\Windows\System32\bcryptPrimitives.dll)
+pawn-memory.DLL	A: 0x74C20000 - 0x74C2A000	(F:\Radit Files\Storylines-main\plugins\pawn-memory.DLL)
+pawnraknet.DLL	A: 0x6A920000 - 0x6A996000	(F:\Radit Files\Storylines-main\plugins\pawnraknet.DLL)
+textdraw-streamer.DLL	A: 0x6A8E0000 - 0x6A911000	(F:\Radit Files\Storylines-main\plugins\textdraw-streamer.DLL)
+bcrypt.dll	A: 0x76D10000 - 0x76D29000	(C:\Windows\System32\bcrypt.dll)

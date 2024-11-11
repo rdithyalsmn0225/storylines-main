@@ -9,6 +9,7 @@ new PlayerText:Subtitles[MAX_PLAYERS];
 new PlayerText:speedo[9][MAX_PLAYERS];
 new PlayerText:Phone[14][MAX_PLAYERS];
 new PlayerText:MDC[14][MAX_PLAYERS];
+new PlayerText:money[MAX_PLAYERS];
 
 new PlayerText:Fades[MAX_PLAYERS];
 
@@ -524,6 +525,20 @@ CreateNotificationTextDraws(playerid)
 	PlayerTextDrawUseBox(playerid, Subtitles[playerid], 0);
 	PlayerTextDrawSetProportional(playerid, Subtitles[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, Subtitles[playerid], 0);
+
+	money[playerid] = CreatePlayerTextDraw(playerid, 607.000000, 97.000000, "~g~+1000");
+	PlayerTextDrawFont(playerid, money[playerid], 3);
+	PlayerTextDrawLetterSize(playerid, money[playerid], 0.270833, 1.050000);
+	PlayerTextDrawTextSize(playerid, money[playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, money[playerid], 1);
+	PlayerTextDrawSetShadow(playerid, money[playerid], 0);
+	PlayerTextDrawAlignment(playerid, money[playerid], 3);
+	PlayerTextDrawColor(playerid, money[playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, money[playerid], 255);
+	PlayerTextDrawBoxColor(playerid, money[playerid], 50);
+	PlayerTextDrawUseBox(playerid, money[playerid], 0);
+	PlayerTextDrawSetProportional(playerid, money[playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, money[playerid], 0);
 }
 
 CreateHUDTextDraws(playerid)

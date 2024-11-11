@@ -171,7 +171,7 @@ SelectCharacter(playerid, id)
 {
 	PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] = id;
 	AccountInfo[playerid][E_MASTERS_LOGGED] = true;
-	
+
 	if (!characterLister[playerid][id][0])
 	{
 		for(new i =0 ; i < 10; i++){ SendClientMessage(playerid, -1, " "); }
@@ -197,8 +197,7 @@ SelectCharacter(playerid, id)
 
 		CancelSelectTextDraw(playerid);
 		DestroyPlayerActor(playerid);
-	}
-	    
+	}   
 	else
 	{
 		new string[128], thread[128];

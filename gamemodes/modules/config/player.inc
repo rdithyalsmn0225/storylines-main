@@ -486,7 +486,6 @@ stock ShowCharacterStats(playerid, playerb)
 	{
 		SendClientMessageEx(playerb, COLOR_GREY, "[FACTION]:{ffffff} [Faction: %s] [Rank: %s]", ReturnFactionName(playerid), IsPlayerFactionRank(playerid));
 	}
-	SendTipMessage(playerb, "/inventory or press 'Y' to open inventory.");
 	
 	if(PlayerInfo[playerb][E_CHARACTER_ADMINDUTY])
 	{
@@ -496,6 +495,7 @@ stock ShowCharacterStats(playerid, playerb)
 		
 		SendClientMessageEx(playerb, COLOR_WHITE, "[MISC]: InsideProperty:[%i] InsideBusiness:[%i]", IsPlayerInProperty(playerid), IsPlayerInBusiness(playerid)); 
 	}
+	SendTipMessage(playerb, "/inventory or press 'Y' to open inventory.");
 	return 1;
 }
 
@@ -533,13 +533,21 @@ stock GiveMoney(playerid, amount)
 	
 	if(amount < 0) {
 		format(string, sizeof(string), "~r~$%d", amount);
-		GameTextForPlayer(playerid, string, 2000, 1);
+		PlayerTextDrawSetString(playerid, money[playerid], string);
+		PlayerTextDrawShow(playerid, money[playerid]);
 	}
 	else{
 		format(string, sizeof(string), "~g~$%d", amount);
-		GameTextForPlayer(playerid, string, 2000, 1);
+		PlayerTextDrawSetString(playerid, money[playerid], string);
+		PlayerTextDrawShow(playerid, money[playerid]);
 	}
+	SetTimerEx("GiveMoneys", 3000, false, "i", playerid);
 	return 1;
+}
+
+function:GiveMoneys(playerid)
+{
+	return PlayerTextDrawHide(playerid, money[playerid]);
 }
 
 stock HexToInt(string[])
