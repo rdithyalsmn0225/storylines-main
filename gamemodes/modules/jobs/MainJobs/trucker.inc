@@ -311,7 +311,7 @@ CMD:tpda(playerid, params[])
     if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TRUCKER)
         return SendErrorMessage(playerid, "You aren't truckers.");
 
-    Dialog_Show(playerid, Industry, DIALOG_STYLE_LIST, "Truck PDA:", "Show Oceandocks Information\nShow All Industry\nShow Business Request Shipments", "Select", "Cancel");
+    Dialog_Show(playerid, Industry, DIALOG_STYLE_LIST, "Truck PDA:", "Show Oceandocks Information\nShow Freight Industry\nShow Cargo Industry\nShow Business Request Shipments", "Select", "Cancel");
     return 1;
 }
 
@@ -329,13 +329,168 @@ Dialog:Industry(playerid, response, listitem, inputtext[])
 			}
 			case 1:
 			{
-				ShowIndustry(playerid);
+				if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < 5)
+					return SendErrorMessage(playerid, "Your level is minimum to access this jobs."); 
+
+				ShowFreight(playerid);
 			}
 			case 2:
+			{
+				ShowIndustry(playerid);
+			}
+			case 3:
 			{
 				ShowShipments(playerid);
 			}
 		}
+	}
+	return 1;
+}
+
+stock AttachVehicleFreight(playerid, vehicleid)
+{
+	new Float:x, Float:y, Float:z;
+	GetPlayerPos(playerid, x, y, z);
+
+	switch(PlayerTruckIndex[playerid])
+	{
+		case 1: // Fabric
+		{
+			PlayerTruckAttach[playerid] = CreateVehicle(591, x, y, z, 0.0, 1, -1, -1, 0);
+			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
+			SendServerMessage(playerid, "[Trucker] {cdd0d1}You has attached trailer into your truck, go to checkpoint to deliver the trailer at {d7d292}%s{cdd0d1}.", GetZoneName(FreightInfo[0][Endx], FreightInfo[0][Endy], FreightInfo[0][Endz]));
+			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[0][Endx], FreightInfo[0][Endy], FreightInfo[0][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
+		}
+		case 2: // Steel
+		{
+			PlayerTruckAttach[playerid] = CreateVehicle(450, x, y, z, 0.0, 1, -1, -1, 0);
+			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
+			SendServerMessage(playerid, "[Trucker] {cdd0d1}You has attached trailer into your truck, go to checkpoint to deliver the trailer at {d7d292}%s{cdd0d1}.", GetZoneName(FreightInfo[1][Endx], FreightInfo[1][Endy], FreightInfo[1][Endz]));
+			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[1][Endx], FreightInfo[1][Endy], FreightInfo[1][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
+		}
+		case 3: // Wood
+		{
+			PlayerTruckAttach[playerid] = CreateVehicle(450, x, y, z, 0.0, 1, -1, -1, 0);
+			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
+			SendServerMessage(playerid, "[Trucker] {cdd0d1}You has attached trailer into your truck, go to checkpoint to deliver the trailer at {d7d292}%s{cdd0d1}.", GetZoneName(FreightInfo[2][Endx], FreightInfo[2][Endy], FreightInfo[2][Endz]));
+			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[2][Endx], FreightInfo[2][Endy], FreightInfo[2][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
+		}
+		case 4: // Fish
+		{
+			PlayerTruckAttach[playerid] = CreateVehicle(591, x, y, z, 0.0, 1, -1, -1, 0);
+			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
+			SendServerMessage(playerid, "[Trucker] {cdd0d1}You has attached trailer into your truck, go to checkpoint to deliver the trailer at {d7d292}%s{cdd0d1}.", GetZoneName(FreightInfo[3][Endx], FreightInfo[3][Endy], FreightInfo[3][Endz]));
+			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[3][Endx], FreightInfo[3][Endy], FreightInfo[3][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
+		}
+		case 5: // Sprunk
+		{
+			PlayerTruckAttach[playerid] = CreateVehicle(591, x, y, z, 0.0, 16, -1, -1, 0);
+
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{ffffff}SPRUNK", 120, "Engravers MT", 100, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], -1.390, 0.933, 1.048, 2.600, 0.000, 180.000);
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{ffffff}SPRUNK", 120, "Engravers MT", 100, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], 1.340, 0.933, 1.048, 2.500, 0.000, 0.000);
+
+			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
+			SendServerMessage(playerid, "[Trucker] {cdd0d1}You has attached trailer into your truck, go to checkpoint to deliver the trailer at {d7d292}%s{cdd0d1}.", GetZoneName(FreightInfo[4][Endx], FreightInfo[4][Endy], FreightInfo[4][Endz]));
+			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[4][Endx], FreightInfo[4][Endy], FreightInfo[4][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
+		}
+		case 6: // Cocacola
+		{
+			PlayerTruckAttach[playerid] = CreateVehicle(591, x, y, z, 0.0, 3, -1, -1, 0);
+
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{ffffff}CocaCola", 120, "Engravers MT", 100, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], -1.355, 0.801, 1.040, 0.000, 0.000, -179.900);
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{ffffff}CocaCola", 120, "Engravers MT", 100, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], 1.339, 0.889, 1.160, 0.000, 0.000, 0.000);
+
+			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
+			SendServerMessage(playerid, "[Trucker] {cdd0d1}You has attached trailer into your truck, go to checkpoint to deliver the trailer at {d7d292}%s{cdd0d1}.", GetZoneName(FreightInfo[5][Endx], FreightInfo[5][Endy], FreightInfo[5][Endz]));
+			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[5][Endx], FreightInfo[5][Endy], FreightInfo[5][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
+		}
+		case 7: // Big Goods
+		{
+			PlayerTruckAttach[playerid] = CreateVehicle(591, x, y, z, 0.0, 1, -1, -1, 0);
+
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{ff0000}G", 120, "Engravers MT", 100, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], 1.340, 1.220, 1.030, 0.000, 0.000, 0.000);
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{ff0000}--------", 120, "Engravers MT", 100, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], 1.330, 2.850, 1.150, 0.000, 0.000, 720.000);
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{ff0000}------", 120, "Engravers MT", 100, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], 1.340, -0.129, 1.150, 0.000, 0.000, 0.000);
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{000000}BIG", 120, "Engravers MT", 60, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], 1.340, -0.129, 1.560, 0.000, 0.000, 0.000);
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{000000}GOODS", 120, "Engravers MT", 60, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], 1.340, 3.000, 1.560, 0.000, 0.000, 0.000);
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{ff0000}G", 120, "Engravers MT", 100, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], -1.300, 1.220, 1.030, 0.000, 0.000, 180.000);
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{ff0000}--------", 120, "Engravers MT", 100, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], -1.330, -0.409, 1.150, 0.000, 0.000, 0.000);
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{ff0000}------", 120, "Engravers MT", 100, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], -1.360, 2.540, 1.150, 0.000, 0.000, 0.000);
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{000000}GOODS", 120, "Engravers MT", 60, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], -1.349, -0.269, 1.560, 0.000, 0.000, 180.000);
+			PlayerTruckObject[playerid] = CreateDynamicObject(19482,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+			SetDynamicObjectMaterial(PlayerTruckObject[playerid], 0, 10101, "2notherbuildsfe", "Bow_Abpave_Gen", 0);
+			SetDynamicObjectMaterialText(PlayerTruckObject[playerid], 0, "{000000}BIG", 120, "Engravers MT", 60, 1, 0, 0, 1);
+			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], -1.330, 2.690, 1.560, 0.000, 0.000, 180.000);
+
+			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
+			SendServerMessage(playerid, "[Trucker] {cdd0d1}You has attached trailer into your truck, go to checkpoint to deliver the trailer at {d7d292}%s{cdd0d1}.", GetZoneName(FreightInfo[6][Endx], FreightInfo[6][Endy], FreightInfo[6][Endz]));
+			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[6][Endx], FreightInfo[6][Endy], FreightInfo[6][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
+		}
+	}
+	return 1;
+}
+
+DettachVehicleFreight(playerid, vehicleid)
+{
+	new rand = randomEx(500, 800);
+	new total = rand + 50;
+
+	if(IsValidDynamicObject(PlayerTruckObject[playerid]))
+		DestroyDynamicObject(PlayerTruckObject[playerid]);
+
+	DestroyVehicle(PlayerTruckAttach[playerid]);
+	DetachTrailerFromVehicle(vehicleid);
+
+	GivePaycheck(playerid, total);
+	SendServerMessage(playerid, "[Trucker] {cdd0d1}You has deliver trailer into destination and earn into your paycheck {93C47D}$%s{cdd0d1}.", FormatMoney(total));
+	GPS_DisablePlayerRaceCheckPoint(playerid);
+	return 1;
+}
+
+function:AttachVehicleFreightEx(playerid, trailerid, vehicleid)
+{
+	if(IsVehicleStreamedIn(trailerid, playerid))
+	{
+		AttachTrailerToVehicle(trailerid, vehicleid);
 	}
 	return 1;
 }

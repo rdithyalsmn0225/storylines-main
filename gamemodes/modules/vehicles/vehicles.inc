@@ -657,7 +657,6 @@ function:Query_ShowVehicleList(playerid, idx)
 			PlayerTextDrawShow(playerid, VehicleSelection[13][playerid]);
 			PlayerTextDrawShow(playerid, VehicleSelection[17][playerid]);
 		}
-
 		PlayerTextDrawShow(playerid, VehicleSelection[0][playerid]);
 		PlayerTextDrawShow(playerid, VehicleSelection[1][playerid]);
 		PlayerTextDrawShow(playerid, VehicleSelection[18][playerid]);

@@ -529,6 +529,7 @@ function:LogPlayerIn(playerid)
 
 public OnPlayerEnterRaceCheckpoint(playerid)
 {
+	new vehicleid = GetPlayerVehicleID(playerid);
 	if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {
 		if(PlayerTakingLicense[playerid])
@@ -557,6 +558,19 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 			if(LicensetestInfo[idx][E_CHECKPOINT_FINISH])
 			{
 				PlayerCheckpoint[playerid] = GPS_DMVFINISH;
+			}
+		}
+
+		if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRUCKER && PlayerTruckIndex[playerid])
+		{
+			if(PlayerCheckpoint[playerid] == GPS_TRUCKERS)
+			{
+				AttachVehicleFreight(playerid, vehicleid);
+			}
+
+			if(PlayerCheckpoint[playerid] == GPS_TRUCKERSFINISH && IsTrailerAttachedToVehicle(vehicleid))
+			{
+				DettachVehicleFreight(playerid, vehicleid);
 			}
 		}
 		if(PlayerInfo[playerid][E_CHARACTER_SWEEPER] == true && PlayerCheckpoint[playerid] == GPS_SWEEPER)
@@ -1104,9 +1118,9 @@ public OnPlayerDeath(playerid, killerid, reason)
 
 	printf("Callback OnPlayerDeath called for player %s (ID: %i)", ReturnName(playerid), playerid); 
 
-	if(killerid == INVALID_PLAYER_ID && reason >= 49)
+	if(killerid == INVALID_PLAYER_ID)
 	{
-		if((gettime() - LastSpawn[playerid]) < 15)
+		if((gettime() - LastSpawn[playerid]) < 15 && reason >= 49)
 		{
 		    PlayerInfo[playerid][E_CHARACTER_HEALTH] = 100.0;
 

@@ -1741,14 +1741,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else ShowVehicleStorage(playerid, carid);
 			}
 		}
-		case DIALOG_INDUSTRYLOC:
-		{
-			if(response)
-			{
-				GPS_SetPlayerRaceCheckPoint(playerid, 1, IndustryInfo[listitem][Posx], IndustryInfo[listitem][Posy], IndustryInfo[listitem][Posz], 0.0, 0.0, 0.0);
-			}
-		}
 	}
-	//PlayerPlaySound(playerid, 1054, 0.0, 0.0, 0.0);
+	PlayerPlaySound(playerid, 1054, 0.0, 0.0, 0.0);
 	return 0;
 }

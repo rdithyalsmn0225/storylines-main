@@ -79,7 +79,7 @@ CMD:creategun(playerid, params[])
 CMD:buygun(playerid, params[])
 {
 	if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < 5)
-		return SendErrorMessage(playerid, "You don't have permission to use this command."); 
+		return SendErrorMessage(playerid, "Your level is minimum to access this gunshop."); 
 
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, EmmetInfo[0][EMMET_POSX], EmmetInfo[0][EMMET_POSY], EmmetInfo[0][EMMET_POSZ]))
 	{

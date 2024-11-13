@@ -7,6 +7,7 @@ new DMV_Vehicles[4];
 
 InsertStaticVehicles()
 {
+	// DMV
 	DMV_Vehicles[0] = AddStaticVehicle(405, 1273.0470, -1557.0576, 13.5405, -91.0000, 1, 1); SetVehicleNumberPlate(DMV_Vehicles[0], "DMV");
 	DMV_Vehicles[1] = AddStaticVehicle(405, 1273.0470, -1549.9562, 13.5405, -91.0000, 1, 1); SetVehicleNumberPlate(DMV_Vehicles[1], "DMV");
 	DMV_Vehicles[2] = AddStaticVehicle(405, 1273.0470, -1542.8961, 13.5405, -91.0000, 1, 1); SetVehicleNumberPlate(DMV_Vehicles[2], "DMV");

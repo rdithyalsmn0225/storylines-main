@@ -85,7 +85,9 @@ enum
 	GPS_SWEEPER,
 	GPS_BUSDRIVER,
 	GPS_DMV,
-	GPS_DMVFINISH
+	GPS_DMVFINISH,
+	GPS_TRUCKERS,
+	GPS_TRUCKERSFINISH
 };
 
 enum
@@ -755,6 +757,17 @@ enum E_INDUSTRY_DATA {
 	Float:Posz
 };
 
+enum E_FREIGHT_DATA 
+{
+	Cargo[512],
+	Float:Startx,
+	Float:Starty,
+	Float:Startz,
+	Float:Endx,
+	Float:Endy,
+	Float:Endz
+};
+
 // PENALCODE:
 enum E_PENALCODES_DATA {
 	E_PENALCODES_TYPE[128],
@@ -838,6 +851,9 @@ new TotalPlayerDamages[MAX_PLAYERS],
 	PlayerDockworkerStore[MAX_PLAYERS],
 	PlayerSweeperIndex[MAX_PLAYERS],
 	PlayerBusDriverIndex[MAX_PLAYERS],
+	PlayerTruckIndex[MAX_PLAYERS],
+	PlayerTruckAttach[MAX_PLAYERS],
+	PlayerTruckObject[MAX_PLAYERS],
 	Player911Type[MAX_PLAYERS],
 	Player911Timer[2][MAX_PLAYERS], 
 	Player911Text[MAX_PLAYERS][3][128],
@@ -2107,7 +2123,17 @@ new const IndustryInfo[][E_INDUSTRY_DATA] =
 	{"Waterford Industries", "Secondary", "Foods", 6, 884.1719,-1198.6968,16.9766}, // Foods Industrial - Secondary
 	{"Waterford Industries", "Secondary", "Clothes", 6, 893.5656,-1199.0846,16.9766}, // Clothes Industrial - Secondary
 	{"Waterford Industries", "Secondary", "Appliances", 6, 856.2750,-1199.0627,16.9766} // Appliances Industrial - Secondary
-	
+};
+
+new const FreightInfo[][E_FREIGHT_DATA] = 
+{	
+	{"Fabric", 1197.8492,165.9476,21.1472, 		2471.8384,-2090.3818,13.5469}, // Montgomery Fabric
+	{"Steel", -544.9263,-86.5519,63.9614, 		-1987.9716,-2382.5554,30.6250}, // Panopticon Woods
+	{"Woods", -0.3627,-249.8474,6.0650, 		2464.4963,-2591.9417,13.6611}, // Blueberry Steels
+	{"Fish", -2095.4104,-2240.9924,31.3511, 	2588.9338,-2418.3040,13.4688}, // Anglepine Fish
+	{"Sprunk", 310.0273,-245.1321,2.2129, 		893.3704,-1220.6194,16.9766}, // Blueberry Sprunk
+	{"Cocacola", 1399.5077,393.5423,20.3931, 	893.3704,-1220.6194,16.9766}, // Montgomery Cocacola
+	{"Big Goods", -1016.5882,-676.2883,32.6418, 893.3704,-1220.6194,16.9766} // Easter Bay Big Goods
 };
 
 new const PenalInfo[][E_PENALCODES_DATA] =

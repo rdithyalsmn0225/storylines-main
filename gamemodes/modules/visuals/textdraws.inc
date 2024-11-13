@@ -868,7 +868,7 @@ CreateVehicleTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, VehicleSelection[0][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, VehicleSelection[0][playerid], 0);
 
-	VehicleSelection[1][playerid] = CreatePlayerTextDraw(playerid, 319.000000, 153.000000, "Jayvon Williams Vehicles");
+	VehicleSelection[1][playerid] = CreatePlayerTextDraw(playerid, 319.000000, 153.000000, "My Vehicles");
 	PlayerTextDrawFont(playerid, VehicleSelection[1][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, VehicleSelection[1][playerid], 0.408333, 1.250000);
 	PlayerTextDrawTextSize(playerid, VehicleSelection[1][playerid], 400.000000, 256.000000);
