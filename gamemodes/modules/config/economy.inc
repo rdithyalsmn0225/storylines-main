@@ -3,8 +3,14 @@
 #define SWEEPER_SALARY          5
 #define BUSDRIVER_SALARY        5
 #define DOCKWORKER_SALARY       15
-#define FISHING_SALARY          10
 #define LUMBERJACK_SALARY       25
+
+//FISH PRICE
+#define COD_PRICE          1
+#define CARP_PRICE          2
+#define SALMON_PRICE          3
+#define CATFISH_PRICE          4
+#define HERRING_PRICE          4
 
 //FSTORAGE
 #define GLOCK19         400000

@@ -54,15 +54,17 @@ CMD:mechmenu(playerid, params[])
 		return SendErrorMessage(playerid, "You aren't near a vehicle."); 
 
     new str[1524];
-    strcat(str, "Repair Engine\t(1 Repair Kits)\n");
-    strcat(str, "Repair Bodykit\t(1 Repair Kits)\n");
-    strcat(str, "Repair Tire\t(1 Repair Kits)\n");
-    strcat(str, "Repaint Exterior\t(1 Spraycan)\n");
-    strcat(str, "Repaint Interior\t(1 Spraycan)\n");
-    strcat(str, "Repaint Paintjob type 1\t(2 Spraycan)\n");
-    strcat(str, "Repaint Paintjob type 2\t(2 Spraycan)\n");
-    strcat(str, "Repaint Paintjob type 3\t(2 Spraycan)\n");
-    Dialog_Show(playerid, MechMenu, DIALOG_STYLE_TABLIST, "Mechanic Menu", str, "Select", "Close");
+    strcat(str, "Option\tComponent\tTime\n");
+    strcat(str, "Repair Engine\t(1 Repair Kits)\t25 seconds\n");
+    strcat(str, "Repair Bodykit\t(1 Repair Kits)\t30 seconds\n");
+    strcat(str, "Repair Tire\t(1 Repair Kits)\t20 seconds\n");
+    strcat(str, "Repaint Exterior\t(1 Spraycan)\t35 seconds\n");
+    strcat(str, "Repaint Interior\t(1 Spraycan)\t35 seconds\n");
+    strcat(str, "Repaint Paintjob type 1\t(2 Spraycan)\t40 seconds\n");
+    strcat(str, "Repaint Paintjob type 2\t(2 Spraycan)\t40 seconds\n");
+    strcat(str, "Repaint Paintjob type 3\t(2 Spraycan)\t40 seconds\n");
+    strcat(str, "Manipulation Plates\t(1 Spraycan)\t35 seconds\n");
+    Dialog_Show(playerid, MechMenu, DIALOG_STYLE_TABLIST_HEADERS, "Mechanic Menu", str, "Select", "Close");
     return 1;
 }
 
@@ -105,7 +107,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairengine", 2000, true, "ii", playerid, vehicleid);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairengine", 3125, true, "ii", playerid, vehicleid);
             }
             case 1:
             {
@@ -139,7 +141,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairbody", 2000, true, "ii", playerid, vehicleid);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairbody", 3750, true, "ii", playerid, vehicleid);
             }
             case 2:
             {
@@ -173,7 +175,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairtire", 2000, true, "ii", playerid, vehicleid);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairtire", 2500, true, "ii", playerid, vehicleid);
             }
             case 3:
             {
@@ -272,7 +274,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob1", 2000, true, "ii", playerid, vehicleid);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob1", 5000, true, "ii", playerid, vehicleid);
             }
             case 6:
             {
@@ -309,7 +311,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob2", 2000, true, "ii", playerid, vehicleid);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob2", 5000, true, "ii", playerid, vehicleid);
             }
             case 7:
             {
@@ -346,7 +348,41 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob3", 2000, true, "ii", playerid, vehicleid);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob3", 5000, true, "ii", playerid, vehicleid);
+            }
+            case 8:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+                    return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+                if(Inventory_Count(playerid, "Spraycan") < 1)
+                    return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You're can't use this right now."); 
+
+                new Float:x, Float:y, Float:z;
+                GetPlayerPos(playerid, x, y, z);
+                TogglePlayerControllable(playerid, false);
+                ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 1, 0, 0, 0, 0, 1);
+
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint plates process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+                PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintplates", 2500, true, "ii", playerid, vehicleid);
             }
         }
     }
@@ -677,7 +713,59 @@ function:repaintpaintjob3(playerid, vehicleid)
 				ResetVarInventory(playerid);
 			}
 
-		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaintjob the {d7d292}%s{cdd0d1} bodykits.", ReturnVehicleName(vehicleid));
+		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaintjob {d7d292}%s{cdd0d1} bodykits.", ReturnVehicleName(vehicleid));
+		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+		}
+    }
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+}
+
+function:repaintplates(playerid, vehicleid)
+{
+	new text[256];
+    PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT]++;
+
+    switch(PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT])
+    {
+        case 2: text = "Loading repaint plates process\n(( ||----- ))";
+        case 3: text = "Loading repaint plates process\n(( |||---- ))";
+        case 4: text = "Loading repaint plates process\n(( ||||--- ))";
+        case 5: text = "Loading repaint plates process\n(( |||||-- ))";
+        case 6: text = "Loading repaint plates process\n(( ||||||- ))";
+        case 7: text = "Loading repaint plates process\n(( ||||||| ))";
+        case 8:
+        {
+		    TogglePlayerControllable(playerid, true);
+
+            Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
+            KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
+
+            Inventory_Remove(playerid, "Spraycan", 1);
+
+            new
+                plates[32],
+			    randset[3];
+
+            randset[0] = random(sizeof(possible_vehicle_plates)); 
+            randset[1] = random(sizeof(possible_vehicle_plates)); 
+            randset[2] = random(sizeof(possible_vehicle_plates)); 
+
+            format(plates, 32, "%d%s%s%s%d%d%d", random(9), possible_vehicle_plates[randset[0]], possible_vehicle_plates[randset[1]], possible_vehicle_plates[randset[2]], random(9), random(9)); 
+            format(VehicleInfo[vehicleid][E_VEHICLE_FAKEPLATES], 32, plates);
+
+            SetVehicleNumberPlate(vehicleid, plates);
+            SetVehicleToRespawnEx(vehicleid); 
+            VehicleInfo[vehicleid][E_VEHICLE_PLATESFAKE] = true;
+
+            SaveVehicle(vehicleid);
+            PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
+
+            if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+			{
+				ResetVarInventory(playerid);
+			}
+
+		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaint {d7d292}%s{cdd0d1} plates.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }

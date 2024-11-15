@@ -452,6 +452,9 @@ function:Query_LoadPrivateVehicle(playerid)
 			cache_get_value_name_int(i, "VehicleParkInterior", VehicleInfo[vehicleid][E_VEHICLE_INT]);
 			cache_get_value_name_int(i, "VehicleParkWorld", VehicleInfo[vehicleid][E_VEHICLE_WORLD]);
 			cache_get_value_name(i, "VehiclePlates", VehicleInfo[vehicleid][E_VEHICLE_PLATES], 32);
+			cache_get_value_name(i, "VehicleFakePlates", VehicleInfo[vehicleid][E_VEHICLE_FAKEPLATES], 32);
+			cache_get_value_name_bool(i, "VehiclePlatesStatus", VehicleInfo[vehicleid][E_VEHICLE_PLATESSTATUS]);
+			cache_get_value_name_bool(i, "VehiclePlatesFake", VehicleInfo[vehicleid][E_VEHICLE_PLATESFAKE]);
 			cache_get_value_name_bool(i, "VehicleLocked", VehicleInfo[vehicleid][E_VEHICLE_LOCKED]);
 			cache_get_value_name_bool(i, "VehicleImpounded", VehicleInfo[vehicleid][E_VEHICLE_IMPOUND]);
 			cache_get_value_name_float(i, "VehicleImpoundPosX", VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][0]);
@@ -495,10 +498,21 @@ function:Query_LoadPrivateVehicle(playerid)
 				SetVehicleVirtualWorld(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_WORLD]);
 			}
 			
-			if(!isnull(VehicleInfo[vehicleid][E_VEHICLE_PLATES]))
+			if(!VehicleInfo[vehicleid][E_VEHICLE_PLATESFAKE])
 			{
-				SetVehicleNumberPlate(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_PLATES]);
-				SetVehicleToRespawnEx(vehicleid); 
+				if(!isnull(VehicleInfo[vehicleid][E_VEHICLE_PLATES]))
+				{
+					SetVehicleNumberPlate(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_PLATES]);
+					SetVehicleToRespawnEx(vehicleid); 
+				}
+			}
+			else
+			{
+				if(!isnull(VehicleInfo[vehicleid][E_VEHICLE_FAKEPLATES]))
+				{
+					SetVehicleNumberPlate(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_FAKEPLATES]);
+					SetVehicleToRespawnEx(vehicleid); 
+				}
 			}
 			
 			if(VehicleInfo[vehicleid][E_VEHICLE_IMPOUND] == true)
@@ -895,7 +909,18 @@ stock IsATrucker(vehicleid)
 
 stock SetVehicleToRespawnEx(vehicleid)
 {
-	VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = 1000.0;
+	new Float:x, Float:y, Float:z, Float:a, Float:health;
+	GetVehiclePos(vehicleid, x, y, z);
+	GetVehicleZAngle(vehicleid, a);
+	GetVehicleHealth(vehicleid, health);
+
+	VehicleInfo[vehicleid][E_VEHICLE_POS][0] = x;
+	VehicleInfo[vehicleid][E_VEHICLE_POS][1] = y;
+	VehicleInfo[vehicleid][E_VEHICLE_POS][2] = z;
+	VehicleInfo[vehicleid][E_VEHICLE_POS][3] = a;
+	VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = health;
+	SaveVehicle(vehicleid);
+	
 	SetVehicleToRespawn(vehicleid);
 	return true;
 }

@@ -734,24 +734,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    }
 			}
 		}
-		case DIALOG_SELLFISH:
-		{
-			if(response)
-		    {
-		        new total = 0;
-		        if(Inventory_Count(playerid, "Fish") != 0)
-		        {
-		            total += FISHING_SALARY * floatround(Inventory_Count(playerid, "Fish"), floatround_round);
-
-					Inventory_Set(playerid, "Fish", 19630, 0);
-				}
-
-				new Cents = floatround(total * 100, floatround_round);
-
-				GiveMoney(playerid, Cents);
-				SendServerMessage(playerid, "[Fishing] {cdd0d1}You have sold all the fish and earn {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
-			}
-		}
 		case DIALOG_SETTINGS:
 		{
 			if (response)

@@ -3611,7 +3611,7 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 		PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
 		PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-		PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintexterior", 2000, true, "iii", playerid, vehicleid, modelid);
+		PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintexterior", 4375, true, "iii", playerid, vehicleid, modelid);
 
 		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
 	}
@@ -3634,7 +3634,7 @@ public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
 		PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
 		PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-		PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintinterior", 2000, true, "ii", playerid, vehicleid);
+		PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintinterior", 4375, true, "ii", playerid, vehicleid);
 		
 		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
 	}
@@ -3855,8 +3855,10 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 			if(PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] == 100.0)
 			{
+				new rand = randomEx(1, 5);
+
 				ClearAnimations(playerid);
-				Inventory_Add(playerid, "Fish", 19630, 1);
+				
 				PlayerInfo[playerid][E_CHARACTER_FISHING] = false;
 				PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] = false;
 				PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] = 0;
@@ -3864,10 +3866,35 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				DestroyGameBar(playerid);
 				KillTimer(PlayerInfo[playerid][E_CHARACTER_FISHINGTIMER]);
 				TogglePlayerControllable(playerid, true);
-				
 				ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-				SendServerMessage(playerid, "[Fishing] {cdd0d1}You caught a {d7d292}1.kg{cdd0d1} of fish.");
-				
+				switch(rand)
+				{
+					case 1:	
+					{
+						Inventory_Add(playerid, "Cod", 19630, 1); 
+						SendServerMessage(playerid, "[Fishing] {cdd0d1}You caught a {d7d292}12.5.kg{cdd0d1} of Cod.");
+					}
+					case 2:	
+					{
+						Inventory_Add(playerid, "Carp", 19630, 1); 
+						SendServerMessage(playerid, "[Fishing] {cdd0d1}You caught a {d7d292}10.5.kg{cdd0d1} of Carp.");
+					}
+					case 3:	
+					{
+						Inventory_Add(playerid, "Salmon", 19630, 1); 
+						SendServerMessage(playerid, "[Fishing] {cdd0d1}You caught a {d7d292}8.5 lbs{cdd0d1} of Salmon.");
+					}
+					case 4:	
+					{
+						Inventory_Add(playerid, "Cat Fish", 19630, 1); 
+						SendServerMessage(playerid, "[Fishing] {cdd0d1}You caught a {d7d292}15.5 lbs{cdd0d1} of Cat fish.");
+					}
+					case 5:	
+					{
+						Inventory_Add(playerid, "Herring", 19630, 1); 
+						SendServerMessage(playerid, "[Fishing] {cdd0d1}You caught a {d7d292}1.5 lbs{cdd0d1} of Herring.");
+					}
+				}
 			}
 		}
 	}

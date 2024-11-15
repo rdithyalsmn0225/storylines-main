@@ -82,13 +82,16 @@ stock SaveVehicle(vehicleid)
 {
 	new query[2048];
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE vehicles SET VehicleOwnerDBID = %i, VehicleColor1 = %i, VehicleColor2 = %i, VehiclePaintjob = %i, VehiclePlates = '%e', VehicleLocked = %i, VehicleSirens = %i, VehicleFuel = %f, VehicleMiles = %i WHERE VehicleDBID = %i",
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE vehicles SET VehicleOwnerDBID = %i, VehicleColor1 = %i, VehicleColor2 = %i, VehiclePaintjob = %i, VehiclePlates = '%e', VehicleFakePlates = '%e', VehiclePlatesStatus = '%i', VehiclePlatesFake = '%i', VehicleLocked = %i, VehicleSirens = %i, VehicleFuel = %f, VehicleMiles = %i WHERE VehicleDBID = %i",
 		VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID], 
 		
 		VehicleInfo[vehicleid][E_VEHICLE_COLOR1],
 		VehicleInfo[vehicleid][E_VEHICLE_COLOR2],
 		VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB],
 		VehicleInfo[vehicleid][E_VEHICLE_PLATES],
+		VehicleInfo[vehicleid][E_VEHICLE_FAKEPLATES],
+		VehicleInfo[vehicleid][E_VEHICLE_PLATESSTATUS],
+		VehicleInfo[vehicleid][E_VEHICLE_PLATESFAKE],
 		VehicleInfo[vehicleid][E_VEHICLE_LOCKED],
 		VehicleInfo[vehicleid][E_VEHICLE_SIRENS],
 		VehicleInfo[vehicleid][E_VEHICLE_FUEL],

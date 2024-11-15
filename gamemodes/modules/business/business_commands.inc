@@ -87,7 +87,7 @@ CMD:bizproduct(playerid, params[])
 
 	switch(type)
 	{
-		case 0:
+		case 1:
 		{
 			if (value < 1.00 || value > 10.00)
         		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
@@ -95,7 +95,7 @@ CMD:bizproduct(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][1] = Cents;
 			SendServerMessage(playerid, "[Business] {cdd0d1}You has set your business product {d7d292}#1{cdd0d1} to {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 		}
-		case 1:
+		case 2:
 		{
 			if (value < 1.00 || value > 10.00)
         		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
@@ -103,7 +103,7 @@ CMD:bizproduct(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][2] = Cents;
 			SendServerMessage(playerid, "[Business] {cdd0d1}You has set your business product {d7d292}#2{cdd0d1} to {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 		}
-		case 2:
+		case 3:
 		{
 			if (value < 1.00 || value > 10.00)
         		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
