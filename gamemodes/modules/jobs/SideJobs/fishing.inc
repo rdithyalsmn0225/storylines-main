@@ -135,9 +135,11 @@ CMD:buybait(playerid, params[])
 	if(amount > 100)
 		return SendErrorMessage(playerid, "Invalid bait amount!");
 	
+	new Cents = floatround(amount * 100, floatround_round);
+
+	GiveMoney(playerid, Cents);
 	Inventory_Add(playerid, "Fish Bait", 19566, amount);
-	SendServerMessage(playerid, "[Fishing] {cdd0d1}You have successfully purchase {d7d292}%d Fish bait{cdd0d1} for {93C47D}$%s{cdd0d1}", amount, FormatMoney(amount));
-	GiveMoney(playerid, -amount);
+	SendServerMessage(playerid, "[Fishing] {cdd0d1}You have successfully purchase {d7d292}%d Fish bait{cdd0d1} for {93C47D}$%s{cdd0d1}", amount, FormatMoney(Cents));
 	return 1;
 }
 

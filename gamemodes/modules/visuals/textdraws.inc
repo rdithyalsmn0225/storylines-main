@@ -6,11 +6,12 @@ new PlayerText:loginscreen[3][MAX_PLAYERS];
 new PlayerText:HeaderTD[2][MAX_PLAYERS];
 new PlayerText:Street[2][MAX_PLAYERS];
 new PlayerText:Subtitles[MAX_PLAYERS];
-new PlayerText:speedo[9][MAX_PLAYERS];
+new PlayerText:speedo[7][MAX_PLAYERS];
 new PlayerText:Phone[14][MAX_PLAYERS];
 new PlayerText:MDC[14][MAX_PLAYERS];
 new PlayerText:VehicleSelection[19][MAX_PLAYERS];
 new PlayerText:money[MAX_PLAYERS];
+new PlayerText:MoneyFormat[MAX_PLAYERS];
 
 new PlayerText:Fades[MAX_PLAYERS];
 
@@ -35,6 +36,7 @@ new PlayerText:tutorialclick[MAX_PLAYERS];
 new PlayerText:gui_spec_label[MAX_PLAYERS][5];
 
 new PlayerBar:HeaderBar[MAX_PLAYERS];
+new PlayerBar:speedobar[MAX_PLAYERS];
 
 //Textdraws
 
@@ -533,6 +535,20 @@ CreateNotificationTextDraws(playerid)
 	PlayerTextDrawUseBox(playerid, money[playerid], 0);
 	PlayerTextDrawSetProportional(playerid, money[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, money[playerid], 0);
+
+	MoneyFormat[playerid] = CreatePlayerTextDraw(playerid, 586.000000, 78.000000, "~g~,    .");
+	PlayerTextDrawFont(playerid, MoneyFormat[playerid], 3);
+	PlayerTextDrawLetterSize(playerid, MoneyFormat[playerid], 0.487500, 2.349999);
+	PlayerTextDrawTextSize(playerid, MoneyFormat[playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, MoneyFormat[playerid], 1);
+	PlayerTextDrawSetShadow(playerid, MoneyFormat[playerid], 0);
+	PlayerTextDrawAlignment(playerid, MoneyFormat[playerid], 3);
+	PlayerTextDrawColor(playerid, MoneyFormat[playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, MoneyFormat[playerid], 255);
+	PlayerTextDrawBoxColor(playerid, MoneyFormat[playerid], 50);
+	PlayerTextDrawUseBox(playerid, MoneyFormat[playerid], 0);
+	PlayerTextDrawSetProportional(playerid, MoneyFormat[playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, MoneyFormat[playerid], 0);
 }
 
 CreateHUDTextDraws(playerid)
@@ -728,131 +744,103 @@ CreateVehicleTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, VehicleName[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, VehicleName[playerid], 0);
 
-	speedo[6][playerid] = CreatePlayerTextDraw(playerid, 526.000000, 186.000000, "-~n~-~n~-~n~-~n~-~n~-~n~-~n~");
-	PlayerTextDrawFont(playerid, speedo[6][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, speedo[6][playerid], 0.770823, 0.500000);
-	PlayerTextDrawTextSize(playerid, speedo[6][playerid], 400.000000, 17.000000);
-	PlayerTextDrawSetOutline(playerid, speedo[6][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, speedo[6][playerid], 0);
-	PlayerTextDrawAlignment(playerid, speedo[6][playerid], 1);
-	PlayerTextDrawColor(playerid, speedo[6][playerid], 2094792959);
-	PlayerTextDrawBackgroundColor(playerid, speedo[6][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, speedo[6][playerid], 50);
-	PlayerTextDrawUseBox(playerid, speedo[6][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, speedo[6][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, speedo[6][playerid], 0);
-
-	speedo[1][playerid] = CreatePlayerTextDraw(playerid, 539.000000, 168.000000, "I");
+	speedo[1][playerid] = CreatePlayerTextDraw(playerid, 498.000000, 120.000000, "fuel");
 	PlayerTextDrawFont(playerid, speedo[1][playerid], 2);
-	PlayerTextDrawLetterSize(playerid, speedo[1][playerid], 0.358323, 6.600001);
+	PlayerTextDrawLetterSize(playerid, speedo[1][playerid], 0.258328, 0.949996);
 	PlayerTextDrawTextSize(playerid, speedo[1][playerid], 400.000000, 17.000000);
 	PlayerTextDrawSetOutline(playerid, speedo[1][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, speedo[1][playerid], 0);
 	PlayerTextDrawAlignment(playerid, speedo[1][playerid], 1);
-	PlayerTextDrawColor(playerid, speedo[1][playerid], -1);
+	PlayerTextDrawColor(playerid, speedo[1][playerid], -1379670017);
 	PlayerTextDrawBackgroundColor(playerid, speedo[1][playerid], 255);
 	PlayerTextDrawBoxColor(playerid, speedo[1][playerid], 50);
 	PlayerTextDrawUseBox(playerid, speedo[1][playerid], 0);
 	PlayerTextDrawSetProportional(playerid, speedo[1][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, speedo[1][playerid], 0);
 
-	speedo[5][playerid] = CreatePlayerTextDraw(playerid, 587.000000, 172.000000, "80");
-	PlayerTextDrawFont(playerid, speedo[5][playerid], 2);
-	PlayerTextDrawLetterSize(playerid, speedo[5][playerid], 0.579162, 5.650000);
-	PlayerTextDrawTextSize(playerid, speedo[5][playerid], 400.000000, 17.000000);
-	PlayerTextDrawSetOutline(playerid, speedo[5][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, speedo[5][playerid], 0);
-	PlayerTextDrawAlignment(playerid, speedo[5][playerid], 3);
-	PlayerTextDrawColor(playerid, speedo[5][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, speedo[5][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, speedo[5][playerid], 50);
-	PlayerTextDrawUseBox(playerid, speedo[5][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, speedo[5][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, speedo[5][playerid], 0);
-
-	speedo[0][playerid] = CreatePlayerTextDraw(playerid, 609.000000, 202.000000, "MPH");
-	PlayerTextDrawFont(playerid, speedo[0][playerid], 2);
-	PlayerTextDrawLetterSize(playerid, speedo[0][playerid], 0.245829, 1.550009);
-	PlayerTextDrawTextSize(playerid, speedo[0][playerid], 400.000000, 17.000000);
-	PlayerTextDrawSetOutline(playerid, speedo[0][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, speedo[0][playerid], 0);
-	PlayerTextDrawAlignment(playerid, speedo[0][playerid], 3);
-	PlayerTextDrawColor(playerid, speedo[0][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, speedo[0][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, speedo[0][playerid], 50);
-	PlayerTextDrawUseBox(playerid, speedo[0][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, speedo[0][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, speedo[0][playerid], 0);
-
-	speedo[4][playerid] = CreatePlayerTextDraw(playerid, 524.000000, 194.000000, "0");
-	PlayerTextDrawFont(playerid, speedo[4][playerid], 2);
-	PlayerTextDrawLetterSize(playerid, speedo[4][playerid], 0.295829, 2.450004);
-	PlayerTextDrawTextSize(playerid, speedo[4][playerid], 400.000000, 17.000000);
-	PlayerTextDrawSetOutline(playerid, speedo[4][playerid], 0);
-	PlayerTextDrawSetShadow(playerid, speedo[4][playerid], 0);
-	PlayerTextDrawAlignment(playerid, speedo[4][playerid], 3);
-	PlayerTextDrawColor(playerid, speedo[4][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, speedo[4][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, speedo[4][playerid], 50);
-	PlayerTextDrawUseBox(playerid, speedo[4][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, speedo[4][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, speedo[4][playerid], 0);
-
-	speedo[2][playerid] = CreatePlayerTextDraw(playerid, 516.000000, 205.000000, "ld_dual:white");
-	PlayerTextDrawFont(playerid, speedo[2][playerid], 4);
-	PlayerTextDrawLetterSize(playerid, speedo[2][playerid], 0.379162, 2.450004);
-	PlayerTextDrawTextSize(playerid, speedo[2][playerid], 7.000000, 11.500000);
-	PlayerTextDrawSetOutline(playerid, speedo[2][playerid], 0);
+	speedo[2][playerid] = CreatePlayerTextDraw(playerid, 498.000000, 131.000000, "miles");
+	PlayerTextDrawFont(playerid, speedo[2][playerid], 2);
+	PlayerTextDrawLetterSize(playerid, speedo[2][playerid], 0.258328, 0.949996);
+	PlayerTextDrawTextSize(playerid, speedo[2][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, speedo[2][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, speedo[2][playerid], 0);
-	PlayerTextDrawAlignment(playerid, speedo[2][playerid], 3);
-	PlayerTextDrawColor(playerid, speedo[2][playerid], -1);
+	PlayerTextDrawAlignment(playerid, speedo[2][playerid], 1);
+	PlayerTextDrawColor(playerid, speedo[2][playerid], -1379670017);
 	PlayerTextDrawBackgroundColor(playerid, speedo[2][playerid], 255);
 	PlayerTextDrawBoxColor(playerid, speedo[2][playerid], 50);
 	PlayerTextDrawUseBox(playerid, speedo[2][playerid], 0);
 	PlayerTextDrawSetProportional(playerid, speedo[2][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, speedo[2][playerid], 0);
 
-	speedo[3][playerid] = CreatePlayerTextDraw(playerid, 515.000000, 215.000000, "ld_dual:white");
-	PlayerTextDrawFont(playerid, speedo[3][playerid], 4);
-	PlayerTextDrawLetterSize(playerid, speedo[3][playerid], 0.379162, 2.450004);
-	PlayerTextDrawTextSize(playerid, speedo[3][playerid], 9.000000, 2.000000);
-	PlayerTextDrawSetOutline(playerid, speedo[3][playerid], 0);
+	speedo[0][playerid] = CreatePlayerTextDraw(playerid, 498.000000, 109.000000, "mph");
+	PlayerTextDrawFont(playerid, speedo[0][playerid], 2);
+	PlayerTextDrawLetterSize(playerid, speedo[0][playerid], 0.258328, 0.949996);
+	PlayerTextDrawTextSize(playerid, speedo[0][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, speedo[0][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, speedo[0][playerid], 0);
+	PlayerTextDrawAlignment(playerid, speedo[0][playerid], 1);
+	PlayerTextDrawColor(playerid, speedo[0][playerid], -1379670017);
+	PlayerTextDrawBackgroundColor(playerid, speedo[0][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, speedo[0][playerid], 50);
+	PlayerTextDrawUseBox(playerid, speedo[0][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, speedo[0][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, speedo[0][playerid], 0);
+
+	speedo[3][playerid] = CreatePlayerTextDraw(playerid, 498.000000, 143.000000, "siren");
+	PlayerTextDrawFont(playerid, speedo[3][playerid], 2);
+	PlayerTextDrawLetterSize(playerid, speedo[3][playerid], 0.258328, 0.949996);
+	PlayerTextDrawTextSize(playerid, speedo[3][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, speedo[3][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, speedo[3][playerid], 0);
-	PlayerTextDrawAlignment(playerid, speedo[3][playerid], 3);
-	PlayerTextDrawColor(playerid, speedo[3][playerid], -1);
+	PlayerTextDrawAlignment(playerid, speedo[3][playerid], 1);
+	PlayerTextDrawColor(playerid, speedo[3][playerid], -1379670017);
 	PlayerTextDrawBackgroundColor(playerid, speedo[3][playerid], 255);
 	PlayerTextDrawBoxColor(playerid, speedo[3][playerid], 50);
 	PlayerTextDrawUseBox(playerid, speedo[3][playerid], 0);
 	PlayerTextDrawSetProportional(playerid, speedo[3][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, speedo[3][playerid], 0);
 
-	speedo[7][playerid] = CreatePlayerTextDraw(playerid, 611.000000, 181.000000, "D");
-	PlayerTextDrawFont(playerid, speedo[7][playerid], 2);
-	PlayerTextDrawLetterSize(playerid, speedo[7][playerid], 0.308328, 2.050008);
-	PlayerTextDrawTextSize(playerid, speedo[7][playerid], 400.000000, 17.000000);
-	PlayerTextDrawSetOutline(playerid, speedo[7][playerid], 0);
-	PlayerTextDrawSetShadow(playerid, speedo[7][playerid], 0);
-	PlayerTextDrawAlignment(playerid, speedo[7][playerid], 3);
-	PlayerTextDrawColor(playerid, speedo[7][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, speedo[7][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, speedo[7][playerid], 50);
-	PlayerTextDrawUseBox(playerid, speedo[7][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, speedo[7][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, speedo[7][playerid], 0);
+	speedo[4][playerid] = CreatePlayerTextDraw(playerid, 608.000000, 109.000000, "0");
+	PlayerTextDrawFont(playerid, speedo[4][playerid], 2);
+	PlayerTextDrawLetterSize(playerid, speedo[4][playerid], 0.258328, 0.949996);
+	PlayerTextDrawTextSize(playerid, speedo[4][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, speedo[4][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, speedo[4][playerid], 0);
+	PlayerTextDrawAlignment(playerid, speedo[4][playerid], 3);
+	PlayerTextDrawColor(playerid, speedo[4][playerid], -1379670017);
+	PlayerTextDrawBackgroundColor(playerid, speedo[4][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, speedo[4][playerid], 50);
+	PlayerTextDrawUseBox(playerid, speedo[4][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, speedo[4][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, speedo[4][playerid], 0);
 
-	speedo[8][playerid] = CreatePlayerTextDraw(playerid, 594.000000, 186.000000, "/~n~/~n~/");
-	PlayerTextDrawFont(playerid, speedo[8][playerid], 2);
-	PlayerTextDrawLetterSize(playerid, speedo[8][playerid], 0.583328, 0.500009);
-	PlayerTextDrawTextSize(playerid, speedo[8][playerid], 400.000000, 17.000000);
-	PlayerTextDrawSetOutline(playerid, speedo[8][playerid], 0);
-	PlayerTextDrawSetShadow(playerid, speedo[8][playerid], 0);
-	PlayerTextDrawAlignment(playerid, speedo[8][playerid], 1);
-	PlayerTextDrawColor(playerid, speedo[8][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, speedo[8][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, speedo[8][playerid], 50);
-	PlayerTextDrawUseBox(playerid, speedo[8][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, speedo[8][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, speedo[8][playerid], 0);
+	speedo[5][playerid] = CreatePlayerTextDraw(playerid, 608.000000, 130.000000, "0");
+	PlayerTextDrawFont(playerid, speedo[5][playerid], 2);
+	PlayerTextDrawLetterSize(playerid, speedo[5][playerid], 0.258328, 0.949996);
+	PlayerTextDrawTextSize(playerid, speedo[5][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, speedo[5][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, speedo[5][playerid], 0);
+	PlayerTextDrawAlignment(playerid, speedo[5][playerid], 3);
+	PlayerTextDrawColor(playerid, speedo[5][playerid], -1379670017);
+	PlayerTextDrawBackgroundColor(playerid, speedo[5][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, speedo[5][playerid], 50);
+	PlayerTextDrawUseBox(playerid, speedo[5][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, speedo[5][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, speedo[5][playerid], 0);
+
+	speedo[6][playerid] = CreatePlayerTextDraw(playerid, 608.000000, 142.000000, "ON");
+	PlayerTextDrawFont(playerid, speedo[6][playerid], 2);
+	PlayerTextDrawLetterSize(playerid, speedo[6][playerid], 0.258328, 0.949996);
+	PlayerTextDrawTextSize(playerid, speedo[6][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, speedo[6][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, speedo[6][playerid], 0);
+	PlayerTextDrawAlignment(playerid, speedo[6][playerid], 3);
+	PlayerTextDrawColor(playerid, speedo[6][playerid], -1379670017);
+	PlayerTextDrawBackgroundColor(playerid, speedo[6][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, speedo[6][playerid], 50);
+	PlayerTextDrawUseBox(playerid, speedo[6][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, speedo[6][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, speedo[6][playerid], 0);
 
 	VehicleSelection[0][playerid] = CreatePlayerTextDraw(playerid, 319.000000, 153.000000, "_");
 	PlayerTextDrawFont(playerid, VehicleSelection[0][playerid], 1);
@@ -1132,6 +1120,7 @@ CreateVehicleTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, VehicleSelection[18][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, VehicleSelection[18][playerid], 1);
 
+	speedobar[playerid] = CreatePlayerProgressBar(playerid, 562.000000, 124.000000, 48.000000, 2.000000, -1379670017, 100.000000, 0);
 }
 
 CreateTutorialTextDraws(playerid)
@@ -1707,7 +1696,7 @@ function:HideHeaderMessage(playerid)
 	return 1;
 }
 
-stock ShowVehicleSpeedometer(playerid, hud1[], hud2[], hud3[], hud4[], hud5[], hud6[], hud7[], hud8[], hud9[])
+stock ShowVehicleSpeedometer(playerid, hud1[], hud2[], hud3[], hud4[], hud5[], hud6[], hud7[], Float:hud8)
 {
 	PlayerTextDrawSetString(playerid, speedo[0][playerid], hud1);
 	PlayerTextDrawSetString(playerid, speedo[1][playerid], hud2);
@@ -1716,18 +1705,22 @@ stock ShowVehicleSpeedometer(playerid, hud1[], hud2[], hud3[], hud4[], hud5[], h
 	PlayerTextDrawSetString(playerid, speedo[4][playerid], hud5);
 	PlayerTextDrawSetString(playerid, speedo[5][playerid], hud6);
 	PlayerTextDrawSetString(playerid, speedo[6][playerid], hud7);
-	PlayerTextDrawSetString(playerid, speedo[7][playerid], hud8);
-	PlayerTextDrawSetString(playerid, speedo[8][playerid], hud9);
 
 	PlayerTextDrawShow(playerid, speedo[0][playerid]);
 	PlayerTextDrawShow(playerid, speedo[1][playerid]);
 	PlayerTextDrawShow(playerid, speedo[2][playerid]);
-	PlayerTextDrawShow(playerid, speedo[3][playerid]);
+	
 	PlayerTextDrawShow(playerid, speedo[4][playerid]);
 	PlayerTextDrawShow(playerid, speedo[5][playerid]);
-	PlayerTextDrawShow(playerid, speedo[6][playerid]);
-	PlayerTextDrawShow(playerid, speedo[7][playerid]);
-	PlayerTextDrawShow(playerid, speedo[8][playerid]);
+	
+	if(IsPoliceVehicle(GetPlayerVehicleID(playerid)))
+	{
+		PlayerTextDrawShow(playerid, speedo[3][playerid]);
+		PlayerTextDrawShow(playerid, speedo[6][playerid]);
+	}
+	
+	ShowPlayerProgressBar(playerid, speedobar[playerid]);
+	SetPlayerProgressBarValue(playerid, speedobar[playerid], hud8);
 	return 1;
 }
 
@@ -1740,9 +1733,15 @@ stock HideVehicleSpeedometer(playerid)
 	PlayerTextDrawHide(playerid, speedo[4][playerid]);
 	PlayerTextDrawHide(playerid, speedo[5][playerid]);
 	PlayerTextDrawHide(playerid, speedo[6][playerid]);
-	PlayerTextDrawHide(playerid, speedo[7][playerid]);
-	PlayerTextDrawHide(playerid, speedo[8][playerid]);
+
+	HidePlayerProgressBar(playerid, speedobar[playerid]);
 	PlayerTextDrawHide(playerid, VehicleName[playerid]);
+	return 1;
+}
+
+stock ShowMoneyFormat(playerid)
+{
+	PlayerTextDrawShow(playerid, MoneyFormat[playerid]);
 	return 1;
 }
 

@@ -228,7 +228,7 @@ public OnGameModeInit()
 	SetTimer("PlayersUpdates", 1000, true); 
 	SetTimer("FunctionPaychecks", 60000, true);
 	SetTimer("OnPlayerNearPickup", 5000, true);
-	SetTimer("OnVehicleFuelUpdate", 30000, true);
+	SetTimer("OnVehicleFuelUpdate", 60000, true);
 	SetTimer("OnVehicleUpdate", 1000, true);
 	SetTimer("OnVehicleRental", 60000, true);
 	SetTimer("MinutesTimes", 60000, true);
@@ -611,12 +611,14 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 			else if(PlayerSweeperIndex[playerid] == 16)
 			{
-				new total = (PlayerSweeperIndex[playerid] * SWEEPER_SALARY * 2);
+				new total = (PlayerSweeperIndex[playerid] * SWEEPER_SALARY);
 
-            	GiveMoney(playerid, total);
+            	new Cents = floatround(total * 100, floatround_round);
+
+    			GiveMoney(playerid, Cents);
 
 				ShowBoxMessage(playerid, "~r~Street Cleaner job ended.", 5); 
-				SendServerMessage(playerid, "[Street Cleaner] {cdd0d1}You've cleaned the street, current cleaned rubbish {d7d292}%d{cdd0d1} x rubbish and earn {93C47D}$%s{cdd0d1}.", PlayerSweeperIndex[playerid], FormatMoney(total));
+				SendServerMessage(playerid, "[Street Cleaner] {cdd0d1}You've cleaned the street, current cleaned rubbish {d7d292}%d{cdd0d1} x rubbish and earn {93C47D}$%s{cdd0d1}.", PlayerSweeperIndex[playerid], FormatMoney(Cents));
 
 				PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
 				PlayerSweeperIndex[playerid] = 0;
@@ -3090,6 +3092,7 @@ public OnPlayerSpawn(playerid)
 	}
 
 	PlayerTextDrawShow(playerid, servername[playerid]);
+	ShowMoneyFormat(playerid);
 	return 1;
 }
 

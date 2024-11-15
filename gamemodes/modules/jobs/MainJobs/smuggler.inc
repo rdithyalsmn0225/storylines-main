@@ -135,18 +135,20 @@ CMD:storepacket(playerid, params[])
         if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == false) return SendErrorMessage(playerid, "You are not carrying your packet.");
 	
         ApplyAnimation(playerid,"BOMBER","BOM_Plant",4.0,0 ,0,0,0,0,1);
-        new bonus = randomEx(800, 1000);
+        new bonus = randomEx(150, 250);
         new price = bonus+2;
 
         new rand = randomEx(3, 5);
 
-        GiveMoney(playerid, price);
+        new Cents = floatround(price * 100, floatround_round);
+
+	    GiveMoney(playerid, Cents);
         RemovePlayerAttachedObject(playerid, ATTACH_HAND);
         DisablePlayerCheckpoint(playerid);
 
         ServerData_Plus(INDUSTRY_DRUGS, rand);
 
-        SendServerMessage(playerid, "[Smugglers] {cdd0d1}You has stored packet and earn {93C47D}$%s{cdd0d1}", FormatMoney(price));
+        SendServerMessage(playerid, "[Smugglers] {cdd0d1}You has stored packet and earn {93C47D}$%s{cdd0d1}", FormatMoney(Cents));
 
         PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
     } 
@@ -159,13 +161,15 @@ CMD:storepacket(playerid, params[])
         new price = bonus+2;
         new rand = randomEx(3, 5);
 
-        GiveMoney(playerid, price);
+        new Cents = floatround(price * 100, floatround_round);
+
+	    GiveMoney(playerid, Cents);
         RemovePlayerAttachedObject(playerid, ATTACH_HAND);
         DisablePlayerCheckpoint(playerid);
 
         ServerData_Plus(INDUSTRY_MATERIALS, rand);
 
-        SendServerMessage(playerid, "[Smugglers] {cdd0d1}You has stored packet and earn {93C47D}$%s{cdd0d1}", FormatMoney(price));
+        SendServerMessage(playerid, "[Smugglers] {cdd0d1}You has stored packet and earn {93C47D}$%s{cdd0d1}", FormatMoney(Cents));
 
         PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
     }

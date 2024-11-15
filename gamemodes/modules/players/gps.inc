@@ -45,13 +45,16 @@ stock ShowGarbageLocation(playerid)
 	{
 		for (new a = 0; a < GarbageCount; a++) 
     	{
-			if(GarbageObject[a] != INVALID_OBJECT_ID)
+			forex(b, sizeof(Garbage_Locations))
 			{
-				format(str, sizeof(str), "%s%d\t{93C47D}Available{ffffff}\t%.2f Meter\n", str, i, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[i][0], Garbage_Locations[i][1], Garbage_Locations[i][2]));
-			}
-			else
-			{
-				format(str, sizeof(str), "%s%d\t{FF6347}Unavailable{ffffff}\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[i][0], Garbage_Locations[i][1], Garbage_Locations[i][2]));
+				if(GarbageObject[a] != INVALID_OBJECT_ID)
+				{
+					format(str, sizeof(str), "%s%d\t{93C47D}Available{ffffff}\t%.2f Meter\n", str, i, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[b][0], Garbage_Locations[b][1], Garbage_Locations[b][2]));
+				}
+				else
+				{
+					format(str, sizeof(str), "%s%d\t{FF6347}Unavailable{ffffff}\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[b][0], Garbage_Locations[b][1], Garbage_Locations[b][2]));
+				}
 			}
 		}
 	}

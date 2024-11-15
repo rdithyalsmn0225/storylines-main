@@ -18,7 +18,9 @@ function:OnPlayerMakeRumour(playerid, response, price)
 		SendClientMessageToAll(COLOR_DARKGREEN, string);
 		CreateLogs(playerid, LOGS_ADVERT, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING]);
 
-        GiveMoney(playerid, -price);
+        new Cents = floatround(price * 100, floatround_round);
+
+		GiveMoney(playerid, -Cents);
 		rumorcooldown = gettime();
     }
     return 1;
@@ -49,12 +51,14 @@ CMD:advertise(playerid, params[])
 	if(!Inventory_Count(playerid, "Cellphone") && PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != CELLPHONE)
 		return SendErrorMessage(playerid, "You must hold the cellphone in your hands."); 
 
-	new price = 1 * strlen(text);
+	new price = 0.10 * strlen(text);
 
 	if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		return SendErrorMessage(playerid, "You don't have enough money for this advertisement! You need at least $%s.", FormatMoney(price));
 
-	GiveMoney(playerid, -price);
+	new Cents = floatround(price * 100, floatround_round);
+
+	GiveMoney(playerid, -Cents);
 
 	new string[256];
 	format(string, sizeof(string), "[Advertisement]: %s (Phone: %d)", text, PlayerInfo[playerid][E_CHARACTER_PHONE]);

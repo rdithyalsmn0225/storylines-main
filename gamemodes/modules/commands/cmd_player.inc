@@ -199,61 +199,70 @@ CMD:helpup(playerid, params[])
 
 CMD:pay(playerid, params[])
 {
-	new playerb, amount, str[128]; 
+    new playerb, str[128];
+    new Float:amount;
 
-	if(sscanf(params, "ui", playerb, amount))
-		return SendUsageMessage(playerid, "/pay [playerid OR name] [amount] [emote (Optional)]");
+    if (sscanf(params, "uf", playerb, amount))
+        return SendUsageMessage(playerid, "/pay [playerid OR name] [amount]");
 
-	if(!IsPlayerConnected(playerb))
-		return SendErrorMessage(playerid, "The player you specified isn't connected.");
-		
-	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
-		return SendErrorMessage(playerid, "The player you specified isn't logged in.");
-		
-	if(!IsPlayerNearPlayer(playerid, playerb, 5.0))
-		return SendErrorMessage(playerid, "You aren't near that player."); 
+    if (!IsPlayerConnected(playerb))
+        return SendErrorMessage(playerid, "The player you specified isn't connected.");
+        
+    if (AccountInfo[playerb][E_MASTERS_LOGGED] == false)
+        return SendErrorMessage(playerid, "The player you specified isn't logged in.");
+        
+    if (!IsPlayerNearPlayer(playerid, playerb, 5.0))
+        return SendErrorMessage(playerid, "You aren't near that player.");
 
-	if(playerb == playerid)
-		return SendErrorMessage(playerid, "You can't pay yourself.");
-		
-	if(amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
-		return SendErrorMessage(playerid, "You don't have that amount of money.");
+    if (playerb == playerid)
+        return SendErrorMessage(playerid, "You can't pay yourself.");
+        
+    new Cents = floatround(amount * 100, floatround_round);
 
-	if(amount < 1)
-		return SendErrorMessage(playerid, "You don't have that amount of money.");
-		
-	if(gettime() - playerLastpay[playerid] < 3)
-		return SendErrorMessage(playerid, "Please wait before paying again.");
-		
-	PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0); PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
-	playerLastpay[playerid] = gettime(); 
-	
-	SendServerMessage(playerid, "[Pay] {cdd0d1}You have sent {93C47D}$%s{cdd0d1} to {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnName(playerb)); 
-	SendServerMessage(playerb, "[Pay] {cdd0d1}You have received {93C47D}$%s{cdd0d1} from {d7d292}%s{cdd0d1}.", FormatMoney(amount), ReturnName(playerid)); 
-	
-	if(PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3 || amount >= 50000)
-	{
-		format(str, sizeof(str), "%s has paid $%s to %s.", ReturnName(playerid), FormatMoney(amount), ReturnName(playerb)); 
-		SendAdminMessage(1, str);
-	}
-	
-	GiveMoney(playerid, -amount); GiveMoney(playerb, amount);
-	return 1;
+    if (Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+        return SendErrorMessage(playerid, "You don't have that amount of money.");
+
+    if (Cents <= 0)
+        return SendErrorMessage(playerid, "Amount must be greater than 0.");
+        
+    if (gettime() - playerLastpay[playerid] < 3)
+        return SendErrorMessage(playerid, "Please wait before paying again.");
+        
+    PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0); 
+    PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
+    playerLastpay[playerid] = gettime(); 
+    
+    SendServerMessage(playerid, "[Pay] {cdd0d1}You have sent {93C47D}$%s{cdd0d1} to {d7d292}%s{cdd0d1}.", FormatMoney(Cents), ReturnName(playerb)); 
+    SendServerMessage(playerb, "[Pay] {cdd0d1}You have received {93C47D}$%s{cdd0d1} from {d7d292}%s{cdd0d1}.", FormatMoney(Cents), ReturnName(playerid)); 
+    
+    if ((PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3) || Cents >= 5000000) 
+    {
+        format(str, sizeof(str), "%s has paid $%s to %s.", ReturnName(playerid), FormatMoney(Cents), ReturnName(playerb)); 
+        SendAdminMessage(1, str);
+    }
+    
+    GiveMoney(playerid, -Cents); 
+    GiveMoney(playerb, Cents);
+    return 1;
 }
+
 
 CMD:charity(playerid, params[])
 {
 	new charity;
 		
-	if(sscanf(params, "d", charity))
+	if(sscanf(params, "f", charity))
 		return SendUsageMessage(playerid, "/charity [amount]");
 		
 	if(charity < 1 || charity > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		return SendErrorMessage(playerid, "You can't charity that amount."); 
 	
-	GiveMoney(playerid, -charity);
+	new Cents = floatround(charity * 100, floatround_round);
+
+    GiveMoney(playerid, -Cents);
+
 	SaveCharacter(playerid);
-	SendServerMessage(playerid, "[Charity] {cdd0d1}You've charity {93C47D}%s{cdd0d1} for this server.", FormatMoney(charity));
+	SendServerMessage(playerid, "[Charity] {cdd0d1}You've charity {93C47D}%s{cdd0d1} for this server.", FormatMoney(Cents));
 	return 1;
 }
 
@@ -513,16 +522,19 @@ CMD:radiochannel(playerid, params[])
 {
 	new str[512];
 	strcat(str, "Channel\tTag\tDescription\n"); 
-	strcat(str, "1\tCENTRAL\tLSPD Central Bureau Dispatch\n"); 
-	strcat(str, "2\tCW.TAC1\tLSPD Citywide TAC #1\n"); 
-	strcat(str, "3\tCW.TAC2\tLSPD Citywide TAC #2\n"); 
-	strcat(str, "4\tCW.TAC3\tLSPD Citywide TAC #3\n"); 
-	strcat(str, "5\t24.CTD\tLSPD Central Traffic Dispatch\n"); 
-	strcat(str, "6\t53.DBU\tLSPD Detective Bureau Dispatch\n"); 
-	strcat(str, "7\t54.GND\tLSPD Gang & Narcotics Division\n"); 
-	strcat(str, "8\t55.OCVD\tLSPD Organzied Crime & Vice Division\n"); 
-	strcat(str, "9\t65.METRO\tLSPD Metropolitan Dispatch\n"); 
-	strcat(str, "10\t31.IAG\tLSPD Internal Affairs\n"); 
+	strcat(str, "#911\tCENTRAL\tLSPD Central Bureau Dispatch\n"); 
+	strcat(str, "#931\tCW.TAC1\tLSPD Citywide TAC #1\n"); 
+	strcat(str, "#932\tCW.TAC2\tLSPD Citywide TAC #2\n"); 
+	strcat(str, "#933\tCW.TAC3\tLSPD Citywide TAC #3\n"); 
+	strcat(str, "#977\t24.CTD\tLSPD Central Traffic Dispatch\n"); 
+	strcat(str, "#978\t53.DBU\tLSPD Detective Bureau Dispatch\n"); 
+	strcat(str, "#979\t54.GND\tLSPD Gang & Narcotics Division\n"); 
+	strcat(str, "#981\t55.OCVD\tLSPD Organzied Crime & Vice Division\n"); 
+	strcat(str, "#982\t65.METRO\tLSPD Metropolitan Dispatch\n"); 
+	strcat(str, "#983\t31.IAG\tLSPD Internal Affairs\n"); 
+	strcat(str, "#987\tLSC DISP\tLSSD Los Santos County Dispatch\n"); 
+	strcat(str, "#912\tL-TAC 1\tLSSD Law Enforcement Tactical Channel\n"); 
+	strcat(str, "#991\tDispatch\tLSFD Dispact\n"); 
 	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Radio Channels:", str, "Select", "Cancel");
 	return 1;
 }
@@ -557,12 +569,13 @@ CMD:setchannel(playerid, params[])
 		}
 	}
 	
-	if(channel == 1 || channel == 2 || channel == 3 || channel == 4 || channel == 5 || channel == 6 || channel == 7 || channel == 8 || channel == 9 || channel == 10)
-	{
-		if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_POLICE)
-			return SendErrorMessage(playerid, "You're not authorized to use this channel."); 
-	}
+	if(channel == 911 || channel == 931 || channel == 932 || channel == 933 || channel == 977 || channel == 978 || channel == 979 || 
+		channel == 981 || channel == 982 || channel == 983 || channel == 987 || channel == 912 && FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_POLICE)
+		return SendErrorMessage(playerid, "You're not authorized to use this channel."); 
 	
+	if(channel == 991 && FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_MEDICAL)
+			return SendErrorMessage(playerid, "You're not authorized to use this channel."); 
+
 	PlayerInfo[playerid][E_CHARACTER_RADIO][slot] = channel;
 	
 	SendInfoMessage(playerid, "You're now listening to channel {d7d292}%d{cdd0d1} under slot {d7d292}%d{cdd0d1}.", channel, slot);
@@ -885,16 +898,18 @@ CMD:deposit(playerid, params[])
 	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK)
 		return SendErrorMessage(playerid, "You aren't inside a bank."); 
 		
-	if(sscanf(params, "d", amount))
+	if(sscanf(params, "f", amount))
 		return SendUsageMessage(playerid, "/deposit [deposit amount]");
 		
-	if(amount < 1 || amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
+	if(amount < 0.0 || amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		return SendErrorMessage(playerid, "You can't deposit that amount."); 
 		
-	PlayerInfo[playerid][E_CHARACTER_BANK]+= amount;
-	GiveMoney(playerid, -amount); 
+	new Cents = floatround(amount * 100, floatround_round);
+
+    GiveMoney(playerid, -Cents);
+	PlayerInfo[playerid][E_CHARACTER_BANK]+= Cents;
 	
-	SendInfoMessage(playerid, "You have deposited {93C47D}$%s{cdd0d1} into Your account, Total:{93C47D}$%s{cdd0d1}.", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	SendInfoMessage(playerid, "You have deposited {93C47D}$%s{cdd0d1} into Your account, Total:{93C47D}$%s{cdd0d1}.", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	SaveCharacter(playerid);
 	return 1; 
 }
@@ -912,17 +927,19 @@ CMD:withdraw(playerid, params[])
 	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GENERAL)
 		return SendErrorMessage(playerid, "You can't do this inside this business."); 
 		
-	if(sscanf(params, "i", amount))
+	if(sscanf(params, "f", amount))
 		return SendUsageMessage(playerid, "/withdraw [amount]");
 		
 	if(amount < 1 || amount > PlayerInfo[playerid][E_CHARACTER_BANK])
 		return SendErrorMessage(playerid, "You can't withdraw that amount."); 
 
 		
-	PlayerInfo[playerid][E_CHARACTER_BANK]-= amount;
-	GiveMoney(playerid, amount);
-	
-	SendInfoMessage(playerid, "You have withdrawn {93C47D}$%s{cdd0d1} from Your account, Total:{93C47D}$%s{cdd0d1}", FormatMoney(amount), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	new Cents = floatround(amount * 100, floatround_round);
+
+    GiveMoney(playerid, Cents);
+	PlayerInfo[playerid][E_CHARACTER_BANK]-= Cents;
+
+	SendInfoMessage(playerid, "You have withdrawn {93C47D}$%s{cdd0d1} from Your account, Total:{93C47D}$%s{cdd0d1}", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	SaveCharacter(playerid);
 	return 1;
 }
@@ -1295,7 +1312,9 @@ CMD:unimpound(playerid, params[])
 		return SendErrorMessage(playerid, "You don't have $1,500 to pay the fee.");
 		
 	VehicleInfo[vehicleid][E_VEHICLE_IMPOUND] = false;	
-	GiveMoney(playerid, -1500);
+	new Cents = floatround(500 * 100, floatround_round);
+
+    GiveMoney(playerid, -Cents);
 	
 	SendClientMessageEx(playerid, COLOR_WHITE, "[IMPOUND] You have unimpounded your %s.", ReturnVehicleName(vehicleid));
 	SaveVehicle(vehicleid);
@@ -2364,8 +2383,10 @@ CMD:approve(playerid, params[])
 
 		VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID];
 
-		GiveMoney(playerid, -price);
-		GiveMoney(userid, price);
+		new Cents = floatround(price * 100, floatround_round);
+
+		GiveMoney(playerid, -Cents);
+		GiveMoney(userid, Cents);
 
 		PlayerInfo[playerid][E_CHARACTER_SELLOFFER] = INVALID_PLAYER_ID;
 		PlayerInfo[playerid][E_CHARACTER_PRICEOFFER] = 0;

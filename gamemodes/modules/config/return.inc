@@ -299,26 +299,32 @@ stock ReturnChannelName(channel)
 
 	switch(channel)
 	{
-	    case 1:
+	    case 911:
 			channelName = "CENTRAL"; // LSPD
-	    case 2:
+	    case 931:
 			channelName = "CW.TAC1"; // LSPD
-	    case 3:
+	    case 932:
 			channelName = "CW.TAC2"; // LSPD
-		case 4:
+		case 933:
 		    channelName = "CW.TAC3"; // LSPD
-	    case 5:
+	    case 977:
 			channelName = "24.CTD"; // LSPD
-	    case 6:
+		case 978:
 			channelName = "53.DBU"; // LSPD
-		case 7:
-		    channelName = "54.GND"; // LSPD
-		case 8:
-		    channelName = "55.OCVD"; // LSPD
-		case 9:
+		case 979:
+			channelName = "54.GND"; // LSPD
+		case 981:
+			channelName = "55.OCVD"; // LSPD
+		case 982:
 			channelName = "65.METRO"; // LSPD
-		case 10:
+		case 983:
 			channelName = "31.IAG"; // LSPD
+		case 987:
+		    channelName = "LSC DISP"; // LSSD
+		case 912:
+		    channelName = "L-TAC 1"; // LSSD
+		case 991:
+			channelName = "Dispatch"; // LSFD
 		default:
 			format(channelName, 24, "%d", channel);
 	}

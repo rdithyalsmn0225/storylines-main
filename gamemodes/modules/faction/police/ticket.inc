@@ -73,7 +73,7 @@ CMD:ticket(playerid, params[])
     if(!PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
 		return SendUnauthMessage(playerid);
 
-	if (sscanf(params, "uds[64]", userid, price, reason))
+	if (sscanf(params, "ufs[64]", userid, price, reason))
 		return SendUsageMessage(playerid, "/ticket [playerid/name] [price] [reason]");
 
 	if (userid == INVALID_PLAYER_ID || !IsPlayerNearPlayer(playerid, userid, 5.0))
@@ -85,11 +85,13 @@ CMD:ticket(playerid, params[])
 	if (price < 1 || price > 1000)
 	    return SendErrorMessage(playerid, "The price can't be below $1 or above $1,000.");
 
-	new id = Ticket_Add(userid, price, reason);
+	new Cents = floatround(price * 100, floatround_round);
+
+	new id = Ticket_Add(userid, Cents, reason);
 
 	if (id != -1) {
-	    SendServerMessage(playerid, "[Tickets] {cdd0d1}You have written {d7d292}%s{cdd0d1} a ticket for {93C47D}$%s{cdd0d1}, reason: {d7d292}%s{cdd0d1}", ReturnName(userid, 0), FormatMoney(price), reason);
-	    SendServerMessage(userid, "[Tickets] {cdd0d1}{d7d292}%s{cdd0d1} has written you a ticket for {93C47D}$%s{cdd0d1}, reason: {d7d292}%s{cdd0d1}", ReturnName(playerid, 0), FormatMoney(price), reason);
+	    SendServerMessage(playerid, "[Tickets] {cdd0d1}You have written {d7d292}%s{cdd0d1} a ticket for {93C47D}$%s{cdd0d1}, reason: {d7d292}%s{cdd0d1}", ReturnName(userid, 0), FormatMoney(Cents), reason);
+	    SendServerMessage(userid, "[Tickets] {cdd0d1}{d7d292}%s{cdd0d1} has written you a ticket for {93C47D}$%s{cdd0d1}, reason: {d7d292}%s{cdd0d1}", ReturnName(playerid, 0), FormatMoney(Cents), reason);
 
 	    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "** %s has written up a ticket for%s.", ReturnName(playerid, 0), ReturnName(userid, 0));
 	}

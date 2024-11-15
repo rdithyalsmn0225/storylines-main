@@ -11,7 +11,7 @@ CMD:carsell(playerid, params[])
 
 	new userid = INVALID_PLAYER_ID, price;
 
-	if(sscanf(params, "ud", userid, price))
+	if(sscanf(params, "uf", userid, price))
 		return SendUsageMessage(playerid, "/carsell [playerid OR name] [price]"); 
 
 	if(userid == INVALID_PLAYER_ID)

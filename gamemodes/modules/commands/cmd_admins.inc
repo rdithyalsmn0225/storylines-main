@@ -1597,26 +1597,30 @@ CMD:setstats(playerid, params[])
 
 CMD:givemoney(playerid, params[])
 {
-	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
-		return SendUnauthMessage(playerid);
-		
-	new playerb, value, str[128];
-	
-	if(sscanf(params, "ui", playerb, value))
-		return SendUsageMessage(playerid, "/givemoney [playerid OR name] [amount]");
-		
-	if(!IsPlayerConnected(playerb))
-		return SendErrorMessage(playerid, "The player you specified isn't connected.");
-		
-	if(AccountInfo[playerid][E_MASTERS_LOGGED] == false)
-		return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
-		
-	GiveMoney(playerb, value);
-	SendInfoMessage(playerb, "You received {93C47D}$%s{cdd0d1} from Admin {d7d292}%s{cdd0d1}.", FormatMoney(value), ReturnName(playerid));
+    if (IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
+        return SendUnauthMessage(playerid);
 
-	format(str, sizeof(str), "%s gave $%s to %s", ReturnName(playerid), FormatMoney(value), ReturnName(playerb));
-	SendAdminMessage(3, str);
-	return 1;
+    new playerb, Float:value, str[128];
+    
+    if (sscanf(params, "uf", playerb, value))
+        return SendUsageMessage(playerid, "/givemoney [playerid OR name] [amount]");
+
+    if (!IsPlayerConnected(playerb))
+        return SendErrorMessage(playerid, "The player you specified isn't connected.");
+    
+    if (AccountInfo[playerb][E_MASTERS_LOGGED] == false)
+        return SendErrorMessage(playerid, "The player you specified isn't logged in.");
+
+    new Cents = floatround(value * 100, floatround_round);
+
+    GiveMoney(playerb, Cents);
+
+    SendInfoMessage(playerb, "You received {93C47D}$%s{cdd0d1} from Admin {d7d292}%s{cdd0d1}.", FormatMoney(Cents), ReturnName(playerid));
+
+    format(str, sizeof(str), "%s gave %s to %s", ReturnName(playerid), FormatMoney(Cents), ReturnName(playerb));
+    SendAdminMessage(3, str);
+
+    return 1;
 }
 
 CMD:setcar(playerid, params[])

@@ -14,7 +14,10 @@ function:SetPlayerHairAndExit(playerid, modelid)
     ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
     SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
 
-    GiveMoney(playerid, -250);
+    new Cents = floatround(50 * 100, floatround_round);
+
+    GiveMoney(playerid, -Cents);
+    
 	BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 	new slot = GetPlayerFreeToySlot(playerid);
 	pToys[playerid][slot][E_TOY_MODEL] = modelid;

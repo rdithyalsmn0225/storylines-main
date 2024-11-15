@@ -8,7 +8,7 @@
 
 stock IsPlayerNearDrugsDealing(playerid)
 {
-	if(DrugsDealerExists[playerid] == 1 && IsPlayerInRangeOfPoint(playerid, 3.0, DrugsDealerPos[playerid][0], DrugsDealerPos[playerid][1], DrugsDealerPos[playerid][2]))	
+	if(IsPlayerInRangeOfPoint(playerid, 3.0, DrugsDealerPos[playerid][0], DrugsDealerPos[playerid][1], DrugsDealerPos[playerid][2]))	
 		return 1;
 	return 1;
 }

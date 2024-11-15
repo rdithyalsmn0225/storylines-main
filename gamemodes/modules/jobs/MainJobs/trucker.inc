@@ -16,11 +16,13 @@ CMD:cargobuy(playerid, params[])
 		Inventory_Add(playerid, "Fabric Cargo", 2912, 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
-		GiveMoney(playerid, -PRICE_FABRIC);
+		new Cents = floatround(PRICE_FABRIC * 100, floatround_round);
+
+	    GiveMoney(playerid, -Cents);
 
 		ServerData_Minus(INDUSTRY_FABRIC, 1);
 
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(E_SERVER_FABRIC));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz]))
@@ -35,11 +37,13 @@ CMD:cargobuy(playerid, params[])
 		Inventory_Add(playerid, "Steel Cargo", 2912, 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
-		GiveMoney(playerid, -PRICE_STEEL);
+		new Cents = floatround(PRICE_STEEL * 100, floatround_round);
+
+	    GiveMoney(playerid, -Cents);
 
 		ServerData_Minus(INDUSTRY_STEEL, 1);
 
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(E_SERVER_STEEL));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz])) //woods
@@ -54,11 +58,13 @@ CMD:cargobuy(playerid, params[])
 		Inventory_Add(playerid, "Woods Cargo", 2912, 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
-		GiveMoney(playerid, -PRICE_WOODS);
+		new Cents = floatround(PRICE_WOODS * 100, floatround_round);
+
+	    GiveMoney(playerid, -Cents);
 
 		ServerData_Minus(INDUSTRY_WOODS, 1);
 
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(PRICE_WOODS));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	} 
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz])) //woods
@@ -73,11 +79,13 @@ CMD:cargobuy(playerid, params[])
 		Inventory_Add(playerid, "Fish Cargo", 2912, 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
-		GiveMoney(playerid, -PRICE_FISH);
+		new Cents = floatround(PRICE_FISH * 100, floatround_round);
+
+	    GiveMoney(playerid, -Cents);
 
 		ServerData_Minus(INDUSTRY_FISH, 1);
 
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(PRICE_WOODS));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	} 
 
@@ -94,11 +102,13 @@ CMD:cargobuy(playerid, params[])
 		Inventory_Add(playerid, "Foods Cargo", 2912, 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
-		GiveMoney(playerid, -PRICE_FOODS);
+		new Cents = floatround(PRICE_FOODS * 100, floatround_round);
+
+	    GiveMoney(playerid, -Cents);
 
 		ServerData_Minus(INDUSTRY_FOODS, 1);
 
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(E_SERVER_FOODS));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[5][Posx], IndustryInfo[5][Posy], IndustryInfo[5][Posz]))
@@ -113,11 +123,13 @@ CMD:cargobuy(playerid, params[])
 		Inventory_Add(playerid, "Clothes Cargo", 2912, 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
-		GiveMoney(playerid, -PRICE_CLOTHES);
+		new Cents = floatround(PRICE_CLOTHES * 100, floatround_round);
+
+	    GiveMoney(playerid, -Cents);
 
 		ServerData_Minus(INDUSTRY_CLOTHES, 1);
 
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(E_SERVER_CLOTHES));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
@@ -132,11 +144,13 @@ CMD:cargobuy(playerid, params[])
 		Inventory_Add(playerid, "Appliances Cargo", 2912, 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
-		GiveMoney(playerid, -PRICE_APPLIANCES);
+		new Cents = floatround(PRICE_APPLIANCES * 100, floatround_round);
+
+	    GiveMoney(playerid, -Cents);
 
 		ServerData_Minus(INDUSTRY_APPLIANCES, 1);
 
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(PRICE_APPLIANCES));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has purchase cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	return 1;
@@ -160,11 +174,13 @@ CMD:cargosell(playerid, params[])
 		Inventory_Remove(playerid, "Fish Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		GiveMoney(playerid, PRICE_FISH*5);
+		new Cents = floatround(PRICE_FISH*2 * 100, floatround_round);
+
+	    GiveMoney(playerid, Cents);
 
 		ServerData_Plus(INDUSTRY_FISH, 1);
 		
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(PRICE_FISH*5));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[5][Posx], IndustryInfo[5][Posy], IndustryInfo[5][Posz]))
 	{
@@ -177,11 +193,13 @@ CMD:cargosell(playerid, params[])
 		Inventory_Remove(playerid, "Fabric Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		GiveMoney(playerid, PRICE_FABRIC*5);
+		new Cents = floatround(PRICE_FABRIC*2 * 100, floatround_round);
+
+	    GiveMoney(playerid, Cents);
 
 		ServerData_Plus(INDUSTRY_CLOTHES, 1);
 		
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(PRICE_FABRIC*5));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
 	{
@@ -194,11 +212,13 @@ CMD:cargosell(playerid, params[])
 		Inventory_Remove(playerid, "Steel Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		GiveMoney(playerid, PRICE_STEEL*5);
+		new Cents = floatround(PRICE_STEEL*2 * 100, floatround_round);
+
+	    GiveMoney(playerid, Cents);
 
 		ServerData_Plus(INDUSTRY_APPLIANCES, 1);
 		
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(PRICE_STEEL*5));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
 	{
@@ -211,11 +231,13 @@ CMD:cargosell(playerid, params[])
 		Inventory_Remove(playerid, "Woods Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		GiveMoney(playerid, PRICE_WOODS*5);
+		new Cents = floatround(PRICE_WOODS*2 * 100, floatround_round);
+
+	    GiveMoney(playerid, Cents);
 
 		ServerData_Plus(INDUSTRY_APPLIANCES, 1);
 		
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(PRICE_WOODS*5));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 	}
 
 	// Secondary Sell:
@@ -233,7 +255,9 @@ CMD:cargosell(playerid, params[])
 		Inventory_Remove(playerid, "Appliances Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		GiveMoney(playerid, PRICE_APPLIANCES*6);
+		new Cents = floatround(PRICE_APPLIANCES*2 * 100, floatround_round);
+
+	    GiveMoney(playerid, Cents);
 
 		if(BusinessInfo[id][E_BUSINESS_STOCK] > 100)
 		{
@@ -245,7 +269,7 @@ CMD:cargosell(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_STOCK]++;
 			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
 		}
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(PRICE_APPLIANCES*6));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 	}
 	if((id = IsPlayerNearBusiness(playerid)) != 0)
 	{
@@ -261,7 +285,9 @@ CMD:cargosell(playerid, params[])
 		Inventory_Remove(playerid, "Clothes Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		GiveMoney(playerid, PRICE_CLOTHES*6);
+		new Cents = floatround(PRICE_CLOTHES*2 * 100, floatround_round);
+
+	    GiveMoney(playerid, Cents);
 
 		if(BusinessInfo[id][E_BUSINESS_STOCK] > 100)
 		{
@@ -273,7 +299,7 @@ CMD:cargosell(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_STOCK]++;
 			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
 		}
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(PRICE_CLOTHES*6));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 	}
 	if((id = IsPlayerNearBusiness(playerid)) != 0)
 	{
@@ -289,7 +315,9 @@ CMD:cargosell(playerid, params[])
 		Inventory_Remove(playerid, "Foods Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		GiveMoney(playerid, PRICE_FOODS*6);
+		new Cents = floatround(PRICE_FOODS*2 * 100, floatround_round);
+
+	    GiveMoney(playerid, Cents);
 
 		if(BusinessInfo[id][E_BUSINESS_STOCK] > 100)
 		{
@@ -301,7 +329,7 @@ CMD:cargosell(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_STOCK]++;
 			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
 		}
-		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(PRICE_FOODS*8));
+		SendServerMessage(playerid, "[Trucker] {cdd0d1}You has sell cargo for {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 	}
 	return 1;
 }

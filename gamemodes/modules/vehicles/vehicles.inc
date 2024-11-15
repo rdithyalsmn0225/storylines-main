@@ -395,7 +395,8 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 		VehicleInfo[vehicleid][E_VEHICLE_LOCKED] = false;
 		VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = false;
 		
-		VehicleInfo[vehicleid][E_VEHICLE_FUEL] = 50.0; 
+		VehicleInfo[vehicleid][E_VEHICLE_FUEL] = 100.0; 
+		VehicleInfo[vehicleid][E_VEHICLE_MILES] = 0; 
 		
 		VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = 1000.0; 
 		
@@ -458,6 +459,7 @@ function:Query_LoadPrivateVehicle(playerid)
 			cache_get_value_name_float(i, "VehicleImpoundPosZ", VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][2]);
 			cache_get_value_name_float(i, "VehicleImpoundPosA", VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][3]);
 			cache_get_value_name_float(i, "VehicleFuel", VehicleInfo[vehicleid][E_VEHICLE_FUEL]); 
+			cache_get_value_name_int(i, "VehicleMiles", VehicleInfo[vehicleid][E_VEHICLE_MILES]); 
 			cache_get_value_name_int(i, "VehicleSirens", VehicleInfo[vehicleid][E_VEHICLE_SIRENS]);
 			cache_get_value_name_int(i, "VehicleTimesDestroyed", VehicleInfo[vehicleid][E_VEHICLE_DESTROYED]);		
 			cache_get_value_name_float(i, "VehicleHealth", VehicleInfo[vehicleid][E_VEHICLE_HEALTH]);

@@ -137,8 +137,6 @@ Dialog:BlackjackBet(playerid, response, listitem, inputtext[])
 {
     if (response) 
     {
-        playerBet[playerid] = strval(inputtext);
-
         if(!IsNumeric(inputtext))
         {
             StartBlackjack(playerid);
@@ -153,7 +151,10 @@ Dialog:BlackjackBet(playerid, response, listitem, inputtext[])
             return 1;
         }
 
-        GiveMoney(playerid, -strval(inputtext));
+        new Cents = floatround(strval(inputtext) * 100, floatround_round);
+
+	    GiveMoney(playerid, -Cents);
+        playerBet[playerid] = strval(inputtext);
         ShowBlackjackStatus(playerid);
     }
     else return ResetBlackjack(playerid);

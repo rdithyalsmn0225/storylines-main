@@ -135,37 +135,22 @@ function:PlayersUpdates()
 
 			if(IsPlayerInAnyVehicle(playerid) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER && IsEngineVehicle(vehicleid))
 			{
-				new str[128], stri[128], stru[128], stra[128];
+				new str[128], stra[128], stru[128];
 				format(str, sizeof(str), "%.0f", fSpeed);
 
-				if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 100.0)
-					format(stri, sizeof(stri), "-~n~-~n~-~n~-~n~-~n~-~n~-~n~");
-				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 80.0)
-					format(stri, sizeof(stri), "-~n~-~n~-~n~-~n~-~n~-~n~");
-				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 70.0)
-					format(stri, sizeof(stri), "-~n~-~n~-~n~-~n~-~n~");
-				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 40.0)
-					format(stri, sizeof(stri), "-~n~-~n~-~n~-~n~");
-				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 30.0)
-					format(stri, sizeof(stri), "-~n~-~n~-~n~");
-				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 20.0)
-					format(stri, sizeof(stri), "-~n~-~n~");
-				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] >= 0.0)
-					format(stri, sizeof(stri), "-~n~");
-				else if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] <= 0.0)
-					format(stri, sizeof(stri), "");
+				new siren = GetVehicleParamsSirenState(vehicleid);
 
-				if(VehicleInfo[vehicleid][E_VEHICLE_LIGHTS] == false)
+				if(siren == 1)
 				{
-					format(stru, sizeof(stru), "~r~D");
-					format(stra, sizeof(stra), "~r~/~n~/~n~/");
+					format(stru, sizeof(stru), "on");
 				}
 				else
 				{
-					format(stru, sizeof(stru), "~g~D");
-					format(stra, sizeof(stra), "~g~/~n~/~n~/");
+					format(stru, sizeof(stru), "off");
 				}
-				ShowVehicleSpeedometer(playerid, "MPH", "I", "ld_dual:white", "ld_dual:white", "0", str, stri, stru, stra);
+
+				format(stra, sizeof(stra), "%d", VehicleInfo[vehicleid][E_VEHICLE_MILES]);
+				ShowVehicleSpeedometer(playerid, "mph", "fuel", "miles", "siren", str, stra, stru, VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
 
 				for (new i = 0; i != MAX_BARRICADES; i ++) if (BarricadeInfo[i][E_CADE_EXISTS] && BarricadeInfo[i][E_CADE_TYPE] == 1 && IsPlayerInRangeOfPoint(playerid, 3.0, BarricadeInfo[i][E_CADE_POS][0], BarricadeInfo[i][E_CADE_POS][1], BarricadeInfo[i][E_CADE_POS][2]))
 				{

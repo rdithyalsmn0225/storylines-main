@@ -78,15 +78,16 @@ CMD:bizfee(playerid, params[])
 		if(BusinessInfo[id][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
 			return SendErrorMessage(playerid, "You don't own this business."); 
 			
-		if(sscanf(params, "i", amount))
+		if(sscanf(params, "f", amount))
 			return SendUsageMessage(playerid, "/bizfee [amount]"); 
 			
 		if(amount > 1500)
 			return SendErrorMessage(playerid, "The amount can't be above $1,500.");
 			
-		SendInfoMessage(playerid, "You set your businesses entrance fee to {93C47D}$%s{cdd0d1}.", FormatMoney(amount));
-		
-		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = amount;
+		new Cents = floatround(amount * 100, floatround_round);
+
+		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = Cents;
+		SendInfoMessage(playerid, "You set your businesses entrance fee to {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 		SaveBusiness(id);
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business."); 
@@ -119,30 +120,34 @@ CMD:bizcash(playerid, params[])
 		}
 		else if(!strcmp(astr, "deposit"))
 		{	
-			if(sscanf(bstr, "i", amount))
+			if(sscanf(bstr, "f", amount))
 				return SendUsageMessage(playerid, "/bizcash deposit [amount]"); 
 				
 			if(amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You don't have that much money.");
 				
-			BusinessInfo[id][E_BUSINESS_CASH]+= amount;
-			GiveMoney(playerid, -amount);
+			new Cents = floatround(amount * 100, floatround_round);
+
+    		GiveMoney(playerid, -Cents);
+			BusinessInfo[id][E_BUSINESS_CASH]+= Cents;
 			
-			SendInfoMessage(playerid, "You deposited {93C47D}$%s{cdd0d1} into your business. (Total: {93C47D}$%s{cdd0d1})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+			SendInfoMessage(playerid, "You deposited {93C47D}$%s{cdd0d1} into your business. (Total: {93C47D}$%s{cdd0d1})", FormatMoney(Cents), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 			SaveBusiness(id); SaveCharacter(playerid);
 		}
 		else if(!strcmp(astr, "withdraw"))
 		{	
-			if(sscanf(bstr, "i", amount))
+			if(sscanf(bstr, "f", amount))
 				return SendUsageMessage(playerid, "/bizcash deposit [amount]"); 
 			
 			if(amount > BusinessInfo[id][E_BUSINESS_CASH])
 				return SendErrorMessage(playerid, "Your business doesn't have that much money.");
 				
-			BusinessInfo[id][E_BUSINESS_CASH] -= amount; 
-			GiveMoney(playerid, amount); 
+			new Cents = floatround(amount * 100, floatround_round);
+
+    		GiveMoney(playerid, -Cents);
+			BusinessInfo[id][E_BUSINESS_CASH]+= Cents;
 			
-			SendInfoMessage(playerid, "You withdrew {93C47D}$%s{cdd0d1} from your business. (Total: {93C47D}$%s{cdd0d1})", FormatMoney(amount), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+			SendInfoMessage(playerid, "You withdraw {93C47D}$%s{cdd0d1} from your business. (Total: {93C47D}$%s{cdd0d1})", FormatMoney(Cents), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 			SaveBusiness(id); SaveCharacter(playerid);
 		}
 		else return SendErrorMessage(playerid, "Invalid Parameter.");
@@ -355,12 +360,14 @@ CMD:editbusiness(playerid, params[])
 	{
 		new price;
 		
-		if(sscanf(bstr, "i", price))
+		if(sscanf(bstr, "f", price))
 			return SendUsageMessage(playerid, "/editbusiness %i price [amount]", id);
 			
-		BusinessInfo[id][E_BUSINESS_PRICE] = price;
+		new Cents = floatround(price * 100, floatround_round);
+
+		BusinessInfo[id][E_BUSINESS_PRICE] = Cents;
 		
-		SendInfoMessage(playerid, "You set business #%i's market price to {93C47D}$%s{cdd0d1}.", id, FormatMoney(price));
+		SendInfoMessage(playerid, "You set business #%i's market price to {93C47D}$%s{cdd0d1}.", id, FormatMoney(Cents));
 		SaveBusiness(id);
 	}
 	else return SendErrorMessage(playerid, "Invalid Parameter.");

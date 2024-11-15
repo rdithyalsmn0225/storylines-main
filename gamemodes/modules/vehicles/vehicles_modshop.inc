@@ -78,7 +78,9 @@ Dialog:PaynSpray(playerid, response, listitem, inputtext[])
 		VehicleInfo[vehicleid][E_VEHICLE_MODS][GetVehicleComponentType(modelid)] = modelid;
 		SaveVehicle(vehicleid);
 		AddVehicleComponent(vehicleid, modelid);
-		GiveMoney(playerid, -GetVehicleComponentPrice(modelid));
+		new Cents = floatround(GetVehicleComponentPrice(modelid) * 100, floatround_round);
+
+		GiveMoney(playerid, -Cents);
 		PauseAC(playerid);
 		PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
 	}

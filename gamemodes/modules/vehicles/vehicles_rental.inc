@@ -40,8 +40,8 @@ Dialog:RentalCars(playerid, response, listitem, inputtext[])
         {
             case 0:
             {
-                if(50 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-                    return SendErrorMessage(playerid, "You can't afford the total price. (Price: $50, Total:$%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+                if(5000 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+                    return SendErrorMessage(playerid, "You can't afford the total price. (Price: $50.00, Total:$%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
                 new
                     idx, 
@@ -70,7 +70,9 @@ Dialog:RentalCars(playerid, response, listitem, inputtext[])
                 randset[2] = random(sizeof(possible_vehicle_plates)); 
                 
                 format(plates, 32, "%d%s%s%s%d%d%d", random(9), possible_vehicle_plates[randset[0]], possible_vehicle_plates[randset[1]], possible_vehicle_plates[randset[2]], random(9), random(9)); 
-                GiveMoney(playerid, -50);
+                new Cents = floatround(50 * 100, floatround_round);
+
+		        GiveMoney(playerid, -Cents);
                 
                 ShowPlayerPlates(playerid, plates); 
                 
@@ -81,8 +83,8 @@ Dialog:RentalCars(playerid, response, listitem, inputtext[])
             }
             case 1:
             {
-                if(120 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-                    return SendErrorMessage(playerid, "You can't afford the total price. (Price: $120, Total:$%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+                if(12000 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+                    return SendErrorMessage(playerid, "You can't afford the total price. (Price: $120.00, Total:$%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
                 new
                     idx, 
@@ -111,7 +113,9 @@ Dialog:RentalCars(playerid, response, listitem, inputtext[])
                 randset[2] = random(sizeof(possible_vehicle_plates)); 
                 
                 format(plates, 32, "%d%s%s%s%d%d%d", random(9), possible_vehicle_plates[randset[0]], possible_vehicle_plates[randset[1]], possible_vehicle_plates[randset[2]], random(9), random(9)); 
-                GiveMoney(playerid, -120);
+                new Cents = floatround(120 * 100, floatround_round);
+
+		        GiveMoney(playerid, -Cents);
                 
                 ShowPlayerPlates(playerid, plates); 
                 
@@ -164,6 +168,7 @@ function:OnPlayerVehicleRental(playerid, id, modelid, cost, plates[], Float:x, F
 		VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = false;
 		
 		VehicleInfo[vehicleid][E_VEHICLE_FUEL] = 50.0; 
+        VehicleInfo[vehicleid][E_VEHICLE_MILES] = 0; 
 		
 		VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = 1000.0; 
 		

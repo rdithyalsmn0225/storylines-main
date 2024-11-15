@@ -1148,7 +1148,9 @@ CMD:dropinjured(playerid, params[])
         PlayerInfo[otherid][E_CHARACTER_DEATH] = 0;
         SetPlayerTeam(otherid, PLAYER_STATE_ALIVE);
 
-        GiveMoney(playerid, -250);
+		new Cents = floatround(250 * 100, floatround_round);
+
+        GiveMoney(playerid, -Cents);
 
         SendInfoMessage(playerid, "You have delivered {d7d292}%s{cdd0d1} to the hospital.", ReturnName(otherid, playerid));
         SendInfoMessage(otherid, "You have recovered at the nearest hospital by officer {d7d292}%s{cdd0d1}.", ReturnName(playerid));

@@ -1,6 +1,6 @@
 // LOTTERY
 new LotteryActive = 0;
-new LotteryPrice = 500;
+new LotteryPrice = 250;
 new LotteryPlayerNumber[MAX_PLAYERS];
 new LotteryPlayerHasTicket[MAX_PLAYERS];
 
@@ -79,7 +79,9 @@ CMD:buylottery(playerid, params[])
     if (LotteryPrice > PlayerInfo[playerid][E_CHARACTER_MONEY])
         return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(LotteryPrice), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
     
-    GiveMoney(playerid, -LotteryPrice);
+    new Cents = floatround(LotteryPrice * 100, floatround_round);
+
+	GiveMoney(playerid, -Cents);
     LotteryPlayerHasTicket[playerid] = 1;
     LotteryPlayerNumber[playerid] = number;
 

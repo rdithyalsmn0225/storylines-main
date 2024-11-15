@@ -43,12 +43,14 @@ function:BusDrivers(playerid, type)
                     }
                     if(PlayerBusDriverIndex[playerid] == 20)
                     {
-                        new total = (PlayerBusDriverIndex[playerid] * BUSDRIVER_SALARY * 2);
+                        new total = (PlayerBusDriverIndex[playerid] * BUSDRIVER_SALARY);
 
-                        GiveMoney(playerid, total);
+                        new Cents = floatround(total * 100, floatround_round);
+
+	                    GiveMoney(playerid, Cents);
 
                         ShowBoxMessage(playerid, "~r~Bus Driver job ended.", 5); 
-                        SendServerMessage(playerid, "[Bus Driver] {cdd0d1}Bus Route Complete, current passenger {d7d292}%d{cdd0d1} x passenger and earn {93C47D}$%s{cdd0d1}.", PlayerBusDriverIndex[playerid], FormatMoney(total));
+                        SendServerMessage(playerid, "[Bus Driver] {cdd0d1}Bus Route Complete, current passenger {d7d292}%d{cdd0d1} x passenger and earn {93C47D}$%s{cdd0d1}.", PlayerBusDriverIndex[playerid], FormatMoney(Cents));
 
                         PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = false;
                         PlayerBusDriverIndex[playerid] = 0;

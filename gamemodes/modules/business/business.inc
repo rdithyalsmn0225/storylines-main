@@ -469,7 +469,9 @@ function:OnSellBusiness(playerid, response, businessid)
 		;
 		
 		totalPay = BusinessInfo[businessid][E_BUSINESS_PRICE] / 2 + BusinessInfo[businessid][E_BUSINESS_CASH]; 
-		GiveMoney(playerid, totalPay); 
+		new Cents = floatround(totalPay * 100, floatround_round);
+
+    	GiveMoney(playerid, Cents);
 		
 		BusinessInfo[businessid][E_BUSINESS_OWNERDBID] = 0; 
 		

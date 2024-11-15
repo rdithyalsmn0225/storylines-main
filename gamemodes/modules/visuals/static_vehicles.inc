@@ -53,6 +53,7 @@ InsertStaticVehicles()
 	{
 		VehicleInfo[SAPD_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
 		VehicleInfo[SAPD_Vehicles[i]][E_VEHICLE_FUEL] = 100;
+		VehicleInfo[SAPD_Vehicles[i]][E_VEHICLE_MILES] = 0; 
 		format(VehicleInfo[SAPD_Vehicles[i]][E_VEHICLE_PLATES], 32, "SAPD");
 		SetVehicleNumberPlate(SAPD_Vehicles[i], VehicleInfo[SAPD_Vehicles[i]][E_VEHICLE_PLATES]);
 	}
@@ -61,6 +62,7 @@ InsertStaticVehicles()
 	{
 		VehicleInfo[SAMD_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
 		VehicleInfo[SAMD_Vehicles[i]][E_VEHICLE_FUEL] = 100;
+		VehicleInfo[SAMD_Vehicles[i]][E_VEHICLE_MILES] = 0;
 		format(VehicleInfo[SAMD_Vehicles[i]][E_VEHICLE_PLATES], 32, "SAMD");
 		SetVehicleNumberPlate(SAMD_Vehicles[i], VehicleInfo[SAMD_Vehicles[i]][E_VEHICLE_PLATES]);
 	}
@@ -69,6 +71,7 @@ InsertStaticVehicles()
 	{
 		VehicleInfo[g_Vehicle[i]][E_VEHICLE_HEALTH] = 1000.0;
 		VehicleInfo[g_Vehicle[i]][E_VEHICLE_FUEL] = 99999;
+		VehicleInfo[g_Vehicle[i]][E_VEHICLE_MILES] = 0;
 		format(VehicleInfo[g_Vehicle[i]][E_VEHICLE_PLATES], 32, "STATIC");
 		SetVehicleNumberPlate(g_Vehicle[i], VehicleInfo[g_Vehicle[i]][E_VEHICLE_PLATES]);
 	}
@@ -77,6 +80,7 @@ InsertStaticVehicles()
 	{
 		VehicleInfo[JOBS_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
 		VehicleInfo[JOBS_Vehicles[i]][E_VEHICLE_FUEL] = 99999;
+		VehicleInfo[JOBS_Vehicles[i]][E_VEHICLE_MILES] = 0;
 		VehicleInfo[JOBS_Vehicles[i]][E_VEHICLE_CRATES] = 0;
 		VehicleInfo[JOBS_Vehicles[i]][E_VEHICLE_TRASHMASTER] = 0;
 		format(VehicleInfo[JOBS_Vehicles[i]][E_VEHICLE_PLATES], 32, "JOBS");
@@ -87,6 +91,7 @@ InsertStaticVehicles()
 	{
 		VehicleInfo[DMV_Vehicles[i]][E_VEHICLE_HEALTH] = 1000.0;
 		VehicleInfo[DMV_Vehicles[i]][E_VEHICLE_FUEL] = 99999;
+		VehicleInfo[DMV_Vehicles[i]][E_VEHICLE_MILES] = 0;
 		format(VehicleInfo[DMV_Vehicles[i]][E_VEHICLE_PLATES], 32, "DMV");
 		SetVehicleNumberPlate(DMV_Vehicles[i], VehicleInfo[DMV_Vehicles[i]][E_VEHICLE_PLATES]);
 	}

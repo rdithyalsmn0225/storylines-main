@@ -102,13 +102,15 @@ CMD:editproperty(playerid, params[])
 	{
 		new price;
 		
-		if(sscanf(specifier, "i", price))
+		if(sscanf(specifier, "f", price))
 			return SendUsageMessage(playerid, "/editproperty %i price [price]", id);
 			
 		if(price < 1)
 			return SendErrorMessage(playerid, "The price has to be greater than or equal to 1."); 
 			 
-		PropertyInfo[id][E_PROPERTY_PRICE] = price;
+		new Cents = floatround(price * 100, floatround_round);
+
+		PropertyInfo[id][E_PROPERTY_PRICE] = Cents;
 		SaveProperty(id);
 		
 		SendInfoMessage(playerid, "You set Property #%i's market price to %i.", id, price);
@@ -183,13 +185,15 @@ CMD:property(playerid, params[])
 		}
 		else if(!strcmp(pick, "place"))
 		{	
-			if(sscanf(cstr, "i", amount))
+			if(sscanf(cstr, "f", amount))
 				return SendUsageMessage(playerid, "/property cashbox place [amount]"); 
 				
 			if(amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You don't have that amount on you.");
 				
-			GiveMoney(playerid, -amount);
+			new Cents = floatround(amount * 100, floatround_round);
+
+			GiveMoney(playerid, -Cents);
 			PropertyInfo[id][E_PROPERTY_CASH]+= amount; 
 			
 			SendServerMessage(playerid, "[Property] {cdd0d1}You added {93C47D}$%s{cdd0d1} to your cashbox.", amount); 
@@ -197,13 +201,15 @@ CMD:property(playerid, params[])
 		}
 		else if(!strcmp(pick, "take"))
 		{
-			if(sscanf(cstr, "i", amount))
+			if(sscanf(cstr, "f", amount))
 				return SendUsageMessage(playerid, "/property cashbox take [amount]");
 				
 			if(amount > PropertyInfo[id][E_PROPERTY_CASH])
 				return SendErrorMessage(playerid, "Your cashbox doesn't have that much.");
 				
-			GiveMoney(playerid, amount);
+			new Cents = floatround(amount * 100, floatround_round);
+
+			GiveMoney(playerid, Cents);
 			PropertyInfo[id][E_PROPERTY_CASH]-= amount;
 			
 			SendServerMessage(playerid, "[Property] {cdd0d1}You took {93C47D}$%s{ffffff} from your cashbox.", amount); 

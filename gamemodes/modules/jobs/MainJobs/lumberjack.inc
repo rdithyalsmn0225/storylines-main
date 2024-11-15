@@ -218,11 +218,13 @@ CMD:timbersell(playerid, params[])
 		Inventory_Remove(playerid, "Woods", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		GiveMoney(playerid, LUMBERJACK_SALARY*2);
+        new Cents = floatround(LUMBERJACK_SALARY*2 * 100, floatround_round);
+
+		GiveMoney(playerid, Cents);
 
 		ServerData_Plus(INDUSTRY_WOODS, 1);
 		
-		SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You has sell woods for {93C47D}$%s{cdd0d1} into leafy hollow barn.", FormatMoney(LUMBERJACK_SALARY*2));
+		SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You has sell woods for {93C47D}$%s{cdd0d1} into leafy hollow barn.", FormatMoney(Cents));
 	}
 	return 1;
 }
@@ -238,12 +240,14 @@ CMD:buysaw(playerid, params[])
     if(Inventory_Count(playerid, "Chainsaw"))
         return SendErrorMessage(playerid, "You already own a axe.");
 
-    if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+    if(8000 > PlayerInfo[playerid][E_CHARACTER_MONEY])
         return SendErrorMessage(playerid, "You can't afford axe.");
 
     Inventory_Add(playerid, "Chainsaw", 341, 1);
-    GiveMoney(playerid, -250);
-    SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You bought a axe for {93C47D}$250{cdd0d1}.");
+    new Cents = floatround(80 * 100, floatround_round);
+
+	GiveMoney(playerid, -Cents);
+    SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You bought a axe for {93C47D}$80.00{cdd0d1}.");
     SendTipMessage(playerid, "To start cutting the tree(s) /timbercut using axe.");
     return 1;
 }

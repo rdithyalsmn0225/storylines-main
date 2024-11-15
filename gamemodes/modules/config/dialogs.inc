@@ -365,29 +365,37 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 5);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 5;
-						SendServerMessage(playerid, "[Business] {cdd0d1}You learn a fightstyle boxing for {93C47D}$1,000{cdd0d1}.");
-						GiveMoney(playerid, -1000);
+						SendServerMessage(playerid, "[Business] {cdd0d1}You learn a fightstyle boxing for {93C47D}$150.00{cdd0d1}.");
+						new Cents = floatround(150 * 100, floatround_round);
+
+    					GiveMoney(playerid, -Cents);
 					}	
 					case 1:
 					{
 						SetPlayerFightingStyle(playerid, 7);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 7;
-						SendServerMessage(playerid, "[Business] {cdd0d1}You learn a fightstyle KneeHead for {93C47D}$2,500{cdd0d1}.");
-						GiveMoney(playerid, -2500);
+						SendServerMessage(playerid, "[Business] {cdd0d1}You learn a fightstyle KneeHead for {93C47D}$200.00{cdd0d1}.");
+						new Cents = floatround(200 * 100, floatround_round);
+
+    					GiveMoney(playerid, -Cents);
 					}
 					case 2:
 					{
 						SetPlayerFightingStyle(playerid, 15);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 15;
-						SendServerMessage(playerid, "[Business] {cdd0d1}You learn a fightstyle GrabKick for {93C47D}$3,000{cdd0d1}.");
-						GiveMoney(playerid, -3000);
+						SendServerMessage(playerid, "[Business] {cdd0d1}You learn a fightstyle GrabKick for {93C47D}$300.00{cdd0d1}.");
+						new Cents = floatround(300 * 100, floatround_round);
+
+    					GiveMoney(playerid, -Cents);
 					}
 					case 3:
 					{
 						SetPlayerFightingStyle(playerid, 4);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 4;
-						SendServerMessage(playerid, "[Business] {cdd0d1}You reset a fightstyle for {93C47D}$500{cdd0d1}.");
-						GiveMoney(playerid, -500);
+						SendServerMessage(playerid, "[Business] {cdd0d1}You reset a fightstyle for {93C47D}$100.00{cdd0d1}.");
+						new Cents = floatround(100 * 100, floatround_round);
+
+    					GiveMoney(playerid, -Cents);
 					}
 				}
 			}
@@ -737,8 +745,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 					Inventory_Set(playerid, "Fish", 19630, 0);
 				}
-				GiveMoney(playerid, total);
-				SendServerMessage(playerid, "[Fishing] {cdd0d1}You have sold all the fish and earn {93C47D}$%s{cdd0d1}.", FormatMoney(total));
+
+				new Cents = floatround(total * 100, floatround_round);
+
+				GiveMoney(playerid, Cents);
+				SendServerMessage(playerid, "[Fishing] {cdd0d1}You have sold all the fish and earn {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 			}
 		}
 		case DIALOG_SETTINGS:
@@ -971,7 +982,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					if(DrugsDealerType[playerid] == 1)
 					{
-						new cost = DrugsDealerAmount[playerid] * 350;
+						new cost = DrugsDealerAmount[playerid] * 50;
 						if(!Inventory_Count(playerid, "Cocaine Crack"))
 							return SendErrorMessage(playerid, "You don't have any crack in inventory.");
 
@@ -979,8 +990,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You need at least %d grams of crack.", DrugsDealerAmount[playerid]);
 
 						Inventory_Remove(playerid, "Cocaine Crack", DrugsDealerAmount[playerid]);
-						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%d{cdd0d1} from selling crack.", cost);
+						
+						new Cents = floatround(cost * 100, floatround_round);
+
+						GiveMoney(playerid, Cents);
+						
+						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%d{cdd0d1} from selling crack.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -989,7 +1004,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					else if(DrugsDealerType[playerid] == 2)
 					{
-						new cost = DrugsDealerAmount[playerid] * 200;
+						new cost = DrugsDealerAmount[playerid] * 65;
 						if(!Inventory_Count(playerid, "Marijuana"))
 							return SendErrorMessage(playerid, "You don't have any marijuana in inventory.");
 
@@ -997,8 +1012,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You need at least %d grams of marijuana.", DrugsDealerAmount[playerid]);
 
 						Inventory_Remove(playerid, "Marijuana", DrugsDealerAmount[playerid]);
-						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%d{cdd0d1} from selling marijuana.", cost);
+
+						new Cents = floatround(cost * 100, floatround_round);
+
+						GiveMoney(playerid, Cents);
+
+						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%d{cdd0d1} from selling marijuana.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1007,7 +1026,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					else if(DrugsDealerType[playerid] == 3)
 					{
-						new cost = DrugsDealerAmount[playerid] * 200;
+						new cost = DrugsDealerAmount[playerid] * 80;
 						if(!Inventory_Count(playerid, "Heroin"))
 							return SendErrorMessage(playerid, "You don't have any heroin in inventory.");
 
@@ -1015,8 +1034,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You need at least %d grams of heroin.", DrugsDealerAmount[playerid]);
 
 						Inventory_Remove(playerid, "Heroin", DrugsDealerAmount[playerid]);
-						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%d{cdd0d1} from selling heroin.", cost);
+
+						new Cents = floatround(cost * 100, floatround_round);
+
+						GiveMoney(playerid, Cents);
+						
+						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%s{cdd0d1} from selling heroin.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1025,7 +1048,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					else if(DrugsDealerType[playerid] == 4)
 					{
-						new cost = DrugsDealerAmount[playerid] * 150;
+						new cost = DrugsDealerAmount[playerid] * 80;
 						if(!Inventory_Count(playerid, "PCP"))
 							return SendErrorMessage(playerid, "You don't have any pcp in inventory.");
 
@@ -1033,8 +1056,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You need at least %d grams of pcp.", DrugsDealerAmount[playerid]);
 
 						Inventory_Remove(playerid, "PCP", DrugsDealerAmount[playerid]);
-						GiveMoney(playerid, cost);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%d{cdd0d1} from selling pcp.", cost);
+						
+						new Cents = floatround(cost * 100, floatround_round);
+
+						GiveMoney(playerid, Cents);
+
+						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%s{cdd0d1} from selling pcp.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1397,12 +1424,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] == true && BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] >= 500)
 						{
-							new rand = random(600);
-							GiveMoney(playerid, rand);
+							new rand = random(200);
+							new Cents = floatround(rand * 100, floatround_round);
+
+							GiveMoney(playerid, Cents);
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] -= rand;
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = false;
 							BusinessRefresh(IsPlayerInBusiness(playerid));
-							SendServerMessage(playerid, "[Business] {cdd0d1}You've got money {93C47D}$%d{cdd0d1} from take cash money on cashiers.", rand);
+							SendServerMessage(playerid, "[Business] {cdd0d1}You've got money {93C47D}$%s{cdd0d1} from take cash money on cashiers.", FormatMoney(Cents));
 						}
 					}
 				}

@@ -5,6 +5,8 @@ function:OnVehicleFuelUpdate()
 		if(VehicleInfo[i][E_VEHICLE_ADMIN]) //kalo kendaraan admin ga bisa ngurang.
 			return 0;
 
+		VehicleInfo[i][E_VEHICLE_MILES]++;
+
 	    if(VehicleInfo[i][E_VEHICLE_FUEL] > 1.0)
 		{
 		    VehicleInfo[i][E_VEHICLE_FUEL] -= 0.5;

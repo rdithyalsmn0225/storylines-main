@@ -76,41 +76,45 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 {
 	if(response)
 	{
+		new Cents = floatround(price * 100, floatround_round);
+
 		if(type == 0)
 		{
 
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
-				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
-			GiveMoney(playerid, -price);
+			GiveMoney(playerid, Cents);
 			Inventory_Add(playerid, "Marijuana", -2501, amount);
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 			
-			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} marijuana for {93C47D}$%s{cdd0d1}", ReturnName(playerid), FormatMoney(amount)); 
+			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} marijuana for {93C47D}$%s{cdd0d1}", ReturnName(playerid), FormatMoney(Cents)); 
 		}
 		else if(type == 1)
 		{
 			
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
-				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(price), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 		
-			GiveMoney(playerid, -price);
+			
+			GiveMoney(playerid, Cents);
 			Inventory_Add(playerid, "Cocaine", -2502, amount);
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 
-			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} cocaine for $%s", ReturnName(playerid), FormatMoney(amount)); 
+			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} cocaine for $%s", ReturnName(playerid), FormatMoney(Cents)); 
 		}
 		else if(type == 2)
 		{
 			
-			GiveMoney(playerid, -price);
+			
+			GiveMoney(playerid, Cents);
 			Inventory_Add(playerid, "Heroin", -2500, amount);
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 
-			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} heroin for $%s", ReturnName(playerid), FormatMoney(amount)); 
+			SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} bought {d7d292}%d{cdd0d1} heroin for $%s", ReturnName(playerid), FormatMoney(Cents)); 
 		}
 	}
 	return 1;

@@ -193,6 +193,7 @@ function:ResetPlayer(playerid)
 	KillTimer(cameraTimer[playerid]);
 
 	HeaderBar[playerid] = INVALID_PLAYER_BAR_ID;
+	speedobar[playerid] = INVALID_PLAYER_BAR_ID;
 	//Master accounts:
 	AccountInfo[playerid][E_MASTERS_DBID] = 0; 
 	AccountInfo[playerid][E_MASTERS_LOGGED] = false; 
@@ -581,26 +582,39 @@ stock DoesPlayerExist(name[])
 
 stock FormatMoney(integer)
 {
-	new value[20], string[20];
-
-	valstr(value, integer);
-
-	new charcount;
-
-	for(new i = strlen(value); i >= 0; i --)
-	{
-		format(string, sizeof(string), "%c%s", value[i], string);
-		if(charcount == 3)
-		{
-			if(i != 0)
-				format(string, sizeof(string), ",%s", string);
-			charcount = 0;
-		}
-		charcount ++;
-	}
-
-	return string;
+    new result[32];
+    new cents = integer % 100;
+    new dollars = integer / 100;
+    new formattedDollars[32];
+    
+    
+    new temp[32];
+    format(temp, sizeof(temp), "%d", dollars);
+    
+    
+    new len = strlen(temp);
+    new dotPos = len - 3;
+    
+    
+    new idx = 0, formattedIdx = 0;
+    while (idx < len)
+    {
+        formattedDollars[formattedIdx++] = temp[idx++];
+        
+        if (idx == dotPos && idx < len)
+        {
+            formattedDollars[formattedIdx++] = '.';
+            dotPos -= 3;
+        }
+    }
+    formattedDollars[formattedIdx] = '\0';
+    
+    
+    format(result, sizeof(result), "%s.%02d", formattedDollars, cents);
+    
+    return result;
 }
+
 stock IsChannelSlot(playerid, chan)
 {
 	for(new i = 1; i < 3; i++)
