@@ -656,7 +656,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 3:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Business Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/buybiz, /lock, /bizinfo, /bizfee, /bizcash, /sellbiz");
+						SendClientMessage(playerid, COLOR_ORANGE, "/buybiz, /lock, /bizinfo, /bizfee, /bizcash, /bizproduct, /sellbiz");
 					}
 					case 4:
 					{

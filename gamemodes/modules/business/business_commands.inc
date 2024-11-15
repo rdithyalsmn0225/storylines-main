@@ -63,6 +63,57 @@ CMD:bizinfo(playerid, params[])
 	return 1;
 }
 
+CMD:bizproduct(playerid, params[])
+{
+	if(!CountPlayerBusiness(playerid))
+		return SendErrorMessage(playerid, "You don't own a business.");
+		
+	new id, type, Float:value;
+	
+	if((id = IsPlayerInBusiness(playerid)) == 0)
+		return SendErrorMessage(playerid, "You aren't inside your property.");
+		
+	if(BusinessInfo[id][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
+			return SendErrorMessage(playerid, "You don't own this business."); 
+		
+	if(sscanf(params, "if", type, value))
+	{
+		SendUsageMessage(playerid, "/bizproduct [types] [price]");
+		SendTipMessage(playerid, "1.product #1, 2.product #2, 3.product #3, 4.product #4"); 
+		return 1;
+	}
+	
+	new Cents = floatround(value * 100, floatround_round);
+
+	switch(type)
+	{
+		case 0:
+		{
+			if (value < 1.00 || value > 10.00)
+        		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
+
+			BusinessInfo[id][E_BUSINESS_PRODUCTS][1] = Cents;
+			SendServerMessage(playerid, "[Business] {cdd0d1}You has set your business product {d7d292}#1{cdd0d1} to {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
+		}
+		case 1:
+		{
+			if (value < 1.00 || value > 10.00)
+        		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
+
+			BusinessInfo[id][E_BUSINESS_PRODUCTS][2] = Cents;
+			SendServerMessage(playerid, "[Business] {cdd0d1}You has set your business product {d7d292}#2{cdd0d1} to {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
+		}
+		case 2:
+		{
+			if (value < 1.00 || value > 10.00)
+        		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
+
+			BusinessInfo[id][E_BUSINESS_PRODUCTS][3] = Cents;
+			SendServerMessage(playerid, "[Business] {cdd0d1}You has set your business product {d7d292}#3{cdd0d1} to {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
+		}
+	}
+	return 1;
+}
 CMD:bizfee(playerid, params[])
 {
 	if(!CountPlayerBusiness(playerid))
@@ -81,8 +132,8 @@ CMD:bizfee(playerid, params[])
 		if(sscanf(params, "f", amount))
 			return SendUsageMessage(playerid, "/bizfee [amount]"); 
 			
-		if(amount > 1500)
-			return SendErrorMessage(playerid, "The amount can't be above $1,500.");
+		if(amount < 1.00 || amount > 5.00)
+			return SendErrorMessage(playerid, "Your business fee cannot be less than $1.00 or more than $5.00.");
 			
 		new Cents = floatround(amount * 100, floatround_round);
 

@@ -235,7 +235,7 @@ CMD:pay(playerid, params[])
     SendServerMessage(playerid, "[Pay] {cdd0d1}You have sent {93C47D}$%s{cdd0d1} to {d7d292}%s{cdd0d1}.", FormatMoney(Cents), ReturnName(playerb)); 
     SendServerMessage(playerb, "[Pay] {cdd0d1}You have received {93C47D}$%s{cdd0d1} from {d7d292}%s{cdd0d1}.", FormatMoney(Cents), ReturnName(playerid)); 
     
-    if ((PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3) || Cents >= 5000000) 
+    if ((PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3) || Cents >= 5000) 
     {
         format(str, sizeof(str), "%s has paid $%s to %s.", ReturnName(playerid), FormatMoney(Cents), ReturnName(playerb)); 
         SendAdminMessage(1, str);
@@ -1272,7 +1272,7 @@ CMD:mylicense(playerid, params[])
 		playerb;
 		
 	if(sscanf(params, "u", playerb))
-		return SendUsageMessage(playerid, "/license [playerid OR name]"); 
+		return SendUsageMessage(playerid, "/mylicense [playerid OR name]"); 
 	
 	if(!IsPlayerConnected(playerb))
 		return SendErrorMessage(playerid, "You specified an invalid player.");
@@ -2383,10 +2383,8 @@ CMD:approve(playerid, params[])
 
 		VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID];
 
-		new Cents = floatround(price * 100, floatround_round);
-
-		GiveMoney(playerid, -Cents);
-		GiveMoney(userid, Cents);
+		GiveMoney(playerid, -price);
+		GiveMoney(userid, price);
 
 		PlayerInfo[playerid][E_CHARACTER_SELLOFFER] = INVALID_PLAYER_ID;
 		PlayerInfo[playerid][E_CHARACTER_PRICEOFFER] = 0;

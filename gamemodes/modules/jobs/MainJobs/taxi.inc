@@ -56,13 +56,13 @@ function:TaxiTimers()
 		{
 		    PlayerInfo[i][E_CHARACTER_TAXITIMER]++;
 
-		    if (PlayerInfo[i][E_CHARACTER_TAXITIMER] == 3)
+		    if (PlayerInfo[i][E_CHARACTER_TAXITIMER] == 10)
 		    {
 		        PlayerInfo[i][E_CHARACTER_TAXITIMER] = 0;
-		        PlayerInfo[i][E_CHARACTER_TAXIFARE] += 1;
+		        PlayerInfo[i][E_CHARACTER_TAXIFARE] += PlayerInfo[i][E_CHARACTER_DRIVERFARE];
 		    }
             new str[512];
-		    format(str, sizeof(str), "~y~Taxi Fare: ~g~$%d", PlayerInfo[i][E_CHARACTER_TAXIFARE], PlayerInfo[i][E_CHARACTER_TAXITIMER]);
+		    format(str, sizeof(str), "~y~Taxi Fare: ~g~$%d", PlayerInfo[i][E_CHARACTER_DRIVERFARE]);
             ShowBoxMessage(i, str, 5);
             ShowBoxMessage(GetVehicleDriver(GetPlayerVehicleID(i)), str, 5);
 		}
@@ -94,6 +94,27 @@ Dialog:AcceptTaxi(playerid, response, listitem, inputtext[])
         SendServerMessage(playerid, "[Taxi] {cdd0d1}You have accepted {d7d292}%s's{cdd0d1} taxi call.", ReturnName(targetid));
         SendServerMessage(targetid, "[Taxi] {cdd0d1}{d7d292}%s{cdd0d1} has accepted your taxi call and is on their way.", ReturnName(playerid, targetid));
 	}
+	return 1;
+}
+
+CMD:setfare(playerid, params[])
+{
+	new Float:value;
+    
+    if (sscanf(params, "f", value))
+	{
+		SendUsageMessage(playerid, "/setfare [amount]");
+		SendTipMessage(playerid, "Taxi price range maximum {93C47D}$2.50{cdd0d1} and minimum {93C47D}$1.00{cdd0d1}.");
+        return 1;
+	}
+
+	if (value < 1.00 || value > 2.50)
+        return SendErrorMessage(playerid, "Your taxi fare cannot be less than $1.00 or more than $2.50");
+
+	new Cents = floatround(value * 100, floatround_round);
+
+    PlayerInfo[playerid][E_CHARACTER_DRIVERFARE] = Cents;
+	SendServerMessage(playerid, "[Taxi] {cdd0d1}You has set your taxi fare to {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
 	return 1;
 }
 

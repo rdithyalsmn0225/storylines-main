@@ -4314,7 +4314,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	{
 	    new driverid = GetVehicleDriver(GetPlayerVehicleID(playerid));
 
-	    PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 1;
+	    PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = PlayerInfo[driverid][E_CHARACTER_DRIVERFARE];
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 

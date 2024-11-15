@@ -24,6 +24,7 @@ CMD:carsell(playerid, params[])
 		return SendErrorMessage(playerid, "You aren't near that player.");
 
 	new idx;
+	new Cents = floatround(price * 100, floatround_round);
 			
 	for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
 	{
@@ -43,12 +44,12 @@ CMD:carsell(playerid, params[])
 	if(price < 0)
 		return SendErrorMessage(playerid, "Invalid price!");
 
-	PlayerInfo[userid][E_CHARACTER_PRICEOFFER] = price;
+	PlayerInfo[userid][E_CHARACTER_PRICEOFFER] = Cents;
 	PlayerInfo[userid][E_CHARACTER_SELLOFFER] = playerid;
 	PlayerInfo[userid][E_CHARACTER_SELLVOFFER] = vehicleid;
 
-	SendTipMessage(userid, "%s has offered sell their vehicle %s for $%s, type /approve vehicle to approve.", ReturnName(playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You have offered sell your %s for {93C47D}$%s{cdd0d1}.", ReturnName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(price));
+	SendTipMessage(userid, "%s has offered sell their vehicle %s for $%s, type /approve vehicle to approve.", ReturnName(playerid), ReturnVehicleModelName(vehicleid), FormatMoney(Cents));
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You have offered sell your %s for {93C47D}$%s{cdd0d1}.", ReturnName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(Cents));
 	return 1;
 }
 
