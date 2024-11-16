@@ -231,18 +231,19 @@ public OnGameModeInit()
 	SetTimer("OnVehicleFuelUpdate", 60000, true);
 	SetTimer("OnVehicleUpdate", 1000, true);
 	SetTimer("OnVehicleRental", 60000, true);
-	SetTimer("MinutesTimes", 60000, true);
-	SetTimer("WeaponUpdate", 1000, true);
-	SetTimer("SprayTagsTimer", 60000, true);
-	SetTimer("AntiCheatCheck", 500, true);
-	SetTimer("IndustryTimer", 600000, true);
-	SetTimer("TreeTimers", 1000, true);
-	SetTimer("TaxiTimers", 1000, true);
-	SetTimer("PacketTimers", 1800000, true);
-	SetTimer("GarbageTimers", 600000, true);
-	SetTimer("ConditionTimers", 1000, true);
-	SetTimer("FactionSalaryTimers", 600000, true);
-	SetTimer("StartLottery", 1800000, false);
+	SetTimer("OnPlayerMinutesUpdate", 60000, true);
+	SetTimer("OnPlayerWeaponUpdate", 1000, true);
+	SetTimer("OnSprayTagsUpdate", 60000, true);
+	SetTimer("OnAntiCheatUpdate", 500, true);
+	SetTimer("OnIndustryUpdate", 600000, true);
+	SetTimer("OnTreeUpdate", 1000, true);
+	SetTimer("OnPlayerTaxiUpdate", 1000, true);
+	SetTimer("OnPlayerPacketUpdate", 1800000, true);
+	SetTimer("OnGarbageUpdate", 600000, true);
+	SetTimer("OnPlayerConditionUpdate", 1000, true);
+	SetTimer("OnPlayerFactionUpdate", 600000, true);
+	SetTimer("OnPlayerJobsUpdate", 60000, true);
+	SetTimer("OnPlayerLotteryUpdate", 1800000, false);
 
 	// Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
@@ -623,6 +624,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 				PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
 				PlayerSweeperIndex[playerid] = 0;
+				PlayerInfo[playerid][E_CHARACTER_SWEEPERCD] = 8;
                     
 				GPS_DisablePlayerRaceCheckPoint(playerid);
 				DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
@@ -886,6 +888,10 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_int(0, "pHasAoe", PlayerInfo[playerid][E_CHARACTER_AOE]); 
 	cache_get_value_name_int(0, "pEXP", PlayerInfo[playerid][E_CHARACTER_EXP]); 
 	cache_get_value_name_int(0, "pJobs", PlayerInfo[playerid][E_CHARACTER_JOBS]); 
+	cache_get_value_name_int(0, "pJobsCD", PlayerInfo[playerid][E_CHARACTER_JOBSCD]); 
+	cache_get_value_name_int(0, "pSweeperCD", PlayerInfo[playerid][E_CHARACTER_SWEEPERCD]); 
+	cache_get_value_name_int(0, "pGarbageCD", PlayerInfo[playerid][E_CHARACTER_GARBAGECD]); 
+	cache_get_value_name_int(0, "pBusdriverCD", PlayerInfo[playerid][E_CHARACTER_BUSDRIVERCD]); 
 	cache_get_value_name_int(0, "pTutorial", PlayerInfo[playerid][E_CHARACTER_TUTORIAL]); 
 
 	new str[128];
@@ -4963,8 +4969,12 @@ function:SaveCharacter(playerid)
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
 
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pJobs = %d, pTutorial = %d, pEXP = %d WHERE char_dbid = %i",
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pJobs = %d, pJobsCD = %d, pSweeperCD = %d, pGarbageCD = %d, pBusdriverCD = %d,  pTutorial = %d, pEXP = %d WHERE char_dbid = %i",
 		PlayerInfo[playerid][E_CHARACTER_JOBS],
+		PlayerInfo[playerid][E_CHARACTER_JOBSCD],
+		PlayerInfo[playerid][E_CHARACTER_SWEEPERCD],
+		PlayerInfo[playerid][E_CHARACTER_GARBAGECD],
+		PlayerInfo[playerid][E_CHARACTER_BUSDRIVERCD],
 		PlayerInfo[playerid][E_CHARACTER_TUTORIAL],
 		PlayerInfo[playerid][E_CHARACTER_EXP],
 		PlayerInfo[playerid][E_CHARACTER_DBID]);

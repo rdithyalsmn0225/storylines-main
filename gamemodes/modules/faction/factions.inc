@@ -190,7 +190,7 @@ stock IsPlayerNearFaction(playerid)
 	return 0;
 }
 
-function:FactionSalaryTimers()
+function:OnPlayerFactionUpdate()
 {
 	foreach(new i : Player)
 	{

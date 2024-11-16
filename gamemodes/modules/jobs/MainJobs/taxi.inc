@@ -48,7 +48,7 @@ stock LeaveTaxi(playerid, driverid)
 	return 1;
 }
 
-function:TaxiTimers()
+function:OnPlayerTaxiUpdate()
 {
     foreach(new i : Player)
     {

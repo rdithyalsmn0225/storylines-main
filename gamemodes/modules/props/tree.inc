@@ -117,7 +117,7 @@ stock Tree_Delete(id)
 	return 1;
 }
 
-function:TreeTimers()
+function:OnTreeUpdate()
 {
     forex(i, MAX_TREES) if(TreeInfo[i][E_TREE_EXISTS] && TreeInfo[i][E_TREE_TIMER] > 0)
 	{

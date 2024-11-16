@@ -1,7 +1,7 @@
 //SALARY JOBS
 #define GARBAGEMAN_SALARY       5
 #define SWEEPER_SALARY          5
-#define BUSDRIVER_SALARY        5
+#define BUSDRIVER_SALARY        10
 #define DOCKWORKER_SALARY       15
 #define LUMBERJACK_SALARY       25
 

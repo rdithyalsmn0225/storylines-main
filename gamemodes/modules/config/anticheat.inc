@@ -224,7 +224,7 @@ stock SetPlayerArmourEx(playerid, Float:value)
 }
 
 // VEHICLE CHECK:
-stock VehicleAnticheatCheck(vehicleid)
+stock VehicleOnAntiCheatUpdate(vehicleid)
 {
 	new Float:currenthp, csh, cch;
 	GetVehicleHealth(vehicleid, currenthp);
@@ -238,7 +238,7 @@ stock VehicleAnticheatCheck(vehicleid)
 }
 
 // ARMOUR CHECK:
-stock ArmourAnticheatCheck(playerid)
+stock ArmourOnAntiCheatUpdate(playerid)
 {
 	GetPlayerArmour(playerid, CurrentArmourVar[playerid]);
 	new cav = floatround(CurrentArmourVar[playerid]), av = floatround(PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
@@ -248,7 +248,7 @@ stock ArmourAnticheatCheck(playerid)
 }
 
 // HEALTH CHECK:
-stock HealthAnticheatCheck(playerid)
+stock HealthOnAntiCheatUpdate(playerid)
 {
 	GetPlayerHealth(playerid, CurrentHealthVar[playerid]);
 	new chv = floatround(CurrentHealthVar[playerid]), hv = floatround(PlayerInfo[playerid][E_CHARACTER_HEALTH]);
@@ -286,7 +286,7 @@ stock GetPlayerWeaponVar(playerid)
 
 
 // AC CHECK:
-function:AntiCheatCheck()
+function:OnAntiCheatUpdate()
 {
     foreach(new playerid : Player)
 	{
@@ -458,7 +458,7 @@ function:AntiCheatCheck()
 			{
 				if(ACPauseTimer[playerid] == 0)
 				{
-					if(!HealthAnticheatCheck(playerid))
+					if(!HealthOnAntiCheatUpdate(playerid))
 					{
 						new Float:currenthealth, gstr[512];
 						GetPlayerHealth(playerid, currenthealth);
@@ -481,7 +481,7 @@ function:AntiCheatCheck()
 			{
 				if(ACPauseTimer[playerid] == 0)
 				{
-					if(!ArmourAnticheatCheck(playerid))
+					if(!ArmourOnAntiCheatUpdate(playerid))
 					{
 						new Float:currentarmor, gstr[512];
 						GetPlayerArmour(playerid, currentarmor);
@@ -504,7 +504,7 @@ function:AntiCheatCheck()
                 if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_ADMIN] == false && VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_VCTIMER] == 0)
                 {
                     new v = GetPlayerVehicleID(playerid);
-                    if(!VehicleAnticheatCheck(v))
+                    if(!VehicleOnAntiCheatUpdate(v))
                     {
                         new Float:vhealth, gstr[512];
                         GetVehicleHealth(v, vhealth);

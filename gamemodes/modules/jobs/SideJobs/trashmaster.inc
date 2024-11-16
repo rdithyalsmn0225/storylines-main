@@ -1,5 +1,5 @@
 
-function:GarbageTimers()
+function:OnGarbageUpdate()
 {
     GarbageCount = 0;
     for (new i = 0; i < sizeof(Garbage_Locations); i++) {
@@ -72,6 +72,7 @@ CMD:dumpgarbage(playerid, params[])
 	        GiveMoney(playerid, Cents);
             SendServerMessage(playerid, "[Garbageman] {cdd0d1}You've empty your garbage bag, current garbage bag {d7d292}%d{cdd0d1} x rubbish and earn {93C47D}$%s{cdd0d1}.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE], FormatMoney(Cents));
             PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] = 0;
+            PlayerInfo[playerid][E_CHARACTER_GARBAGECD] = 10;
         }
     }
     return 1;

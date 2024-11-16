@@ -312,7 +312,7 @@ Dialog:SprayText(playerid, response, listitem, inputtext[])
     return 1;
 }
 
-function:SprayTagsTimer()
+function:OnSprayTagsUpdate()
 {
     new queryBuffer[512];
     for(new i; i < MAX_SPRAYTAGS; i++)

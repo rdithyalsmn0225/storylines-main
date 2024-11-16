@@ -11,7 +11,7 @@ ResetLotteryVar(playerid)
     return 1;
 }
 
-function:StartLottery()
+function:OnPlayerLotteryUpdate()
 {
     if (LotteryActive == 1) return 0;
     LotteryActive = 1;
@@ -56,7 +56,7 @@ function:EndLottery()
         LotteryPlayerHasTicket[i] = 0;
     }
     
-    SetTimer("StartLottery", 1800000, false);
+    SetTimer("OnPlayerLotteryUpdate", 1800000, false);
     return 1;
 }
 

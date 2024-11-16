@@ -54,6 +54,7 @@ function:BusDrivers(playerid, type)
 
                         PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = false;
                         PlayerBusDriverIndex[playerid] = 0;
+                        PlayerInfo[playerid][E_CHARACTER_BUSDRIVERCD] = 12;
                             
                         GPS_DisablePlayerRaceCheckPoint(playerid);
                         DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);

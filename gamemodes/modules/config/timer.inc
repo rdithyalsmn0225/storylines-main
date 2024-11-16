@@ -171,7 +171,7 @@ function:PlayersUpdates()
 	return 1;
 }
 
-function:WeaponUpdate()
+function:OnPlayerWeaponUpdate()
 {
 	foreach(new i : Player)
 	{
@@ -450,7 +450,7 @@ function:FunctionPaychecks()
 	return 1;
 }
 
-function:MinutesTimes()
+function:OnPlayerMinutesUpdate()
 {
 	foreach(new i : Player)
 	{

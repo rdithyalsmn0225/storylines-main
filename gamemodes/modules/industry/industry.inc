@@ -236,7 +236,7 @@ stock ShowShipments(playerid)
 	return 1;
 }
 
-function:IndustryTimer()
+function:OnIndustryUpdate()
 {
 	if(ServerInfo[0][E_SERVER_FABRIC] <= 100)
 		ServerInfo[0][E_SERVER_FABRIC] += 10;

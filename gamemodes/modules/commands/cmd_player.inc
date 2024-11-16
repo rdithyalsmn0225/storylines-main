@@ -1346,6 +1346,13 @@ CMD:time(playerid, params[])
 		
 	GameTextForPlayer(playerid, string, 2000, 1);
 	
+	SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Cooldowns __________|");
+	SendClientMessageEx(playerid, COLOR_ORANGE, "ADMIN JAIL : %d minutes.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] * 60);
+	SendClientMessageEx(playerid, COLOR_ORANGE, "PRISON : %d minutes.", PlayerInfo[playerid][E_CHARACTER_PRISON] * 60);
+	SendClientMessageEx(playerid, COLOR_ORANGE, "MAIN JOBS : %d minutes.", PlayerInfo[playerid][E_CHARACTER_JOBSCD]);
+	SendClientMessageEx(playerid, COLOR_ORANGE, "STREET CLEANER : %d minutes.", PlayerInfo[playerid][E_CHARACTER_SWEEPERCD]);
+	SendClientMessageEx(playerid, COLOR_ORANGE, "GARBAGEMAN : %d minutes.", PlayerInfo[playerid][E_CHARACTER_GARBAGECD]);
+	SendClientMessageEx(playerid, COLOR_ORANGE, "BUS DRIVER : %d minutes.", PlayerInfo[playerid][E_CHARACTER_BUSDRIVERCD]);
 	return 1;
 }
 

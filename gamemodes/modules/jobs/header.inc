@@ -45,6 +45,9 @@ stock StartMainJobs(playerid, type)
             {
                 if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] == false) //Start
                 {
+                    if(PlayerInfo[playerid][E_CHARACTER_GARBAGECD])
+                        return SendErrorMessage(playerid, "You cannot use this commands right now.");
+
                     PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = true;
                     SetPlayerSkin(playerid, 16);
 
@@ -65,6 +68,9 @@ stock StartMainJobs(playerid, type)
         {
             if(PlayerInfo[playerid][E_CHARACTER_SWEEPER] == false) //Start
             {
+                if(PlayerInfo[playerid][E_CHARACTER_SWEEPERCD])
+                    return SendErrorMessage(playerid, "You cannot use this commands right now.");
+
                 PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = CreateVehicle(574, x, y, z, 0.0, 1, 1, 5000, 0);
                 VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_HEALTH] = 1000.0;
                 VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_FUEL] = 1000;
@@ -95,13 +101,16 @@ stock StartMainJobs(playerid, type)
         {
             if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] == false) //Start
             {
+                if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVERCD])
+                    return SendErrorMessage(playerid, "You cannot use this commands right now.");
+
                 PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = CreateVehicle(431, x, y, z, 0.0, 1, 1, 5000, 0);
                 VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_HEALTH] = 1000.0;
                 VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_FUEL] = 1000;
                 
                 PlayerPutIntoVehicle(playerid, PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], 0);
                 PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = true;
-                PlayerSweeperIndex[playerid] = 1;
+                PlayerBusDriverIndex[playerid] = 1;
 
                 new rand = random(sizeof(BusDriver_Index));
 
@@ -127,6 +136,52 @@ stock StartMainJobs(playerid, type)
     return 1;
 }
 
+function:OnPlayerJobsUpdate()
+{
+    foreach(new i : Player)
+    {
+        if(PlayerInfo[i][E_CHARACTER_JOBSCD])
+        {
+            PlayerInfo[i][E_CHARACTER_JOBSCD]--;
+            if(PlayerInfo[i][E_CHARACTER_JOBSCD] < 0)
+            {
+                PlayerInfo[i][E_CHARACTER_JOBSCD] = 0;
+                SendServerMessage(i, "[Jobs] {cdd0d1}You can start {d7d292}Main Jobs{cdd0d1} rightnow.");
+            }
+        }
+
+        if(PlayerInfo[i][E_CHARACTER_SWEEPERCD])
+        {
+            PlayerInfo[i][E_CHARACTER_SWEEPERCD]--;
+            if(PlayerInfo[i][E_CHARACTER_SWEEPERCD] < 0)
+            {
+                PlayerInfo[i][E_CHARACTER_SWEEPERCD] = 0;
+                SendServerMessage(i, "[Jobs] {cdd0d1}You can start {d7d292}Street Cleaner{cdd0d1} SideJobs rightnow.");
+            }
+        }
+
+        if(PlayerInfo[i][E_CHARACTER_GARBAGECD])
+        {
+            PlayerInfo[i][E_CHARACTER_GARBAGECD]--;
+            if(PlayerInfo[i][E_CHARACTER_GARBAGECD] < 0)
+            {
+                PlayerInfo[i][E_CHARACTER_GARBAGECD] = 0;
+                SendServerMessage(i, "[Jobs] {cdd0d1}You can start {d7d292}Garbageman{cdd0d1} SideJobs rightnow.");
+            }
+        }
+
+        if(PlayerInfo[i][E_CHARACTER_BUSDRIVERCD])
+        {
+            PlayerInfo[i][E_CHARACTER_BUSDRIVERCD]--;
+            if(PlayerInfo[i][E_CHARACTER_BUSDRIVERCD] < 0)
+            {
+                PlayerInfo[i][E_CHARACTER_BUSDRIVERCD] = 0;
+                SendServerMessage(i, "[Jobs] {cdd0d1}You can start {d7d292}Bus Driver{cdd0d1} SideJobs rightnow.");
+            }
+        }
+    }
+    return 1;
+}
 stock InsertJobsPoint()
 {
     for(new i = 0; i < sizeof(JobsInfo); i++)

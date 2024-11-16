@@ -165,7 +165,7 @@ stock GetWoundStatus(condition)
     return str;
 }
 
-function:ConditionTimers()
+function:OnPlayerConditionUpdate()
 {
 	foreach(new i : Player)
 	{

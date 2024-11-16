@@ -31,7 +31,7 @@ function:InsertPacket(Float:x, Float:y, Float:z)
     return 1;
 }
 
-function:PacketTimers()
+function:OnPlayerPacketUpdate()
 {
     if(!IsPlayerTakePacket())
     {
