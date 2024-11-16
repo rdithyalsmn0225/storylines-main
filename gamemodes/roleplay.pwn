@@ -241,6 +241,7 @@ public OnGameModeInit()
 	SetTimer("PacketTimers", 1800000, true);
 	SetTimer("GarbageTimers", 600000, true);
 	SetTimer("ConditionTimers", 1000, true);
+	SetTimer("FactionSalaryTimers", 600000, true);
 	SetTimer("StartLottery", 1800000, false);
 
 	// Loading systems:

@@ -82,8 +82,8 @@ CMD:ticket(playerid, params[])
 	if (userid == playerid)
 	    return SendErrorMessage(playerid, "You can't write a ticket to yourself.");
 
-	if (price < 1 || price > 1000)
-	    return SendErrorMessage(playerid, "The price can't be below $1 or above $1,000.");
+	if (price < 1.00 || price > 1000.00)
+	    return SendErrorMessage(playerid, "The price can't be below $1.00 or above $1.000.00.");
 
 	new Cents = floatround(price * 100, floatround_round);
 

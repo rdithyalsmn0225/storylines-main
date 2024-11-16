@@ -189,3 +189,23 @@ stock IsPlayerNearFaction(playerid)
 	}
 	return 0;
 }
+
+function:FactionSalaryTimers()
+{
+	foreach(new i : Player)
+	{
+		if(PlayerInfo[i][E_CHARACTER_POLICEDUTY])
+		{
+			new Cents = floatround(10 * 100, floatround_round);
+			GivePaycheck(i, Cents);
+			SendServerMessage(i, "[Faction] {cdd0d1}You has earn {93C47D}$%s{cdd0d1} into your paycheck from faction duty.", FormatMoney(Cents));
+		}
+		if(PlayerInfo[i][E_CHARACTER_MEDICDUTY])
+		{
+			new Cents = floatround(8 * 100, floatround_round);
+			GivePaycheck(i, Cents);
+			SendServerMessage(i, "[Faction] {cdd0d1}You has earn {93C47D}$%s{cdd0d1} into your paycheck from faction duty.", FormatMoney(Cents));
+		}
+	}
+	return 1;
+}

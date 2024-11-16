@@ -100,6 +100,7 @@ Dialog:AcceptTaxi(playerid, response, listitem, inputtext[])
 CMD:setfare(playerid, params[])
 {
 	new Float:value;
+	new vehicleid = GetPlayerVehicleID(playerid);
     
     if (sscanf(params, "f", value))
 	{
@@ -107,6 +108,15 @@ CMD:setfare(playerid, params[])
 		SendTipMessage(playerid, "Taxi price range maximum {93C47D}$2.50{cdd0d1} and minimum {93C47D}$1.00{cdd0d1}.");
         return 1;
 	}
+
+	if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TAXI)
+	    return SendErrorMessage(playerid, "You don't have the appropriate job.");
+
+	if (!PlayerInfo[playerid][E_CHARACTER_TAXIDUTY])
+	    return SendErrorMessage(playerid, "You must be on taxi duty to accept calls.");
+
+	if(!IsPlayerInAnyVehicle(playerid) && GetVehicleModel(vehicleid) == 420 || GetVehicleModel(vehicleid) == 438)
+		return SendErrorMessage(playerid, "You aren't inside vehicle.");
 
 	if (value < 1.00 || value > 2.50)
         return SendErrorMessage(playerid, "Your taxi fare cannot be less than $1.00 or more than $2.50");
