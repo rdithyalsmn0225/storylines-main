@@ -133,7 +133,7 @@ function:CreateTimber(playerid, id)
             SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You've successfully take woods timber.");
             SendTipMessage(playerid, "Place the timber into your pickup vehicle.");
 
-            TreeInfo[id][E_TREE_TIMER] = 3600;
+            TreeInfo[id][E_TREE_TIMER] = 10;
             TreeInfo[id][E_TREE_CUTTED] = false;
             TreeInfo[id][E_TREE_PROGRESS] = 0;
 

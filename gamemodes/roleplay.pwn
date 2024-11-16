@@ -236,7 +236,7 @@ public OnGameModeInit()
 	SetTimer("OnSprayTagsUpdate", 60000, true);
 	SetTimer("OnAntiCheatUpdate", 500, true);
 	SetTimer("OnIndustryUpdate", 600000, true);
-	SetTimer("OnTreeUpdate", 1000, true);
+	SetTimer("OnTreeUpdate", 60000, true);
 	SetTimer("OnPlayerTaxiUpdate", 1000, true);
 	SetTimer("OnPlayerPacketUpdate", 1800000, true);
 	SetTimer("OnGarbageUpdate", 600000, true);
@@ -3279,7 +3279,7 @@ public OnPlayerUpdate(playerid)
 
 public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 {
-
+	
 	// CHARACTER SELECTIONS:
 	if (playertextid == SelectFactionClick[0][playerid]) //PREV
 	{

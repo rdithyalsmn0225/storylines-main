@@ -54,7 +54,7 @@ CMD:mechmenu(playerid, params[])
 		return SendErrorMessage(playerid, "You aren't near a vehicle."); 
 
     new str[1524];
-    strcat(str, "Option\tComponent\tTime\n");
+    strcat(str, "Option\tRequire\tTime\n");
     strcat(str, "Repair Engine\t(1 Repair Kits)\t25 seconds\n");
     strcat(str, "Repair Bodykit\t(1 Repair Kits)\t30 seconds\n");
     strcat(str, "Repair Tire\t(1 Repair Kits)\t20 seconds\n");
@@ -63,7 +63,7 @@ CMD:mechmenu(playerid, params[])
     strcat(str, "Repaint Paintjob type 1\t(2 Spraycan)\t40 seconds\n");
     strcat(str, "Repaint Paintjob type 2\t(2 Spraycan)\t40 seconds\n");
     strcat(str, "Repaint Paintjob type 3\t(2 Spraycan)\t40 seconds\n");
-    strcat(str, "Manipulation Plates\t(1 Spraycan)\t35 seconds\n");
+    strcat(str, "Manipulation Plates\t(2 Spraycan)\t35 seconds\n");
     Dialog_Show(playerid, MechMenu, DIALOG_STYLE_TABLIST_HEADERS, "Mechanic Menu", str, "Select", "Close");
     return 1;
 }
@@ -740,7 +740,7 @@ function:repaintplates(playerid, vehicleid)
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
-            Inventory_Remove(playerid, "Spraycan", 1);
+            Inventory_Remove(playerid, "Spraycan", 2);
 
             new
                 plates[32],

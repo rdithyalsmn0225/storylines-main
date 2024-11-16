@@ -172,6 +172,17 @@ SelectCharacter(playerid, id)
 	PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] = id;
 	AccountInfo[playerid][E_MASTERS_LOGGED] = true;
 
+	foreach (new x : Player)
+	{
+		if(playerid == x) continue;
+
+		if(AccountInfo[playerid][E_MASTERS_DBID] == AccountInfo[x][E_MASTERS_DBID])
+		{
+			SendErrorMessage(playerid, "Login unsuccessful (character already logged in?)");
+			return 1;
+		}
+	}
+
 	if (!characterLister[playerid][id][0])
 	{
 		for(new i =0 ; i < 10; i++){ SendClientMessage(playerid, -1, " "); }

@@ -1436,7 +1436,8 @@ CMD:createpcar(playerid, params[])
 	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
 		return SendUnauthMessage(playerid);
 		
-	new playerb, modelid, color1, color2;
+	new playerb, modelid, color1, color2,
+		Float:x, Float:y, Float:z;
 	
 	if(sscanf(params, "uiii", playerb, modelid, color1, color2))
 	{
@@ -1444,6 +1445,8 @@ CMD:createpcar(playerid, params[])
 		SendTipMessage(playerid, "This issues a permanent vehicle to a player.");
 		return 1;
 	}
+
+	GetPlayerPos(playerid, x, y, z);
 	
 	if (!IsPlayerConnected(playerb))
 		return SendErrorMessage(playerid, "A player you specified isn't connected to the server."); 
@@ -1473,8 +1476,8 @@ CMD:createpcar(playerid, params[])
 	{
 		new insertQuery[256];
 		
-		mysql_format(ourConnection, insertQuery, sizeof(insertQuery), "INSERT INTO vehicles (`VehicleOwnerDBID`, `VehicleModel`, `VehicleColor1`, `VehicleColor2`, `VehicleParkPosX`, `VehicleParkPosY`, `VehicleParkPosZ`, `VehicleParkPosA`) VALUES(%i, %i, %i, %i, 1705.4175, -1485.9148, 13.3828, 87.5097)",
-			PlayerInfo[playerb][E_CHARACTER_DBID], modelid, color1, color2);
+		mysql_format(ourConnection, insertQuery, sizeof(insertQuery), "INSERT INTO vehicles (`VehicleOwnerDBID`, `VehicleModel`, `VehicleColor1`, `VehicleColor2`, `VehicleParkPosX`, `VehicleParkPosY`, `VehicleParkPosZ`, `VehicleParkPosA`) VALUES(%i, %i, %i, %i, %f, %f, %f, 0.0)",
+			PlayerInfo[playerb][E_CHARACTER_DBID], modelid, color1, color2, x, y, z);
 		mysql_pquery(ourConnection, insertQuery, "Query_AddPlayerVehicle", "ii", playerid, playerb); 
 	}
 	
