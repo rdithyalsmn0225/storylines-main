@@ -63,7 +63,7 @@ function:OnPropertyFurnitureStatic(propertyid, type)
 			mysql_pquery(ourConnection, queryBuffer);
 
 			mysql_pquery(ourConnection, "SELECT * FROM furniture WHERE id = LAST_INSERT_ID()", "Query_LoadFurniture", "i", PropertyInfo[propertyid][E_PROPERTY_LABELS]);
-			ReloadFurniture(PropertyStaticInfo[i][E_OBJECT_ID], PropertyInfo[propertyid][E_PROPERTY_LABELS]);
+			ReloadAllFurniture(propertyid);
 		}
 	}
 
@@ -76,7 +76,7 @@ function:OnPropertyFurnitureStatic(propertyid, type)
 			mysql_pquery(ourConnection, queryBuffer);
 
 			mysql_pquery(ourConnection, "SELECT * FROM furniture WHERE id = LAST_INSERT_ID()", "Query_LoadFurniture", "i", PropertyInfo[propertyid][E_PROPERTY_LABELS]);
-			ReloadFurniture(PropertyStaticInfo[i][E_OBJECT_ID], PropertyInfo[propertyid][E_PROPERTY_LABELS]);
+			ReloadAllFurniture(propertyid);
 		}
 	}
 	return 1;

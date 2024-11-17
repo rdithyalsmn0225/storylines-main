@@ -4726,7 +4726,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 
 						mysql_pquery(ourConnection, "SELECT * FROM furniture WHERE id = LAST_INSERT_ID()", "Query_LoadFurniture", "i", PropertyInfo[houseid][E_PROPERTY_LABELS]);
 
-						ReloadFurniture(objectid, PropertyInfo[houseid][E_PROPERTY_LABELS]);
+						ReloadFurniture(g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_MODEL], PropertyInfo[houseid][E_PROPERTY_LABELS]);
 						SendTipMessage(playerid, "Type '/prop furniture labels' to refresh the objects.");
 					}
 

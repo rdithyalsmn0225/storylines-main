@@ -104,7 +104,7 @@ stock StartMainJobs(playerid, type)
                 if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVERCD])
                     return SendErrorMessage(playerid, "You cannot use this commands right now.");
 
-                PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = CreateVehicle(431, x, y, z, 0.0, 1, 1, 5000, 0);
+                PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = CreateVehicle(431, 1696.8093,-1527.8206,13.4835, 359.0005, 1, 1, 5000, 0);
                 VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_HEALTH] = 1000.0;
                 VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_FUEL] = 1000;
                 
@@ -350,7 +350,7 @@ CMD:jobduty(playerid, params[])
         {
             StartMainJobs(playerid, 3);
         }
-        if(IsPlayerInRangeOfPoint(playerid, 3.0, 1564.8461,-1235.1824,17.4044))
+        if(IsPlayerInRangeOfPoint(playerid, 3.0, 1696.8093,-1527.8206,13.4835))
         {
             StartMainJobs(playerid, 4);
         }

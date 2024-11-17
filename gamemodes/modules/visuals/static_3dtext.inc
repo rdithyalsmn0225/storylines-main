@@ -5,7 +5,7 @@ InsertDynamicPickup()
     SideJobsPickup[0] = CreateDynamicPickup(1210, 1, 1529.5608,-1849.4032,13.5469, -1, -1, -1, 5.0);
     SideJobsPickup[1] = CreateDynamicPickup(1210, 1, 2748.7725,-2451.0012,13.6484, -1, -1, -1, 5.0);
 	SideJobsPickup[2] = CreateDynamicPickup(1210, 1, 860.7480,-1372.0948,13.5469, -1, -1, -1, 5.0);
-	SideJobsPickup[3] = CreateDynamicPickup(1210, 1, 1564.8461,-1235.1824,17.4044, -1, -1, -1, 5.0);
+	SideJobsPickup[3] = CreateDynamicPickup(1210, 1, 1696.8093,-1527.8206,13.4835, -1, -1, -1, 5.0);
 	ChainsawPickup = CreateDynamicPickup(1239, 1, -1448.7738,-1530.5585,101.7578, -1, -1, -1, 5.0);
 	DropInjuredPickup = CreateDynamicPickup(1240, 1, 2035.0732,-1414.0488,16.9922, -1, -1, -1, 5.0);
 	VehicleScrapPickup = CreateDynamicPickup(1254, 1, 2412.9312,-1425.4226,23.9835, -1, -1, -1, 5.0);
