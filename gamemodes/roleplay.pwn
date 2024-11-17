@@ -514,17 +514,17 @@ function:LogPlayerIn(playerid)
 		for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
 		
 		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {93C47D}Storylines{93C47D}, {FFFFFF}%s!\n\n{93C47D}Failure to authenticate three times will result in a {E03232}kick{93C47D}.\nYou have a total of {93C47D}five minutes{93C47D} to authenticate.\n\nIn order to proceed, enter a {93C47D}password{93C47D} below to authenticate (or register).", ReturnName(playerid));
-		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
+		format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
+		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
 	}
 	else
 	{
 		for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }	
 		registerTime[playerid] = 1;	
-		//ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
-		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {93C47D}Storylines{93C47D}, {FFFFFF}%s!\n\n{93C47D}Failure to authenticate three times will result in a {E03232}kick{93C47D}.\nYou have a total of {93C47D}five minutes{93C47D} to authenticate.\n\nIn order to proceed, enter a {93C47D}password{93C47D} below to authenticate (or register).", ReturnName(playerid));
-		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register:", str, "Confirm", "");
+		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
+		/*new str[1024];
+		format(str, sizeof(str), "You are not registered user! Plase register!");
+		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register your account:", str, "Confirm", "");*/
 	}
 	return 1;
 }
@@ -696,7 +696,7 @@ function:OnPlayerRegister(playerid)
 	loginTime[playerid] = 1; 
 	
 	new str[1024];
-	format(str, sizeof(str), "{ffffff}Welcome to {93C47D}Storylines{93C47D}, {FFFFFF}%s!\n\n{93C47D}Failure to authenticate three times will result in a {E03232}kick{93C47D}.\nYou have a total of {93C47D}five minutes{93C47D} to authenticate.\n\nIn order to proceed, enter a {93C47D}password{93C47D} below to authenticate (or register).", ReturnName(playerid));
+	format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
 	SendInfoMessage(playerid, "You successfully registered as {d7d292}%s{cdd0d1}. You need to login to continue:", ReturnName(playerid)); 
 	return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 }
@@ -716,7 +716,7 @@ function:LoggingIn(playerid)
 		}
 		
 		new str[1024];
-		format(str, sizeof(str), "{ffffff}Welcome to {93C47D}Storylines{93C47D}, {FFFFFF}%s!\n\n{93C47D}Failure to authenticate three times will result in a {E03232}kick{93C47D}.\nYou have a total of {93C47D}five minutes{93C47D} to authenticate.\n\nIn order to proceed, enter a {93C47D}password{93C47D} below to authenticate (or register).", ReturnName(playerid));
+		format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
 		return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 	}
 	
@@ -3279,7 +3279,7 @@ public OnPlayerUpdate(playerid)
 
 public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 {
-	
+
 	// CHARACTER SELECTIONS:
 	if (playertextid == SelectFactionClick[0][playerid]) //PREV
 	{

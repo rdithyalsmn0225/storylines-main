@@ -94,7 +94,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			
 			new str[1024];
-			format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnName(playerid, 0));
+			format(str, sizeof(str), "You are not registered user! Plase register!");
 			new insert[256]; 
 			
 			if(strlen(inputtext) > 128 || strlen(inputtext) < 3)
@@ -423,13 +423,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					registerTime[playerid] = 1;	
 					
 					new str[1024];
-					format(str, sizeof(str), "{ffffff}Welcome to {297183}Storylines{DEDEDE}, {FFFFFF}%s!\n\n{DEDEDE}Failure to authenticate three times will result in a {E03232}kick{DEDEDE}.\nYou have a total of {EEC650}five minutes{DEDEDE} to authenticate.\n\nIn order to proceed, enter a {EEC650}password{DEDEDE} below to authenticate (or register).", ReturnName(playerid, 0));
+					format(str, sizeof(str), "You are not registered user! Plase register!");
 					ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register:", str, "Confirm", "");
 				}
 				else
 				{
 					return SendClientMessage(playerid, COLOR_RED, "[ACCESS DENIED]:{C8C8C8} You entered a bad security word. This was logged for security reasons.");
-					//KickEx(playerid);
 				}
 			}
 			else
