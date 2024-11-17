@@ -89,7 +89,7 @@ RemoveAllFurniture(propid)
 {  
 	for(new i = 0; i <= Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i ++)
 	{
-		if(IsValidDynamicObject(i) && Streamer_GetExtraInt(i, E_OBJECT_TYPE) == E_OBJECT_FURNITURE && Streamer_GetExtraInt(i, E_OBJECT_EXTRA_ID) == PropertyInfo[propid][E_PROPERTY_DBID])
+		if(IsValidDynamicObject(i) && Streamer_GetExtraInt(i, E_OBJECT_TYPE) == E_OBJECT_FURNITURE && Streamer_GetExtraInt(i, E_OBJECT_EXTRA_ID) == PropertyInfo[propid][E_PROPERTY_DBID] && Streamer_GetExtraInt(i, E_OBJECT_TYPE_ID) == 0)
 		{
 			DeleteFurnitureObject(i);
 		}
@@ -138,12 +138,13 @@ function:Query_LoadFurniture(labels)
 	
 	for(new i = 0; i < rows; i++)
 	{
-		new Float: pos[6], dbid, propdbid, modelid, world, int, prices, objectid;
+		new Float: pos[6], dbid, propdbid, modelid, world, int, prices, type, objectid;
 
 		cache_get_value_name_int(i, "id", dbid);
 		cache_get_value_name_int(i, "propertydbid", propdbid);
 		cache_get_value_name_int(i, "modelid", modelid);
 		cache_get_value_name_int(i, "price", prices);
+		cache_get_value_name_int(i, "type", type);
 		cache_get_value_name_float(i, "pos_x", pos[0]);
 		cache_get_value_name_float(i, "pos_y", pos[1]);
 		cache_get_value_name_float(i, "pos_z", pos[2]);
@@ -159,6 +160,7 @@ function:Query_LoadFurniture(labels)
 		Streamer_SetExtraInt(objectid, E_OBJECT_TYPE, E_OBJECT_FURNITURE);
 		Streamer_SetExtraInt(objectid, E_OBJECT_INDEX_ID, dbid);
 		Streamer_SetExtraInt(objectid, E_OBJECT_EXTRA_ID, propdbid);
+		Streamer_SetExtraInt(objectid, E_OBJECT_TYPE_ID, type);
 
 		for(new a; a < 15; a++)
 		{

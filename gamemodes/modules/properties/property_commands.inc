@@ -247,6 +247,9 @@ CMD:property(playerid, params[])
 			if(Streamer_GetExtraInt(objectid, E_OBJECT_EXTRA_ID) != PropertyInfo[id][E_PROPERTY_DBID])
 				return SendErrorMessage(playerid, "Invalid object. This furniture object is not inside of your house.");
 
+			if(Streamer_GetExtraInt(objectid, E_OBJECT_TYPE_ID) != 0)
+				return SendErrorMessage(playerid, "Invalid object. This furniture object is static of your properties.");
+
 			PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 8;
 			PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = objectid;
 			PlayerInfo[playerid][E_CHARACTER_SELECTINDEX] = id;
@@ -265,6 +268,9 @@ CMD:property(playerid, params[])
 			
 			if(Streamer_GetExtraInt(objectid, E_OBJECT_EXTRA_ID) != PropertyInfo[id][E_PROPERTY_DBID])
 				return SendErrorMessage(playerid, "Invalid object. This furniture object is not inside of your properties.");
+
+			if(Streamer_GetExtraInt(objectid, E_OBJECT_TYPE_ID) != 0)
+				return SendErrorMessage(playerid, "Invalid object. This furniture object is static of your properties.");
 
 			PlayerInfo[playerid][E_CHARACTER_LISTITEM] = objectid;
 
