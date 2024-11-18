@@ -46,6 +46,7 @@ CMD:aduty(playerid, params[])
 		
 		format(str, sizeof(str), "%s is now off admin duty.", ReturnName(playerid)); 
 		SendAdminMessage(1, str);
+		SendClientMessageEx(playerid, COLOR_RED, "You are now off admin duty.");
 		SetPlayerName(playerid, PlayerInfo[playerid][E_CHARACTER_NAME]);
 		SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]); 
 	}
@@ -952,7 +953,7 @@ CMD:getcar(playerid, params[])
 	;
 	
 	if(sscanf(params, "d", vehicleid))
-		return SendUsageMessage(playerid, "/gotocar [vehicleid]");
+		return SendUsageMessage(playerid, "/getcar [vehicleid]");
 		
 	if(!IsValidVehicle(vehicleid))
 		return SendErrorMessage(playerid, "You specified an invalid vehicle.");

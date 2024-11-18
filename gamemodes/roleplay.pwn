@@ -323,6 +323,7 @@ public OnPlayerConnect(playerid)
 	CreateVehicleTextDraws(playerid);
 	CreateBarInfoTextDraws(playerid);
 	CreateTutorialTextDraws(playerid);
+	CreateBlackJackTextDraws(playerid);
 	CreateFoodOrderTextDraws(playerid);
 	CreateSpectatorTextDraws(playerid);
 	CreateNotificationTextDraws(playerid);
@@ -378,10 +379,11 @@ public OnPlayerDisconnect(playerid, reason)
 		}
 	}
 
-	if(blackjackPlay[playerid])
+	if(blackjackInProgress[playerid])
 	{
 		ResetBlackjack(playerid);
 	}
+
 	ResetLotteryVar(playerid);
 
 	if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == true)
@@ -492,7 +494,7 @@ function:CheckBanList(playerid)
 	if(!cache_num_rows())
 	{
 		new existCheck[512];
-		//for(new i = 0; i < 3; i ++) {PlayerTextDrawShow(playerid, loginscreen[i][playerid]);}
+		for(new i = 0; i < 4; i ++) {PlayerTextDrawShow(playerid, LoginScreen[i][playerid]);}
 		
 		mysql_format(ourConnection, existCheck, sizeof(existCheck), "SELECT acc_dbid, secret_word, verified FROM masters WHERE acc_name = '%e'", ReturnName(playerid, 1));
 		mysql_pquery(ourConnection, existCheck, "LogPlayerIn", "i", playerid);
@@ -3279,7 +3281,6 @@ public OnPlayerUpdate(playerid)
 
 public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 {
-
 	// CHARACTER SELECTIONS:
 	if (playertextid == SelectFactionClick[0][playerid]) //PREV
 	{
@@ -3332,6 +3333,64 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		}
 		return 1;
     }
+
+
+	//Hit BlackJack
+	if (playertextid == blackjack[13][playerid])
+    {
+		new businessid = IsPlayerInBusiness(playerid);
+
+		if (!blackjackInProgress[playerid])
+			return SendErrorMessage(playerid, "You aren't started a blackjack.");
+			
+		if (blackjackPlayerCardsCount[playerid] >= MAX_CARDS)
+			return SendErrorMessage(playerid, "You can't draw more cards.");
+
+		blackjackPlayerCards[playerid][blackjackPlayerCardsCount[playerid]++] = cardDeck[blackjackPlayerCardsCount[playerid] + BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT]];
+		blackjackPlayerScore[playerid] = CalculateScore(blackjackPlayerCards[playerid], blackjackPlayerCardsCount[playerid]);
+
+		ShowCards(playerid, blackjackPlayerCards[playerid], blackjackPlayerCardsCount[playerid], "Player");
+		ShowCards(playerid, BusinessInfo[businessid][E_BUSINESS_DEALER_CARD], BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT], "Dealer");
+
+		if (blackjackPlayerScore[playerid] > 21)
+		{
+			SendServerMessage(playerid, "[Blackjack] {cdd0d1}You lost! Your cards exceeded 21 (Bust).");
+			ResetBlackjack(playerid);
+			return 1;
+		}
+	}
+	//Stand BlackJack
+	if (playertextid == blackjack[14][playerid])
+    {
+		new businessid = IsPlayerInBusiness(playerid);
+
+		if (!blackjackInProgress[playerid])
+			return SendErrorMessage(playerid, "You aren't started a blackjack.");
+			
+		while (BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE] < 17 && BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT] < MAX_CARDS)
+		{
+			BusinessInfo[businessid][E_BUSINESS_DEALER_CARD][BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT]++] = cardDeck[blackjackPlayerCardsCount[playerid] + BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT]];
+			BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE] = CalculateScore(BusinessInfo[businessid][E_BUSINESS_DEALER_CARD], BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT]);
+		}
+
+		ShowCards(playerid, BusinessInfo[businessid][E_BUSINESS_DEALER_CARD], BusinessInfo[businessid][E_BUSINESS_DEALER_CARDCOUNT], "Dealer");
+
+		if (BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE] > 21 || blackjackPlayerScore[playerid] > BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE])
+		{
+			GiveMoney(playerid, blackjackPlayerBet[playerid] * 2);
+			SendServerMessage(playerid, "[Blackjack] {cdd0d1}You won and earn your bet x2 for {93C47D}$%s{cdd0d1}.", FormatMoney(blackjackPlayerBet[playerid] * 2));
+		}
+		else if (blackjackPlayerScore[playerid] == BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE])
+		{
+			SendServerMessage(playerid, "[Blackjack] {cdd0d1}It's draw! There are no winners (Push).");
+		}
+		else
+		{
+			SendServerMessage(playerid, "[Blackjack] {cdd0d1}You lost! Dealer has a higher score (Bust).");
+		}
+
+		ResetBlackjack(playerid);
+	}
 
 	// Dial Number
 	if (playertextid == Phone[3][playerid])
@@ -4726,8 +4785,8 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 
 						mysql_pquery(ourConnection, "SELECT * FROM furniture WHERE id = LAST_INSERT_ID()", "Query_LoadFurniture", "i", PropertyInfo[houseid][E_PROPERTY_LABELS]);
 
-						ReloadFurniture(g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_MODEL], PropertyInfo[houseid][E_PROPERTY_LABELS]);
 						SendTipMessage(playerid, "Type '/prop furniture labels' to refresh the objects.");
+						ReloadAllFurniture(houseid);
 					}
 
 					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 

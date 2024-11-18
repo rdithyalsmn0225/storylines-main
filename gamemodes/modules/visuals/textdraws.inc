@@ -2,13 +2,14 @@
 new Text:Times;
 new PlayerText:servername[MAX_PLAYERS];
 new PlayerText:VehicleName[MAX_PLAYERS];
-new PlayerText:loginscreen[3][MAX_PLAYERS];
+new PlayerText:LoginScreen[4][MAX_PLAYERS];
 new PlayerText:HeaderTD[2][MAX_PLAYERS];
 new PlayerText:Street[2][MAX_PLAYERS];
 new PlayerText:Subtitles[MAX_PLAYERS];
 new PlayerText:speedo[7][MAX_PLAYERS];
 new PlayerText:Phone[14][MAX_PLAYERS];
 new PlayerText:MDC[14][MAX_PLAYERS];
+new PlayerText:blackjack[15][MAX_PLAYERS];
 new PlayerText:VehicleSelection[19][MAX_PLAYERS];
 new PlayerText:money[MAX_PLAYERS];
 new PlayerText:MoneyFormat[MAX_PLAYERS];
@@ -56,48 +57,6 @@ stock CreateTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, servername[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, servername[playerid], 0);
 
-	loginscreen[0][playerid] = CreatePlayerTextDraw(playerid, 269.000000, 93.000000, "THE");
-	PlayerTextDrawFont(playerid, loginscreen[0][playerid], 3);
-	PlayerTextDrawLetterSize(playerid, loginscreen[0][playerid], 0.612500, 2.449999);
-	PlayerTextDrawTextSize(playerid, loginscreen[0][playerid], 400.000000, 210.500000);
-	PlayerTextDrawSetOutline(playerid, loginscreen[0][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, loginscreen[0][playerid], 0);
-	PlayerTextDrawAlignment(playerid, loginscreen[0][playerid], 2);
-	PlayerTextDrawColor(playerid, loginscreen[0][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, loginscreen[0][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, loginscreen[0][playerid], 50);
-	PlayerTextDrawUseBox(playerid, loginscreen[0][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, loginscreen[0][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, loginscreen[0][playerid], 0);
-
-	loginscreen[1][playerid] = CreatePlayerTextDraw(playerid, 333.000000, 112.000000, "Storylines");
-	PlayerTextDrawFont(playerid, loginscreen[1][playerid], 0);
-	PlayerTextDrawLetterSize(playerid, loginscreen[1][playerid], 0.766666, 2.849999);
-	PlayerTextDrawTextSize(playerid, loginscreen[1][playerid], 400.000000, 210.500000);
-	PlayerTextDrawSetOutline(playerid, loginscreen[1][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, loginscreen[1][playerid], 0);
-	PlayerTextDrawAlignment(playerid, loginscreen[1][playerid], 2);
-	PlayerTextDrawColor(playerid, loginscreen[1][playerid], 1981534719);
-	PlayerTextDrawBackgroundColor(playerid, loginscreen[1][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, loginscreen[1][playerid], 50);
-	PlayerTextDrawUseBox(playerid, loginscreen[1][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, loginscreen[1][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, loginscreen[1][playerid], 0);
-
-	loginscreen[2][playerid] = CreatePlayerTextDraw(playerid, 353.000000, 94.000000, "~p~Fear ~w~n ~p~Respect v.1");
-	PlayerTextDrawFont(playerid, loginscreen[2][playerid], 0);
-	PlayerTextDrawLetterSize(playerid, loginscreen[2][playerid], 0.516666, 1.850000);
-	PlayerTextDrawTextSize(playerid, loginscreen[2][playerid], 400.000000, 210.500000);
-	PlayerTextDrawSetOutline(playerid, loginscreen[2][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, loginscreen[2][playerid], 0);
-	PlayerTextDrawAlignment(playerid, loginscreen[2][playerid], 2);
-	PlayerTextDrawColor(playerid, loginscreen[2][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, loginscreen[2][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, loginscreen[2][playerid], 50);
-	PlayerTextDrawUseBox(playerid, loginscreen[2][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, loginscreen[2][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, loginscreen[2][playerid], 0);
-
 	Fades[playerid] = CreatePlayerTextDraw(playerid, -20.000000, 0.000000, "_");
 	PlayerTextDrawUseBox(playerid, Fades[playerid], 1);
 	PlayerTextDrawBoxColor(playerid, Fades[playerid], 0x000000FF);
@@ -106,6 +65,62 @@ stock CreateTextdraws(playerid)
 	PlayerTextDrawFont(playerid, Fades[playerid], 3);
 	PlayerTextDrawLetterSize(playerid, Fades[playerid], 1.000000, 52.200000);
 	PlayerTextDrawColor(playerid, Fades[playerid], 0x000000FF);
+
+	LoginScreen[0][playerid] = CreatePlayerTextDraw(playerid, 319.000000, 123.000000, "_");
+	PlayerTextDrawFont(playerid, LoginScreen[0][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, LoginScreen[0][playerid], 0.600000, 20.849996);
+	PlayerTextDrawTextSize(playerid, LoginScreen[0][playerid], 298.500000, 159.500000);
+	PlayerTextDrawSetOutline(playerid, LoginScreen[0][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, LoginScreen[0][playerid], 0);
+	PlayerTextDrawAlignment(playerid, LoginScreen[0][playerid], 2);
+	PlayerTextDrawColor(playerid, LoginScreen[0][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, LoginScreen[0][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, LoginScreen[0][playerid], 230);
+	PlayerTextDrawUseBox(playerid, LoginScreen[0][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, LoginScreen[0][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, LoginScreen[0][playerid], 0);
+
+	LoginScreen[1][playerid] = CreatePlayerTextDraw(playerid, 318.000000, 110.000000, "GTA");
+	PlayerTextDrawFont(playerid, LoginScreen[1][playerid], 3);
+	PlayerTextDrawLetterSize(playerid, LoginScreen[1][playerid], 0.787500, 2.749996);
+	PlayerTextDrawTextSize(playerid, LoginScreen[1][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, LoginScreen[1][playerid], 2);
+	PlayerTextDrawSetShadow(playerid, LoginScreen[1][playerid], 0);
+	PlayerTextDrawAlignment(playerid, LoginScreen[1][playerid], 2);
+	PlayerTextDrawColor(playerid, LoginScreen[1][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, LoginScreen[1][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, LoginScreen[1][playerid], 50);
+	PlayerTextDrawUseBox(playerid, LoginScreen[1][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, LoginScreen[1][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, LoginScreen[1][playerid], 0);
+
+	LoginScreen[2][playerid] = CreatePlayerTextDraw(playerid, 325.000000, 125.000000, "Storylines");
+	PlayerTextDrawFont(playerid, LoginScreen[2][playerid], 0);
+	PlayerTextDrawLetterSize(playerid, LoginScreen[2][playerid], 0.433333, 1.899996);
+	PlayerTextDrawTextSize(playerid, LoginScreen[2][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, LoginScreen[2][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, LoginScreen[2][playerid], 0);
+	PlayerTextDrawAlignment(playerid, LoginScreen[2][playerid], 2);
+	PlayerTextDrawColor(playerid, LoginScreen[2][playerid], 1097458175);
+	PlayerTextDrawBackgroundColor(playerid, LoginScreen[2][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, LoginScreen[2][playerid], 50);
+	PlayerTextDrawUseBox(playerid, LoginScreen[2][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, LoginScreen[2][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, LoginScreen[2][playerid], 0);
+
+	LoginScreen[3][playerid] = CreatePlayerTextDraw(playerid, 320.000000, 290.000000, "GTA storylines is an immersive roleplay server based for San Andreas Multiplayer since 2024 by Radeetz");
+	PlayerTextDrawFont(playerid, LoginScreen[3][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, LoginScreen[3][playerid], 0.133333, 0.799997);
+	PlayerTextDrawTextSize(playerid, LoginScreen[3][playerid], 396.500000, 172.000000);
+	PlayerTextDrawSetOutline(playerid, LoginScreen[3][playerid], 0);
+	PlayerTextDrawSetShadow(playerid, LoginScreen[3][playerid], 0);
+	PlayerTextDrawAlignment(playerid, LoginScreen[3][playerid], 2);
+	PlayerTextDrawColor(playerid, LoginScreen[3][playerid], -1061109505);
+	PlayerTextDrawBackgroundColor(playerid, LoginScreen[3][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, LoginScreen[3][playerid], 50);
+	PlayerTextDrawUseBox(playerid, LoginScreen[3][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, LoginScreen[3][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, LoginScreen[3][playerid], 0);
 }
 
 CreatePhoneTextDraws(playerid)
@@ -536,9 +551,9 @@ CreateNotificationTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, money[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, money[playerid], 0);
 
-	MoneyFormat[playerid] = CreatePlayerTextDraw(playerid, 586.000000, 78.000000, "~g~,    .");
+	MoneyFormat[playerid] = CreatePlayerTextDraw(playerid, 586.000000, 77.000000, "~g~.      .");
 	PlayerTextDrawFont(playerid, MoneyFormat[playerid], 3);
-	PlayerTextDrawLetterSize(playerid, MoneyFormat[playerid], 0.487500, 2.349999);
+	PlayerTextDrawLetterSize(playerid, MoneyFormat[playerid], 0.462500, 2.349997);
 	PlayerTextDrawTextSize(playerid, MoneyFormat[playerid], 400.000000, 17.000000);
 	PlayerTextDrawSetOutline(playerid, MoneyFormat[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, MoneyFormat[playerid], 0);
@@ -728,6 +743,219 @@ CreateBarInfoTextDraws(playerid)
 	SetPlayerProgressBarValue(playerid, HeaderBar[playerid], 0.0);
 }
 
+CreateBlackJackTextDraws(playerid)
+{
+	blackjack[0][playerid] = CreatePlayerTextDraw(playerid, 322.000000, 176.000000, "_");
+	PlayerTextDrawFont(playerid, blackjack[0][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, blackjack[0][playerid], 0.600000, 14.200002);
+	PlayerTextDrawTextSize(playerid, blackjack[0][playerid], 298.500000, 239.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[0][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[0][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[0][playerid], 2);
+	PlayerTextDrawColor(playerid, blackjack[0][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[0][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[0][playerid], 230);
+	PlayerTextDrawUseBox(playerid, blackjack[0][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[0][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[0][playerid], 0);
+
+	blackjack[1][playerid] = CreatePlayerTextDraw(playerid, 205.000000, 238.000000, "Player Cards");
+	PlayerTextDrawFont(playerid, blackjack[1][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, blackjack[1][playerid], 0.233333, 0.950000);
+	PlayerTextDrawTextSize(playerid, blackjack[1][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, blackjack[1][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[1][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[1][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[1][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[1][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[1][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[1][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, blackjack[1][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[1][playerid], 0);
+
+	blackjack[2][playerid] = CreatePlayerTextDraw(playerid, 205.000000, 177.000000, "Dealer Cards");
+	PlayerTextDrawFont(playerid, blackjack[2][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, blackjack[2][playerid], 0.241667, 0.950000);
+	PlayerTextDrawTextSize(playerid, blackjack[2][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, blackjack[2][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[2][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[2][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[2][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[2][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[2][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[2][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, blackjack[2][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[2][playerid], 0);
+
+	blackjack[3][playerid] = CreatePlayerTextDraw(playerid, 209.000000, 252.000000, "ld_card:cdback");
+	PlayerTextDrawFont(playerid, blackjack[3][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, blackjack[3][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, blackjack[3][playerid], 38.000000, 42.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[3][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[3][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[3][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[3][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[3][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[3][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[3][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[3][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[3][playerid], 0);
+
+	blackjack[4][playerid] = CreatePlayerTextDraw(playerid, 255.000000, 252.000000, "ld_card:cdback");
+	PlayerTextDrawFont(playerid, blackjack[4][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, blackjack[4][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, blackjack[4][playerid], 38.000000, 42.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[4][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[4][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[4][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[4][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[4][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[4][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[4][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[4][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[4][playerid], 0);
+
+	blackjack[5][playerid] = CreatePlayerTextDraw(playerid, 303.000000, 252.000000, "ld_card:cdback");
+	PlayerTextDrawFont(playerid, blackjack[5][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, blackjack[5][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, blackjack[5][playerid], 38.000000, 42.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[5][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[5][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[5][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[5][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[5][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[5][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[5][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[5][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[5][playerid], 0);
+
+	blackjack[6][playerid] = CreatePlayerTextDraw(playerid, 351.000000, 252.000000, "ld_card:cdback");
+	PlayerTextDrawFont(playerid, blackjack[6][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, blackjack[6][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, blackjack[6][playerid], 38.000000, 42.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[6][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[6][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[6][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[6][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[6][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[6][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[6][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[6][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[6][playerid], 0);
+
+	blackjack[7][playerid] = CreatePlayerTextDraw(playerid, 400.000000, 252.000000, "ld_card:cdback");
+	PlayerTextDrawFont(playerid, blackjack[7][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, blackjack[7][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, blackjack[7][playerid], 38.000000, 42.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[7][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[7][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[7][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[7][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[7][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[7][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[7][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[7][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[7][playerid], 0);
+
+	blackjack[8][playerid] = CreatePlayerTextDraw(playerid, 209.000000, 191.000000, "ld_card:cd10d");
+	PlayerTextDrawFont(playerid, blackjack[8][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, blackjack[8][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, blackjack[8][playerid], 38.000000, 42.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[8][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[8][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[8][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[8][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[8][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[8][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[8][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[8][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[8][playerid], 0);
+
+	blackjack[9][playerid] = CreatePlayerTextDraw(playerid, 255.000000, 191.000000, "ld_card:cd10d");
+	PlayerTextDrawFont(playerid, blackjack[9][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, blackjack[9][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, blackjack[9][playerid], 38.000000, 42.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[9][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[9][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[9][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[9][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[9][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[9][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[9][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[9][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[9][playerid], 0);
+
+	blackjack[10][playerid] = CreatePlayerTextDraw(playerid, 303.000000, 190.000000, "ld_card:cd10d");
+	PlayerTextDrawFont(playerid, blackjack[10][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, blackjack[10][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, blackjack[10][playerid], 38.000000, 42.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[10][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[10][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[10][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[10][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[10][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[10][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[10][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[10][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[10][playerid], 0);
+
+	blackjack[11][playerid] = CreatePlayerTextDraw(playerid, 351.000000, 190.000000, "ld_card:cd10d");
+	PlayerTextDrawFont(playerid, blackjack[11][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, blackjack[11][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, blackjack[11][playerid], 38.000000, 42.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[11][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[11][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[11][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[11][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[11][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[11][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[11][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[11][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[11][playerid], 0);
+
+	blackjack[12][playerid] = CreatePlayerTextDraw(playerid, 400.000000, 190.000000, "ld_card:cd10d");
+	PlayerTextDrawFont(playerid, blackjack[12][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, blackjack[12][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, blackjack[12][playerid], 38.000000, 42.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[12][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[12][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[12][playerid], 1);
+	PlayerTextDrawColor(playerid, blackjack[12][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[12][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[12][playerid], 50);
+	PlayerTextDrawUseBox(playerid, blackjack[12][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[12][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[12][playerid], 0);
+
+	blackjack[13][playerid] = CreatePlayerTextDraw(playerid, 221.000000, 307.000000, "Hit");
+	PlayerTextDrawFont(playerid, blackjack[13][playerid], 3);
+	PlayerTextDrawLetterSize(playerid, blackjack[13][playerid], 0.320833, 0.900000);
+	PlayerTextDrawTextSize(playerid, blackjack[13][playerid], 400.000000, 37.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[13][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[13][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[13][playerid], 2);
+	PlayerTextDrawColor(playerid, blackjack[13][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[13][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[13][playerid], 230);
+	PlayerTextDrawUseBox(playerid, blackjack[13][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[13][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[13][playerid], 1);
+
+	blackjack[14][playerid] = CreatePlayerTextDraw(playerid, 423.000000, 307.000000, "Stand");
+	PlayerTextDrawFont(playerid, blackjack[14][playerid], 3);
+	PlayerTextDrawLetterSize(playerid, blackjack[14][playerid], 0.254167, 0.900000);
+	PlayerTextDrawTextSize(playerid, blackjack[14][playerid], 400.000000, 37.500000);
+	PlayerTextDrawSetOutline(playerid, blackjack[14][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, blackjack[14][playerid], 0);
+	PlayerTextDrawAlignment(playerid, blackjack[14][playerid], 2);
+	PlayerTextDrawColor(playerid, blackjack[14][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, blackjack[14][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, blackjack[14][playerid], 230);
+	PlayerTextDrawUseBox(playerid, blackjack[14][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, blackjack[14][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, blackjack[14][playerid], 1);
+}
+
 CreateVehicleTextDraws(playerid)
 {
 	VehicleName[playerid] = CreatePlayerTextDraw(playerid,  156.000000, 405.000000, "~g~BMX");
@@ -736,7 +964,7 @@ CreateVehicleTextDraws(playerid)
 	PlayerTextDrawTextSize(playerid, VehicleName[playerid], 400.000000, 133.000000);
 	PlayerTextDrawSetOutline(playerid, VehicleName[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, VehicleName[playerid], 0);
-	PlayerTextDrawAlignment(playerid, VehicleName[playerid], 1);
+	PlayerTextDrawAlignment(playerid, VehicleName[playerid], 2);
 	PlayerTextDrawColor(playerid, VehicleName[playerid], 9109759);
 	PlayerTextDrawBackgroundColor(playerid, VehicleName[playerid], 255);
 	PlayerTextDrawBoxColor(playerid, VehicleName[playerid], 50);

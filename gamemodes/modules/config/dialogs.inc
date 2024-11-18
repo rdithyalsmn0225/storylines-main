@@ -127,7 +127,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				return KickEx(playerid); 
 			}
 			
-			for(new i = 0; i < 3; i ++) {PlayerTextDrawHide(playerid, loginscreen[i][playerid]);}
+			for(new i = 0; i < 4; i ++) {PlayerTextDrawHide(playerid, LoginScreen[i][playerid]);}
 
 			SetPlayerVirtualWorld(playerid, 99);
 			InterpolateCameraPos(playerid, 2223.004394, -1261.156982, 24.698129, 2238.075439, -1260.909179, 24.844661, 3000, 1);
@@ -152,7 +152,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new 
 					string[128], thread[128];
 					
-				for(new i = 0; i < 3; i ++) {PlayerTextDrawHide(playerid, loginscreen[i][playerid]);}
+				for(new i = 0; i < 4; i ++) {PlayerTextDrawHide(playerid, LoginScreen[i][playerid]);}
 				characterPickTime[playerid] = 0;
 				
 				playerMakingCharacter[playerid] = false;

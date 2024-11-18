@@ -137,7 +137,7 @@ ShowCharacterSelection(playerid)
 		PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] = 0;
 	}
 
-	for(new i = 0; i < 3; i ++) {PlayerTextDrawHide(playerid, loginscreen[i][playerid]);}
+	for(new i = 0; i < 4; i ++) {PlayerTextDrawHide(playerid, LoginScreen[i][playerid]);}
 
 	SetupCharacterSelection(playerid);
 	if(characterSelection[playerid])
@@ -213,7 +213,7 @@ SelectCharacter(playerid, id)
 	{
 		new string[128], thread[128];
 
-		for(new i = 0; i < 3; i ++) {PlayerTextDrawHide(playerid, loginscreen[i][playerid]);}
+		for(new i = 0; i < 4; i ++) {PlayerTextDrawHide(playerid, LoginScreen[i][playerid]);}
 		characterPickTime[playerid] = 0;
 					
 		playerMakingCharacter[playerid] = false;

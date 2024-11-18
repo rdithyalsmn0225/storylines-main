@@ -39,7 +39,7 @@ function:BusDrivers(playerid, type)
                     
                     if(PlayerBusDriverIndex[playerid] == 19)
                     {
-                        GPS_SetPlayerRaceCheckPoint(playerid, 1, 1564.8461, -1235.1824, 17.4044, 0.0, 0.0, 0.0, GPS_BUSDRIVER);
+                        GPS_SetPlayerRaceCheckPoint(playerid, 1, 1696.8093,-1527.8206,13.4835, 0.0, 0.0, 0.0, GPS_BUSDRIVER);
                     }
                     if(PlayerBusDriverIndex[playerid] == 20)
                     {

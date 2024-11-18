@@ -337,17 +337,20 @@ Dialog:BuyDrugs(playerid, response, listitem, inputtext[])
         {
             case 0:
             {
-                format(str, sizeof(str), "Are you sure you want to buy this drugs for {93C47D}$%d{ffffff}?", PMARIJUANA); 
+				new Cents = floatround(PMARIJUANA * 100, floatround_round);
+                format(str, sizeof(str), "Are you sure you want to buy this drugs for {93C47D}$%s{ffffff}?", FormatMoney(Cents)); 
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 0, 25, PMARIJUANA); 
             }
             case 1:
             {
-                format(str, sizeof(str), "Are you sure you want to buy this drugs for {93C47D}$%d{ffffff}?", PCOCAINE); 
+				new Cents = floatround(PCOCAINE * 100, floatround_round);
+                format(str, sizeof(str), "Are you sure you want to buy this drugs for {93C47D}$%s{ffffff}?", FormatMoney(Cents)); 
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 1, 20, PCOCAINE); 
             }
 			case 2:
 			{
-				format(str, sizeof(str), "Are you sure you want to buy this drugs for {93C47D}$%d{ffffff}?", PHEROIN); 
+				new Cents = floatround(PHEROIN * 100, floatround_round);
+				format(str, sizeof(str), "Are you sure you want to buy this drugs for {93C47D}$%s{ffffff}?", FormatMoney(Cents)); 
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 2, 20, PHEROIN); 
 			}
 		}

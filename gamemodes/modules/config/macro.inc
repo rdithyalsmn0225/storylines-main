@@ -70,6 +70,8 @@
 #define MAX_PRISON_CELLS 			(20)
 #define MAX_POOL_TABLES 			(48)
 #define MAX_POOL_BALLS 				(16)
+#define MAX_CARDS       			(5)
+
 
 LoadCustomModels()
 {

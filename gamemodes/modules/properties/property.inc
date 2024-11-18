@@ -63,7 +63,6 @@ function:OnPropertyFurnitureStatic(propertyid, type)
 			mysql_pquery(ourConnection, queryBuffer);
 
 			mysql_pquery(ourConnection, "SELECT * FROM furniture WHERE id = LAST_INSERT_ID()", "Query_LoadFurniture", "i", PropertyInfo[propertyid][E_PROPERTY_LABELS]);
-			ReloadAllFurniture(propertyid);
 		}
 	}
 
@@ -76,7 +75,6 @@ function:OnPropertyFurnitureStatic(propertyid, type)
 			mysql_pquery(ourConnection, queryBuffer);
 
 			mysql_pquery(ourConnection, "SELECT * FROM furniture WHERE id = LAST_INSERT_ID()", "Query_LoadFurniture", "i", PropertyInfo[propertyid][E_PROPERTY_LABELS]);
-			ReloadAllFurniture(propertyid);
 		}
 	}
 	return 1;
@@ -120,6 +118,7 @@ function:OnEntranceChange(playerid, response, property)
 		PropertyInfo[property][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2], 0, 0, -1, 5.0); 
 		PropertyInfo[property][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[property][E_PROPERTY_ADDRESS], COLOR_DARKGREEN, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2], 5.0);
 		SaveProperty(property);
+		ReloadAllFurniture(property);
 		SendInfoMessage(playerid, "You set Property #%i's entrance.", property);
 	}
 	return 1;

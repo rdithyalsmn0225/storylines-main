@@ -81,6 +81,8 @@ stock StartMainJobs(playerid, type)
                 
                 GPS_SetPlayerRaceCheckPoint(playerid, 1, Sweeper_Index[0][0], Sweeper_Index[0][1], Sweeper_Index[0][2], 0.0, 0.0, 0.0, GPS_SWEEPER); // SweepCheckPoint1
 
+                SendTipMessage(playerid, "To Street Claner jobs drive around the street to clean the street.");
+                SendTipMessage(playerid, "Follow the checkpoint in your maps.");
                 ShowBoxMessage(playerid, "~w~Street Claner job started. Clean trash around the street.", 5);
 
             }
@@ -116,7 +118,9 @@ stock StartMainJobs(playerid, type)
 
                 GPS_SetPlayerRaceCheckPoint(playerid, 1, BusDriver_Index[rand][0],BusDriver_Index[rand][1], BusDriver_Index[rand][2], 0.0, 0.0, 0.0, GPS_BUSDRIVER);
                 
-                ShowBoxMessage(playerid, "~w~Bus Driver job started. Drive around the road and get passengers at bus stops.", 5);
+                SendTipMessage(playerid, "To Bus Driver jobs drive around the street and get passengers at bus stops.");
+                SendTipMessage(playerid, "Follow the checkpoint in your maps.");
+                ShowBoxMessage(playerid, "~w~Bus Driver job started. Drive around the street and get passengers at bus stops.", 5);
 
             }
             else if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] == true) //Stop
