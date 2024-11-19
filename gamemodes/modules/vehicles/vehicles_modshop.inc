@@ -45,9 +45,9 @@ Dialog:ModShops(playerid, response, listitem, inputtext[])
 					format(modname[count], 32, "%s", GetVehicleModName(m));
 					
 					if(count == 0)
-						format(modlist, sizeof(modlist), "%s%d\t%s~g~$%d\n", modlist, m, modname[count], GetVehicleComponentPrice(m));
+						format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(GetVehicleComponentPrice(m)));
 					else
-						format(modlist, sizeof(modlist), "%s%d\t%s~g~$%d\n", modlist, m, modname[count], GetVehicleComponentPrice(m));
+						format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(GetVehicleComponentPrice(m)));
 					
 					SubVehicleComponentArr[playerid][count] = m; 
 					count++;

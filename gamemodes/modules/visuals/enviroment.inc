@@ -17,6 +17,13 @@ RemoveObjects(playerid)
     RemoveBuildingForPlayer(playerid, 3623, 2639.550, -2429.300, 17.070, 0.250);
     RemoveBuildingForPlayer(playerid, 3709, 2639.550, -2429.300, 17.070, 0.250);
 
+	// Alhambra
+	RemoveBuildingForPlayer(playerid, 4215, 1777.550, -1775.040, 36.750, 0.250);
+	RemoveBuildingForPlayer(playerid, 4019, 1777.839, -1773.910, 12.523, 0.250);
+	RemoveBuildingForPlayer(playerid, 4025, 1777.839, -1773.910, 12.523, 0.250);
+	RemoveBuildingForPlayer(playerid, 5397, 1866.329, -1789.780, 20.945, 0.250);
+	RemoveBuildingForPlayer(playerid, 5536, 1866.329, -1789.780, 20.945, 0.250);
+
     //Garage
     RemoveBuildingForPlayer(playerid, 5340, 2644.859375, -2039.234375, 14.039100, 1.000000);
     RemoveBuildingForPlayer(playerid, 5779, 1041.351562, -1025.929688, 32.671902, 1.000000);
@@ -4424,4 +4431,31 @@ InsertSelectionMaps()
 	tmpobjid = CreateDynamicObject(19482, 227.162307, 67.966857, 1006.390319, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
 	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "white", 0x00000000);
 	SetDynamicObjectMaterialText(tmpobjid, 0, "{ff0000}6'", 130, "courier", 10, 1, 0x00000000, 0x00000000, 1);
+}
+
+InsertAlhambraMaps()
+{
+	tmpobjid = CreateDynamicObject(12814, 1880.714111, -1797.748291, 12.561492, 0.000000, 0.000000, 76.400024, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 3452, "bballvgnint", "Bow_Abattoir_Conc2", 0x00000000);
+	tmpobjid = CreateDynamicObject(12814, 1858.087036, -1792.273437, 12.541489, 0.000000, 0.000000, 76.400024, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 3452, "bballvgnint", "Bow_Abattoir_Conc2", 0x00000000);
+	tmpobjid = CreateDynamicObject(12814, 1843.089477, -1777.163696, 12.369486, 0.000000, 0.000000, -0.299967, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 3452, "bballvgnint", "Bow_Abattoir_Conc2", 0x00000000);
+	tmpobjid = CreateDynamicObject(19447, 1833.347534, -1767.056274, 12.467301, 0.000000, 90.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 3452, "bballvgnint", "Bow_Abattoir_Conc2", 0x00000000);
+	tmpobjid = CreateDynamicObject(19447, 1833.347534, -1776.654785, 12.468502, 0.000000, 90.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 3452, "bballvgnint", "Bow_Abattoir_Conc2", 0x00000000);
+	tmpobjid = CreateDynamicObject(19447, 1833.347534, -1786.235717, 12.469502, 0.000000, 90.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 3452, "bballvgnint", "Bow_Abattoir_Conc2", 0x00000000);
+	tmpobjid = CreateDynamicObject(19447, 1833.347534, -1795.786376, 12.470502, 0.000000, 90.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 3452, "bballvgnint", "Bow_Abattoir_Conc2", 0x00000000);
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	tmpobjid = CreateDynamicObject(6924, 1763.983032, -1805.869750, 16.169115, 0.000000, 0.000000, 90.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(5787, 1792.342895, -1759.565307, 17.548549, 0.000000, 0.000000, 270.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(5762, 1801.681762, -1787.919433, 15.498578, 0.000000, 0.000000, 90.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(1522, 1811.613891, -1788.598632, 12.483716, 0.000000, 0.000000, 90.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(5731, 1746.139526, -1746.375976, 15.466848, 0.000000, 0.000000, 270.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(5142, 1867.583251, -1781.754516, 19.057849, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
 }

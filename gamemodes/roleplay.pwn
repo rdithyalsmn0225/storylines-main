@@ -196,7 +196,6 @@ public OnGameModeInit()
 	InsertASGH();
 	InsertPrison();
 	InsertObjects();
-	InsertDynamicPickup();
 	InsertASGHMaps();
 	InsertModshops();
 	InsertBlackjack();
@@ -210,11 +209,13 @@ public OnGameModeInit()
 	InsertStaticArea();
 	Insert3DTextLabel();
 	InsertAcidGunLabs();
+	InsertAlhambraMaps();
 	InsertSidejobsMaps();
 	InsertDocksWorkers();
 	InsertDonatorStars();
 	InsertFactionLocker();
 	InsertSelectionMaps();
+	InsertDynamicPickup();
 	InsertStaticVehicles();
 	InsertProjectPropsData();
 

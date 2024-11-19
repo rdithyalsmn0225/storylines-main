@@ -213,7 +213,7 @@ CMD:giveproperty(playerid, params[])
 		SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to give their property, type /approve property to approve.", ReturnName(playerid));
 		SendInfoMessage(playerid, "You have offered to give {d7d292}%s{cdd0d1} your property.", ReturnName(userid));
 	}
-	else return SendErrorMessage(playerid, "You aren't in a property.");
+	else return SendErrorMessage(playerid, "You aren't near a property.");
 	return 1;
 }
 
@@ -235,6 +235,58 @@ CMD:sellproperty(playerid, params[])
 		ConfirmDialog(playerid, "Confirmation", str, "OnSellProperty", id); 
 	}
 	else return SendErrorMessage(playerid, "You aren't in a property.");
+	return 1;
+}
+
+CMD:knock(playerid, params[])
+{
+	new id, bid;
+	if((id = IsPlayerNearProperty(playerid)) != 0)
+	{
+		SendNearbyMessage(playerid, 15.0, COLOR_EMOTE, "* %s knocks on the door.", ReturnName(playerid));
+
+		foreach (new p : Player)
+		{
+			if(PlayerInfo[p][E_CHARACTER_INSIDEPROP] == id)
+			{
+				SendClientMessageEx(p, COLOR_EMOTE, "* [DOOR] KNOCK! KNOCK! (( %s ))", ReturnName(playerid));
+			}
+		}
+		return 1;
+	}
+
+	if((bid = IsPlayerNearBusiness(playerid)) != 0)
+	{
+		SendNearbyMessage(playerid, 15.0, COLOR_EMOTE, "* %s knocks on the door.", ReturnName(playerid));
+
+		foreach (new p : Player)
+		{
+			if(PlayerInfo[p][E_CHARACTER_INSIDEBIZ] == bid)
+			{
+				SendClientMessageEx(p, COLOR_EMOTE, "* [DOOR] KNOCK! KNOCK! (( %s ))", ReturnName(playerid));
+			}
+		}
+		return 1;
+	}
+	return 1;
+}
+
+CMD:ringbell(playerid, params[])
+{
+	new id;
+	if((id = IsPlayerNearProperty(playerid)) != 0)
+	{
+		SendNearbyMessage(playerid, 15.0, COLOR_EMOTE, "* %s rings the door bell.", ReturnName(playerid));
+
+		foreach (new p : Player)
+		{
+			if(PlayerInfo[p][E_CHARACTER_INSIDEPROP] == id)
+			{
+				SendClientMessageEx(p, COLOR_EMOTE, "* The bell rings (( %s ))", ReturnName(playerid));
+			}
+		}
+		return 1;
+	}
 	return 1;
 }
 

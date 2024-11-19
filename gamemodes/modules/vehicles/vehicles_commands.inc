@@ -313,7 +313,6 @@ CMD:cartrunk(playerid, params[])
 			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {FF6347}Closed");	
 		}
 	}
-	else return SendErrorMessage(playerid, "You aren't in or near a vehicle.");
     return 1;
 }
 
