@@ -202,7 +202,7 @@ CMD:giveproperty(playerid, params[])
 	if(!CountPlayerProperties(playerid))
 		return SendErrorMessage(playerid, "You don't own a business.");
 		
-	if((id = IsPlayerInProperty(playerid)) != 0)
+	if((id = IsPlayerNearProperty(playerid)) != 0)
 	{
 		if(PropertyInfo[id][E_PROPERTY_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
 			return SendErrorMessage(playerid, "You don't own this business."); 

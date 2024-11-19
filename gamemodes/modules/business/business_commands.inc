@@ -209,8 +209,7 @@ CMD:bizcash(playerid, params[])
 
 CMD:givebusiness(playerid, params[])
 {
-	new
-		id;
+	new id;
 	
 	new
 	    userid;
@@ -227,7 +226,7 @@ CMD:givebusiness(playerid, params[])
 	if(!CountPlayerBusiness(playerid))
 		return SendErrorMessage(playerid, "You don't own a business.");
 		
-	if((id = IsPlayerInBusiness(playerid)) != 0)
+	if((id = IsPlayerNearBusiness(playerid)) != 0)
 	{
 		if(BusinessInfo[id][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
 			return SendErrorMessage(playerid, "You don't own this business."); 
