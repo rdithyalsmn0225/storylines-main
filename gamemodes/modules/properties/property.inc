@@ -98,6 +98,29 @@ function:OnPropertyCreate(playerid, newid, type)
 	return 1;
 }
 
+function:OnSellProperty(playerid, response, propertyid)
+{
+	if(response)
+	{
+		new
+			totalPay;
+		
+		totalPay = PropertyInfo[propertyid][E_PROPERTY_PRICE] / 2 + PropertyInfo[propertyid][E_PROPERTY_CASH]; 
+		new Cents = floatround(totalPay * 100, floatround_round);
+
+    	GiveMoney(playerid, Cents);
+		
+		PropertyInfo[propertyid][E_PROPERTY_OWNERDBID] = 0; 
+		
+		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
+		SendInfoMessage(playerid, "You sold your property and earned {93C47D}$%s{cdd0d1}.", FormatMoney(totalPay)); 
+		
+		SaveProperty(propertyid); SaveCharacter(playerid); 
+	}
+	else return SendErrorMessage(playerid, "You cancelled selling your property.");
+	return 1;
+}
+
 function:OnEntranceChange(playerid, response, property)
 {
 	if(response)

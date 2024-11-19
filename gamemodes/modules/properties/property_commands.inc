@@ -134,6 +134,110 @@ CMD:editproperty(playerid, params[])
 	return 1;
 }
 
+CMD:buyproperty(playerid, params[])
+{
+	new
+		bool:nearProperty = false,
+		id,
+		str[128]
+	;
+	
+	for(new i = 1; i < MAX_PROPERTY; i++)
+	{
+		if(!PropertyInfo[i][E_PROPERTY_DBID])
+			continue;
+			
+		if(IsPlayerInRangeOfPoint(playerid, 3.0, PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][2]))
+		{
+			nearProperty = true;
+			id = i;
+			break; 
+		}
+	}
+	
+	if(nearProperty)
+	{
+		if(PropertyInfo[id][E_PROPERTY_OWNERDBID])
+			return SendErrorMessage(playerid, "This property isn't for sale."); 
+
+		if(PropertyInfo[id][E_PROPERTY_TYPE] == PROPERTY_TYPE_HIGHHOUSE)
+			return SendErrorMessage(playerid, "This property isn't for sale."); 
+			
+		if(PropertyInfo[id][E_PROPERTY_PRICE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			return SendErrorMessage(playerid, "You can't afford to buy this property.");
+			
+		if(CountPlayerProperties(playerid) > 3)
+			return SendErrorMessage(playerid, "You already own 3 properties."); 
+			
+		GiveMoney(playerid, -PropertyInfo[id][E_PROPERTY_PRICE]); 	
+		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
+		
+		format(str, sizeof(str), "Congratulations!~n~You're now the owner of this property!");
+		ShowBoxMessage(playerid, str, 4);
+		
+		PropertyInfo[id][E_PROPERTY_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID]; 
+		SaveCharacter(playerid); SaveProperty(id);
+	}
+	else return SendErrorMessage(playerid, "You aren't near a property.");
+	return 1; 
+}
+
+CMD:giveproperty(playerid, params[])
+{
+	new
+		id;
+	
+	new
+	    userid;
+
+	if (sscanf(params, "u", userid))
+	    return SendUsageMessage(playerid, "/giveproperty [playerid/name]");
+
+    if (userid == INVALID_PLAYER_ID || !IsPlayerNearPlayer(playerid, userid, 6.0))
+	    return SendErrorMessage(playerid, "The specified player is disconnected or not near you.");
+
+    if (userid == playerid)
+		return SendErrorMessage(playerid, "You cannot frisk yourself.");
+
+	if(!CountPlayerProperties(playerid))
+		return SendErrorMessage(playerid, "You don't own a business.");
+		
+	if((id = IsPlayerInProperty(playerid)) != 0)
+	{
+		if(PropertyInfo[id][E_PROPERTY_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
+			return SendErrorMessage(playerid, "You don't own this business."); 
+			
+		PlayerInfo[userid][E_CHARACTER_PROPOFFER] = playerid;
+		PlayerInfo[userid][E_CHARACTER_PROPOFFERID] = id;
+
+		SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to give their property, type /approve property to approve.", ReturnName(playerid));
+		SendInfoMessage(playerid, "You have offered to give {d7d292}%s{cdd0d1} your property.", ReturnName(userid));
+	}
+	else return SendErrorMessage(playerid, "You aren't in a property.");
+	return 1;
+}
+
+CMD:sellproperty(playerid, params[])
+{
+	new
+		id,
+		str[128];
+	
+	if(!CountPlayerProperties(playerid))
+		return SendErrorMessage(playerid, "You don't own a property.");
+		
+	if((id = IsPlayerInProperty(playerid)) != 0)
+	{
+		if(PropertyInfo[id][E_PROPERTY_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
+			return SendErrorMessage(playerid, "You don't own this property."); 
+			
+		format(str, sizeof(str), "Are you sure you want to sell your property?\nYou'll earn {93C47D}$%s{ffffff} from selling and {93C47D}$%s{ffffff} from the cashbox.", FormatMoney(PropertyInfo[id][E_PROPERTY_PRICE] / 2), FormatMoney(PropertyInfo[id][E_PROPERTY_CASH]));
+		ConfirmDialog(playerid, "Confirmation", str, "OnSellProperty", id); 
+	}
+	else return SendErrorMessage(playerid, "You aren't in a property.");
+	return 1;
+}
+
 CMD:prop(playerid, params[]) return cmd_property(playerid, params);
 CMD:property(playerid, params[])
 {

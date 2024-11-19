@@ -1573,55 +1573,6 @@ CMD:exit(playerid, params[])
 	return 1;
 }
 
-//Property commands:
-CMD:buyproperty(playerid, params[])
-{
-	new
-		bool:nearProperty = false,
-		id,
-		str[128]
-	;
-	
-	for(new i = 1; i < MAX_PROPERTY; i++)
-	{
-		if(!PropertyInfo[i][E_PROPERTY_DBID])
-			continue;
-			
-		if(IsPlayerInRangeOfPoint(playerid, 3.0, PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][2]))
-		{
-			nearProperty = true;
-			id = i;
-			break; 
-		}
-	}
-	
-	if(nearProperty)
-	{
-		if(PropertyInfo[id][E_PROPERTY_OWNERDBID])
-			return SendErrorMessage(playerid, "This property isn't for sale."); 
-
-		if(PropertyInfo[id][E_PROPERTY_TYPE] == PROPERTY_TYPE_HIGHHOUSE)
-			return SendErrorMessage(playerid, "This property isn't for sale."); 
-			
-		if(PropertyInfo[id][E_PROPERTY_PRICE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-			return SendErrorMessage(playerid, "You can't afford to buy this property.");
-			
-		if(CountPlayerProperties(playerid) > 3)
-			return SendErrorMessage(playerid, "You already own 3 properties."); 
-			
-		GiveMoney(playerid, -PropertyInfo[id][E_PROPERTY_PRICE]); 	
-		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
-		
-		format(str, sizeof(str), "Congratulations!~n~You're now the owner of this property!");
-		ShowBoxMessage(playerid, str, 4);
-		
-		PropertyInfo[id][E_PROPERTY_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID]; 
-		SaveCharacter(playerid); SaveProperty(id);
-	}
-	else return SendErrorMessage(playerid, "You aren't near a property.");
-	return 1; 
-}
-
 CMD:lock(playerid, params[])
 {
 	new
@@ -2263,22 +2214,16 @@ CMD:approve(playerid, params[])
 	if (isnull(params))
  	{
 	 	SendUsageMessage(playerid, "/approve [name]");
-		SendTipMessage(playerid, "Faction, Frisk, Handshake, Vehicle");
+		SendTipMessage(playerid, "Faction, Frisk, Handshake, Vehicle, Business, Property");
 		return 1;
 	}
-	if (!strcmp(params, "faction", true) /*&& PlayerInfo[playerid][E_CHARACTER_FRISKOFFER] != INVALID_PLAYER_ID*/)
+	if (!strcmp(params, "faction", true) && PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE] != INVALID_PLAYER_ID)
 	{
-		if(!PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE])
-			return SendErrorMessage(playerid, "You aren't invited to join any faction.");
-
 		if(PlayerInfo[playerid][E_CHARACTER_FACTION])
 			return SendErrorMessage(playerid, "You're already in a faction.");
-
 		
-				
 		SendClientMessageEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED], COLOR_FACTION, "%s accepted your faction invitation.", ReturnName(playerid));
 		SendInfoMessage(playerid, "You joined the {d7d292}%s{cdd0d1}!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]));
-		
 		
 		PlayerInfo[playerid][E_CHARACTER_FACTION] = PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]; 
 		PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] = 1; 
@@ -2397,10 +2342,44 @@ CMD:approve(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_PRICEOFFER] = 0;
 		PlayerInfo[playerid][E_CHARACTER_SELLVOFFER] = 0;
 
-		SaveVehicle(vehicleid);
+		SaveVehicle(vehicleid); SaveCharacter(playerid); SaveCharacter(userid);
 
-		SendInfoMessage(playerid, "You've accepted {d7d292}%s{cdd0d1} offered selling vehicle.", ReturnName(userid, playerid));
+		SendInfoMessage(playerid, "You've accepted {d7d292}%s{cdd0d1} offered selling vehicle.", ReturnName(userid));
 	    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} accepted offered selling your vehicle.", ReturnName(playerid));
+	}
+	if (!strcmp(params, "business", true) && PlayerInfo[playerid][E_CHARACTER_BIZOFFER] != INVALID_PLAYER_ID)
+	{
+		new id = PlayerInfo[playerid][E_CHARACTER_BIZOFFERID], userid = PlayerInfo[playerid][E_CHARACTER_BIZOFFER];
+
+		BusinessInfo[id][E_BUSINESS_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID];
+
+		PlayerInfo[playerid][E_CHARACTER_BIZOFFER] = INVALID_PLAYER_ID;
+		PlayerInfo[playerid][E_CHARACTER_BIZOFFERID] = 0;
+
+		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
+		PlayerPlaySound(userid, 1052, 0.0, 0.0, 0.0);
+
+		SaveBusiness(id); SaveCharacter(playerid); SaveCharacter(userid);
+
+		SendInfoMessage(playerid, "You've accepted {d7d292}%s{cdd0d1} offered given business.", ReturnName(userid));
+	    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} accepted offered given your business.", ReturnName(playerid));
+	}
+	if (!strcmp(params, "property", true) && PlayerInfo[playerid][E_CHARACTER_PROPOFFER] != INVALID_PLAYER_ID)
+	{
+		new id = PlayerInfo[playerid][E_CHARACTER_PROPOFFERID], userid = PlayerInfo[playerid][E_CHARACTER_PROPOFFER];
+
+		BusinessInfo[id][E_BUSINESS_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID];
+
+		PlayerInfo[playerid][E_CHARACTER_PROPOFFER] = INVALID_PLAYER_ID;
+		PlayerInfo[playerid][E_CHARACTER_PROPOFFERID] = 0;
+
+		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
+		PlayerPlaySound(userid, 1052, 0.0, 0.0, 0.0);
+
+		SaveProperty(id); SaveCharacter(playerid); SaveCharacter(userid);
+
+		SendInfoMessage(playerid, "You've accepted {d7d292}%s{cdd0d1} offered given property.", ReturnName(userid));
+	    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} accepted offered given your property.", ReturnName(playerid));
 	}
 	return 1;
 }
@@ -2410,7 +2389,7 @@ CMD:deny(playerid, params[])
 	if (isnull(params))
  	{
 	 	SendUsageMessage(playerid, "/deny [name]");
-		SendTipMessage(playerid, "Faction, Frisk, Handshake, Vehicle");
+		SendTipMessage(playerid, "Faction, Frisk, Handshake, Vehicle, Business, Property");
 		return 1;
 	}
 
@@ -2453,15 +2432,35 @@ CMD:deny(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_SELLVOFFER] = 0;
 		PlayerInfo[playerid][E_CHARACTER_SELLOFFER] = INVALID_PLAYER_ID;
 
-		SendInfoMessage(playerid, "You've denied {d7d292}%s{cdd0d1} offered selling vehicle.", ReturnName(targetid, playerid));
+		SendInfoMessage(playerid, "You've denied {d7d292}%s{cdd0d1} offered selling vehicle.", ReturnName(targetid));
 	    SendInfoMessage(targetid, "{d7d292}%s{cdd0d1} denied offered selling your vehicle.", ReturnName(playerid));
+	}
+	if (!strcmp(params, "business", true) && PlayerInfo[playerid][E_CHARACTER_BIZOFFER] != INVALID_PLAYER_ID)
+	{
+		new targetid = PlayerInfo[playerid][E_CHARACTER_BIZOFFER];
+
+		PlayerInfo[playerid][E_CHARACTER_BIZOFFERID] = 0;
+		PlayerInfo[playerid][E_CHARACTER_BIZOFFER] = INVALID_PLAYER_ID;
+
+		SendInfoMessage(playerid, "You've denied {d7d292}%s{cdd0d1} offered given business.", ReturnName(targetid));
+	    SendInfoMessage(targetid, "{d7d292}%s{cdd0d1} denied offered given your business.", ReturnName(playerid));
+	}
+	if (!strcmp(params, "property", true) && PlayerInfo[playerid][E_CHARACTER_PROPOFFER] != INVALID_PLAYER_ID)
+	{
+		new targetid = PlayerInfo[playerid][E_CHARACTER_PROPOFFER];
+
+		PlayerInfo[playerid][E_CHARACTER_PROPOFFERID] = 0;
+		PlayerInfo[playerid][E_CHARACTER_PROPOFFER] = INVALID_PLAYER_ID;
+
+		SendInfoMessage(playerid, "You've denied {d7d292}%s{cdd0d1} offered given property.", ReturnName(targetid));
+	    SendInfoMessage(targetid, "{d7d292}%s{cdd0d1} denied offered given your property.", ReturnName(playerid));
 	}
 	return 1;
 }
 
 CMD:handshake(playerid, params[])
 {
-	static
+	new
 	    userid,
 	    type;
 
@@ -2481,12 +2480,13 @@ CMD:handshake(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SHAKETYPE] = type;
 
 	SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to shake your hand, type /approve handshake to approve.", ReturnName(playerid));
-	SendInfoMessage(playerid, "You have offered to shake {d7d292}%s{cdd0d1} hand.", ReturnName(userid, playerid));
+	SendInfoMessage(playerid, "You have offered to shake {d7d292}%s{cdd0d1} hand.", ReturnName(userid));
 	return 1;
 }
+
 CMD:frisk(playerid, params[])
 {
-	static
+	new
 	    userid;
 
 	if (sscanf(params, "u", userid))

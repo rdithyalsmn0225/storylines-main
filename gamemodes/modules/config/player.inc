@@ -353,7 +353,14 @@ function:ResetPlayer(playerid)
 	//Offer
 	PlayerInfo[playerid][E_CHARACTER_FRISKOFFER] = INVALID_PLAYER_ID;
 	PlayerInfo[playerid][E_CHARACTER_SHAKEOFFER] = INVALID_PLAYER_ID;
+	PlayerInfo[playerid][E_CHARACTER_PROPOFFER] = INVALID_PLAYER_ID;
+	PlayerInfo[playerid][E_CHARACTER_BIZOFFER] = INVALID_PLAYER_ID;
+	PlayerInfo[playerid][E_CHARACTER_SELLOFFER] = INVALID_PLAYER_ID;
 	PlayerInfo[playerid][E_CHARACTER_SHAKETYPE] = 0;
+	PlayerInfo[playerid][E_CHARACTER_PROPOFFERID] = 0;
+	PlayerInfo[playerid][E_CHARACTER_BIZOFFERID] = 0;
+	PlayerInfo[playerid][E_CHARACTER_PRICEOFFER] = 0;
+	PlayerInfo[playerid][E_CHARACTER_SELLVOFFER] = 0;
 
 	PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = INVALID_VEHICLE_ID;
 

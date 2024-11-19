@@ -207,12 +207,46 @@ CMD:bizcash(playerid, params[])
 	return 1;
 }
 
-CMD:sellbiz(playerid, params[])
+CMD:givebusiness(playerid, params[])
+{
+	new
+		id;
+	
+	new
+	    userid;
+
+	if (sscanf(params, "u", userid))
+	    return SendUsageMessage(playerid, "/givebiz [playerid/name]");
+
+    if (userid == INVALID_PLAYER_ID || !IsPlayerNearPlayer(playerid, userid, 6.0))
+	    return SendErrorMessage(playerid, "The specified player is disconnected or not near you.");
+
+    if (userid == playerid)
+		return SendErrorMessage(playerid, "You cannot frisk yourself.");
+
+	if(!CountPlayerBusiness(playerid))
+		return SendErrorMessage(playerid, "You don't own a business.");
+		
+	if((id = IsPlayerInBusiness(playerid)) != 0)
+	{
+		if(BusinessInfo[id][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
+			return SendErrorMessage(playerid, "You don't own this business."); 
+			
+		PlayerInfo[userid][E_CHARACTER_BIZOFFER] = playerid;
+		PlayerInfo[userid][E_CHARACTER_BIZOFFERID] = id;
+
+		SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to give their business, type /approve business to approve.", ReturnName(playerid));
+		SendInfoMessage(playerid, "You have offered to give {d7d292}%s{cdd0d1} your business.", ReturnName(userid));
+	}
+	else return SendErrorMessage(playerid, "You aren't in a business.");
+	return 1;
+}
+
+CMD:sellbusiness(playerid, params[])
 {
 	new
 		id,
-		str[128]
-	;
+		str[128];
 	
 	if(!CountPlayerBusiness(playerid))
 		return SendErrorMessage(playerid, "You don't own a business.");

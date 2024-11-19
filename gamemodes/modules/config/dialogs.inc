@@ -650,12 +650,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 2:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Property Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/buyproperty, /lock, /property");
+						SendClientMessage(playerid, COLOR_ORANGE, "/buyproperty, /lock, /property, /giveproperty, /sellproperty");
 					}
 					case 3:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Business Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/buybiz, /lock, /bizinfo, /bizfee, /bizcash, /bizproduct, /sellbiz");
+						SendClientMessage(playerid, COLOR_ORANGE, "/buybiz, /lock, /bizinfo, /bizfee, /bizcash, /bizproduct, /givebusiness, /sellbusiness");
 					}
 					case 4:
 					{
