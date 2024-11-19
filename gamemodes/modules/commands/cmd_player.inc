@@ -219,11 +219,11 @@ CMD:pay(playerid, params[])
         
     new Cents = floatround(amount * 100, floatround_round);
 
-    if (Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+    if (amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
         return SendErrorMessage(playerid, "You don't have that amount of money.");
 
-    if (Cents <= 0)
-        return SendErrorMessage(playerid, "Amount must be greater than 0.");
+    if (amount < 0.0)
+        return SendErrorMessage(playerid, "Amount must be greater than 0.0.");
         
     if (gettime() - playerLastpay[playerid] < 3)
         return SendErrorMessage(playerid, "Please wait before paying again.");
