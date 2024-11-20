@@ -13,19 +13,15 @@
 #define HERRING_PRICE          4
 
 //FSTORAGE
-#define GLOCK19         4000
-#define GLOCK17         4500
-#define GLOCKP80        5000
-#define MAC11           5000
-#define MAC10           5500
-#define SOCIMIT821      5500
-#define EPISTOL         4000
-#define DEAGLES          5000
-#define PMARIJUANA       100
-#define PCOCAINE         200
-#define PHEROIN          250
-#define A9MM            100
-#define A9X19MM         100
+#define WEAPON_COLT         4000
+#define WEAPON_SLC          4500
+#define WEAPON_UZIS         5000
+#define WEAPON_DEAGLES      5000
+#define PMARIJUANA          100
+#define PCOCAINE            200
+#define PHEROIN             250
+#define A9MM                100
+#define A9X19MM             100
 
 //CARGO PRICE
 #define PRICE_FISH 5

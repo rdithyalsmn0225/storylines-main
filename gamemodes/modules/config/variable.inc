@@ -47,6 +47,15 @@ enum
 };
 
 enum
+{
+	AMMO_TYPE_NONE,
+	AMMO_TYPE_NORMAL,
+	AMMO_TYPE_SURPLUS,
+	AMMO_TYPE_JHP,
+	AMMO_TYPE_RUBBER
+};
+
+enum
 {	
 	DEALERSHIP_CATEGORY_BIKES,
 	DEALERSHIP_CATEGORY_TWODOOR,
@@ -68,6 +77,7 @@ enum
 	KNIFE,
 	BAT,
 	PISTOL,
+	SLC,
 	DEAGLE,
 	UZI,
 	MARIJUANA,
@@ -146,6 +156,7 @@ enum P_ACCOUNT_DATA
 	E_CHARACTER_DUPLICATEKEY,
 	E_CHARACTER_EQUIPITEMS,
 	E_CHARACTER_WEAPONTYPE,
+	E_CHARACTER_AMMOTYPE,
 	E_CHARACTER_TIMEPLAYED,
 	E_CHARACTER_INSIDEPROP,
 	E_CHARACTER_INSIDEBIZ,
@@ -2105,10 +2116,8 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Beer", 1486, 0},
 	{"Sprunk", 2601, 0},
 	{"Spraycan", 365, 0},
-	{"Crowbar", 18634, 0},
 	{"Chainsaw", 341, 0},
 	{"Gascan", 1650, 0},
-	// Fishing:
 	{"Cod", 19630, 0},
 	{"Carp", 19630, 0},
 	{"Salmon", 19630, 0},
@@ -2120,23 +2129,20 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Raw Meat", 19582, 0},
 	{"Bandage", 17738, 0},
 	{"BBQ", 19882, 0},
-	{"Broken Bottle", -2210, 0},
-	{"Glass", -2211, 0},
+	{"Bottle", -2210, 0},
+	{"Crowbar", -2211, 0},
 	{"Knife", 335, 0},
 	{"Spike Bat", -2200, 0},
 	{"Wooden", -2201, 0},
 	{"Nail Bat", -2202, 0},
-	{"Glock 17", -2204, 0},
-	{"Glock 19", -2205, 0},
-	{"Glock P80", -2206, 0},
-	{"Deagle", 348, 0},
-	{"Mac 11", -2207, 0},
-	{"Mac 12", -2208, 0},
-	{"Socimi Type 821", -2209, 0},
-	{"Night Hawk", 348, 0},
-	{"9mm", 2040, 0},
-	{"9x19mm", 2040, 0},
-	{"12G Rubber", 2040, 0},
+	{"Colt 45", 346, 0},
+	{"Silenced Colt", 347, 0},
+	{"Desert Eagle", 348, 0},
+	{"Uzi", 352, 0},
+	{"Regular Ammo", 2040, 0},
+	{"Surplus Ammo", 2040, 0},
+	{"JHP Ammo", 2040, 0},
+	{"Rubber Ammo", 2040, 0},
 	{"Repair Kits", 19921, 0},
 	{"Marijuana", -2501, 0},
 	{"Cocaine", -2502, 0},

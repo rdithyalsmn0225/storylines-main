@@ -648,7 +648,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
 	//Weapons Inventory
-	else if(!strcmp(name, "Broken Bottle"))
+	else if(!strcmp(name, "Bottle"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
@@ -658,7 +658,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
-	else if(!strcmp(name, "Glass"))
+	else if(!strcmp(name, "Crowbar"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
@@ -710,114 +710,50 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
+
 	//Deagle
-	else if(!strcmp(name, "Night Hawk"))
+	else if(!strcmp(name, "Desert Eagle"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
-			if(!Inventory_Count(playerid, "9mm"))
-				return SendErrorMessage(playerid, "You don't have 9mm magazine in your inventory");
-
-			GivePlayerWeapon(playerid, 24, 999999);
-			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = DEAGLE;
+			Dialog_Show(playerid, WeaponDeagle, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
-	//Deagle
-	else if(!strcmp(name, "Deagle"))
-	{
-		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-		{
-			if(!Inventory_Count(playerid, "9mm"))
-				return SendErrorMessage(playerid, "You don't have 9mm magazine in your inventory");
 
-			GivePlayerWeapon(playerid, 24, 999999);
-			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = DEAGLE;
-		}
-		else SendErrorMessage(playerid, "You must store your items in inventory first.");
-	}
 	//Colt
-	else if(!strcmp(name, "Glock 19"))
+	else if(!strcmp(name, "Colt 45"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
-			if(!Inventory_Count(playerid, "9mm"))
-				return SendErrorMessage(playerid, "You don't have 9mm magazine in your inventory");
-
-			GivePlayerWeapon(playerid, 22, 999999);
-			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = PISTOL;
+			Dialog_Show(playerid, WeaponColt, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
-	else if(!strcmp(name, "Glock 17"))
+
+	else if(!strcmp(name, "Silenced Colt"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
-			if(!Inventory_Count(playerid, "9mm"))
-				return SendErrorMessage(playerid, "You don't have 9mm magazine in your inventory");
-
-			GivePlayerWeapon(playerid, 22, 999999);
-			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 2;
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = PISTOL;
-		}
-		else SendErrorMessage(playerid, "You must store your items in inventory first.");
-	}
-	else if(!strcmp(name, "Glock P80"))
-	{
-		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-		{
-			if(!Inventory_Count(playerid, "9mm"))
-				return SendErrorMessage(playerid, "You don't have 9mm magazine in your inventory");
-
-			GivePlayerWeapon(playerid, 22, 999999);
-			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 3;
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = PISTOL;
+			Dialog_Show(playerid, WeaponSLC, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
 
 	//Uzi
-	else if(!strcmp(name, "Mac 11"))
+	else if(!strcmp(name, "Uzi"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
-			if(!Inventory_Count(playerid, "9x19mm"))
-				return SendErrorMessage(playerid, "You don't have 9x19mm magazine in your inventory");
-
-			GivePlayerWeapon(playerid, 28, 999999);
-			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;
+			Dialog_Show(playerid, WeaponUzi, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
-	else if(!strcmp(name, "Mac 12"))
-	{
-		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-		{
-			if(!Inventory_Count(playerid, "9x19mm"))
-				return SendErrorMessage(playerid, "You don't have 9x19mm magazine in your inventory");
+	return 1;
+}
 
-			GivePlayerWeapon(playerid, 28, 999999);
-			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 2;
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;
-		}
-		else SendErrorMessage(playerid, "You must store your items in inventory first.");
-	}
-	else if(!strcmp(name, "Socimi Type 821"))
-	{
-		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-		{
-			if(!Inventory_Count(playerid, "9x19mm"))
-				return SendErrorMessage(playerid, "You don't have 9x19mm magazine in your inventory");
-
-			GivePlayerWeapon(playerid, 28, 999999);
-			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 3;
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;
-		}
-		else SendErrorMessage(playerid, "You must store your items in inventory first.");
-	}
+CMD:coy(playerid, params[])
+{
+	SendServerMessage(playerid, "Equipitems : %i", PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS]);
 	return 1;
 }

@@ -375,7 +375,7 @@ CMD:flocker(playerid, params[])
 	{
 		if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
 		{
-			Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Night Hawk (50 Ammo)", "Select", "Cancel");
+			Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Police Deagle (50 Ammo)", "Select", "Cancel");
 		}
 	}
 	else if(IsPlayerInRangeOfPoint(playerid, 5.0, 1833.1627,-1072.3607,41.6537) || IsPlayerInRangeOfPoint(playerid, 5.0, 1269.3730,-1307.3560,1061.1392))
@@ -432,11 +432,11 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 						
 						SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]); 
 						
-						if(Inventory_Count(playerid, "Night Hawk"))
+						if(Inventory_Count(playerid, "Desert Eagle"))
 						{
-							Inventory_Remove(playerid, "Night Hawk", 1);
+							Inventory_Remove(playerid, "Desert Eagle", 1);
 						}
-						Inventory_Remove(playerid, "9mm", 50);
+						Inventory_Remove(playerid, "Regular Ammo", 50);
 					}
 				}
 				else if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
@@ -522,11 +522,11 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
             {
                 if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
                 {
-					if(!Inventory_Count(playerid, "Night Hawk"))
+					if(!Inventory_Count(playerid, "Desert Eagle"))
 					{
-						Inventory_Add(playerid, "Night Hawk", 348, 1);
+						Inventory_Add(playerid, "Desert Eagle", 348, 1);
 					}
-					Inventory_Add(playerid, "9mm", 2040, 50);
+					Inventory_Add(playerid, "Regular Ammo", 2040, 50);
                 }
                 if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
                 {

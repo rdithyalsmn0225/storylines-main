@@ -177,202 +177,121 @@ function:OnPlayerWeaponUpdate()
 	{
 		if(PlayerInfo[i][E_CHARACTER_SPAWNED] == true && AccountInfo[i][E_MASTERS_LOGGED] == true)
 		{
-			if(GetPlayerWeapon(i) == 22) 
+			if(GetPlayerWeapon(i) == 22 || GetPlayerWeapon(i) == 23 || GetPlayerWeapon(i) == 24 || GetPlayerWeapon(i) == 25
+	 		|| GetPlayerWeapon(i) == 26 || GetPlayerWeapon(i) == 28 || GetPlayerWeapon(i) == 29 || GetPlayerWeapon(i) == 32)
 			{
-				if(Inventory_Count(i, "9mm"))
+				if(PlayerInfo[i][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 				{
-					new astring[128];
-					new tstr[128];
-					if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
+					if(Inventory_Count(i, "Regular Ammo"))
 					{
-						format(astring, sizeof(astring), "Glock_19");
-						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2204, 6, -0.036999, -0.009000, -0.021000, 0.000000, -5.499999, 6.799997, 1.043000, 1.172000, 1.069999);
+						new astring[64], tstr[64];
+
+						format(astring, sizeof(astring), "%s", ReturnWeaponName(GetPlayerWeapon(i)));
+						PlayerTextDrawSetString(i, WeaponType[i], astring);
+						PlayerTextDrawShow(i, WeaponType[i]);
+
+						format(tstr, sizeof(tstr), "%d Regular", Inventory_Count(i, "Regular Ammo"));
+						PlayerTextDrawSetString(i, WeaponAmmo[i], tstr);
+						PlayerTextDrawShow(i, WeaponAmmo[i]);
 					}
-					else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)
+					else
 					{
-						format(astring, sizeof(astring), "Glock_17");
-						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2205, 6, -0.023000, -0.007000, -0.006000, 0.000000, 0.000000, -1.400000, 1.390999, 1.513000, 1.172000);
+						PlayerInfo[i][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NONE;
+						PlayerInfo[i][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+						ResetPlayerWeapons(i);
+						PlayerTextDrawHide(i, WeaponType[i]);
+						PlayerTextDrawHide(i, WeaponAmmo[i]);
 					}
-					else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)
+				}
+				else if(PlayerInfo[i][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
+				{
+					if(Inventory_Count(i, "Surplus Ammo"))
 					{
-						format(astring, sizeof(astring), "Glock_P80");
-						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2206, 6, 0.000000, -0.010999, 0.000000, 0.000000, -11.199995, 8.399997, 1.231001, 1.625002, 1.128000);
+						new astring[64], tstr[64];
+
+						format(astring, sizeof(astring), "%s", ReturnWeaponName(GetPlayerWeapon(i)));
+						PlayerTextDrawSetString(i, WeaponType[i], astring);
+						PlayerTextDrawShow(i, WeaponType[i]);
+
+						format(tstr, sizeof(tstr), "%d Surplus", Inventory_Count(i, "Surplus Ammo"));
+						PlayerTextDrawSetString(i, WeaponAmmo[i], tstr);
+						PlayerTextDrawShow(i, WeaponAmmo[i]);
 					}
-						
+					else
+					{
+						PlayerInfo[i][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NONE;
+						PlayerInfo[i][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+						ResetPlayerWeapons(i);
+						PlayerTextDrawHide(i, WeaponType[i]);
+						PlayerTextDrawHide(i, WeaponAmmo[i]);
+					}
+				}
+				else if(PlayerInfo[i][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
+				{
+					if(Inventory_Count(i, "JHP Ammo"))
+					{
+						new astring[64], tstr[64];
+
+						format(astring, sizeof(astring), "%s", ReturnWeaponName(GetPlayerWeapon(i)));
+						PlayerTextDrawSetString(i, WeaponType[i], astring);
+						PlayerTextDrawShow(i, WeaponType[i]);
+
+						format(tstr, sizeof(tstr), "%d JHP", Inventory_Count(i, "JHP Ammo"));
+						PlayerTextDrawSetString(i, WeaponAmmo[i], tstr);
+						PlayerTextDrawShow(i, WeaponAmmo[i]);
+					}
+					else
+					{
+						PlayerInfo[i][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NONE;
+						PlayerInfo[i][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+						ResetPlayerWeapons(i);
+						PlayerTextDrawHide(i, WeaponType[i]);
+						PlayerTextDrawHide(i, WeaponAmmo[i]);
+					}
+				}
+				else if(PlayerInfo[i][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+				{
+					if(Inventory_Count(i, "Rubber Ammo"))
+					{
+						new astring[64], tstr[64];
+
+						format(astring, sizeof(astring), "%s", ReturnWeaponName(GetPlayerWeapon(i)));
+						PlayerTextDrawSetString(i, WeaponType[i], astring);
+						PlayerTextDrawShow(i, WeaponType[i]);
+
+						format(tstr, sizeof(tstr), "%d Rubber", Inventory_Count(i, "Rubber Ammo"));
+						PlayerTextDrawSetString(i, WeaponAmmo[i], tstr);
+						PlayerTextDrawHide(i, WeaponType[i]);
+						PlayerTextDrawHide(i, WeaponAmmo[i]);
+					}
+					else
+					{
+						PlayerInfo[i][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NONE;
+						PlayerInfo[i][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+						ResetPlayerWeapons(i);
+						PlayerTextDrawHide(i, WeaponType[i]);
+						PlayerTextDrawHide(i, WeaponAmmo[i]);
+					}
+				}
+				else if(PlayerInfo[i][E_CHARACTER_POLICEAMMO])
+				{
+					new astring[64], tstr[64];
+
+					format(astring, sizeof(astring), "%s", ReturnWeaponName(GetPlayerWeapon(i)));
 					PlayerTextDrawSetString(i, WeaponType[i], astring);
 					PlayerTextDrawShow(i, WeaponType[i]);
 
-					format(tstr, sizeof(tstr), "%d", Inventory_Count(i, "9mm"));
+					format(tstr, sizeof(tstr), "Tazer");
 					PlayerTextDrawSetString(i, WeaponAmmo[i], tstr);
 					PlayerTextDrawShow(i, WeaponAmmo[i]);
 				}
 				else
 				{
+					PlayerInfo[i][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NONE;
 					PlayerInfo[i][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
-					ResetPlayerWeapons(i);
+					PlayerTextDrawHide(i, WeaponType[i]);
 					PlayerTextDrawHide(i, WeaponAmmo[i]);
 				}
-			}
-			else if(GetPlayerWeapon(i) == 23) 
-			{
-				if(PlayerInfo[i][E_CHARACTER_POLICEAMMO])
-				{
-					new astring[128];
-					new tstr[128];
-
-					if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Tazer");
-					PlayerTextDrawSetString(i, WeaponType[i], astring);
-					PlayerTextDrawShow(i, WeaponType[i]);
-					PlayerTextDrawSetString(i, WeaponType[i], astring);
-					PlayerTextDrawShow(i, WeaponType[i]);
-						
-					format(tstr, sizeof(tstr), "%d-XREP", PlayerInfo[i][E_CHARACTER_POLICEAMMO]);
-					PlayerTextDrawSetString(i, WeaponAmmo[i], tstr);
-					PlayerTextDrawShow(i, WeaponAmmo[i]);
-
-					RemovePlayerAttachedObject(i, 7);
-				}
-				else
-				{
-					PlayerInfo[i][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
-					ResetPlayerWeapons(i);
-					PlayerTextDrawHide(i, WeaponAmmo[i]);
-				}
-			}
-			else if(GetPlayerWeapon(i) == 24) 
-			{
-				if(Inventory_Count(i, "9mm"))
-				{
-					new astring[128];
-					new tstr[128];
-					if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
-					{
-						format(astring, sizeof(astring), "Night Hawk");
-						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2204, 6, -0.036999, -0.009000, -0.021000, 0.000000, -5.499999, 6.799997, 1.043000, 1.172000, 1.069999);
-					}
-					else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)
-					{
-						format(astring, sizeof(astring), "Deagle");
-						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2205, 6, -0.023000, -0.007000, -0.006000, 0.000000, 0.000000, -1.400000, 1.390999, 1.513000, 1.172000);
-					}
-					else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)
-					{
-						format(astring, sizeof(astring), "Glock_P80");
-						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2206, 6, 0.000000, -0.010999, 0.000000, 0.000000, -11.199995, 8.399997, 1.231001, 1.625002, 1.128000);
-					}
-						
-					PlayerTextDrawSetString(i, WeaponType[i], astring);
-					PlayerTextDrawShow(i, WeaponType[i]);
-
-					format(tstr, sizeof(tstr), "%d", Inventory_Count(i, "9mm"));
-					PlayerTextDrawSetString(i, WeaponAmmo[i], tstr);
-					PlayerTextDrawShow(i, WeaponAmmo[i]);
-				}
-				else
-				{
-					PlayerInfo[i][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
-					ResetPlayerWeapons(i);
-					PlayerTextDrawHide(i, WeaponAmmo[i]);
-				}
-			}
-
-			//RUBBER
-			else if(GetPlayerWeapon(i) == 25) 
-			{
-				if(PlayerInfo[i][E_CHARACTER_POLICEAMMO])
-				{
-					new astring[128];
-					new tstr[128];
-
-					if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Riot_Shotgun");
-					PlayerTextDrawSetString(i, WeaponType[i], astring);
-					PlayerTextDrawShow(i, WeaponType[i]);
-					PlayerTextDrawSetString(i, WeaponType[i], astring);
-					PlayerTextDrawShow(i, WeaponType[i]);
-						
-					format(tstr, sizeof(tstr), "%d-Rubber", PlayerInfo[i][E_CHARACTER_POLICEAMMO]);
-					PlayerTextDrawSetString(i, WeaponAmmo[i], tstr);
-					PlayerTextDrawShow(i, WeaponAmmo[i]);
-
-					RemovePlayerAttachedObject(i, 7);
-				}
-				else
-				{
-					PlayerInfo[i][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
-					ResetPlayerWeapons(i);
-					PlayerTextDrawHide(i, WeaponAmmo[i]);
-				}
-			}
-
-			//MAC
-			else if(GetPlayerWeapon(i) == 28) 
-			{
-				if(Inventory_Count(i, "9x19mm"))
-				{
-					new astring[128];
-					new tstr[128];
-
-					if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
-					{
-						format(astring, sizeof(astring), "MAC-11");
-						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2207, 6, -0.021000, -0.026000, -0.027000, 0.000000, 0.000000, 2.199998, 1.212000, 2.153999, 1.350999);
-					}
-
-					else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)
-					{
-						format(astring, sizeof(astring), "MAC-10");
-						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2208, 6, 0.000000, -0.004999, -0.051999, 0.000000, 0.000000, 0.000000, 1.160001, 1.748001, 1.372001);
-					}
-						
-					else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)
-					{
-						format(astring, sizeof(astring), "Socimi_Type_821");
-						SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2209, 6, -0.026000, -0.070999, -0.059999, 0.499996, -8.299998, -3.299998, 1.565001, 2.388001, 1.568999);
-					}
-						
-					PlayerTextDrawSetString(i, WeaponType[i], astring);
-					PlayerTextDrawShow(i, WeaponType[i]);
-					format(tstr, sizeof(tstr), "%d", Inventory_Count(i, "9x19mm"));
-					PlayerTextDrawSetString(i, WeaponAmmo[i], tstr);
-					PlayerTextDrawShow(i, WeaponAmmo[i]);
-				}
-				else
-				{
-					PlayerInfo[i][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
-					ResetPlayerWeapons(i);
-					PlayerTextDrawHide(i, WeaponAmmo[i]);
-				}
-			}
-			else if(GetPlayerWeapon(i) == 29) 
-			{
-				new astring[128];
-				if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
-				{
-					format(astring, sizeof(astring), "HK_53");
-				}
-					
-				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)
-				{
-					format(astring, sizeof(astring), "UMP9");
-				}
-
-				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)
-				{
-					format(astring, sizeof(astring), "AKS_74U");
-				}
-				
-				PlayerTextDrawSetString(i, WeaponType[i], astring);
-				PlayerTextDrawShow(i, WeaponType[i]);
-			}
-			else if(GetPlayerWeapon(i) == 32) 
-			{
-				new astring[128];
-				if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "HK_53");
-				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)format(astring, sizeof(astring), "KGP-9");
-				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)format(astring, sizeof(astring), "Berreta_M12");
-				PlayerTextDrawSetString(i, WeaponType[i], astring);
-				PlayerTextDrawShow(i, WeaponType[i]);
-				RemovePlayerAttachedObject(i, 7);
 			}
 			else if(GetPlayerWeapon(i) == 5) 
 			{
@@ -406,7 +325,7 @@ function:OnPlayerWeaponUpdate()
 				}
 				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)
 				{
-					format(astring, sizeof(astring), "Glass");
+					format(astring, sizeof(astring), "Crowbar");
 					SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2211, 6, -0.013000, -0.165000, -0.026000, 1.000003, -12.199998, 0.000000, 1.184000, 5.491996, 1.000000);
 				}
 				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)

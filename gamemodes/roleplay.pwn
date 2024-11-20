@@ -425,15 +425,6 @@ public OnPlayerDisconnect(playerid, reason)
 		SaveCharacter(playerid); SaveCharacterPos(playerid);
 	}
 
-	if(PlayerInfo[playerid][E_CHARACTER_POLICEDUTY] == true)
-	{
-		if(Inventory_Count(playerid, "Night Hawk"))
-		{
-			Inventory_Remove(playerid, "Night Hawk", 1);
-		}
-		Inventory_Remove(playerid, "9mm", 50);
-	}
-
 	KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
 	ResetPlayerJump(playerid);
@@ -1248,7 +1239,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		//Colt
 		case 22:
 		{
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -1282,41 +1273,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 2)
-			{
-				switch(bodypart)
-				{
-					case BODY_PART_CHEST:
-					{
-						amount = 10.0;
-					}
-					case BODY_PART_GROIN:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_ARM:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_RIGHT_ARM:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_RIGHT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_HEAD:
-					{
-						amount = 50.0;
-					}
-				}
-			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -1354,7 +1311,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		//Silence
 	    case 23:
 		{
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -1388,41 +1345,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 2)
-			{
-				switch(bodypart)
-				{
-					case BODY_PART_CHEST:
-					{
-						amount = 10.0;
-					}
-					case BODY_PART_GROIN:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_ARM:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_RIGHT_ARM:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_RIGHT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_HEAD:
-					{
-						amount = 50.0;
-					}
-				}
-			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -1460,7 +1383,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		//Deagle
 		case 24:
 		{
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -1494,7 +1417,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 2)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -1528,7 +1451,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
 			{
 				switch(bodypart)
 				{
@@ -1566,7 +1489,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		//Uzi
 		case 28:
 		{
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -1600,41 +1523,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 2)
-			{
-				switch(bodypart)
-				{
-					case BODY_PART_CHEST:
-					{
-						amount = 13.0;
-					}
-					case BODY_PART_GROIN:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_ARM:
-					{
-						amount = 8.0;
-					}
-					case BODY_PART_RIGHT_ARM:
-					{
-						amount = 8.0;
-					}
-					case BODY_PART_LEFT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_RIGHT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_HEAD:
-					{
-						amount = 30.0;
-					}
-				}
-			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -1672,7 +1561,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		//TEC9
 		case 32:
 		{
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -1706,41 +1595,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 2)
-			{
-				switch(bodypart)
-				{
-					case BODY_PART_CHEST:
-					{
-						amount = 13.0;
-					}
-					case BODY_PART_GROIN:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_ARM:
-					{
-						amount = 8.0;
-					}
-					case BODY_PART_RIGHT_ARM:
-					{
-						amount = 8.0;
-					}
-					case BODY_PART_LEFT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_RIGHT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_HEAD:
-					{
-						amount = 30.0;
-					}
-				}
-			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -1778,7 +1633,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		//MP5
 		case 29:
 		{
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -1812,7 +1667,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 2)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -1846,7 +1701,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
 			{
 				switch(bodypart)
 				{
@@ -2113,58 +1968,79 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			return 0; 	
 	}
 	
-	if(GetPlayerWeapon(playerid) == 22)
+	if(GetPlayerWeapon(playerid) == 22 || GetPlayerWeapon(playerid) == 23 || GetPlayerWeapon(playerid) == 24 || GetPlayerWeapon(playerid) == 25
+	 || GetPlayerWeapon(playerid) == 26 || GetPlayerWeapon(playerid) == 28 || GetPlayerWeapon(playerid) == 29 || GetPlayerWeapon(playerid) == 32)
 	{
-		new tstr[128];
-		if(Inventory_Count(playerid, "9mm"))
+		if(PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 		{
-			Inventory_Remove(playerid, "9mm", 1);
-			format(tstr, sizeof(tstr), "%d", Inventory_Count(playerid, "9mm"));
-			PlayerTextDrawSetString(playerid, WeaponAmmo[playerid], tstr);
-			PlayerTextDrawShow(playerid, WeaponAmmo[playerid]);
+			new tstr[128];
+			if(Inventory_Count(playerid, "Regular Ammo"))
+			{
+				Inventory_Remove(playerid, "Regular Ammo", 1);
+				format(tstr, sizeof(tstr), "%d Regular", Inventory_Count(playerid, "Regular Ammo"));
+				PlayerTextDrawSetString(playerid, WeaponAmmo[playerid], tstr);
+				PlayerTextDrawShow(playerid, WeaponAmmo[playerid]);
+			}
+			else
+			{
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+				ResetPlayerWeapons(playerid);
+				PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
+			}
 		}
-		else
+		if(PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 		{
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
-			ResetPlayerWeapons(playerid);
-			PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
+			new tstr[128];
+			if(Inventory_Count(playerid, "Surplus Ammo"))
+			{
+				Inventory_Remove(playerid, "Surplus Ammo", 1);
+				format(tstr, sizeof(tstr), "%d Surplus", Inventory_Count(playerid, "Surplus Ammo"));
+				PlayerTextDrawSetString(playerid, WeaponAmmo[playerid], tstr);
+				PlayerTextDrawShow(playerid, WeaponAmmo[playerid]);
+			}
+			else
+			{
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+				ResetPlayerWeapons(playerid);
+				PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
+			}
 		}
-	}
-	if(GetPlayerWeapon(playerid) == 24)
-	{
-		new tstr[128];
-		if(Inventory_Count(playerid, "9mm"))
+		if(PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
 		{
-			Inventory_Remove(playerid, "9mm", 1);
-			format(tstr, sizeof(tstr), "%d", Inventory_Count(playerid, "9mm"));
-			PlayerTextDrawSetString(playerid, WeaponAmmo[playerid], tstr);
-			PlayerTextDrawShow(playerid, WeaponAmmo[playerid]);
+			new tstr[128];
+			if(Inventory_Count(playerid, "JHP Ammo"))
+			{
+				Inventory_Remove(playerid, "JHP Ammo", 1);
+				format(tstr, sizeof(tstr), "%d JHP", Inventory_Count(playerid, "JHP Ammo"));
+				PlayerTextDrawSetString(playerid, WeaponAmmo[playerid], tstr);
+				PlayerTextDrawShow(playerid, WeaponAmmo[playerid]);
+			}
+			else
+			{
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+				ResetPlayerWeapons(playerid);
+				PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
+			}
 		}
-		else
+		if(PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
 		{
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
-			ResetPlayerWeapons(playerid);
-			PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
+			new tstr[128];
+			if(Inventory_Count(playerid, "Rubber Ammo"))
+			{
+				Inventory_Remove(playerid, "Rubber Ammo", 1);
+				format(tstr, sizeof(tstr), "%d Rubber", Inventory_Count(playerid, "Rubber Ammo"));
+				PlayerTextDrawSetString(playerid, WeaponAmmo[playerid], tstr);
+				PlayerTextDrawShow(playerid, WeaponAmmo[playerid]);
+			}
+			else
+			{
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+				ResetPlayerWeapons(playerid);
+				PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
+			}
 		}
 	}
 
-	if(GetPlayerWeapon(playerid) == 28)
-	{
-		new tstr[128];
-		if(Inventory_Count(playerid, "9x19mm"))
-		{
-			Inventory_Remove(playerid, "9x19mm", 1);
-			format(tstr, sizeof(tstr), "%d", Inventory_Count(playerid, "9x19mm"));
-			PlayerTextDrawSetString(playerid, WeaponAmmo[playerid], tstr);
-			PlayerTextDrawShow(playerid, WeaponAmmo[playerid]);
-		}
-		else
-		{
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
-			ResetPlayerWeapons(playerid);
-			PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
-		}
-	}
 	if(PlayerInfo[playerid][E_CHARACTER_POLICEGUN] && weaponid == 23)
 	{
 		SetPlayerArmedWeapon(playerid, 0); 
@@ -2315,7 +2191,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 		//Colt
 		case 22:
 		{
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -2349,41 +2225,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)
-			{
-				switch(bodypart)
-				{
-					case BODY_PART_CHEST:
-					{
-						amount = 10.0;
-					}
-					case BODY_PART_GROIN:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_ARM:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_RIGHT_ARM:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_RIGHT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_HEAD:
-					{
-						amount = 50.0;
-					}
-				}
-			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -2421,7 +2263,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 		//Silence
 	    case 23:
 		{
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -2455,41 +2297,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)
-			{
-				switch(bodypart)
-				{
-					case BODY_PART_CHEST:
-					{
-						amount = 10.0;
-					}
-					case BODY_PART_GROIN:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_ARM:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_RIGHT_ARM:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_RIGHT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_HEAD:
-					{
-						amount = 50.0;
-					}
-				}
-			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -2527,7 +2335,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 		//Deagle
 		case 24:
 		{
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -2561,7 +2369,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -2595,7 +2403,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
 			{
 				switch(bodypart)
 				{
@@ -2633,7 +2441,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 		//Uzi
 		case 28:
 		{
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -2667,41 +2475,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)
-			{
-				switch(bodypart)
-				{
-					case BODY_PART_CHEST:
-					{
-						amount = 13.0;
-					}
-					case BODY_PART_GROIN:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_ARM:
-					{
-						amount = 8.0;
-					}
-					case BODY_PART_RIGHT_ARM:
-					{
-						amount = 8.0;
-					}
-					case BODY_PART_LEFT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_RIGHT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_HEAD:
-					{
-						amount = 30.0;
-					}
-				}
-			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -2739,7 +2513,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 		//TEC9
 		case 32:
 		{
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -2773,41 +2547,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)
-			{
-				switch(bodypart)
-				{
-					case BODY_PART_CHEST:
-					{
-						amount = 13.0;
-					}
-					case BODY_PART_GROIN:
-					{
-						amount = 7.0;
-					}
-					case BODY_PART_LEFT_ARM:
-					{
-						amount = 8.0;
-					}
-					case BODY_PART_RIGHT_ARM:
-					{
-						amount = 8.0;
-					}
-					case BODY_PART_LEFT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_RIGHT_LEG:
-					{
-						amount = 6.0;
-					}
-					case BODY_PART_HEAD:
-					{
-						amount = 30.0;
-					}
-				}
-			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -2845,7 +2585,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 		//MP5
 		case 29:
 		{
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_NORMAL)
 			{
 				switch(bodypart)
 				{
@@ -2879,7 +2619,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
 			{
 				switch(bodypart)
 				{
@@ -2913,7 +2653,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 				}
 			}
-			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
 			{
 				switch(bodypart)
 				{

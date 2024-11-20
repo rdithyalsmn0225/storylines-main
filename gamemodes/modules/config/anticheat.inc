@@ -373,9 +373,11 @@ function:OnAntiCheatUpdate()
 			}
 			SetMoney(playerid, PlayerInfo[playerid][E_CHARACTER_MONEY]);
 		}
-        if(ACPauseTimer[playerid] == 0 && !Inventory_Count(playerid, "Glock 17") || !Inventory_Count(playerid, "Glock 19") || !Inventory_Count(playerid, "Glock P80") || !Inventory_Count(playerid, "MAC 11") || !Inventory_Count(playerid, "MAC 12") || !Inventory_Count(playerid, "Socimi Type 821") 
-        || !Inventory_Count(playerid, "Spike Bat") || !Inventory_Count(playerid, "Wooden") || !Inventory_Count(playerid, "Nail Bat") || !Inventory_Count(playerid, "Broken Bottle") || !Inventory_Count(playerid, "Glass") || !Inventory_Count(playerid, "Knife") || !Inventory_Count(playerid, "9mm") || !Inventory_Count(playerid, "9x19mm") 
-        || !Inventory_Count(playerid, "Night Hawk") || !Inventory_Count(playerid, "Deagle") && !PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] && !PlayerInfo[playerid][E_CHARACTER_POLICEGUN])
+
+        if(ACPauseTimer[playerid] == 0 && !Inventory_Count(playerid, "Colt 45") || !Inventory_Count(playerid, "Silenced Colt") || !Inventory_Count(playerid, "Uzi") || !Inventory_Count(playerid, "Desert Eagle") 
+        || !Inventory_Count(playerid, "Desert Eagle") || !Inventory_Count(playerid, "Spike Bat") || !Inventory_Count(playerid, "Wooden") || !Inventory_Count(playerid, "Nail Bat") 
+        || !Inventory_Count(playerid, "Bottle") || !Inventory_Count(playerid, "Crowbar") || !Inventory_Count(playerid, "Knife") || !Inventory_Count(playerid, "Regular Ammo") 
+        || !Inventory_Count(playerid, "Surplus Ammo") && !PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] && !PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] && !PlayerInfo[playerid][E_CHARACTER_POLICEGUN])
 		{
 			new clientID, clientAmmo, gstr[512];
             for(new w = 0; w < 12; w++)

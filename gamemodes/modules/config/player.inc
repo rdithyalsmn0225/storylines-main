@@ -163,8 +163,11 @@ function:KickTimer(playerid) { return Kick(playerid); }
 
 ResetVarInventory(playerid)
 {
-	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != INVENTORY_NONE)
 	{
+		PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+		PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 0;
+		PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NONE;
 		RemovePlayerAttachedObject(playerid, 9);
 		RemovePlayerAttachedObject(playerid, 8);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
@@ -172,9 +175,7 @@ ResetVarInventory(playerid)
 		HidePlayerPhone(playerid);
 		CancelSelectTextDraw(playerid);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-		PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
-		PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 0;
-		
+		SendInfoMessage(playerid, "You has unequip your items in your hand.");
 	}
 	return 1;
 }
