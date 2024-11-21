@@ -1245,7 +1245,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 6.0;
 					}
 					case BODY_PART_GROIN:
 					{
@@ -1253,11 +1253,11 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 6.0;
+						amount = 5.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 6.0;
+						amount = 5.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
@@ -1269,7 +1269,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 50.0;
+						amount = 40.0;
 					}
 				}
 			}
@@ -1279,11 +1279,11 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 8.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 8.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
@@ -1295,11 +1295,79 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 3.0;
 					}
 					case BODY_PART_HEAD:
 					{
@@ -1317,31 +1385,31 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 6.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 6.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 7.0;
+						amount = 5.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 7.0;
+						amount = 5.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 5.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 5.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 50.0;
+						amount = 40.0;
 					}
 				}
 			}
@@ -1351,11 +1419,11 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 8.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 8.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
@@ -1367,11 +1435,79 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 3.0;
 					}
 					case BODY_PART_HEAD:
 					{
@@ -1393,23 +1529,23 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 10.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 7.0;
+						amount = 8.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 7.0;
+						amount = 8.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_HEAD:
 					{
@@ -1423,27 +1559,27 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 15.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 15.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 7.0;
+						amount = 10.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 7.0;
+						amount = 10.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 10.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 10.0;
 					}
 					case BODY_PART_HEAD:
 					{
@@ -1457,27 +1593,61 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 18.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 18.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 7.0;
+						amount = 12.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 7.0;
+						amount = 12.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 12.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 12.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 4.0;
 					}
 					case BODY_PART_HEAD:
 					{
@@ -1495,7 +1665,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 12.0;
+						amount = 8.0;
 					}
 					case BODY_PART_GROIN:
 					{
@@ -1503,23 +1673,23 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 5.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 5.0;
+						amount = 7.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 40.0;
 					}
 				}
 			}
@@ -1529,11 +1699,11 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 10.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 10.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
@@ -1545,15 +1715,83 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 15.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 15.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
 					}
 				}
 			}
@@ -1567,31 +1805,31 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 8.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 8.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 8.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 8.0;
+						amount = 7.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 40.0;
 					}
 				}
 			}
@@ -1601,11 +1839,11 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 10.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 10.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
@@ -1617,15 +1855,83 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 15.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 15.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
 					}
 				}
 			}
@@ -1639,31 +1945,31 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 12.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 12.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 8.0;
+						amount = 10.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 8.0;
+						amount = 10.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 10.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 10.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 40.0;
 					}
 				}
 			}
@@ -1673,31 +1979,31 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 15.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 15.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 8.0;
+						amount = 12.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 8.0;
+						amount = 12.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 12.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 12.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 50.0;
 					}
 				}
 			}
@@ -1707,31 +2013,65 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 18.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 18.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 8.0;
+						amount = 15.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 8.0;
+						amount = 15.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 15.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 15.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 6.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 6.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
 					}
 				}
 			}
@@ -2197,7 +2537,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 6.0;
 					}
 					case BODY_PART_GROIN:
 					{
@@ -2205,11 +2545,11 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 6.0;
+						amount = 5.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 6.0;
+						amount = 5.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
@@ -2221,7 +2561,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 50.0;
+						amount = 40.0;
 					}
 				}
 			}
@@ -2231,11 +2571,11 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 8.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 8.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
@@ -2247,11 +2587,79 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 3.0;
 					}
 					case BODY_PART_HEAD:
 					{
@@ -2269,31 +2677,31 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 6.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 6.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 7.0;
+						amount = 5.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 7.0;
+						amount = 5.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 5.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 5.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 50.0;
+						amount = 40.0;
 					}
 				}
 			}
@@ -2303,11 +2711,11 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 8.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 8.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
@@ -2319,11 +2727,79 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 8.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 3.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 3.0;
 					}
 					case BODY_PART_HEAD:
 					{
@@ -2345,23 +2821,23 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 10.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 7.0;
+						amount = 8.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 7.0;
+						amount = 8.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_HEAD:
 					{
@@ -2375,27 +2851,27 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 15.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 15.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 7.0;
+						amount = 10.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 7.0;
+						amount = 10.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 10.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 10.0;
 					}
 					case BODY_PART_HEAD:
 					{
@@ -2409,27 +2885,61 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 10.0;
+						amount = 18.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 18.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 7.0;
+						amount = 12.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 7.0;
+						amount = 12.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 12.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 12.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 4.0;
 					}
 					case BODY_PART_HEAD:
 					{
@@ -2447,7 +2957,7 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 12.0;
+						amount = 8.0;
 					}
 					case BODY_PART_GROIN:
 					{
@@ -2455,23 +2965,23 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 5.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 5.0;
+						amount = 7.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 40.0;
 					}
 				}
 			}
@@ -2481,11 +2991,11 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 10.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 10.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
@@ -2497,15 +3007,83 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 15.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 15.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
 					}
 				}
 			}
@@ -2519,31 +3097,31 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 8.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 8.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 8.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 8.0;
+						amount = 7.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 7.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 40.0;
 					}
 				}
 			}
@@ -2553,11 +3131,11 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 10.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 10.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
@@ -2569,15 +3147,83 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 8.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 15.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 15.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 10.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 4.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
 					}
 				}
 			}
@@ -2591,31 +3237,31 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 12.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 12.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 8.0;
+						amount = 10.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 8.0;
+						amount = 10.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 10.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 10.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 40.0;
 					}
 				}
 			}
@@ -2625,31 +3271,31 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 15.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 15.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 8.0;
+						amount = 12.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 8.0;
+						amount = 12.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 12.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 12.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 50.0;
 					}
 				}
 			}
@@ -2659,31 +3305,65 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				{
 					case BODY_PART_CHEST:
 					{
-						amount = 13.0;
+						amount = 18.0;
 					}
 					case BODY_PART_GROIN:
 					{
-						amount = 7.0;
+						amount = 18.0;
 					}
 					case BODY_PART_LEFT_ARM:
 					{
-						amount = 8.0;
+						amount = 15.0;
 					}
 					case BODY_PART_RIGHT_ARM:
 					{
-						amount = 8.0;
+						amount = 15.0;
 					}
 					case BODY_PART_LEFT_LEG:
 					{
-						amount = 6.0;
+						amount = 15.0;
 					}
 					case BODY_PART_RIGHT_LEG:
 					{
-						amount = 6.0;
+						amount = 15.0;
 					}
 					case BODY_PART_HEAD:
 					{
-						amount = 30.0;
+						amount = 50.0;
+					}
+				}
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
+			{
+				switch(bodypart)
+				{
+					case BODY_PART_CHEST:
+					{
+						amount = 6.0;
+					}
+					case BODY_PART_GROIN:
+					{
+						amount = 6.0;
+					}
+					case BODY_PART_LEFT_ARM:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_RIGHT_ARM:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_LEFT_LEG:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_RIGHT_LEG:
+					{
+						amount = 5.0;
+					}
+					case BODY_PART_HEAD:
+					{
+						amount = 50.0;
 					}
 				}
 			}
