@@ -107,6 +107,55 @@ stock ReturnWeaponsModel(weaponid)
     return WeaponModels[weaponid];
 }
 
+SetPlayerWeaponSkill(playerid, skill)
+{
+	switch(skill)
+	{
+	    case NORMAL_SKILL:
+		{
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 0);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 100);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 100);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 100);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 100);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SPAS12_SHOTGUN, 100);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_MICRO_UZI, 0);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_MP5, 100);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 100);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 100);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 100);
+	    }
+	    case MEDIUM_SKILL:
+		{
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 200);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 500);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 200);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 200);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 200);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SPAS12_SHOTGUN, 200);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_MICRO_UZI, 50);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_MP5, 250);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 200);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 200);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 300);
+	    }
+	    case FULL_SKILL:
+		{
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 998);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 998);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 999);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 999);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 999);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SPAS12_SHOTGUN, 999);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_MICRO_UZI, 50);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_MP5, 999);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 999);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 999);
+			SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 999);
+	    }
+	}
+}
+
 Dialog:WeaponColt(playerid, response, listitem, inputtext[])
 {
 	if(response)

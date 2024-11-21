@@ -94,7 +94,7 @@ main ()  {}
 #include "modules\business\business_gym.inc"
 #include "modules\business\business_clothes.inc"
 #include "modules\business\business_haircut.inc"
-#include "modules\business\business_ammunation.inc"
+#include "modules\business\business_gunstore.inc"
 #include "modules\business\business_extortion.inc"
 #include "modules\business\business_robbery.inc"
 // PROPERTY MODULES
@@ -982,18 +982,6 @@ stock LoadCharacter(playerid)
 	{
 		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE);
 	}
-	
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 500);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_SPAS12_SHOTGUN, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_MICRO_UZI, 50);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_MP5, 250);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 200);
-	SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 300);
 
 	SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	SetPlayerArmourEx(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
@@ -2130,6 +2118,40 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				PlayerInfo[playerid][E_CHARACTER_WOUND][i] = 4;
 			}
 		}
+	}
+
+	new Float: healths = PlayerInfo[playerid][E_CHARACTER_HEALTH];
+	if(healths >= 11 && healths <= 30)
+	{
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 200);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 500);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 200);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 200);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 200);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_SPAS12_SHOTGUN, 200);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_MICRO_UZI, 50);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_MP5, 250);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 200);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 200);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 300);
+
+		SendInfoMessage(playerid, "Low health, shooting skills at medium.");
+	}
+	if(healths <= 10)
+	{
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 0);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 100);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_DESERT_EAGLE, 100);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_SHOTGUN, 100);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_SAWNOFF_SHOTGUN, 100);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_SPAS12_SHOTGUN, 100);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_MICRO_UZI, 0);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_MP5, 100);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 100);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 100);
+		SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 100);
+
+		SendInfoMessage(playerid, "Critical low health, shooting skills at minimum.");
 	}
 
 	if(GetPlayerWeapon(issuerid) > 21 && GetPlayerWeapon(issuerid) < 35)

@@ -13,7 +13,7 @@ CMD:buybiz(playerid, params[])
 		if(BusinessInfo[id][E_BUSINESS_OWNERDBID])
 			return SendErrorMessage(playerid, "This business isn't for sale."); 
 
-		if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DEALERSHIP || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_HAIRCUT
+		if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_AMMUNATION || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_HAIRCUT
 		|| BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_GUNSTORE || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_ACID || BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_RENT)
 			return SendErrorMessage(playerid, "This property isn't for sale."); 
 			

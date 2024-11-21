@@ -185,9 +185,9 @@ stock BusinessRefresh(businessid)
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/buybeer' to see menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
-		case BUSINESS_TYPE_DEALERSHIP:
+		case BUSINESS_TYPE_AMMUNATION:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/carbuy' to see menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/buyweapon' to see weapon menu.", COLOR_DARKGREEN, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
 		case BUSINESS_TYPE_DMV:

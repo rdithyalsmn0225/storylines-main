@@ -210,6 +210,11 @@ stock SetPlayerHealthEx(playerid, Float:value)
 	PauseAC(playerid);
 	PlayerInfo[playerid][E_CHARACTER_HEALTH] = value;
 	SetPlayerHealth(playerid, value);
+    
+    if(value <= 10) SetPlayerWeaponSkill(playerid, NORMAL_SKILL);
+    else if(value >= 11 && value <= 30) SetPlayerWeaponSkill(playerid, MEDIUM_SKILL);
+    else SetPlayerWeaponSkill(playerid, FULL_SKILL);
+	
 	SaveCharacter(playerid);
 	return 1;
 }

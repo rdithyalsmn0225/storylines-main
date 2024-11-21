@@ -1398,8 +1398,7 @@ CMD:enter(playerid, params[])
 		if(BusinessInfo[b_id][E_BUSINESS_LOCKED])
 			return GameTextForPlayer(playerid, "~r~Locked", 3000, 3); 
 			
-		if(BusinessInfo[b_id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DEALERSHIP || BusinessInfo[b_id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV
-		|| BusinessInfo[b_id][E_BUSINESS_TYPE] == BUSINESS_TYPE_RENT)
+		if(BusinessInfo[b_id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV || BusinessInfo[b_id][E_BUSINESS_TYPE] == BUSINESS_TYPE_RENT)
 			return GameTextForPlayer(playerid, "~r~Closed", 3000, 3); 
 			
 		if(BusinessInfo[b_id][E_BUSINESS_ENTRANCEFEE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
