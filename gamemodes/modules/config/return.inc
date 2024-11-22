@@ -264,13 +264,47 @@ stock ReturnDBIDName(dbid)
 	return returnString;
 }
 
+ReturnFirstName(playerid)
+{
+    new firstname[24];
+    new fullName[64];
+    format(fullName, sizeof(fullName), "%s", PlayerInfo[playerid][E_CHARACTER_NAME]);
+    
+    new pos = strfind(fullName, "_", true);
+
+    if (pos != -1)
+    {
+        strmid(firstname, fullName, 0, pos, sizeof(firstname));
+        return firstname;
+    }
+
+    return firstname;
+}
+
+ReturnLastName(playerid)
+{
+    new lastname[24];
+    new fullName[64];
+    format(fullName, sizeof(fullName), "%s", PlayerInfo[playerid][E_CHARACTER_NAME]);
+    
+    new pos = strfind(fullName, "_", true);
+
+    if (pos != -1)
+    {
+        strmid(lastname, fullName, pos + 1, strlen(fullName), sizeof(lastname));
+        return lastname;
+    }
+
+    return lastname; // Jika '_' tidak ditemukan
+}
+
 ReturnMixedName(playerid) 
 {
 	new name[64], shortname[MAX_PLAYER_NAME];
-	format(shortname, sizeof ( shortname ), "%s", PlayerInfo[playerid][E_CHARACTER_NAME]) ;
+	format(shortname, sizeof ( shortname ), "%s", PlayerInfo[playerid][E_CHARACTER_NAME]);
     strdel(shortname, 0, strfind(shortname,"_",true) + 1);
 
-    format(name, sizeof(name), "%s (%.1s. %s)", AccountInfo[playerid][E_MASTERS_ACCNAME], PlayerInfo[playerid][E_CHARACTER_NAME], shortname ) ;
+    format(name, sizeof(name), "%.1s. %s", PlayerInfo[playerid][E_CHARACTER_NAME], shortname);
     return name;
 }
 

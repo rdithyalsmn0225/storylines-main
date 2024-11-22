@@ -302,18 +302,6 @@ function:OnGasStationRefill(playerid, vehicleid, x, y, z)
 {
 	new 
 		text[128];
-
-	if(GetVehicleDistanceFromPoint(vehicleid, x, y, z) > 5)
-	{
-		SendErrorMessage(playerid, "The vehicle you were refilling moved and canceled."); 
-		
-		KillTimer(playerRefillTimer[playerid]);
-		playerRefillingVehicle[playerid] = false; 
-		
-		Delete3DTextLabel(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY]); 
-		VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 0; 
-		return 1;
-	}
 	
 	if(!IsPlayerInRangeOfPoint(playerid, 2.0, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]))
 	{

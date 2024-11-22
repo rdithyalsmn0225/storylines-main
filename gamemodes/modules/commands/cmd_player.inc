@@ -1266,13 +1266,13 @@ CMD:loudspeaker(playerid, params[])
 	return 1; 
 }
 
-CMD:mylicense(playerid, params[])
+CMD:myidcard(playerid, params[])
 {
 	new
 		playerb;
 		
 	if(sscanf(params, "u", playerb))
-		return SendUsageMessage(playerid, "/mylicense [playerid OR name]"); 
+		return SendUsageMessage(playerid, "/myidcard [playerid OR name]"); 
 	
 	if(!IsPlayerConnected(playerb))
 		return SendErrorMessage(playerid, "You specified an invalid player.");
@@ -1288,7 +1288,7 @@ CMD:mylicense(playerid, params[])
 		
 	else SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s looks at their identification card.", ReturnName(playerid));
 	
-	ReturnLicenses(playerid, playerb); 	
+	ShowIDCARD(playerid, playerb);
 	return 1;
 }
 

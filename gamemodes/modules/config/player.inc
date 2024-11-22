@@ -456,6 +456,85 @@ stock ClearLines(playerid, lines)
 	return 1;
 }
 
+stock ShowIDCARD(playerid, playerb)
+{
+	new gender[10], 
+	drivelic[3], weaponlic[3], truckerlic[3],
+    str[24], str1[32], str2[32],
+	str3[32], str4[32], str5[32], 
+	str6[32], str7[32], str8[32],
+	str9[32], str10[32], str11[32];
+
+
+	if(PlayerInfo[playerb][E_CHARACTER_GENDER] == 1)
+	{
+		format(gender, 10, "Male");
+	}
+	else if(PlayerInfo[playerb][E_CHARACTER_GENDER] == 2)
+	{
+		format(gender, 10, "Female");
+	}
+
+	if(PlayerInfo[playerb][E_CHARACTER_DRIVELICENSE] == 1)
+	{
+		format(drivelic, 10, "Yes");
+	}
+	else
+	{
+		format(drivelic, 10, "No");
+	}
+
+	if(PlayerInfo[playerb][E_CHARACTER_WEAPLICENSE] == 1)
+	{
+		format(weaponlic, 10, "Yes");
+	}
+	else
+	{
+		format(weaponlic, 10, "No");
+	}
+
+	if(PlayerInfo[playerb][E_CHARACTER_TRUCKERLICENSE] == 1)
+	{
+		format(truckerlic, 10, "Yes");
+	}
+	else
+	{
+		format(truckerlic, 10, "No");
+	}
+
+	PlayerTextDrawSetPreviewModel(playerid, idcard[3][playerid], PlayerInfo[playerb][E_CHARACTER_LASTSKIN]);
+	format(str, sizeof(str), "ID ~r~%d", playerb);
+	PlayerTextDrawSetString(playerid, idcard[4][playerid], str);
+	format(str1, sizeof(str1), "LN ~l~%s", ReturnLastName(playerb));
+	PlayerTextDrawSetString(playerid, idcard[5][playerid], str1);
+	format(str2, sizeof(str2), "FN ~l~%s", ReturnFirstName(playerb));
+	PlayerTextDrawSetString(playerid, idcard[6][playerid], str2);
+	format(str3, sizeof(str3), "DOB ~r~%s", PlayerInfo[playerb][E_CHARACTER_AGE]);
+	PlayerTextDrawSetString(playerid, idcard[8][playerid], str3);
+	format(str4, sizeof(str4), "ORIGIN ~l~%s", PlayerInfo[playerb][E_CHARACTER_ORIGIN]);
+	PlayerTextDrawSetString(playerid, idcard[7][playerid], str4);
+	format(str5, sizeof(str5), "SEX ~l~%s", gender);
+	PlayerTextDrawSetString(playerid, idcard[9][playerid], str5);
+	format(str6, sizeof(str6), "JOB ~l~%s", ReturnJobName(PlayerInfo[playerb][E_CHARACTER_JOBS]));
+	PlayerTextDrawSetString(playerid, idcard[10][playerid], str6);
+	format(str7, sizeof(str7), "FACTION ~l~%s", ReturnFactionAbbrev(PlayerInfo[playerb][E_CHARACTER_FACTION]));
+	PlayerTextDrawSetString(playerid, idcard[11][playerid], str7);
+	format(str8, sizeof(str8), "Drivelic ~l~%s", drivelic);
+	PlayerTextDrawSetString(playerid, idcard[12][playerid], str8);
+	format(str9, sizeof(str9), "Truckerlic ~l~%s", truckerlic);
+	PlayerTextDrawSetString(playerid, idcard[13][playerid], str9);
+	format(str10, sizeof(str10), "Weaponlic ~l~%s", weaponlic);
+	PlayerTextDrawSetString(playerid, idcard[14][playerid], str10);
+	format(str11, sizeof(str11), "%s", ReturnMixedName(playerb));
+	PlayerTextDrawSetString(playerid, idcard[15][playerid], str11);
+
+	for(new i; i < 19; i++)
+	{
+		PlayerTextDrawShow(playerid, idcard[i][playerid]);
+	}
+	return 1;
+}
+
 stock ShowCharacterStats(playerid, playerb)
 {
 	new 

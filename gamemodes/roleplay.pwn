@@ -325,6 +325,7 @@ public OnPlayerConnect(playerid)
 	CreateHUDTextDraws(playerid);
 	CreateALPRTextdraws(playerid);
 	CreatePhoneTextDraws(playerid);
+	CreateIDCARDTextDraws(playerid);
 	CreateVehicleTextDraws(playerid);
 	CreateBarInfoTextDraws(playerid);
 	CreateTutorialTextDraws(playerid);
@@ -848,6 +849,7 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_int(0, "pLastWorld", PlayerInfo[playerid][E_CHARACTER_LASTWORLD]);
 	cache_get_value_name_int(0, "pLevel", PlayerInfo[playerid][E_CHARACTER_LEVEL]);
 	cache_get_value_name(0, "pAge", PlayerInfo[playerid][E_CHARACTER_AGE], 20);
+	cache_get_value_name(0, "pOrigin", PlayerInfo[playerid][E_CHARACTER_ORIGIN], 60);
 	cache_get_value_name(0, "pStory", PlayerInfo[playerid][E_CHARACTER_STORY], 90);
 	cache_get_value_name(0, "pStoryTwo", PlayerInfo[playerid][E_CHARACTER_STORYTWO], 90);
 	cache_get_value_name_int(0, "pMoney", PlayerInfo[playerid][E_CHARACTER_MONEY]);
@@ -875,6 +877,7 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_int(0, "pSpawnPoint", PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT]);
 	cache_get_value_name_int(0, "pWeaponsLicense", PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE]);
 	cache_get_value_name_int(0, "pDriversLicense", PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE]); 
+	cache_get_value_name_int(0, "pTruckerLicense", PlayerInfo[playerid][E_CHARACTER_TRUCKERLICENSE]); 
 	cache_get_value_name_int(0, "pActiveListings", PlayerInfo[playerid][E_CHARACTER_ACTIVELIST]); 
 	cache_get_value_name_bool(0, "pPrison", PlayerInfo[playerid][E_CHARACTER_PRISONED]);
 	cache_get_value_name_int(0, "pPrisonTimes", PlayerInfo[playerid][E_CHARACTER_PRISON]); 
@@ -4100,11 +4103,15 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
 			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
 		
-		/*for(new i; i < MAX_VEHICLES; i++)
+		for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][1])
-				return SendErrorMessage(playerid, "This vehicle's already spawned.");
-		}*/
+			{
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, VehicleInfo[i][E_VEHICLE_POS][0], VehicleInfo[i][E_VEHICLE_POS][1], VehicleInfo[i][E_VEHICLE_POS][2], 0.0, 0.0, 0.0);
+				SendErrorMessage(playerid, "This vehicle's already spawned.");
+				return 1;
+			}
+		}
 
 		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][1]);
@@ -4116,11 +4123,15 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
 			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
 		
-		/*for(new i; i < MAX_VEHICLES; i++)
+		for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][2])
-				return SendErrorMessage(playerid, "This vehicle's already spawned.");
-		}*/
+			{
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, VehicleInfo[i][E_VEHICLE_POS][0], VehicleInfo[i][E_VEHICLE_POS][1], VehicleInfo[i][E_VEHICLE_POS][2], 0.0, 0.0, 0.0);
+				SendErrorMessage(playerid, "This vehicle's already spawned.");
+				return 1;
+			}
+		}
 
 		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][2]);
@@ -4132,11 +4143,15 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
 			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
 		
-		/*for(new i; i < MAX_VEHICLES; i++)
+		for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][3])
-				return SendErrorMessage(playerid, "This vehicle's already spawned.");
-		}*/
+			{
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, VehicleInfo[i][E_VEHICLE_POS][0], VehicleInfo[i][E_VEHICLE_POS][1], VehicleInfo[i][E_VEHICLE_POS][2], 0.0, 0.0, 0.0);
+				SendErrorMessage(playerid, "This vehicle's already spawned.");
+				return 1;
+			}
+		}
 
 		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][3]);
@@ -4148,11 +4163,15 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
 			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
 		
-		/*for(new i; i < MAX_VEHICLES; i++)
+		for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][4])
-				return SendErrorMessage(playerid, "This vehicle's already spawned.");
-		}*/
+			{
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, VehicleInfo[i][E_VEHICLE_POS][0], VehicleInfo[i][E_VEHICLE_POS][1], VehicleInfo[i][E_VEHICLE_POS][2], 0.0, 0.0, 0.0);
+				SendErrorMessage(playerid, "This vehicle's already spawned.");
+				return 1;
+			}
+		}
 
 		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][4]);
@@ -5534,12 +5553,13 @@ function:SaveCharacter(playerid)
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pMainSlot = %i, pRobberyCooldown = %i, pSpawnPoint = %i, pWeaponsLicense = %i, pDriversLicense = %i, pPrison = %i, pPrisonTimes = %i, pFightstyle = %i WHERE char_dbid = %i",
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pMainSlot = %i, pRobberyCooldown = %i, pSpawnPoint = %i, pWeaponsLicense = %i, pDriversLicense = %i, pTruckerLicense = %i, pPrison = %i, pPrisonTimes = %i, pFightstyle = %i WHERE char_dbid = %i",
 		PlayerInfo[playerid][E_CHARACTER_MAINSLOT],
 		PlayerInfo[playerid][E_CHARACTER_ROBBERYCD],
 		PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT],
 		PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE],
 		PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE],
+		PlayerInfo[playerid][E_CHARACTER_TRUCKERLICENSE],
 		PlayerInfo[playerid][E_CHARACTER_PRISON],
 		PlayerInfo[playerid][E_CHARACTER_PRISON],
 		PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE],
