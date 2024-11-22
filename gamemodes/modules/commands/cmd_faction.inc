@@ -375,14 +375,14 @@ CMD:flocker(playerid, params[])
 	{
 		if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
 		{
-			Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Police Deagle (50 Ammo)", "Select", "Cancel");
+			Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Desert Eagle (50 Ammo)\nTake Shotgun (50 Ammo)", "Select", "Cancel");
 		}
 	}
 	else if(IsPlayerInRangeOfPoint(playerid, 5.0, 1833.1627,-1072.3607,41.6537) || IsPlayerInRangeOfPoint(playerid, 5.0, 1269.3730,-1307.3560,1061.1392))
 	{
 		if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
 		{
-			Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Bandage (10 Pcs)", "Select", "Cancel");
+			Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Bandage (10 Pcs)\nTake Fire Extinguisher", "Select", "Cancel");
 		}
 	}
 	else return SendErrorMessage(playerid, "You aren't near your faction spawn.");
@@ -478,7 +478,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
                 {
 					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
 					{
-						new str[1024];
+						new str[2024];
 						for(new i; i < sizeof(g_aLspdSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLspdSkins[i]);
@@ -487,7 +487,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 					}
 					else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
-						new str[1024];
+						new str[2024];
 						for(new i; i < sizeof(g_aLspdFemSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLspdFemSkins[i]);
@@ -496,11 +496,11 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 					}
                 }
 				
-                if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+                else if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
                 {
 					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
-						new str[1024];
+						new str[2024];
 						for(new i; i < sizeof(g_aLsmdSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLsmdSkins[i]);
@@ -509,7 +509,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 					}
 					else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
-						new str[1024];
+						new str[2024];
 						for(new i; i < sizeof(g_aLsmdFemSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLsmdFemSkins[i]);
@@ -524,13 +524,28 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
                 {
 					if(!Inventory_Count(playerid, "Desert Eagle"))
 					{
-						Inventory_Add(playerid, "Desert Eagle", 348, 1);
+						Inventory_Set(playerid, "Desert Eagle", 348, 1);
 					}
-					Inventory_Add(playerid, "Regular Ammo", 2040, 50);
+					Inventory_Set(playerid, "Regular Ammo", 2040, 50);
                 }
                 if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
                 {
 					Inventory_Set(playerid, "Bandage", 17738, 10);
+                }
+            }
+			case 2:
+            {
+                if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+                {
+					if(!Inventory_Count(playerid, "Desert Eagle"))
+					{
+						Inventory_Set(playerid, "Desert Eagle", 348, 1);
+					}
+					Inventory_Set(playerid, "Regular Ammo", 2040, 50);
+                }
+                if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+                {
+					Inventory_Set(playerid, "Extinguisher", 366, 1);
                 }
             }
         }
