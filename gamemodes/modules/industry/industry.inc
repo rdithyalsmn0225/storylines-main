@@ -22,19 +22,19 @@ stock IndustryRefresh(id)
 	}
 	
 
-    format(str, sizeof(str), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price: {93C47D}{93C47D}$%s{ffffff}{ffffff} / unit", IndustryInfo[0][Cargo], ServerInfo[id][E_SERVER_FABRIC], FormatMoney(IndustryInfo[0][Price] * 100, floatround_round));
+    format(str, sizeof(str), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price: {93C47D}{93C47D}$%s{ffffff}{ffffff} / unit", IndustryInfo[0][Cargo], ServerInfo[id][E_SERVER_FABRIC], FormatMoney(floatround(IndustryInfo[0][Price] * 100, floatround_round)));
     
-	format(str1, sizeof(str1), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[1][Cargo], ServerInfo[id][E_SERVER_STEEL], FormatMoney(IndustryInfo[1][Price] * 100, floatround_round));
+	format(str1, sizeof(str1), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[1][Cargo], ServerInfo[id][E_SERVER_STEEL], FormatMoney(floatround(IndustryInfo[1][Price] * 100, floatround_round)));
 
-	format(str2, sizeof(str2), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[2][Cargo], ServerInfo[id][E_SERVER_WOODS], FormatMoney(IndustryInfo[2][Price] * 100, floatround_round));
+	format(str2, sizeof(str2), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[2][Cargo], ServerInfo[id][E_SERVER_WOODS], FormatMoney(floatround(IndustryInfo[2][Price] * 100, floatround_round)));
 
-	format(str3, sizeof(str3), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[3][Cargo], ServerInfo[id][E_SERVER_FISH], FormatMoney(IndustryInfo[3][Price] * 100, floatround_round));
+	format(str3, sizeof(str3), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[3][Cargo], ServerInfo[id][E_SERVER_FISH], FormatMoney(floatround(IndustryInfo[3][Price] * 100, floatround_round)));
 
-	format(str4, sizeof(str4), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[4][Cargo], ServerInfo[id][E_SERVER_FOODS], FormatMoney(IndustryInfo[4][Price] * 100, floatround_round));
+	format(str4, sizeof(str4), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[4][Cargo], ServerInfo[id][E_SERVER_FOODS], FormatMoney(floatround(IndustryInfo[4][Price] * 100, floatround_round)));
 
-	format(str5, sizeof(str5), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[5][Cargo], ServerInfo[id][E_SERVER_CLOTHES], FormatMoney(IndustryInfo[5][Price] * 100, floatround_round));
+	format(str5, sizeof(str5), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[5][Cargo], ServerInfo[id][E_SERVER_CLOTHES], FormatMoney(floatround(IndustryInfo[5][Price] * 100, floatround_round)));
 
-	format(str6, sizeof(str6), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[6][Cargo], ServerInfo[id][E_SERVER_APPLIANCES], FormatMoney(IndustryInfo[6][Price] * 100, floatround_round));
+	format(str6, sizeof(str6), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[6][Cargo], ServerInfo[id][E_SERVER_APPLIANCES], FormatMoney(floatround(IndustryInfo[6][Price] * 100, floatround_round)));
 
 
 	ServerInfo[id][E_SERVER_3DTEXT][0] = CreateDynamic3DTextLabel(str, COLOR_DARKGREEN, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz], 5.0);

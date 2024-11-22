@@ -683,7 +683,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 5:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Vehicle Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/mycars, /engine, /carlock, /carkey, /carsell, /cardespawn, /cartrunk, /carhood");
+						SendClientMessage(playerid, COLOR_ORANGE, "/mycars, /engine, /carlock, /carkey, /carsell, /carpark, /cartrunk, /carhood");
 						SendClientMessage(playerid, COLOR_ORANGE, "/carlights, /carfind, /carradio, /carscrap, /carwhisper, /carb, /refill");
 					}
 					case 6:
@@ -1529,17 +1529,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 							if(GetVehicleModel(carid) == 459 || GetVehicleModel(carid) == 482 || GetVehicleModel(carid) == 440 || GetVehicleModel(carid) == 413)
 							{
+								if(!strcmp(string, "Fabric Cargo") && VS_Count(carid, "Fabric Cargo") >= 3 || !strcmp(string, "Steel Cargo") && VS_Count(carid, "Steel Cargo") >= 3 \
+								|| !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 3 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 3
+								|| !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 3 || !strcmp(string, "Appliances Cargo") && VS_Count(carid, "Appliances Cargo") >= 3
+								|| !strcmp(string, "Fish Cargo") && VS_Count(carid, "Fish Cargo") >= 3)
+									return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(string, "Fabric Cargo") && VS_Count(carid, "Fabric Cargo") >= 3 || !strcmp(string, "Steel Cargo") && VS_Count(carid, "Steel Cargo") >= 3 \
-									|| !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 3 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 3
-									|| !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 3 || !strcmp(string, "Appliances Cargo") && VS_Count(carid, "Appliances Cargo") >= 3
-									|| !strcmp(string, "Fish Cargo") && VS_Count(carid, "Fish Cargo") >= 3)
-										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
-
 									VS_AddItem(carid, string, InventoryInfo[playerid][id][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, string);
 						
@@ -1556,17 +1556,18 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							}
 							else if(GetVehicleModel(carid) == 499 || GetVehicleModel(carid) == 414)
 							{
+								if(!strcmp(string, "Fabric Cargo") && VS_Count(carid, "Fabric Cargo") >= 5 || !strcmp(string, "Steel Cargo") && VS_Count(carid, "Steel Cargo") >= 5
+								|| !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 5 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 5
+								|| !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 5 || !strcmp(string, "Appliances Cargo") && VS_Count(carid, "Appliances Cargo") >= 5
+								|| !strcmp(string, "Fish Cargo") && VS_Count(carid, "Fish Cargo") >= 5)
+									return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+
+
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(string, "Fabric Cargo") && VS_Count(carid, "Fabric Cargo") >= 5 || !strcmp(string, "Steel Cargo") && VS_Count(carid, "Steel Cargo") >= 5
-									|| !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 5 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 5
-									|| !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 5 || !strcmp(string, "Appliances Cargo") && VS_Count(carid, "Appliances Cargo") >= 5
-									|| !strcmp(string, "Fish Cargo") && VS_Count(carid, "Fish Cargo") >= 5)
-										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
-
 									VS_AddItem(carid, string, InventoryInfo[playerid][id][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, string);
 				
@@ -1583,17 +1584,18 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							}
 							else if(GetVehicleModel(carid) == 456)
 							{
+								if(!strcmp(string, "Fabric Cargo") && VS_Count(carid, "Fabric Cargo") >= 8 || !strcmp(string, "Steel Cargo") && VS_Count(carid, "Steel Cargo") >= 8
+								|| !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 8 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 8
+								|| !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 8 || !strcmp(string, "Appliances Cargo") && VS_Count(carid, "Appliances Cargo") >= 8
+								|| !strcmp(string, "Fish Cargo") && VS_Count(carid, "Fish Cargo") >= 8)
+									return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+
+
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(string, "Fabric Cargo") && VS_Count(carid, "Fabric Cargo") >= 8 || !strcmp(string, "Steel Cargo") && VS_Count(carid, "Steel Cargo") >= 8
-									|| !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 8 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 8
-									|| !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 8 || !strcmp(string, "Appliances Cargo") && VS_Count(carid, "Appliances Cargo") >= 8
-									|| !strcmp(string, "Fish Cargo") && VS_Count(carid, "Fish Cargo") >= 8)
-										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
-
 									VS_AddItem(carid, string, InventoryInfo[playerid][id][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, string);
 						
@@ -1610,17 +1612,18 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							}
 							else if(GetVehicleModel(carid) == 455)
 							{
+								if(!strcmp(string, "Fabric Cargo") && VS_Count(carid, "Fabric Cargo") >= 10 || !strcmp(string, "Steel Cargo") && VS_Count(carid, "Steel Cargo") >= 10
+								|| !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 10 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 10
+								|| !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 10 || !strcmp(string, "Appliances Cargo") && VS_Count(carid, "Appliances Cargo") >= 10
+								|| !strcmp(string, "Fish Cargo") && VS_Count(carid, "Fish Cargo") >= 10)
+									return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+
+
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(string, "Fabric Cargo") && VS_Count(carid, "Fabric Cargo") >= 10 || !strcmp(string, "Steel Cargo") && VS_Count(carid, "Steel Cargo") >= 10
-									|| !strcmp(string, "Woods Cargo") && VS_Count(carid, "Woods Cargo") >= 10 || !strcmp(string, "Foods Cargo") && VS_Count(carid, "Foods Cargo") >= 10
-									|| !strcmp(string, "Clothes Cargo") && VS_Count(carid, "Clothes Cargo") >= 10 || !strcmp(string, "Appliances Cargo") && VS_Count(carid, "Appliances Cargo") >= 10
-									|| !strcmp(string, "Fish Cargo") && VS_Count(carid, "Fish Cargo") >= 10)
-										return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
-
 									VS_AddItem(carid, string, InventoryInfo[playerid][id][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, string);
 						
@@ -1637,14 +1640,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							}
 							else if(GetVehicleModel(carid) == 422 || GetVehicleModel(carid) == 478 || GetVehicleModel(carid) == 554 || GetVehicleModel(carid) == 543)
 							{
+								if(!strcmp(string, "Woods") && VS_Count(carid, "Woods") >= 3)
+									return SendErrorMessage(playerid, "You can't place woods into your vehicle trunk is full.");
+
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
 								else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] == 1)
 								{
-									if(!strcmp(string, "Woods") && VS_Count(carid, "Woods") >= 3)
-										return SendErrorMessage(playerid, "You can't place woods into your vehicle trunk is full.");
-
 									VS_AddItem(carid, string, InventoryInfo[playerid][id][E_INVENTORY_MODEL], 1);
 									Inventory_Remove(playerid, string);
 									VehicleObjectUpdates(carid);

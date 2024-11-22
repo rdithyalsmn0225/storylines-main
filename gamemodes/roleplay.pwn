@@ -4097,68 +4097,64 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 	// Vehicle Selection:
 	if (playertextid == VehicleSelection[14][playerid])
     {
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
-			
-		new threadLoad[128]; 
+		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
 		
-		for(new i; i < MAX_VEHICLES; i++)
+		/*for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][1])
 				return SendErrorMessage(playerid, "This vehicle's already spawned.");
-		}
+		}*/
 
+		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][1]);
 		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
         return 1;
     }
 	if (playertextid == VehicleSelection[15][playerid])
     {
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
-			
-		new threadLoad[128]; 
+		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
 		
-		for(new i; i < MAX_VEHICLES; i++)
+		/*for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][2])
 				return SendErrorMessage(playerid, "This vehicle's already spawned.");
-		}
+		}*/
 
+		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][2]);
 		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
         return 1;
     }
 	if (playertextid == VehicleSelection[16][playerid])
     {
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
-			
-		new threadLoad[128]; 
+		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
 		
-		for(new i; i < MAX_VEHICLES; i++)
+		/*for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][3])
 				return SendErrorMessage(playerid, "This vehicle's already spawned.");
-		}
+		}*/
 
+		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][3]);
 		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
         return 1;
     }
 	if (playertextid == VehicleSelection[17][playerid])
     {
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
-			
-		new threadLoad[128]; 
+		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
 		
-		for(new i; i < MAX_VEHICLES; i++)
+		/*for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][4])
 				return SendErrorMessage(playerid, "This vehicle's already spawned.");
-		}
+		}*/
 
+		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][4]);
 		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
         return 1;

@@ -88,7 +88,7 @@ CMD:carkey(playerid, params[])
     return 1;
 }
 
-CMD:cardespawn(playerid, params[])
+CMD:carpark(playerid, params[])
 {
     if(!IsPlayerInAnyVehicle(playerid))
 		return SendErrorMessage(playerid, "You aren't in any vehicle.");
@@ -125,16 +125,10 @@ CMD:cardespawn(playerid, params[])
 	VehicleInfo[vehicleid][E_VEHICLE_POS][3] = a;
 	VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = vehicle_health;
 	SaveVehicle(vehicleid);
-
-	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = false; 
-	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = INVALID_VEHICLE_ID;
 		
 	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You parked your {d7d292}%s{cdd0d1}.", ReturnVehicleName(vehicleid));
 		
-	SaveVehicle(vehicleid);
-		
-	ResetVehicleVars(vehicleid);
-	DestroyVehicle(vehicleid); 
+	SaveVehicle(vehicleid); 
     return 1;
 }
 

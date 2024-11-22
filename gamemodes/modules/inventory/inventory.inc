@@ -277,16 +277,14 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 				{
 					if(GetVehicleModel(id) == 459 || GetVehicleModel(id) == 482 || GetVehicleModel(id) == 440 || GetVehicleModel(id) == 413)
 					{
-						if (id == -1) {
-							return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
-						}
-						else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+						if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 3 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 3
+						|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 3 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 3
+						|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 3 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 3
+						|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 3)
+							return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+
+						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
 						{
-							if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 3 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 3
-							|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 3 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 3
-							|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 3 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 3
-							|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 3)
-								return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
 							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
 							Inventory_Remove(playerid, name);
@@ -295,8 +293,6 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 						}
 						else
 						{
-							PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
-
 							new str[512];
 							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
@@ -304,17 +300,14 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 					}
 					else if(GetVehicleModel(id) == 499 || GetVehicleModel(id) == 414)
 					{
-						if (id == -1) {
-							return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
-						}
-						else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
-						{
-							if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 5 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 5
-							|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 5 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 5
-							|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 5 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 5
-							|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 5)
-								return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+						if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 5 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 5
+						|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 5 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 5
+						|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 5 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 5
+						|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 5)
+							return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
+						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+						{
 							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
 							Inventory_Remove(playerid, name);
 		
@@ -322,8 +315,6 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 						}
 						else
 						{
-							PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
-
 							new str[512];
 							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
@@ -331,17 +322,14 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 					}
 					else if(GetVehicleModel(id) == 456)
 					{
-						if (id == -1) {
-							return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
-						}
-						else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
-						{
-							if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 8 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 8
-							|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 8 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 8
-							|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 8 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 8
-							|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 8)
-								return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+						if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 8 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 8
+						|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 8 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 8
+						|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 8 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 8
+						|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 8)
+							return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
+						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+						{
 							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
 							Inventory_Remove(playerid, name);
 			
@@ -349,8 +337,6 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 						}
 						else
 						{
-							PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
-
 							new str[512];
 							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
@@ -358,17 +344,14 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 					}
 					else if(GetVehicleModel(id) == 455)
 					{
-						if (id == -1) {
-							return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
-						}
-						else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
-						{
-							if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 10 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 10
-							|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 10 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 10
-							|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 10 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 10
-							|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 10)
-								return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+						if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 10 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 10
+						|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 10 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 10
+						|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 10 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 10
+						|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 10)
+							return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
 
+						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+						{
 							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
 							Inventory_Remove(playerid, name);
 			
@@ -376,8 +359,6 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 						}
 						else
 						{
-							PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
-
 							new str[512];
 							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
@@ -386,14 +367,11 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 					//Lumberjack
 					else if(GetVehicleModel(id) == 422 || GetVehicleModel(id) == 478 || GetVehicleModel(id) == 554 || GetVehicleModel(id) == 543)
 					{
-						if (id == -1) {
-							return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
-						}
-						else if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
-						{
-							if(!strcmp(name, "Woods") && VS_Count(id, "Woods") >= 3)
-								return SendErrorMessage(playerid, "You can't place woods into your vehicle trunk is full.");
+						if(!strcmp(name, "Woods") && VS_Count(id, "Woods") >= 3)
+							return SendErrorMessage(playerid, "You can't place woods into your vehicle trunk is full.");
 
+						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+						{
 							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
 							Inventory_Remove(playerid, name);
 							VehicleObjectUpdates(id);
@@ -401,8 +379,6 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 						}
 						else
 						{
-							PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
-
 							new str[512];
 							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");

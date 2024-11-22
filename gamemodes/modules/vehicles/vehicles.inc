@@ -489,9 +489,12 @@ function:Query_LoadPrivateVehicle(playerid)
 			}
 			cache_get_value_name_int(i, "VehiclePaintjob", VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB]);
 			
-			format(str, sizeof(str), "SELECT * FROM `vstorage` WHERE `ID` = '%d'", VehicleInfo[vehicleid][E_VEHICLE_DBID]);
-			mysql_pquery(ourConnection, str, "VehicleStorage_Load", "d", vehicleid);
-
+			if(VehicleInfo[vehicleid][E_VEHICLE_EXISTS] && IsValidVehicle(vehicleid))
+			{
+				format(str, sizeof(str), "SELECT * FROM `vstorage` WHERE `ID` = '%d'", VehicleInfo[vehicleid][E_VEHICLE_DBID]);
+				mysql_pquery(ourConnection, str, "VehicleStorage_Load", "d", vehicleid);
+			}
+			
 			if(VehicleInfo[vehicleid][E_VEHICLE_INT] != 0)
 			{
 				LinkVehicleToInterior(vehicleid, VehicleInfo[vehicleid][E_VEHICLE_INT]); 

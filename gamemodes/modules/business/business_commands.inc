@@ -442,7 +442,7 @@ CMD:editbusiness(playerid, params[])
 	}
 	else if(!strcmp(astr, "price"))
 	{
-		new price;
+		new Float:price;
 		
 		if(sscanf(bstr, "f", price))
 			return SendUsageMessage(playerid, "/editbusiness %i price [amount]", id);

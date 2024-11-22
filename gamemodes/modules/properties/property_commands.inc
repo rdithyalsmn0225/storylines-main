@@ -100,7 +100,7 @@ CMD:editproperty(playerid, params[])
 	}
 	else if(!strcmp(indx, "price"))
 	{
-		new price;
+		new Float:price;
 		
 		if(sscanf(specifier, "f", price))
 			return SendUsageMessage(playerid, "/editproperty %i price [price]", id);

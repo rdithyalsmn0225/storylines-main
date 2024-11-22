@@ -3,12 +3,9 @@
 function:VehicleStorage_Load(vehicleid)
 {
 	new
-	    rows,
-	    fields,
 		str[32];
 
-	cache_get_row_count(rows);
-	cache_get_field_count(fields);
+	new rows = cache_num_rows();
 
 	for (new i = 0; i != rows; i ++) 
     {
