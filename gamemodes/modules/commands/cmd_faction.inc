@@ -375,7 +375,7 @@ CMD:flocker(playerid, params[])
 	{
 		if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
 		{
-			Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Desert Eagle (50 Ammo)\nTake Shotgun (50 Ammo)", "Select", "Cancel");
+			Dialog_Show(playerid, FactionLockers, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Desert Eagle\nTake Shotgun\nTake Regular Ammo\nTake Surplus Ammo\nTake JHP Ammo\nTake Rubber Ammo", "Select", "Cancel");
 		}
 	}
 	else if(IsPlayerInRangeOfPoint(playerid, 5.0, 1833.1627,-1072.3607,41.6537) || IsPlayerInRangeOfPoint(playerid, 5.0, 1269.3730,-1307.3560,1061.1392))
@@ -533,15 +533,87 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 					Inventory_Set(playerid, "Bandage", 17738, 10);
                 }
             }
-			case 2:
+			case 3:
             {
                 if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
                 {
-					if(!Inventory_Count(playerid, "Desert Eagle"))
+					if(!Inventory_Count(playerid, "Shotgun"))
 					{
-						Inventory_Set(playerid, "Desert Eagle", 348, 1);
+						Inventory_Set(playerid, "Shotgun", 348, 1);
 					}
 					Inventory_Set(playerid, "Regular Ammo", 2040, 50);
+                }
+                if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+                {
+					Inventory_Set(playerid, "Extinguisher", 366, 1);
+                }
+            }
+			case 4:
+            {
+                if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+                {
+					if(!Inventory_Count(playerid, "Regular Ammo"))
+					{
+						Inventory_Set(playerid, "Regular Ammo", 2040, 50);
+					}
+					else
+					{
+						Inventory_Set(playerid, "Regular Ammo", 2040, 0);
+					}
+                }
+                if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+                {
+					Inventory_Set(playerid, "Extinguisher", 366, 1);
+                }
+            }
+			case 5:
+            {
+                if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+                {
+					if(!Inventory_Count(playerid, "Surplus Ammo"))
+					{
+						Inventory_Set(playerid, "Surplus Ammo", 2040, 50);
+					}
+					else
+					{
+						Inventory_Set(playerid, "Surplus Ammo", 2040, 0);
+					}
+                }
+                if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+                {
+					Inventory_Set(playerid, "Extinguisher", 366, 1);
+                }
+            }
+			case 6:
+            {
+                if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+                {
+					if(!Inventory_Count(playerid, "JHP Ammo"))
+					{
+						Inventory_Set(playerid, "JHP Ammo", 2040, 50);
+					}
+					else
+					{
+						Inventory_Set(playerid, "JHP Ammo", 2040, 0);
+					}
+                }
+                if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+                {
+					Inventory_Set(playerid, "Extinguisher", 366, 1);
+                }
+            }
+			case 7:
+            {
+                if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+                {
+					if(!Inventory_Count(playerid, "Rubber Ammo"))
+					{
+						Inventory_Set(playerid, "Rubber Ammo", 2040, 50);
+					}
+					else
+					{
+						Inventory_Set(playerid, "Rubber Ammo", 2040, 0);
+					}
                 }
                 if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
                 {

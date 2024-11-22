@@ -20,6 +20,10 @@ stock GetWeaponType(playerid, weaponid)
  	{ 
  		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "UZI");
 	}
+	else if(GetPlayerWeapon(weaponid) == 25)
+ 	{ 
+ 		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Shotgun");
+	}
 	else if(GetPlayerWeapon(weaponid) == 32)
  	{ 
  		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "TEC9");
@@ -71,12 +75,14 @@ ResetPlayerWeaponEx(playerid)
 	Inventory_Set(playerid, "Spike Bat", 2040, 0);
 	Inventory_Set(playerid, "Wooden", 2040, 0);
 	Inventory_Set(playerid, "Nail Bat", 2040, 0);
-	Inventory_Set(playerid, "Colt 45", -2205, 0);
+	Inventory_Set(playerid, "Colt 45", 346, 0);
+	Inventory_Set(playerid, "Silenced Colt", 347, 0);
 	Inventory_Set(playerid, "Desert Eagle", 384, 0);
-	Inventory_Set(playerid, "Uzi", -2207, 0);
-	Inventory_Set(playerid, "Desert Eagle", 348, 0);
+	Inventory_Set(playerid, "Uzi", 352, 0);
+	Inventory_Set(playerid, "Shotgun", 349, 0);
 	Inventory_Set(playerid, "Regular Ammo", 2040, 0);
 	Inventory_Set(playerid, "Surplus Ammo", 2040, 0);
+	Inventory_Set(playerid, "JHP Ammo", 2040, 0);
 	Inventory_Set(playerid, "Rubber Ammo", 2040, 0);
 	return 1;
 }
@@ -355,6 +361,57 @@ Dialog:WeaponUzi(playerid, response, listitem, inputtext[])
 				PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
 				PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_RUBBER;
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;
+			}
+		}
+	}
+	return 1;
+}
+
+Dialog:WeaponShotgun(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		switch(listitem)
+		{
+			case 0:
+			{
+				if(!Inventory_Count(playerid, "Regular Ammo"))
+					return SendErrorMessage(playerid, "You don't have normal magazine in your inventory");
+
+				GivePlayerWeapon(playerid, 25, 999999);
+				PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+				PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NORMAL;
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SHOTGUN;
+			}
+			case 1:
+			{
+				if(!Inventory_Count(playerid, "Surplus Ammo"))
+					return SendErrorMessage(playerid, "You don't have surplus magazine in your inventory");
+
+				GivePlayerWeapon(playerid, 25, 999999);
+				PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+				PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_SURPLUS;
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SHOTGUN;
+			}
+			case 2:
+			{
+				if(!Inventory_Count(playerid, "JHP Ammo"))
+					return SendErrorMessage(playerid, "You don't have jhp magazine in your inventory");
+
+				GivePlayerWeapon(playerid, 25, 999999);
+				PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+				PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_JHP;
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SHOTGUN;
+			}
+			case 3:
+			{
+				if(!Inventory_Count(playerid, "Rubber Ammo"))
+					return SendErrorMessage(playerid, "You don't have rubber magazine in your inventory");
+
+				GivePlayerWeapon(playerid, 25, 999999);
+				PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+				PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_RUBBER;
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SHOTGUN;
 			}
 		}
 	}

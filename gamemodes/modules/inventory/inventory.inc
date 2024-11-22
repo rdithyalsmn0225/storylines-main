@@ -759,11 +759,13 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
-	return 1;
-}
-
-CMD:coy(playerid, params[])
-{
-	SendServerMessage(playerid, "Equipitems : %i", PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS]);
+	else if(!strcmp(name, "Shotgun"))
+	{
+		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+		{
+			Dialog_Show(playerid, WeaponShotgun, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
+		}
+		else SendErrorMessage(playerid, "You must store your items in inventory first.");
+	}
 	return 1;
 }

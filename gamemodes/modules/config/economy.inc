@@ -13,10 +13,11 @@
 #define HERRING_PRICE          4
 
 //FSTORAGE
-#define WEAPON_COLT         4000
-#define WEAPON_SLC          4500
-#define WEAPON_UZIS         5000
+#define WEAPON_COLT         2000
+#define WEAPON_SLC          2500
+#define WEAPON_UZIS         4000
 #define WEAPON_DEAGLES      5000
+#define WEAPON_SHOTGUNS     3000
 #define PMARIJUANA          100
 #define PCOCAINE            200
 #define PHEROIN             250

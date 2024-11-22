@@ -29,6 +29,7 @@
 #include <fader>
 #include <Pawn.RakNet>
 #include <realtime-clock>
+#include <compat>
 
 //Database establisher:
 new MySQL:ourConnection; 
@@ -2440,21 +2441,21 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			return 0;
 		}
 	}
-	else if(hittype == BULLET_HIT_TYPE_PLAYER) //Taser system; 
+	else if(hittype == BULLET_HIT_TYPE_PLAYER) //Rubber 
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_POLICEGUN] && weaponid == 25)
+		if(PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER && weaponid == 25)
 		{
 			if(!IsPlayerNearPlayer(playerid, hitid, 15.0))
 			{
-				SendInfoMessage(playerid, "You aren't close enough to hit {d7d292}%s{cdd0d1} with your riot gun.", ReturnName(hitid, hitid));
+				SendInfoMessage(playerid, "You aren't close enough to hit {d7d292}%s{cdd0d1} with your rubber gun.", ReturnName(hitid, hitid));
 				return 0;
 			}
 			
 			TogglePlayerControllable(playerid, true);
 			
-			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's riot gun.", ReturnName(hitid, hitid), ReturnName(playerid)); 
+			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's rubber gun.", ReturnName(hitid, hitid), ReturnName(playerid)); 
 			
-			SendInfoMessage(hitid, "You were just hit by a riot gun. rubber bullet go through your body.");
+			SendInfoMessage(hitid, "You were just hit by a rubber gun. rubber bullet go through your body.");
 			SendInfoMessage(playerid, "You hit {d7d292}%s{cdd0d1} with your taser!", ReturnName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);

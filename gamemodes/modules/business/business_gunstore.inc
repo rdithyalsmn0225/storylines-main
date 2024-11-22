@@ -15,7 +15,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
     			GiveMoney(playerid, -Cents);
-				Inventory_Add(playerid, "Colt 45", -2205, 1);
+				Inventory_Add(playerid, "Colt 45", 346, 1);
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 50);
 				SaveCharacter(playerid);
@@ -24,7 +24,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 			{
 				
     			GiveMoney(playerid, -Cents);
-				Inventory_Add(playerid, "Colt 45", -2205, 1);
+				Inventory_Add(playerid, "Colt 45", 346, 1);
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 50);
 
@@ -41,9 +41,8 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			{
-				
     			GiveMoney(playerid, -Cents);
-				Inventory_Add(playerid, "Silenced Colt", -2207, 1);
+				Inventory_Add(playerid, "Silenced Colt", 347, 1);
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 60);
 
@@ -53,7 +52,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 			{
 				
     			GiveMoney(playerid, -Cents);
-				Inventory_Add(playerid, "Silenced Colt", -2207, 1);
+				Inventory_Add(playerid, "Silenced Colt", 347, 1);
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 60);
 
@@ -80,7 +79,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 			else
 			{
     			GiveMoney(playerid, -Cents);
-				Inventory_Add(playerid, "Desert Eagle", -2205, 1);
+				Inventory_Add(playerid, "Desert Eagle", 348, 1);
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 50);
 
@@ -99,7 +98,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 			{
 				
     			GiveMoney(playerid, -Cents);
-				Inventory_Add(playerid, "Uzi", -2207, 1);
+				Inventory_Add(playerid, "Uzi", 352, 1);
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 80);
 
@@ -109,9 +108,38 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 			{
 				
     			GiveMoney(playerid, -Cents);
-				Inventory_Add(playerid, "Uzi", -2207, 1);
+				Inventory_Add(playerid, "Uzi", 352, 1);
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 80);
+
+				SaveCharacter(playerid);
+			}
+		}
+		else if(weapon == WEAPON_SHOTGUN && type == 1)
+		{
+			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
+				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+
+			if(Inventory_Count(playerid, "Materials") < 100)
+				return SendErrorMessage(playerid, "You must have 100 gram of materials.");
+
+			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
+			{
+				
+    			GiveMoney(playerid, -Cents);
+				Inventory_Add(playerid, "Shotgun", 349, 1);
+				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 100);
+
+				SaveCharacter(playerid);
+			}
+			else
+			{
+				
+    			GiveMoney(playerid, -Cents);
+				Inventory_Add(playerid, "Shotgun", 349, 1);
+				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
+				Inventory_Remove(playerid, "Materials", 100);
 
 				SaveCharacter(playerid);
 			}

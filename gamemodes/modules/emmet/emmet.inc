@@ -63,10 +63,11 @@ CMD:creategun(playerid, params[])
 
 	new str[512];
 	strcat(str, "Weapons\tIngredient\tPrice\n");
-	strcat(str, "Colt 45\tMaterials 50\t$4,000.00\n");
-    strcat(str, "Silenced Colt\tMaterials 60\t$4,500.00\n");
-	strcat(str, "Uzi\tMaterials 70\t$5,000.00\n");
+	strcat(str, "Colt 45\tMaterials 50\t$2,000.00\n");
+    strcat(str, "Silenced Colt\tMaterials 60\t$2,500.00\n");
+	strcat(str, "Uzi\tMaterials 70\t$4,000.00\n");
     strcat(str, "Desert Eagle\tMaterials 80\t$5,000.00\n");
+    strcat(str, "Desert Eagle\tMaterials 100\t$3,000.00\n");
 	strcat(str, "9mm 50x\tMaterials 50\t$100.00\n");
 	strcat(str, "9x19mm 100x\tMaterials 50\t$100.00\n");
 	Dialog_Show(playerid, BuyGuns, DIALOG_STYLE_TABLIST_HEADERS, "Gunstore:", str, "Select", "Close");
@@ -127,7 +128,7 @@ Dialog:BuyGuns(playerid, response, listitem, inputtext[])
             case 2:
             {
                 new Cents = floatround(WEAPON_UZIS * 100, floatround_round);
-                format(str, sizeof(str), "Are you sure you want to purchase a Mac-11 for {93C47D}$%s{ffffff}?", FormatMoney(Cents));
+                format(str, sizeof(str), "Are you sure you want to purchase a Uzi for {93C47D}$%s{ffffff}?", FormatMoney(Cents));
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_UZI, 10, WEAPON_UZIS, 1); 
             }
             case 3:
@@ -138,11 +139,17 @@ Dialog:BuyGuns(playerid, response, listitem, inputtext[])
             }
             case 4:
             {
+                new Cents = floatround(WEAPON_SHOTGUNS * 100, floatround_round);
+                format(str, sizeof(str), "Are you sure you want to purchase a Shotgun for {93C47D}$%s{ffffff}?", FormatMoney(Cents));
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_SHOTGUN, 10, WEAPON_DEAGLES, 1); 
+            }
+            case 5:
+            {
                 new Cents = floatround(A9MM * 100, floatround_round);
                 format(str, sizeof(str), "Are you sure you want to buy ammo for {93C47D}$%s{ffffff}?", FormatMoney(Cents)); 
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 0, 50, A9MM); 
             }
-            case 5:
+            case 6:
             {
                 new Cents = floatround(A9X19MM * 100, floatround_round);
                 format(str, sizeof(str), "Are you sure you want to buy ammo for {93C47D}$%s{ffffff}?", FormatMoney(Cents)); 
