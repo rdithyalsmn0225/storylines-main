@@ -1039,3 +1039,44 @@ stock Repeat(const text[], count)
     }
     return result;
 }
+
+IsPlayerInRangeOfDynamicObject(playerid, objectid, Float:radius)
+{
+	if(IsValidDynamicObject(objectid))
+	{
+		new
+		    interiorid = Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectid, E_STREAMER_INTERIOR_ID),
+			worldid = Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectid, E_STREAMER_WORLD_ID),
+		    Float:x,
+		    Float:y,
+		    Float:z;
+
+		GetDynamicObjectPos(objectid, x, y, z);
+
+		if(interiorid == -1) {
+		    interiorid = GetPlayerInterior(playerid);
+		} if(worldid == -1) {
+		    worldid = GetPlayerVirtualWorld(playerid);
+		}
+
+		if(IsPlayerInRangeOfPoint(playerid, radius, x, y, z) && GetPlayerInterior(playerid) == interiorid && GetPlayerVirtualWorld(playerid) == worldid)
+		{
+		    return 1;
+		}
+	}
+
+	return 0;
+}
+
+stock Float:DistanceCameraTargetToLocation(Float:cx, Float:cy, Float:cz, Float:ox, Float:oy, Float:oz, Float:vx, Float:vy, Float:vz)
+{
+	new Float:x, Float:y, Float:z, Float:distance;
+
+    distance = floatround(floatsqroot(((cx - ox) * (cx - ox)) + ((cy - oy) * (cy - oy)) + ((cz - oz) * (cz - oz))));
+
+	x = vx * distance + cx;
+	y = vy * distance + cy;
+	z = vz * distance + cz;
+
+	return floatsqroot((x - ox) * (x - ox) + (y - oy) * (y - oy) + (z - oz) * (z - oz));
+}

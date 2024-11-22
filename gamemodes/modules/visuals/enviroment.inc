@@ -17,6 +17,14 @@ RemoveObjects(playerid)
     RemoveBuildingForPlayer(playerid, 3623, 2639.550, -2429.300, 17.070, 0.250);
     RemoveBuildingForPlayer(playerid, 3709, 2639.550, -2429.300, 17.070, 0.250);
 
+	//SAFD
+	RemoveBuildingForPlayer(playerid, 5737, 1120.160, -1303.449, 18.570, 0.250);
+	RemoveBuildingForPlayer(playerid, 5935, 1120.160, -1303.449, 18.570, 0.250);
+	RemoveBuildingForPlayer(playerid, 1440, 1141.979, -1346.109, 13.265, 0.250);
+	RemoveBuildingForPlayer(playerid, 5787, 1090.050, -1310.530, 17.546, 0.250);
+	RemoveBuildingForPlayer(playerid, 5936, 1090.050, -1310.530, 17.546, 0.250);
+	RemoveBuildingForPlayer(playerid, 1307, 1072.140, -1303.680, 12.265, 0.250);
+
 	// Alhambra
 	RemoveBuildingForPlayer(playerid, 4215, 1777.550, -1775.040, 36.750, 0.250);
 	RemoveBuildingForPlayer(playerid, 4019, 1777.839, -1773.910, 12.523, 0.250);
@@ -4317,6 +4325,46 @@ InsertASGHMaps()
     tmpobjid = CreateDynamicObject(1506, 1834.043579, -1082.872314, 40.653724, 0.000000, 0.000000, 0.000000, -1, 1, -1, 300.00, 100.00); 
 }
 
+InsertSAFDMaps()
+{
+	tmpobjid = CreateDynamicObject(19377, 1141.316162, -1344.782226, 13.096583, 0.000000, 0.000000, 120.700042, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 16640, "a51", "concretemanky", 0x00000000);
+	tmpobjid = CreateDynamicObject(19377, 1112.218750, -1290.959716, 13.096583, 0.000000, 0.000000, 90.899971, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 16640, "a51", "concretemanky", 0x00000000);
+	tmpobjid = CreateDynamicObject(19377, 1121.797363, -1290.838989, 13.096583, 0.000000, 0.000000, 90.599975, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 16640, "a51", "concretemanky", 0x00000000);
+	tmpobjid = CreateDynamicObject(19377, 1131.378051, -1290.757446, 13.096583, 0.000000, 0.000000, 90.299980, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 16640, "a51", "concretemanky", 0x00000000);
+	tmpobjid = CreateDynamicObject(19377, 1136.119262, -1290.744262, 13.096583, 0.000000, 0.000000, 89.799987, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 16640, "a51", "concretemanky", 0x00000000);
+	tmpobjid = CreateDynamicObject(11008, 1082.237792, -1307.908081, 19.464508, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 4, 19267, "mapmarkers", "red-2", 0x00000000);
+	tmpobjid = CreateDynamicObject(18764, 1074.812133, -1327.766845, 14.776608, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 3314, "ce_burbhouse", "sw_wallbrick_06", 0x00000000);
+	tmpobjid = CreateDynamicObject(18764, 1079.752075, -1327.766845, 14.776608, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 3314, "ce_burbhouse", "sw_wallbrick_06", 0x00000000);
+	tmpobjid = CreateDynamicObject(19482, 1093.885620, -1304.091064, 22.107061, 0.000000, 0.000000, 0.000000, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterialText(tmpobjid, 0, "{000000}San Andreas Fire Departement", 120, "Ariel", 40, 1, 0x00000000, 0x00000000, 1);
+	tmpobjid = CreateDynamicObject(19377, 1102.690429, -1291.029785, 13.096583, 0.000000, 0.000000, 90.099983, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 16640, "a51", "concretemanky", 0x00000000);
+	tmpobjid = CreateDynamicObject(19377, 1093.151245, -1291.016479, 13.096583, 0.000000, 0.000000, 89.799987, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 16640, "a51", "concretemanky", 0x00000000);
+	tmpobjid = CreateDynamicObject(19377, 1087.204345, -1335.221923, 13.066582, 0.000000, 0.000000, 90.799972, -1, -1, -1, 800.00, 800.00); 
+	SetDynamicObjectMaterial(tmpobjid, 0, 16640, "a51", "concretemanky", 0x00000000);
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	tmpobjid = CreateDynamicObject(869, 1181.998779, -1298.100585, 13.646860, 0.000000, 0.000000, 80.399955, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(869, 1181.919433, -1302.652221, 13.646860, 0.000000, 0.000000, 80.399955, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(869, 1182.057128, -1293.640502, 13.656860, 0.000000, 0.000000, 102.499931, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(19861, 1172.871215, -1338.815307, 15.481670, 0.000000, 0.000000, 90.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(1280, 1180.873291, -1333.734985, 12.943510, 0.000000, 0.000000, 180.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(1280, 1180.873291, -1330.234252, 12.943510, 0.000000, 0.000000, 180.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(1280, 1180.873291, -1317.074462, 12.943510, 0.000000, 0.000000, 180.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(1280, 1180.873291, -1313.184570, 12.943510, 0.000000, 0.000000, 180.000000, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(869, 1175.656127, -1315.092895, 13.416854, 0.000000, 0.000000, 80.399955, -1, -1, -1, 800.00, 800.00); 
+	tmpobjid = CreateDynamicObject(869, 1175.638549, -1332.351928, 13.416854, 0.000000, 0.000000, 80.399955, -1, -1, -1, 800.00, 800.00); 
+}
 InsertSidejobsMaps()
 {
 	//Sweeper

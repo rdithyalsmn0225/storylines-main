@@ -161,7 +161,7 @@ CMD:timbercut(playerid, params[])
         if(!Inventory_Count(playerid, "Chainsaw"))
             return SendErrorMessage(playerid, "You don't have any axe in inventory.");
 
-        if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != AXE)
+        if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != CHAINSAW)
             return SendErrorMessage(playerid, "You must hold the axe in your hands.");
 
         if(TreeInfo[id][E_TREE_TIMER] > 0)

@@ -122,6 +122,7 @@ main ()  {}
 #include "modules\faction\police\ticket.inc"
 #include "modules\faction\police\backup.inc"
 #include "modules\faction\police\prison.inc"
+#include "modules\faction\medic\fire.inc"
 // PROPS MODULES
 #include "modules\props\spraytags.inc"
 #include "modules\props\advertise.inc"
@@ -198,6 +199,7 @@ public OnGameModeInit()
 	InsertObjects();
 	InsertASGHMaps();
 	InsertModshops();
+	InsertSAFDMaps();
 	InsertBlackjack();
 	InsertEmmetInit();
 	InsertJobsPoint();
@@ -226,6 +228,7 @@ public OnGameModeInit()
 	SetWorldTime(RealTime_GetHour()); 
 
 	// Global timers:
+	SetTimerEx("RandomFire", 5400000, true, "i", 1);
 	SetTimer("PlayersUpdates", 1000, true); 
 	SetTimer("FunctionPaychecks", 60000, true);
 	SetTimer("OnPlayerNearPickup", 5000, true);
@@ -3687,6 +3690,81 @@ public OnPlayerUpdate(playerid)
 		}
 	}
 
+	new keys, ud, lr;
+	GetPlayerKeys(playerid, keys, ud, lr);
+	if((keys & KEY_FIRE) && IsFireActive() && ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+	{
+		new Float:x, Float:y, Float:z, Float:vx, Float:vy, Float:vz, Float:cx, Float:cy, Float:cz;
+
+		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == FIRE_EXTINGUISHER && GetPlayerWeapon(playerid) == 42 && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
+		{
+		    for(new i = 0; i < MAX_FIRES; i ++)
+		    {
+		        if(IsPlayerInRangeOfDynamicObject(playerid, gFireObjects[i], 4.0))
+		        {
+		            gFireHealth[i] = gFireHealth[i] - 1.0;
+
+		            if(gFireHealth[i] <= 0.0)
+		            {
+			            GetDynamicObjectPos(gFireObjects[i], x, y, z);
+			            ShowBoxMessage(playerid, "~r~Fire extinguished", 3);
+
+						SetTimerEx("DestroyWater", 2000, false, "i", CreateDynamicObject(18744, x, y, z - 0.2, 0.0, 0.0, 0.0));
+						DestroyDynamicObject(gFireObjects[i]);
+
+						gFireObjects[i] = INVALID_OBJECT_ID;
+						gFireHealth[i] = 0.0;
+					}
+		        }
+			}
+		}
+		else if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && GetVehicleModel(GetPlayerVehicleID(playerid)) == 407 || GetVehicleModel(GetPlayerVehicleID(playerid)) == 544)
+		{
+		    GetPlayerCameraFrontVector(playerid, vx, vy, vz);
+		    GetPlayerCameraPos(playerid, cx, cy, cz);
+
+		    for(new i = 0; i < MAX_FIRES; i ++)
+		    {
+		        if(IsPlayerInRangeOfDynamicObject(playerid, gFireObjects[i], 12.0))
+		        {
+		            GetDynamicObjectPos(gFireObjects[i], x, y, z);
+
+					if(DistanceCameraTargetToLocation(cx, cy, cz, x, y, z + 2.5, vx, vy, vz) < 12.0)
+	   				{
+	   				    gFireHealth[i] = gFireHealth[i] - 0.5;
+
+	   				    if(gFireHealth[i] <= 0.0)
+		            	{
+		   			    	GetDynamicObjectPos(gFireObjects[i], x, y, z);
+		   			    	ShowBoxMessage(playerid, "~r~Fire extinguished", 3);
+							
+							SetTimerEx("DestroyWater", 2000, false, "i", CreateDynamicObject(18744, x, y, z - 0.2, 0.0, 0.0, 0.0));
+							DestroyDynamicObject(gFireObjects[i]);
+
+							gFireObjects[i] = INVALID_OBJECT_ID;
+							gFireHealth[i] = 0.0;
+						}
+					}
+			  	}
+		    }
+		}
+		if(!IsFireActive())
+		{
+		    new Float:amount = gFires;
+			new Cents = floatround(amount * 100, floatround_round);
+		    foreach(new i : Player)
+		    {
+		        if(ReturnFactionType(i) == FACTION_TYPE_MEDICAL && IsPlayerInRangeOfPoint(playerid, 20.0, x, y, z))
+		        {
+		            SendServerMessage(i, "[Fire] {cdd0d1}Well done! You helped put out the fire and received {93C47D}$%s{cdd0d1} on your paycheck.", FormatMoney(Cents));
+		            GivePaycheck(i, Cents);
+		        }
+			}
+
+			gFires = 0;
+		}
+	}
+
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	{
 		new Float:rz;
@@ -4247,7 +4325,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			if(!Inventory_Count(playerid, "Chainsaw"))
 				return SendErrorMessage(playerid, "You don't have any axe in inventory.");
 
-			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != AXE)
+			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != CHAINSAW)
 				return SendErrorMessage(playerid, "You must hold the axe in your hands.");
 
 			if(TreeInfo[id][E_TREE_TIMER] > 0)

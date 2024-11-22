@@ -613,9 +613,19 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	{
        	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = AXE;
-			SetPlayerAttachedObject(playerid, ATTACH_HAND, -2212, 6, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000, 1.000000, 0.759999, 0xFFFFFFFF, 0xFFFFFFFF);
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CHAINSAW;
+			SetPlayerAttachedObject(playerid, ATTACH_HAND, 341, 6, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000, 1.000000, 0.759999, 0xFFFFFFFF, 0xFFFFFFFF);
 			SendTipMessage(playerid, "Press 'ALT' to cut the trees & take the timber.");
+		}
+		else SendErrorMessage(playerid, "You must store your items in inventory first.");
+	}
+	else if(!strcmp(name, "Extinguisher"))
+	{
+       	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+		{
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = FIRE_EXTINGUISHER;
+			GivePlayerWeapon(playerid, 42, 999999);
+			SendTipMessage(playerid, "Press 'LMB' to extinguiher the fire.");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}

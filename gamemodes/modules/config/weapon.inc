@@ -64,6 +64,7 @@ stock RemovePlayerWeapon(playerid, weaponid)
 
 ResetPlayerWeaponEx(playerid)
 {
+	Inventory_Set(playerid, "Extinguisher", 366, 0);
 	Inventory_Set(playerid, "Bottle", 2040, 0);
 	Inventory_Set(playerid, "Crowbar", 2040, 0);
 	Inventory_Set(playerid, "Knife", 2040, 0);

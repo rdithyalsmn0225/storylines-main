@@ -68,10 +68,8 @@
 #define MAX_BARRICADES 				(50)
 #define MAX_TICKETS					(10)
 #define MAX_PRISON_CELLS 			(20)
-#define MAX_POOL_TABLES 			(48)
-#define MAX_POOL_BALLS 				(16)
 #define MAX_CARDS       			(5)
-
+#define MAX_FIRES                   (100)
 
 LoadCustomModels()
 {

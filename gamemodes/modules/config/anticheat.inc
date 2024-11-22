@@ -380,7 +380,7 @@ function:OnAntiCheatUpdate()
 		}
 
         if(ACPauseTimer[playerid] == 0 && !Inventory_Count(playerid, "Colt 45") || !Inventory_Count(playerid, "Silenced Colt") || !Inventory_Count(playerid, "Uzi") || !Inventory_Count(playerid, "Desert Eagle") 
-        || !Inventory_Count(playerid, "Desert Eagle") || !Inventory_Count(playerid, "Spike Bat") || !Inventory_Count(playerid, "Wooden") || !Inventory_Count(playerid, "Nail Bat") 
+        || !Inventory_Count(playerid, "Desert Eagle") || !Inventory_Count(playerid, "Spike Bat") || !Inventory_Count(playerid, "Wooden") || !Inventory_Count(playerid, "Nail Bat") || !Inventory_Count(playerid, "Extinguisher") 
         || !Inventory_Count(playerid, "Bottle") || !Inventory_Count(playerid, "Crowbar") || !Inventory_Count(playerid, "Knife") || !Inventory_Count(playerid, "Regular Ammo") 
         || !Inventory_Count(playerid, "Surplus Ammo") && !PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] && !PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] && !PlayerInfo[playerid][E_CHARACTER_POLICEGUN])
 		{

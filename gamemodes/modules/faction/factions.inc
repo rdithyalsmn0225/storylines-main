@@ -16,7 +16,7 @@ stock IsPoliceVehicle(vehicleid)
 
 stock IsMedicalVehicle(carid)
 {
-	for(new v = 0; v < 8; v++)
+	for(new v = 0; v < 11; v++)
 	{
 	    if(carid == SAMD_Vehicles[v]) return 1;
 	}

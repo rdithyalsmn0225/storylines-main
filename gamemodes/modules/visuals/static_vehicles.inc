@@ -2,7 +2,7 @@
 new g_Vehicle[100];
 new JOBS_Vehicles[20];
 new SAPD_Vehicles[39];
-new SAMD_Vehicles[8];
+new SAMD_Vehicles[11];
 new DMV_Vehicles[4]; 
 
 InsertStaticVehicles()
@@ -85,6 +85,9 @@ InsertStaticVehicles()
 	SAMD_Vehicles[5] = AddStaticVehicle(586, 1130.7795, -1330.4045, 13.3639, 0.0000, 0, 1);
 	SAMD_Vehicles[6] = AddStaticVehicle(563, 1162.9077, -1313.8203, 32.1891, 270.6980, -1, 3);
 	SAMD_Vehicles[7] = AddStaticVehicle(487, 1163.0469, -1297.5098, 31.5550, 269.6279, -1, 3);
+	SAMD_Vehicles[8] = AddStaticVehicle(407, 1098.8644, -1295.2787, 13.7938, 273.7230, 1, 3); 
+	SAMD_Vehicles[9] = AddStaticVehicle(407, 1097.8621, -1303.2229, 13.8167, 273.2676, 1, 3); 
+	SAMD_Vehicles[10] = AddStaticVehicle(407, 1097.5540, -1312.1210, 13.8991, 270.9483, 1, 3);
 
 	for (new i = 0; i < 39; i ++) if (IsValidVehicle(SAPD_Vehicles[i])) 
 	{
@@ -93,7 +96,7 @@ InsertStaticVehicles()
 		VehicleInfo[SAPD_Vehicles[i]][E_VEHICLE_MILES] = 0; 
 	}
 
-	for (new i = 0; i < 8; i ++) if (IsValidVehicle(SAMD_Vehicles[i])) 
+	for (new i = 0; i < 11; i ++) if (IsValidVehicle(SAMD_Vehicles[i])) 
 	{
 		VehicleInfo[SAMD_Vehicles[i]][E_VEHICLE_HEALTH] = 2000.0;
 		VehicleInfo[SAMD_Vehicles[i]][E_VEHICLE_FUEL] = 100;
