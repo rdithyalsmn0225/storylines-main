@@ -2172,6 +2172,8 @@ CMD:pm(playerid, params[])
 			SendClientMessageEx(playerid, COLOR_PMSENT, "(( PM sent to %s (ID: %d): %s ))", ReturnMixedName(playerb), playerb, text); 
 		}
 	}
+	PlayerPlaySound(playerb, 1085, 0.0, 0.0, 0.0);
+	GameTextForPlayer(playerid, "~n~~n~~n~~n~~n~~n~~n~~n~~n~~n~~y~NEW MESSAGE!", 3000, 3);
 	return 1;
 }
 
