@@ -8,7 +8,7 @@
 #define COLOR_CREDITS       (0xf8b56eFF)
 #define COLOR_SYNTAX        (0x9fc5e8FF)
 #define COLOR_TIP           (0xf6b26bFF)
-#define COLOR_INFO          (0x92d7a0FF)
+#define COLOR_INFO          (0x4cb98eFF)
 #define COLOR_FACTION       (0x99A5D7FF)
 #define COLOR_GAMES         (0xb6b9e1FF)
 #define COLOR_HEADER		(0x90D7F0FF)
@@ -30,7 +30,7 @@
 #define COLOR_FADE4 		(0x8C8C8C8C)
 #define COLOR_FADE5 		(0x6E6E6E6E)
 
-#define COLOR_COP 			(0x8D8DFFFF)
+#define COLOR_COP 			(0x6583E1FF)
 #define COLOR_MEDIC         (0xDFA0C1FF)
 #define COLOR_DEPT 			(0xF07A7AFF)
 #define COLOR_TAXI          (0xF1C232FF)

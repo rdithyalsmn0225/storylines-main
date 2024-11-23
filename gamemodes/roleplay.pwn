@@ -1011,10 +1011,11 @@ stock LoadCharacter(playerid)
 	}	
 
 	for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
-	SendClientMessageEx(playerid, COLOR_WHITE, "Welcome to the {93C47D}GTA Storylines{ffffff}, You logged in as {93C47D}%s{ffffff}.", AccountInfo[playerid][E_MASTERS_ACCNAME]);
-	SendClientMessage(playerid, COLOR_WHITE, "The first thing we suggest you to do is to read /help or read the rules in discord server!");
-	SendClientMessage(playerid, COLOR_WHITE, "Visit us and register on our discord at sa-mp.co.id to stay updated.");
-	SendClientMessageEx(playerid, COLOR_WHITE, "[Player MOTD]: {93C47D}%s", PLAYER_MOTD);
+	SendClientMessageEx(playerid, COLOR_WHITE, "Hey {9CC8E9}%s{ffffff}, Welcome back to {4cb989}GTA Storylines{ffffff}.", AccountInfo[playerid][E_MASTERS_ACCNAME]);
+	SendClientMessageEx(playerid, COLOR_WHITE, "You are logged in as a {b7b94c}%s{ffffff}, playing as {9CC8E9}%s{ffffff}!", ReturnFactionName(playerid), ReturnName(playerid));
+	SendClientMessageEx(playerid, COLOR_WHITE, "[Player MOTD]: {4cb989}%s", PLAYER_MOTD);
+	SendClientMessage(playerid, -1, " ");
+	SendClientMessage(playerid, COLOR_WHITE, "Visit us and register on our discord at {4ca5b9}discord.gg/storylines{ffffff} to stay updated.");
 
 	if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
 	{
@@ -3626,6 +3627,20 @@ public OnPlayerUpdate(playerid)
 			p_Direction[playerid] = false;
 		}
 	}
+
+	if (IsPlayerInAnyVehicle(playerid))
+    {
+        new vehicleid = GetPlayerVehicleID(playerid);
+        new Float:velocity[3];
+        GetVehicleVelocity(vehicleid, velocity[0], velocity[1], velocity[2]);
+
+        new Float:speed = floatsqroot((velocity[0] * velocity[0]) + (velocity[1] * velocity[1]) + (velocity[2] * velocity[2])) * 100;
+
+        if (PlayerSpeedLimit[playerid] > 0 && speed > float(PlayerSpeedLimit[playerid])) 
+        {
+            SetVehicleVelocity(vehicleid, velocity[0] * 0.8, velocity[1] * 0.8, velocity[2] * 0.8); 
+        }
+    }
 
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	{

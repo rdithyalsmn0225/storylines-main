@@ -409,7 +409,6 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 					{
 						SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid));
 						SendTipMessage(playerid, "You can use '/tazer' use an electrical current to temporarily incapacitate a person.");
-						SendTipMessage(playerid, "You can use '/riotgun' suppressing riots or apprehending suspects with minimal harm or risk.");
 						SendTipMessage(playerid, "You can use '/tackle' The player you hit will have a message flashed to them indicating that a tackle has been attempted..");
 
 						SetPlayerHealthEx(playerid, 100);
@@ -498,7 +497,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 				
                 else if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
                 {
-					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
+					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
 					{
 						new str[2024];
 						for(new i; i < sizeof(g_aLsmdSkins); i++)

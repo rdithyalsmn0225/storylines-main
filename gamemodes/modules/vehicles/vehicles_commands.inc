@@ -531,3 +531,18 @@ CMD:refuel(playerid, params[])
 	playerRefillTimer[playerid] = SetTimerEx("OnGasStationRefill", 2000, true, "iifff", playerid, vehicleid, vx, vy, vz);
 	return 1;
 }
+
+CMD:limitspeed(playerid, params[])
+{
+	new limit;
+	if (sscanf(params, "d", limit))
+		return SendUsageMessage(playerid, "/limitspeed [speed]");
+
+	if (limit < 20 || limit > 200)
+		return SendErrorMessage(playerid, "You vehicle speed limit cannot be less than 20 or more than 200.");
+
+	PlayerSpeedLimit[playerid] = limit;
+
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You has set your vehicle speedlimit to %d/MPH.", limit);
+	return 1;
+}
