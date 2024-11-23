@@ -220,6 +220,7 @@ public OnGameModeInit()
 	InsertFactionLocker();
 	InsertSelectionMaps();
 	InsertDynamicPickup();
+	InsertCharacterScene();
 	InsertStaticVehicles();
 	InsertProjectPropsData();
 
@@ -785,7 +786,7 @@ function:DB_ListCharacters(playerid)
 	
 	new vwid = AccountInfo[playerid][E_MASTERS_DBID];
 	SetPlayerVirtualWorld(playerid, vwid);
-	SetPlayerInterior(playerid, 0);
+	SetPlayerInterior(playerid, 11);
 
 	if(!rows)
 	{
@@ -887,6 +888,7 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_int(0, "pHasInjured", PlayerInfo[playerid][E_CHARACTER_INJURED]); 
 	cache_get_value_name_int(0, "pHasDeath", PlayerInfo[playerid][E_CHARACTER_DEATH]); 
 	cache_get_value_name_float(0, "pHealth", PlayerInfo[playerid][E_CHARACTER_HEALTH]); 
+	cache_get_value_name_float(0, "pMaxHealth", PlayerInfo[playerid][E_CHARACTER_MAXHEALTH]); 
 	cache_get_value_name_float(0, "pArmor", PlayerInfo[playerid][E_CHARACTER_ARMOUR]); 
 	cache_get_value_name_int(0, "pFightstyle", PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE]); 
 	cache_get_value_name_int(0, "pHasAoe", PlayerInfo[playerid][E_CHARACTER_AOE]); 
@@ -3885,6 +3887,16 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		return 1;
     }
 
+	//IDCARD
+	if (playertextid == idcard[0][playerid])
+    {
+		for(new i; i < 19; i++)
+		{
+			PlayerTextDrawShow(playerid, idcard[i][playerid]);
+		}
+		CancelSelectTextDraw(playerid);
+		return 1;
+    }
 
 	//Hit BlackJack
 	if (playertextid == blackjack[13][playerid])
@@ -5529,7 +5541,7 @@ function:SaveCharacterPos(playerid)
 	GetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	GetPlayerArmour(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 
-	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastPosX = %f, pLastPosY = %f, pLastPosZ = %f, pLastInterior = %i, pLastWorld = %i, pInProperty = %i, pInBusiness = %i, pInEntrance = %i, pHasInjured = %i, pHasDeath = %i, pHealth = %f, pArmor = %f WHERE char_dbid = %i",
+	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastPosX = %f, pLastPosY = %f, pLastPosZ = %f, pLastInterior = %i, pLastWorld = %i, pInProperty = %i, pInBusiness = %i, pInEntrance = %i, pHasInjured = %i, pHasDeath = %i, pHealth = %f, pMaxHealth = %f, pArmor = %f WHERE char_dbid = %i",
 		PlayerInfo[playerid][E_CHARACTER_LASTPOS][0],
 		PlayerInfo[playerid][E_CHARACTER_LASTPOS][1],
 		PlayerInfo[playerid][E_CHARACTER_LASTPOS][2],
@@ -5541,6 +5553,7 @@ function:SaveCharacterPos(playerid)
 		PlayerInfo[playerid][E_CHARACTER_INJURED],
 		PlayerInfo[playerid][E_CHARACTER_DEATH],
 		PlayerInfo[playerid][E_CHARACTER_HEALTH],
+		PlayerInfo[playerid][E_CHARACTER_MAXHEALTH],
 		PlayerInfo[playerid][E_CHARACTER_ARMOUR],
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	

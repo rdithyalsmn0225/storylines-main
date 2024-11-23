@@ -224,6 +224,8 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_DBID] = 0; 
 	PlayerInfo[playerid][E_CHARACTER_ADMIN] = 0;
 	PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] = false; 
+
+	PlayerInfo[playerid][E_CHARACTER_MAXHEALTH] = 100.0;
 	
 	PlayerInfo[playerid][E_CHARACTER_LASTPOS][0] = 1642.02;
 	PlayerInfo[playerid][E_CHARACTER_LASTPOS][1] = -2334.05;
@@ -532,6 +534,7 @@ stock ShowIDCARD(playerid, playerb)
 	{
 		PlayerTextDrawShow(playerid, idcard[i][playerid]);
 	}
+	SelectTextDraw(playerid, COLOR_YELLOW);
 	return 1;
 }
 
@@ -583,7 +586,8 @@ stock ShowCharacterStats(playerid, playerb)
 		
 		SendClientMessageEx(playerb, COLOR_WHITE, "[MISC]: InsideProperty:[%i] InsideBusiness:[%i]", IsPlayerInProperty(playerid), IsPlayerInBusiness(playerid)); 
 	}
-	SendTipMessage(playerb, "/inventory or press 'Y' to open inventory.");
+	SendTipMessage(playerb, "To see your inventory type '/inventory' or press 'Y'.");
+	SendTipMessage(playerb, "To see your vehicles type '/mycars'.");
 	return 1;
 }
 

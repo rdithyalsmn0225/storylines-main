@@ -208,6 +208,12 @@ stock PlayerSpeedCheck(playerid)
 stock SetPlayerHealthEx(playerid, Float:value)
 {
 	PauseAC(playerid);
+
+    if(PlayerInfo[playerid][E_CHARACTER_HEALTH] > PlayerInfo[playerid][E_CHARACTER_MAXHEALTH])
+    {
+        PlayerInfo[playerid][E_CHARACTER_HEALTH] = PlayerInfo[playerid][E_CHARACTER_MAXHEALTH];
+    }
+
 	PlayerInfo[playerid][E_CHARACTER_HEALTH] = value;
 	SetPlayerHealth(playerid, value);
     

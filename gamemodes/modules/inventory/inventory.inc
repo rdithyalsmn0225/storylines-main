@@ -504,10 +504,6 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	{
 		IsPlayerUsingDrugs(playerid, 1);
 	}
-	else if(!strcmp(name, "Cocaine Crack"))
-	{
-        IsPlayerUsingDrugs(playerid, 4);
-	}
 	else if(!strcmp(name, "Cocaine"))
 	{
 		IsPlayerUsingDrugs(playerid, 2);
@@ -515,6 +511,10 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	else if(!strcmp(name, "Heroin"))
 	{
        	IsPlayerUsingDrugs(playerid, 3);
+	}
+	else if(!strcmp(name, "Cocaine Crack"))
+	{
+        IsPlayerUsingDrugs(playerid, 4);
 	}
 	else if(!strcmp(name, "PCP"))
 	{

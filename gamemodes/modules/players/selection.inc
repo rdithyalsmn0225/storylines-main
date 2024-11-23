@@ -12,8 +12,8 @@ SetupCharacterSelection(playerid)
 		
 		if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 0) 
 		{
-			InterpolateCameraPos(playerid, 1710.195434, -2320.796875, -1.196407, 1678.045532, -2325.200683, -1.772290, 3000, 1);
-			InterpolateCameraLookAt(playerid, 1706.246704, -2321.352539, -1.510949, 1674.083984, -2325.510986, -2.229886, 3000, 1);
+			InterpolateCameraPos(playerid, 1341.972656, 908.064697, 132.843124, 1341.570312, 898.974365, 131.922348, 8000, 1);
+			InterpolateCameraLookAt(playerid, 1341.855224, 904.100219, 132.324386, 1341.385498, 894.981872, 131.761520, 8000, 1);
 
 
 			format(str, sizeof(str), "%s", (characterLister[playerid][0][0] == EOS) ? ("Empty_Slot") : (characterLister[playerid][0]));
@@ -26,8 +26,8 @@ SetupCharacterSelection(playerid)
 		}
 		else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 1) 
 		{
-			InterpolateCameraPos(playerid, 1710.195434, -2320.796875, -1.196407, 1678.045532, -2325.200683, -1.772290, 3000, 1);
-			InterpolateCameraLookAt(playerid, 1706.246704, -2321.352539, -1.510949, 1674.083984, -2325.510986, -2.229886, 3000, 1);
+			InterpolateCameraPos(playerid, 1341.972656, 908.064697, 132.843124, 1341.570312, 898.974365, 131.922348, 8000, 1);
+			InterpolateCameraLookAt(playerid, 1341.855224, 904.100219, 132.324386, 1341.385498, 894.981872, 131.761520, 8000, 1);
 
 			format(str, sizeof(str), "%s", (characterLister[playerid][1][0] == EOS) ? ("Empty_Slot") : (characterLister[playerid][1]));
 			format(str1, sizeof(str1), "%s", ReturnFactionNameEx(characterFaction[playerid][1]));
@@ -39,8 +39,8 @@ SetupCharacterSelection(playerid)
 		}
 		else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 2) 
 		{
-			InterpolateCameraPos(playerid, 1710.195434, -2320.796875, -1.196407, 1678.045532, -2325.200683, -1.772290, 3000, 1);
-			InterpolateCameraLookAt(playerid, 1706.246704, -2321.352539, -1.510949, 1674.083984, -2325.510986, -2.229886, 3000, 1);
+			InterpolateCameraPos(playerid, 1341.972656, 908.064697, 132.843124, 1341.570312, 898.974365, 131.922348, 8000, 1);
+			InterpolateCameraLookAt(playerid, 1341.855224, 904.100219, 132.324386, 1341.385498, 894.981872, 131.761520, 8000, 1);
 
 			format(str, sizeof(str), "%s", (characterLister[playerid][2][0] == EOS) ? ("Empty_Slot") : (characterLister[playerid][2]));
 			format(str1, sizeof(str1), "%s", ReturnFactionNameEx(characterFaction[playerid][2]));
@@ -53,8 +53,8 @@ SetupCharacterSelection(playerid)
 		}
 		else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 3) 
 		{
-			InterpolateCameraPos(playerid, 1710.195434, -2320.796875, -1.196407, 1678.045532, -2325.200683, -1.772290, 3000, 1);
-			InterpolateCameraLookAt(playerid, 1706.246704, -2321.352539, -1.510949, 1674.083984, -2325.510986, -2.229886, 3000, 1);
+			InterpolateCameraPos(playerid, 1341.972656, 908.064697, 132.843124, 1341.570312, 898.974365, 131.922348, 8000, 1);
+			InterpolateCameraLookAt(playerid, 1341.855224, 904.100219, 132.324386, 1341.385498, 894.981872, 131.761520, 8000, 1);
 
 			format(str, sizeof(str), "%s", (characterLister[playerid][3][0] == EOS) ? ("Empty_Slot") : (characterLister[playerid][3]));
 			format(str1, sizeof(str1), "%s", ReturnFactionNameEx(characterFaction[playerid][3]));

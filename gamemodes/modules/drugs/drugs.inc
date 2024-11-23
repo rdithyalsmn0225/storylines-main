@@ -151,7 +151,8 @@ stock IsPlayerUsingDrugs(playerid, type)
 			SetPlayerHealthEx(playerid, health+10);
 
 			SetPlayerDrunkLevel(playerid, 2000);
-
+			PlayerInfo[playerid][E_CHARACTER_MAXHEALTH] = 115.0;
+			SaveCharacter(playerid);
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -176,14 +177,12 @@ stock IsPlayerUsingDrugs(playerid, type)
 			new Float:health;
 			GetPlayerHealth(playerid, health);
 			PlayerInfo[playerid][E_CHARACTER_DRUGSCD] = gettime();
-			if(health > 125)
-			{
-				SetPlayerHealthEx(playerid, 125);
-			}
+			
 			SetPlayerHealthEx(playerid, health+10);
 
 			SetPlayerDrunkLevel(playerid, 2000);
-
+			PlayerInfo[playerid][E_CHARACTER_MAXHEALTH] = 125.0;
+			SaveCharacter(playerid);
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -200,8 +199,15 @@ stock IsPlayerUsingDrugs(playerid, type)
 			Inventory_Remove(playerid, "Heroin", 5);
 			ApplyAnimation(playerid, "SMOKING", "M_smk_in", 4.1, 0, 0, 0, 0, 0, 1);
 
-			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_SMOKE_CIGGY);
+			new Float:health;
+			GetPlayerHealth(playerid, health);
+			PlayerInfo[playerid][E_CHARACTER_DRUGSCD] = gettime();
+			
+			SetPlayerHealthEx(playerid, health+10);
 
+			SetPlayerDrunkLevel(playerid, 2000);
+			PlayerInfo[playerid][E_CHARACTER_MAXHEALTH] = 150.0;
+			SaveCharacter(playerid);
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -226,13 +232,11 @@ stock IsPlayerUsingDrugs(playerid, type)
 			new Float:health;
 			GetPlayerHealth(playerid, health);
 			PlayerInfo[playerid][E_CHARACTER_DRUGSCD] = gettime();
-			if(health > 150)
-			{
-				SetPlayerHealthEx(playerid, 150);
-			}
+			
 			SetPlayerHealthEx(playerid, health+15);
 			SetPlayerDrunkLevel(playerid, 4000);
-
+			PlayerInfo[playerid][E_CHARACTER_MAXHEALTH] = 150.0;
+			SaveCharacter(playerid);
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -257,14 +261,12 @@ stock IsPlayerUsingDrugs(playerid, type)
 			new Float:health;
 			GetPlayerHealth(playerid, health);
 			PlayerInfo[playerid][E_CHARACTER_DRUGSCD] = gettime();
-			if(health > 125)
-			{
-				SetPlayerHealthEx(playerid, 125);
-			}
+			
 			SetPlayerHealthEx(playerid, health+10);
-
+			
 			SetPlayerDrunkLevel(playerid, 2000);
-
+			PlayerInfo[playerid][E_CHARACTER_MAXHEALTH] = 125.0;
+			SaveCharacter(playerid);
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
