@@ -51,7 +51,7 @@ function:RandomFire(check)
 	                        if(ReturnFactionType(x) == FACTION_TYPE_MEDICAL)
 	                        {
 	                            GPS_SetPlayerRaceCheckPoint(x, 1, randomFireSpawns[i][E_FIRE_POSX], randomFireSpawns[i][E_FIRE_POSY], randomFireSpawns[i][E_FIRE_POSZ], 0.0, 0.0, 0.0);
-	                            SendServerMessage(x, "[Fire] {cdd0d1}All units, a fire has been reported in {d7d292}%s{cdd0d1}. Please head to the beacon on your map.", GetZoneName(randomFireSpawns[i][E_FIRE_POSX], randomFireSpawns[i][E_FIRE_POSY], randomFireSpawns[i][E_FIRE_POSZ]));
+	                            SendServerMessage(x, "[Fire] {cdd0d1}All units, a fire has been reported in %s. Please head to the beacon on your map.", GetZoneName(randomFireSpawns[i][E_FIRE_POSX], randomFireSpawns[i][E_FIRE_POSY], randomFireSpawns[i][E_FIRE_POSZ]));
 							}
 	                    }
 

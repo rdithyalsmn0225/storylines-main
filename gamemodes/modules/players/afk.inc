@@ -20,7 +20,7 @@ AFKCheck(playerid)
 			new str[512];
 	    	format(str, sizeof(str), "[PAUSED]", PlayerInfo[playerid][E_CHARACTER_AFKTIME]);
 	    	SetPlayerChatBubble(playerid, str, COLOR_DARKGREEN, 3.0, 10000);
-		    SendServerMessage(playerid, "[Afk] {cdd0d1}You are now marked as away from keyboard as you haven't moved in one minute.");
+		    SendServerMessage(playerid, "[AFK] {cdd0d1}You are now marked as away from keyboard as you haven't moved in one minute.");
 		    PlayerInfo[playerid][E_CHARACTER_AFK] = 1;
 		}
 	}
@@ -30,11 +30,11 @@ AFKCheck(playerid)
 		{
 		    if(PlayerInfo[playerid][E_CHARACTER_AFKTIME] < 120) 
 		    {
-		    	SendServerMessage(playerid, "[Afk] {cdd0d1}You are no longer marked as away from keyboard after {d7d292}%d{cdd0d1} seconds.", PlayerInfo[playerid][E_CHARACTER_AFKTIME]);
+		    	SendServerMessage(playerid, "[AFK] {cdd0d1}You are no longer marked as away from keyboard after %d seconds.", PlayerInfo[playerid][E_CHARACTER_AFKTIME]);
 			} 
 			else 
 			{
-			    SendServerMessage(playerid, "[Afk] {cdd0d1}You are no longer marked as away from keyboard after {d7d292}%d{cdd0d1} minutes.", PlayerInfo[playerid][E_CHARACTER_AFKTIME] / 60);
+			    SendServerMessage(playerid, "[AFK] {cdd0d1}You are no longer marked as away from keyboard after %d minutes.", PlayerInfo[playerid][E_CHARACTER_AFKTIME] / 60);
 			}
 			PlayerInfo[playerid][E_CHARACTER_AFK] = 0;
 		}
@@ -55,13 +55,13 @@ CMD:afklist(playerid, params[])
 	if(IsPlayerAdmins(playerid) < ADMINS_HIGH)
 	    return 0;
 
-	SendClientMessage(playerid, COLOR_GREY, "AFK List:");
+	SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ AFK List __________|");
 
 	foreach(new i : Player)
 	{
 	    if(PlayerInfo[i][E_CHARACTER_AFK])
 	    {
-	        SendClientMessageEx(playerid, COLOR_DARKGREEN, "(ID: %i) %s - Time: %i seconds", i, ReturnName(i, i), PlayerInfo[i][E_CHARACTER_AFKTIME]);
+	        SendClientMessageEx(playerid, COLOR_ORANGE, "(ID: %i) %s - Time: %i seconds", i, ReturnName(i, i), PlayerInfo[i][E_CHARACTER_AFKTIME]);
 		}
 	}
 

@@ -298,13 +298,23 @@ ReturnLastName(playerid)
     return lastname; // Jika '_' tidak ditemukan
 }
 
-ReturnMixedName(playerid) 
+ReturnSignName(playerid) 
 {
 	new name[64], shortname[MAX_PLAYER_NAME];
 	format(shortname, sizeof ( shortname ), "%s", PlayerInfo[playerid][E_CHARACTER_NAME]);
     strdel(shortname, 0, strfind(shortname,"_",true) + 1);
 
     format(name, sizeof(name), "%.1s. %s", PlayerInfo[playerid][E_CHARACTER_NAME], shortname);
+    return name;
+}
+
+ReturnMixedName(playerid) 
+{
+	new name[64], shortname[MAX_PLAYER_NAME];
+	format(shortname, sizeof ( shortname ), "%s", PlayerInfo[playerid][E_CHARACTER_NAME]);
+    strdel(shortname, 0, strfind(shortname,"_",true) + 1);
+
+    format(name, sizeof(name), "%s (%.1s. %s)", AccountInfo[playerid][E_MASTERS_ACCNAME], PlayerInfo[playerid][E_CHARACTER_NAME], shortname);
     return name;
 }
 

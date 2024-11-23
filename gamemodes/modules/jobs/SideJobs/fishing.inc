@@ -160,7 +160,7 @@ Dialog:SellFish(playerid, response, listitem, inputtext[])
 		new Cents = floatround(total * 100, floatround_round);
 
 		GiveMoney(playerid, Cents);
-		SendServerMessage(playerid, "[Fishing] {cdd0d1}You have sold all the fish and earn {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
+		SendServerMessage(playerid, "[Fishing] {cdd0d1}You have sold all the fish and earn $%s.", FormatMoney(Cents));
 	}
 	return 1;
 }
@@ -187,7 +187,7 @@ CMD:buybait(playerid, params[])
 
 	GiveMoney(playerid, Cents);
 	Inventory_Add(playerid, "Fish Bait", 19566, amount);
-	SendServerMessage(playerid, "[Fishing] {cdd0d1}You have successfully purchase {d7d292}%d Fish bait{cdd0d1} for {93C47D}$%s{cdd0d1}", amount, FormatMoney(Cents));
+	SendServerMessage(playerid, "[Fishing] {cdd0d1}You have successfully purchase {d7d292}%d Fish bait{cdd0d1} for $%s", amount, FormatMoney(Cents));
 	return 1;
 }
 

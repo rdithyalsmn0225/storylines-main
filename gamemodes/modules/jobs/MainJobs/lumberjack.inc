@@ -92,7 +92,7 @@ function:CutTree(playerid, id)
             else
             {
                 TreeInfo[id][E_TREE_PROGRESS] += rand;
-                SendServerMessage(playerid, "[Lumberjack] {cdd0d1}The tree cutting progress now is {d7d292}%d{cdd0d1} percent", TreeInfo[id][E_TREE_PROGRESS]);
+                SendServerMessage(playerid, "[Lumberjack] {cdd0d1}The tree cutting progress now is %d percent", TreeInfo[id][E_TREE_PROGRESS]);
                 SendTipMessage(playerid, "Keep cut the tree until the progress is 100 percent");
             }
         }
@@ -224,7 +224,7 @@ CMD:timbersell(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_WOODS, 1);
 		
-		SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You has sell woods for {93C47D}$%s{cdd0d1} into leafy hollow barn.", FormatMoney(Cents));
+		SendServerMessage(playerid, "[Lumberjack] {cdd0d1}You has sell woods for $%s into leafy hollow barn.", FormatMoney(Cents));
 	}
 	return 1;
 }

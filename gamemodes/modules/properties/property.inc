@@ -113,7 +113,7 @@ function:OnSellProperty(playerid, response, propertyid)
 		PropertyInfo[propertyid][E_PROPERTY_OWNERDBID] = 0; 
 		
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
-		SendInfoMessage(playerid, "You sold your property and earned {93C47D}$%s{cdd0d1}.", FormatMoney(totalPay)); 
+		SendInfoMessage(playerid, "You sold your property and earned $%s.", FormatMoney(totalPay)); 
 		
 		SaveProperty(propertyid); SaveCharacter(playerid); 
 	}

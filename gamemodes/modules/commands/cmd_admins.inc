@@ -29,7 +29,7 @@ CMD:ahelp(playerid, params[])
 	if(IsPlayerAdmins(playerid) >= 4)
 	{
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createfaction, /editfaction, /createproperty, /editproperty.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createbusiness, /editbusiness, /callpaycheck, /gotomark.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createbusiness, /editbusiness, /gotomark.");
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createntrance, /editentrance, /createcourt, /editcourt.");
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createtree, /edittree, /destroytree, /creategate, /editgate.");
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /destroygate.");
@@ -49,17 +49,15 @@ CMD:aduty(playerid, params[])
 	{
 		PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] = false;
 		
-		format(str, sizeof(str), "%s is now off admin duty.", ReturnName(playerid)); 
+		format(str, sizeof(str), "%s is now off admin duty.", ReturnMixedName(playerid)); 
 		SendAdminMessage(1, str);
 		SendClientMessageEx(playerid, COLOR_RED, "You are now off admin duty.");
-		SetPlayerName(playerid, PlayerInfo[playerid][E_CHARACTER_NAME]);
 		SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]); 
 	}
 	else
 	{
 		PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] = true;
-		SetPlayerName(playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
-		format(str, sizeof(str), "%s is now on admin duty.", ReturnName(playerid)); 
+		format(str, sizeof(str), "%s is now on admin duty.", ReturnMixedName(playerid)); 
 		SendAdminMessage(1, str);
 	}
 	return 1; 
@@ -74,10 +72,10 @@ CMD:a(playerid, params[])
 	
 	if(strlen(params) > 89)
 	{
-		SendAdminMessageEx(COLOR_ADMIN, 1, "((ADMIN: %s (%s): %.89s))", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
-		SendAdminMessageEx(COLOR_ADMIN, 1, "((ADMIN: %s (%s): ... %s))", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params[89]);
+		SendAdminMessageEx(COLOR_ADMIN, 1, "((ADMIN: %s : %.89s))", ReturnMixedName(playerid), params);
+		SendAdminMessageEx(COLOR_ADMIN, 1, "((ADMIN: %s : ... %s))", ReturnMixedName(playerid), params[89]);
 	}
-	else SendAdminMessageEx(COLOR_ADMIN, 1, "((ADMIN: %s (%s): %s))", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
+	else SendAdminMessageEx(COLOR_ADMIN, 1, "((ADMIN: %s : %s))", ReturnMixedName(playerid), params);
 	return 1;
 }
 
@@ -93,7 +91,7 @@ CMD:forumname(playerid, params[])
 		return SendErrorMessage(playerid, "Your forum name needs to be shorter.");
 	
 	format(AccountInfo[playerid][E_MASTERS_FORUMNAME], 60, "%s", params);
-	SendInfoMessage(playerid, "Your forum name was changed to: {d7d292}%s{cdd0d1}.", params);  
+	SendInfoMessage(playerid, "Your forum name was changed to: %s.", params);  
 	
 	SaveCharacter(playerid);
 	return 1;
@@ -175,8 +173,7 @@ CMD:gethere(playerid, params[])
 		SetPlayerInterior(playerb, GetPlayerInterior(playerid)); 
 		
 	SendTeleportMessage(playerb);
-	SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} was teleported to you.", ReturnName(playerb));
-	
+	SendInfoMessage(playerid, "%s was teleported to you.", ReturnName(playerb));
 	return 1;
 }
 
@@ -196,7 +193,7 @@ CMD:showmain(playerid, params[])
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "The player you specified hasn't logged in yet.");
 	
-	SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} Master account is {d7d292}%s{cdd0d1} (DBID: %i).", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID]);	
+	SendInfoMessage(playerid, "%s Master account is %s (DBID: %i).", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID]);	
 	return 1;
 }
 
@@ -218,10 +215,10 @@ CMD:kick(playerid, params[])
 		
 	if(strlen(reason) > 56)
 	{
-		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was kicked by %s, Reason: %.56s", ReturnName(playerb), ReturnName(playerid), reason);
+		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was kicked by %s, Reason: %.56s", ReturnName(playerb), ReturnMixedName(playerid), reason);
 		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: ...%s", reason[56]); 
 	}
-	else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was kicked by %s, Reason: %s", ReturnName(playerb), ReturnName(playerid), reason);
+	else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was kicked by %s, Reason: %s", ReturnName(playerb), ReturnMixedName(playerid), reason);
 	
 	new insertLog[256];
 	
@@ -298,10 +295,10 @@ CMD:ban(playerid, params[])
 		
 	if(strlen(reason) > 56)
 	{
-		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was banned by %s, Reason: %.56s", ReturnName(playerb), ReturnName(playerid), reason);
+		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was banned by %s, Reason: %.56s", ReturnName(playerb), ReturnMixedName(playerid), reason);
 		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: ...%s", reason[56]); 
 	}
-	else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was banned by %s, Reason: %s", ReturnName(playerb), ReturnName(playerid), reason);
+	else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was banned by %s, Reason: %s", ReturnName(playerb), ReturnMixedName(playerid), reason);
 	
 	new insertLog[256];
 	
@@ -313,12 +310,12 @@ CMD:ban(playerid, params[])
 	}
 	
 	mysql_format(ourConnection, insertLog, sizeof(insertLog), "INSERT INTO bannedlist (`CharacterDBID`, `MasterDBID`, `CharacterName`, `Reason`, `Date`, `BannedBy`, `IpAddress`) VALUES(%i, %i, '%e', '%e', '%e', '%e', '%e')",
-		PlayerInfo[playerb][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_DBID], ReturnName(playerb), reason, ReturnDate(), ReturnName(playerid), ReturnIP(playerb));
+		PlayerInfo[playerb][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_DBID], ReturnName(playerb), reason, ReturnDate(), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnIP(playerb));
 	
 	mysql_pquery(ourConnection, insertLog); 
 	
 	mysql_format(ourConnection, insertLog, sizeof(insertLog), "INSERT INTO ban_logs (`CharacterDBID`, `MasterDBID`, `CharacterName`, `Reason`, `BannedBy`, `Date`) VALUES(%i, %i, '%e', '%e', '%e', '%e')",
-		PlayerInfo[playerb][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_DBID], ReturnName(playerb), reason, ReturnName(playerid), ReturnDate());
+		PlayerInfo[playerb][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_DBID], ReturnName(playerb), reason, AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());
 		
 	mysql_pquery(ourConnection, insertLog); 
 	
@@ -375,10 +372,10 @@ CMD:ajail(playerid, params[])
 		
 	if(strlen(reason) > 45)
 	{
-		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by %s for %d mintues, Reason: %.56s", ReturnName(playerb), ReturnName(playerid), length, reason);
+		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by %s for %d mintues, Reason: %.56s", ReturnName(playerb), ReturnMixedName(playerid), length, reason);
 		SendClientMessageToAllEx(COLOR_RED, "AdmCmd: ...%s", reason[56]); 
 	}
-	else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by %s for %d mintues, Reason: %s", ReturnName(playerb), ReturnName(playerid), length, reason);
+	else SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was admin jailed by %s for %d mintues, Reason: %s", ReturnName(playerb), ReturnMixedName(playerid), length, reason);
 	
 	ClearAnimations(playerb); 
 	
@@ -393,7 +390,7 @@ CMD:ajail(playerid, params[])
 	new insertLog[250];
 	
 	mysql_format(ourConnection, insertLog, sizeof(insertLog), "INSERT INTO ajail_logs (`JailedDBID`, `JailedName`, `Reason`, `Date`, `JailedBy`, `Time`) VALUES(%i, '%e', '%e', '%e', '%e', %i)",
-		PlayerInfo[playerb][E_CHARACTER_DBID], ReturnName(playerb), reason, ReturnDate(), ReturnName(playerid, 1), length);
+		PlayerInfo[playerb][E_CHARACTER_DBID], ReturnName(playerb), reason, ReturnDate(), AccountInfo[playerid][E_MASTERS_ACCNAME], length);
 		
 	mysql_pquery(ourConnection, insertLog);
 	return 1;
@@ -425,7 +422,7 @@ CMD:rjail(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_ADMINJAIL] = 0;
 	
 	SaveCharacter(playerb);
-	SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s has been released from admin jail by %s.", ReturnName(playerb), ReturnName(playerid));
+	SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s has been released from admin jail by %s.", ReturnName(playerb), ReturnMixedName(playerid));
 	return 1;
 }
 
@@ -455,7 +452,7 @@ CMD:rprison(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_PRISON] = 0;
 	
 	SaveCharacter(playerb);
-	SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s has been released from prison by %s.", ReturnName(playerb), ReturnName(playerid));
+	SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s has been released from prison by %s.", ReturnName(playerb), ReturnMixedName(playerid));
 	return 1;
 }
 
@@ -477,8 +474,8 @@ CMD:setint(playerid, params[])
 	
 	SetPlayerInterior(playerb, int);
 	
-	format(str, sizeof(str), "%s set %s's interior to %d.", ReturnName(playerid), ReturnName(playerb), int);
-	SendAdminMessage(1, str);
+	format(str, sizeof(str), "%s set %s's interior to %d.", ReturnMixedName(playerid), ReturnName(playerb), int);
+	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	return 1;
 }
 
@@ -500,8 +497,8 @@ CMD:setvw(playerid, params[])
 	
 	SetPlayerVirtualWorld(playerb, world);
 	
-	format(str, sizeof(str), "%s set %s's local world to %d.", ReturnName(playerid), ReturnName(playerb), world);
-	SendAdminMessage(1, str);
+	format(str, sizeof(str), "%s set %s's local world to %d.", ReturnMixedName(playerid), ReturnName(playerb), world);
+	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	return 1;
 }
 
@@ -523,8 +520,8 @@ CMD:skin(playerid, params[])
 		
 	PlayerInfo[playerb][E_CHARACTER_LASTSKIN] = skinid; SetPlayerSkin(playerb, skinid);
 	
-	format(str, sizeof(str), "%s set %s's skin to %d.", ReturnName(playerid), ReturnName(playerb), skinid);
-	SendAdminMessage(1, str);
+	format(str, sizeof(str), "%s set %s's skin to %d.", ReturnMixedName(playerid), ReturnName(playerb), skinid);
+	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	return 1;
 }
 
@@ -558,8 +555,8 @@ CMD:sethp(playerid, params[])
 
 	SetPlayerHealthEx(playerb, health);
 
-	format(str, sizeof(str), "%s set %s's health to %d.", ReturnName(playerid), ReturnName(playerb), health);
-	SendAdminMessage(1, str);
+	format(str, sizeof(str), "%s set %s's health to %d.", ReturnMixedName(playerid), ReturnName(playerb), health);
+	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	return 1;
 }
 
@@ -598,7 +595,7 @@ CMD:ar(playerid, params[])
 	if(ReportInfo[reportid][E_REPORT_EXISTS] == false)
 		return SendErrorMessage(playerid, "The report ID you specified doesn't exist."); 
 		
-	SendAdminMessageEx(COLOR_RED, 1, "[Report] Admin %s has accepted report %d", ReturnName(playerid), reportid);
+	SendAdminMessageEx(COLOR_RED, 1, "[Report] Admin %s has accepted report %d", ReturnMixedName(playerid), reportid);
 	SendClientMessageEx(playerid, COLOR_DARKGREEN, "[Report] You accepted %s's report. [Report: %s]", ReturnName(ReportInfo[reportid][E_REPORT_BY], playerid), ReportInfo[reportid][E_REPORT_DETAILS]);
 	
 	ReportInfo[reportid][E_REPORT_EXISTS] = false;
@@ -621,7 +618,7 @@ CMD:dr(playerid, params[])
 	if(ReportInfo[reportid][E_REPORT_EXISTS] == false)
 		return SendErrorMessage(playerid, "The report ID you specified doesn't exist."); 
 		
-	SendAdminMessageEx(COLOR_RED, 1, "[Report] Admin %s has disregarded report %d", ReturnName(playerid), reportid);
+	SendAdminMessageEx(COLOR_RED, 1, "[Report] Admin %s has disregarded report %d", ReturnMixedName(playerid), reportid);
 	
 	ReportInfo[reportid][E_REPORT_EXISTS] = false;
 	ReportInfo[reportid][E_REPORT_BY] = INVALID_PLAYER_ID; 
@@ -652,8 +649,8 @@ CMD:slap(playerid, params[])
 	SetPlayerPosEx(playerb, PlayerInfo[playerb][E_CHARACTER_LASTPOS][0], PlayerInfo[playerb][E_CHARACTER_LASTPOS][1], PlayerInfo[playerb][E_CHARACTER_LASTPOS][2] + 5); 
 	PlayNearbySound(playerb, 1130); //Slap sound;
 	
-	SendInfoMessage(playerid, "{d7d292}%s{cdd0d1} slapped {d7d292}%s{cdd0d1}", ReturnName(playerid), ReturnName(playerb));
-	if(playerb != playerid) SendInfoMessage(playerb, "{d7d292}%s{cdd0d1} slapped {d7d292}%s{cdd0d1}", ReturnName(playerid), ReturnName(playerb));
+	SendInfoMessage(playerid, "%s slapped %s", ReturnMixedName(playerid), ReturnName(playerb));
+	if(playerb != playerid) SendInfoMessage(playerb, "%s slapped %s", ReturnMixedName(playerid), ReturnName(playerb));
 
 	PauseAC(playerb);
 	return 1;
@@ -679,8 +676,8 @@ CMD:freeze(playerid, params[])
 		
 	TogglePlayerControllable(playerid, false);
 	
-	format(str, sizeof(str), "%s froze player %s.", ReturnName(playerid), ReturnName(playerb));
-	SendAdminMessage(1, str);
+	format(str, sizeof(str), "%s froze player %s.", ReturnMixedName(playerid), ReturnName(playerb));
+	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	return 1;
 }
 
@@ -702,8 +699,8 @@ CMD:unfreeze(playerid, params[])
 		
 	TogglePlayerControllable(playerb, true);
 	
-	format(str, sizeof(str), "%s unfroze player %s.", ReturnName(playerid), ReturnName(playerb));
-	SendAdminMessage(1, str);
+	format(str, sizeof(str), "%s unfroze player %s.", ReturnMixedName(playerid), ReturnName(playerb));
+	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	return 1;
 }
 
@@ -759,6 +756,10 @@ UpdateSpectatorPanel(playerid, targetid)
 	format (td_string, sizeof(td_string), "Vehicle:~b~ %s: ~y~MOD: %d, VID: %d~w~ Vehicle Health:~b~ %0.2f", vehiclename, vehiclemodel, vehicleid, veh_health );
 	PlayerTextDrawSetString(playerid, gui_spec_label[playerid][4], td_string);
 
+	for ( new i, j = 5; i < j ; i ++ ) {
+		PlayerTextDrawShow(playerid, gui_spec_label[playerid][i]);
+	}
+
 	return 1;
 }
 
@@ -791,9 +792,6 @@ CMD:spec(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_LASTWORLD] = GetPlayerVirtualWorld(playerid);
 	}
 
-	for ( new i, j = 5; i < j ; i ++ ) {
-		PlayerTextDrawShow(playerid, gui_spec_label[playerid][i]);
-	}
 	UpdateSpectatorPanel(playerid, playerb); 
 	
 	SetPlayerInterior(playerid, GetPlayerInterior(playerb));
@@ -803,7 +801,7 @@ CMD:spec(playerid, params[])
 	PlayerSpectatePlayer(playerid, playerb);
 		
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = playerb; 
-	SendInfoMessage(playerid, "You're now spectating {d7d292}%s{cdd0d1}. To stop, use '/specoff'.", ReturnName(playerb));
+	SendInfoMessage(playerid, "You're now spectating %s. To stop, use '/specoff'.", ReturnName(playerb));
 	return 1;
 }
 
@@ -815,7 +813,7 @@ CMD:specoff(playerid, params[])
 	if (GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		return SendErrorMessage(playerid, "You aren't spectating anyone."); 
 		
-	SendInfoMessage(playerid, "You stopped spectating {d7d292}%s{cdd0d1}.", ReturnName(PlayerInfo[playerid][E_CHARACTER_SPECTATE], playerid));
+	SendInfoMessage(playerid, "You stopped spectating %s.", ReturnName(PlayerInfo[playerid][E_CHARACTER_SPECTATE], playerid));
 	
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = INVALID_PLAYER_ID;
 	TogglePlayerSpectating(playerid, false); 
@@ -864,7 +862,7 @@ CMD:respawncar(playerid, params[])
 	 		}
 		}
 
-		format(str, sizeof(str), "%s respawned static vehicle.", ReturnName(playerid));
+		format(str, sizeof(str), "%s respawned static vehicle.", ReturnMixedName(playerid));
 		SendAdminMessage(1, str);
 	}
 	else if(!strcmp(option, "faction", true))
@@ -880,7 +878,7 @@ CMD:respawncar(playerid, params[])
 	 		}
 		}
 
-		format(str, sizeof(str), "%s respawned faction vehicle.", ReturnName(playerid));
+		format(str, sizeof(str), "%s respawned faction vehicle.", ReturnMixedName(playerid));
 		SendAdminMessage(1, str);
 	}
 	else if(!strcmp(option, "nearby", true))
@@ -893,7 +891,7 @@ CMD:respawncar(playerid, params[])
 			}
 		}
 
-		format(str, sizeof(str), "%s respawned nearest vehicle.", ReturnName(playerid));
+		format(str, sizeof(str), "%s respawned nearest vehicle.", ReturnMixedName(playerid));
 		SendAdminMessage(1, str);
 	}
 	else if(!strcmp(option, "all", true))
@@ -906,7 +904,7 @@ CMD:respawncar(playerid, params[])
 			}
 		}
 
-		format(str, sizeof(str), "%s respawned all vehicle.", ReturnName(playerid));
+		format(str, sizeof(str), "%s respawned all vehicle.", ReturnMixedName(playerid));
 		SendAdminMessage(1, str);
 	}
 	
@@ -968,7 +966,7 @@ CMD:getcar(playerid, params[])
 	SetVehiclePos(vehicleid, x, y, z);
 	LinkVehicleToInterior(vehicleid, GetPlayerInterior(playerid)); 
 	
-	format(str, sizeof(str), "%s teleported vehicle ID %i", ReturnName(playerid), vehicleid);
+	format(str, sizeof(str), "%s teleported vehicle ID %i", ReturnMixedName(playerid), vehicleid);
 	SendAdminMessage(1, str); 
 	
 	foreach(new i : Player)
@@ -992,9 +990,9 @@ CMD:aooc(playerid, params[])
 	if(isnull(params)) return SendUsageMessage(playerid, "/aooc [text]"); 
 	
 	if(strcmp(AccountInfo[playerid][E_MASTERS_FORUMNAME], "Null"))
-		SendClientMessageToAllEx(COLOR_RED, "[AOOC] Admin %s (%s): %s", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
+		SendClientMessageToAllEx(COLOR_RED, "[AOOC] Admin %s (%s): %s", ReturnMixedName(playerid), AccountInfo[playerid][E_MASTERS_FORUMNAME], params);
 		
-	else SendClientMessageToAllEx(COLOR_RED, "[AOOC] Admin %s: %s", ReturnName(playerid), params);
+	else SendClientMessageToAllEx(COLOR_RED, "[AOOC] Admin %s: %s", ReturnMixedName(playerid), params);
 	return 1;
 }
 
@@ -1019,8 +1017,8 @@ CMD:revive(playerid, params[])
 	if(GetPlayerTeam(playerb) == PLAYER_STATE_ALIVE)
 		return SendErrorMessage(playerid, "That player isn't dead or brutally wounded.");
 	
-	format(str, sizeof(str), "%s revived player %s.", ReturnName(playerid), ReturnName(playerb));
-	SendAdminMessage(1, str); 
+	format(str, sizeof(str), "%s revived player %s.", ReturnMixedName(playerid), ReturnName(playerb));
+	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str); 
 	
 	SetPlayerTeam(playerb, PLAYER_STATE_ALIVE); 
 	SetPlayerHealthEx(playerb, 100); 
@@ -1056,8 +1054,8 @@ CMD:setar(playerid, params[])
 		
 	SetPlayerArmourEx(playerb, armor);
 	
-	format(str, sizeof(str), "%s set %s's Armor to %d.", ReturnName(playerid), ReturnName(playerb), armor);
-	SendAdminMessage(1, str);
+	format(str, sizeof(str), "%s set %s's Armor to %d.", ReturnMixedName(playerid), ReturnName(playerb), armor);
+	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	return 1;
 }
 
@@ -1102,8 +1100,8 @@ CMD:p2p(playerid, params[])
 	if (AccountInfo[playerb][E_MASTERS_LOGGED] == false || AccountInfo[targetid][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "A player you specified isn't logged in."); 
 		
-	format(str, sizeof(str), "%s teleported player %s to %s.", ReturnName(playerid), ReturnName(playerb), ReturnName(targetid));
-	SendAdminMessage(1, str);
+	format(str, sizeof(str), "%s teleported player %s to %s.", ReturnMixedName(playerid), ReturnName(playerb), ReturnName(targetid));
+	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	
 	GetPlayerPos(targetid, PlayerInfo[targetid][E_CHARACTER_LASTPOS][0], PlayerInfo[targetid][E_CHARACTER_LASTPOS][1], PlayerInfo[targetid][E_CHARACTER_LASTPOS][2]);
 	//Using the player variable to avoid making other variables; 
@@ -1133,7 +1131,7 @@ CMD:setinventory(playerid, params[])
 	{
         Inventory_Set(userid, g_aInventoryItems[i][E_INVENTORY_ITEM], g_aInventoryItems[i][E_INVENTORY_MODEL], amount, g_aInventoryItems[i][E_INVENTORY_TYPE]);
 
-		return SendInfoMessage(playerid, "You have set {d7d292}%s{cdd0d1} {d7d292}%s{cdd0d1} to {d7d292}%d{cdd0d1}.", ReturnName(userid, playerid), item, amount);
+		return SendInfoMessage(playerid, "You have set %s %s to %d.", ReturnName(userid), item, amount);
 	}
 	SendErrorMessage(playerid, "Invalid item name (use /itemlist for a list).");
 	return 1;
@@ -1168,6 +1166,9 @@ CMD:gotoentrance(playerid, params[])
 	SetPlayerPosEx(playerid, EntranceInfo[id][E_ENTRANCE_POS][0], EntranceInfo[id][E_ENTRANCE_POS][1], EntranceInfo[id][E_ENTRANCE_POS][2]);
 	
 	SendInfoMessage(playerid, "You teleported to entrance #%i.", id);
+
+	SetPlayerVirtualWorld(playerid, 0);
+	SetPlayerInterior(playerid, 0); 
 	
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1219,6 +1220,9 @@ CMD:gotobusiness(playerid, params[])
 	SetPlayerPosEx(playerid, BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][2]); 
 	SendInfoMessage(playerid, "You teleported to business #%i.", id); 
 	
+	SetPlayerVirtualWorld(playerid, 0);
+	SetPlayerInterior(playerid, 0); 
+
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
 		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = 0;
@@ -1244,7 +1248,7 @@ CMD:gotofaction(playerid, params[])
 	SetPlayerVirtualWorld(playerid, FactionInfo[id][E_FACTION_SPAWNWORLD]);
 	SetPlayerInterior(playerid, FactionInfo[id][E_FACTION_SPAWNINT]); 
 	
-	SendInfoMessage(playerid, "You teleported to {d7d292}%s{cdd0d1} spawn point.", ReturnFactionNameEx(id)); 
+	SendInfoMessage(playerid, "You teleported to %s spawn point.", ReturnFactionNameEx(id)); 
 
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1301,7 +1305,7 @@ CMD:backup(playerid, params[])
 			SaveCharacter(i); 
 		}
 		
-		format(str, sizeof(str), "%s backed up player data. (%i)", ReturnName(playerid), GetPlayerPoolSize());
+		format(str, sizeof(str), "%s backed up player data. (%i)", ReturnMixedName(playerid), GetPlayerPoolSize());
 		SendAdminMessage(1, str); 
 	}
 	else if(!strcmp(params, "all"))
@@ -1310,7 +1314,7 @@ CMD:backup(playerid, params[])
 		SaveProperties();
 		SaveBusinesses();
 		
-		SendClientMessageToAllEx(COLOR_RED, "Admin %s backed up server data.", ReturnName(playerid));
+		SendClientMessageToAllEx(COLOR_RED, "Admin %s backed up server data.", ReturnMixedName(playerid));
 	}
 	else return SendErrorMessage(playerid, "Invalid Paramater.");	
 	return 1;
@@ -1383,7 +1387,7 @@ CMD:spawncar(playerid, params[])
 	}
 	PlayerPutIntoVehicle(playerid, VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH], 0);
 	
-	format(str, sizeof(str), "%s spawned a temporary %s.", ReturnName(playerid), ReturnVehicleName(VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]));
+	format(str, sizeof(str), "%s spawned a temporary %s.", ReturnMixedName(playerid), ReturnVehicleName(VehicleInfo[vehicleid][E_VEHICLE_ADMINVEH]));
 	SendAdminMessage(3, str);
 	
 	lastVehicleSpawn[playerid] = gettime();
@@ -1409,7 +1413,7 @@ CMD:despawncars(playerid, params[])
 
 	if(!vehicleCount) return SendErrorMessage(playerid, "No admin vehicles found.");
 
-	format(str, sizeof(str), "%s destroyed %d admin temporary vehicles.", ReturnName(playerid), vehicleCount);
+	format(str, sizeof(str), "%s destroyed %d admin temporary vehicles.", ReturnMixedName(playerid), vehicleCount);
 	SendAdminMessage(3, str);
 	return 1;
 }
@@ -1430,7 +1434,7 @@ CMD:despawncar(playerid, params[])
 	if(VehicleInfo[vehicleid][E_VEHICLE_ADMIN] == false)
 		return SendErrorMessage(playerid, "You can't despawn a private / faction vehicle."); 
 	
-	format(str, sizeof(str), "%s despawned %s (%d).", ReturnName(playerid), ReturnVehicleName(vehicleid), vehicleid);
+	format(str, sizeof(str), "%s despawned %s (%d).", ReturnMixedName(playerid), ReturnVehicleName(vehicleid), vehicleid);
 	SendAdminMessage(3, str);
 		
 	ResetVehicleVars(vehicleid); DestroyVehicle(vehicleid);
@@ -1529,8 +1533,8 @@ CMD:setstats(playerid, params[])
 			PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = value;
 			SaveCharacter(playerb); 
 			
-			format(str, sizeof(str), "%s set %s's faction rank to %i.", ReturnName(playerid), ReturnName(playerb), value); 
-			SendAdminMessage(3, str); 
+			format(str, sizeof(str), "%s set %s's faction rank to %i.", ReturnMixedName(playerid), ReturnName(playerb), value); 
+			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str); 
 		}
 		case 2:
 		{
@@ -1539,16 +1543,16 @@ CMD:setstats(playerid, params[])
 				
 			else PlayerInfo[playerb][E_CHARACTER_HASRADIO] = false;
 			
-			format(str, sizeof(str), "%s %s %s's Radio.", ReturnName(playerid), (PlayerInfo[playerb][E_CHARACTER_HASRADIO] != true) ? ("took") : ("set"), ReturnName(playerb));
-			SendAdminMessage(3, str);
+			format(str, sizeof(str), "%s %s %s's Radio.", ReturnMixedName(playerid), (PlayerInfo[playerb][E_CHARACTER_HASRADIO] != true) ? ("took") : ("set"), ReturnName(playerb));
+			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 		}
 		case 3:
 		{
 			if(value == -1)
 				return SendUsageMessage(playerid, "/setstats [playerid OR name] 3 [value required]"); 
 		
-			format(str, sizeof(str), "%s set %s's bank money: $%s (Previously $%s)", ReturnName(playerid), ReturnName(playerb), FormatMoney(value), FormatMoney(PlayerInfo[playerb][E_CHARACTER_BANK])); 
-			SendAdminMessage(3, str);
+			format(str, sizeof(str), "%s set %s's bank money: $%s (Previously $%s)", ReturnMixedName(playerid), ReturnName(playerb), FormatMoney(value), FormatMoney(PlayerInfo[playerb][E_CHARACTER_BANK])); 
+			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 			
 			PlayerInfo[playerb][E_CHARACTER_BANK] = value;
 			SaveCharacter(playerb);
@@ -1561,8 +1565,8 @@ CMD:setstats(playerid, params[])
 			if(value < 1 && value != -1)
 				return SendErrorMessage(playerid, "Player levels can't go below one.");
 
-			format(str, sizeof(str), "%s set %s's level: %i (Previously %i)", ReturnName(playerid), ReturnName(playerb), value, PlayerInfo[playerb][E_CHARACTER_LEVEL]);
-			SendAdminMessage(3, str); 
+			format(str, sizeof(str), "%s set %s's level: %i (Previously %i)", ReturnMixedName(playerid), ReturnName(playerb), value, PlayerInfo[playerb][E_CHARACTER_LEVEL]);
+			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str); 
 			
 			PlayerInfo[playerb][E_CHARACTER_LEVEL] = value; SetPlayerScore(playerb, value);
 			SaveCharacter(playerb);
@@ -1570,10 +1574,10 @@ CMD:setstats(playerid, params[])
 		case 5:
 		{
 			if(value == -1)
-				return SendUsageMessage(playerid, "/setstats [playerid OR name] 7 [value required]");
+				return SendUsageMessage(playerid, "/setstats [playerid OR name] 5 [value required]");
 				
-			format(str, sizeof(str), "%s set %s's paycheck: %i (Previously %i)", ReturnName(playerid), ReturnName(playerb), value, PlayerInfo[playerb][E_CHARACTER_PAYCHECK]);
-			SendAdminMessage(3, str);
+			format(str, sizeof(str), "%s set %s's paycheck: %i (Previously %i)", ReturnMixedName(playerid), ReturnName(playerb), value, PlayerInfo[playerb][E_CHARACTER_PAYCHECK]);
+			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 			
 			PlayerInfo[playerb][E_CHARACTER_PAYCHECK] = value; 
 			SaveCharacter(playerb);
@@ -1581,10 +1585,10 @@ CMD:setstats(playerid, params[])
 		case 6:
 		{
 			if(value == -1)
-				return SendUsageMessage(playerid, "/setstats [playerid OR name] 9 [value required]");
+				return SendUsageMessage(playerid, "/setstats [playerid OR name] 6 [value required]");
 				
-			format(str, sizeof(str), "%s set %s's jobs: %s (Previously %s)", ReturnName(playerid), ReturnName(playerb), ReturnJobName(value), ReturnJobName(PlayerInfo[playerb][E_CHARACTER_JOBS]));
-			SendAdminMessage(3, str);
+			format(str, sizeof(str), "%s set %s's jobs: %s (Previously %s)", ReturnMixedName(playerid), ReturnName(playerb), ReturnJobName(value), ReturnJobName(PlayerInfo[playerb][E_CHARACTER_JOBS]));
+			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 			
 			PlayerInfo[playerb][E_CHARACTER_JOBS] = value;
 			SaveCharacter(playerid);
@@ -1592,10 +1596,10 @@ CMD:setstats(playerid, params[])
 		case 7:
 		{
 			if(value == -1)
-				return SendUsageMessage(playerid, "/setstats [playerid OR name] 9 [value required]");
+				return SendUsageMessage(playerid, "/setstats [playerid OR name] 7 [value required]");
 				
-			format(str, sizeof(str), "%s set %s's hoodrat's: %i (Previously %d)", ReturnName(playerid), ReturnName(playerb), value, ReturnFactionName(playerid));
-			SendAdminMessage(3, str);
+			format(str, sizeof(str), "%s set %s's hoodrat's: %i (Previously %d)", ReturnMixedName(playerid), ReturnName(playerb), value, ReturnFactionName(playerid));
+			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 			
 			PlayerInfo[playerb][E_CHARACTER_FACTION] = 0;
 			PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = 0; 
@@ -1624,10 +1628,10 @@ CMD:givemoney(playerid, params[])
 
     GiveMoney(playerb, Cents);
 
-    SendInfoMessage(playerb, "You received {93C47D}$%s{cdd0d1} from Admin {d7d292}%s{cdd0d1}.", FormatMoney(Cents), ReturnName(playerid));
+    SendInfoMessage(playerb, "You received $%s from Admin %s.", FormatMoney(Cents), ReturnName(playerid));
 
-    format(str, sizeof(str), "%s gave %s to %s", ReturnName(playerid), FormatMoney(Cents), ReturnName(playerb));
-    SendAdminMessage(3, str);
+    format(str, sizeof(str), "%s gave %s to %s", ReturnMixedName(playerid), FormatMoney(Cents), ReturnName(playerb));
+    SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 
     return 1;
 }
@@ -1660,7 +1664,7 @@ CMD:setcar(playerid, params[])
 		if(sscanf(b_str, "i", value))
 			return SendUsageMessage(playerid, "/setcar vehicleid timesdestroyed [value]");
 			
-		format(str, sizeof(str), "%s set vehicle ID %i's time destroyed to %i. (Previously %i)", ReturnName(playerid), vehicleid, value, VehicleInfo[vehicleid][E_VEHICLE_DESTROYED]); 
+		format(str, sizeof(str), "%s set vehicle ID %i's time destroyed to %i. (Previously %i)", ReturnMixedName(playerid), vehicleid, value, VehicleInfo[vehicleid][E_VEHICLE_DESTROYED]); 
 		SendAdminMessage(3, str); 
 		
 		VehicleInfo[vehicleid][E_VEHICLE_DESTROYED] = value; 
@@ -1674,7 +1678,7 @@ CMD:setcar(playerid, params[])
 		if(value > 255 || value < 0)
 			return SendErrorMessage(playerid, "You specified an invalid color. (0-255)");
 			
-		format(str, sizeof(str), "%s set vehicle ID %i's color1 to %i. (Previously %i)", ReturnName(playerid), vehicleid, value, VehicleInfo[vehicleid][E_VEHICLE_COLOR1]);
+		format(str, sizeof(str), "%s set vehicle ID %i's color1 to %i. (Previously %i)", ReturnMixedName(playerid), vehicleid, value, VehicleInfo[vehicleid][E_VEHICLE_COLOR1]);
 		SendAdminMessage(3, str);
 		
 		SendTipMessage(playerid, "The vehicle needs to be respawned to take affect.");
@@ -1706,7 +1710,7 @@ CMD:setcar(playerid, params[])
 		if(value > 3 || value < 0)
 			return SendErrorMessage(playerid, "You specified an invalid color. (0-255)");
 			
-		format(str, sizeof(str), "%s set vehicle ID %i's paintjob to %i. (Previously %i)", ReturnName(playerid), vehicleid, value, VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB]);
+		format(str, sizeof(str), "%s set vehicle ID %i's paintjob to %i. (Previously %i)", ReturnMixedName(playerid), vehicleid, value, VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB]);
 		SendAdminMessage(3, str);
 		
 		SendTipMessage(playerid, "The vehicle needs to be respawned to take affect.");
@@ -1725,7 +1729,7 @@ CMD:setcar(playerid, params[])
 		if(strlen(plates) > 6 || strlen(plates) < 6)
 			return SendErrorMessage(playerid, "You need to provide a 6 digit plate. (California license plate: Q123Q1)");
 			
-		format(str, sizeof(str), "%s set vehicle ID %i's plates to \"%s\". (Previously %s)", ReturnName(playerid), vehicleid, plates, VehicleInfo[vehicleid][E_VEHICLE_PLATES]);
+		format(str, sizeof(str), "%s set vehicle ID %i's plates to \"%s\". (Previously %s)", ReturnMixedName(playerid), vehicleid, plates, VehicleInfo[vehicleid][E_VEHICLE_PLATES]);
 		SendAdminMessage(3, str);
 		
 		format(VehicleInfo[vehicleid][E_VEHICLE_PLATES], 32, "%s", plates); 
@@ -1739,7 +1743,7 @@ CMD:setcar(playerid, params[])
 		if(value2 > 100.0 || value2 < 0.0)
 			return SendErrorMessage(playerid, "You specified an invalid color. (0-255)");
 			
-		format(str, sizeof(str), "%s set vehicle ID %i's fuel to %i. (Previously %i)", ReturnName(playerid), vehicleid, value2, VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
+		format(str, sizeof(str), "%s set vehicle ID %i's fuel to %i. (Previously %i)", ReturnMixedName(playerid), vehicleid, value2, VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
 		SendAdminMessage(3, str);
 		
 		VehicleInfo[vehicleid][E_VEHICLE_FUEL] = value;
@@ -1771,12 +1775,12 @@ CMD:setcarparams(playerid, params[])
 		if(!VehicleInfo[vehicleid][E_VEHICLE_ENGINE])
 		{
 			ToggleVehicleEngine(vehicleid, true); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = true;
-			format(str, sizeof(str), "%s turned vehicle ID %i's engine on.", ReturnName(playerid), vehicleid);
+			format(str, sizeof(str), "%s turned vehicle ID %i's engine on.", ReturnMixedName(playerid), vehicleid);
 		}
 		else
 		{
 			ToggleVehicleEngine(vehicleid, false); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = false;
-			format(str, sizeof(str), "%s turned vehicle ID %i's engine off.", ReturnName(playerid), vehicleid);
+			format(str, sizeof(str), "%s turned vehicle ID %i's engine off.", ReturnMixedName(playerid), vehicleid);
 		}
 		
 		SendAdminMessage(3, str); 
@@ -1788,7 +1792,7 @@ CMD:setcarparams(playerid, params[])
 			
 		else ToggleVehicleLights(vehicleid, false);
 		
-		format(str, sizeof(str), "%s turned vehicle ID %i's lights %s.", ReturnName(playerid), vehicleid, (VehicleInfo[vehicleid][E_VEHICLE_LIGHTS] != true) ? ("off") : ("on"));
+		format(str, sizeof(str), "%s turned vehicle ID %i's lights %s.", ReturnMixedName(playerid), vehicleid, (VehicleInfo[vehicleid][E_VEHICLE_LIGHTS] != true) ? ("off") : ("on"));
 		SendAdminMessage(3, str);
 	}
 	else if(!strcmp(a_str, "lock"))
@@ -1808,7 +1812,7 @@ CMD:setcarparams(playerid, params[])
 			VehicleInfo[vehicleid][E_VEHICLE_LOCKED] = true;
 		}
 		
-		format(str, sizeof(str), "%s %s vehicle ID %i.", ReturnName(playerid), (VehicleInfo[vehicleid][E_VEHICLE_LOCKED] != false) ? ("locked") : ("unlocked")); 
+		format(str, sizeof(str), "%s %s vehicle ID %i.", ReturnMixedName(playerid), (VehicleInfo[vehicleid][E_VEHICLE_LOCKED] != false) ? ("locked") : ("unlocked")); 
 		SendAdminMessage(3, str);
 	}
 	else if(!strcmp(a_str, "health"))
@@ -1820,7 +1824,7 @@ CMD:setcarparams(playerid, params[])
 			
 		SetVehicleHealthEx(vehicleid, health); 
 		
-		format(str, sizeof(str), "%s set vehicle ID %i's health to %.2f.", ReturnName(playerid), vehicleid, health);
+		format(str, sizeof(str), "%s set vehicle ID %i's health to %.2f.", ReturnMixedName(playerid), vehicleid, health);
 		SendAdminMessage(3, str);
 	}
 
@@ -1870,10 +1874,10 @@ CMD:setpadmin(playerid, params[])
 	
 	SaveCharacter(playerb);
 		
-	format(str, sizeof(str), "%s set %s's admin to %d.", ReturnName(playerid), ReturnName(playerb), adminid);
-	SendAdminMessage(4, str);
+	format(str, sizeof(str), "%s set %s's admin to %d.", ReturnMixedName(playerid), ReturnName(playerb), adminid);
+	SendAdminMessage(4, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	
-	SendInfoMessage(playerb, "You were set to admin {d7d292}%s{cdd0d1} by Admin {d7d292}%s{cdd0d1}.", adminid, ReturnName(playerid));
+	SendInfoMessage(playerb, "You were set to admin %s by Admin %s.", adminid, ReturnMixedName(playerid));
 	
 	return 1;
 }

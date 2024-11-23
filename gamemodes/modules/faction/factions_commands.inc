@@ -162,9 +162,9 @@ CMD:setpfaction(playerid, params[])
 	SaveCharacter(playerb);
 		
 	format(str, sizeof(str), "%s set %s's faction to %d.", ReturnName(playerid), ReturnName(playerb), factionid);
-	SendAdminMessage(4, str);
+	SendAdminMessage(4, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	
-	SendInfoMessage(playerb, "You were set to faction {d7d292}%d{cdd0d1} by Admin {d7d292}%s{cdd0d1}.", factionid, ReturnName(playerid));
+	SendInfoMessage(playerb, "You were set to faction %d by Admin %s.", factionid, ReturnName(playerid));
 	
 	return 1;
 }

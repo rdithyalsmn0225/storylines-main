@@ -352,7 +352,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						pToys[playerid][toySelect[playerid]][E_TOY_SX],
 						pToys[playerid][toySelect[playerid]][E_TOY_SY],
 						pToys[playerid][toySelect[playerid]][E_TOY_SZ]);
-				SendServerMessage(playerid, "[Clothing] {cdd0d1}Accessories bone position now is {d7d292}%s{cdd0d1}", Bone_Name[listitem + 1]);
+				SendServerMessage(playerid, "[Clothing] {cdd0d1}Accessories bone position now is %s", Bone_Name[listitem + 1]);
 			}
 		}
 		case DIALOG_FIGHTSTYLE:
@@ -535,7 +535,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						return SendErrorMessage(playerid, "That player doesn't have anymore inventory slots.");
 
 				    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnName(playerid, 0), string, ReturnName(userid, 0));
-				    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} has given you {d7d292}%s{cdd0d1} (added to inventory).", ReturnName(playerid, 0), string);
+				    SendInfoMessage(userid, "%s has given you %s (added to inventory).", ReturnName(playerid, 0), string);
 
 					Inventory_Remove(playerid, string);
 		  		}
@@ -600,7 +600,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					return SendErrorMessage(playerid, "That player doesn't have anymore inventory slots.");
 
 			    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnName(playerid, 0), string, ReturnName(userid, 0));
-			    SendInfoMessage(userid, "{d7d292}%s{cdd0d1} has given you {d7d292}%s{cdd0d1} (added to inventory).", ReturnName(playerid, 0), string);
+			    SendInfoMessage(userid, "%s has given you %s (added to inventory).", ReturnName(playerid, 0), string);
 
 				Inventory_Remove(playerid, string, strval(inputtext));
 			}
@@ -916,7 +916,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've opened drugs corner at {d7d292}%s{cdd0d1}, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 				}
 			}
@@ -940,7 +940,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've opened drugs corner at {d7d292}%s{cdd0d1}, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 					case 1: //PCP
 					{
@@ -952,7 +952,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've opened drugs corner at {d7d292}%s{cdd0d1}, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 				}
 			}	
@@ -978,7 +978,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 						
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%d{cdd0d1} from selling crack.", FormatMoney(Cents));
+						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%s{cdd0d1} from selling crack.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1000,7 +1000,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%d{cdd0d1} from selling marijuana.", FormatMoney(Cents));
+						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%s{cdd0d1} from selling marijuana.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1022,7 +1022,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 						
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%s{cdd0d1} from selling heroin.", FormatMoney(Cents));
+						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received $%s from selling heroin.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1044,7 +1044,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%s{cdd0d1} from selling pcp.", FormatMoney(Cents));
+						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received $%s from selling pcp.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1345,7 +1345,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						format(string, sizeof(string), "INSERT INTO `contacts` (`ID`, `E_CONTACT_NAME`, `E_CONTACT_NUMBER`) VALUES('%d', '%s', '%d')", PlayerInfo[playerid][E_CHARACTER_DBID], name, ContactInfo[playerid][i][E_CONTACT_NUMBER]);
 						mysql_pquery(ourConnection, string, "OnContactAdd", "dd", playerid, i);
 
-						SendServerMessage(playerid, "[Contact] {cdd0d1}You have added {d7d292}%s{cdd0d1} to your contacts.", name);
+						SendServerMessage(playerid, "[Contact] {cdd0d1}You have added %s to your contacts.", name);
 						return 1;
 					}
 				}
@@ -1372,7 +1372,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						format(string, sizeof(string), "DELETE FROM `contacts` WHERE `ID` = '%d' AND `E_CONTACT_DBID` = '%d'", PlayerInfo[playerid][E_CHARACTER_DBID], ContactInfo[playerid][id][E_CONTACT_DBID]);
 						mysql_pquery(ourConnection, string);
 
-						SendServerMessage(playerid, "[Contact] {cdd0d1}You have deleted {d7d292}%s{cdd0d1} from your contacts.", ContactInfo[playerid][id][E_CONTACT_NAME]);
+						SendServerMessage(playerid, "[Contact] {cdd0d1}You have deleted %s from your contacts.", ContactInfo[playerid][id][E_CONTACT_NAME]);
 
 						ContactInfo[playerid][id][E_CONTACT_EXISTS] = false;
 						ContactInfo[playerid][id][E_CONTACT_NUMBER] = 0;
@@ -1414,7 +1414,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] -= rand;
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = false;
 							BusinessRefresh(IsPlayerInBusiness(playerid));
-							SendServerMessage(playerid, "[Business] {cdd0d1}You've got money {93C47D}$%s{cdd0d1} from take cash money on cashiers.", FormatMoney(Cents));
+							SendServerMessage(playerid, "[Business] {cdd0d1}You've got money $%s from take cash money on cashiers.", FormatMoney(Cents));
 						}
 					}
 				}

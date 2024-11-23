@@ -26,7 +26,7 @@ CMD:buybiz(playerid, params[])
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 		ShowBoxMessage(playerid, "Congratulations!~n~You're now the owner of this business!", 4);
 		
-		SendInfoMessage(playerid, "You purchased the {d7d292}%s{cdd0d1} for {93C47D}$%s{cdd0d1}!", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]));
+		SendInfoMessage(playerid, "You purchased the %s for $%s!", BusinessInfo[id][E_BUSINESS_NAME], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]));
 		
 		BusinessInfo[id][E_BUSINESS_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID]; 
 		GiveMoney(playerid, -BusinessInfo[id][E_BUSINESS_PRICE]); 
@@ -93,7 +93,7 @@ CMD:bizproduct(playerid, params[])
         		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][1] = Cents;
-			SendServerMessage(playerid, "[Business] {cdd0d1}You has set your business product {d7d292}#1{cdd0d1} to {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
+			SendServerMessage(playerid, "[Business] {cdd0d1}You has set your business product {d7d292}#1{cdd0d1} to $%s.", FormatMoney(Cents));
 		}
 		case 2:
 		{
@@ -101,7 +101,7 @@ CMD:bizproduct(playerid, params[])
         		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][2] = Cents;
-			SendServerMessage(playerid, "[Business] {cdd0d1}You has set your business product {d7d292}#2{cdd0d1} to {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
+			SendServerMessage(playerid, "[Business] {cdd0d1}You has set your business product {d7d292}#2{cdd0d1} to $%s.", FormatMoney(Cents));
 		}
 		case 3:
 		{
@@ -109,7 +109,7 @@ CMD:bizproduct(playerid, params[])
         		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][3] = Cents;
-			SendServerMessage(playerid, "[Business] {cdd0d1}You has set your business product {d7d292}#3{cdd0d1} to {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
+			SendServerMessage(playerid, "[Business] {cdd0d1}You has set your business product {d7d292}#3{cdd0d1} to $%s.", FormatMoney(Cents));
 		}
 	}
 	return 1;
@@ -138,7 +138,7 @@ CMD:bizfee(playerid, params[])
 		new Cents = floatround(amount * 100, floatround_round);
 
 		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = Cents;
-		SendInfoMessage(playerid, "You set your businesses entrance fee to {93C47D}$%s{cdd0d1}.", FormatMoney(Cents));
+		SendInfoMessage(playerid, "You set your businesses entrance fee to $%s.", FormatMoney(Cents));
 		SaveBusiness(id);
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business."); 
@@ -167,7 +167,7 @@ CMD:bizcash(playerid, params[])
 			
 		if(!strcmp(astr, "balance"))
 		{
-			SendInfoMessage(playerid, "You have {93C47D}$%s{cdd0d1} in your businesses cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH])); 
+			SendInfoMessage(playerid, "You have $%s in your businesses cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH])); 
 		}
 		else if(!strcmp(astr, "deposit"))
 		{	
@@ -182,7 +182,7 @@ CMD:bizcash(playerid, params[])
     		GiveMoney(playerid, -Cents);
 			BusinessInfo[id][E_BUSINESS_CASH]+= Cents;
 			
-			SendInfoMessage(playerid, "You deposited {93C47D}$%s{cdd0d1} into your business. (Total: {93C47D}$%s{cdd0d1})", FormatMoney(Cents), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+			SendInfoMessage(playerid, "You deposited $%s into your business. (Total: $%s)", FormatMoney(Cents), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 			SaveBusiness(id); SaveCharacter(playerid);
 		}
 		else if(!strcmp(astr, "withdraw"))
@@ -198,7 +198,7 @@ CMD:bizcash(playerid, params[])
     		GiveMoney(playerid, -Cents);
 			BusinessInfo[id][E_BUSINESS_CASH]+= Cents;
 			
-			SendInfoMessage(playerid, "You withdraw {93C47D}$%s{cdd0d1} from your business. (Total: {93C47D}$%s{cdd0d1})", FormatMoney(Cents), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+			SendInfoMessage(playerid, "You withdraw $%s from your business. (Total: $%s)", FormatMoney(Cents), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 			SaveBusiness(id); SaveCharacter(playerid);
 		}
 		else return SendErrorMessage(playerid, "Invalid Parameter.");
@@ -234,8 +234,8 @@ CMD:givebusiness(playerid, params[])
 		PlayerInfo[userid][E_CHARACTER_BIZOFFER] = playerid;
 		PlayerInfo[userid][E_CHARACTER_BIZOFFERID] = id;
 
-		SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to give their business, type /approve business to approve.", ReturnName(playerid));
-		SendInfoMessage(playerid, "You have offered to give {d7d292}%s{cdd0d1} your business.", ReturnName(userid));
+		SendTipMessage(userid, "%s has offered to give their business, type /approve business to approve.", ReturnName(playerid));
+		SendInfoMessage(playerid, "You have offered to give %s your business.", ReturnName(userid));
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business.");
 	return 1;
@@ -365,9 +365,10 @@ CMD:editbusiness(playerid, params[])
 		if(type == BusinessInfo[id][E_BUSINESS_TYPE])
 			return SendErrorMessage(playerid, "You can't set the businesses type to what it already is."); 
 			
+		BusinessInfo[id][E_BUSINESS_TYPE] = type;
 		BusinessRefresh(id);
-		SendInfoMessage(playerid, "You changed business #%i's type to %i.", id, type);
 		SaveBusiness(id);	
+		SendInfoMessage(playerid, "You changed business #%i's type to %i.", id, type);
 	}
 	else if(!strcmp(astr, "level"))
 	{
@@ -413,7 +414,8 @@ CMD:editbusiness(playerid, params[])
 		BusinessInfo[id][E_BUSINESS_STOCK] = products;
 		
 		SendInfoMessage(playerid, "You set business #%i's level to %i.", id, products);
-		SaveBusiness(id);
+		BusinessRefresh(id);
+		SaveBusiness(id);	
 	}
 	else if(!strcmp(astr, "entrancefee"))
 	{
@@ -428,7 +430,8 @@ CMD:editbusiness(playerid, params[])
 		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = fee;
 		
 		SendInfoMessage(playerid, "You set business #%i's entrance fee to %i.", id, fee);
-		SaveBusiness(id);
+		BusinessRefresh(id);
+		SaveBusiness(id);	
 	}
 	else if(!strcmp(astr, "name"))
 	{
@@ -447,7 +450,8 @@ CMD:editbusiness(playerid, params[])
 		SendInfoMessage(playerid, "You set business #%i's name from \"%s\" to \"%s\". ", id, BusinessInfo[id][E_BUSINESS_NAME], bizname); 
 		
 		format(BusinessInfo[id][E_BUSINESS_NAME], 90, "%s", bizname);
-		SaveBusiness(id); 
+		BusinessRefresh(id);
+		SaveBusiness(id);	
 	}
 	else if(!strcmp(astr, "bankpickup"))
 	{
@@ -467,8 +471,9 @@ CMD:editbusiness(playerid, params[])
 
 		BusinessInfo[id][E_BUSINESS_PRICE] = Cents;
 		
-		SendInfoMessage(playerid, "You set business #%i's market price to {93C47D}$%s{cdd0d1}.", id, FormatMoney(Cents));
-		SaveBusiness(id);
+		SendInfoMessage(playerid, "You set business #%i's market price to $%s.", id, FormatMoney(Cents));
+		BusinessRefresh(id);
+		SaveBusiness(id);	
 	}
 	else return SendErrorMessage(playerid, "Invalid Parameter.");
 	return 1;

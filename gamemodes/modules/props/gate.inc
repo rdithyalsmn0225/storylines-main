@@ -1,6 +1,6 @@
 stock IsPlayerNearGates(playerid)
 {
-    for (new i = 0; i != MAX_GATES; i ++) if (IsPlayerInRangeOfPoint(playerid, 10.0, GateInfo[i][E_GATE_POS][0], GateInfo[i][E_GATE_POS][1], GateInfo[i][E_GATE_POS][2]))
+    for (new i = 0; i != MAX_GATES; i ++) if (IsPlayerInRangeOfPoint(playerid, 5.0, GateInfo[i][E_GATE_POS][0], GateInfo[i][E_GATE_POS][1], GateInfo[i][E_GATE_POS][2]))
 	{
 		if (GetPlayerInterior(playerid) == GateInfo[i][E_GATE_INTERIOR] && GetPlayerVirtualWorld(playerid) == GateInfo[i][E_GATE_WORLD])
 			return i;

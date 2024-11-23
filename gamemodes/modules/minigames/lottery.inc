@@ -85,6 +85,6 @@ CMD:buylottery(playerid, params[])
     LotteryPlayerHasTicket[playerid] = 1;
     LotteryPlayerNumber[playerid] = number;
 
-    SendServerMessage(playerid, "[Lottery] {cdd0d1}You have purchased a lottery with a number {d7d292}%d{cdd0d1}.", number);
+    SendServerMessage(playerid, "[Lottery] {cdd0d1}You have purchased a lottery with a number %d.", number);
     return 1;
 }

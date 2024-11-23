@@ -6,10 +6,10 @@
 	SendClientMessageEx(%0, COLOR_RED, "[Error]{cdd0d1} "%1)
 
 #define SendInfoMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_YELLOW, "[ ! ] "%1) 
+	SendClientMessageEx(%0, COLOR_BLUE, "[INFO] "%1) 
 
 #define SendTipMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_ORANGE, "[ ! ] "%1) 
+	SendClientMessageEx(%0, COLOR_ORANGE, "[TIP] "%1) 
 
 #define SendServerMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_INFO, ""%1) 

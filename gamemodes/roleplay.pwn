@@ -499,7 +499,7 @@ function:CheckBanList(playerid)
 	}
 	else
 	{
-		SendServerMessage(playerid, "[Banned] {cdd0d1}Your IP {d7d292}%s{cdd0d1} is banned from our servers.", ReturnIP(playerid));
+		SendServerMessage(playerid, "[Banned] {cdd0d1}Your IP %s is banned from our servers.", ReturnIP(playerid));
 		SendServerMessage(playerid, "[Banned] {cdd0d1}You may appeal your ban on our forums."); 
 		return KickEx(playerid);
 	}
@@ -538,8 +538,10 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 		{
 			if(PlayerCheckpoint[playerid] == GPS_DMVFINISH)
 			{
+				new Cents = floatround(100 * 100, floatround_round);
 				StopDriverstest(playerid);
-				SendServerMessage(playerid, "[Dmv] {cdd0d1}Congratulations {d7d292}%s{cdd0d1}, you've passed your test.", ReturnName(playerid)); 
+				GiveMoney(playerid, -Cents);
+				SendServerMessage(playerid, "[Dmv] {cdd0d1}Congratulations %s, you've passed your test.", ReturnName(playerid)); 
 				
 				PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE] = 1;
 				SaveCharacter(playerid);
@@ -620,7 +622,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
     			GiveMoney(playerid, Cents);
 
 				ShowBoxMessage(playerid, "~r~Street Cleaner job ended.", 5); 
-				SendServerMessage(playerid, "[Street Cleaner] {cdd0d1}You've cleaned the street, current cleaned rubbish {d7d292}%d{cdd0d1} x rubbish and earn {93C47D}$%s{cdd0d1}.", PlayerSweeperIndex[playerid], FormatMoney(Cents));
+				SendServerMessage(playerid, "[Street Cleaner] {cdd0d1}You've cleaned the street, current cleaned rubbish %d x rubbish and earn $%s.", PlayerSweeperIndex[playerid], FormatMoney(Cents));
 
 				PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
 				PlayerSweeperIndex[playerid] = 0;
@@ -697,7 +699,7 @@ function:OnPlayerRegister(playerid)
 	
 	new str[1024];
 	format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
-	SendInfoMessage(playerid, "You successfully registered as {d7d292}%s{cdd0d1}. You need to login to continue:", ReturnName(playerid)); 
+	SendInfoMessage(playerid, "You successfully registered as %s. You need to login to continue:", ReturnName(playerid)); 
 	return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 }
 
@@ -769,8 +771,8 @@ function:Query_CheckBannedAccount(playerid)
 		cache_get_value_name(0, "Date", banDate, 90);
 		cache_get_value_name(0, "BannedBy", banner, 32);
 	
-		SendServerMessage(playerid, "[Banned] {cdd0d1}Your account {d7d292}%s{cdd0d1} is banned from our server.", ReturnName(playerid));
-		SendServerMessage(playerid, "[Banned] {cdd0d1}You were banned on {d7d292}%s{cdd0d1} by {d7d292}%s{cdd0d1}.", banDate, banner); 
+		SendServerMessage(playerid, "[Banned] {cdd0d1}Your account %s is banned from our server.", ReturnName(playerid));
+		SendServerMessage(playerid, "[Banned] {cdd0d1}You were banned on %s by %s.", banDate, banner); 
 		return KickEx(playerid);
 	}
 	return 1;
@@ -1138,8 +1140,8 @@ public OnPlayerDeath(playerid, killerid, reason)
 					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
 					return 0;
 				}
-				SendInfoMessage(killerid, "You have been killed {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnName(playerid), ReturnLocationStreet(playerid));
-				SendInfoMessage(playerid, "You has been killed by {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
+				SendInfoMessage(killerid, "You have been killed %s at %s.", ReturnName(playerid), ReturnLocationStreet(playerid));
+				SendInfoMessage(playerid, "You has been killed by %s at %s.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
 			}
 			else if(reason == 51)
 			{
@@ -1148,7 +1150,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
 					return 0;
 				}
-				SendInfoMessage(playerid, "You has been killed by {d7d292}Exploded{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnLocationStreet(playerid));
+				SendInfoMessage(playerid, "You has been killed by Exploded at %s.", ReturnLocationStreet(playerid));
 			}
 			else if(reason == 50)
 			{
@@ -1157,7 +1159,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
 					return 0;
 				}
-				SendInfoMessage(playerid, "You has been killed by {d7d292}Helicopter Bladed{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnLocationStreet(playerid));
+				SendInfoMessage(playerid, "You has been killed by Helicopter Bladed at %s.", ReturnLocationStreet(playerid));
 			}
 			else if(reason == 54)
 			{
@@ -1166,18 +1168,18 @@ public OnPlayerDeath(playerid, killerid, reason)
 					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
 					return 0;
 				}
-				SendInfoMessage(playerid, "You has been killed by {d7d292}Splat{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnLocationStreet(playerid));
+				SendInfoMessage(playerid, "You has been killed by Splat at %s.", ReturnLocationStreet(playerid));
 			}
 			else
 			{
 				if(killerid == INVALID_PLAYER_ID)
 				{
-					SendInfoMessage(playerid, "You has been killed by unknown at {d7d292}%s{cdd0d1}.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(playerid, "You has been killed by unknown at %s.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
 				}
 				else
 				{
-					SendInfoMessage(killerid, "You have been killed {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnName(playerid), ReturnLocationStreet(playerid));
-					SendInfoMessage(playerid, "You has been killed by {d7d292}%s{cdd0d1} at {d7d292}%s{cdd0d1}.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(killerid, "You have been killed %s at %s.", ReturnName(playerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(playerid, "You has been killed by %s at %s.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
 				}
 				PlayerInfo[playerid][E_CHARACTER_DIEUNKNOWN] = true;
 			}
@@ -2427,7 +2429,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 		{
 			if(!IsPlayerNearPlayer(playerid, hitid, 15.0))
 			{
-				SendInfoMessage(playerid, "You aren't close enough to hit {d7d292}%s{cdd0d1} with your taser.", ReturnName(hitid, hitid));
+				SendInfoMessage(playerid, "You aren't close enough to hit %s with your taser.", ReturnName(hitid, hitid));
 				return 0;
 			}
 			
@@ -2438,7 +2440,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			GameTextForPlayer(hitid, "~b~You Are Tasered", 2500, 3);
 			
 			SendInfoMessage(hitid, "You were just hit by a taser. 10,000 volts go through your body.");
-			SendInfoMessage(playerid, "You hit {d7d292}%s{cdd0d1} with your taser!", ReturnName(hitid, hitid)); 
+			SendInfoMessage(playerid, "You hit %s with your taser!", ReturnName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
 			SetTimerEx("OnPlayerTasered", 1200, false, "i", hitid); 
@@ -2451,7 +2453,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 		{
 			if(!IsPlayerNearPlayer(playerid, hitid, 15.0))
 			{
-				SendInfoMessage(playerid, "You aren't close enough to hit {d7d292}%s{cdd0d1} with your rubber gun.", ReturnName(hitid, hitid));
+				SendInfoMessage(playerid, "You aren't close enough to hit %s with your rubber gun.", ReturnName(hitid, hitid));
 				return 0;
 			}
 			
@@ -2460,7 +2462,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's rubber gun.", ReturnName(hitid, hitid), ReturnName(playerid)); 
 			
 			SendInfoMessage(hitid, "You were just hit by a rubber gun. rubber bullet go through your body.");
-			SendInfoMessage(playerid, "You hit {d7d292}%s{cdd0d1} with your taser!", ReturnName(hitid, hitid)); 
+			SendInfoMessage(playerid, "You hit %s with your taser!", ReturnName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
 			SetTimerEx("OnPlayerRubber", 1200, false, "i", hitid); 
@@ -3761,12 +3763,20 @@ public OnPlayerUpdate(playerid)
 		    {
 		        if(ReturnFactionType(i) == FACTION_TYPE_MEDICAL && IsPlayerInRangeOfPoint(playerid, 20.0, x, y, z))
 		        {
-		            SendServerMessage(i, "[Fire] {cdd0d1}Well done! You helped put out the fire and received {93C47D}$%s{cdd0d1} on your paycheck.", FormatMoney(Cents));
+		            SendServerMessage(i, "[Fire] {cdd0d1}Well done! You helped put out the fire and received $%s on your paycheck.", FormatMoney(Cents));
 		            GivePaycheck(i, Cents);
 		        }
 			}
 
 			gFires = 0;
+		}
+	}
+
+	foreach(new i : Player)
+	{
+		if(PlayerInfo[playerid][E_CHARACTER_SPECTATE] == i)
+		{
+			UpdateSpectatorPanel(playerid, i);
 		}
 	}
 
@@ -3904,7 +3914,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		if (BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE] > 21 || blackjackPlayerScore[playerid] > BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE])
 		{
 			GiveMoney(playerid, blackjackPlayerBet[playerid] * 2);
-			SendServerMessage(playerid, "[Blackjack] {cdd0d1}You won and earn your bet x2 for {93C47D}$%s{cdd0d1}.", FormatMoney(blackjackPlayerBet[playerid] * 2));
+			SendServerMessage(playerid, "[Blackjack] {cdd0d1}You won and earn your bet x2 for $%s.", FormatMoney(blackjackPlayerBet[playerid] * 2));
 		}
 		else if (blackjackPlayerScore[playerid] == BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE])
 		{
@@ -4281,7 +4291,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 	{
 		if(strlen(cmdtext) > 50)
 		{
-			SendErrorMessage(playerid, "The command you entered doesn't exist. Use /help to see a list of available commands."); 
+			SendClientMessage(playerid, COLOR_SAMP, "The command you entered doesn't exist. Use /help to see a list of available commands."); 
 			PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][1] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][2] = 0.0;
@@ -4292,7 +4302,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 			PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][1] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][2] = 0.0;
-			SendErrorMessage(playerid, "The command you entered \"%s\" doesn't exist. Use /help to see a list of available commands.", cmdtext);
+			SendClientMessageEx(playerid, COLOR_SAMP, "The command you entered \"%s\" doesn't exist. Use /help to see a list of available commands.", cmdtext);
 		}
 	}
 	return 1;
@@ -4301,6 +4311,10 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
+	if(newkeys & KEY_CROUCH && IsPlayerInAnyVehicle(playerid))
+	{
+		cmd_gate(playerid, "");
+	}
 	if(newkeys & KEY_WALK)
 	{
 		if(IsPlayerInRangeOfPoint(playerid, 2.0, packetpos[0], packetpos[1], packetpos[2]))
@@ -4911,8 +4925,11 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			SendTipMessage(playerid, "This vehicle is totalled and needs repairing call mechanic or buy repairkits in pawnshop.");
 		}
 	
+		if(!PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE])
+			SendClientMessage(playerid, COLOR_RED, "You don't own a driver license, drive safety or the cops may issue you a ticket.");
+			
 		if(VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID])
-			SendClientMessageEx(playerid, COLOR_WHITE, "Welcome to your %s.", ReturnVehicleName(GetPlayerVehicleID(playerid)));
+			SendClientMessage(playerid, COLOR_ORANGE, "> This vehicle is owned by you.");
 			
 		for(new i = 0; i < sizeof DMV_Vehicles; i++) if(GetPlayerVehicleID(playerid) == DMV_Vehicles[i])
 			SendTipMessage(playerid, "This vehicle is part of departement of motor vehicles. in order to start it '/licenseexam'.");
@@ -4949,7 +4966,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 
-	    SendServerMessage(driverid, "[Taxi] {cdd0d1}{d7d292}%s{cdd0d1} has entered your taxi as a passenger.", ReturnName(playerid, driverid));
+	    SendServerMessage(driverid, "[Taxi] {cdd0d1}%s has entered your taxi as a passenger.", ReturnName(playerid, driverid));
 		SendServerMessage(playerid, "[Taxi] {cdd0d1}You have entered {d7d292}%s's{cdd0d1} taxi.", ReturnName(driverid, playerid));
 	}
  	if (oldstate == PLAYER_STATE_PASSENGER && PlayerInfo[playerid][E_CHARACTER_TAXITIMER] != 0 && PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)

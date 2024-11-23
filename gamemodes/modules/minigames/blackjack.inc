@@ -162,7 +162,7 @@ CMD:blackjack(playerid, params[])
     BusinessInfo[businessid][E_BUSINESS_BLACKJACK] = true;
     ShowBlackJack(playerid);
     SelectTextDraw(playerid, COLOR_YELLOW);
-    SendServerMessage(playerid, "[Blackjack] {cdd0d1}You place blackjack bet for {93C47D}$%s{cdd0d1} to start blackjack type /hit or /stand.", FormatMoney(Cents));
+    SendServerMessage(playerid, "[Blackjack] {cdd0d1}You place blackjack bet for $%s to start blackjack type /hit or /stand.", FormatMoney(Cents));
     return 1;
 }
 

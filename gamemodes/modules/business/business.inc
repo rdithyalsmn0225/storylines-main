@@ -63,7 +63,7 @@ Dialog:BarStore(playerid, response, listitem, inputtext[])
 				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 					return SendErrorMessage(playerid, "You can't afford a beer.");
 			
-				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a budweiser beer for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a budweiser beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 				GiveMoney(playerid, BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
 				
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -78,7 +78,7 @@ Dialog:BarStore(playerid, response, listitem, inputtext[])
 					return SendErrorMessage(playerid, "You can't afford a beer.");
 
 			
-				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a corona extra beer for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a corona extra beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 				GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
 				
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -92,7 +92,7 @@ Dialog:BarStore(playerid, response, listitem, inputtext[])
 				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 					return SendErrorMessage(playerid, "You can't afford a beer.");
 			
-				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a peroni beer for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a peroni beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 				GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
 				
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -201,7 +201,11 @@ stock BusinessRefresh(businessid)
 		}
 	}
 
-	BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], BusinessInfo[businessid][E_BUSINESS_MAPICONTYPE], 0, -1, -1, -1, 999999.0);
+	if(BusinessInfo[businessid][E_BUSINESS_TYPE] != BUSINESS_TYPE_ACID && BusinessInfo[businessid][E_BUSINESS_TYPE] != BUSINESS_TYPE_GUNSTORE)
+	{
+		BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], BusinessInfo[businessid][E_BUSINESS_MAPICONTYPE], 0, -1, -1, -1, 999999.0);
+	}
+	
 	BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_SKIN], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][0], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][1], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][2], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][3], false);
 	SetDynamicActorFacingAngle(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][3]);
 	SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
@@ -477,7 +481,7 @@ function:OnSellBusiness(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_OWNERDBID] = 0; 
 		
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
-		SendInfoMessage(playerid, "You sold your business and earned {93C47D}$%s{cdd0d1}.", FormatMoney(totalPay)); 
+		SendInfoMessage(playerid, "You sold your business and earned $%s.", FormatMoney(totalPay)); 
 		
 		SaveBusiness(businessid); SaveCharacter(playerid); 
 	}

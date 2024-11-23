@@ -104,7 +104,7 @@ Dialog:GeneralStore1(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a cellphone.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a cellphone for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a cellphone for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -120,7 +120,7 @@ Dialog:GeneralStore1(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a radio.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a radio for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a radio for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -136,7 +136,7 @@ Dialog:GeneralStore1(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a gasoline.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a gasoline for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a gasoline for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -152,7 +152,7 @@ Dialog:GeneralStore1(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a repairkit.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a repairkit for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a repairkit for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -180,7 +180,7 @@ Dialog:GeneralStore2(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a spikebat.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a spikebat for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a spikebat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 
@@ -197,7 +197,7 @@ Dialog:GeneralStore2(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a wooden.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a wooden for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a wooden for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -213,7 +213,7 @@ Dialog:GeneralStore2(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a nailbat.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a nailbat for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a nailbat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -241,7 +241,7 @@ Dialog:GeneralStore3(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a raw meat.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a raw meat for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a raw meat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -257,7 +257,7 @@ Dialog:GeneralStore3(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a parsley.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a parsley for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a parsley for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -273,7 +273,7 @@ Dialog:GeneralStore3(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a mint.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a mint for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a mint for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -289,7 +289,7 @@ Dialog:GeneralStore3(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a oregano.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a oregano for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a oregano for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -305,7 +305,7 @@ Dialog:GeneralStore3(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a baking soda.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a baking soda for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a baking soda for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -334,7 +334,7 @@ Dialog:GeneralStore4(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a spraycan.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a spraycan for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a spraycan for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 
@@ -352,7 +352,7 @@ Dialog:GeneralStore4(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a crowbar.");
             
-                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a crowbar for {93C47D}$%s{cdd0d1}.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+                SendServerMessage(playerid, "[Business] {cdd0d1}You bought a crowbar for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;

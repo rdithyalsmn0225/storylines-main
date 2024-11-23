@@ -44,7 +44,7 @@ function:OnVehicleRental()
 					mysql_format(ourConnection, delQuery, sizeof(delQuery), "DELETE FROM vehicles WHERE VehicleDBID = %i", dbid);
 					mysql_pquery(ourConnection, delQuery); 
 					
-					SendServerMessage(playerid, "[Vehicle] {cdd0d1}Your rental vehicle {d7d292}%s{cdd0d1} has been permanently deleted.", ReturnVehicleName(i)); 
+					SendServerMessage(playerid, "[Vehicle] {cdd0d1}Your rental vehicle %s has been permanently deleted.", ReturnVehicleName(i)); 
 					
 					ResetVehicleVars(i); 
 					VS_RemoveAllItems(i);

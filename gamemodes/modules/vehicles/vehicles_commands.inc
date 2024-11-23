@@ -49,7 +49,7 @@ CMD:carsell(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SELLVOFFER] = vehicleid;
 
 	SendTipMessage(userid, "%s has offered sell their vehicle %s for $%s, type /approve vehicle to approve.", ReturnName(playerid), ReturnVehicleModelName(vehicleid), FormatMoney(Cents));
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You have offered sell your %s for {93C47D}$%s{cdd0d1}.", ReturnName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(Cents));
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You have offered sell your %s for $%s.", ReturnName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(Cents));
 	return 1;
 }
 
@@ -80,9 +80,9 @@ CMD:carkey(playerid, params[])
 		return SendErrorMessage(playerid, "You aren't near that player."); 
 			
 	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s gives %s a key to their vehicle.", ReturnName(playerid), ReturnName(playerb));
-	SendServerMessage(playerb, "[Vehicle] {cdd0d1}{d7d292}%s{cdd0d1} gave you a key their vehicle.", ReturnName(playerid));
+	SendServerMessage(playerb, "[Vehicle] {cdd0d1}%s gave you a key their vehicle.", ReturnName(playerid));
 		
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You gave {d7d292}%s{cdd0d1} a duplicatekey.", ReturnName(playerb));
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You gave %s a duplicatekey.", ReturnName(playerb));
 		
 	PlayerInfo[playerb][E_CHARACTER_DUPLICATEKEY] = vehicleid;
     return 1;
@@ -126,7 +126,7 @@ CMD:carpark(playerid, params[])
 	VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = vehicle_health;
 	SaveVehicle(vehicleid);
 		
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You parked your {d7d292}%s{cdd0d1}.", ReturnVehicleName(vehicleid));
+	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You parked your %s.", ReturnVehicleName(vehicleid));
 		
 	SaveVehicle(vehicleid); 
     return 1;

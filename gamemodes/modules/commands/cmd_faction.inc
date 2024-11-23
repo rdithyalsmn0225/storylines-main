@@ -71,7 +71,7 @@ CMD:finvite(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_FACTIONINVITED] = playerid;
 	
 	SendTipMessage(playerb, "%s has invited you to join the %s, type /approve faction to join.", ReturnName(playerid), ReturnFactionName(playerid));
-	SendInfoMessage(playerid, "You invited {d7d292}%s{cdd0d1} to join the {d7d292}%s{cdd0d1}.", ReturnName(playerb), ReturnFactionName(playerid));
+	SendInfoMessage(playerid, "You invited %s to join the %s.", ReturnName(playerb), ReturnFactionName(playerid));
 	return 1;
 }
 
@@ -97,8 +97,8 @@ CMD:funinvite(playerid, params[])
 	if(PlayerInfo[playerb][E_CHARACTER_FACTION] != PlayerInfo[playerid][E_CHARACTER_FACTION])
 		return SendErrorMessage(playerid, "The player you specified IS not in your faction.");
 	
-	SendInfoMessage(playerid, "You were uninvited from the {d7d292}%s{cdd0d1} by {d7d292}%s{cdd0d1}!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTION]), ReturnName(playerid));
-	SendInfoMessage(playerid, "You uninvited {d7d292}%s{cdd0d1}!", ReturnName(playerb));
+	SendInfoMessage(playerid, "You were uninvited from the %s by %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTION]), ReturnName(playerid));
+	SendInfoMessage(playerid, "You uninvited %s!", ReturnName(playerb));
 	
 	PlayerInfo[playerb][E_CHARACTER_FACTION] = 0;
 	PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = 0;
@@ -197,8 +197,8 @@ CMD:frank(playerid, params[])
 	if(PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] > 4)
 		return SendErrorMessage(playerid, "You can't alter 4 rank.", ReturnName(playerb)); 
 		
-	SendInfoMessage(playerb, "Your rank has been upgraded from {d7d292}%s{cdd0d1} to {d7d292}%s{cdd0d1} by {d7d292}%s{cdd0d1}!", FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank], ReturnName(playerid)); 
-	SendInfoMessage(playerid, "You upgraded {d7d292}%s{cdd0d1} rank from {d7d292}%s{cdd0d1} to {d7d292}%s{cdd0d1}!", ReturnName(playerb), FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank]);
+	SendInfoMessage(playerb, "Your rank has been upgraded from %s to %s by %s!", FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank], ReturnName(playerid)); 
+	SendInfoMessage(playerid, "You upgraded %s rank from %s to %s!", ReturnName(playerb), FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank]);
 		
 	PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = rank; 
 	SaveCharacter(playerb);
@@ -290,8 +290,8 @@ CMD:handcuff(playerid, params[])
 	
 	PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = true;
 	
-	SendInfoMessage(playerb, "You were handcuffed by {d7d292}%s{cdd0d1}.", ReturnName(playerid)); 
-	SendInfoMessage(playerid, "You handcuffed {d7d292}%s{cdd0d1}.", ReturnName(playerb));
+	SendInfoMessage(playerb, "You were handcuffed by %s.", ReturnName(playerid)); 
+	SendInfoMessage(playerid, "You handcuffed %s.", ReturnName(playerb));
 	return 1;
 }
 
@@ -324,7 +324,7 @@ CMD:unhandcuff(playerid, params[])
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE); 
 	
 	PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = false;
-	SendInfoMessage(playerid, "You unhandcuffed {d7d292}%s{cdd0d1}.", ReturnName(playerb));
+	SendInfoMessage(playerid, "You unhandcuffed %s.", ReturnName(playerb));
 	return 1;
 }
 
@@ -357,7 +357,7 @@ CMD:badge(playerid, params[])
 	else SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s shows %s their badge.", ReturnName(playerid), ReturnName(playerb));
 	
 	SendClientMessage(playerb, COLOR_COP, "|__________ Badge __________|");
-	SendClientMessageEx(playerb, COLOR_WHITE, "  Name: %s", ReturnMixedName(playerid));
+	SendClientMessageEx(playerb, COLOR_WHITE, "  Name: %s", ReturnSignName(playerid));
 	SendClientMessageEx(playerb, COLOR_GREY, "  Rank: %s", IsPlayerFactionRank(playerid));
 	SendClientMessageEx(playerb, COLOR_WHITE, "  Agency: %s", ReturnFactionName(playerid));
 	return 1;
@@ -759,7 +759,7 @@ CMD:tracenumber(playerid, params[])
 	new Float:x, Float:y, Float:z;
     GetPlayerPos(targetid, x, y, z);
 
-    SendServerMessage(playerid, "[Trace] {cdd0d1}Phone number {d7d292}%s{cdd0d1} belongs to {d7d292}%s{cdd0d1} located at {d7d292}%s{cdd0d1}, {d7d292}%s{cdd0d1}.", targetNumber, ReturnName(playerid, 0), ReturnLocationStreet(playerid), ReturnLocation(playerid));
+    SendServerMessage(playerid, "[Trace] {cdd0d1}Phone number %s belongs to %s located at %s, %s.", targetNumber, ReturnName(playerid, 0), ReturnLocationStreet(playerid), ReturnLocation(playerid));
 	return 1;
 }
 
@@ -1095,8 +1095,8 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
     		SetPlayerTeam(targetid, PLAYER_STATE_ALIVE);
 			SetPlayerHealthEx(targetid, 100.0);
 
-			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have been reviving {d7d292}%s{cdd0d1}.", ReturnName(targetid));
-			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been revived by {d7d292}%s{cdd0d1}.", ReturnName(playerid));
+			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have been reviving %s.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been revived by %s.", ReturnName(playerid));
 		}
 		if(listitem == 2)
 		{
@@ -1106,8 +1106,8 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 				return SendErrorMessage(playerid, "That player already have Max Health!");
 
 			SetPlayerHealthEx(targetid, 100.0);
-			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have healing {d7d292}%s{cdd0d1}.", ReturnName(targetid));
-			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been healed by {d7d292}%s{cdd0d1}.", ReturnName(playerid));
+			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have healing %s.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been healed by %s.", ReturnName(playerid));
 		}
 		if(listitem == 3)
 		{
@@ -1123,7 +1123,7 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 			PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
 			PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("Treatments", 5000, true, "ii", playerid, targetid);
 
-			SendServerMessage(playerid, "[Treatment] {cdd0d1}You need waiting for a minutes to operate {d7d292}%s{cdd0d1}.", ReturnName(targetid));
+			SendServerMessage(playerid, "[Treatment] {cdd0d1}You need waiting for a minutes to operate %s.", ReturnName(targetid));
 		}
 	}
 	return 1;
@@ -1156,8 +1156,8 @@ function:Treatments(playerid, targetid)
 				PlayerInfo[targetid][E_CHARACTER_WOUND][i] = 100;
 			}
 			
-			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have operating {d7d292}%s{cdd0d1}.", ReturnName(targetid));
-			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been operated by {d7d292}%s{cdd0d1}.", ReturnName(playerid));
+			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have operating %s.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been operated by %s.", ReturnName(playerid));
 		}
 	}
 	Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
@@ -1239,8 +1239,8 @@ CMD:dropinjured(playerid, params[])
 
         GiveMoney(playerid, -Cents);
 
-        SendInfoMessage(playerid, "You have delivered {d7d292}%s{cdd0d1} to the hospital.", ReturnName(otherid, playerid));
-        SendInfoMessage(otherid, "You have recovered at the nearest hospital by officer {d7d292}%s{cdd0d1}.", ReturnName(playerid));
+        SendInfoMessage(playerid, "You have delivered %s to the hospital.", ReturnName(otherid, playerid));
+        SendInfoMessage(otherid, "You have recovered at the nearest hospital by officer %s.", ReturnName(playerid));
     }
     else SendErrorMessage(playerid, "You must be near a hospital deliver location.");
     return 1;

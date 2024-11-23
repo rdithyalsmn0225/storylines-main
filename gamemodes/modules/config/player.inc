@@ -153,7 +153,7 @@ function:OnAjailRecord(playerid)
 		
 		cache_get_value_name_int(i, "Time", Time); 
 		
-		SendServerMessage(playerid, "[Jail] {cdd0d1}[%s] %s was admin jailed by {d7d292}%s{cdd0d1} for {d7d292}%d{cdd0d1} minutes, Reason: {d7d292}%d{cdd0d1}", Date, JailedName, JailedBy, Time, Reason);
+		SendServerMessage(playerid, "[Jail] {cdd0d1}[%s] %s was admin jailed by %s for %d minutes, Reason: %d", Date, JailedName, JailedBy, Time, Reason);
 	}
 		
 	return 1;
@@ -525,7 +525,7 @@ stock ShowIDCARD(playerid, playerb)
 	PlayerTextDrawSetString(playerid, idcard[13][playerid], str9);
 	format(str10, sizeof(str10), "Weaponlic ~l~%s", weaponlic);
 	PlayerTextDrawSetString(playerid, idcard[14][playerid], str10);
-	format(str11, sizeof(str11), "%s", ReturnMixedName(playerb));
+	format(str11, sizeof(str11), "%s", ReturnSignName(playerb));
 	PlayerTextDrawSetString(playerid, idcard[15][playerid], str11);
 
 	for(new i; i < 19; i++)

@@ -33,18 +33,15 @@ CallPaycheck(playerid)
 	
 	SendClientMessageEx(playerid, COLOR_WHITE, "SERVER TIME:[ %s ]", ReturnHour()); 
 	
-	SendClientMessage(playerid, COLOR_DARKGREEN, "|___ BANK STATEMENT ___|"); 
-	SendClientMessageEx(playerid, COLOR_GREY, "   Balance: {93C47D}$%s{ffffff}", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK])); 
-	SendClientMessageEx(playerid, COLOR_GREY, "   Interest rate: {93C47D}$%s{ffffff} (rate: %.1f)", FormatMoney(interest), floatdiv(float(rate), 10));
-	SendClientMessageEx(playerid, COLOR_GREY, "   Interest Gained: {93C47D}$%s{ffffff}", FormatMoney(paycheck));
-	SendClientMessageEx(playerid, COLOR_GREY, "   Tax paid: {93C47D}$%s{ffffff} (%i percent)", FormatMoney(tax), gTax); 
-	SendClientMessage(playerid, COLOR_DARKGREEN, "|________________________|");
-	
+	SendClientMessage(playerid, COLOR_YELLOW, "LOS SANTOS PAYCHECK"); 
+	SendClientMessageEx(playerid, COLOR_WHITE, "{cdd0d1}INTEREST RATE: $%s (RATE: {93C47D}%.1f{cdd0d1})", FormatMoney(interest), floatdiv(float(rate), 10));
+	SendClientMessageEx(playerid, COLOR_WHITE, "{cdd0d1}SAVINGS INTEREST: $%s", FormatMoney(paycheck));
+	SendClientMessageEx(playerid, COLOR_WHITE, "{cdd0d1}TAX PAID: {FF6347}$%s{cdd0d1} ({FF6347}%i{cdd0d1} PERCENT)", FormatMoney(tax), gTax); 
+	SendClientMessageEx(playerid, COLOR_WHITE, "{cdd0d1}OLD BALANCE: {2986CC}$%s{cdd0d1} || NEW BALANCE: {2986CC}$%s{cdd0d1}", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK] + total));
+
 	PlayerInfo[playerid][E_CHARACTER_PAYCHECK] = 0; 
 	PlayerInfo[playerid][E_CHARACTER_BANK]+= total; 
 	
-	SendClientMessageEx(playerid, COLOR_WHITE, "   New Balance: {93C47D}$%s{ffffff}", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK] + total));
-
 	SaveCharacter(playerid); 
 	return 1;
 }
@@ -53,7 +50,7 @@ stock GivePaycheck(playerid, amount)
 {
 	PlayerInfo[playerid][E_CHARACTER_PAYCHECK] += amount; 
 	SaveCharacter(playerid); 
-	SendServerMessage(playerid, "[Paycheck] {cdd0d1}Your {93C47D}$%s{cdd0d1} has been added to paycheck.", FormatMoney(amount));
+	SendServerMessage(playerid, "[Paycheck] {cdd0d1}Your $%s has been added to paycheck.", FormatMoney(amount));
 	PlayerPlaySound(playerid, 5205, 0, 0, 0);
 	return 1;
 }

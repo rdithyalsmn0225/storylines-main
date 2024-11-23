@@ -82,7 +82,7 @@ CMD:ticket(playerid, params[])
 	if (userid == playerid)
 	    return SendErrorMessage(playerid, "You can't write a ticket to yourself.");
 
-	if (price < 1.00 || price > 1000.00)
+	if (price < 1.00 || price > 200.00)
 	    return SendErrorMessage(playerid, "The price can't be below $1.00 or above $1.000.00.");
 
 	new Cents = floatround(price * 100, floatround_round);
@@ -90,8 +90,8 @@ CMD:ticket(playerid, params[])
 	new id = Ticket_Add(userid, Cents, reason);
 
 	if (id != -1) {
-	    SendServerMessage(playerid, "[Tickets] {cdd0d1}You have written {d7d292}%s{cdd0d1} a ticket for {93C47D}$%s{cdd0d1}, reason: {d7d292}%s{cdd0d1}", ReturnName(userid, 0), FormatMoney(Cents), reason);
-	    SendServerMessage(userid, "[Tickets] {cdd0d1}{d7d292}%s{cdd0d1} has written you a ticket for {93C47D}$%s{cdd0d1}, reason: {d7d292}%s{cdd0d1}", ReturnName(playerid, 0), FormatMoney(Cents), reason);
+	    SendServerMessage(playerid, "[Tickets] {cdd0d1}You have written %s a ticket for $%s, reason: %s", ReturnName(userid, 0), FormatMoney(Cents), reason);
+	    SendServerMessage(userid, "[Tickets] {cdd0d1}%s has written you a ticket for $%s, reason: %s", ReturnName(playerid, 0), FormatMoney(Cents), reason);
 
 	    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "** %s has written up a ticket for%s.", ReturnName(playerid, 0), ReturnName(userid, 0));
 	}
@@ -132,7 +132,7 @@ Dialog:Tickets(playerid, response, listitem, inputtext[])
 
 		GiveMoney(playerid, -TicketInfo[playerid][listitem][E_TICKET_FEE]);
 
-		SendServerMessage(playerid, "[Tickets] {cdd0d1}You have paid off a {93C47D}$%s{cdd0d1} ticket for {d7d292}%s{cdd0d1}.", FormatMoney(TicketInfo[playerid][listitem][E_TICKET_FEE]), TicketInfo[playerid][listitem][E_TICKET_REASON]);
+		SendServerMessage(playerid, "[Tickets] {cdd0d1}You have paid off a $%s ticket for %s.", FormatMoney(TicketInfo[playerid][listitem][E_TICKET_FEE]), TicketInfo[playerid][listitem][E_TICKET_REASON]);
 		Ticket_Remove(playerid, listitem);
 	}
 	return 1;

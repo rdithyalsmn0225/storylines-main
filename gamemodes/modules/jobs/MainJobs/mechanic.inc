@@ -424,7 +424,7 @@ function:repairengine(playerid, vehicleid)
 				ResetVarInventory(playerid);
 			}
 
-		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaired the {d7d292}%s{cdd0d1} engine.", ReturnVehicleName(vehicleid));
+		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaired the %s engine.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
@@ -467,7 +467,7 @@ function:repairbody(playerid, vehicleid)
 				ResetVarInventory(playerid);
 			}
 
-		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaired the {d7d292}%s{cdd0d1} bodykits.", ReturnVehicleName(vehicleid));
+		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaired the %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
@@ -510,7 +510,7 @@ function:repairtire(playerid, vehicleid)
 				ResetVarInventory(playerid);
 			}
 
-		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaired the {d7d292}%s{cdd0d1} tires.", ReturnVehicleName(vehicleid));
+		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaired the %s tires.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
@@ -554,7 +554,7 @@ function:repaintexterior(playerid, vehicleid, modelid)
 				ResetVarInventory(playerid);
 			}
 
-		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaint the {d7d292}%s{cdd0d1} bodykits.", ReturnVehicleName(vehicleid));
+		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaint the %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
@@ -596,7 +596,7 @@ function:repaintinterior(playerid, vehicleid, modelid)
 				ResetVarInventory(playerid);
 			}
 
-		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaint the {d7d292}%s{cdd0d1} bodykits.", ReturnVehicleName(vehicleid));
+		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaint the %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
@@ -635,7 +635,7 @@ function:repaintpaintjob1(playerid, vehicleid)
 				ResetVarInventory(playerid);
 			}
 
-		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaintjob the {d7d292}%s{cdd0d1} bodykits.", ReturnVehicleName(vehicleid));
+		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaintjob the %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
@@ -674,7 +674,7 @@ function:repaintpaintjob2(playerid, vehicleid)
 				ResetVarInventory(playerid);
 			}
 
-		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaintjob the {d7d292}%s{cdd0d1} bodykits.", ReturnVehicleName(vehicleid));
+		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaintjob the %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
@@ -713,7 +713,7 @@ function:repaintpaintjob3(playerid, vehicleid)
 				ResetVarInventory(playerid);
 			}
 
-		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaintjob {d7d292}%s{cdd0d1} bodykits.", ReturnVehicleName(vehicleid));
+		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaintjob %s bodykits.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
@@ -765,7 +765,7 @@ function:repaintplates(playerid, vehicleid)
 				ResetVarInventory(playerid);
 			}
 
-		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaint {d7d292}%s{cdd0d1} plates.", ReturnVehicleName(vehicleid));
+		    SendServerMessage(playerid, "[Vehicle] {cdd0d1}You've repaint %s plates.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }

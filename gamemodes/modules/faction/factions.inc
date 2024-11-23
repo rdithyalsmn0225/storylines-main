@@ -167,9 +167,9 @@ function:OnSetFaction(playerid, response, playerb, factionid)
 		new str[128];
 		
 		format(str, sizeof(str), "%s set %s's faction to %d.", ReturnName(playerid), ReturnName(playerb), factionid);
-		SendAdminMessage(4, str);
+		SendAdminMessage(4, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 		
-		SendInfoMessage(playerb, "You were set to faction {d7d292}%d{cdd0d1} by Admin {d7d292}%s{cdd0d1}.", factionid, ReturnName(playerid));
+		SendInfoMessage(playerb, "You were set to faction %d by Admin %s.", factionid, ReturnName(playerid));
 		
 		SaveCharacter(playerb);
 	}
@@ -198,13 +198,13 @@ function:OnPlayerFactionUpdate()
 		{
 			new Cents = floatround(10 * 100, floatround_round);
 			GivePaycheck(i, Cents);
-			SendServerMessage(i, "[Faction] {cdd0d1}You has earn {93C47D}$%s{cdd0d1} into your paycheck from faction duty.", FormatMoney(Cents));
+			SendServerMessage(i, "[Faction] {cdd0d1}You has earn $%s into your paycheck from faction duty.", FormatMoney(Cents));
 		}
 		if(PlayerInfo[i][E_CHARACTER_MEDICDUTY])
 		{
 			new Cents = floatround(8 * 100, floatround_round);
 			GivePaycheck(i, Cents);
-			SendServerMessage(i, "[Faction] {cdd0d1}You has earn {93C47D}$%s{cdd0d1} into your paycheck from faction duty.", FormatMoney(Cents));
+			SendServerMessage(i, "[Faction] {cdd0d1}You has earn $%s into your paycheck from faction duty.", FormatMoney(Cents));
 		}
 	}
 	return 1;

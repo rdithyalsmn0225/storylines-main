@@ -210,8 +210,8 @@ CMD:giveproperty(playerid, params[])
 		PlayerInfo[userid][E_CHARACTER_PROPOFFER] = playerid;
 		PlayerInfo[userid][E_CHARACTER_PROPOFFERID] = id;
 
-		SendTipMessage(userid, "{d7d292}%s{cdd0d1} has offered to give their property, type /approve property to approve.", ReturnName(playerid));
-		SendInfoMessage(playerid, "You have offered to give {d7d292}%s{cdd0d1} your property.", ReturnName(userid));
+		SendTipMessage(userid, "%s has offered to give their property, type /approve property to approve.", ReturnName(playerid));
+		SendInfoMessage(playerid, "You have offered to give %s your property.", ReturnName(userid));
 	}
 	else return SendErrorMessage(playerid, "You aren't near a property.");
 	return 1;
@@ -352,7 +352,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, -Cents);
 			PropertyInfo[id][E_PROPERTY_CASH]+= amount; 
 			
-			SendServerMessage(playerid, "[Property] {cdd0d1}You added {93C47D}$%s{cdd0d1} to your cashbox.", amount); 
+			SendServerMessage(playerid, "[Property] {cdd0d1}You added $%s to your cashbox.", amount); 
 			SaveProperty(id);
 		}
 		else if(!strcmp(pick, "take"))
