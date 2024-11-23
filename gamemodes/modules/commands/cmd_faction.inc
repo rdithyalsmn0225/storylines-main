@@ -1042,10 +1042,10 @@ CMD:impound(playerid, params[])
 	GetPlayerPos(playerid, VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][0], VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][1], VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][2]); 
 	VehicleInfo[vehicleid][E_VEHICLE_IMPOUND] = true; 
 	
-	SendClientMessageEx(playerid, COLOR_DARKGREEN, "You impounded %s's %s", ReturnDBIDName(VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID]), ReturnVehicleName(vehicleid)); 
+	SendInfoMessage(playerid, "You impounded %s's %s", ReturnDBIDName(VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID]), ReturnVehicleName(vehicleid)); 
 	
 	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_DBID] == VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID])
-		SendClientMessageEx(i, COLOR_DARKGREEN, "Your %s was impounded by %s", ReturnVehicleName(vehicleid), ReturnName(playerid)); 
+		SendInfoMessage(i, "Your %s was impounded by %s", ReturnVehicleName(vehicleid), ReturnName(playerid)); 
 
 	return 1;
 }
@@ -1116,7 +1116,7 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 			TogglePlayerControllable(playerid, false);
 			TogglePlayerControllable(targetid, false);
 
-			PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading operate process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+			PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading operate process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
 			PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
 			PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
@@ -1159,7 +1159,7 @@ function:Treatments(playerid, targetid)
 			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been operated by %s.", ReturnName(playerid));
 		}
 	}
-	Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+	Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 	return 1;
 }
 

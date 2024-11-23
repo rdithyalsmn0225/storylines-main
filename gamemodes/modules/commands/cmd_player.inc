@@ -4,8 +4,7 @@ CMD:credits(playerid, params[])
 {
 	SendClientMessage(playerid, COLOR_DARKGREEN, "[Development Help]:");
 	SendClientMessage(playerid, COLOR_CREDITS, "PatrickGTR:{ffffff} Open sourcing their actor robbery script.");
-	SendClientMessage(playerid, COLOR_CREDITS, "GTA-C:{ffffff} Open sourcing / leaked their environment.");
-	SendClientMessage(playerid, COLOR_CREDITS, "Radeetz:{ffffff} Development & Script gamemods for IDLS.");
+	SendClientMessage(playerid, COLOR_CREDITS, "Radeetz:{ffffff} Development & Script gamemods for SL-RP.");
 	SendClientMessage(playerid, COLOR_CREDITS, "Crashout:{ffffff} Helping Radeetz with ideas / troubleshoting and management.");
 	SendClientMessage(playerid, COLOR_CREDITS, "Arielnatanael:{ffffff} Helping Radeetz with ideas / troubleshoting and management.");
 	SendClientMessage(playerid, COLOR_DARKGREEN, "[Server Management]:");

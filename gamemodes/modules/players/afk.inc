@@ -19,7 +19,8 @@ AFKCheck(playerid)
 	    {
 			new str[512];
 	    	format(str, sizeof(str), "[PAUSED]", PlayerInfo[playerid][E_CHARACTER_AFKTIME]);
-	    	SetPlayerChatBubble(playerid, str, COLOR_DARKGREEN, 3.0, 10000);
+	    	SetPlayerChatBubble(playerid, str, COLOR_RED, 3.0, 10000);
+			
 		    SendServerMessage(playerid, "[AFK] {cdd0d1}You are now marked as away from keyboard as you haven't moved in one minute.");
 		    PlayerInfo[playerid][E_CHARACTER_AFK] = 1;
 		}

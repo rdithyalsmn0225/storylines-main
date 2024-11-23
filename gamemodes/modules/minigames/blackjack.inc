@@ -10,7 +10,7 @@ new
 
 InsertBlackjack()
 {
-    CreateDynamic3DTextLabel("[Blackjack]\n{ffffff}Available commands: /blackjack", COLOR_DARKGREEN, 1128.7081,-1.6211,1000.6797, 5.0);
+    CreateDynamic3DTextLabel("[Blackjack]\n{ffffff}Available commands: /blackjack", COLOR_3DTEXT, 1128.7081,-1.6211,1000.6797, 5.0);
 }
 
 stock ShowBlackJack(playerid)

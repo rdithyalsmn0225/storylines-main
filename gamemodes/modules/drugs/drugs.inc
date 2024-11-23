@@ -68,7 +68,7 @@ function:CookDrugs(playerid, type, id)
 			}
 		}
     }
-    Update3DTextLabelText(BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }
 
 // PURCHASE DRUGS:

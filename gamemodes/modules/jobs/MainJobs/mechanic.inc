@@ -103,7 +103,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "BD_FIRE", "wash_up", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
@@ -137,7 +137,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "TATTOOS", "TAT_Che_Pose_T", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
@@ -171,7 +171,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
@@ -270,7 +270,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
@@ -307,7 +307,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
@@ -344,7 +344,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
@@ -378,7 +378,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 1, 0, 0, 0, 0, 1);
 
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint plates process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint plates process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
@@ -428,7 +428,7 @@ function:repairengine(playerid, vehicleid)
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }
 
 function:repairbody(playerid, vehicleid)
@@ -471,7 +471,7 @@ function:repairbody(playerid, vehicleid)
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }
 
 function:repairtire(playerid, vehicleid)
@@ -514,7 +514,7 @@ function:repairtire(playerid, vehicleid)
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }
 
 function:repaintexterior(playerid, vehicleid, modelid)
@@ -558,7 +558,7 @@ function:repaintexterior(playerid, vehicleid, modelid)
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }
 
 function:repaintinterior(playerid, vehicleid, modelid)
@@ -600,7 +600,7 @@ function:repaintinterior(playerid, vehicleid, modelid)
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }
 
 function:repaintpaintjob1(playerid, vehicleid)
@@ -639,7 +639,7 @@ function:repaintpaintjob1(playerid, vehicleid)
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }
 
 function:repaintpaintjob2(playerid, vehicleid)
@@ -678,7 +678,7 @@ function:repaintpaintjob2(playerid, vehicleid)
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }
 
 function:repaintpaintjob3(playerid, vehicleid)
@@ -717,7 +717,7 @@ function:repaintpaintjob3(playerid, vehicleid)
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }
 
 function:repaintplates(playerid, vehicleid)
@@ -769,5 +769,5 @@ function:repaintplates(playerid, vehicleid)
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }

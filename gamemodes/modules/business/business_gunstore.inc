@@ -6,7 +6,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 
 		if(weapon == WEAPON_COLT45 && type == 1)
 		{
-			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 			if(Inventory_Count(playerid, "Materials") < 50)
@@ -33,7 +33,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 		}
 		else if(weapon == WEAPON_SILENCED && type == 1)
 		{
-			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 			if(Inventory_Count(playerid, "Materials") < 60)
@@ -61,7 +61,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 		}
 		if(weapon == WEAPON_DEAGLE && type == 1)
 		{
-			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 			if(Inventory_Count(playerid, "Materials") < 80)
@@ -88,7 +88,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 		}
 		else if(weapon == WEAPON_UZI && type == 1)
 		{
-			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 			if(Inventory_Count(playerid, "Materials") < 80)
@@ -117,7 +117,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 		}
 		else if(weapon == WEAPON_SHOTGUN && type == 1)
 		{
-			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 			if(Inventory_Count(playerid, "Materials") < 100)
@@ -156,7 +156,7 @@ function:OnPlayerCreateAmmo(playerid, response, type, ammo, price)
 
 		if(type == 0)
 		{
-			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 			if(Inventory_Count(playerid, "Materials") < 20)
@@ -184,7 +184,7 @@ function:OnPlayerCreateAmmo(playerid, response, type, ammo, price)
 			if(Inventory_Count(playerid, "Materials") < 30)
 				return SendErrorMessage(playerid, "You must have 30 grams of materials.");
 
-			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 			
 			if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)

@@ -39,7 +39,7 @@ function:Query_LoadProperties()
 		
 		cache_get_value_name_int(i, "PropertyCashbox", PropertyInfo[i+1][E_PROPERTY_CASH]);
 		PropertyInfo[i+1][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][2], 0, 0, -1, 5.0); 
-		PropertyInfo[i+1][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[i+1][E_PROPERTY_ADDRESS], COLOR_DARKGREEN, PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][2], 5.0);
+		PropertyInfo[i+1][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[i+1][E_PROPERTY_ADDRESS], COLOR_3DTEXT, PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i+1][E_PROPERTY_ENTRANCEPOS][2], 5.0);
 		
 		PropertyInfo[i+1][E_PROPERTY_LABELS] = 0;
 
@@ -139,7 +139,7 @@ function:OnEntranceChange(playerid, response, property)
 		format(PropertyInfo[property][E_PROPERTY_ADDRESS], 128, "%dth %s", property, ReturnLocationStreet(playerid));
 
 		PropertyInfo[property][E_PROPERTY_PICKUP] = CreateDynamicPickup(1273, 1, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2], 0, 0, -1, 5.0); 
-		PropertyInfo[property][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[property][E_PROPERTY_ADDRESS], COLOR_DARKGREEN, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2], 5.0);
+		PropertyInfo[property][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[property][E_PROPERTY_ADDRESS], COLOR_3DTEXT, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2], 5.0);
 		SaveProperty(property);
 		ReloadAllFurniture(property);
 		SendInfoMessage(playerid, "You set Property #%i's entrance.", property);

@@ -2,11 +2,11 @@ InsertDocksWorkers()
 {
     for(new i; i < sizeof(Dockworker_Store); i++)
     {
-        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /storecargo", COLOR_DARKGREEN, Dockworker_Store[i][0],Dockworker_Store[i][1], Dockworker_Store[i][2], 5.0);
+        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /storecargo", COLOR_3DTEXT, Dockworker_Store[i][0],Dockworker_Store[i][1], Dockworker_Store[i][2], 5.0);
     }
     for(new i; i < sizeof(Dockworker_Collect); i++)
     {
-        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /takecargo", COLOR_DARKGREEN, Dockworker_Collect[i][0],Dockworker_Collect[i][1], Dockworker_Collect[i][2], 5.0);
+        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /takecargo", COLOR_3DTEXT, Dockworker_Collect[i][0],Dockworker_Collect[i][1], Dockworker_Collect[i][2], 5.0);
     }
     return 1;
 }
@@ -83,7 +83,7 @@ function:DockWorkers(playerid, type)
             }
         }
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }
 
 CMD:takecargo(playerid, params[])
@@ -108,7 +108,7 @@ CMD:takecargo(playerid, params[])
 
             PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take cargo process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take cargo process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("DockWorkers", 500, true, "ii", playerid, 0);
 	        TogglePlayerControllable(playerid, false);
         }
@@ -138,7 +138,7 @@ CMD:storecargo(playerid, params[])
 
             PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take cargo process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take cargo process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("DockWorkers", 500, true, "ii", playerid, 1);
 	        TogglePlayerControllable(playerid, false);
         }

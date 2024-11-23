@@ -220,7 +220,7 @@ function:OnVehicleTow(playerid)
 	if(VehicleInfo[vehicleid][E_VEHICLE_TOWCOUNT] == 7) newDisplay = "(( |||||||| ))\nTOWING VEHICLE"; 
 	if(VehicleInfo[vehicleid][E_VEHICLE_TOWCOUNT] == 8) newDisplay = "(( |||||||| ))\nTOWING VEHICLE"; 
 	
-	Update3DTextLabelText(VehicleInfo[vehicleid][E_VEHICLE_TOW], COLOR_DARKGREEN, newDisplay);
+	Update3DTextLabelText(VehicleInfo[vehicleid][E_VEHICLE_TOW], COLOR_3DTEXT, newDisplay);
 	
 	if(VehicleInfo[vehicleid][E_VEHICLE_TOWCOUNT] == 9)
 	{
@@ -294,7 +294,7 @@ function:OnGascanRefill(playerid, vehicleid, x, y, z)
 		}
 	}
 	
-	Update3DTextLabelText(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], COLOR_DARKGREEN, text); 
+	Update3DTextLabelText(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], COLOR_3DTEXT, text); 
 	return 1;
 }
 
@@ -340,7 +340,7 @@ function:OnGasStationRefill(playerid, vehicleid, x, y, z)
 		}
 	}
 	
-	Update3DTextLabelText(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], COLOR_DARKGREEN, text); 
+	Update3DTextLabelText(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], COLOR_3DTEXT, text); 
 	return 1;
 }
 

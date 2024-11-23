@@ -27,7 +27,7 @@ function:InsertPacket(Float:x, Float:y, Float:z)
     packetpos[1] = y;
     packetpos[2] = z;
     packetObject = CreateDynamicObject(11745, x, y, z, 0, 0, 0, -1, -1, -1);
-    packetLabel = CreateDynamic3DTextLabel("[Smugglers Packet]\n{ffffff}Press 'ALT' to pickup packet", COLOR_DARKGREEN, x, y, z+0.3, 10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, -1, -1, -1);
+    packetLabel = CreateDynamic3DTextLabel("[Smugglers Packet]\n{ffffff}Press 'ALT' to pickup packet", COLOR_3DTEXT, x, y, z+0.3, 10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, -1, -1, -1);
     return 1;
 }
 

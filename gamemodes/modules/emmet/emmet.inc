@@ -20,7 +20,7 @@ InsertEmmetInit()
     for(new i = 0; i < sizeof(EmmetInfo); i++)
     {
         Emmet[i] = CreateDynamicActor(EmmetInfo[i][EMMET_SKIN], EmmetInfo[i][EMMET_POSX], EmmetInfo[i][EMMET_POSY], EmmetInfo[i][EMMET_POSZ], EmmetInfo[i][EMMET_POSA]);
-        CreateDynamic3DTextLabel(EmmetInfo[i][EMMET_TEXT], COLOR_DARKGREEN, EmmetInfo[i][EMMET_POSX], EmmetInfo[i][EMMET_POSY], EmmetInfo[i][EMMET_POSZ], 3.0);
+        CreateDynamic3DTextLabel(EmmetInfo[i][EMMET_TEXT], COLOR_3DTEXT, EmmetInfo[i][EMMET_POSX], EmmetInfo[i][EMMET_POSY], EmmetInfo[i][EMMET_POSZ], 3.0);
 		SetDynamicActorVirtualWorld(Emmet[i], 0);
 		ApplyDynamicActorAnimation(Emmet[i], "MISC", "IDLE_CHAT_02", 4.0999, 1, 0, 0, 0, 0);
 	}
@@ -68,8 +68,8 @@ CMD:creategun(playerid, params[])
 	strcat(str, "Uzi\tMaterials 70\t$4,000.00\n");
     strcat(str, "Desert Eagle\tMaterials 80\t$5,000.00\n");
     strcat(str, "Desert Eagle\tMaterials 100\t$3,000.00\n");
-	strcat(str, "9mm 50x\tMaterials 50\t$100.00\n");
-	strcat(str, "9x19mm 100x\tMaterials 50\t$100.00\n");
+	strcat(str, "Reguler Ammo (10x)\tMaterials 10\t$100.00\n");
+	strcat(str, "Surplus (10x)\tMaterials 10\t$250.00\n");
 	Dialog_Show(playerid, BuyGuns, DIALOG_STYLE_TABLIST_HEADERS, "Gunstore:", str, "Select", "Close");
 	return 1;
 }
@@ -147,13 +147,13 @@ Dialog:BuyGuns(playerid, response, listitem, inputtext[])
             {
                 new Cents = floatround(A9MM * 100, floatround_round);
                 format(str, sizeof(str), "Are you sure you want to buy ammo for {93C47D}$%s{ffffff}?", FormatMoney(Cents)); 
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 0, 50, A9MM); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 0, 10, A9MM); 
             }
             case 6:
             {
                 new Cents = floatround(A9X19MM * 100, floatround_round);
                 format(str, sizeof(str), "Are you sure you want to buy ammo for {93C47D}$%s{ffffff}?", FormatMoney(Cents)); 
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 1, 100, A9X19MM); 
+                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 1, 10, A9X19MM); 
             }
         }
     }

@@ -114,11 +114,14 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
         return 1;	
     }
 
-    if(pickupid == JobsPickup)
+    for(new i = 0; i < sizeof(JobsInfo); i++)
     {
-        format(str, sizeof(str), "~b~Jobs Point~n~~w~Type '~y~/joinjob~w~' to join jobs~n~~w~Type '~y~/quitjob~w~' to quit jobs."); 
-        ShowBoxMessage(playerid, str, 5); 
-        return 1;	
+        if(pickupid == JobsPickup[i])
+        {
+            format(str, sizeof(str), "~b~Jobs Point~n~~w~Type '~y~/joinjob~w~' to join jobs~n~~w~Type '~y~/quitjob~w~' to quit jobs."); 
+            ShowBoxMessage(playerid, str, 5); 
+            return 1;	
+        }
     }
 
     if(pickupid == ChainsawPickup)

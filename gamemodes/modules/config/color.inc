@@ -7,12 +7,12 @@
 
 #define COLOR_CREDITS       (0xf8b56eFF)
 #define COLOR_SYNTAX        (0x9fc5e8FF)
-#define COLOR_TIP           (0xf6b26bFF)
+#define COLOR_3DTEXT        (0xB2E244FF)
 #define COLOR_INFO          (0x4cb98eFF)
 #define COLOR_FACTION       (0x99A5D7FF)
 #define COLOR_GAMES         (0xb6b9e1FF)
 #define COLOR_HEADER		(0x90D7F0FF)
-#define COLOR_BLUE          (0x2A91DFFF)
+#define COLOR_BLUE          (0x4CA5B9FF)
 
 #define COLOR_GRAD1			(0xCCE6E6FF)
 #define COLOR_GRAD2			(0xE2FFFFFF)

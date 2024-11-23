@@ -22,7 +22,7 @@
 #define PCOCAINE            250
 #define PHEROIN             300
 #define A9MM                100
-#define A9X19MM             100
+#define A9X19MM             250
 
 //CARGO PRICE
 #define PRICE_FISH 5

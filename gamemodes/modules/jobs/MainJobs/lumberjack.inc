@@ -97,7 +97,7 @@ function:CutTree(playerid, id)
             }
         }
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 	return 1;
 }
 
@@ -141,7 +141,7 @@ function:CreateTimber(playerid, id)
                 DestroyDynamicObject(TreeInfo[id][E_TREE_OBJECT]);
         }
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 	return 1;
 }
 
@@ -179,7 +179,7 @@ CMD:timbercut(playerid, params[])
             {
                 PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
                 PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading cutting trees process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading cutting trees process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
                 PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("CutTree", 500, true, "dd", playerid, id);
                 TogglePlayerControllable(playerid, false);
                 ApplyAnimation(playerid,"BASEBALL", "Bat_M", 4.1, 1, 0, 0, 1, 0, 1);
@@ -193,7 +193,7 @@ CMD:timbercut(playerid, params[])
 
             PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
             PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-            PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take timber process\n(( |------ ))", COLOR_DARKGREEN, x, y, z, 25.0, 0, 1);
+            PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading take timber process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
             PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("CreateTimber", 1000, true, "dd", playerid, id);
             TogglePlayerControllable(playerid, false);
             TreeInfo[id][E_TREE_CUT] = true;

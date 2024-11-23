@@ -181,7 +181,7 @@ function:Query_LoadFurniture(labels)
 			new string[128], name[128], Text3D:text3ds;
 			cache_get_value_name(i, "name", name, 128);
 			format(string, sizeof(string), "[%i]\n{ffffff}%s", objectid, name);
-			text3ds = CreateDynamic3DTextLabel(string, COLOR_DARKGREEN, pos[0], pos[1], pos[2], 10.0, .worldid = world, .interiorid = int);
+			text3ds = CreateDynamic3DTextLabel(string, COLOR_3DTEXT, pos[0], pos[1], pos[2], 10.0, .worldid = world, .interiorid = int);
 			Streamer_SetExtraInt(objectid, E_OBJECT_3DTEXT_ID, text3ds);
 		}
 	}

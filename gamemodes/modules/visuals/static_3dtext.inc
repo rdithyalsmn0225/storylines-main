@@ -30,10 +30,10 @@ Insert3DTextLabel()
     new str1[512], str2[512]; 
     
     format(str1, sizeof(str1), "[Gunstore Materials]\n{ffffff}Available stock: %d / 1000\nMaterials Price $5 / gram", ServerInfo[0][E_SERVER_MATERIALS]);
-    CreateDynamic3DTextLabel(str1, COLOR_DARKGREEN, -576.3427,-505.8364,25.5234, 5.0);
+    CreateDynamic3DTextLabel(str1, COLOR_3DTEXT, -576.3427,-505.8364,25.5234, 5.0);
 
     format(str2, sizeof(str2), "[Drugs Labs]\n{ffffff}Available stock: %d / 100\nMarijuana Price $3000 / 25 gram\nCocaine Price $5000 / 30 gram\nHeroin Price $5000 / 30 gram", ServerInfo[0][E_SERVER_DRUGS]);
-    CreateDynamic3DTextLabel(str2, COLOR_DARKGREEN, 122.0707,-319.1785,1.5781, 5.0);
+    CreateDynamic3DTextLabel(str2, COLOR_3DTEXT, 122.0707,-319.1785,1.5781, 5.0);
 
 	fittingRoomDoor = CreateDynamicObject(2877, 216.760360, -97.310455, 1005.337768, 0.0, 0.0, 360.0, .interiorid = 15);
 }
@@ -41,10 +41,10 @@ Insert3DTextLabel()
 InsertMapIcon()
 {
 	// SideJobs:
-	CreateDynamicMapIcon(1529.5608,-1849.4032,13.5469, 37, 0, -1, -1, -1, 999999.0);
-	CreateDynamicMapIcon(2748.7725,-2451.0012,13.6484, 37, 0, -1, -1, -1, 999999.0);
-	CreateDynamicMapIcon(860.7480,-1372.0948,13.5469, 37, 0, -1, -1, -1, 999999.0);
-	CreateDynamicMapIcon(1696.8093,-1527.8206,13.4835, 37, 0, -1, -1, -1, 999999.0);
+	CreateDynamicMapIcon(1529.5608,-1849.4032,13.5469, 56, 0, -1, -1, -1, 999999.0);
+	CreateDynamicMapIcon(2748.7725,-2451.0012,13.6484, 56, 0, -1, -1, -1, 999999.0);
+	CreateDynamicMapIcon(860.7480,-1372.0948,13.5469, 56, 0, -1, -1, -1, 999999.0);
+	CreateDynamicMapIcon(1696.8093,-1527.8206,13.4835, 56, 0, -1, -1, -1, 999999.0);
 
 	//VehicleScrap:
 	CreateDynamicMapIcon(2412.9312,-1425.4226,23.9835, 23, 0, -1, -1, -1, 999999.0);

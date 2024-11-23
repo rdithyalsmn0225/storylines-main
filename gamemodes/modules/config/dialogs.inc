@@ -684,7 +684,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Vehicle Commands __________|");
 						SendClientMessage(playerid, COLOR_ORANGE, "/mycars, /engine, /carlock, /carkey, /carsell, /carpark, /cartrunk, /carhood");
-						SendClientMessage(playerid, COLOR_ORANGE, "/carlights, /carfind, /carradio, /carscrap, /carwhisper, /carb, /refill");
+						SendClientMessage(playerid, COLOR_ORANGE, "/carlights, /carfind, /carradio, /carscrap, /carwhisper, /carb, /refill, /limitspeed");
 					}
 					case 6:
 					{
@@ -1089,7 +1089,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							if(Inventory_Count(playerid, "Baking Soda") < 2)
 								return SendErrorMessage(playerid, "You need at least 5 pack of baking soda.");
 
-							BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY] = Create3DTextLabel("PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((|------))", COLOR_DARKGREEN, BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][2]+1, 5.0, BusinessInfo[id][E_BUSINESS_INTERIORPOSWORLD], 1);
+							BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY] = Create3DTextLabel("PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((|------))", COLOR_3DTEXT, BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][2]+1, 5.0, BusinessInfo[id][E_BUSINESS_INTERIORPOSWORLD], 1);
 							BusinessInfo[id][E_BUSINESS_LOADINGCOUNT] = 1;
 
 							BusinessInfo[id][E_BUSINESS_LOADING] = true; 
@@ -1122,7 +1122,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							if(Inventory_Count(playerid, "Baking Soda") < 5)
 								return SendErrorMessage(playerid, "You need at least 1 pack of baking soda.");
 
-							BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY] = Create3DTextLabel("PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((|------))", COLOR_DARKGREEN, BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][2]+1, 5.0, BusinessInfo[id][E_BUSINESS_INTERIORPOSWORLD], 1);
+							BusinessInfo[id][E_BUSINESS_LOADINGDISPLAY] = Create3DTextLabel("PCP COOK IN PROCESS\nSupplied Marijuana: 5 gram\nExpected Output: 3-5 gram\nTime Left: ((|------))", COLOR_3DTEXT, BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOINT][2]+1, 5.0, BusinessInfo[id][E_BUSINESS_INTERIORPOSWORLD], 1);
 							BusinessInfo[id][E_BUSINESS_LOADINGCOUNT] = 1;
 
 							BusinessInfo[id][E_BUSINESS_LOADING] = true; 

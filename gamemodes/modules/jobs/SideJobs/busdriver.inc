@@ -63,7 +63,7 @@ function:BusDrivers(playerid, type)
             }
         }
     }
-    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_DARKGREEN, text); 
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
 }
 
 CMD:viewroute(playerid, params[])
