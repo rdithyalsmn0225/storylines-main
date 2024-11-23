@@ -384,6 +384,22 @@ CMD:editbusiness(playerid, params[])
 		SendInfoMessage(playerid, "You set business #%i's level to %i.", id, level);
 		SaveBusiness(id);
 	}
+	else if(!strcmp(astr, "mapicon"))
+	{
+		new mapicon;
+		
+		if(sscanf(bstr, "i", mapicon))
+			return SendUsageMessage(playerid, "/editbusiness %i mapicon [type]", id);
+			
+		if(mapicon < 1 || mapicon > 63)
+			return SendErrorMessage(playerid, "You can't make the mapicon below 1 or greater than 63."); 
+			
+		BusinessInfo[id][E_BUSINESS_MAPICONTYPE] = mapicon;
+		
+		SendInfoMessage(playerid, "You set business #%i's mapicon type to %i.", id, mapicon);
+		BusinessRefresh(id);
+		SaveBusiness(id);
+	}
 	else if(!strcmp(astr, "stock"))
 	{
 		new products;

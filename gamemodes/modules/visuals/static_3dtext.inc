@@ -9,7 +9,6 @@ InsertDynamicPickup()
 	ChainsawPickup = CreateDynamicPickup(1239, 1, -1448.7738,-1530.5585,101.7578, -1, -1, -1, 5.0);
 	DropInjuredPickup = CreateDynamicPickup(1240, 1, 2035.0732,-1414.0488,16.9922, -1, -1, -1, 5.0);
 	VehicleScrapPickup = CreateDynamicPickup(1254, 1, 2412.9312,-1425.4226,23.9835, -1, -1, -1, 5.0);
-	ClothesPickup = CreateDynamicPickup(1275, 1, 217.5163,-98.4308,1005.2578, -1, -1, -1, 5.0);
 	PrisonPickup = CreateDynamicPickup(1247, 1, 1256.9117,890.3147,1161.0986, -1, -1, -1, 5.0);
 	HairCutPickup = CreateDynamicPickup(2752, 1, 2064.5574,-1794.9839,13.4599, -1, -1, -1, 5.0);
 	TicketPickup = CreateDynamicPickup(1239, 1, 249.1299,67.8123,1003.6406, -1, -1, -1, 5.0);
@@ -37,4 +36,19 @@ Insert3DTextLabel()
     CreateDynamic3DTextLabel(str2, COLOR_DARKGREEN, 122.0707,-319.1785,1.5781, 5.0);
 
 	fittingRoomDoor = CreateDynamicObject(2877, 216.760360, -97.310455, 1005.337768, 0.0, 0.0, 360.0, .interiorid = 15);
+}
+
+InsertMapIcon()
+{
+	// SideJobs:
+	CreateDynamicMapIcon(1529.5608,-1849.4032,13.5469, 37, 0, -1, -1, -1, 999999.0);
+	CreateDynamicMapIcon(2748.7725,-2451.0012,13.6484, 37, 0, -1, -1, -1, 999999.0);
+	CreateDynamicMapIcon(860.7480,-1372.0948,13.5469, 37, 0, -1, -1, -1, 999999.0);
+	CreateDynamicMapIcon(1696.8093,-1527.8206,13.4835, 37, 0, -1, -1, -1, 999999.0);
+
+	//VehicleScrap:
+	CreateDynamicMapIcon(2412.9312,-1425.4226,23.9835, 23, 0, -1, -1, -1, 999999.0);
+
+	//Fish Factory:
+	CreateDynamicMapIcon(2610.7708,-2441.7927,13.6310, 9, 0, -1, -1, -1, 999999.0);
 }

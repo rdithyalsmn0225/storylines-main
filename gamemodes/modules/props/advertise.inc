@@ -15,7 +15,7 @@ function:OnPlayerMakeRumour(playerid, response, price)
 	{
 		new string[128];
 		format(string, sizeof(string), "[Rumour]: %s", PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING]);
-		SendClientMessageToAll(COLOR_DARKGREEN, string);
+		SendClientMessageToAll(COLOR_BLUE, string);
 		CreateLogs(playerid, LOGS_ADVERT, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING]);
 
         new Cents = floatround(price * 100, floatround_round);

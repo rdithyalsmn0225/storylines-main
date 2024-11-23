@@ -142,13 +142,6 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
         return 1;	
     }
 
-    if(pickupid == ClothesPickup)
-    {
-        format(str, sizeof(str), "~b~Clothes Store~n~~w~Type '~y~/clothes~w~' to buy clothes."); 
-        ShowBoxMessage(playerid, str, 5); 
-        return 1;	
-    }
-
     if(pickupid == HairCutPickup)
     {
         format(str, sizeof(str), "~b~Haircuts~n~~w~Type '~y~/haircut~w~' to cut hairs."); 
@@ -178,6 +171,41 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
             ShowBoxMessage(playerid, str, 5); 
             return 1;	
         }
+    }
+
+    if(pickupid == DealershipPickup[0])
+    {
+        format(str, sizeof(str), "~b~Bikes Dealership~n~~w~Type '~y~/dealership~w~' to see dealership menu."); 
+        ShowBoxMessage(playerid, str, 5); 
+        return 1;	
+    }
+
+    if(pickupid == DealershipPickup[1])
+    {
+        format(str, sizeof(str), "~b~Two Door Dealership~n~~w~Type '~y~/dealership~w~' to see dealership menu."); 
+        ShowBoxMessage(playerid, str, 5); 
+        return 1;	
+    }
+
+    if(pickupid == DealershipPickup[2])
+    {
+        format(str, sizeof(str), "~b~Four Door Dealership~n~~w~Type '~y~/dealership~w~' to see dealership menu."); 
+        ShowBoxMessage(playerid, str, 5); 
+        return 1;	
+    }
+
+    if(pickupid == DealershipPickup[3])
+    {
+        format(str, sizeof(str), "~b~Industry Dealership~n~~w~Type '~y~/dealership~w~' to see dealership menu."); 
+        ShowBoxMessage(playerid, str, 5); 
+        return 1;	
+    }
+
+    if(pickupid == DealershipPickup[4])
+    {
+        format(str, sizeof(str), "~b~Taxi Dealership~n~~w~Type '~y~/dealership~w~' to see dealership menu."); 
+        ShowBoxMessage(playerid, str, 5); 
+        return 1;	
     }
 
     if(pickupid == PrisonPickup)

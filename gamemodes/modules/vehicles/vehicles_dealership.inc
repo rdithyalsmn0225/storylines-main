@@ -1,24 +1,27 @@
 //Dealership:
 InsertDealership()
 {
-    CreateDynamicPickup(1239, 1, 684.6581,-1570.5861,14.2422, -1, -1, -1, 5.0); //Bikes
-    CreateDynamicPickup(1239, 1, 2132.0190,-1149.9902,24.2088, -1, -1, -1, 5.0); //2door
-    CreateDynamicPickup(1239, 1, 1629.6158,-1903.5123,13.5530, -1, -1, -1, 5.0); //4door
-    CreateDynamicPickup(1239, 1, 2684.1277,-2515.6733,13.1552, -1, -1, -1, 5.0); //Vans
-	CreateDynamicPickup(1239, 1, 666.1486,-1419.0734,14.0272, -1, -1, -1, 5.0);
+    DealershipPickup[0] = CreateDynamicPickup(1239, 1, 684.6581,-1570.5861,14.2422, -1, -1, -1, 5.0); //Bikes
+    DealershipPickup[1] = CreateDynamicPickup(1239, 1, 2132.0190,-1149.9902,24.2088, -1, -1, -1, 5.0); //2door
+    DealershipPickup[2] =  CreateDynamicPickup(1239, 1, 1629.6158,-1903.5123,13.5530, -1, -1, -1, 5.0); //4door
+    DealershipPickup[3] = CreateDynamicPickup(1239, 1, 2684.1277,-2515.6733,13.1552, -1, -1, -1, 5.0); //Vans
+	DealershipPickup[4] = CreateDynamicPickup(1239, 1, 666.1486,-1419.0734,14.0272, -1, -1, -1, 5.0); //Taxi
 
-	CreateDynamic3DTextLabel("[Bikes Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_DARKGREEN, 684.6581,-1570.5861,14.2422, 5.0);
-	CreateDynamic3DTextLabel("[Two Door Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_DARKGREEN, 2132.0190,-1149.9902,24.2088, 5.0);
-	CreateDynamic3DTextLabel("[Four Door Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_DARKGREEN, 1629.6158,-1903.5123,13.5530, 5.0);
-	CreateDynamic3DTextLabel("[Industry Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_DARKGREEN, 2684.1277,-2515.6733,13.1552, 5.0);
-	CreateDynamic3DTextLabel("[Taxi Dealership]\n{ffffff}Available Commands: '/carbuy' to purchase vehicle", COLOR_DARKGREEN, 666.1486,-1419.0734,14.0272, 5.0);
+	CreateDynamic3DTextLabel("[Bikes Dealership]", COLOR_DARKGREEN, 684.6581,-1570.5861,14.2422, 5.0);
+	CreateDynamic3DTextLabel("[Two Door Dealership]", COLOR_DARKGREEN, 2132.0190,-1149.9902,24.2088, 5.0);
+	CreateDynamic3DTextLabel("[Four Door Dealership]", COLOR_DARKGREEN, 1629.6158,-1903.5123,13.5530, 5.0);
+	CreateDynamic3DTextLabel("[Industry Dealership]", COLOR_DARKGREEN, 2684.1277,-2515.6733,13.1552, 5.0);
+	CreateDynamic3DTextLabel("[Taxi Dealership]", COLOR_DARKGREEN, 666.1486,-1419.0734,14.0272, 5.0);
+
+	CreateDynamicMapIcon(684.6581,-1570.5861,14.2422, 55, 0, -1, -1, -1, 999999.0);
+	CreateDynamicMapIcon(2132.0190,-1149.9902,24.2088, 55, 0, -1, -1, -1, 999999.0);
+	CreateDynamicMapIcon(1629.6158,-1903.5123,13.5530, 55, 0, -1, -1, -1, 999999.0);
+	CreateDynamicMapIcon(2684.1277,-2515.6733,13.1552, 55, 0, -1, -1, -1, 999999.0);
+	CreateDynamicMapIcon(666.1486,-1419.0734,14.0272, 55, 0, -1, -1, -1, 999999.0);
 }
 
-CMD:carbuy(playerid, params[])
-{
-    if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED])
-		return SendErrorMessage(playerid, "You have a vehicle spawned."); 
-			
+CMD:dealership(playerid, params[])
+{		
 	new idx;
 			
 	for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)

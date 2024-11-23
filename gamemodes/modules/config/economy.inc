@@ -18,9 +18,9 @@
 #define WEAPON_UZIS         4000
 #define WEAPON_DEAGLES      5000
 #define WEAPON_SHOTGUNS     3000
-#define PMARIJUANA          100
-#define PCOCAINE            200
-#define PHEROIN             250
+#define PMARIJUANA          200
+#define PCOCAINE            250
+#define PHEROIN             300
 #define A9MM                100
 #define A9X19MM             100
 

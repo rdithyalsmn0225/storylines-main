@@ -198,6 +198,7 @@ public OnGameModeInit()
 	InsertASGH();
 	InsertPrison();
 	InsertObjects();
+	InsertMapIcon();
 	InsertASGHMaps();
 	InsertModshops();
 	InsertSAFDMaps();

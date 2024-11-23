@@ -201,6 +201,7 @@ stock BusinessRefresh(businessid)
 		}
 	}
 
+	BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], BusinessInfo[businessid][E_BUSINESS_MAPICONTYPE], 0, -1, -1, -1, 999999.0);
 	BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_SKIN], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][0], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][1], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][2], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][3], false);
 	SetDynamicActorFacingAngle(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][3]);
 	SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
@@ -567,6 +568,7 @@ function:Query_LoadBusinesses()
 		cache_get_value_bool(i, "BusinessLocked", BusinessInfo[i+1][E_BUSINESS_LOCKED]); 
 		cache_get_value_name_int(i, "BusinessEntranceFee", BusinessInfo[i+1][E_BUSINESS_ENTRANCEFEE]); 
 		
+		cache_get_value_name_int(i, "BusinessMapIcon", BusinessInfo[i+1][E_BUSINESS_MAPICONTYPE]); 
 		cache_get_value_name_int(i, "BusinessLevel", BusinessInfo[i+1][E_BUSINESS_LEVEL]); 
 		cache_get_value_name_int(i, "BusinessMarketPrice", BusinessInfo[i+1][E_BUSINESS_PRICE]);
 		
