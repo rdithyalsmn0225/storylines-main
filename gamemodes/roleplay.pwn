@@ -5912,6 +5912,28 @@ public OnPlayerGiveDamageDynamicActor(playerid, actorid, Float:amount, weaponid,
 	return 1;
 }
 
+public OnVehicleSirenStateChange(playerid, vehicleid, newstate)
+{
+	if(IsPoliceVehicle(vehicleid))
+	{
+		new engine, lights, alarm, doors, bonnet, boot, objective;
+		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+		SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+
+		if(newstate == 1) // Siren ON
+		{
+			SetVehicleParamsEx(vehicleid, engine, 1, alarm, doors, bonnet, boot, objective); 
+			VehicleTimers[vehicleid] = SetTimerEx("ToggleVehicleSirenLights", 250, true, "i", vehicleid);
+		}
+		else if(newstate == 0) // Siren OFF
+		{
+			KillTimer(VehicleTimers[vehicleid]); 
+			SetVehicleParamsEx(vehicleid, engine, 0, alarm, doors, bonnet, boot, objective); 
+		}
+	}
+	return 1;
+}
+
 public OnVehicleMod(playerid, vehicleid, componentid)
 {
 	new str1[512];

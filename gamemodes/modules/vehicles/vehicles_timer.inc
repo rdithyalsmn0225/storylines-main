@@ -111,3 +111,29 @@ function:OnVehicleUpdate()
 	}
 	return 1;
 }
+
+new VehicleTimers[MAX_VEHICLES];
+new bool:lightState[MAX_VEHICLES];
+
+stock encode_lights(light1, light2, light3, light4)
+{
+	return light1 | (light2 << 1) | (light3 << 2) | (light4 << 3);
+}
+
+function:ToggleVehicleSirenLights(vehicleid)
+{    
+	new panels, doors, lights, tires;
+	GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
+    if(lightState[vehicleid])
+    {
+		lightState[vehicleid] = false;
+		lights = encode_lights(0, 1, 0, 0);
+    }
+    else
+    {
+		lightState[vehicleid] = true;
+		lights = encode_lights(0, 0, 1, 0);
+    }
+	UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
+    return 1;
+}
