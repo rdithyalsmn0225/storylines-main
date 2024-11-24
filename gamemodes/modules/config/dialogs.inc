@@ -352,7 +352,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						pToys[playerid][toySelect[playerid]][E_TOY_SX],
 						pToys[playerid][toySelect[playerid]][E_TOY_SY],
 						pToys[playerid][toySelect[playerid]][E_TOY_SZ]);
-				SendServerMessage(playerid, "[Clothing] {cdd0d1}Accessories bone position now is %s", Bone_Name[listitem + 1]);
+				SendServerMessage(playerid, "[Clothing] {a4a4a4}Accessories bone position now is %s", Bone_Name[listitem + 1]);
 			}
 		}
 		case DIALOG_FIGHTSTYLE:
@@ -365,7 +365,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 5);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 5;
-						SendServerMessage(playerid, "[Business] {cdd0d1}You learn a fightstyle boxing for {93C47D}$150.00{cdd0d1}.");
+						SendServerMessage(playerid, "[Business] {a4a4a4}You learn a fightstyle boxing for $150.00.");
 						new Cents = floatround(150 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -374,7 +374,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 7);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 7;
-						SendServerMessage(playerid, "[Business] {cdd0d1}You learn a fightstyle KneeHead for {93C47D}$200.00{cdd0d1}.");
+						SendServerMessage(playerid, "[Business] {a4a4a4}You learn a fightstyle KneeHead for $200.00.");
 						new Cents = floatround(200 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -383,7 +383,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 15);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 15;
-						SendServerMessage(playerid, "[Business] {cdd0d1}You learn a fightstyle GrabKick for {93C47D}$300.00{cdd0d1}.");
+						SendServerMessage(playerid, "[Business] {a4a4a4}You learn a fightstyle GrabKick for $300.00.");
 						new Cents = floatround(300 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -392,7 +392,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 4);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 4;
-						SendServerMessage(playerid, "[Business] {cdd0d1}You reset a fightstyle for {93C47D}$100.00{cdd0d1}.");
+						SendServerMessage(playerid, "[Business] {a4a4a4}You reset a fightstyle for $100.00.");
 						new Cents = floatround(100 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -636,82 +636,82 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			        case 0:
 			        {
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ General Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/stats, /admins, /report, /o(oc), /pay, /isafk, /time, /levelup, /rcp, /inventory");
-						SendClientMessage(playerid, COLOR_ORANGE, "/enter, /exit, /mask, /setchannel, /setslot, /radio, /licenseexam, /unimpound");
-						SendClientMessage(playerid, COLOR_ORANGE, "/damages, /health, /acceptdeath, /helpup, /fixr, /respawnme, /setspawn, /settings");
-			        	SendClientMessage(playerid, COLOR_ORANGE, "/approve, /deny, /tickets, /coin, /dice, /gascan, /repairkits, /cursor");
+						SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /stats, /admins, /report, /o(oc), /pay, /isafk, /time, /levelup, /rcp, /inventory");
+						SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /enter, /exit, /mask, /setchannel, /setslot, /radio, /licenseexam, /unimpound");
+						SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /damages, /health, /acceptdeath, /helpup, /fixr, /respawnme, /setspawn, /settings");
+			        	SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /approve, /deny, /tickets, /coin, /dice, /gascan, /repairkits, /cursor, /spray");
 					}
 					case 1:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Roleplay Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/me, /do, /ame, /my, /amy, /s(hout), /l(ow), /b, /pm, /deposit, /withdraw");
-						SendClientMessage(playerid, COLOR_ORANGE, "/balance, /myidcard, /animhelp, /handshake, /frisk");
+						SendClientMessage(playerid, COLOR_ORANGE, "Roleplay Commands: /me, /do, /ame, /my, /amy, /s(hout), /l(ow), /b, /pm, /deposit, /withdraw");
+						SendClientMessage(playerid, COLOR_ORANGE, "Roleplay Commands: /balance, /myidcard, /animhelp, /handshake, /frisk");
 					}
 					case 2:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Property Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/buyproperty, /lock, /property, /giveproperty, /sellproperty");
-						SendClientMessage(playerid, COLOR_ORANGE, "/ringbell, /knock");
+						SendClientMessage(playerid, COLOR_ORANGE, "Property Commands: /buyproperty, /lock, /property, /giveproperty, /sellproperty");
+						SendClientMessage(playerid, COLOR_ORANGE, "Property Commands: /ringbell, /knock");
 					}
 					case 3:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Business Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/buybiz, /lock, /bizinfo, /bizfee, /bizcash, /bizproduct");
-						SendClientMessage(playerid, COLOR_ORANGE, "/givebusiness, /sellbusiness, /ringbell, /knock");
+						SendClientMessage(playerid, COLOR_ORANGE, "Business Commands: /buybiz, /lock, /bizinfo, /bizfee, /bizcash, /bizproduct");
+						SendClientMessage(playerid, COLOR_ORANGE, "Business Commands: /givebusiness, /sellbusiness, /ringbell, /knock");
 					}
 					case 4:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Faction Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/factions, /f, /factionon");
+						SendClientMessage(playerid, COLOR_ORANGE, "Faction Commands: /factions, /f, /factionon");
 
 						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "/fduty, /offduty, /handcuff, /unhandcuff, /badge, /flocker, /m(egaphone), /(dep)artment,");
-							SendClientMessage(playerid, COLOR_ORANGE, "/carsign, /remove_carsign, /tazer, /riotgun, /take, /givelicense, /impound, /checktrunk, /searchproperty, /mdc");
-							SendClientMessage(playerid, COLOR_ORANGE, "/tackle, /ticket, /charge, /opencell, /closecell, /spike, /roadblock");
+							SendClientMessage(playerid, COLOR_ORANGE, "Faction Commands: /fduty, /offduty, /handcuff, /unhandcuff, /badge, /flocker, /m(egaphone), /(dep)artment");
+							SendClientMessage(playerid, COLOR_ORANGE, "Faction Commands: /carsign, /remove_carsign, /tazer, /riotgun, /revoke, /givelicense, /impound, /checktrunk");
+							SendClientMessage(playerid, COLOR_ORANGE, "Faction Commands: /searchproperty, /mdc, /tackle, /ticket, /charge, /opencell, /closecell, /spike, /roadblock");
 						}
 						if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "/fduty, /offduty, /flocker, /m(egaphone), /(dep)artment,");
-							SendClientMessage(playerid, COLOR_ORANGE, "/dropinjured, /loadinjured, /rescue");
+							SendClientMessage(playerid, COLOR_ORANGE, "Faction Commands: /fduty, /offduty, /flocker, /m(egaphone), /(dep)artment");
+							SendClientMessage(playerid, COLOR_ORANGE, "Faction Commands: /dropinjured, /loadinjured, /rescue");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] == 4)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "/finvite, /funinvite, /founinvite, /frank.");
+							SendClientMessage(playerid, COLOR_ORANGE, "Faction Commands: /finvite, /funinvite, /founinvite, /frank.");
 						}
 					}
 					case 5:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Vehicle Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/mycars, /engine, /carlock, /carkey, /carsell, /carpark, /cartrunk, /carhood");
-						SendClientMessage(playerid, COLOR_ORANGE, "/carlights, /carfind, /carradio, /carscrap, /carwhisper, /carb, /refill, /limitspeed");
+						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /mycars, /engine, /carlock, /carkey, /carsell, /carpark, /cartrunk, /carhood");
+						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /carlights, /carfind, /carradio, /carscrap, /carwhisper, /carb, /refill, /limitspeed");
 					}
 					case 6:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Minigames Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/court, /resetcourt, /blackjack, /buylottery");
+						SendClientMessage(playerid, COLOR_ORANGE, "Minigames Commands: /court, /resetcourt, /blackjack, /buylottery");
 					}
 					case 7:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Jobs Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/takejobs, /quitjobs, /jobduty, ");
-						SendClientMessage(playerid, COLOR_ORANGE, "/loadcargo, /storecargo");
-						SendClientMessage(playerid, COLOR_ORANGE, "/collectgarbage, /dumpgarbage");
-						SendClientMessage(playerid, COLOR_ORANGE, "/fish, /sellfish, /buybait");
+						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /takejobs, /quitjobs, /jobduty, ");
+						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands:/loadcargo, /storecargo");
+						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands:/collectgarbage, /dumpgarbage");
+						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands:/fish, /sellfish, /buybait");
 						SendClientMessage(playerid, COLOR_ORANGE, "Press 'ALT' collect garbage");
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRUCKER)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "/tpda, /cargobuy, /cargosell, /cargodrop");
+							SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /tpda, /cargobuy, /cargosell, /cargodrop");
 							SendTipMessage(playerid, "Type '/cartrunk' to place cargo into truck.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_LUMBERJACK)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "/buyaxe, /timbercut, /timbersell");
+							SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /buyaxe, /timbercut, /timbersell");
 							SendTipMessage(playerid, "Press 'ALT' to cutting tree(s) using axe.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TAXI)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "/jobduty, /taxicall");
+							SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /jobduty, /taxicall");
 							SendTipMessage(playerid, "Taxi fare will change every 50 meters of distance.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_MECHANIC)
@@ -721,14 +721,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_SMUGGLER)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "/findpacket, /storepacket");
+							SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /findpacket, /storepacket");
 							SendTipMessage(playerid, "Press 'ALT' to pickup packet.");
 						}
 					}
 					case 8:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Crime Profesions Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "/extort, /extortions, /drugsdeal, /buydrugs, /buymats, /creategun, /production");
+						SendClientMessage(playerid, COLOR_ORANGE, "Crime Commands: /extort, /extortions, /drugsdeal, /buydrugs, /buymats, /creategun, /production");
 						SendTipMessage(playerid, "Hold aim into actor/npc to start robbery business.");
 						SendTipMessage(playerid, "Press LMB (punch) into actor/npc to start extortions business.");
 					}
@@ -746,12 +746,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGHUD])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGHUD] = false;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Streets TextDraws has been Enable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Streets TextDraws has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGHUD] = true;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Streets TextDraws has been Disable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Streets TextDraws has been Disable.");
 						}
 					}
 					case 1:
@@ -759,12 +759,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGJOIN])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGJOIN] = false;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Joined Logs has been Enable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Joined Logs has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGJOIN] = true;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Joined Logs has been Disable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Joined Logs has been Disable.");
 						}
 					}
 					case 2:
@@ -772,12 +772,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGADMIN])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGADMIN] = false;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Admin Messages has been Enable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Admin Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGADMIN] = true;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Admin Messages has been Disable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Admin Messages has been Disable.");
 						}
 					}
 					case 3:
@@ -785,12 +785,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGFMS])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGFMS] = false;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Faction Messages has been Enable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Faction Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGFMS] = true;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Faction Messages has been Disable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Faction Messages has been Disable.");
 						}
 					}
 					case 4:
@@ -798,12 +798,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGPMS])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGPMS] = false;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Private Messages has been Enable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Private Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGPMS] = true;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Private Messages has been Disable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Private Messages has been Disable.");
 						}
 					}
 					case 5:
@@ -811,12 +811,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGDMS])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDMS] = false;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Damages Messages has been Enable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Damages Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDMS] = true;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Damages Messages has been Disable.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Damages Messages has been Disable.");
 						}
 					}
 					case 6:
@@ -824,12 +824,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGPHONE])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGPHONE] = false;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}switched your phonestyle to old school.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}switched your phonestyle to old school.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGPHONE] = true;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}switched your phonestyle to modern.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}switched your phonestyle to modern.");
 						}
 					}
 					case 7:
@@ -837,13 +837,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGDD])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDD] = false;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Draw Distance has been set to Low.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Draw Distance has been set to Low.");
 							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 2000, playerid);
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDD] = true;
-							SendServerMessage(playerid, "[Settings] {cdd0d1}Draw Distance has been set to High.");
+							SendServerMessage(playerid, "[Settings] {a4a4a4}Draw Distance has been set to High.");
 							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 5000, playerid);
 						}
 					}
@@ -904,7 +904,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendServerMessage(playerid, "[Drugs Dealer] {a4a4a4}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 					case 1: //Heroin
 					{
@@ -916,7 +916,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendServerMessage(playerid, "[Drugs Dealer] {a4a4a4}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 				}
 			}
@@ -940,7 +940,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendServerMessage(playerid, "[Drugs Dealer] {a4a4a4}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 					case 1: //PCP
 					{
@@ -952,7 +952,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendServerMessage(playerid, "[Drugs Dealer] {a4a4a4}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 				}
 			}	
@@ -978,7 +978,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 						
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%s{cdd0d1} from selling crack.", FormatMoney(Cents));
+						SendServerMessage(playerid, "[Drugs Dealer] {a4a4a4}You've received $%s from selling crack.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1000,7 +1000,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received {93C47D}$%s{cdd0d1} from selling marijuana.", FormatMoney(Cents));
+						SendServerMessage(playerid, "[Drugs Dealer] {a4a4a4}You've received $%s from selling marijuana.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1022,7 +1022,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 						
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received $%s from selling heroin.", FormatMoney(Cents));
+						SendServerMessage(playerid, "[Drugs Dealer] {a4a4a4}You've received $%s from selling heroin.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1044,7 +1044,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 
-						SendServerMessage(playerid, "[Drugs Dealer] {cdd0d1}You've received $%s from selling pcp.", FormatMoney(Cents));
+						SendServerMessage(playerid, "[Drugs Dealer] {a4a4a4}You've received $%s from selling pcp.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1345,7 +1345,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						format(string, sizeof(string), "INSERT INTO `contacts` (`ID`, `E_CONTACT_NAME`, `E_CONTACT_NUMBER`) VALUES('%d', '%s', '%d')", PlayerInfo[playerid][E_CHARACTER_DBID], name, ContactInfo[playerid][i][E_CONTACT_NUMBER]);
 						mysql_pquery(ourConnection, string, "OnContactAdd", "dd", playerid, i);
 
-						SendServerMessage(playerid, "[Contact] {cdd0d1}You have added %s to your contacts.", name);
+						SendServerMessage(playerid, "[Contact] {a4a4a4}You have added %s to your contacts.", name);
 						return 1;
 					}
 				}
@@ -1372,7 +1372,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						format(string, sizeof(string), "DELETE FROM `contacts` WHERE `ID` = '%d' AND `E_CONTACT_DBID` = '%d'", PlayerInfo[playerid][E_CHARACTER_DBID], ContactInfo[playerid][id][E_CONTACT_DBID]);
 						mysql_pquery(ourConnection, string);
 
-						SendServerMessage(playerid, "[Contact] {cdd0d1}You have deleted %s from your contacts.", ContactInfo[playerid][id][E_CONTACT_NAME]);
+						SendServerMessage(playerid, "[Contact] {a4a4a4}You have deleted %s from your contacts.", ContactInfo[playerid][id][E_CONTACT_NAME]);
 
 						ContactInfo[playerid][id][E_CONTACT_EXISTS] = false;
 						ContactInfo[playerid][id][E_CONTACT_NUMBER] = 0;
@@ -1414,7 +1414,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] -= rand;
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = false;
 							BusinessRefresh(IsPlayerInBusiness(playerid));
-							SendServerMessage(playerid, "[Business] {cdd0d1}You've got money $%s from take cash money on cashiers.", FormatMoney(Cents));
+							SendServerMessage(playerid, "[Business] {a4a4a4}You've got money $%s from take cash money on cashiers.", FormatMoney(Cents));
 						}
 					}
 				}

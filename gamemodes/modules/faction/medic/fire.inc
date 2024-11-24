@@ -46,12 +46,12 @@ function:RandomFire(check)
 	                    {
 	                        if(IsPlayerInRangeOfPoint(x, 30.0, randomFireSpawns[i][E_FIRE_POSX], randomFireSpawns[i][E_FIRE_POSY], randomFireSpawns[i][E_FIRE_POSZ]))
 	                        {
-	                            SendServerMessage(x, "[Fire] {cdd0d1}An explosion can be heard. Smoke is rising from a building nearby.");
+	                            SendServerMessage(x, "[Fire] {a4a4a4}An explosion can be heard. Smoke is rising from a building nearby.");
 	                        }
 	                        if(ReturnFactionType(x) == FACTION_TYPE_MEDICAL)
 	                        {
 	                            GPS_SetPlayerRaceCheckPoint(x, 1, randomFireSpawns[i][E_FIRE_POSX], randomFireSpawns[i][E_FIRE_POSY], randomFireSpawns[i][E_FIRE_POSZ], 0.0, 0.0, 0.0);
-	                            SendServerMessage(x, "[Fire] {cdd0d1}All units, a fire has been reported in %s. Please head to the beacon on your map.", GetZoneName(randomFireSpawns[i][E_FIRE_POSX], randomFireSpawns[i][E_FIRE_POSY], randomFireSpawns[i][E_FIRE_POSZ]));
+	                            SendServerMessage(x, "[Fire] {a4a4a4}All units, a fire has been reported in %s. Please head to the beacon on your map.", GetZoneName(randomFireSpawns[i][E_FIRE_POSX], randomFireSpawns[i][E_FIRE_POSY], randomFireSpawns[i][E_FIRE_POSZ]));
 							}
 	                    }
 
@@ -113,6 +113,6 @@ CMD:destroyfire(playerid, params[])
 	}
 
 	gFires = 0;
-	SendServerMessage(playerid, "[Fire] {cdd0d1}You has destroyed fire.");
+	SendServerMessage(playerid, "[Fire] {a4a4a4}You has destroyed fire.");
 	return 1;
 }

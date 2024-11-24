@@ -38,7 +38,7 @@ stock LeaveTaxi(playerid, driverid)
 	    GiveMoney(playerid, -PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
    		GiveMoney(driverid, PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 
-        SendServerMessage(driverid, "[Taxi] {cdd0d1}%s has exit your taxi and paid $%s.", ReturnName(playerid, driverid), FormatMoney(PlayerInfo[playerid][E_CHARACTER_TAXIFARE]));
+        SendServerMessage(driverid, "[Taxi] {a4a4a4}%s has exit your taxi and paid $%s.", ReturnName(playerid, driverid), FormatMoney(PlayerInfo[playerid][E_CHARACTER_TAXIFARE]));
 		SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "** %s has paid $%s to the taxi driver.", ReturnName(playerid, driverid), FormatMoney(PlayerInfo[playerid][E_CHARACTER_TAXIFARE]));
 
 	    PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 0;
@@ -91,8 +91,8 @@ Dialog:AcceptTaxi(playerid, response, listitem, inputtext[])
 		PlayerInfo[targetid][E_CHARACTER_TAXICALLED] = 0;
 		GPS_SetPlayerRaceCheckPoint(playerid, 1, x, y, z, 0.0, 0.0, 0.0);
 
-        SendServerMessage(playerid, "[Taxi] {cdd0d1}You have accepted {d7d292}%s's{cdd0d1} taxi call.", ReturnName(targetid));
-        SendServerMessage(targetid, "[Taxi] {cdd0d1}%s has accepted your taxi call and is on their way.", ReturnName(playerid, targetid));
+        SendServerMessage(playerid, "[Taxi] {a4a4a4}You have accepted {d7d292}%s's{a4a4a4} taxi call.", ReturnName(targetid));
+        SendServerMessage(targetid, "[Taxi] {a4a4a4}%s has accepted your taxi call and is on their way.", ReturnName(playerid, targetid));
 	}
 	return 1;
 }
@@ -105,7 +105,7 @@ CMD:setfare(playerid, params[])
     if (sscanf(params, "f", value))
 	{
 		SendUsageMessage(playerid, "/setfare [amount]");
-		SendTipMessage(playerid, "Taxi price range maximum {93C47D}$2.50{cdd0d1} and minimum {93C47D}$1.00{cdd0d1}.");
+		SendTipMessage(playerid, "Taxi price range maximum {93C47D}$2.50{a4a4a4} and minimum {93C47D}$1.00{a4a4a4}.");
         return 1;
 	}
 
@@ -124,7 +124,7 @@ CMD:setfare(playerid, params[])
 	new Cents = floatround(value * 100, floatround_round);
 
     PlayerInfo[playerid][E_CHARACTER_DRIVERFARE] = Cents;
-	SendServerMessage(playerid, "[Taxi] {cdd0d1}You has set your taxi fare to $%s.", FormatMoney(Cents));
+	SendServerMessage(playerid, "[Taxi] {a4a4a4}You has set your taxi fare to $%s.", FormatMoney(Cents));
 	return 1;
 }
 

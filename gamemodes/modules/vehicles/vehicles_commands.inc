@@ -49,7 +49,7 @@ CMD:carsell(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SELLVOFFER] = vehicleid;
 
 	SendTipMessage(userid, "%s has offered sell their vehicle %s for $%s, type /approve vehicle to approve.", ReturnName(playerid), ReturnVehicleModelName(vehicleid), FormatMoney(Cents));
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You have offered sell your %s for $%s.", ReturnName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(Cents));
+	SendServerMessage(playerid, "[Vehicle] {a4a4a4}You have offered sell your %s for $%s.", ReturnName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(Cents));
 	return 1;
 }
 
@@ -80,9 +80,9 @@ CMD:carkey(playerid, params[])
 		return SendErrorMessage(playerid, "You aren't near that player."); 
 			
 	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s gives %s a key to their vehicle.", ReturnName(playerid), ReturnName(playerb));
-	SendServerMessage(playerb, "[Vehicle] {cdd0d1}%s gave you a key their vehicle.", ReturnName(playerid));
+	SendServerMessage(playerb, "[Vehicle] {a4a4a4}%s gave you a key their vehicle.", ReturnName(playerid));
 		
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You gave %s a duplicatekey.", ReturnName(playerb));
+	SendServerMessage(playerid, "[Vehicle] {a4a4a4}You gave %s a duplicatekey.", ReturnName(playerb));
 		
 	PlayerInfo[playerb][E_CHARACTER_DUPLICATEKEY] = vehicleid;
     return 1;
@@ -103,7 +103,7 @@ CMD:carpark(playerid, params[])
 		
 	if(!IsPlayerInRangeOfPoint(playerid, 5.0, VehicleInfo[vehicleid][E_VEHICLE_POS][0], VehicleInfo[vehicleid][E_VEHICLE_POS][1], VehicleInfo[vehicleid][E_VEHICLE_POS][2]))
 	{
-		SendServerMessage(playerid, "[Vehicle] {cdd0d1}You have to be at your vehicle's parking place.");
+		SendServerMessage(playerid, "[Vehicle] {a4a4a4}You have to be at your vehicle's parking place.");
 		SendTipMessage(playerid, "Follow the marker to your parking.");
 		
 		GPS_SetPlayerRaceCheckPoint(playerid, 1, VehicleInfo[vehicleid][E_VEHICLE_POS][0], VehicleInfo[vehicleid][E_VEHICLE_POS][1], VehicleInfo[vehicleid][E_VEHICLE_POS][2], 0.0, 0.0, 0.0);
@@ -126,7 +126,7 @@ CMD:carpark(playerid, params[])
 	VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = vehicle_health;
 	SaveVehicle(vehicleid);
 		
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You parked your %s.", ReturnVehicleName(vehicleid));
+	SendServerMessage(playerid, "[Vehicle] {a4a4a4}You parked your %s.", ReturnVehicleName(vehicleid));
 		
 	SaveVehicle(vehicleid); 
     return 1;
@@ -148,6 +148,9 @@ CMD:carscrap(playerid, params[])
 		vehicleid = GetPlayerVehicleID(playerid),
 		cash_back;
 			
+	if(VehicleInfo[vehicleid][E_VEHICLE_RENTAL])
+		return SendErrorMessage(playerid, "You don't own this vehicle (rented)."); 
+
 	if(VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
 		return SendErrorMessage(playerid, "You don't own this vehicle."); 
 			
@@ -188,7 +191,7 @@ CMD:carlock(playerid, params[])
 		if(VehicleInfo[vehicleid][E_VEHICLE_IMPOUND])
 			return SendErrorMessage(playerid, "Your vehicle is impounded.");
 
-		new statusString[90]; 
+		new statusString[90], str[90]; 
 		new engine, lights, alarm, doors, bonnet, boot, objective; 
 	
 		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
@@ -199,6 +202,8 @@ CMD:carlock(playerid, params[])
 			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {93C47D}Unlocked", ReturnVehicleName(vehicleid));
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, false, bonnet, boot, objective);
 			VehicleInfo[vehicleid][E_VEHICLE_LOCKED] = false;
+			format(str, sizeof(str), "unlocks the %s", ReturnVehicleName(vehicleid));
+			cmd_me(playerid, str);
 		}
 		else 
 		{
@@ -206,6 +211,8 @@ CMD:carlock(playerid, params[])
 			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {FF6347}Locked", ReturnVehicleName(vehicleid));	
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, true, bonnet, boot, objective);
 			VehicleInfo[vehicleid][E_VEHICLE_LOCKED] = true;
+			format(str, sizeof(str), "locks the %s", ReturnVehicleName(vehicleid));
+			cmd_me(playerid, str);
 		}
 
 		ShowBoxMessage(playerid, statusString, 5);
@@ -399,7 +406,7 @@ CMD:engine(playerid, params[])
 	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER)
 		return SendErrorMessage(playerid, "You aren't in the driver's seat of a vehicle."); 
 		
-	new vehicleid = GetPlayerVehicleID(playerid);
+	new vehicleid = GetPlayerVehicleID(playerid), str[90];
 	
 	if (!IsEngineVehicle(vehicleid))
 		return SendErrorMessage(playerid, "You are not in any vehicle.");
@@ -419,11 +426,15 @@ CMD:engine(playerid, params[])
 		{	ShowBoxMessage(playerid, "~g~Turn on engine.", 5);
 			PlayerEngineValue[playerid] = 0;
 			PlayerEngineTimer[playerid] = SetTimerEx("TurnEngine", 500, true, "dd", playerid, vehicleid);
+			format(str, sizeof(str), "twists the key turning the engine of the %s on", ReturnVehicleName(vehicleid));
+			cmd_me(playerid, str);
 		}
 		else
 		{
 			SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {FF6347}Stopped");	
 			ToggleVehicleEngine(vehicleid, false); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = false;
+			format(str, sizeof(str), "twists the key turning the engine of the %s off", ReturnVehicleName(vehicleid));
+			cmd_me(playerid, str);
 		}
 	}
 	else ShowBoxMessage(playerid, "This vehicle is ~r~totalled~w~ and needs repairing.", 3);
@@ -543,6 +554,6 @@ CMD:limitspeed(playerid, params[])
 
 	PlayerSpeedLimit[playerid] = limit;
 
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You has set your vehicle speedlimit to %d/MPH.", limit);
+	SendServerMessage(playerid, "[Vehicle] {a4a4a4}You has set your vehicle speedlimit to %d/MPH.", limit);
 	return 1;
 }

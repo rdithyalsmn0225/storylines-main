@@ -13,7 +13,7 @@ function:OnVehicleFuelUpdate()
 
 			if (VehicleInfo[i][E_VEHICLE_FUEL] >= 1.0 && VehicleInfo[i][E_VEHICLE_FUEL] <= 5.0)
 			{
-			    SendServerMessage(GetVehicleDriver(i), "[Vehicle] {cdd0d1}This vehicle is low on fuel.");
+			    SendServerMessage(GetVehicleDriver(i), "[Vehicle] {a4a4a4}This vehicle is low on fuel.");
 			}
             SaveVehicle(i);
 		}
@@ -44,7 +44,7 @@ function:OnVehicleRental()
 					mysql_format(ourConnection, delQuery, sizeof(delQuery), "DELETE FROM vehicles WHERE VehicleDBID = %i", dbid);
 					mysql_pquery(ourConnection, delQuery); 
 					
-					SendServerMessage(playerid, "[Vehicle] {cdd0d1}Your rental vehicle %s has been permanently deleted.", ReturnVehicleName(i)); 
+					SendServerMessage(playerid, "[Vehicle] {a4a4a4}Your rental vehicle %s has been permanently deleted.", ReturnVehicleName(i)); 
 					
 					ResetVehicleVars(i); 
 					VS_RemoveAllItems(i);

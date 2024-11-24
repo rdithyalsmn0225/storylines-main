@@ -131,9 +131,6 @@ LoadCustomModels()
 	
 
 	//==========================================MAPSSSS==========================================
-	AddSimpleModel(-1, 19475, -25555, "maps/idlewood/idlewood.dff", "maps/idlewood/idlewood.txd");
-	AddSimpleModel(-1, 19475, -25556, "maps/idlewood/alhambra_proj.dff", "maps/idlewood/alhambra_proj.txd");
-	AddSimpleModel(-1, 19475, -25557, "maps/idlewood/alhambra_floor.dff", "maps/idlewood/alhambra_floor.txd");
-	AddSimpleModel(-1, 19475, -25558, "maps/idlewood/alhambra_wall.dff", "maps/idlewood/alhambra_wall.txd"); 
+
     return 1;
 }

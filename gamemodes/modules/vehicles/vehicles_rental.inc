@@ -7,10 +7,7 @@ CMD:rentcars(playerid, params[])
 
     if(BusinessInfo[businessid][E_BUSINESS_TYPE] != BUSINESS_TYPE_RENT)
         return SendErrorMessage(playerid, "You aren't near business rental");
-
-    if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED])
-		return SendErrorMessage(playerid, "You have a vehicle spawned."); 
-			
+	
 	new idx;
 			
 	for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
@@ -28,7 +25,7 @@ CMD:rentcars(playerid, params[])
 		return 1;
 	}
 
-    Dialog_Show(playerid, RentalCars, DIALOG_STYLE_TABLIST, "Rental Cars:", "Faggio\t{93C47D}$50/hours{ffffff}\nSentinel\t{93C47D}$120/hours{ffffff}", "Select", "Cancel");
+    Dialog_Show(playerid, RentalCars, DIALOG_STYLE_TABLIST, "Rental Cars:", "Faggio\t{93C47D}$50.00/hours{ffffff}\nSentinel\t{93C47D}$120.00/hours{ffffff}", "Select", "Cancel");
     return 1;
 }
 
@@ -40,8 +37,10 @@ Dialog:RentalCars(playerid, response, listitem, inputtext[])
         {
             case 0:
             {
-                if(5000 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-                    return SendErrorMessage(playerid, "You can't afford the total price. (Price: $50.00, Total:$%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+                new Cents = floatround(50 * 100, floatround_round);
+
+                if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+                    return SendErrorMessage(playerid, "You can't afford the total price. (Price: $%s, Total:$%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
                 new
                     idx, 
@@ -70,7 +69,6 @@ Dialog:RentalCars(playerid, response, listitem, inputtext[])
                 randset[2] = random(sizeof(possible_vehicle_plates)); 
                 
                 format(plates, 32, "%d%s%s%s%d%d%d", random(9), possible_vehicle_plates[randset[0]], possible_vehicle_plates[randset[1]], possible_vehicle_plates[randset[2]], random(9), random(9)); 
-                new Cents = floatround(50 * 100, floatround_round);
 
 		        GiveMoney(playerid, -Cents);
                 
@@ -79,12 +77,14 @@ Dialog:RentalCars(playerid, response, listitem, inputtext[])
                 mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO vehicles (VehicleOwnerDBID, VehicleModel, VehicleParkPosX, VehicleParkPosY, VehicleParkPosZ, VehicleParkPosA, VehicleRental, VehicleRentalTimer) VALUES(%i, %i, %f, %f, %f, %f, %i, %i)",
                     PlayerInfo[playerid][E_CHARACTER_DBID], 462, x, y, z, a, 1, 60); 
                     
-                mysql_pquery(ourConnection, insert, "OnPlayerVehicleRental", "iiiisffff", playerid, idx, 462, 50, plates, x, y, z, a);
+                mysql_pquery(ourConnection, insert, "OnPlayerVehicleRental", "iiiisffff", playerid, idx, 462, Cents, plates, x, y, z, a);
             }
             case 1:
             {
-                if(12000 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-                    return SendErrorMessage(playerid, "You can't afford the total price. (Price: $120.00, Total:$%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+                new Cents = floatround(120 * 100, floatround_round);
+
+                if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+                    return SendErrorMessage(playerid, "You can't afford the total price. (Price: $%s, Total:$%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
                 new
                     idx, 
@@ -113,8 +113,7 @@ Dialog:RentalCars(playerid, response, listitem, inputtext[])
                 randset[2] = random(sizeof(possible_vehicle_plates)); 
                 
                 format(plates, 32, "%d%s%s%s%d%d%d", random(9), possible_vehicle_plates[randset[0]], possible_vehicle_plates[randset[1]], possible_vehicle_plates[randset[2]], random(9), random(9)); 
-                new Cents = floatround(120 * 100, floatround_round);
-
+                
 		        GiveMoney(playerid, -Cents);
                 
                 ShowPlayerPlates(playerid, plates); 
@@ -122,7 +121,7 @@ Dialog:RentalCars(playerid, response, listitem, inputtext[])
                 mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO vehicles (VehicleOwnerDBID, VehicleModel, VehicleParkPosX, VehicleParkPosY, VehicleParkPosZ, VehicleParkPosA, VehicleRental, VehicleRentalTimer) VALUES(%i, %i, %f, %f, %f, %f, %i, %i)",
                     PlayerInfo[playerid][E_CHARACTER_DBID], 405, x, y, z, a, 1, 60); 
                     
-                mysql_pquery(ourConnection, insert, "OnPlayerVehicleRental", "iiiisffff", playerid, idx, 462, 120, plates, x, y, z, a);
+                mysql_pquery(ourConnection, insert, "OnPlayerVehicleRental", "iiiisffff", playerid, idx, 462, Cents, plates, x, y, z, a);
             }
         }
     }
@@ -180,6 +179,6 @@ function:OnPlayerVehicleRental(playerid, id, modelid, cost, plates[], Float:x, F
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid;
 	}
 	
-	SendServerMessage(playerid, "[Vehicle] {cdd0d1}You successfully rent a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(cost));
+	SendServerMessage(playerid, "[Vehicle] {a4a4a4}You successfully rent a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(cost));
 	return 1;
 }

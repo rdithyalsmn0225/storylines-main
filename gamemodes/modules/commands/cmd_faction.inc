@@ -758,7 +758,7 @@ CMD:tracenumber(playerid, params[])
 	new Float:x, Float:y, Float:z;
     GetPlayerPos(targetid, x, y, z);
 
-    SendServerMessage(playerid, "[Trace] {cdd0d1}Phone number %s belongs to %s located at %s, %s.", targetNumber, ReturnName(playerid, 0), ReturnLocationStreet(playerid), ReturnLocation(playerid));
+    SendServerMessage(playerid, "[Trace] {a4a4a4}Phone number %s belongs to %s located at %s, %s.", targetNumber, ReturnName(playerid, 0), ReturnLocationStreet(playerid), ReturnLocation(playerid));
 	return 1;
 }
 
@@ -895,7 +895,7 @@ CMD:dgf(playerid, params[])
 	return 1; 
 }
 
-CMD:take(playerid, params[])
+CMD:revoke(playerid, params[])
 {
 	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE)
 		return SendUnauthMessage(playerid);
@@ -907,8 +907,8 @@ CMD:take(playerid, params[])
 		
 	if(sscanf(params, "us[60]", playerb, a_str))
 	{
-		SendUsageMessage(playerid, "/take [playerid OR name] [item]");
-		SendTipMessage(playerid, "driverlicense, weaponlicense, weapons"); 
+		SendUsageMessage(playerid, "/revoke [playerid OR name] [item]");
+		SendTipMessage(playerid, "driverlicense, weaponlicense, truckerlicense, weapons"); 
 		return 1;
 	}
 	
@@ -937,9 +937,17 @@ CMD:take(playerid, params[])
 		PlayerInfo[playerb][E_CHARACTER_WEAPLICENSE] = 0;
 		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s took %s's weapons license.", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb));
 	}
+	else if(!strcmp(a_str, "truckerlicense"))
+	{
+		if(!PlayerInfo[playerb][E_CHARACTER_TRUCKERLICENSE])
+			return SendErrorMessage(playerid, "%s doesn't have a truckers license.", ReturnName(playerb)); 
+			
+		PlayerInfo[playerb][E_CHARACTER_TRUCKERLICENSE] = 0;
+		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s took %s's truckers license.", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb));
+	}
 	else if(!strcmp(a_str, "weapons"))
 	{
-		ResetPlayerWeapons(playerid);
+		ResetPlayerWeaponEx(playerid);
 		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s took %s's weapons.", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb));
 		return 1;
 	}
@@ -951,37 +959,45 @@ CMD:givelicense(playerid, params[])
 {
 	if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE)
 		return SendUnauthMessage(playerid);
-		
-	if(PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] < 2)
-		return SendErrorMessage(playerid, "Your rank doesn't have permission for this."); 
 	
 	new 
-		playerb; 
+		playerb,
+		a_str[60]
+	; 
 		
-	if (sscanf(params, "u", playerb))
+	if(sscanf(params, "us[60]", playerb, a_str))
 	{
-		SendUsageMessage(playerid, "/givelicense [playerid OR name]");
-		SendTipMessage(playerid, "This issues a weapon's license to players. "); 
+		SendUsageMessage(playerid, "/givelicense [playerid OR name] [item]");
+		SendTipMessage(playerid, "weaponlicense, truckerlicense"); 
 		return 1;
 	}
-		
+	
 	if(!IsPlayerConnected(playerb))
 		return SendErrorMessage(playerid, "You specified an invalid player.");
 		
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "You specified a player that isn't logged in.");
 		
-	if(!PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE]) {
-		PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE] = 1;
-		
-		SendPoliceMessage(COLOR_COP, "** HQ: %s %s issued %s a weapon's license! **", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb)); 
+	if(!IsPlayerNearPlayer(playerid, playerb, 5.0))
+		return SendErrorMessage(playerid, "You aren't near that player.");
+	
+	if(!strcmp(a_str, "weaponlicense"))
+	{
+		if(!PlayerInfo[playerb][E_CHARACTER_WEAPLICENSE])
+			return SendErrorMessage(playerid, "%s already have a weapons license.", ReturnName(playerb)); 
+			
+		PlayerInfo[playerb][E_CHARACTER_WEAPLICENSE] = 1;
+		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s given %s's weapons license.", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb));
 	}
-	else {
-		PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE] = 0; 
-		
-		SendPoliceMessage(COLOR_COP, "** HQ: %s %s removed %s's weapon's license! **", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb)); 
+	else if(!strcmp(a_str, "truckerlicense"))
+	{
+		if(PlayerInfo[playerb][E_CHARACTER_TRUCKERLICENSE])
+			return SendErrorMessage(playerid, "%s already have a truckers license.", ReturnName(playerb)); 
+			
+		PlayerInfo[playerb][E_CHARACTER_TRUCKERLICENSE] = 1;
+		SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s %s given %s's truckers license.", IsPlayerFactionRank(playerid), ReturnName(playerid), ReturnName(playerb));
 	}
-		
+	else return SendErrorMessage(playerid, "Invalid Parameter.");
 	return 1;
 }
 
@@ -1094,8 +1110,8 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
     		SetPlayerTeam(targetid, PLAYER_STATE_ALIVE);
 			SetPlayerHealthEx(targetid, 100.0);
 
-			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have been reviving %s.", ReturnName(targetid));
-			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been revived by %s.", ReturnName(playerid));
+			SendServerMessage(playerid, "[Treatment] {a4a4a4}You have been reviving %s.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {a4a4a4}You have been revived by %s.", ReturnName(playerid));
 		}
 		if(listitem == 2)
 		{
@@ -1105,8 +1121,8 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 				return SendErrorMessage(playerid, "That player already have Max Health!");
 
 			SetPlayerHealthEx(targetid, 100.0);
-			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have healing %s.", ReturnName(targetid));
-			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been healed by %s.", ReturnName(playerid));
+			SendServerMessage(playerid, "[Treatment] {a4a4a4}You have healing %s.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {a4a4a4}You have been healed by %s.", ReturnName(playerid));
 		}
 		if(listitem == 3)
 		{
@@ -1122,7 +1138,7 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 			PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
 			PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("Treatments", 5000, true, "ii", playerid, targetid);
 
-			SendServerMessage(playerid, "[Treatment] {cdd0d1}You need waiting for a minutes to operate %s.", ReturnName(targetid));
+			SendServerMessage(playerid, "[Treatment] {a4a4a4}You need waiting for a minutes to operate %s.", ReturnName(targetid));
 		}
 	}
 	return 1;
@@ -1155,8 +1171,8 @@ function:Treatments(playerid, targetid)
 				PlayerInfo[targetid][E_CHARACTER_WOUND][i] = 100;
 			}
 			
-			SendServerMessage(playerid, "[Treatment] {cdd0d1}You have operating %s.", ReturnName(targetid));
-			SendServerMessage(targetid, "[Treatment] {cdd0d1}You have been operated by %s.", ReturnName(playerid));
+			SendServerMessage(playerid, "[Treatment] {a4a4a4}You have operating %s.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {a4a4a4}You have been operated by %s.", ReturnName(playerid));
 		}
 	}
 	Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 

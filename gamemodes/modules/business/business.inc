@@ -63,7 +63,7 @@ Dialog:BarStore(playerid, response, listitem, inputtext[])
 				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 					return SendErrorMessage(playerid, "You can't afford a beer.");
 			
-				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a budweiser beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+				SendServerMessage(playerid, "[Business] {a4a4a4}You bought a budweiser beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 				GiveMoney(playerid, BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
 				
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -78,7 +78,7 @@ Dialog:BarStore(playerid, response, listitem, inputtext[])
 					return SendErrorMessage(playerid, "You can't afford a beer.");
 
 			
-				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a corona extra beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+				SendServerMessage(playerid, "[Business] {a4a4a4}You bought a corona extra beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 				GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
 				
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -92,7 +92,7 @@ Dialog:BarStore(playerid, response, listitem, inputtext[])
 				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 					return SendErrorMessage(playerid, "You can't afford a beer.");
 			
-				SendServerMessage(playerid, "[Business] {cdd0d1}You bought a peroni beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+				SendServerMessage(playerid, "[Business] {a4a4a4}You bought a peroni beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 				GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
 				
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;

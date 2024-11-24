@@ -64,13 +64,13 @@ CMD:findpacket(playerid, params[])
     if(found)
     {
         SetPlayerCheckpoint(playerid, x, y, z, 3.0);
-        SendServerMessage(playerid, "[Smugglers] {cdd0d1}Packet status has taken by another player at %s.", GetZoneName(x, y, z));
+        SendServerMessage(playerid, "[Smugglers] {a4a4a4}Packet status has taken by another player at %s.", GetZoneName(x, y, z));
         SendTipMessage(playerid, "Type '/findpacket' to track packet.");
     }
     else if(packetpos[0] != 0.0 && packetpos[1] != 0.0)
     {
         GPS_SetPlayerRaceCheckPoint(playerid, 1, packetpos[0], packetpos[1], packetpos[1], 0.0, 0.0, 0.0);
-        SendServerMessage(playerid, "[Smugglers] {cdd0d1}Packet status is still idle at %s.", GetZoneName(packetpos[0], packetpos[1], packetpos[1]));
+        SendServerMessage(playerid, "[Smugglers] {a4a4a4}Packet status is still idle at %s.", GetZoneName(packetpos[0], packetpos[1], packetpos[1]));
         SendTipMessage(playerid, "Press 'ALT' to pickup packet.");
     }
     else if(packetpos[0] == 0.0 && packetpos[1] == 0.0) return SendErrorMessage(playerid, "Packet has not spawned at this time.");
@@ -95,12 +95,12 @@ CMD:afindpacket(playerid, params[])
     if(found)
     {
         SetPlayerCheckpoint(playerid, x, y, z, 3.0);
-        SendServerMessage(playerid, "[Smugglers] {cdd0d1}Packet status has taken by another player at %s.", GetZoneName(x, y, z));
+        SendServerMessage(playerid, "[Smugglers] {a4a4a4}Packet status has taken by another player at %s.", GetZoneName(x, y, z));
     }
     else if(packetpos[0] != 0.0 && packetpos[1] != 0.0)
     {
         GPS_SetPlayerRaceCheckPoint(playerid, 1, packetpos[0], packetpos[1], packetpos[1], 0.0, 0.0, 0.0);
-        SendServerMessage(playerid, "[Smugglers] {cdd0d1}Packet status is still idle at %s.", GetZoneName(packetpos[0], packetpos[1], packetpos[1]));
+        SendServerMessage(playerid, "[Smugglers] {a4a4a4}Packet status is still idle at %s.", GetZoneName(packetpos[0], packetpos[1], packetpos[1]));
     }
     else if(packetpos[0] == 0.0 && packetpos[1] == 0.0) return SendErrorMessage(playerid, "Packet has not spawned at this time.");
     TrackPackets[playerid] = gettime() + 10;
@@ -148,7 +148,7 @@ CMD:storepacket(playerid, params[])
 
         ServerData_Plus(INDUSTRY_DRUGS, rand);
 
-        SendServerMessage(playerid, "[Smugglers] {cdd0d1}You has stored packet and earn $%s", FormatMoney(Cents));
+        SendServerMessage(playerid, "[Smugglers] {a4a4a4}You has stored packet and earn $%s", FormatMoney(Cents));
 
         PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
     } 
@@ -169,7 +169,7 @@ CMD:storepacket(playerid, params[])
 
         ServerData_Plus(INDUSTRY_MATERIALS, rand);
 
-        SendServerMessage(playerid, "[Smugglers] {cdd0d1}You has stored packet and earn $%s", FormatMoney(Cents));
+        SendServerMessage(playerid, "[Smugglers] {a4a4a4}You has stored packet and earn $%s", FormatMoney(Cents));
 
         PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
     }

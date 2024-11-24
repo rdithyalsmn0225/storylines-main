@@ -94,7 +94,7 @@ function:FishingTimer(playerid, type)
 					ClearAnimations(playerid);
 					TogglePlayerControllable(playerid, true);
 					ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-					SendServerMessage(playerid, "[Fishing] {cdd0d1}You fish swarm away in your hook.");
+					SendServerMessage(playerid, "[Fishing] {a4a4a4}You fish swarm away in your hook.");
 				}
 			}
 		}
@@ -160,7 +160,7 @@ Dialog:SellFish(playerid, response, listitem, inputtext[])
 		new Cents = floatround(total * 100, floatround_round);
 
 		GiveMoney(playerid, Cents);
-		SendServerMessage(playerid, "[Fishing] {cdd0d1}You have sold all the fish and earn $%s.", FormatMoney(Cents));
+		SendServerMessage(playerid, "[Fishing] {a4a4a4}You have sold all the fish and earn $%s.", FormatMoney(Cents));
 	}
 	return 1;
 }
@@ -187,7 +187,7 @@ CMD:buybait(playerid, params[])
 
 	GiveMoney(playerid, Cents);
 	Inventory_Add(playerid, "Fish Bait", 19566, amount);
-	SendServerMessage(playerid, "[Fishing] {cdd0d1}You have successfully purchase {d7d292}%d Fish bait{cdd0d1} for $%s", amount, FormatMoney(Cents));
+	SendServerMessage(playerid, "[Fishing] {a4a4a4}You have successfully purchase {d7d292}%d Fish bait{a4a4a4} for $%s", amount, FormatMoney(Cents));
 	return 1;
 }
 
@@ -220,6 +220,6 @@ CMD:fish(playerid, params[])
 	SetTimerEx("FishingTimer", 15000, false, "ii", playerid, 1);
 	TogglePlayerControllable(playerid, false);
 	ApplyAnimation(playerid,"SWORD","sword_block",50.0 ,0,1,0,1,1);
-	SendServerMessage(playerid, "[Fishing] {cdd0d1}You start fishing, please wait for the moment...");
+	SendServerMessage(playerid, "[Fishing] {a4a4a4}You start fishing, please wait for the moment...");
 	return 1;
 }

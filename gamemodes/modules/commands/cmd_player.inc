@@ -231,8 +231,8 @@ CMD:pay(playerid, params[])
     PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
     playerLastpay[playerid] = gettime(); 
     
-    SendServerMessage(playerid, "[Pay] {cdd0d1}You have sent $%s to %s.", FormatMoney(Cents), ReturnName(playerb)); 
-    SendServerMessage(playerb, "[Pay] {cdd0d1}You have received $%s from %s.", FormatMoney(Cents), ReturnName(playerid)); 
+    SendServerMessage(playerid, "[Pay] {a4a4a4}You have sent $%s to %s.", FormatMoney(Cents), ReturnName(playerb)); 
+    SendServerMessage(playerb, "[Pay] {a4a4a4}You have received $%s from %s.", FormatMoney(Cents), ReturnName(playerid)); 
     
     if ((PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3) || Cents >= 5000) 
     {
@@ -260,7 +260,7 @@ CMD:charity(playerid, params[])
     GiveMoney(playerid, -Cents);
 
 	SaveCharacter(playerid);
-	SendServerMessage(playerid, "[Charity] {cdd0d1}You've charity {93C47D}%s{cdd0d1} for this server.", FormatMoney(Cents));
+	SendServerMessage(playerid, "[Charity] {a4a4a4}You've charity {93C47D}%s{a4a4a4} for this server.", FormatMoney(Cents));
 	return 1;
 }
 
@@ -2516,11 +2516,11 @@ CMD:afk(playerid, params[])
 
 	if(PlayerInfo[targetid][E_CHARACTER_AFK])
 	{
-	    SendServerMessage(playerid, "[Afk] {cdd0d1}%s has been marked as Away from keyboard for {d7d292}%i{cdd0d1} minutes.", ReturnName(targetid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
+	    SendServerMessage(playerid, "[Afk] {a4a4a4}%s has been marked as Away from keyboard for {d7d292}%i{a4a4a4} minutes.", ReturnName(targetid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
 	}
 	else
 	{
-	    SendServerMessage(playerid, "[Afk] {cdd0d1}%s is currently not marked as Away from keyboard.", ReturnName(targetid));
+	    SendServerMessage(playerid, "[Afk] {a4a4a4}%s is currently not marked as Away from keyboard.", ReturnName(targetid));
 	}
 
 	return 1;

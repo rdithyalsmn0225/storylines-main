@@ -150,7 +150,7 @@ function:OnPlayerJobsUpdate()
             if(PlayerInfo[i][E_CHARACTER_JOBSCD] < 0)
             {
                 PlayerInfo[i][E_CHARACTER_JOBSCD] = 0;
-                SendServerMessage(i, "[Jobs] {cdd0d1}You can start {d7d292}Main Jobs{cdd0d1} rightnow.");
+                SendServerMessage(i, "[Jobs] {a4a4a4}You can start {d7d292}Main Jobs{a4a4a4} rightnow.");
             }
         }
 
@@ -160,7 +160,7 @@ function:OnPlayerJobsUpdate()
             if(PlayerInfo[i][E_CHARACTER_SWEEPERCD] < 0)
             {
                 PlayerInfo[i][E_CHARACTER_SWEEPERCD] = 0;
-                SendServerMessage(i, "[Jobs] {cdd0d1}You can start {d7d292}Street Cleaner{cdd0d1} SideJobs rightnow.");
+                SendServerMessage(i, "[Jobs] {a4a4a4}You can start {d7d292}Street Cleaner{a4a4a4} SideJobs rightnow.");
             }
         }
 
@@ -170,7 +170,7 @@ function:OnPlayerJobsUpdate()
             if(PlayerInfo[i][E_CHARACTER_GARBAGECD] < 0)
             {
                 PlayerInfo[i][E_CHARACTER_GARBAGECD] = 0;
-                SendServerMessage(i, "[Jobs] {cdd0d1}You can start {d7d292}Garbageman{cdd0d1} SideJobs rightnow.");
+                SendServerMessage(i, "[Jobs] {a4a4a4}You can start {d7d292}Garbageman{a4a4a4} SideJobs rightnow.");
             }
         }
 
@@ -180,7 +180,7 @@ function:OnPlayerJobsUpdate()
             if(PlayerInfo[i][E_CHARACTER_BUSDRIVERCD] < 0)
             {
                 PlayerInfo[i][E_CHARACTER_BUSDRIVERCD] = 0;
-                SendServerMessage(i, "[Jobs] {cdd0d1}You can start {d7d292}Bus Driver{cdd0d1} SideJobs rightnow.");
+                SendServerMessage(i, "[Jobs] {a4a4a4}You can start {d7d292}Bus Driver{a4a4a4} SideJobs rightnow.");
             }
         }
     }
@@ -326,7 +326,7 @@ CMD:takejobs(playerid, params[])
                 return SendErrorMessage(playerid, "You already have jobs.");
 
             PlayerInfo[playerid][E_CHARACTER_JOBS] = i;
-            SendServerMessage(playerid, "[Jobs] {cdd0d1}You are now a %s use /help to see jobs commands.", JobsInfo[i][E_JOBSNAMES]);
+            SendServerMessage(playerid, "[Jobs] {a4a4a4}You are now a %s use /help to see jobs commands.", JobsInfo[i][E_JOBSNAMES]);
             SaveCharacter(playerid);
         }
     }
@@ -338,7 +338,7 @@ CMD:quitjobs(playerid, params[])
     if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_NONE)
     {
         PlayerInfo[playerid][E_CHARACTER_JOBS] = JOB_NONE;
-        SendServerMessage(playerid, "[Jobs] {cdd0d1}You are now exit the jobs.");
+        SendServerMessage(playerid, "[Jobs] {a4a4a4}You are now exit the jobs.");
         SaveCharacter(playerid);
     }
     return 1;
@@ -382,7 +382,7 @@ CMD:jobduty(playerid, params[])
                 }
                 
                 PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
-                SendServerMessage(playerid, "[Taxi] {cdd0d1}You are no longer on taxi duty!");
+                SendServerMessage(playerid, "[Taxi] {a4a4a4}You are no longer on taxi duty!");
             }
             else
             {
@@ -398,12 +398,12 @@ CMD:jobduty(playerid, params[])
             if (PlayerInfo[playerid][E_CHARACTER_MECHDUTY])
             {
                 PlayerInfo[playerid][E_CHARACTER_MECHDUTY] = false;
-                SendServerMessage(playerid, "[Mechanic] {cdd0d1}You are no longer on mechanic duty!");
+                SendServerMessage(playerid, "[Mechanic] {a4a4a4}You are no longer on mechanic duty!");
             }
             else
             {
                 PlayerInfo[playerid][E_CHARACTER_MECHDUTY] = true;
-                SendServerMessage(playerid, "[Mechanic] {cdd0d1}You are now mechanic duty!");
+                SendServerMessage(playerid, "[Mechanic] {a4a4a4}You are now mechanic duty!");
             }
         }
         return 1;

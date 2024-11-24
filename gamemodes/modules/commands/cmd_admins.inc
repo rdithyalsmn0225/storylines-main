@@ -1647,7 +1647,7 @@ CMD:setcar(playerid, params[])
 	if(sscanf(params, "is[60]S()[60]", vehicleid, a_str, b_str))
 	{
 		SendUsageMessage(playerid, "/setcar [vehicleid] [params]");
-		SendTipMessage(playerid, "timesdestroyed, color1, color2, paintjob, plates");
+		SendTipMessage(playerid, "timesdestroyed, color1, color2, paintjob, plates, fuel");
 
 		return 1;
 	}

@@ -1,15 +1,15 @@
 //Client messages:
 #define SendUsageMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_ORANGE, "[Syntax]{cdd0d1} "%1) 
+	SendClientMessageEx(%0, COLOR_ORANGE, "[Syntax]{a4a4a4} "%1) 
 	
 #define SendErrorMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_RED, "[Error]{cdd0d1} "%1)
+	SendClientMessageEx(%0, COLOR_RED, "[Error]{a4a4a4} "%1)
 
 #define SendInfoMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_BLUE, "[INFO] "%1) 
 
 #define SendTipMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_ORANGE, "[TIP] "%1) 
+	SendClientMessageEx(%0, COLOR_TIP, "[TIP]{68d7a6} "%1) 
 
 #define SendServerMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_INFO, ""%1) 
