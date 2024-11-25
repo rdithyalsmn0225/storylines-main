@@ -26,6 +26,25 @@ function:OnPlayerWounded(playerid, killerid, reason)
     PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
     if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
+
+	new businessid = IsPlayerInBusiness(playerid);
+	if(PlayerPoolAimer[businessid] == playerid)
+	{
+		PlayerPoolAimer[businessid] = -1;
+		DestroyDynamicObject(PlayerPoolAimObject[businessid]);
+	}
+
+	if(PlayingPool[playerid])
+	{
+		PlayingPool[playerid] = 0;
+		new
+			count = GetPoolPlayersCount(businessid);
+		if(count <= 0)
+		{
+			PlayerPoolStarted[businessid] = 0;
+			RespawnPoolBalls(0, businessid);
+		}
+	}
 	
 	new Float:x, Float:y, Float:z;
 	GetPlayerPos(playerid, x, y, z);
@@ -71,6 +90,25 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
     PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
     if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
+
+	new businessid = IsPlayerInBusiness(playerid);
+	if(PlayerPoolAimer[businessid] == playerid)
+	{
+		PlayerPoolAimer[businessid] = -1;
+		DestroyDynamicObject(PlayerPoolAimObject[businessid]);
+	}
+
+	if(PlayingPool[playerid])
+	{
+		PlayingPool[playerid] = 0;
+		new
+			count = GetPoolPlayersCount(businessid);
+		if(count <= 0)
+		{
+			PlayerPoolStarted[businessid] = 0;
+			RespawnPoolBalls(0, businessid);
+		}
+	}
 	
 	SendTipMessage(playerid, "You're now dead. You need to wait 60 seconds until you can /respawnme."); 
 

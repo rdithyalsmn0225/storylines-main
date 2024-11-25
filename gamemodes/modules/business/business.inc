@@ -239,6 +239,8 @@ stock BusinessRefresh(businessid)
 		DestroyDynamicObject(BusinessInfo[businessid][E_BUSINESS_CASHOBJECT]);
 		BusinessInfo[businessid][E_BUSINESS_ROBBERYCASH] = false;
 	}
+
+	Query_LoadBusinessPool(businessid);
 	return 1;
 }
 

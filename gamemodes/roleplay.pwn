@@ -21,15 +21,16 @@
 #include <easyDialog>
 #include <PreviewModelDialog>
 #include <strlib>
-#include <foreach>
 #include <zcmd>
 #include <sscanf2>
+#include <physics>
 #include <rSelection>
 #include <map-zones>
 #include <fader>
 #include <Pawn.RakNet>
 #include <realtime-clock>
 #include <compat>
+
 
 //Database establisher:
 new MySQL:ourConnection; 
@@ -72,19 +73,6 @@ main ()  {}
 #include "modules\tags\tablist.inc"
 // ANIMS MODULES
 #include "modules\anims\anims.inc"
-// PLAYERS MODULES
-#include "modules\players\damages.inc"
-#include "modules\players\phone.inc"
-#include "modules\players\paycheck.inc"
-#include "modules\players\report.inc"
-#include "modules\players\antibunny.inc"
-#include "modules\players\selection.inc"
-#include "modules\players\tutorial.inc"
-#include "modules\players\times.inc"
-#include "modules\players\stamina.inc"
-#include "modules\players\gps.inc"
-#include "modules\players\accessories.inc"
-#include "modules\players\afk.inc"
 // EMMET MODULES
 #include "modules\emmet\emmet.inc"
 // BUSINESS MODULES
@@ -140,6 +128,20 @@ main ()  {}
 #include "modules\minigames\basketball.inc"
 #include "modules\minigames\blackjack.inc"
 #include "modules\minigames\lottery.inc"
+#include "modules\minigames\pool.inc"
+// PLAYERS MODULES
+#include "modules\players\damages.inc"
+#include "modules\players\phone.inc"
+#include "modules\players\paycheck.inc"
+#include "modules\players\report.inc"
+#include "modules\players\antibunny.inc"
+#include "modules\players\selection.inc"
+#include "modules\players\tutorial.inc"
+#include "modules\players\times.inc"
+#include "modules\players\stamina.inc"
+#include "modules\players\gps.inc"
+#include "modules\players\accessories.inc"
+#include "modules\players\afk.inc"
 // INDUSTRIAL MODULES
 #include "modules\industry\industry.inc"
 // JOBS MODULES
@@ -325,6 +327,7 @@ public OnPlayerConnect(playerid)
 	CreateTextdraws(playerid);
 	CreateMDCTextDraws(playerid);
 	CreateHUDTextDraws(playerid);
+	CreatePoolTextDraws(playerid);
 	CreateALPRTextdraws(playerid);
 	CreatePhoneTextDraws(playerid);
 	CreateIDCARDTextDraws(playerid);
@@ -384,6 +387,24 @@ public OnPlayerDisconnect(playerid, reason)
 		{
 			ReportInfo[i][E_REPORT_EXISTS] = false; 
 			ReportInfo[i][E_REPORT_BY] = INVALID_PLAYER_ID;
+		}
+	}
+
+	new businessid = IsPlayerInBusiness(playerid);
+	if(PlayerPoolAimer[businessid] == playerid)
+	{
+		PlayerPoolAimer[businessid] = -1;
+		DestroyDynamicObject(PlayerPoolAimObject[businessid]);
+	}
+	if(PlayingPool[playerid])
+	{
+		PlayingPool[playerid] = false;
+		new
+			count = GetPoolPlayersCount(businessid);
+		if(count <= 0)
+		{
+			PlayerPoolStarted[businessid] = 0;
+			RespawnPoolBalls(0, businessid);
 		}
 	}
 
@@ -3887,6 +3908,65 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		return 1;
     }
 
+	//POOL
+	if (playertextid == pool[0][playerid]) //Shoot
+    {
+		new businessid = IsPlayerInBusiness(playerid);
+		if(PlayerPoolAimer[businessid] == playerid)
+		{
+			new
+				Float:speed;
+			ApplyAnimation(playerid, "POOL", "POOL_Med_Shot",3.0,0,0,0,0,0,1);
+			speed = 0.4 + (PlayerPoolPower[businessid] * 2.0) / 100.0;
+			PHY_SetObjectVelocity(PoolBall[0][businessid][E_POOLBALL_OBJECT], speed * floatsin(-AimAngle[playerid][0], degrees), speed * floatcos(-AimAngle[playerid][0], degrees));
+			if(PoolCamera[playerid] == 0)
+			{
+				switch(random(2))
+				{
+					case 0: SetPlayerCameraPos(playerid, 511.84469604492, -84.831642150879, 1001.4904174805);
+					case 1: SetPlayerCameraPos(playerid, 508.7971496582, -84.831642150879, 1001.4904174805);
+				}
+				SetPlayerCameraLookAt(playerid,510.11267089844, -84.831642150879, 998.86785888672);
+			}
+			
+			for(new a; a < 5; a++)
+			{
+				PlayerTextDrawHide(playerid, pool[a][playerid]);
+			}
+			CancelSelectTextDraw(playerid);
+			PlayerPoolAimer[businessid] = -1;
+			DestroyObject(PlayerPoolAimObject[businessid]);
+			PlayerPoolLastShooter[businessid] = playerid;
+			PlayerPoolLastScore[businessid] = 0;
+		}
+		return 1;
+    }
+	if (playertextid == pool[1][playerid]) //Left
+    {
+		ProcessPoolMovement(playerid, -1);
+		return 1;
+    }
+	if (playertextid == pool[2][playerid]) //Right
+    {
+		ProcessPoolMovement(playerid, 1);
+		return 1;
+    }
+	if (playertextid == pool[4][playerid]) //Exit
+    {
+		new businessid = IsPlayerInBusiness(playerid);
+		for(new a; a < 5; a++)
+		{
+			PlayerTextDrawHide(playerid, pool[a][playerid]);
+		}
+		CancelSelectTextDraw(playerid);
+		TogglePlayerControllable(playerid, 1);
+		ApplyAnimation(playerid, "CARRY", "crry_prtial", 1.0, 0, 0, 0, 0, 0, 1);
+		SetCameraBehindPlayer(playerid);
+		PlayerPoolAimer[businessid] = -1;
+		DestroyObject(PlayerPoolAimObject[businessid]);
+		return 1;
+    }
+
 	//IDCARD
 	if (playertextid == idcard[0][playerid])
     {
@@ -4440,6 +4520,124 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 					CallLocalFunction("OnPlayerStartRobbery", "dd", playerid, BusinessInfo[id][E_BUSINESS_ACTOR]);
 					SetTimerEx("RunActorAnimationSequence", 1000, false, "iii", playerid, BusinessInfo[id][E_BUSINESS_ACTOR], 0);
+				}
+			}
+		}
+	}
+	// POOL:
+	new businessid = IsPlayerInBusiness(playerid);
+	if(PlayerPoolStarted[businessid] && PlayingPool[playerid])
+	{
+		if(IsKeyJustUp(KEY_SECONDARY_ATTACK, newkeys, oldkeys))
+		{
+			if(!PlayerUsingChalk[playerid])
+			{
+				if(PlayingPool[playerid] && PlayerPoolAimer[businessid] != playerid)
+				{
+					SetTimerEx("PlayPoolSound", 1400, 0, "d", 31807);
+					SetPlayerArmedWeapon(playerid, 0);
+					SetPlayerAttachedObject(playerid, ATTACH_HAND, 338, 6, 0, 0.07, -0.85, 0, 0, 0);
+					ApplyAnimation(playerid, "POOL", "POOL_ChalkCue",3.0,0,0,0,0,0,1);
+					PlayerUsingChalk[playerid] = 1;
+					SetTimerEx("RestoreWeapon", 3500, 0, "d", playerid);
+				}
+			}
+			else
+			{
+				if(AreAllBallsStopped(businessid))
+				{
+					if(PlayerPoolTurn[businessid] != playerid)
+						return SendErrorMessage(playerid, "Wait for the other player's turn.");
+						
+					if(PlayerPoolAimer[businessid] != playerid)
+					{
+						if(PlayerUsingChalk[playerid] && PoolBall[0][businessid][E_POOLBALL_EXISTS])
+						{
+							new
+								Float:poolrot,
+								Float:X,
+								Float:Y,
+								Float:Z,
+								Float:Xa,
+								Float:Ya,
+								Float:Za,
+								Float:x,
+								Float:y;
+								
+							GetPlayerPos(playerid, X, Y, Z);
+							GetObjectPos(PoolBall[0][businessid][E_POOLBALL_OBJECT], Xa, Ya, Za);
+							if(Is2DPointInRangeOfPoint(X, Y, Xa, Ya, 1.5) && Z < 999.5)
+							{
+								TogglePlayerControllable(playerid, 0);
+								GetAngleToXY(Xa, Ya, X, Y, poolrot);
+								SetPlayerFacingAngle(playerid, poolrot);
+								AimAngle[playerid][0] = poolrot;
+								AimAngle[playerid][1] = poolrot;
+								GetXYInFrontOfPos(Xa, Ya, poolrot+180, x, y, 0.085);
+								PlayerPoolAimObject[businessid] = CreateObject(3004, x, y, Za, 7.0, 0, poolrot+180);
+								PHY_SetObjectWorld(PlayerPoolAimObject[businessid], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
+								switch(PoolCamera[playerid])
+								{
+									case 0:
+									{
+										GetXYBehindObjectInAngle(PoolBall[0][businessid][E_POOLBALL_OBJECT], poolrot, x, y, 0.675);
+										SetPlayerCameraPos(playerid, x, y, 998.86785888672+0.28);
+										SetPlayerCameraLookAt(playerid, Xa, Ya, Za+0.170);
+									}
+									case 1:
+									{
+										SetPlayerCameraPos(playerid, 511.84469604492, -84.831642150879, 1001.4904174805);
+										SetPlayerCameraLookAt(playerid,510.11267089844, -84.831642150879, 998.86785888672);
+									}
+									case 2:
+									{
+										SetPlayerCameraPos(playerid, 508.7971496582, -84.831642150879, 1001.4904174805);
+										SetPlayerCameraLookAt(playerid,510.11267089844, -84.831642150879, 998.86785888672);
+									}
+								}
+								ApplyAnimation(playerid, "POOL", "POOL_Med_Start",50.0,0,0,0,1,1,1);
+								PlayerPoolAimer[businessid] = playerid;
+								PlayerPoolPower[businessid] = 1.0;
+								PlayerPoolDirection[businessid] = 0;
+								SelectTextDraw(playerid, COLOR_YELLOW);
+							}
+						}
+					}
+				}
+			}
+		}
+		if (IsKeyJustUp(KEY_JUMP, newkeys, oldkeys))
+		{
+			if(PlayerPoolAimer[businessid] == playerid)
+			{
+				if(PoolCamera[playerid] < 2) PoolCamera[playerid]++;
+				else PoolCamera[playerid] = 0;
+				new
+					Float:poolrot = AimAngle[playerid][0],
+					Float:Xa,
+					Float:Ya,
+					Float:Za,
+					Float:x,
+					Float:y;
+				GetObjectPos(PoolBall[0][businessid][E_POOLBALL_OBJECT], Xa, Ya, Za);
+				switch(PoolCamera[playerid])
+				{
+					case 0:
+					{
+						GetXYBehindObjectInAngle(PoolBall[0][businessid][E_POOLBALL_OBJECT], poolrot, x, y, 0.675);
+						SetPlayerCameraPos(playerid, x, y, 998.86785888672+0.28);
+						SetPlayerCameraLookAt(playerid, Xa, Ya, Za+0.170);
+					}
+					case 1:
+					{
+						SetPlayerCameraPos(playerid, 511.84469604492, -84.831642150879, 1001.4904174805);
+						SetPlayerCameraLookAt(playerid,510.11267089844, -84.831642150879, 998.86785888672);
+					}
+					case 2:
+					{
+						SetPlayerCameraPos(playerid, 508.7971496582, -84.831642150879, 1001.4904174805);
+						SetPlayerCameraLookAt(playerid,510.11267089844, -84.831642150879, 998.86785888672);
+					}
 				}
 			}
 		}

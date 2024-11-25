@@ -9,6 +9,7 @@ new PlayerText:Subtitles[MAX_PLAYERS];
 new PlayerText:speedo[7][MAX_PLAYERS];
 new PlayerText:Phone[14][MAX_PLAYERS];
 new PlayerText:MDC[14][MAX_PLAYERS];
+new PlayerText:pool[5][MAX_PLAYERS];
 new PlayerText:blackjack[15][MAX_PLAYERS];
 new PlayerText:idcard[19][MAX_PLAYERS];
 new PlayerText:VehicleSelection[19][MAX_PLAYERS];
@@ -1782,6 +1783,79 @@ CreateSelectFactionTextDraws(playerid)
 	PlayerTextDrawUseBox(playerid, SelectFactionClick[2][playerid], 0);
 	PlayerTextDrawSetProportional(playerid, SelectFactionClick[2][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, SelectFactionClick[2][playerid], 1);
+}
+
+CreatePoolTextDraws(playerid)
+{
+	pool[0][playerid] = CreatePlayerTextDraw(playerid, 288.000000, 396.000000, "~y~Shoot");
+	PlayerTextDrawFont(playerid, pool[0][playerid], 0);
+	PlayerTextDrawLetterSize(playerid, pool[0][playerid], 0.454165, 1.649999);
+	PlayerTextDrawTextSize(playerid, pool[0][playerid], 17.000000, 43.500000);
+	PlayerTextDrawSetOutline(playerid, pool[0][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, pool[0][playerid], 0);
+	PlayerTextDrawAlignment(playerid, pool[0][playerid], 2);
+	PlayerTextDrawColor(playerid, pool[0][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, pool[0][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, pool[0][playerid], 50);
+	PlayerTextDrawUseBox(playerid, pool[0][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, pool[0][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, pool[0][playerid], 1);
+
+	pool[1][playerid] = CreatePlayerTextDraw(playerid, 248.000000, 358.000000, "ld_beat:left");
+	PlayerTextDrawFont(playerid, pool[1][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, pool[1][playerid], 0.400000, 1.549998);
+	PlayerTextDrawTextSize(playerid, pool[1][playerid], 17.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, pool[1][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, pool[1][playerid], 0);
+	PlayerTextDrawAlignment(playerid, pool[1][playerid], 2);
+	PlayerTextDrawColor(playerid, pool[1][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, pool[1][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, pool[1][playerid], 50);
+	PlayerTextDrawUseBox(playerid, pool[1][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, pool[1][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, pool[1][playerid], 1);
+
+	pool[2][playerid] = CreatePlayerTextDraw(playerid, 374.000000, 358.000000, "ld_beat:right");
+	PlayerTextDrawFont(playerid, pool[2][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, pool[2][playerid], 0.400000, 1.549998);
+	PlayerTextDrawTextSize(playerid, pool[2][playerid], 17.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, pool[2][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, pool[2][playerid], 0);
+	PlayerTextDrawAlignment(playerid, pool[2][playerid], 2);
+	PlayerTextDrawColor(playerid, pool[2][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, pool[2][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, pool[2][playerid], 50);
+	PlayerTextDrawUseBox(playerid, pool[2][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, pool[2][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, pool[2][playerid], 1);
+
+	pool[3][playerid] = CreatePlayerTextDraw(playerid, 321.000000, 350.000000, "Press '~r~LEFT~w~' or '~r~RIGHT~w~' to change your camera position~n~Press '~y~Shoot~w~' to shoot~n~You power : ~y~50%");
+	PlayerTextDrawFont(playerid, pool[3][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, pool[3][playerid], 0.179166, 1.100000);
+	PlayerTextDrawTextSize(playerid, pool[3][playerid], 17.000000, 107.500000);
+	PlayerTextDrawSetOutline(playerid, pool[3][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, pool[3][playerid], 0);
+	PlayerTextDrawAlignment(playerid, pool[3][playerid], 2);
+	PlayerTextDrawColor(playerid, pool[3][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, pool[3][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, pool[3][playerid], 50);
+	PlayerTextDrawUseBox(playerid, pool[3][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, pool[3][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, pool[3][playerid], 0);
+
+	pool[4][playerid] = CreatePlayerTextDraw(playerid, 356.000000, 396.000000, "Exit");
+	PlayerTextDrawFont(playerid, pool[4][playerid], 0);
+	PlayerTextDrawLetterSize(playerid, pool[4][playerid], 0.454165, 1.649999);
+	PlayerTextDrawTextSize(playerid, pool[4][playerid], 17.000000, 43.500000);
+	PlayerTextDrawSetOutline(playerid, pool[4][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, pool[4][playerid], 0);
+	PlayerTextDrawAlignment(playerid, pool[4][playerid], 2);
+	PlayerTextDrawColor(playerid, pool[4][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, pool[4][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, pool[4][playerid], 50);
+	PlayerTextDrawUseBox(playerid, pool[4][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, pool[4][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, pool[4][playerid], 1);
 }
 
 CreateALPRTextdraws(playerid)
