@@ -28,20 +28,27 @@ function:OnPlayerWounded(playerid, killerid, reason)
     if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
 
 	new businessid = IsPlayerInBusiness(playerid);
-	if(PlayerPoolAimer[businessid] == playerid)
+	if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid)
 	{
-		PlayerPoolAimer[businessid] = -1;
-		DestroyDynamicObject(PlayerPoolAimObject[businessid]);
+		PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
+		DestroyDynamicObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
 	}
-
 	if(PlayingPool[playerid])
 	{
-		PlayingPool[playerid] = 0;
+		if(PoolInfo[businessid][E_POOL_PLAYER1] == playerid)
+		{
+			PoolInfo[businessid][E_POOL_PLAYER1] = -1;
+		}
+		if(PoolInfo[businessid][E_POOL_PLAYER2] == playerid)
+		{
+			PoolInfo[businessid][E_POOL_PLAYER2] = -1;
+		}
+		PlayingPool[playerid] = false;
 		new
 			count = GetPoolPlayersCount(businessid);
 		if(count <= 0)
 		{
-			PlayerPoolStarted[businessid] = 0;
+			PoolInfo[businessid][E_POOL_STARTED] = 0;
 			RespawnPoolBalls(0, businessid);
 		}
 	}
@@ -92,20 +99,27 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
     if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
 
 	new businessid = IsPlayerInBusiness(playerid);
-	if(PlayerPoolAimer[businessid] == playerid)
+	if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid)
 	{
-		PlayerPoolAimer[businessid] = -1;
-		DestroyDynamicObject(PlayerPoolAimObject[businessid]);
+		PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
+		DestroyDynamicObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
 	}
-
 	if(PlayingPool[playerid])
 	{
-		PlayingPool[playerid] = 0;
+		if(PoolInfo[businessid][E_POOL_PLAYER1] == playerid)
+		{
+			PoolInfo[businessid][E_POOL_PLAYER1] = -1;
+		}
+		if(PoolInfo[businessid][E_POOL_PLAYER2] == playerid)
+		{
+			PoolInfo[businessid][E_POOL_PLAYER2] = -1;
+		}
+		PlayingPool[playerid] = false;
 		new
 			count = GetPoolPlayersCount(businessid);
 		if(count <= 0)
 		{
-			PlayerPoolStarted[businessid] = 0;
+			PoolInfo[businessid][E_POOL_STARTED] = 0;
 			RespawnPoolBalls(0, businessid);
 		}
 	}

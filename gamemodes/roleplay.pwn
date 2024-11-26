@@ -129,6 +129,7 @@ main ()  {}
 #include "modules\minigames\blackjack.inc"
 #include "modules\minigames\lottery.inc"
 #include "modules\minigames\pool.inc"
+#include "modules\minigames\physics.inc"
 // PLAYERS MODULES
 #include "modules\players\damages.inc"
 #include "modules\players\phone.inc"
@@ -391,19 +392,27 @@ public OnPlayerDisconnect(playerid, reason)
 	}
 
 	new businessid = IsPlayerInBusiness(playerid);
-	if(PlayerPoolAimer[businessid] == playerid)
+	if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid)
 	{
-		PlayerPoolAimer[businessid] = -1;
-		DestroyDynamicObject(PlayerPoolAimObject[businessid]);
+		PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
+		DestroyDynamicObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
 	}
 	if(PlayingPool[playerid])
 	{
+		if(PoolInfo[businessid][E_POOL_PLAYER1] == playerid)
+		{
+			PoolInfo[businessid][E_POOL_PLAYER1] = -1;
+		}
+		if(PoolInfo[businessid][E_POOL_PLAYER2] == playerid)
+		{
+			PoolInfo[businessid][E_POOL_PLAYER2] = -1;
+		}
 		PlayingPool[playerid] = false;
 		new
 			count = GetPoolPlayersCount(businessid);
 		if(count <= 0)
 		{
-			PlayerPoolStarted[businessid] = 0;
+			PoolInfo[businessid][E_POOL_STARTED] = 0;
 			RespawnPoolBalls(0, businessid);
 		}
 	}
@@ -3912,12 +3921,12 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 	if (playertextid == pool[0][playerid]) //Shoot
     {
 		new businessid = IsPlayerInBusiness(playerid);
-		if(PlayerPoolAimer[businessid] == playerid)
+		if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid)
 		{
 			new
 				Float:speed;
 			ApplyAnimation(playerid, "POOL", "POOL_Med_Shot",3.0,0,0,0,0,0,1);
-			speed = 0.4 + (PlayerPoolPower[businessid] * 2.0) / 100.0;
+			speed = 0.4 + (PoolInfo[businessid][E_POOL_POWER] * 2.0) / 100.0;
 			PHY_SetObjectVelocity(PoolBall[0][businessid][E_POOLBALL_OBJECT], speed * floatsin(-AimAngle[playerid][0], degrees), speed * floatcos(-AimAngle[playerid][0], degrees));
 			if(PoolCamera[playerid] == 0)
 			{
@@ -3934,10 +3943,9 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 				PlayerTextDrawHide(playerid, pool[a][playerid]);
 			}
 			CancelSelectTextDraw(playerid);
-			PlayerPoolAimer[businessid] = -1;
-			DestroyObject(PlayerPoolAimObject[businessid]);
-			PlayerPoolLastShooter[businessid] = playerid;
-			PlayerPoolLastScore[businessid] = 0;
+			PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
+			DestroyObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
+			PoolInfo[businessid][E_POOL_LASTSHOOTER] = playerid;
 		}
 		return 1;
     }
@@ -3962,8 +3970,8 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		TogglePlayerControllable(playerid, 1);
 		ApplyAnimation(playerid, "CARRY", "crry_prtial", 1.0, 0, 0, 0, 0, 0, 1);
 		SetCameraBehindPlayer(playerid);
-		PlayerPoolAimer[businessid] = -1;
-		DestroyObject(PlayerPoolAimObject[businessid]);
+		PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
+		DestroyObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
 		return 1;
     }
 
@@ -4526,13 +4534,13 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	}
 	// POOL:
 	new businessid = IsPlayerInBusiness(playerid);
-	if(PlayerPoolStarted[businessid] && PlayingPool[playerid])
+	if(PoolInfo[businessid][E_POOL_STARTED] && PlayingPool[playerid])
 	{
 		if(IsKeyJustUp(KEY_SECONDARY_ATTACK, newkeys, oldkeys))
 		{
 			if(!PlayerUsingChalk[playerid])
 			{
-				if(PlayingPool[playerid] && PlayerPoolAimer[businessid] != playerid)
+				if(PlayingPool[playerid] && PoolInfo[businessid][E_POOL_PLAYERAIMER] != playerid)
 				{
 					SetTimerEx("PlayPoolSound", 1400, 0, "d", 31807);
 					SetPlayerArmedWeapon(playerid, 0);
@@ -4545,14 +4553,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			else
 			{
 				if(AreAllBallsStopped(businessid))
-				{
-					if(PlayerPoolTurn[businessid] != playerid)
-						return SendErrorMessage(playerid, "Wait for the other player's turn.");
-						
-					if(PlayerPoolAimer[businessid] != playerid)
+				{		
+					if(PoolInfo[businessid][E_POOL_PLAYERAIMER] != playerid)
 					{
 						if(PlayerUsingChalk[playerid] && PoolBall[0][businessid][E_POOLBALL_EXISTS])
 						{
+							if(PoolInfo[businessid][E_POOL_TURN] != playerid)
+								return SendErrorMessage(playerid, "Wait for the other player's turn.");
+
 							new
 								Float:poolrot,
 								Float:X,
@@ -4574,8 +4582,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 								AimAngle[playerid][0] = poolrot;
 								AimAngle[playerid][1] = poolrot;
 								GetXYInFrontOfPos(Xa, Ya, poolrot+180, x, y, 0.085);
-								PlayerPoolAimObject[businessid] = CreateObject(3004, x, y, Za, 7.0, 0, poolrot+180);
-								PHY_SetObjectWorld(PlayerPoolAimObject[businessid], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
+								PoolInfo[businessid][E_POOL_AIMOBJECT] = CreateObject(3004, x, y, Za, 7.0, 0, poolrot+180);
+								PHY_SetObjectWorld(PoolInfo[businessid][E_POOL_AIMOBJECT], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
 								switch(PoolCamera[playerid])
 								{
 									case 0:
@@ -4596,9 +4604,9 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 									}
 								}
 								ApplyAnimation(playerid, "POOL", "POOL_Med_Start",50.0,0,0,0,1,1,1);
-								PlayerPoolAimer[businessid] = playerid;
-								PlayerPoolPower[businessid] = 1.0;
-								PlayerPoolDirection[businessid] = 0;
+								PoolInfo[businessid][E_POOL_PLAYERAIMER] = playerid;
+								PoolInfo[businessid][E_POOL_POWER] = 1.0;
+								PoolInfo[businessid][E_POOL_DIRECTION] = 0;
 								SelectTextDraw(playerid, COLOR_YELLOW);
 							}
 						}
@@ -4608,7 +4616,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		}
 		if (IsKeyJustUp(KEY_JUMP, newkeys, oldkeys))
 		{
-			if(PlayerPoolAimer[businessid] == playerid)
+			if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid)
 			{
 				if(PoolCamera[playerid] < 2) PoolCamera[playerid]++;
 				else PoolCamera[playerid] = 0;

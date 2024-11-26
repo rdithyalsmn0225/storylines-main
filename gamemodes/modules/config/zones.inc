@@ -707,3 +707,115 @@ stock AngleInRangeOfAngle(Float:a1, Float:a2, Float:range)
     return false;
  
 }
+
+stock GetXYBehindObjectInAngle(objectid, Float:a, &Float:x2, &Float:y2, Float:distance)
+{
+	new Float:z;
+	GetObjectPos(objectid, x2, y2, z);
+
+	x2 += (distance * floatsin(-a+180, degrees));
+	y2 += (distance * floatcos(-a+180, degrees));
+}
+
+IsPlayerInRangeOfDynamicObject(playerid, objectid, Float:radius)
+{
+	if(IsValidDynamicObject(objectid))
+	{
+		new
+		    interiorid = Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectid, E_STREAMER_INTERIOR_ID),
+			worldid = Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectid, E_STREAMER_WORLD_ID),
+		    Float:x,
+		    Float:y,
+		    Float:z;
+
+		GetDynamicObjectPos(objectid, x, y, z);
+
+		if(interiorid == -1) {
+		    interiorid = GetPlayerInterior(playerid);
+		} if(worldid == -1) {
+		    worldid = GetPlayerVirtualWorld(playerid);
+		}
+
+		if(IsPlayerInRangeOfPoint(playerid, radius, x, y, z) && GetPlayerInterior(playerid) == interiorid && GetPlayerVirtualWorld(playerid) == worldid)
+		{
+		    return 1;
+		}
+	}
+
+	return 0;
+}
+
+stock Float:DistanceCameraTargetToLocation(Float:cx, Float:cy, Float:cz, Float:ox, Float:oy, Float:oz, Float:vx, Float:vy, Float:vz)
+{
+	new Float:x, Float:y, Float:z, Float:distance;
+
+    distance = floatround(floatsqroot(((cx - ox) * (cx - ox)) + ((cy - oy) * (cy - oy)) + ((cz - oz) * (cz - oz))));
+
+	x = vx * distance + cx;
+	y = vy * distance + cy;
+	z = vz * distance + cz;
+
+	return floatsqroot((x - ox) * (x - ox) + (y - oy) * (y - oy) + (z - oz) * (z - oz));
+}
+
+
+Float:GetPointDistanceToPoint(Float:x1,Float:y1,Float:x2,Float:y2)
+{
+	new Float:x, Float:y;
+	x = x1-x2;
+	y = y1-y2;
+	return floatsqroot(x*x+y*y);
+}
+
+
+stock GetAngleToXY(Float:X, Float:Y, Float:CurrX, Float:CurrY, &Float:angle)
+{
+	angle = atan2(Y-CurrY, X-CurrX);
+	angle = floatsub(angle, 90.0);
+	if(angle < 0.0) angle = floatadd(angle, 360.0);
+}
+
+
+stock GetXYInFrontOfPos(Float:xx,Float:yy,Float:a, &Float:x2, &Float:y2, Float:distance)
+{
+	if(a>360)
+	{
+		a=a-360;
+	}
+	xx += (distance * floatsin(-a, degrees));
+	yy += (distance * floatcos(-a, degrees));
+	x2=xx;
+	y2=yy;
+}
+
+stock IsPointFacingPoint(Float:dOffset, Float:X, Float:Y, Float:pA, Float:pX, Float:pY)
+{
+	new
+		Float:ang;
+
+	if( Y > pY ) ang = (-acos((X - pX) / floatsqroot((X - pX)*(X - pX) + (Y - pY)*(Y - pY))) - 90.0);
+	else if( Y < pY && X < pX ) ang = (acos((X - pX) / floatsqroot((X - pX)*(X - pX) + (Y - pY)*(Y - pY))) - 450.0);
+	else if( Y < pY ) ang = (acos((X - pX) / floatsqroot((X - pX)*(X - pX) + (Y - pY)*(Y - pY))) - 90.0);
+
+	if(AngleInRangeOfAngle(-ang, pA, dOffset)) return true;
+
+	return false;
+
+}
+
+
+stock Is2DPointInRangeOfPoint(Float:x, Float:y, Float:x2, Float:y2, Float:range)
+{
+	x2 -= x;
+	y2 -= y;
+	return ((x2 * x2) + (y2 * y2)) < (range * range);
+}
+
+stock IsObjectInSphere(objectid,Float:x,Float:y,Float:z,Float:radius2)
+{
+	new Float:x1,Float:y1,Float:z1,Float:tmpdis;
+	GetObjectPos(objectid,x1,y1,z1);
+	tmpdis = floatsqroot(floatpower(floatabs(floatsub(x,x1)),2)+ floatpower(floatabs(floatsub(y,y1)),2)+ floatpower(floatabs(floatsub(z,z1)),2));
+	if(tmpdis < radius2) return 1;
+	return 0;
+}

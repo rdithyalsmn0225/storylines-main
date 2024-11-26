@@ -2099,14 +2099,17 @@ function:HideBoxMessage(playerid)
 	return PlayerTextDrawHide(playerid, Subtitles[playerid]);
 }
 
-stock ShowHeaderMessage(playerid, header[], string[])
+stock ShowHeaderMessage(playerid, header[], string[], hide = 0)
 {
 	PlayerTextDrawSetString(playerid, HeaderTD[1][playerid], header);
 	PlayerTextDrawShow(playerid, HeaderTD[1][playerid]);
 
 	PlayerTextDrawSetString(playerid, HeaderTD[0][playerid], string);
 	PlayerTextDrawShow(playerid, HeaderTD[0][playerid]);
-	SetTimerEx("HideHeaderMessage", 5000, false, "d", playerid);
+	if(!hide)
+	{
+		SetTimerEx("HideHeaderMessage", 5000, false, "d", playerid);
+	}
 	return 1;
 }
 
