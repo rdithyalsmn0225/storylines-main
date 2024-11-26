@@ -68,7 +68,7 @@ function:OnPropertyFurnitureStatic(propertyid, type)
 
 	if(type == PROPERTY_TYPE_HIGHHOUSE)
 	{
-		for(new i = 7; i < 17; i++)
+		for(new i = 7; i < 18; i++)
 		{
 			new queryBuffer[512];
 			mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "INSERT INTO furniture (`propertydbid`, `modelid`, `name`, `type`, `pos_x`, `pos_y`, `pos_z`, `rot_x`, `rot_y`, `rot_z`, `interior`, `world`) VALUES(%i, %i, '%e', '%i', '%f', '%f', '%f', '%f', '%f', '%f', %i, %i)", PropertyInfo[propertyid][E_PROPERTY_DBID], PropertyStaticInfo[i][E_OBJECT_ID], PropertyStaticInfo[i][E_OBJECT_NAME], 1, PropertyStaticInfo[i][E_POS_X], PropertyStaticInfo[i][E_POS_Y], PropertyStaticInfo[i][E_POS_Z], PropertyStaticInfo[i][E_POS_RX], PropertyStaticInfo[i][E_POS_RY], PropertyStaticInfo[i][E_POS_RZ], PropertyInfo[propertyid][E_PROPERTY_INTERIORINTERIOR], PropertyInfo[propertyid][E_PROPERTY_INTERIORWORLD]);

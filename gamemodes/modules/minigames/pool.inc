@@ -361,9 +361,10 @@ CMD:pool(playerid, params[])
 			PoolInfo[businessid][E_POOL_STARTED] = true;
 			RespawnPoolBalls(1, businessid);
 			
-			new Cents = floatround(50 * 100, floatround_round);
+			new Cents = floatround(10 * 100, floatround_round);
 			GiveMoney(playerid, -Cents);
 			GiveMoney(playerb, -Cents);
+			BusinessInfo[businessid][E_BUSINESS_CASH] += Cents * 2;
 			SendServerMessage(playerid, "[8Ball] {a4a4a4}You has started pool at %s you paying %s for the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
 			SendServerMessage(playerb, "[8Ball] {a4a4a4}You has started pool at %s you paying %s for the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
 		}

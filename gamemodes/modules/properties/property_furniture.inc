@@ -27,9 +27,9 @@ GetPropertyFurniture(propid)
 {
 	switch(PropertyInfo[propid][E_PROPERTY_TYPE])
 	{
-	    case 0: return 30;
-	    case 1: return 50;
-	    case 2: return 75;
+	    case 1: return 30;
+	    case 2: return 50;
+	    case 3: return 75;
 	}
 	return 0;
 }
@@ -96,7 +96,7 @@ RemoveAllFurniture(propid)
 	}
 
 	new queryBuffer[512];
-	mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "DELETE FROM furniture WHERE propertydbid = %i", PropertyInfo[propid][E_PROPERTY_DBID]);
+	mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "DELETE FROM furniture WHERE propertydbid = %i AND type = %i", PropertyInfo[propid][E_PROPERTY_DBID], 0);
 	mysql_tquery(ourConnection, queryBuffer);
 }
 

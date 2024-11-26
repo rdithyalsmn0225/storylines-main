@@ -160,9 +160,6 @@ CMD:buyproperty(playerid, params[])
 		if(PropertyInfo[id][E_PROPERTY_OWNERDBID])
 			return SendErrorMessage(playerid, "This property isn't for sale."); 
 
-		if(PropertyInfo[id][E_PROPERTY_TYPE] == PROPERTY_TYPE_HIGHHOUSE)
-			return SendErrorMessage(playerid, "This property isn't for sale."); 
-			
 		if(PropertyInfo[id][E_PROPERTY_PRICE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 			return SendErrorMessage(playerid, "You can't afford to buy this property.");
 			

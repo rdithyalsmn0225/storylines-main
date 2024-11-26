@@ -96,7 +96,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                     return SendErrorMessage(playerid, "You aren't near a vehicle.");
 
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-                    return SendErrorMessage(playerid, "You're can't use this right now."); 
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
 
                 new Float:x, Float:y, Float:z;
                 GetPlayerPos(playerid, x, y, z);
@@ -130,7 +130,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                     return SendErrorMessage(playerid, "You aren't near a vehicle.");
 
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-                    return SendErrorMessage(playerid, "You're can't use this right now."); 
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
 
                 new Float:x, Float:y, Float:z;
                 GetPlayerPos(playerid, x, y, z);
@@ -164,7 +164,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                     return SendErrorMessage(playerid, "You aren't near a vehicle.");
 
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-                    return SendErrorMessage(playerid, "You're can't use this right now."); 
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
 
                 new Float:x, Float:y, Float:z;
                 GetPlayerPos(playerid, x, y, z);
@@ -198,7 +198,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                     return SendErrorMessage(playerid, "You aren't near a vehicle.");
 
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-                    return SendErrorMessage(playerid, "You're can't use this right now."); 
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
 
                 static
 				    colors[256];
@@ -229,7 +229,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                     return SendErrorMessage(playerid, "You aren't near a vehicle.");
 
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-                    return SendErrorMessage(playerid, "You're can't use this right now."); 
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
 
                 static
 				    colors[256];
@@ -263,7 +263,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                     return SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
 
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-                    return SendErrorMessage(playerid, "You're can't use this right now."); 
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
 
                 new Float:x, Float:y, Float:z;
                 GetPlayerPos(playerid, x, y, z);
@@ -300,7 +300,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                     return SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
 
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-                    return SendErrorMessage(playerid, "You're can't use this right now."); 
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
 
                 new Float:x, Float:y, Float:z;
                 GetPlayerPos(playerid, x, y, z);
@@ -337,7 +337,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                     return SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
 
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-                    return SendErrorMessage(playerid, "You're can't use this right now."); 
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
 
                 new Float:x, Float:y, Float:z;
                 GetPlayerPos(playerid, x, y, z);
@@ -371,7 +371,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                     return SendErrorMessage(playerid, "You aren't near a vehicle.");
 
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-                    return SendErrorMessage(playerid, "You're can't use this right now."); 
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
 
                 new Float:x, Float:y, Float:z;
                 GetPlayerPos(playerid, x, y, z);

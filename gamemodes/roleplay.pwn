@@ -21,6 +21,7 @@
 #include <easyDialog>
 #include <PreviewModelDialog>
 #include <strlib>
+#include <timerfix>
 #include <zcmd>
 #include <sscanf2>
 #include <physics>
@@ -237,7 +238,6 @@ public OnGameModeInit()
 	SetTimerEx("RandomFire", 5400000, true, "i", 1);
 	SetTimer("PlayersUpdates", 1000, true); 
 	SetTimer("FunctionPaychecks", 60000, true);
-	SetTimer("OnPlayerNearPickup", 5000, true);
 	SetTimer("OnVehicleFuelUpdate", 60000, true);
 	SetTimer("OnVehicleUpdate", 1000, true);
 	SetTimer("OnVehicleRental", 60000, true);
@@ -4481,7 +4481,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				return SendErrorMessage(playerid, "Unable to execute this tree! (being interacted with another player)");
 
 			if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-				return SendErrorMessage(playerid, "You're can't use this right now."); 
+				return SendErrorMessage(playerid, "You can't use this right now"); 
 
 			if(!TreeInfo[id][E_TREE_CUTTED])
 			{

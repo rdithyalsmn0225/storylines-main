@@ -97,7 +97,7 @@ CMD:takecargo(playerid, params[])
         return SendErrorMessage(playerid, "You aren't near the dockworker collect checkpoint.");
 
     if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-		return SendErrorMessage(playerid, "You're can't use this right now."); 
+		return SendErrorMessage(playerid, "You can't use this right now"); 
 
     if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {
@@ -127,7 +127,7 @@ CMD:storecargo(playerid, params[])
         return SendErrorMessage(playerid, "You aren't near the dockworker collect checkpoint.");
         
     if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-		return SendErrorMessage(playerid, "You're can't use this right now."); 
+		return SendErrorMessage(playerid, "You can't use this right now"); 
 
     if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {

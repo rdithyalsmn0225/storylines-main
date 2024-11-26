@@ -1480,7 +1480,7 @@ new const PropertyInteriors[][PropertyInt] =
 	{0, 	9, 0.0, 0.0, 0.0, 0.0000},
     {1, 	5, 239.2827,462.2743,997.8993, 90.0}, 		//House
 	{2, 	1,  239.2827,462.2743,997.8993, 90.0},		//Complex
-	{3, 	8, 29.9917,461.7981,997.8993, 90.0}		//High House
+	{3, 	8, 329.9917,461.7981,997.8993, 90.0}		//High House
 };
 
 new const PropertyStaticInfo[][E_PROPERTY_STATIC] = 

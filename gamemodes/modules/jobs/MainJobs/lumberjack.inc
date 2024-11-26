@@ -171,7 +171,7 @@ CMD:timbercut(playerid, params[])
             return SendErrorMessage(playerid, "Unable to execute this tree! (being interacted with another player)");
 
         if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
-            return SendErrorMessage(playerid, "You're can't use this right now."); 
+            return SendErrorMessage(playerid, "You can't use this right now."); 
 
         if(!TreeInfo[id][E_TREE_CUTTED])
         {

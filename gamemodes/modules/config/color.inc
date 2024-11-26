@@ -4,7 +4,7 @@
 #define COLOR_GREEN 		(0x93C47DFF)
 #define COLOR_DARKGREEN 	(0x93C47DFF)
 #define COLOR_YELLOW 		(0xFFFF00FF)
-#define COLOR_BROWN         (0x897e74FF)
+#define COLOR_BROWN         (0x776858FF)
 
 #define COLOR_CREDITS       (0xf8b56eFF)
 #define COLOR_SYNTAX        (0x9fc5e8FF)

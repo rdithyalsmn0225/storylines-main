@@ -1126,6 +1126,9 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 		}
 		if(listitem == 3)
 		{
+			if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+            	return SendErrorMessage(playerid, "You can't use this right now."); 
+
 			new Float:x, Float:y, Float:z;
 			GetPlayerPos(targetid, x, y, z);
 
