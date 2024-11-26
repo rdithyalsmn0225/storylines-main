@@ -3879,29 +3879,29 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		{
 			if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 0)
 			{
-				if (characterLister[playerid][0][0] == EOS)
-					return ShowCharacterSelection(playerid);
+				/*if (characterLister[playerid][0][0] == EOS)
+					return ShowCharacterSelection(playerid);*/
 
 				SelectCharacter(playerid, 0);
 			}
 			else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 1)
 			{
-				if (characterLister[playerid][1][0] == EOS)
-					return ShowCharacterSelection(playerid);
+				/*if (characterLister[playerid][0][0] == EOS)
+					return ShowCharacterSelection(playerid);*/
 
 				SelectCharacter(playerid, 1);
 			}
 			else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 2)
 			{
-				if (characterLister[playerid][2][0] == EOS)
-					return ShowCharacterSelection(playerid);
+				/*if (characterLister[playerid][0][0] == EOS)
+					return ShowCharacterSelection(playerid);*/
 
 				SelectCharacter(playerid, 2);
 			}
 			else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 3)
 			{
-				if (characterLister[playerid][3][0] == EOS)
-					return ShowCharacterSelection(playerid);
+				/*if (characterLister[playerid][0][0] == EOS)
+					return ShowCharacterSelection(playerid);*/
 
 				SelectCharacter(playerid, 3);
 			}

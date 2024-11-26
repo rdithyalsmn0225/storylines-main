@@ -240,7 +240,10 @@ stock BusinessRefresh(businessid)
 		BusinessInfo[businessid][E_BUSINESS_ROBBERYCASH] = false;
 	}
 
-	Query_LoadBusinessPool(businessid);
+	if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_BAR)
+	{
+		Query_LoadBusinessPool(businessid);
+	}
 	return 1;
 }
 
