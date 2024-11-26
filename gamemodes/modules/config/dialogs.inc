@@ -689,7 +689,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 6:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Minigames Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "Minigames Commands: /court, /resetcourt, /blackjack, /buylottery");
+						SendClientMessage(playerid, COLOR_ORANGE, "Minigames Commands: /court, /resetcourt, /blackjack, /buylottery, /pool, /poolexit");
 					}
 					case 7:
 					{

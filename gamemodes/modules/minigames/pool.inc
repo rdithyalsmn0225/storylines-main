@@ -91,6 +91,11 @@ stock RespawnPoolBalls(init = 0, businessid)
 		DestroyObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
 	}
 
+	PoolInfo[businessid][E_POOL_PLAYER1] = -1;
+	PoolInfo[businessid][E_POOL_PLAYER2] = -1;
+	PoolInfo[businessid][E_POOL_PLAYER1SCORE] = 0;
+	PoolInfo[businessid][E_POOL_PLAYER2SCORE] = 0;
+
 	if(init)
 	{
 		CreateBalls(businessid);
@@ -335,6 +340,12 @@ CMD:pool(playerid, params[])
     if(BusinessInfo[businessid][E_BUSINESS_TYPE] != BUSINESS_TYPE_BAR)
         return SendErrorMessage(playerid, "You aren't in any business bar.");
 
+	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 510.0676574707, -85.232200622559, 998.86749267578))
+		return SendErrorMessage(playerid, "You aren't near pool table.");
+
+	if(playerb == playerid)
+		return SendErrorMessage(playerid, "You can't started pool with your self.");
+
 	if(!PoolInfo[businessid][E_POOL_STARTED])
 	{
 		if(!PlayingPool[playerid] && !PlayingPool[playerb])
@@ -361,9 +372,19 @@ CMD:pool(playerid, params[])
 	return 1;
 }
 
-CMD:poolend(playerid, params[])
+CMD:poolexit(playerid, params[])
 {
 	new businessid = IsPlayerInBusiness(playerid);
+
+	if(!IsPlayerInBusiness(playerid))
+        return SendErrorMessage(playerid, "You aren't in any business.");
+    
+    if(BusinessInfo[businessid][E_BUSINESS_TYPE] != BUSINESS_TYPE_BAR)
+        return SendErrorMessage(playerid, "You aren't in any business bar.");
+
+	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 510.0676574707, -85.232200622559, 998.86749267578))
+		return SendErrorMessage(playerid, "You aren't near pool table.");
+
 	if(PoolInfo[businessid][E_POOL_STARTED])
 	{
 		if(PlayingPool[playerid])
