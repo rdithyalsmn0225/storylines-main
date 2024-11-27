@@ -662,11 +662,46 @@ stock HexToInt(string[])
     return res;
 }
 
-stock DoesPlayerExist(name[])
+stock DoesBannedPlayerExist(name[])
+{
+    new checkQuery[128];
+    
+    mysql_format(ourConnection, checkQuery, sizeof(checkQuery), "SELECT CharacterName FROM bannedlist WHERE CharacterName = '%e'", name); 
+    new Cache:cache = mysql_query(ourConnection, checkQuery); 
+    
+    if (cache_num_rows())
+    {
+        cache_delete(cache); 
+        return 1;
+    }
+    
+    cache_delete(cache);
+    return 0;
+}
+
+
+stock DoesCharactersPlayerExist(name[])
 {
 	new checkQuery[128];
 	
 	mysql_format(ourConnection, checkQuery, sizeof(checkQuery), "SELECT char_name FROM characters WHERE char_name = '%e'", name); 
+	new Cache:cache = mysql_query(ourConnection, checkQuery); 
+	
+	if(cache_num_rows())
+	{
+		cache_delete(cache); 
+		return 1; 
+	}
+	
+	cache_delete(cache);
+	return 0;	
+}
+
+stock DoesMastersPlayerExist(name[])
+{
+	new checkQuery[128];
+	
+	mysql_format(ourConnection, checkQuery, sizeof(checkQuery), "SELECT acc_name FROM masters WHERE acc_name = '%e'", name); 
 	new Cache:cache = mysql_query(ourConnection, checkQuery); 
 	
 	if(cache_num_rows())

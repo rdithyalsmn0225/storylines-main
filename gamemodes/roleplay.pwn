@@ -530,7 +530,14 @@ function:CheckBanList(playerid)
 	}
 	else
 	{
+		new banDate[90], banner[32];
+		
+		cache_get_value_name(0, "Date", banDate, 90);
+		cache_get_value_name(0, "BannedBy", banner, 32);
+	
 		SendServerMessage(playerid, "[Banned] {a4a4a4}Your IP %s is banned from our servers.", ReturnIP(playerid));
+		SendServerMessage(playerid, "[Banned] {a4a4a4}Your account %s is banned from our server.", ReturnName(playerid));
+		SendServerMessage(playerid, "[Banned] {a4a4a4}You were banned on %s by %s.", banDate, banner); 
 		SendServerMessage(playerid, "[Banned] {a4a4a4}You may appeal your ban on our forums."); 
 		return KickEx(playerid);
 	}
@@ -552,7 +559,7 @@ function:LogPlayerIn(playerid)
 	{
 		for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }	
 		registerTime[playerid] = 1;	
-		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
+		ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
 		/*new str[1024];
 		format(str, sizeof(str), "You are not registered user! Plase register!");
 		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register your account:", str, "Confirm", "");*/

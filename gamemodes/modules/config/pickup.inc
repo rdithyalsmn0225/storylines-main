@@ -220,7 +220,7 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
 
     if(pickupid == LotteryPickup)
     {
-        format(str, sizeof(str), "~b~Los Santos Correctional Facility~n~~w~Type '~y~/charge~w~' to put player into prison~n~~w~Type '~y~/opencell or /closecell~w~' to open/close cell."); 
+        format(str, sizeof(str), "~b~Lottery Agent~n~~w~Type '~y~/buylottery~w~' to buy lottery."); 
         ShowBoxMessage(playerid, str, 5); 
         return 1;	
     }

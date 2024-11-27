@@ -9,7 +9,7 @@ CMD:ahelp(playerid, params[])
 	if(IsPlayerAdmins(playerid) >= 1)
 	{
 		SendClientMessage(playerid, COLOR_HEADER, "Staff Commands:");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /aduty, /forumname, /goto, /gethere, /bring, /a (achat), /showmain, /kick, /(o)ban, /(o)ajail,"); 
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /aduty, /forumname, /goto, /gethere, /bring, /a (achat), /showmain, /kick, /(o)ajail,"); 
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /rjail, /rprison, /setint, /setvw, /skin, /sethp, /setar, /reports, /ar (accept), /dr (disregard),"); 
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /slap, /mute, /freeze, /unfreeze, /spec, /specoff, /stats (id), /gotols, /respawncar, /respawnstatic,"); 
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /gotocar, /getcar, /listmasks, /aooc, /revive, /listweapons");
@@ -17,7 +17,7 @@ CMD:ahelp(playerid, params[])
 	
 	if(IsPlayerAdmins(playerid) >= 2)
 	{
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{ffffff} /armor, /clearreports, /p2p, /gotoproperty, /gotofaction, /gotoco,");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{ffffff} /(o)ban, /unban, /armor, /clearreports, /p2p, /gotoproperty, /gotofaction, /gotoco,");
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{ffffff} /gotobusiness, /noooc, /backup, /repair.");
 	}
 	if(IsPlayerAdmins(playerid) >= 3)
@@ -261,7 +261,7 @@ CMD:oban(playerid, params[])
 		}
 	}
 	
-	if(!DoesPlayerExist(playerb))
+	if(!DoesMastersPlayerExist(playerb))
 		return SendErrorMessage(playerid, "%s doesn't exist in the database.", playerb); 
 		
 	mysql_format(ourConnection, infoQuery, sizeof(infoQuery), "SELECT master_dbid FROM characters WHERE char_name = '%e'", playerb);
@@ -279,7 +279,7 @@ CMD:oban(playerid, params[])
 
 CMD:ban(playerid, params[])
 {
-	if(!IsPlayerAdmins(playerid))
+	if(IsPlayerAdmins(playerid) < 2)
 		return SendUnauthMessage(playerid); 
 		
 	new playerb, reason[120];
@@ -310,17 +310,46 @@ CMD:ban(playerid, params[])
 	}
 	
 	mysql_format(ourConnection, insertLog, sizeof(insertLog), "INSERT INTO bannedlist (`CharacterDBID`, `MasterDBID`, `CharacterName`, `Reason`, `Date`, `BannedBy`, `IpAddress`) VALUES(%i, %i, '%e', '%e', '%e', '%e', '%e')",
-		PlayerInfo[playerb][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_DBID], ReturnName(playerb), reason, ReturnDate(), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnIP(playerb));
+		PlayerInfo[playerb][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_DBID], AccountInfo[playerb][E_MASTERS_ACCNAME], reason, ReturnDate(), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnIP(playerb));
 	
 	mysql_pquery(ourConnection, insertLog); 
 	
 	mysql_format(ourConnection, insertLog, sizeof(insertLog), "INSERT INTO ban_logs (`CharacterDBID`, `MasterDBID`, `CharacterName`, `Reason`, `BannedBy`, `Date`) VALUES(%i, %i, '%e', '%e', '%e', '%e')",
-		PlayerInfo[playerb][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_DBID], ReturnName(playerb), reason, AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());
+		PlayerInfo[playerb][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_DBID], AccountInfo[playerb][E_MASTERS_ACCNAME], reason, AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());
 		
 	mysql_pquery(ourConnection, insertLog); 
 	
 	KickEx(playerb);
 	return 1;
+}
+
+CMD:unban(playerid, params[])
+{
+    new playerb[32], reason[128];
+
+    if(IsPlayerAdmins(playerid) < 2)
+		return SendUnauthMessage(playerid); 
+
+    if (sscanf(params, "s[32]s[120]", playerb, reason)) 
+        return SendUsageMessage(playerid, "/unban [username] [reason]"); 
+
+    if (!DoesBannedPlayerExist(playerb))
+        return SendErrorMessage(playerid, "The specified player is not in the banned list.");
+
+    if (strlen(reason) > 56)
+    {
+        SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was unbanned by %s, Reason: %.56s", playerb, ReturnMixedName(playerid), reason);
+        SendClientMessageToAllEx(COLOR_RED, "AdmCmd: ...%s", reason[56]); 
+    }
+    else 
+    {
+        SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s was unbanned by %s, Reason: %s", playerb, ReturnMixedName(playerid), reason);
+    }
+
+    new query[128];
+    mysql_format(ourConnection, query, sizeof(query), "DELETE FROM bannedlist WHERE CharacterName = '%e'", playerb);
+    mysql_tquery(ourConnection, query);
+    return 1;
 }
 
 CMD:oajail(playerid, params[])
@@ -342,7 +371,7 @@ CMD:oajail(playerid, params[])
 		}
 	}
 	
-	if(!DoesPlayerExist(playerb))
+	if(!DoesCharactersPlayerExist(playerb))
 		return SendErrorMessage(playerid, "%s doesn't exist in the database.", playerb); 
 		
 	mysql_format(ourConnection, insertQuery, sizeof(insertQuery), "UPDATE characters SET pOfflinejailed = 1, pOfflinejailedReason = '%e', E_CHARACTER_ADMINJAIL = %i WHERE char_masters = '%e'", reason, length * 60, playerb);
