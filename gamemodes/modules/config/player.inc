@@ -697,6 +697,31 @@ stock DoesCharactersPlayerExist(name[])
 	return 0;	
 }
 
+stock DoesPlayerExist(name[], masterName[], maxLen)
+{
+    new query[256];
+
+	mysql_format(ourConnection, query, sizeof(query),
+		"SELECT cm.master_name FROM `characters` c ",
+		"INNER JOIN `char_masters` cm ON c.master_id = cm.master_id ",
+		"WHERE c.char_name = '%e'", 
+		name
+	);
+
+
+    new Cache:cache = mysql_query(ourConnection, query);
+
+    if (cache_num_rows())
+    {
+        cache_get_value_name(0, "master_name", masterName, maxLen);
+        cache_delete(cache);
+        return 1;
+    }
+
+    cache_delete(cache); 
+    return 0;
+}
+
 stock DoesMastersPlayerExist(name[])
 {
 	new checkQuery[128];

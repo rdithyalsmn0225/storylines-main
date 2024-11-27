@@ -12,7 +12,7 @@ CMD:ahelp(playerid, params[])
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /aduty, /forumname, /goto, /gethere, /bring, /a (achat), /showmain, /kick, /(o)ajail,"); 
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /rjail, /rprison, /setint, /setvw, /skin, /sethp, /setar, /reports, /ar (accept), /dr (disregard),"); 
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /slap, /mute, /freeze, /unfreeze, /spec, /specoff, /stats (id), /gotols, /respawncar, /respawnstatic,"); 
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /gotocar, /getcar, /listmasks, /aooc, /revive, /listweapons");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /gotocar, /getcar, /listmasks, /aooc, /revive.");
 	}
 	
 	if(IsPlayerAdmins(playerid) >= 2)
@@ -236,6 +236,27 @@ CMD:kick(playerid, params[])
 	return 1;
 }
 
+CMD:username(playerid, params[])
+{
+    new charName[32], masterName[32];
+
+    if (!sscanf(params, "s[32]", charName))
+    {
+        if (DoesPlayerExist(charName, masterName, sizeof(masterName)))
+        {
+            new string[128];
+            format(string, sizeof(string), "Characters Name: %s - Masters Name: %s", charName, masterName);
+            SendClientMessage(playerid, COLOR_YELLOW, string);
+        }
+        else
+        {
+            SendErrorMessage(playerid, "Character not found!");
+        }
+    }
+    else SendUsageMessage(playerid, "/username [character name]");
+    return 1;
+}
+
 CMD:oban(playerid, params[])
 {
 	if(!IsPlayerAdmins(playerid))
@@ -331,8 +352,11 @@ CMD:unban(playerid, params[])
 		return SendUnauthMessage(playerid); 
 
     if (sscanf(params, "s[32]s[120]", playerb, reason)) 
-        return SendUsageMessage(playerid, "/unban [username] [reason]"); 
-
+	{
+        SendUsageMessage(playerid, "/unban [username] [reason]"); 
+		SendTipMessage(playerid, "To find masters name use '/username'.");
+		return 1;
+	}
     if (!DoesBannedPlayerExist(playerb))
         return SendErrorMessage(playerid, "The specified player is not in the banned list.");
 
