@@ -393,11 +393,8 @@ CMD:poolexit(playerid, params[])
 			if(PoolInfo[businessid][E_POOL_PLAYERAIMER] != playerid)
 			{
 				PlayingPool[playerid] = false;
-				
-				new
-					count = GetPoolPlayersCount(businessid);
 
-				if(count <= 0)
+				if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
 				{
 					PoolInfo[businessid][E_POOL_STARTED] = false;
 					RespawnPoolBalls(0, businessid);

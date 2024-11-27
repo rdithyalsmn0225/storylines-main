@@ -35,6 +35,8 @@ function:OnPlayerWounded(playerid, killerid, reason)
 	}
 	if(PlayingPool[playerid])
 	{
+		RestorePoolStick(PoolInfo[businessid][E_POOL_PLAYER1]);
+		RestorePoolStick(PoolInfo[businessid][E_POOL_PLAYER2]);
 		if(PoolInfo[businessid][E_POOL_PLAYER1] == playerid)
 		{
 			PoolInfo[businessid][E_POOL_PLAYER1] = -1;
@@ -44,11 +46,9 @@ function:OnPlayerWounded(playerid, killerid, reason)
 			PoolInfo[businessid][E_POOL_PLAYER2] = -1;
 		}
 		PlayingPool[playerid] = false;
-		new
-			count = GetPoolPlayersCount(businessid);
-		if(count <= 0)
+		if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
 		{
-			PoolInfo[businessid][E_POOL_STARTED] = 0;
+			PoolInfo[businessid][E_POOL_STARTED] = false;
 			RespawnPoolBalls(0, businessid);
 		}
 	}
@@ -106,6 +106,8 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 	}
 	if(PlayingPool[playerid])
 	{
+		RestorePoolStick(PoolInfo[businessid][E_POOL_PLAYER1]);
+		RestorePoolStick(PoolInfo[businessid][E_POOL_PLAYER2]);
 		if(PoolInfo[businessid][E_POOL_PLAYER1] == playerid)
 		{
 			PoolInfo[businessid][E_POOL_PLAYER1] = -1;
@@ -115,11 +117,9 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 			PoolInfo[businessid][E_POOL_PLAYER2] = -1;
 		}
 		PlayingPool[playerid] = false;
-		new
-			count = GetPoolPlayersCount(businessid);
-		if(count <= 0)
+		if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
 		{
-			PoolInfo[businessid][E_POOL_STARTED] = 0;
+			PoolInfo[businessid][E_POOL_STARTED] = false;
 			RespawnPoolBalls(0, businessid);
 		}
 	}

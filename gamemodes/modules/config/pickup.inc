@@ -217,6 +217,13 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
         ShowBoxMessage(playerid, str, 5); 
         return 1;	
     }
+
+    if(pickupid == LotteryPickup)
+    {
+        format(str, sizeof(str), "~b~Los Santos Correctional Facility~n~~w~Type '~y~/charge~w~' to put player into prison~n~~w~Type '~y~/opencell or /closecell~w~' to open/close cell."); 
+        ShowBoxMessage(playerid, str, 5); 
+        return 1;	
+    }
     
     return 1;
 }

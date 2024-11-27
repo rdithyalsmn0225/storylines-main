@@ -15,9 +15,9 @@ function:OnPlayerLotteryUpdate()
 {
     if (LotteryActive == 1) return 0;
     LotteryActive = 1;
-    SendClientMessageToAll(COLOR_PINK, "[Lottery] lottery has started winning numbers will be random in 30 minutes.");
+    SendClientMessageToAll(COLOR_PINK, "[Lottery] lottery has started checking winners numbers will be random in 5 minutes.");
     
-    SetTimer("EndLottery", 1800000, false);
+    SetTimer("EndLottery", 300000, false);
     return 1;
 }
 

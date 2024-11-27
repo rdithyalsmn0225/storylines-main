@@ -12,6 +12,7 @@ InsertDynamicPickup()
 	PrisonPickup = CreateDynamicPickup(1247, 1, 1256.9117,890.3147,1161.0986, -1, -1, -1, 5.0);
 	HairCutPickup = CreateDynamicPickup(2752, 1, 2064.5574,-1794.9839,13.4599, -1, -1, -1, 5.0);
 	TicketPickup = CreateDynamicPickup(1239, 1, 249.1299,67.8123,1003.6406, -1, -1, -1, 5.0);
+	LotteryPickup = CreateDynamicPickup(1239, 1, 1098.1724,-1495.9231,15.7969, -1, -1, -1, 5.0);
 	FishFactoryPickup = CreateDynamicPickup(1239, 1, 2610.7708,-2441.7927,13.6310, -1, -1, -1, 5.0);
 	GeneralStorePickup[0] = CreateDynamicPickup(1274, 1, -48.4748,-1.1597,203.2633, -1, -1, -1, 5.0);
 	GeneralStorePickup[1] = CreateDynamicPickup(1274, 1, -53.7980,2.8393,203.2633, -1, -1, -1, 5.0);

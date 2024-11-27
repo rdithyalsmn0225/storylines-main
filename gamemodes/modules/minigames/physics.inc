@@ -35,22 +35,35 @@ public PHY_OnObjectUpdate(objectid)
                             new string[128];
                             foreach (new p : Player)
                             {
-                                if (PlayingPool[p] && p != PoolInfo[businessid][E_POOL_LASTSHOOTER])
+                                if (PlayingPool[p])
                                 {
-                                    format(string, sizeof(string), "[8Ball] {a4a4a4}The winner is: %s because PoolBall 5 was pocketed.", ReturnName(p));
+                                    format(string, sizeof(string), "[8Ball] {a4a4a4}The winner is: %s because PoolBall 8 was pocketed.", ReturnName(p));
                                     SendPoolPlayersMessage(string);
 
                                     PlayingPool[p] = false;
-                                }
-                                else if (PlayingPool[p])
-                                {
+
+                                    RestorePoolStick(p);
                                     PlayingPool[p] = false;
+
+                                    if(PoolInfo[businessid][E_POOL_PLAYER1] == p)
+                                    {
+                                        PoolInfo[businessid][E_POOL_PLAYER1] = -1;
+                                    }
+                                    if(PoolInfo[businessid][E_POOL_PLAYER2] == p)
+                                    {
+                                        PoolInfo[businessid][E_POOL_PLAYER2] = -1;
+                                    }
                                 }
                             }
 
                             PoolInfo[businessid][E_POOL_STARTED] = false;
                             PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
-                            RespawnPoolBalls(0, businessid);
+                            if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
+                            {
+                                PoolInfo[businessid][E_POOL_STARTED] = false;
+                                RespawnPoolBalls(0, businessid);
+                            }
+
                             RestoreCamera(PoolInfo[businessid][E_POOL_LASTSHOOTER], businessid);
                             PoolInfo[businessid][E_POOL_LASTSHOOTER] = -1;
 
@@ -99,8 +112,7 @@ public PHY_OnObjectUpdate(objectid)
                         {
                             PoolInfo[businessid][E_POOL_STARTED] = false;
                             PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
-                            
-                            RespawnPoolBalls(0, businessid);
+
                             RestoreCamera(PoolInfo[businessid][E_POOL_LASTSHOOTER], businessid);
                             PoolInfo[businessid][E_POOL_LASTSHOOTER] = -1;
 
@@ -123,8 +135,22 @@ public PHY_OnObjectUpdate(objectid)
                                     }
 
                                     SendPoolPlayersMessage(string);
-                                    
+                                    RestorePoolStick(p);
                                     PlayingPool[p] = false;
+                                    if(PoolInfo[businessid][E_POOL_PLAYER1] == p)
+                                    {
+                                        PoolInfo[businessid][E_POOL_PLAYER1] = -1;
+                                    }
+                                    if(PoolInfo[businessid][E_POOL_PLAYER2] == p)
+                                    {
+                                        PoolInfo[businessid][E_POOL_PLAYER2] = -1;
+                                    }
+
+                                    if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
+                                    {
+                                        PoolInfo[businessid][E_POOL_STARTED] = false;
+                                        RespawnPoolBalls(0, businessid);
+                                    }
                                 }
                             }
                         }
