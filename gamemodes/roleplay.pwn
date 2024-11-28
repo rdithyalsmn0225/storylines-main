@@ -318,7 +318,7 @@ public OnGameModeExit()
 public OnPlayerConnect(playerid)
 {
 	g_RaceCheck{playerid}++;
-	//PlayAudioStreamForPlayer(playerid, "https://j.top4top.io/m_3186mo2bk1.mp3");
+	PlayAudioStreamForPlayer(playerid, "https://e.top4top.io/m_3254pyq011.mp3");
 
 	ShowClock(playerid);
 	ResetPlayer(playerid);

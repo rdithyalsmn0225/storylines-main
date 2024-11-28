@@ -539,7 +539,7 @@ stock ShowCharacterPreview(playerid)
 	format(str, sizeof(str), "%sEyes\t%s\n", str, eyes);
 	format(str, sizeof(str), "%sHeight\t%d cm\n", str, playerCharactersHeights[playerid]);
 	format(str, sizeof(str), "%sDescription\t%s\n", str, playerCharactersDescription[playerid]);
-	Dialog_Show(playerid, CharacterPreview, DIALOG_STYLE_TABLIST_HEADERS, "Character Preview:", str, "Edit", "Finish");	
+	Dialog_Show(playerid, CharacterPreview, DIALOG_STYLE_TABLIST_HEADERS, "Character Appearance:", str, "Edit", "Finish");	
 	return 1;
 }
 
@@ -790,10 +790,10 @@ Dialog:CharacterHeight(playerid, response, listitem, inputtext[])
 {
 	if(response)
 	{
-		if(strval(inputtext) > 180 || strval(inputtext) < 160 || isnull(inputtext) || !IsNumeric(inputtext))
+		if(strval(inputtext) > 190 || strval(inputtext) < 160 || isnull(inputtext) || !IsNumeric(inputtext))
 		{
 			Dialog_Show(playerid, CharacterHeight, DIALOG_STYLE_INPUT, "Character Age:", "Insert a height of your character.\n{93C47D}Info:{ffffff} Required in format cannot be less than 160 cm", "Confirm", "");	
-			SendErrorMessage(playerid, "Your characters height must be at least 160 cm and no more than 180 years old.");
+			SendErrorMessage(playerid, "Your characters height must be at least 160 cm and no more than 180 cm.");
 			return 1;
 		}
 
