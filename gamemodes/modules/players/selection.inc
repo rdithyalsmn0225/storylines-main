@@ -12,9 +12,8 @@ SetupCharacterSelection(playerid)
 		
 		if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 0) 
 		{
-			InterpolateCameraPos(playerid, 1341.972656, 908.064697, 132.843124, 1341.570312, 898.974365, 131.922348, 8000, 1);
-			InterpolateCameraLookAt(playerid, 1341.855224, 904.100219, 132.324386, 1341.385498, 894.981872, 131.761520, 8000, 1);
-
+			InterpolateCameraPos(playerid, 1342.239868, 907.062683, 132.776443, 1340.489257, 895.953430, 131.934539, 8000, 1);
+			InterpolateCameraLookAt(playerid, 1342.029663, 903.076232, 132.523345, 1340.611816, 891.964660, 131.660949, 8000, 1);
 
 			format(str, sizeof(str), "%s", (characterLister[playerid][0][0] == EOS) ? ("Empty_Slot") : (characterLister[playerid][0]));
 			format(str1, sizeof(str1), "%s", ReturnFactionNameEx(characterFaction[playerid][0]));
@@ -26,8 +25,8 @@ SetupCharacterSelection(playerid)
 		}
 		else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 1) 
 		{
-			InterpolateCameraPos(playerid, 1341.972656, 908.064697, 132.843124, 1341.570312, 898.974365, 131.922348, 8000, 1);
-			InterpolateCameraLookAt(playerid, 1341.855224, 904.100219, 132.324386, 1341.385498, 894.981872, 131.761520, 8000, 1);
+			InterpolateCameraPos(playerid, 1342.239868, 907.062683, 132.776443, 1340.489257, 895.953430, 131.934539, 8000, 1);
+			InterpolateCameraLookAt(playerid, 1342.029663, 903.076232, 132.523345, 1340.611816, 891.964660, 131.660949, 8000, 1);
 
 			format(str, sizeof(str), "%s", (characterLister[playerid][1][0] == EOS) ? ("Empty_Slot") : (characterLister[playerid][1]));
 			format(str1, sizeof(str1), "%s", ReturnFactionNameEx(characterFaction[playerid][1]));
@@ -39,8 +38,8 @@ SetupCharacterSelection(playerid)
 		}
 		else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 2) 
 		{
-			InterpolateCameraPos(playerid, 1341.972656, 908.064697, 132.843124, 1341.570312, 898.974365, 131.922348, 8000, 1);
-			InterpolateCameraLookAt(playerid, 1341.855224, 904.100219, 132.324386, 1341.385498, 894.981872, 131.761520, 8000, 1);
+			InterpolateCameraPos(playerid, 1342.239868, 907.062683, 132.776443, 1340.489257, 895.953430, 131.934539, 8000, 1);
+			InterpolateCameraLookAt(playerid, 1342.029663, 903.076232, 132.523345, 1340.611816, 891.964660, 131.660949, 8000, 1);
 
 			format(str, sizeof(str), "%s", (characterLister[playerid][2][0] == EOS) ? ("Empty_Slot") : (characterLister[playerid][2]));
 			format(str1, sizeof(str1), "%s", ReturnFactionNameEx(characterFaction[playerid][2]));
@@ -53,8 +52,8 @@ SetupCharacterSelection(playerid)
 		}
 		else if(PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] == 3) 
 		{
-			InterpolateCameraPos(playerid, 1341.972656, 908.064697, 132.843124, 1341.570312, 898.974365, 131.922348, 8000, 1);
-			InterpolateCameraLookAt(playerid, 1341.855224, 904.100219, 132.324386, 1341.385498, 894.981872, 131.761520, 8000, 1);
+			InterpolateCameraPos(playerid, 1342.239868, 907.062683, 132.776443, 1340.489257, 895.953430, 131.934539, 8000, 1);
+			InterpolateCameraLookAt(playerid, 1342.029663, 903.076232, 132.523345, 1340.611816, 891.964660, 131.660949, 8000, 1);
 
 			format(str, sizeof(str), "%s", (characterLister[playerid][3][0] == EOS) ? ("Empty_Slot") : (characterLister[playerid][3]));
 			format(str1, sizeof(str1), "%s", ReturnFactionNameEx(characterFaction[playerid][3]));
@@ -188,12 +187,8 @@ SelectCharacter(playerid, id)
 		for(new i =0 ; i < 10; i++){ SendClientMessage(playerid, -1, " "); }
 		SendClientMessage(playerid, COLOR_WHITE, "You selected an empty character slot!");
 
-		SetPlayerVirtualWorld(playerid, 99);			
-		SendClientMessage(playerid, -1, "This process will guide you through creating your character.");
-		SendClientMessage(playerid, -1, "Please begin by typing your characters first and last name. i.e: {93C47D}George_Jefferson");
-		SendClientMessage(playerid, -1, "Your characters name must be in Firstname_Lastname format with no numbers or special characters.");
-		SendClientMessage(playerid, -1, "Press {93C47D}'T'{ffffff} to inputtext for character creation.");
-
+		ShowCharacterPreview(playerid);
+		
 		playerMakingCharacter[playerid] = true;
 		playerCharacterStep[playerid] = 1; 
 		characterSelection[playerid] = false;
@@ -207,7 +202,6 @@ SelectCharacter(playerid, id)
 		PlayerTextDrawHide(playerid, SelectFactionClick[2][playerid]);
 
 		CancelSelectTextDraw(playerid);
-		DestroyPlayerActor(playerid);
 	}   
 	else
 	{

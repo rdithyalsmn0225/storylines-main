@@ -7,7 +7,7 @@ CreatePlayerActor(playerid, skin)
 	if(IsValidDynamicActor(PlayerActor[playerid]))
 		DestroyDynamicActor(PlayerActor[playerid]);
 
-	PlayerActor[playerid] = CreateDynamicActor(skin, 1341.3151,890.9318,131.1577,356.6866); //hood
+	PlayerActor[playerid] = CreateDynamicActor(skin, 1342.2626,890.8396,131.1577,45.7302); //hood
 	ApplyDynamicActorAnimation(PlayerActor[playerid], "DEALER", "DEALER_IDLE", 4.1, 1, 0, 0, 0, 0);
 	SetDynamicActorVirtualWorld(PlayerActor[playerid], vwid);
 	return 1;

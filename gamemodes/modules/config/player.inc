@@ -521,7 +521,7 @@ stock ShowIDCARD(playerid, playerb)
 	PlayerTextDrawSetString(playerid, idcard[6][playerid], str2);
 	format(str3, sizeof(str3), "DOB ~r~%s", PlayerInfo[playerb][E_CHARACTER_AGE]);
 	PlayerTextDrawSetString(playerid, idcard[8][playerid], str3);
-	format(str4, sizeof(str4), "ORIGIN ~l~%s", PlayerInfo[playerb][E_CHARACTER_ORIGIN]);
+	format(str4, sizeof(str4), "ETHNIC ~l~%s", PlayerInfo[playerb][E_CHARACTER_ETHNIC]);
 	PlayerTextDrawSetString(playerid, idcard[7][playerid], str4);
 	format(str5, sizeof(str5), "SEX ~l~%s", gender);
 	PlayerTextDrawSetString(playerid, idcard[9][playerid], str5);

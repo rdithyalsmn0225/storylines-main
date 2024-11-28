@@ -5273,25 +5273,13 @@ function:Query_CreateCharacter(playerid)
 {
 	if(cache_num_rows())
 	{
-		return SendClientMessage(playerid, COLOR_RED, "[ERROR]: That character already exists. Please try again."); 
+		Dialog_Show(playerid, CharacterName, DIALOG_STYLE_MSGBOX, "Character Name:", "Insert a full name of your character.\nInfo: Required in format of Firstname_Lastname", "Confirm", "");	
+		SendErrorMessage(playerid, "That character already exists. Please try again."); 
+		return 1; 
 	}
 	else
 	{
-		new
-			string[128]
-		;
-		
-		for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
-		
-		format (string, sizeof(string), "Your new characters name will be: {93C47D}%s", playerCharactersName[playerid]);
-		SendClientMessage(playerid, -1, string); 
-
-		SendClientMessage(playerid, -1, " "); 
-		SendClientMessage(playerid, -1, "The next steps will require a creating characters street name.");
-		SendClientMessage(playerid, -1, "Please begin by typing your characters street name. i.e: {93C47D}RayRay");
-		SendClientMessage(playerid, -1, "Your characters name must be in 'Streetname' format with no numbers or special characters.");
-		SendClientMessage(playerid, -1, "Press {93C47D}'T'{ffffff} to inputtext for character creation.");
-		playerCharacterStep[playerid] = 2; 
+		ShowCharacterPreview(playerid);
 	}
 	return 1;
 }

@@ -317,7 +317,7 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_int(0, "pLastWorld", PlayerInfo[playerid][E_CHARACTER_LASTWORLD]);
 	cache_get_value_name_int(0, "pLevel", PlayerInfo[playerid][E_CHARACTER_LEVEL]);
 	cache_get_value_name(0, "pAge", PlayerInfo[playerid][E_CHARACTER_AGE], 20);
-	cache_get_value_name(0, "pOrigin", PlayerInfo[playerid][E_CHARACTER_ORIGIN], 60);
+	cache_get_value_name(0, "pEthnicity", PlayerInfo[playerid][E_CHARACTER_ETHNIC], 60);
 	cache_get_value_name(0, "pStory", PlayerInfo[playerid][E_CHARACTER_STORY], 90);
 	cache_get_value_name(0, "pStoryTwo", PlayerInfo[playerid][E_CHARACTER_STORYTWO], 90);
 	cache_get_value_name_int(0, "pMoney", PlayerInfo[playerid][E_CHARACTER_MONEY]);
@@ -411,6 +411,138 @@ function:Query_LoadCharacter(playerid)
 	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{93C47D}PUBLIC{ffffff}\n#2\tLast Position\t{93C47D}PUBLIC{ffffff}\n#3\tFaction Spawn\t{93C47D}FACTION{ffffff}", "Select", "Close");
 }
 
+stock ShowCharacterPreview(playerid)
+{
+	new gender[128], ethnic[128], hair[128], eyes[128];
+
+	//Gender
+	if(!playerCharactersSex[playerid])
+	{
+		playerCharactersSex[playerid] = 1; //male
+	}
+	if(playerCharactersSex[playerid] == 1)
+	{
+		gender = "{81D4FA}Male";
+	}
+	if(playerCharactersSex[playerid] == 2)
+	{
+		gender = "{F8BBD0}Female";
+	}
+
+	//Age
+	if(!playerCharactersAge[playerid])
+	{
+		playerCharactersAge[playerid] = 17; //17y
+	}
+
+	//Ethnic
+	if(isnull(playerCharactersEthnicity[playerid]))
+	{
+		format(playerCharactersEthnicity[playerid], 32, "White"); //white guy
+	}
+	if(strcmp(playerCharactersEthnicity[playerid], "White", true) == 0)
+	{
+		ethnic = "{fcdcd2}White"; //white guy
+	}
+	if(strcmp(playerCharactersEthnicity[playerid], "Black", true) == 0)
+	{
+		ethnic = "{cda184}Black"; //black guy
+	}
+	if(strcmp(playerCharactersEthnicity[playerid], "Latino", true) == 0)
+	{
+		ethnic = "{dbb288}Latino"; //latino guy
+	}
+	if(strcmp(playerCharactersEthnicity[playerid], "Asian", true) == 0)
+	{
+		ethnic = "{f9dcb2}Asian"; //asian guy
+	}
+
+	//hair
+	if(isnull(playerCharactersHair[playerid]))
+	{
+		format(playerCharactersHair[playerid], 32, "Bald"); //bald
+	}
+	if(strcmp(playerCharactersHair[playerid], "Bald", true) == 0)
+	{
+		hair = "{fcdcd2}Bald"; //bald
+	}
+	if(strcmp(playerCharactersHair[playerid], "Black", true) == 0)
+	{
+		hair = "{5a5a64}Black"; //black
+	}
+	if(strcmp(playerCharactersHair[playerid], "Brown", true) == 0)
+	{
+		hair = "{BCAAA4}Brown"; //brown
+	}
+	if(strcmp(playerCharactersHair[playerid], "Blonde", true) == 0)
+	{
+		hair = "{ffe19d}Blonde"; //blonde
+	}
+	if(strcmp(playerCharactersHair[playerid], "White", true) == 0)
+	{
+		hair = "{F5F5F5}White"; //white
+	}
+	if(strcmp(playerCharactersHair[playerid], "Gray", true) == 0)
+	{
+		hair = "{E0E0E0}Gray"; //gray
+	}
+	if(strcmp(playerCharactersHair[playerid], "Red", true) == 0)
+	{
+		hair = "{FFAB91}Red"; //red
+	}
+
+	if(isnull(playerCharactersEyes[playerid]))
+	{
+		format(playerCharactersEyes[playerid], 32, "Black"); //black eyes
+	}
+	if(strcmp(playerCharactersEyes[playerid], "Black", true) == 0)
+	{
+		eyes = "{5a5a64}Black"; //black
+	}
+	if(strcmp(playerCharactersEyes[playerid], "Brown", true) == 0)
+	{
+		eyes = "{BCAAA4}Brown"; //brown
+	}
+	if(strcmp(playerCharactersEyes[playerid], "Amber", true) == 0)
+	{
+		eyes = "{FFE082}Amber"; //amber
+	}
+	if(strcmp(playerCharactersEyes[playerid], "Blue", true) == 0)
+	{
+		eyes = "{9FA8DA}Blue"; //blue
+	}
+	if(strcmp(playerCharactersEyes[playerid], "Gray", true) == 0)
+	{
+		eyes = "{B0BEC5}Gray"; //gray
+	}
+	if(strcmp(playerCharactersEyes[playerid], "Hazel", true) == 0)
+	{
+		eyes = "{EEC99C}Hazel"; //hazel
+	}
+
+	if(!playerCharactersHeights[playerid])
+	{
+		playerCharactersHeights[playerid] = 186; //186cm
+	}
+	if(isnull(playerCharactersDescription[playerid]))
+	{
+		format(playerCharactersDescription[playerid], 32, "Enthusiastic"); //enthusiastic
+	}
+
+	new str[1024];
+	format(str, sizeof(str), "Attribute\tValue\n");
+	format(str, sizeof(str), "%sName\t%s\n", str, playerCharactersName[playerid]);
+	format(str, sizeof(str), "%sSex\t%s\n", str, gender);
+	format(str, sizeof(str), "%sAge\t%d y.o\n", str, playerCharactersAge[playerid]);
+	format(str, sizeof(str), "%sEthnicity\t%s\n", str, ethnic);
+	format(str, sizeof(str), "%sHair\t%s\n", str, hair);
+	format(str, sizeof(str), "%sEyes\t%s\n", str, eyes);
+	format(str, sizeof(str), "%sHeight\t%d cm\n", str, playerCharactersHeights[playerid]);
+	format(str, sizeof(str), "%sDescription\t%s\n", str, playerCharactersDescription[playerid]);
+	Dialog_Show(playerid, CharacterPreview, DIALOG_STYLE_TABLIST_HEADERS, "Character Preview:", str, "Edit", "Finish");	
+	return 1;
+}
+
 // Dialog:
 Dialog:Login(playerid, response, listitem, inputtext[])
 {
@@ -456,6 +588,234 @@ Dialog:Spawns(playerid, response, listitem, inputtext[])
 			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 2;
 			LoadCharacter(playerid);
 		}
+	}
+	return 1;
+}
+
+Dialog:CharacterPreview(playerid, response, listitem, inputtext[])
+{
+	if(!response)
+	{
+		if (isnull(playerCharactersName[playerid]) || !playerCharactersSex[playerid] || !playerCharactersAge[playerid] ||
+		isnull(playerCharactersEthnicity[playerid]) || isnull(playerCharactersHair[playerid]) || isnull(playerCharactersEyes[playerid]) ||
+		!playerCharactersHeights[playerid] || isnull(playerCharactersDescription[playerid]))
+		{
+			ShowCharacterPreview(playerid);
+			SendErrorMessage(playerid, "You must complete the character attribute.");
+			return 1;
+		}
+		
+		PlayerInfo[playerid][E_CHARACTER_FACTION] = 0;
+		characterSelection[playerid] = true;
+		playerMakingCharacter[playerid] = false;
+		playerCharacterStep[playerid] = 0; 
+		PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0;
+
+		PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = playerCharactersSkins[playerid];
+		
+		ClearLines(playerid, 17); 
+						
+		SendInfoMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
+						
+		new query[512];
+
+		new fid; 
+				
+		fid = PlayerInfo[playerid][E_CHARACTER_FACTION];
+						
+		mysql_format(ourConnection, query, sizeof(query), "INSERT INTO characters (`master_dbid`, `char_name`, `char_masters`, `pAge`, `pEthnicity`, `pGender`, `pHair`, `pEyes`, `pHeight`, `pFaction`, `pLastSkin`, `pStory`, `pStoryTwo`, `create_date`, `create_ip`, `pPhone`, pSpawnPoint, pLastPosX, pLastPosY, pLastPosZ) \
+		VALUES(%i, '%e', '%e', '%d', '%e', '%d', '%e', '%e', '%d', '%d', '%d', '%e', '%e', '%e', '%e', %i, %d, %f, %f, %f)", AccountInfo[playerid][E_MASTERS_DBID], playerCharactersName[playerid], AccountInfo[playerid][E_MASTERS_ACCNAME], playerCharactersAge[playerid],
+		playerCharactersEthnicity[playerid], playerCharactersSex[playerid], playerCharactersHair[playerid], playerCharactersEyes[playerid], playerCharactersHeights[playerid], PlayerInfo[playerid][E_CHARACTER_FACTION], PlayerInfo[playerid][E_CHARACTER_LASTSKIN], playerCharacterStory[playerid][0], playerCharacterStory[playerid][1], ReturnDate(), ReturnIP(playerid), 94000+random(6999), PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT], FactionInfo[fid][E_FACTION_SPAWN][0], FactionInfo[fid][E_FACTION_SPAWN][1], FactionInfo[fid][E_FACTION_SPAWN][2]);				
+		mysql_pquery(ourConnection, query); 
+						
+		SetTimerEx("RefreshCharacters", 1000, false, "i", playerid);
+	}
+
+	if(response)
+	{
+		switch(listitem)
+		{
+			case 0: // Name:
+			{
+				Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{93C47D}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+			}
+			case 1: // Sex:
+			{
+				Dialog_Show(playerid, CharacterSex, DIALOG_STYLE_LIST, "Character Sex:", "Male\nFemale", "Edit", "Finish");	
+			}
+			case 2: // Age:
+			{
+				Dialog_Show(playerid, CharacterAge, DIALOG_STYLE_INPUT, "Character Age:", "Insert a age of your character.\n{93C47D}{93C47D}Info:{ffffff}{ffffff} Required in format cannot be less than 18 years old", "Confirm", "");	
+			}
+			case 3: // Ethnicity:
+			{
+				Dialog_Show(playerid, CharacterEthnicity, DIALOG_STYLE_LIST, "Character Ethnicity:", "White\nBlack\nLatino\nAsian", "Confirm", "");	
+			}
+			case 4: // Hair:
+			{
+				Dialog_Show(playerid, CharacterHair, DIALOG_STYLE_LIST, "Character Hair:", "Bald\nBlack\nBrown\nBlonde\nWhite\nGray\nRed", "Confirm", "");	
+			}
+			case 5: // Eyes:
+			{
+				Dialog_Show(playerid, CharacterEyes, DIALOG_STYLE_LIST, "Character Eyes:", "Amber\nBlack\nBrown\nBlue\nGray\nHazel", "Confirm", "");	
+			}
+			case 6: // Height:
+			{
+				Dialog_Show(playerid, CharacterHeight, DIALOG_STYLE_INPUT, "Character Age:", "Insert a height of your character.\n{93C47D}Info:{ffffff} Required in format cannot be less than 160 cm", "Confirm", "");	
+			}
+			case 7: //Description
+			{
+				Dialog_Show(playerid, CharacterDescription, DIALOG_STYLE_INPUT, "Character Description:", "Insert a description of your character.\n{93C47D}Info:{ffffff} Required for description your characters", "Confirm", "");	
+			}
+		}
+	}
+	return 1;
+}
+
+Dialog:CharacterName(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		if(strlen(inputtext) > MAX_PLAYER_NAME + 1 || strlen(inputtext) < 3)
+		{
+			Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{93C47D}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+			SendErrorMessage(playerid, "Your characters name must be at least 3 characters and no more than %i characters.", MAX_PLAYER_NAME);
+			return 1;
+		}
+		if(!IsValidRoleplayName(inputtext))
+		{
+			Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{93C47D}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+			SendErrorMessage(playerid, "Please follow the Firstname_Lastname format to make your character."); 
+			return 1;
+		}
+		
+		foreach (new i : Player)
+		{
+			if(!strcmp(inputtext, ReturnName(i, playerid)))
+			{
+				Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{93C47D}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+				SendErrorMessage(playerid, "That character already exists. Please try again."); 
+				return 1;
+			}
+		}
+		
+		new
+			threadSearch[128]
+		;
+		
+		format(playerCharactersName[playerid], 128, "%s", inputtext); 
+		
+		mysql_format(ourConnection, threadSearch, sizeof(threadSearch), "SELECT char_dbid FROM characters WHERE char_name = '%e'", inputtext);
+		mysql_pquery(ourConnection, threadSearch, "Query_CreateCharacter", "i", playerid);
+	}
+	return 1;
+}
+
+Dialog:CharacterSex(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		switch(listitem)
+		{
+			case 0: //male
+			{
+				playerCharactersSex[playerid] = 1;
+				
+				new rand = random(sizeof(g_aMaleSkins));
+				playerCharactersSkins[playerid] = g_aMaleSkins[rand];
+				CreatePlayerActor(playerid, playerCharactersSkins[playerid]);
+				ShowCharacterPreview(playerid);
+			}
+			case 1: //female
+			{
+				new rand = random(sizeof(g_aFemaleSkins));
+				playerCharactersSkins[playerid] = g_aFemaleSkins[rand];
+				CreatePlayerActor(playerid, playerCharactersSkins[playerid]);
+				playerCharactersSex[playerid] = 2;
+				ShowCharacterPreview(playerid);
+			}
+		}
+	}
+	return 1;
+}
+
+Dialog:CharacterAge(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		if(strval(inputtext) > 60 || strval(inputtext) < 18 || isnull(inputtext))
+		{
+			Dialog_Show(playerid, CharacterAge, DIALOG_STYLE_INPUT, "Character Age:", "Insert a age of your character.\n{93C47D}Info:{ffffff} Required in format cannot be less than 18 years old", "Confirm", "");	
+			SendErrorMessage(playerid, "Your characters age must be at least 18 years old and no more than 60 years old.");
+			return 1;
+		}
+
+		playerCharactersAge[playerid] = strval(inputtext);
+		ShowCharacterPreview(playerid);
+	}
+	return 1;
+}
+
+Dialog:CharacterEthnicity(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		format(playerCharactersEthnicity[playerid], 128, "%s", inputtext); 
+		ShowCharacterPreview(playerid);
+	}
+	return 1;
+}
+
+Dialog:CharacterHair(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		format(playerCharactersHair[playerid], 20, "%s", inputtext); 
+		ShowCharacterPreview(playerid);
+	}
+	return 1;
+}
+
+Dialog:CharacterEyes(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		format(playerCharactersEyes[playerid], 20, "%s", inputtext); 
+		ShowCharacterPreview(playerid);
+	}
+	return 1;
+}
+
+Dialog:CharacterHeight(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		if(strval(inputtext) > 180 || strval(inputtext) < 160 || isnull(inputtext) || !IsNumeric(inputtext))
+		{
+			Dialog_Show(playerid, CharacterHeight, DIALOG_STYLE_INPUT, "Character Age:", "Insert a height of your character.\n{93C47D}Info:{ffffff} Required in format cannot be less than 160 cm", "Confirm", "");	
+			SendErrorMessage(playerid, "Your characters height must be at least 160 cm and no more than 180 years old.");
+			return 1;
+		}
+
+		playerCharactersHeights[playerid] = strval(inputtext); 
+		ShowCharacterPreview(playerid);
+	}
+	return 1;
+}
+
+Dialog:CharacterDescription(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		if(strlen(inputtext) > 32 || strlen(inputtext) < 12 || isnull(inputtext))
+		{
+			Dialog_Show(playerid, CharacterDescription, DIALOG_STYLE_INPUT, "Character Description:", "Insert a description of your character.\n{93C47D}Info:{ffffff} Required for description your characters", "Confirm", "");	
+			SendErrorMessage(playerid, "Your characters description must be at least 12 characters and no more than 32 characters.");
+			return 1;
+		}
+
+		format(playerCharactersDescription[playerid], 20, "%s", inputtext); 
+		ShowCharacterPreview(playerid);
 	}
 	return 1;
 }
