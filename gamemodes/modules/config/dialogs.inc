@@ -103,69 +103,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO `masters` (`acc_name`, `acc_pass`, `register_date`, `register_ip`, `forum_name`) VALUES ('%e', sha1('%e'), '%e', '%e', '%e')", ReturnName(playerid, 1), inputtext, ReturnDate(), ReturnIP(playerid), ReturnName(playerid, 1));
     		mysql_pquery(ourConnection, insert, "OnPlayerRegister", "i", playerid);
 		}
-		case DIALOG_LOGIN:
-		{
-			if (!response)
-			{
-				SendErrorMessage(playerid, "You were kicked for not logging in."); 
-				return KickEx(playerid);
-			}
-			
-			new continueCheck[211]; 
-			
-			mysql_format(ourConnection, continueCheck, sizeof(continueCheck), "SELECT acc_dbid, forum_name, secret_word, active_ip FROM masters WHERE acc_name = '%e' AND acc_pass = sha1('%e') LIMIT 1", 
-				ReturnName(playerid, 1), inputtext);
-				
-			mysql_pquery(ourConnection, continueCheck, "LoggingIn", "i", playerid);
-			return 1;
-		}
-		case DIALOG_CHARS:
-		{
-			if (!response)
-			{
-				SendErrorMessage(playerid, "You were kicked for not selecting a character.");
-				return KickEx(playerid); 
-			}
-			
-			for(new i = 0; i < 4; i ++) {PlayerTextDrawHide(playerid, LoginScreen[i][playerid]);}
-
-			SetPlayerVirtualWorld(playerid, 99);
-			InterpolateCameraPos(playerid, 2223.004394, -1261.156982, 24.698129, 2238.075439, -1260.909179, 24.844661, 3000, 1);
-			InterpolateCameraLookAt(playerid, 2226.993896, -1261.235473, 24.418256, 2242.063232, -1260.991943, 24.544891, 3000, 1);
-
-			if(strfind(characterLister[playerid][listitem], "[", false) != -1)
-			{
-				for(new i =0 ; i < 10; i++){ SendClientMessage(playerid, -1, " "); }
-				SendClientMessage(playerid, COLOR_WHITE, "You selected an empty character slot!");
-				
-				SendClientMessage(playerid, -1, "This process will guide you through creating your character.");
-				SendClientMessage(playerid, -1, "Please begin by typing your characters first and last name. i.e: {93C47D}George_Jefferson");
-				SendClientMessage(playerid, -1, "Your characters name must be in Firstname_Lastname format with no numbers or special characters.");
-				SendClientMessage(playerid, -1, "Press {93C47D}'T'{ffffff} to inputtext for character creation.");
-				
-				playerMakingCharacter[playerid] = true;
-				playerCharacterStep[playerid] = 1; 
-				return 1;
-			}
-			else
-			{
-				new 
-					string[128], thread[128];
-					
-				for(new i = 0; i < 4; i ++) {PlayerTextDrawHide(playerid, LoginScreen[i][playerid]);}
-				characterPickTime[playerid] = 0;
-				
-				playerMakingCharacter[playerid] = false;
-				playerCharacterStep[playerid] = 0; 
-				
-				format(string, sizeof(string), "You selected the character {93C47D}%s{FFFFFF}.", characterLister[playerid][listitem]);
-				SendClientMessage(playerid, -1, string);
-
-				mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM characters WHERE char_name = '%e' LIMIT 1", characterLister[playerid][listitem]);
-				mysql_pquery(ourConnection, thread, "Query_SelectCharacter", "i", playerid); 
-			}
-			return 1;
-		}
 		case DIALOG_REPORT:
 		{
 			if (!response)
@@ -185,65 +122,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			
 			OnPlayerReport(playerid, idx, playerReport[playerid]); 
-		}
-		case DIALOG_GPSPROP:
-		{
-			if (response)
-			{
-				if (isnull(inputtext) || strlen(inputtext) > 32)
-					return ShowPlayerDialog(playerid, DIALOG_GPSPROP, DIALOG_STYLE_INPUT, "GPS: Properties", "Please enter the address of the properties below:", "Submit", "Cancel");
-
-				for (new i = 1; i != MAX_PROPERTY; i ++)
-				{
-					if (PropertyInfo[i][E_PROPERTY_DBID] && !strcmp(PropertyInfo[i][E_PROPERTY_ADDRESS], inputtext, true))
-					{
-						GPS_SetPlayerRaceCheckPoint(playerid, 1, PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][2], 0.0, 0.0, 0.0);
-					}
-				}
-				ShowPlayerDialog(playerid, DIALOG_GPSPROP, DIALOG_STYLE_INPUT, "GPS: Properties", "No results found for.\nPlease enter the address of the properties below:", "Submit", "Cancel");
-			}
-		}
-		case DIALOG_GPS:
-		{
-			if(response)
-			{
-				switch(listitem)
-				{
-					case 0: //Point Of Interest
-						ShowPlayerDialog(playerid, DIALOG_GPSPOI, DIALOG_STYLE_LIST, "GPS: Point of Interest", "Public Locations\nJobs Locations\nBusiness Locations\nTree Locations", "Select", "Cancel");
-					case 1:
-						ShowPlayerDialog(playerid, DIALOG_GPSPROP, DIALOG_STYLE_INPUT, "GPS: Properties", "Please enter the address of the properties below:", "Submit", "Cancel");
-					case 2: //ENEX
-						ShowENEXLocation(playerid);
-					case 3: //Disable CP
-						GPS_DisablePlayerRaceCheckPoint(playerid);
-				}
-			}
-		}
-		case DIALOG_GPSPOI:
-		{
-			if (response)
-			{
-			    switch (listitem)
-			    {
-			        case 0: //Public
-			        {
-			        	ShowPublicLocation(playerid);
-			        }
-					case 1: //Jobs
-					{
-						ShowJobLocation(playerid);
-					}  
-					case 2: //Business
-					{
-						ShowBusinessLocation(playerid);
-					} 
-					case 3: //Tree
-					{
-						ShowTreeLocation(playerid);
-					}
-				}
-			}
 		}
 		case DIALOG_INTERIOR:
 		{
