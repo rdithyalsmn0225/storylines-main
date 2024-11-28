@@ -238,20 +238,13 @@ CMD:kick(playerid, params[])
 
 CMD:username(playerid, params[])
 {
-    new charName[32], masterName[32];
+    new charName[32];
 
     if (!sscanf(params, "s[32]", charName))
     {
-        if (DoesPlayerExist(charName, masterName, sizeof(masterName)))
-        {
-            new string[128];
-            format(string, sizeof(string), "Characters Name: %s - Masters Name: %s", charName, masterName);
-            SendClientMessage(playerid, COLOR_YELLOW, string);
-        }
-        else
-        {
-            SendErrorMessage(playerid, "Character not found!");
-        }
+		new query[256];
+        mysql_format(ourConnection, query, sizeof(query), "SELECT `char_masters` FROM `characters` WHERE `char_name` = '%e'", charName);
+		mysql_pquery(ourConnection, query, "DoesPlayerExist", "ds", playerid, charName);
     }
     else SendUsageMessage(playerid, "/username [character name]");
     return 1;

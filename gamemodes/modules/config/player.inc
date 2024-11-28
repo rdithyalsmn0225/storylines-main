@@ -697,29 +697,16 @@ stock DoesCharactersPlayerExist(name[])
 	return 0;	
 }
 
-stock DoesPlayerExist(name[], masterName[], maxLen)
+function:DoesPlayerExist(playerid, character[])
 {
-    new query[256];
+    new name[32];
+	
+	if (!cache_num_rows())
+ 		return SendErrorMessage(playerid, "There is no account linked with the specified name.");
 
-	mysql_format(ourConnection, query, sizeof(query),
-		"SELECT cm.master_name FROM `characters` c ",
-		"INNER JOIN `char_masters` cm ON c.master_id = cm.master_id ",
-		"WHERE c.char_name = '%e'", 
-		name
-	);
-
-
-    new Cache:cache = mysql_query(ourConnection, query);
-
-    if (cache_num_rows())
-    {
-        cache_get_value_name(0, "master_name", masterName, maxLen);
-        cache_delete(cache);
-        return 1;
-    }
-
-    cache_delete(cache); 
-    return 0;
+	cache_get_value_name(0, "char_masters", name, 32);
+	SendClientMessageEx(playerid, COLOR_YELLOW, "Characters Name: %s - Masters Name: %s", character, name);
+	return 1;
 }
 
 stock DoesMastersPlayerExist(name[])
@@ -737,6 +724,15 @@ stock DoesMastersPlayerExist(name[])
 	
 	cache_delete(cache);
 	return 0;	
+}
+
+stock SQL_ReturnEscaped(const string[])
+{
+	new
+	    entry[256];
+
+	mysql_escape_string(string, entry, ourConnection);
+	return entry;
 }
 
 stock FormatMoney(integer)
