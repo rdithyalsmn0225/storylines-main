@@ -25,7 +25,7 @@ function:OnPlayerWounded(playerid, killerid, reason)
 	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
     PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
-    if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
+    if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) Court_Refresh(PlayerInfo[playerid][E_CHARACTER_COURT]);
 
 	new businessid = IsPlayerInBusiness(playerid);
 	if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid)
@@ -96,7 +96,7 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
     PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
-    if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
+    if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) Court_Refresh(PlayerInfo[playerid][E_CHARACTER_COURT]);
 
 	new businessid = IsPlayerInBusiness(playerid);
 	if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid)

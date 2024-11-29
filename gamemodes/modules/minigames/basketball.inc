@@ -103,15 +103,194 @@ function:OnCourtCreate(playerid, cid, Float:posx, Float:posy, Float:posz)
 	SendInfoMessage(playerid, "You created court ID #%i. To configure, use \"/editcourt\". ", cid); 
 	return 1;
 }
+
+function:PlayerShootMiss(playerid, type)
+{
+	new cid = PlayerInfo[playerid][E_CHARACTER_COURT];
+	switch(type)
+	{
+		case 1:
+		{
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_POS][0], CourtInfo[cid][E_BLUE_POS][1], CourtInfo[cid][E_BLUE_POS][2]+3, 8.0);
+			ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
+			CourtInfo[cid][E_BALL_SHOOT] = 7;
+			PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
+		}
+		case 2:
+		{
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_POS][0],CourtInfo[cid][E_RED_POS][1], CourtInfo[cid][E_RED_POS][2]+3, 8.0);
+			ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
+			CourtInfo[cid][E_BALL_SHOOT] = 8;
+			PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
+		}
+		case 3:
+		{
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_POS][0]-randomEx(1, 2), CourtInfo[cid][E_BLUE_POS][1]-random(2), CourtInfo[cid][E_BLUE_POS][2]+1, 8.0);
+			ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
+			CourtInfo[cid][E_BALL_SHOOT] = 4;
+			PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
+		}
+		case 4:
+		{
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_POS][0]+randomEx(1, 2),CourtInfo[cid][E_RED_POS][1]+random(2), CourtInfo[cid][E_RED_POS][2]+1, 8.0);
+			ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
+			CourtInfo[cid][E_BALL_SHOOT] = 5;
+			PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
+		}
+	}
+	return 1;
+}
+
+function:PlayerBallDown(playerid, Float:oldz)
+{
+	new cid = PlayerInfo[playerid][E_CHARACTER_COURT];
+
+    new Float:x, Float:y, Float:z, Float:a, Float:x2, Float:y2;
+    GetDynamicObjectPos(CourtInfo[cid][E_BALL_OBJECT], x, y, z);
+    GetPlayerPos(playerid, x2, y2, a);
+    GetPlayerFacingAngle(playerid, a);
+    x2 += (16 * floatsin(-a, degrees));
+    y2 += (16 * floatcos(-a, degrees));
+
+    MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], x2, y2, CourtInfo[cid][E_BALL_POS][2], 8.0);
+    CourtInfo[cid][E_BALLER] = 999;
+    CourtInfo[cid][E_BALL_SHOOT] = 0;
+    CourtInfo[cid][E_BALL_BOUNCE] = 1;
+    return 1;
+}
+
+function:PlayerBallShoot(playerid, type)
+{
+	new cid = PlayerInfo[playerid][E_CHARACTER_COURT];
+	
+	switch(type)
+	{
+		case 1:
+		{
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_BALL][0], CourtInfo[cid][E_BLUE_BALL][1], CourtInfo[cid][E_BLUE_BALL][2], 8.0);
+			CourtInfo[cid][E_BALLER] = 999;
+			CourtInfo[cid][E_BALL_SHOOT] = 0;
+			CourtInfo[cid][E_BALL_BOUNCE] = 9;
+			PlayNearbySound(playerid, 4604);
+
+			new Float:shot[3], str[128];
+			GetPlayerPos(playerid, shot[0], shot[1], shot[2]);
+			new Float: fDistance = GetPlayerDistanceFromPoint(playerid, CourtInfo[cid][E_BLUE_POS][0], CourtInfo[cid][E_BLUE_POS][1], CourtInfo[cid][E_BLUE_POS][2]);
+			
+			format(str, sizeof(str), "shoots the basketball over %0.2f yards and SCORES.", floatround(fDistance));
+			cmd_me(playerid, str);
+		}
+		case 2:
+		{
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_BALL][0], CourtInfo[cid][E_RED_BALL][1], CourtInfo[cid][E_RED_BALL][2], 8.0);
+			CourtInfo[cid][E_BALLER] = 999;
+			CourtInfo[cid][E_BALL_SHOOT] = 0;
+			CourtInfo[cid][E_BALL_BOUNCE] = 9;
+			PlayNearbySound(playerid, 4604);
+
+			new Float:shot[3], str[128];
+			GetPlayerPos(playerid, shot[0], shot[1], shot[2]);
+			new Float: fDistance = GetPlayerDistanceFromPoint(playerid, CourtInfo[cid][E_RED_POS][0], CourtInfo[cid][E_RED_POS][1], CourtInfo[cid][E_RED_POS][2]);
+			
+			format(str, sizeof(str), "shoots the basketball over %0.2f yards and SCORES.", floatround(fDistance));
+			cmd_me(playerid, str);
+		}
+		case 3:
+		{
+			new Float:pos[3];
+			GetDynamicObjectPos(CourtInfo[cid][E_BALL_OBJECT], pos[0], pos[1], pos[2]);
+
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], pos[0], pos[1], CourtInfo[cid][E_BLUE_POS][2], 8.0);
+			CourtInfo[cid][E_BALLER] = 999;
+			CourtInfo[cid][E_BALL_SHOOT] = 0;
+			CourtInfo[cid][E_BALL_BOUNCE] = 1;
+			PlayNearbySound(playerid, 4603);
+
+			new Float:shot[3], str[128];
+			GetPlayerPos(playerid, shot[0], shot[1], shot[2]);
+			new Float: fDistance = GetPlayerDistanceFromPoint(playerid, CourtInfo[cid][E_BLUE_POS][0], CourtInfo[cid][E_BLUE_POS][1], CourtInfo[cid][E_BLUE_POS][2]);
+			
+			format(str, sizeof(str), "shoots the basketball over %0.2f yards and MISSES.", floatround(fDistance));
+			cmd_me(playerid, str);
+		}
+		case 4:
+		{
+			new Float:pos[3];
+			GetDynamicObjectPos(CourtInfo[cid][E_BALL_OBJECT], pos[0], pos[1], pos[2]);
+
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], pos[0], pos[1],CourtInfo[cid][E_RED_POS][2], 8.0);
+			CourtInfo[cid][E_BALLER] = 999;
+			CourtInfo[cid][E_BALL_SHOOT] = 0;
+			CourtInfo[cid][E_BALL_BOUNCE] = 1;
+			PlayNearbySound(playerid, 4603);
+
+			new Float:shot[3], str[128];
+			GetPlayerPos(playerid, shot[0], shot[1], shot[2]);
+			new Float: fDistance = GetPlayerDistanceFromPoint(playerid, CourtInfo[cid][E_RED_POS][0], CourtInfo[cid][E_RED_POS][1], CourtInfo[cid][E_RED_POS][2]);
+			
+			format(str, sizeof(str), "shoots the basketball over %0.2f yards and MISSES.", floatround(fDistance));
+			cmd_me(playerid, str);
+		}
+	}
+    
+    return 1;
+}
+
+CMD:court(playerid, params[])
+{
+	new cid = PlayerInfo[playerid][E_CHARACTER_COURT];
+	if(!PlayerInfo[playerid][E_CHARACTER_COURT])
+	{
+		if(IsPlayerNearCourt(playerid, 1))
+		{
+			PlayerInfo[playerid][E_CHARACTER_COURT] = IsPlayerNearCourt(playerid, 1);
+			PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 1;
+			SendServerMessage(playerid, "[Basketball] {a4a4a4}You've joined the basketball as blue team.");
+
+			new str[256];
+			format(str, sizeof(str), "To play, press 'RETURN' near a basketball or have someone pass it.~n~~n~To steal and shoot, press 'LMB'. To block, use 'SHIFT'.");
+			ShowHeaderMessage(playerid, "Basketball", str, 1);
+		}
+		else if(IsPlayerNearCourt(playerid, 2))
+		{
+			PlayerInfo[playerid][E_CHARACTER_COURT] = IsPlayerNearCourt(playerid, 2);
+			PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 2;
+			SendServerMessage(playerid, "[Basketball] {a4a4a4}You've joined the basketball as red team.");
+
+			new str[256];
+			format(str, sizeof(str), "To play, press 'RETURN' near a basketball or have someone pass it.~n~~n~To steal and shoot, press 'LMB'. To block, use 'SHIFT'.");
+			ShowHeaderMessage(playerid, "Basketball", str, 1);
+		}
+		else return SendErrorMessage(playerid, "You aren't near court.");
+	}
+	else
+	{
+		PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
+		PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
+		CourtInfo[cid][E_BALLER] = 999;
+		CourtInfo[cid][E_BALL_SHOOT] = 0;
+		SendServerMessage(playerid, "[Basketball] {a4a4a4}You've leave the game.");
+
+		HideHeaderMessage(playerid);
+	}
+	return 1;
+}
+
 CMD:resetcourt(playerid, params[])
 {
 	if(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] == 999)
 	{
+		PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
+		PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
+		PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
+		PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
+		
 		Court_Refresh(PlayerInfo[playerid][E_CHARACTER_COURT]);
 		SendInfoMessage(playerid, "You've reset the basketball court.");
 	}
 	return 1;
 }
+
 CMD:createcourt(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
@@ -215,127 +394,4 @@ CMD:editcourt(playerid, params[])
 	}
 	else return SendErrorMessage(playerid, "Invalid Paramater.");	
 	return 1;
-}
-
-CMD:court(playerid, params[])
-{
-	new cid = PlayerInfo[playerid][E_CHARACTER_COURT];
-	if(!PlayerInfo[playerid][E_CHARACTER_COURT])
-	{
-		if(IsPlayerNearCourt(playerid, 1))
-		{
-			PlayerInfo[playerid][E_CHARACTER_COURT] = IsPlayerNearCourt(playerid, 1);
-			PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 1;
-			SendServerMessage(playerid, "[Basketball] {a4a4a4}You've joined the basketball as blue team.");
-		}
-		else if(IsPlayerNearCourt(playerid, 2))
-		{
-			PlayerInfo[playerid][E_CHARACTER_COURT] = IsPlayerNearCourt(playerid, 2);
-			PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 2;
-			SendServerMessage(playerid, "[Basketball] {a4a4a4}You've joined the basketball as red team.");
-		}
-		else return SendErrorMessage(playerid, "You aren't near court.");
-	}
-	else
-	{
-		PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
-		PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
-		CourtInfo[cid][E_BALLER] = 999;
-		CourtInfo[cid][E_BALL_SHOOT] = 0;
-		SendServerMessage(playerid, "[Basketball] {a4a4a4}You've leave the game.");
-	}
-	return 1;
-}
-
-function:ShootMiss(playerid, type)
-{
-	new cid = PlayerInfo[playerid][E_CHARACTER_COURT];
-	switch(type)
-	{
-		case 1:
-		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_POS][0]+random(2), CourtInfo[cid][E_BLUE_POS][1]+random(2), CourtInfo[cid][E_BLUE_POS][2]+random(3), 12.5+random(4));
-			ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
-			CourtInfo[cid][E_BALL_SHOOT] = 4;
-			PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
-		}
-		case 2:
-		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_POS][0]+random(2),CourtInfo[cid][E_RED_POS][1]+random(2),CourtInfo[cid][E_RED_POS][2]+random(3), 12.5+random(4));
-			ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
-			CourtInfo[cid][E_BALL_SHOOT] = 5;
-			PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
-		}
-	}
-	return 1;
-}
-
-function:ClearAnim(playerid)
-{
-    ClearAnimations(playerid);
-    return 1;
-}
-
-function:BallDown(playerid, Float:oldz)
-{
-	new cid = PlayerInfo[playerid][E_CHARACTER_COURT];
-
-    new Float:x, Float:y, Float:z, Float:a, Float:x2, Float:y2;
-    GetDynamicObjectPos(CourtInfo[cid][E_BALL_OBJECT], x, y, z);
-    GetPlayerPos(playerid, x2, y2, a);
-    GetPlayerFacingAngle(playerid, a);
-    x2 += (16 * floatsin(-a, degrees));
-    y2 += (16 * floatcos(-a, degrees));
-
-    MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], x2, y2, oldz-0.8, 10.0+random(3));
-    CourtInfo[cid][E_BALLER] = 999;
-    CourtInfo[cid][E_BALL_SHOOT] = 0;
-    CourtInfo[cid][E_BALL_BOUNCE] = 1;
-    return 1;
-}
-
-function:BallDowns(playerid, type)
-{
-	new cid = PlayerInfo[playerid][E_CHARACTER_COURT];
-	switch(type)
-	{
-		case 1:
-		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_BALL][0], CourtInfo[cid][E_BLUE_BALL][1], CourtInfo[cid][E_BLUE_BALL][2], 10.0+random(3));
-			CourtInfo[cid][E_BALLER] = 999;
-			CourtInfo[cid][E_BALL_SHOOT] = 0;
-			ShowBoxMessage(playerid, "Red Team Point +1", 5);
-			CourtInfo[cid][E_BALL_BOUNCE] = 9;
-			PlayNearbySound(playerid, 4604);
-		}
-		case 2:
-		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_BALL][0], CourtInfo[cid][E_RED_BALL][1], CourtInfo[cid][E_RED_BALL][2], 10.0+random(3));
-			CourtInfo[cid][E_BALLER] = 999;
-			CourtInfo[cid][E_BALL_SHOOT] = 0;
-			ShowBoxMessage(playerid, "Blue Team Point +1", 5);
-			CourtInfo[cid][E_BALL_BOUNCE] = 9;
-			PlayNearbySound(playerid, 4604);
-		}
-		case 3:
-		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_POS][0]+random(2),CourtInfo[cid][E_BLUE_POS][1]+random(2),CourtInfo[cid][E_BLUE_POS][2]+0.8, 10.0+random(3));
-			CourtInfo[cid][E_BALLER] = 999;
-			ShowBoxMessage(playerid, "Miss Shoot", 5);
-			CourtInfo[cid][E_BALL_SHOOT] = 0;
-			CourtInfo[cid][E_BALL_BOUNCE] = 1;
-			PlayNearbySound(playerid, 4603);
-		}
-		case 4:
-		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_POS][0]+random(2),CourtInfo[cid][E_RED_POS][1]+random(2),CourtInfo[cid][E_RED_POS][2]+0.8, 10.0+random(3));
-			CourtInfo[cid][E_BALLER] = 999;
-			ShowBoxMessage(playerid, "Miss Shoot", 5);
-			CourtInfo[cid][E_BALL_SHOOT] = 0;
-			CourtInfo[cid][E_BALL_BOUNCE] = 1;
-			PlayNearbySound(playerid, 4603);
-		}
-	}
-    
-    return 1;
 }

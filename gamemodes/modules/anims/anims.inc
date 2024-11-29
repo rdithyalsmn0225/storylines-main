@@ -59,6 +59,12 @@ ApplyAnimationEx(playerid, animlib[], animname[], Float:fDelta, loop, lockx, loc
 	}
 }
 
+function:ClearAnim(playerid)
+{
+    ClearAnimations(playerid);
+    return 1;
+}
+
 CMD:animhelp(playerid, params[])
 {
 	SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Animations List __________|");

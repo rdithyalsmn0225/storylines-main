@@ -211,11 +211,6 @@ function:ResetPlayer(playerid)
 	playerMakingCharacter[playerid] = false;
 	playerCharacterStep[playerid] = 0;
 	
-	for(new i = 0; i < 2 ; i++) 
-	{ 
-		format(playerCharacterStory[playerid][i], 90, ""); 
-	}
-	
 	//Prevents;
 	loginTime[playerid] = 0;
 	registerTime[playerid] = 0;
