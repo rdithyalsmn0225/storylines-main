@@ -13,11 +13,12 @@ function:OnPlayerMakeRumour(playerid, response, price)
 {
 	if(response)
 	{
-		new string[128];
+		new string[128], str[128];
 		format(string, sizeof(string), "[Rumour]: %s", PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING]);
-		SendClientMessageToAll(COLOR_BLUE, string);
-		CreateLogs(playerid, LOGS_ADVERT, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING]);
-
+		SendClientMessageToAll(COLOR_LBLUE, string);
+		
+		format(str, sizeof(str), "%s has used rumour.", ReturnName(playerid));
+		SendAdminMessage(1, str);
         new Cents = floatround(price * 100, floatround_round);
 
 		GiveMoney(playerid, -Cents);
@@ -26,6 +27,7 @@ function:OnPlayerMakeRumour(playerid, response, price)
     return 1;
 }
 
+CMD:advert(playerid, params[]) return cmd_advertise(playerid, params);
 CMD:advertise(playerid, params[]) 
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_HIGH) 
@@ -63,7 +65,52 @@ CMD:advertise(playerid, params[])
 	new string[256];
 	format(string, sizeof(string), "[Advertisement]: %s (Phone: %d)", text, PlayerInfo[playerid][E_CHARACTER_PHONE]);
 	SendClientMessageToAll(COLOR_DARKGREEN, string);
-	CreateLogs(playerid, LOGS_ADVERT, text);
+
+	adcooldown = gettime();
+	return 1;
+}
+
+CMD:badvert(playerid, params[]) 
+{
+	new businessid = IsPlayerNearBusiness(playerid);
+	if(IsPlayerAdmins(playerid) < ADMINS_HIGH) 
+    {
+		if (!IsPlayerNearBusiness(playerid))
+			return SendErrorMessage(playerid, "You're not in range of the advertisment place!");
+	}
+
+	if(BusinessInfo[businessid][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
+		return SendErrorMessage(playerid, "You don't own this business."); 
+
+	if (adcooldown && (gettime() - adcooldown) < 300)
+        return SendErrorMessage(playerid, "You must wait %d seconds until another advertisement can be placed.", 300 - (gettime() - adcooldown));
+
+	new text[128];
+
+	if(sscanf(params, "s[128]", text))
+		return SendUsageMessage(playerid, "/badvert [text] (you will be charged for text length)");
+
+	if (strlen(text) < 6 || strlen(text) > 128)
+		return SendErrorMessage(playerid, "Your text can't have less than 6 or more than 128 characters.");
+
+    if (PlayerInfo[playerid][E_CHARACTER_LEVEL] < 3)
+		return SendErrorMessage(playerid, "Your level must exceed level 3 to create an advertise");
+
+	if(!Inventory_Count(playerid, "Cellphone") && PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != CELLPHONE)
+		return SendErrorMessage(playerid, "You must hold the cellphone in your hands."); 
+
+	new price = 0.10 * strlen(text);
+
+	if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		return SendErrorMessage(playerid, "You don't have enough money for this advertisement! You need at least $%s.", FormatMoney(price));
+
+	new Cents = floatround(price * 100, floatround_round);
+
+	GiveMoney(playerid, -Cents);
+
+	new string[256];
+	format(string, sizeof(string), "[Business]: %s (%s)", text, BusinessInfo[businessid][E_BUSINESS_NAME]);
+	SendClientMessageToAll(COLOR_DARKGREEN, string);
 
 	adcooldown = gettime();
 	return 1;

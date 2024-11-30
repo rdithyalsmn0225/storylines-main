@@ -15,6 +15,7 @@
 #define COLOR_GAMES         (0xb6b9e1FF)
 #define COLOR_HEADER		(0x90D7F0FF)
 #define COLOR_BLUE          (0x7abaacFF)
+#define COLOR_LBLUE         (0x2986ccFF)
 
 #define COLOR_GRAD1			(0xCCE6E6FF)
 #define COLOR_GRAD2			(0xE2FFFFFF)

@@ -1,0 +1,1 @@
+[17:37:03] [plugins/mysql] error #1062 while executing query "INSERT INTO logs (type, name, result) VALUES('Logs Advertise', 'Jayvon Williams', 'Fightclub playa del seville tonight!')": Duplicate entry '0' for key 'PRIMARY' (modules\serverlogs\serverlogs.inc:15 -> modules\props\advertise.inc:20)
