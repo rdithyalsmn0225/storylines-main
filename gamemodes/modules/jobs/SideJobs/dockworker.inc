@@ -2,11 +2,11 @@ InsertDocksWorkers()
 {
     for(new i; i < sizeof(Dockworker_Store); i++)
     {
-        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /storecargo", COLOR_3DTEXT, Dockworker_Store[i][0],Dockworker_Store[i][1], Dockworker_Store[i][2], 5.0);
+        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /storecargo", COLOR_3DTEXT, Dockworker_Store[i][E_DOCKWORK_POS][0],Dockworker_Store[i][E_DOCKWORK_POS][1], Dockworker_Store[i][E_DOCKWORK_POS][2], 5.0);
     }
     for(new i; i < sizeof(Dockworker_Collect); i++)
     {
-        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /takecargo", COLOR_3DTEXT, Dockworker_Collect[i][0],Dockworker_Collect[i][1], Dockworker_Collect[i][2], 5.0);
+        CreateDynamic3DTextLabel("[Docksworker Point]\n{ffffff}Available commands: /takecargo", COLOR_3DTEXT, Dockworker_Collect[i][E_DOCKWORK_POS][0],Dockworker_Collect[i][E_DOCKWORK_POS][1], Dockworker_Collect[i][E_DOCKWORK_POS][2], 5.0);
     }
     return 1;
 }
@@ -31,7 +31,7 @@ function:DockWorkers(playerid, type)
                 {
                     PlayerDockworkerStore[playerid] = random(sizeof(Dockworker_Store));
 
-                    GPS_SetPlayerRaceCheckPoint(playerid, 1, Dockworker_Store[PlayerDockworkerStore[playerid]][0],Dockworker_Store[PlayerDockworkerStore[playerid]][1], Dockworker_Store[PlayerDockworkerStore[playerid]][2], 0.0, 0.0, 0.0);
+                    GPS_SetPlayerRaceCheckPoint(playerid, 1, Dockworker_Store[PlayerDockworkerStore[playerid]][E_DOCKWORK_POS][0],Dockworker_Store[PlayerDockworkerStore[playerid]][E_DOCKWORK_POS][1], Dockworker_Store[PlayerDockworkerStore[playerid]][E_DOCKWORK_POS][2], 0.0, 0.0, 0.0);
                     TogglePlayerControllable(playerid, true);
                     
                     PlayerInfo[playerid][E_CHARACTER_LOADING] = false;
@@ -42,7 +42,6 @@ function:DockWorkers(playerid, type)
 
                     CrateObject[vehicleid] = CreateDynamicObject(1221,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
                     AttachDynamicObjectToVehicle(CrateObject[vehicleid], vehicleid, 0.000, 0.630, 0.360, 0.000, 0.000, 0.000);
-                    ShowBoxMessage(playerid, "~w~You've succesfully take the package. Deliver it to warehouse", 5); 
                     VehicleInfo[vehicleid][E_VEHICLE_CRATES] = 1;
                 }
             }
@@ -62,7 +61,7 @@ function:DockWorkers(playerid, type)
                 case 8:
                 {
                     PlayerDockworkerCollect[playerid] = random(sizeof(Dockworker_Collect));
-                    GPS_SetPlayerRaceCheckPoint(playerid, 1, Dockworker_Collect[PlayerDockworkerCollect[playerid]][0], Dockworker_Collect[PlayerDockworkerCollect[playerid]][1], Dockworker_Collect[PlayerDockworkerCollect[playerid]][2], 0.0, 0.0, 0.0);
+                    GPS_SetPlayerRaceCheckPoint(playerid, 1, Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_POS][0], Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_POS][1], Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_POS][2], 0.0, 0.0, 0.0);
 
                     TogglePlayerControllable(playerid, true);
                     
@@ -73,7 +72,7 @@ function:DockWorkers(playerid, type)
                     KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
                     DestroyDynamicObject(CrateObject[vehicleid]);
-                    ShowBoxMessage(playerid, "~w~You've succesfully store the package.", 5); 
+                    SendServerMessage(playerid, "[Dockworker] {a2a2a2}Next task: fetch some %s from the %s and store it in the next warehouse.", Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_DESCRIPTION], Dockworker_Store[PlayerDockworkerCollect[playerid]][E_DOCKWORK_DESCRIPTION]);
                     new Cents = floatround(DOCKWORKER_SALARY * 100, floatround_round);
 
 	                GiveMoney(playerid, Cents);
@@ -93,7 +92,7 @@ CMD:takecargo(playerid, params[])
     if(GetVehicleModel(vehicleid) != 530)
     	return SendErrorMessage(playerid, "You need to be inside dockworker vehicle.");
 
-    if(!IsPlayerInRangeOfPoint(playerid, 3.0, Dockworker_Collect[PlayerDockworkerCollect[playerid]][0], Dockworker_Collect[PlayerDockworkerCollect[playerid]][1], Dockworker_Collect[PlayerDockworkerCollect[playerid]][2]))
+    if(!IsPlayerInRangeOfPoint(playerid, 3.0, Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_POS][0], Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_POS][1], Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_POS][2]))
         return SendErrorMessage(playerid, "You aren't near the dockworker collect checkpoint.");
 
     if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
@@ -123,7 +122,7 @@ CMD:storecargo(playerid, params[])
     if(GetVehicleModel(vehicleid) != 530)
     	return SendErrorMessage(playerid, "You need to be inside dockworker vehicle.");
 
-    if(!IsPlayerInRangeOfPoint(playerid, 3.0, Dockworker_Store[PlayerDockworkerStore[playerid]][0],Dockworker_Store[PlayerDockworkerStore[playerid]][1], Dockworker_Store[PlayerDockworkerStore[playerid]][2]))
+    if(!IsPlayerInRangeOfPoint(playerid, 3.0, Dockworker_Store[PlayerDockworkerStore[playerid]][E_DOCKWORK_POS][0],Dockworker_Store[PlayerDockworkerStore[playerid]][E_DOCKWORK_POS][1], Dockworker_Store[PlayerDockworkerStore[playerid]][E_DOCKWORK_POS][2]))
         return SendErrorMessage(playerid, "You aren't near the dockworker collect checkpoint.");
         
     if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)

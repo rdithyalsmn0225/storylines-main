@@ -365,8 +365,8 @@ CMD:pool(playerid, params[])
 			GiveMoney(playerid, -Cents);
 			GiveMoney(playerb, -Cents);
 			BusinessInfo[businessid][E_BUSINESS_CASH] += Cents * 2;
-			SendServerMessage(playerid, "[8Ball] {a4a4a4}You has started pool at %s you paying %s for the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
-			SendServerMessage(playerb, "[8Ball] {a4a4a4}You has started pool at %s you paying %s for the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
+			SendServerMessage(playerid, "[8Ball] {a2a2a2}You has started pool at %s you paying %s for the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
+			SendServerMessage(playerb, "[8Ball] {a2a2a2}You has started pool at %s you paying %s for the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
 		}
 	}
 	else SendErrorMessage(playerid, "There is player using this table.");
@@ -410,7 +410,7 @@ CMD:poolexit(playerid, params[])
 				}
 				RestorePoolStick(playerid);
 				HideHeaderMessage(playerid);
-				SendServerMessage(playerid, "[8Ball] {a4a4a4}You has exit pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+				SendServerMessage(playerid, "[8Ball] {a2a2a2}You has exit pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
 			}
 		}
 	}

@@ -298,7 +298,7 @@ CMD:production(playerid, params[])
 					BusinessInfo[id][E_BUSINESS_LOADING] = false;
 					
 					Inventory_Add(playerid, "Cocaine Crack", -2502, rand);
-					SendServerMessage(playerid, "[Production] {a4a4a4}You've receive %d grams of Cocaine Crack.", rand);
+					SendServerMessage(playerid, "[Production] {a2a2a2}You've receive %d grams of Cocaine Crack.", rand);
 				}
 				else if(PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] == 2)
 				{
@@ -308,7 +308,7 @@ CMD:production(playerid, params[])
 					BusinessInfo[id][E_BUSINESS_LOADING] = false;
 
 					Inventory_Add(playerid, "PCP", -2500, rand);
-					SendServerMessage(playerid, "[Production] {a4a4a4}You've receive %d grams of PCP.", rand);
+					SendServerMessage(playerid, "[Production] {a2a2a2}You've receive %d grams of PCP.", rand);
 				}
 			}
 		}

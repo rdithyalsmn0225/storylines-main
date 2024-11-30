@@ -31,7 +31,7 @@ function:SetPlayerCamera(playerid)
 
 function:OnOfflineAjail(playerid, jailing[], reason[], length)
 {
-	SendServerMessage(playerid, "[Jail] {a4a4a4}%s was successfully admin jailed.", jailing); 
+	SendServerMessage(playerid, "[Jail] {a2a2a2}%s was successfully admin jailed.", jailing); 
 	
 	new
 		logQuery[256]
@@ -44,7 +44,7 @@ function:OnOfflineAjail(playerid, jailing[], reason[], length)
 
 function:OnOfflineBan(playerid, banning[], dbid, masterdbid, reason[], date[])
 {
-	SendServerMessage(playerid, "[Banned] {a4a4a4}%s was successfully banned.", banning);
+	SendServerMessage(playerid, "[Banned] {a2a2a2}%s was successfully banned.", banning);
 	
 	new
 		logQuery[256]
@@ -123,8 +123,8 @@ public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 	if(PlayerInfo[playerb][E_CHARACTER_TAXIDUTY])
 	{
 		GPS_SetPlayerRaceCheckPoint(playerb, 1, fX, fY, fZ, 0.0, 0.0, 0.0);
-		SendServerMessage(playerid, "[Taxi] {a4a4a4}You has marked destination in driver map!");
-		SendServerMessage(playerb, "[Taxi] {a4a4a4}Passanger has marked the destination in your map!");
+		SendServerMessage(playerid, "[Taxi] {a2a2a2}You has marked destination in driver map!");
+		SendServerMessage(playerb, "[Taxi] {a2a2a2}Passanger has marked the destination in your map!");
 	}
     return 1;
 }
@@ -161,7 +161,7 @@ function:OnAjailRecord(playerid)
 		
 		cache_get_value_name_int(i, "Time", Time); 
 		
-		SendServerMessage(playerid, "[Jail] {a4a4a4}[%s] %s was admin jailed by %s for %d minutes, Reason: %d", Date, JailedName, JailedBy, Time, Reason);
+		SendServerMessage(playerid, "[Jail] {a2a2a2}[%s] %s was admin jailed by %s for %d minutes, Reason: %d", Date, JailedName, JailedBy, Time, Reason);
 	}
 		
 	return 1;

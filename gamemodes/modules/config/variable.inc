@@ -1072,18 +1072,24 @@ new Float: RandomPacketPos[12][3] =
 };
 
 // DOCKWORKER:
-new Float: Dockworker_Collect[][3] = 
+enum E_DOCKWORK_DATA
 {
-	{2733.5237,-2511.8403,13.6641},
-	{2670.5161,-2386.1633,13.6328},
-	{2735.6633,-2465.7136,13.6484}
+	Float: E_DOCKWORK_POS[3],
+	E_DOCKWORK_DESCRIPTION[32]
 };
 
-new Float: Dockworker_Store[][3] = 
+new Dockworker_Collect[][E_DOCKWORK_DATA] = 
 {
- 	{2506.1316,-2433.9966,13.6242},
- 	{2431.7507,-2512.9504,13.6565},
- 	{2554.2400,-2409.4878,13.6332}
+	{{2733.5237,-2511.8403,13.6641}, "bottles of Malt Liquor"},
+	{{2670.5161,-2386.1633,13.6328}, "newly sown clothing"},
+	{{2735.6633,-2465.7136,13.6484}, "freshly cut planks"}
+};
+
+new Dockworker_Store[][E_DOCKWORK_DATA] = 
+{
+ 	{{2506.1316,-2433.9966,13.6242}, "RD Warehouse"},
+ 	{{2431.7507,-2512.9504,13.6565}, "AR Warehouse"},
+ 	{{2554.2400,-2409.4878,13.6332}, "MrV Warehouse"}
 };
 
 

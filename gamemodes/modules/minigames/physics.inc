@@ -37,7 +37,7 @@ public PHY_OnObjectUpdate(objectid)
                             {
                                 if (PlayingPool[p])
                                 {
-                                    format(string, sizeof(string), "[8Ball] {a4a4a4}The winner is: %s because PoolBall 8 was pocketed.", ReturnName(p));
+                                    format(string, sizeof(string), "[8Ball] {a2a2a2}The winner is: %s because PoolBall 8 was pocketed.", ReturnName(p));
                                     SendPoolPlayersMessage(string);
 
                                     PlayingPool[p] = false;
@@ -89,7 +89,7 @@ public PHY_OnObjectUpdate(objectid)
                                         PoolInfo[businessid][E_POOL_PLAYER1SCORE]++;
 
                                     PoolInfo[businessid][E_POOL_TURN] = (PoolInfo[businessid][E_POOL_TURN] == PoolInfo[businessid][E_POOL_PLAYER1]) ? PoolInfo[businessid][E_POOL_PLAYER2] : PoolInfo[businessid][E_POOL_PLAYER1];
-                                    SendPoolPlayersMessage("[8Ball] {a4a4a4}Wrong ball type! Opponent scores a point.");
+                                    SendPoolPlayersMessage("[8Ball] {a2a2a2}Wrong ball type! Opponent scores a point.");
                                     RestoreCamera(PoolInfo[businessid][E_POOL_LASTSHOOTER], businessid);
                                     return 1;
                                 }
@@ -123,15 +123,15 @@ public PHY_OnObjectUpdate(objectid)
                                     new string[128];
                                     if (PoolInfo[businessid][E_POOL_PLAYER1SCORE] > PoolInfo[businessid][E_POOL_PLAYER2SCORE])
                                     {
-                                        format(string, sizeof(string), "[8Ball] {a4a4a4}The winner is: %s with %d points.", ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE]);
+                                        format(string, sizeof(string), "[8Ball] {a2a2a2}The winner is: %s with %d points.", ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE]);
                                     }
                                     else if (PoolInfo[businessid][E_POOL_PLAYER2SCORE] > PoolInfo[businessid][E_POOL_PLAYER1SCORE])
                                     {
-                                        format(string, sizeof(string), "[8Ball] {a4a4a4}The winner is: %s with %d points.", ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
+                                        format(string, sizeof(string), "[8Ball] {a2a2a2}The winner is: %s with %d points.", ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
                                     }
                                     else
                                     {
-                                        format(string, sizeof(string), "[8Ball] {a4a4a4}The game is a draw with %d points each.", PoolInfo[businessid][E_POOL_PLAYER1SCORE]);
+                                        format(string, sizeof(string), "[8Ball] {a2a2a2}The game is a draw with %d points each.", PoolInfo[businessid][E_POOL_PLAYER1SCORE]);
                                     }
 
                                     SendPoolPlayersMessage(string);

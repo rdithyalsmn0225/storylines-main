@@ -349,7 +349,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, -Cents);
 			PropertyInfo[id][E_PROPERTY_CASH]+= amount; 
 			
-			SendServerMessage(playerid, "[Property] {a4a4a4}You added $%s to your cashbox.", amount); 
+			SendServerMessage(playerid, "[Property] {a2a2a2}You added $%s to your cashbox.", amount); 
 			SaveProperty(id);
 		}
 		else if(!strcmp(pick, "take"))
@@ -365,7 +365,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, Cents);
 			PropertyInfo[id][E_PROPERTY_CASH]-= amount;
 			
-			SendServerMessage(playerid, "[Property] {a4a4a4}You took {93C47D}$%s{ffffff} from your cashbox.", amount); 
+			SendServerMessage(playerid, "[Property] {a2a2a2}You took {93C47D}$%s{ffffff} from your cashbox.", amount); 
 			SaveProperty(id); 
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 
@@ -469,13 +469,13 @@ CMD:property(playerid, params[])
 			{
 				PropertyInfo[id][E_PROPERTY_LABELS] = 1;
 				ReloadAllFurniture(id);
-				SendServerMessage(playerid, "[Furniture] {a4a4a4}You will now see labels appear above all of your furniture.");
+				SendServerMessage(playerid, "[Furniture] {a2a2a2}You will now see labels appear above all of your furniture.");
 			}
 			else
 			{
 				PropertyInfo[id][E_PROPERTY_LABELS] = 0;
 				ReloadAllFurniture(id);
-				SendServerMessage(playerid, "[Furniture] {a4a4a4}You will no longer see any labels appear above your furniture.");
+				SendServerMessage(playerid, "[Furniture] {a2a2a2}You will no longer see any labels appear above your furniture.");
 			}
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 
