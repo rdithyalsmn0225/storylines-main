@@ -562,7 +562,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Vehicle Commands __________|");
 						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /mycars, /engine, /carlock, /carkey, /carsell, /carpark, /cartrunk, /carhood");
-						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /carlights, /carfind, /carradio, /carscrap, /carwhisper, /carb, /refill, /limitspeed");
+						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /carlights, /carwindow, /carfind, /carradio, /carscrap, /carwhisper, /carb");
+						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /refill, /limitspeed");
 					}
 					case 6:
 					{
@@ -573,33 +574,33 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Jobs Commands __________|");
 						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /takejobs, /quitjobs, /jobduty, ");
-						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands:/loadcargo, /storecargo");
-						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands:/collectgarbage, /dumpgarbage");
-						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands:/fish, /sellfish, /buybait");
+						SendClientMessage(playerid, COLOR_ORANGE, "Docksworker Commands: /loadcargo, /storecargo");
+						SendClientMessage(playerid, COLOR_ORANGE, "Garbageman Commands: /collectgarbage, /dumpgarbage");
+						SendClientMessage(playerid, COLOR_ORANGE, "Fishing Commands: /fish, /sellfish, /buybait");
 						SendClientMessage(playerid, COLOR_ORANGE, "Press 'ALT' collect garbage");
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRUCKER)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /tpda, /cargobuy, /cargosell, /cargodrop");
+							SendClientMessage(playerid, COLOR_ORANGE, "Truckers Commands: /tpda, /cargobuy, /cargosell, /cargodrop");
 							SendTipMessage(playerid, "Type '/cartrunk' to place cargo into truck.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_LUMBERJACK)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /buyaxe, /timbercut, /timbersell");
+							SendClientMessage(playerid, COLOR_ORANGE, "Lumberjack Commands: /buyaxe, /timbercut, /timbersell");
 							SendTipMessage(playerid, "Press 'ALT' to cutting tree(s) using axe.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TAXI)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /jobduty, /taxicall");
+							SendClientMessage(playerid, COLOR_ORANGE, "Taxi Commands: /jobduty, /taxicall");
 							SendTipMessage(playerid, "Taxi fare will change every 50 meters of distance.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_MECHANIC)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "/jobduty, /mechmenu");
+							SendClientMessage(playerid, COLOR_ORANGE, "Mechanic Commands: /jobduty, /mechmenu");
 							SendTipMessage(playerid, "Repairing, Repaint vehicles and maintenace road safety.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_SMUGGLER)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /findpacket, /storepacket");
+							SendClientMessage(playerid, COLOR_ORANGE, "Smugglers Commands: /findpacket, /storepacket");
 							SendTipMessage(playerid, "Press 'ALT' to pickup packet.");
 						}
 					}

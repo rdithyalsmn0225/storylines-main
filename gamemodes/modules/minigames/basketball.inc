@@ -111,28 +111,28 @@ function:PlayerShootMiss(playerid, type)
 	{
 		case 1:
 		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_POS][0], CourtInfo[cid][E_BLUE_POS][1], CourtInfo[cid][E_BLUE_POS][2]+3, 8.0);
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_POS][0], CourtInfo[cid][E_BLUE_POS][1], CourtInfo[cid][E_BLUE_POS][2]+2, 7.0);
 			ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 			CourtInfo[cid][E_BALL_SHOOT] = 7;
 			PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
 		}
 		case 2:
 		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_POS][0],CourtInfo[cid][E_RED_POS][1], CourtInfo[cid][E_RED_POS][2]+3, 8.0);
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_POS][0],CourtInfo[cid][E_RED_POS][1], CourtInfo[cid][E_RED_POS][2]+2, 7.0);
 			ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 			CourtInfo[cid][E_BALL_SHOOT] = 8;
 			PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
 		}
 		case 3:
 		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_POS][0]-randomEx(1, 2), CourtInfo[cid][E_BLUE_POS][1]-random(2), CourtInfo[cid][E_BLUE_POS][2]+1, 8.0);
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_POS][0]-randomEx(1, 2), CourtInfo[cid][E_BLUE_POS][1]-random(2), CourtInfo[cid][E_BLUE_POS][2]+2, 7.0);
 			ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 			CourtInfo[cid][E_BALL_SHOOT] = 4;
 			PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
 		}
 		case 4:
 		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_POS][0]+randomEx(1, 2),CourtInfo[cid][E_RED_POS][1]+random(2), CourtInfo[cid][E_RED_POS][2]+1, 8.0);
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_POS][0]+randomEx(1, 2),CourtInfo[cid][E_RED_POS][1]+random(2), CourtInfo[cid][E_RED_POS][2]+2, 7.0);
 			ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 			CourtInfo[cid][E_BALL_SHOOT] = 5;
 			PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
@@ -152,7 +152,7 @@ function:PlayerBallDown(playerid, Float:oldz)
     x2 += (16 * floatsin(-a, degrees));
     y2 += (16 * floatcos(-a, degrees));
 
-    MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], x2, y2, CourtInfo[cid][E_BALL_POS][2], 8.0);
+    MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], x2, y2, CourtInfo[cid][E_BALL_POS][2], 7.0);
     CourtInfo[cid][E_BALLER] = 999;
     CourtInfo[cid][E_BALL_SHOOT] = 0;
     CourtInfo[cid][E_BALL_BOUNCE] = 1;
@@ -167,7 +167,7 @@ function:PlayerBallShoot(playerid, type)
 	{
 		case 1:
 		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_BALL][0], CourtInfo[cid][E_BLUE_BALL][1], CourtInfo[cid][E_BLUE_BALL][2], 8.0);
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_BLUE_BALL][0], CourtInfo[cid][E_BLUE_BALL][1], CourtInfo[cid][E_BLUE_BALL][2], 7.0);
 			CourtInfo[cid][E_BALLER] = 999;
 			CourtInfo[cid][E_BALL_SHOOT] = 0;
 			CourtInfo[cid][E_BALL_BOUNCE] = 9;
@@ -177,12 +177,12 @@ function:PlayerBallShoot(playerid, type)
 			GetPlayerPos(playerid, shot[0], shot[1], shot[2]);
 			new Float: fDistance = GetPlayerDistanceFromPoint(playerid, CourtInfo[cid][E_BLUE_POS][0], CourtInfo[cid][E_BLUE_POS][1], CourtInfo[cid][E_BLUE_POS][2]);
 			
-			format(str, sizeof(str), "shoots the basketball over %0.2f yards and SCORES.", floatround(fDistance));
+			format(str, sizeof(str), "shoots the basketball over %0.2f yards and SCORES.", fDistance);
 			cmd_me(playerid, str);
 		}
 		case 2:
 		{
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_BALL][0], CourtInfo[cid][E_RED_BALL][1], CourtInfo[cid][E_RED_BALL][2], 8.0);
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], CourtInfo[cid][E_RED_BALL][0], CourtInfo[cid][E_RED_BALL][1], CourtInfo[cid][E_RED_BALL][2], 7.0);
 			CourtInfo[cid][E_BALLER] = 999;
 			CourtInfo[cid][E_BALL_SHOOT] = 0;
 			CourtInfo[cid][E_BALL_BOUNCE] = 9;
@@ -192,7 +192,7 @@ function:PlayerBallShoot(playerid, type)
 			GetPlayerPos(playerid, shot[0], shot[1], shot[2]);
 			new Float: fDistance = GetPlayerDistanceFromPoint(playerid, CourtInfo[cid][E_RED_POS][0], CourtInfo[cid][E_RED_POS][1], CourtInfo[cid][E_RED_POS][2]);
 			
-			format(str, sizeof(str), "shoots the basketball over %0.2f yards and SCORES.", floatround(fDistance));
+			format(str, sizeof(str), "shoots the basketball over %0.2f yards and SCORES.", fDistance);
 			cmd_me(playerid, str);
 		}
 		case 3:
@@ -200,7 +200,7 @@ function:PlayerBallShoot(playerid, type)
 			new Float:pos[3];
 			GetDynamicObjectPos(CourtInfo[cid][E_BALL_OBJECT], pos[0], pos[1], pos[2]);
 
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], pos[0], pos[1], CourtInfo[cid][E_BLUE_POS][2], 8.0);
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], pos[0], pos[1], CourtInfo[cid][E_BLUE_POS][2]+2, 7.0);
 			CourtInfo[cid][E_BALLER] = 999;
 			CourtInfo[cid][E_BALL_SHOOT] = 0;
 			CourtInfo[cid][E_BALL_BOUNCE] = 1;
@@ -210,7 +210,7 @@ function:PlayerBallShoot(playerid, type)
 			GetPlayerPos(playerid, shot[0], shot[1], shot[2]);
 			new Float: fDistance = GetPlayerDistanceFromPoint(playerid, CourtInfo[cid][E_BLUE_POS][0], CourtInfo[cid][E_BLUE_POS][1], CourtInfo[cid][E_BLUE_POS][2]);
 			
-			format(str, sizeof(str), "shoots the basketball over %0.2f yards and MISSES.", floatround(fDistance));
+			format(str, sizeof(str), "shoots the basketball over %0.2f yards and MISSES.", fDistance);
 			cmd_me(playerid, str);
 		}
 		case 4:
@@ -218,7 +218,7 @@ function:PlayerBallShoot(playerid, type)
 			new Float:pos[3];
 			GetDynamicObjectPos(CourtInfo[cid][E_BALL_OBJECT], pos[0], pos[1], pos[2]);
 
-			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], pos[0], pos[1],CourtInfo[cid][E_RED_POS][2], 8.0);
+			MoveDynamicObject(CourtInfo[cid][E_BALL_OBJECT], pos[0], pos[1],CourtInfo[cid][E_RED_POS][2]+2, 7.0);
 			CourtInfo[cid][E_BALLER] = 999;
 			CourtInfo[cid][E_BALL_SHOOT] = 0;
 			CourtInfo[cid][E_BALL_BOUNCE] = 1;
@@ -228,7 +228,7 @@ function:PlayerBallShoot(playerid, type)
 			GetPlayerPos(playerid, shot[0], shot[1], shot[2]);
 			new Float: fDistance = GetPlayerDistanceFromPoint(playerid, CourtInfo[cid][E_RED_POS][0], CourtInfo[cid][E_RED_POS][1], CourtInfo[cid][E_RED_POS][2]);
 			
-			format(str, sizeof(str), "shoots the basketball over %0.2f yards and MISSES.", floatround(fDistance));
+			format(str, sizeof(str), "shoots the basketball over %0.2f yards and MISSES.", fDistance);
 			cmd_me(playerid, str);
 		}
 	}
@@ -241,6 +241,10 @@ CMD:court(playerid, params[])
 	new cid = PlayerInfo[playerid][E_CHARACTER_COURT];
 	if(!PlayerInfo[playerid][E_CHARACTER_COURT])
 	{
+		if(GetPlayerPing(playerid) > 100) 
+		{
+			SendClientMessage(playerid, COLOR_YELLOW, "Due to your high ping (100+), the game may desync. If this occurs please leave the game A.S.A.P. or contact an admin." ) ;
+		}
 		if(IsPlayerNearCourt(playerid, 1))
 		{
 			PlayerInfo[playerid][E_CHARACTER_COURT] = IsPlayerNearCourt(playerid, 1);

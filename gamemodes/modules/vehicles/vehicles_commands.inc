@@ -182,7 +182,6 @@ CMD:carlock(playerid, params[])
 		}
 	}
 		
-
 	if(foundCar == true)
 	{
 		if(VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID] && PlayerInfo[playerid][E_CHARACTER_DUPLICATEKEY] != vehicleid)
@@ -221,6 +220,7 @@ CMD:carlock(playerid, params[])
     return 1;
 }
 
+CMD:lights(playerid, params[]) return cmd_carlights(playerid, params);
 CMD:carlights(playerid, params[])
 {
     new vehicleid = GetPlayerVehicleID(playerid);
@@ -234,6 +234,112 @@ CMD:carlights(playerid, params[])
 		ToggleVehicleLights(vehicleid, true);
 			
 	else ToggleVehicleLights(vehicleid, false);
+    return 1;
+}
+
+CMD:cws(playerid, params[]) return cmd_carwindow(playerid, params);
+CMD:window(playerid, params[]) return cmd_carwindow(playerid, params);
+CMD:windows(playerid, params[]) return cmd_carwindow(playerid, params);
+CMD:rollwindow(playerid, params[]) return cmd_carwindow(playerid, params);
+CMD:rollwindows(playerid, params[]) return cmd_carwindow(playerid, params);
+CMD:carwindows(playerid, params[]) return cmd_carwindow(playerid, params);
+CMD:carwindow(playerid, params[])
+{
+    if(!IsPlayerInAnyVehicle(playerid))
+		return SendErrorMessage(playerid, "You aren't in any vehicle.");
+
+    new vehicleid = GetPlayerVehicleID(playerid);
+
+    if (!IsWindowedVehicle(vehicleid))
+        return SendErrorMessage(playerid, "You are not in any vehicle with windows.");
+
+    if (sscanf(params, "d", params[0]))
+    {
+        SendUsageMessage(playerid, "/(car/roll)window(s) [0, 1-2-3-4]");
+        SendTipMessage(playerid, "0 - All | 1 - Driver window | 2 - Passenger window | 3 - Rear-left window | 4 - Rear-right window");
+        return 1;
+    }
+
+    if (params[0] > 4 || params[0] < 0)
+        return SendClientMessage(playerid, -1, "0 - All | 1 - Driver window | 2 - Passenger window | 3 - Rear-left window | 4 - Rear-right window");
+
+    new driver, passenger, backleft, backright;
+    GetVehicleParamsCarWindows(vehicleid, driver, passenger, backleft, backright);
+
+    switch (params[0])
+    {
+        case 0:
+        {
+            if (VehicleInfo[vehicleid][E_VEHICLE_WINDOWS])
+            {
+                VehicleInfo[vehicleid][E_VEHICLE_WINDOWS] = false;
+                driver = 0;
+                passenger = 0;
+                backleft = 0;
+                backright = 0;
+            }
+            else
+            {
+                driver = 1;
+                passenger = 1;
+                backleft = 1;
+                backright = 1;
+                VehicleInfo[vehicleid][E_VEHICLE_WINDOWS] = true;
+            }
+            return 1;
+        }
+
+        case 1: driver = !driver;
+        case 2: passenger = !passenger;
+        case 3: backleft = !backleft;
+        case 4: backright = !backright;
+    }
+
+    switch (params[0])
+    {
+        case 0:
+        {
+            if (VehicleInfo[vehicleid][E_VEHICLE_WINDOWS])
+            {
+                cmd_me(playerid, sprintf("rolls up the windows of the %s.", ReturnVehicleName(vehicleid)));
+            }
+            else
+            {
+                cmd_me(playerid, sprintf("rolls down the windows of the %s.", ReturnVehicleName(vehicleid)));
+            }
+        }
+
+        case 1:
+        {
+            cmd_me(playerid, sprintf("rolls %s the front-left window of the %s.", driver ? "up" : "down", ReturnVehicleName(vehicleid)));
+        }
+
+        case 2:
+        {
+            cmd_me(playerid,  sprintf("rolls %s the front-right window of the %s.", passenger ? "up" : "down", ReturnVehicleName(vehicleid)));
+        }
+
+        case 3:
+        {
+            cmd_me(playerid,  sprintf("rolls %s the rear-left window of the %s.", backleft ? "up" : "down", ReturnVehicleName(vehicleid)));
+        }
+
+        case 4:
+        {
+            cmd_me(playerid, sprintf("rolls %s the rear-right window of the %s.", backright ? "up" : "down", ReturnVehicleName(vehicleid)));
+        }
+    }
+
+    if (driver == 0 || passenger == 0 || backleft == 0 || backright == 0)
+    {
+        VehicleInfo[vehicleid][E_VEHICLE_WINDOWS] = false;
+    }
+    else if (driver == 1 && passenger == 1 && backleft == 1 && backright == 1)
+    {
+        VehicleInfo[vehicleid][E_VEHICLE_WINDOWS] = true;
+    }
+
+    SetVehicleParamsCarWindows(vehicleid, driver, passenger, backleft, backright);
     return 1;
 }
 
@@ -380,6 +486,7 @@ CMD:carhood(playerid, params[])
     return 1;
 }
 
+CMD:mv(playerid, params[]) return cmd_mycars(playerid, params);
 CMD:mycars(playerid, params[])
 {
     if(CountPlayerVehicles(playerid) == 0)
@@ -401,6 +508,8 @@ CMD:carradio(playerid, params[])
 }
 
 new PlayerEngineTimer[MAX_PLAYERS], PlayerEngineValue[MAX_PLAYERS];
+CMD:en(playerid, params[]) return cmd_engine(playerid, params);
+CMD:carengine(playerid, params[]) return cmd_engine(playerid, params);
 CMD:engine(playerid, params[])
 {
 	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER)
@@ -509,6 +618,7 @@ CMD:gascan(playerid, params[])
 	return 1;
 }
 
+CMD:refill(playerid, params[]) return cmd_refuel(playerid, params);
 CMD:refuel(playerid, params[])
 {
 	new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
@@ -543,6 +653,8 @@ CMD:refuel(playerid, params[])
 	return 1;
 }
 
+CMD:speedlimit(playerid, params[]) return cmd_limitspeed(playerid, params);
+CMD:carlimit(playerid, params[]) return cmd_limitspeed(playerid, params);
 CMD:limitspeed(playerid, params[])
 {
 	new limit;

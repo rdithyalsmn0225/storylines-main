@@ -756,6 +756,7 @@ function:repaintplates(playerid, vehicleid)
             SetVehicleNumberPlate(vehicleid, plates);
             SetVehicleToRespawnEx(vehicleid); 
             VehicleInfo[vehicleid][E_VEHICLE_PLATESFAKE] = true;
+            VehicleInfo[vehicleid][E_VEHICLE_PLATESSTATUS] = false;
 
             SaveVehicle(vehicleid);
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);

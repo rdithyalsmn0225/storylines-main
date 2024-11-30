@@ -711,17 +711,55 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 		if (PlayerInfo[playerid][E_CHARACTER_PRISON]) range = 7.5;
 		else if (GetPlayerVirtualWorld(playerid) != 0) range = 10.0;
 
-		if(toid != INVALID_PLAYER_ID) 
+		if (vehicleid && IsPlayerInAnyVehicle(playerid) && IsWindowedVehicle(vehicleid)) 
 		{
-			format(string, sizeof(string), "says (to %s): %s", ReturnMixedName(toid), text);
-			ProxDetectorEx(playerid, range, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
-		} 
-		else 
-		{
-			format(string, sizeof(string), "says: %s", text);
-			ProxDetectorEx(playerid, range, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
-			ChatAnimation(playerid, strlen(text));
+			if (vehicleid != INVALID_VEHICLE_ID ) 
+			{
+				if (!VehicleInfo[vehicleid][E_VEHICLE_WINDOWS]) 
+				{
+					if(toid != INVALID_PLAYER_ID) 
+					{
+						format(string, sizeof(string), "says (to %s): %s", ReturnMixedName(toid), text);
+						ProxDetectorEx(playerid, range, 0xDEDEDEFF, "(Windows Open)", string, .annonated=true, .chat=true);
+					} 
+					else 
+					{
+						format(string, sizeof(string), "says: %s", text);
+						ProxDetectorEx(playerid, range, 0xDEDEDEFF, "(Windows Open)", string, .annonated=true, .chat=true);
+						ChatAnimation(playerid, strlen(text));
+					}
+				}
+				else
+				{
+					if(toid != INVALID_PLAYER_ID) 
+					{
+						format(string, sizeof(string), "says (to %s): %s", ReturnMixedName(toid), text);
+						ProxDetectorEx(playerid, range, 0xDEDEDEFF, "(Windows Closed)", string, .annonated=true, .chat=true);
+					} 
+					else 
+					{
+						format(string, sizeof(string), "says: %s", text);
+						ProxDetectorEx(playerid, range, 0xDEDEDEFF, "(Windows Closed)", string, .annonated=true, .chat=true);
+						ChatAnimation(playerid, strlen(text));
+					}
+				}
+			}
 		}
+		else
+		{
+			if(toid != INVALID_PLAYER_ID) 
+			{
+				format(string, sizeof(string), "says (to %s): %s", ReturnMixedName(toid), text);
+				ProxDetectorEx(playerid, range, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
+			} 
+			else 
+			{
+				format(string, sizeof(string), "says: %s", text);
+				ProxDetectorEx(playerid, range, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
+				ChatAnimation(playerid, strlen(text));
+			}
+		}
+		
 	}
 	return 1;
 }

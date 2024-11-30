@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2024 at 03:47 PM
+-- Generation Time: Nov 29, 2024 at 02:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -95,6 +95,7 @@ CREATE TABLE `businesses` (
   `BusinessMarketPrice` int(11) NOT NULL DEFAULT 5000,
   `BusinessCashbox` int(11) NOT NULL DEFAULT 0,
   `BusinessStock` int(11) NOT NULL DEFAULT 0,
+  `BusinessMapIcon` int(11) NOT NULL DEFAULT 0,
   `BusinessPointX` float NOT NULL DEFAULT 0,
   `BusinessPointY` float NOT NULL DEFAULT 0,
   `BusinessPointZ` float NOT NULL DEFAULT 0,
@@ -117,11 +118,14 @@ CREATE TABLE `businesses` (
 -- Dumping data for table `businesses`
 --
 
-INSERT INTO `businesses` (`BusinessDBID`, `BusinessOwnerDBID`, `BusinessInteriorX`, `BusinessInteriorY`, `BusinessInteriorZ`, `BusinessInteriorWorld`, `BusinessInteriorIntID`, `BusinessEntranceX`, `BusinessEntranceY`, `BusinessEntranceZ`, `BusinessName`, `BusinessType`, `BusinessLocked`, `BusinessEntranceFee`, `BusinessLevel`, `BusinessMarketPrice`, `BusinessCashbox`, `BusinessStock`, `BusinessPointX`, `BusinessPointY`, `BusinessPointZ`, `BusinessRobberyTime`, `BusinessShipments`, `BusinessAmount`, `BusinessFuelX`, `BusinessFuelY`, `BusinessFuelZ`, `BusinessActorX`, `BusinessActorY`, `BusinessActorZ`, `BusinessActorA`, `BusinessProducts1`, `BusinessProducts2`, `BusinessProducts3`) VALUES
-(15, 0, 1470.7, 1562.97, 108.377, 8030, 11, 1248.87, 365.518, 19.5547, 'Unknown', 2, 0, 0, 0, 0, 0, 0, 1473.9, 1567.96, 108.377, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(16, 0, 1439.55, 1562.97, 108.377, 16013, 11, 122.412, -294.581, 1.57812, 'Unknown', 3, 0, 0, 0, 0, 0, 0, 1440.35, 1576.02, 108.377, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(17, 0, 207.726, -110.823, 1005.13, 4937, 15, 2244.5, -1665.01, 15.4766, 'Unknown', 8, 0, 0, 0, 139149312, 0, 96, 207.742, -99.5688, 1005.35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(18, 0, 0, 0, 0, 6830, 0, 1929.55, -1776.22, 13.5469, 'Unknown', 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1938.73, -1773.93, 13.3828, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `businesses` (`BusinessDBID`, `BusinessOwnerDBID`, `BusinessInteriorX`, `BusinessInteriorY`, `BusinessInteriorZ`, `BusinessInteriorWorld`, `BusinessInteriorIntID`, `BusinessEntranceX`, `BusinessEntranceY`, `BusinessEntranceZ`, `BusinessName`, `BusinessType`, `BusinessLocked`, `BusinessEntranceFee`, `BusinessLevel`, `BusinessMarketPrice`, `BusinessCashbox`, `BusinessStock`, `BusinessMapIcon`, `BusinessPointX`, `BusinessPointY`, `BusinessPointZ`, `BusinessRobberyTime`, `BusinessShipments`, `BusinessAmount`, `BusinessFuelX`, `BusinessFuelY`, `BusinessFuelZ`, `BusinessActorX`, `BusinessActorY`, `BusinessActorZ`, `BusinessActorA`, `BusinessProducts1`, `BusinessProducts2`, `BusinessProducts3`) VALUES
+(15, 0, 1470.7, 1562.97, 108.377, 8030, 11, 1248.68, 365.039, 19.5547, 'Unknown', 4, 0, 0, 0, 0, 0, 0, 0, 1473.9, 1567.96, 108.377, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(16, 0, 1439.55, 1562.97, 108.377, 16013, 11, 122.412, -294.581, 1.57812, 'Unknown', 3, 0, 0, 0, 0, 0, 0, 0, 1440.35, 1576.02, 108.377, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(17, 0, 207.726, -110.823, 1005.13, 4937, 15, 2244.5, -1665.01, 15.4766, 'Unknown', 8, 0, 0, 0, 5000000, 0, 95, 45, 207.742, -99.5688, 1005.35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(18, 0, 0, 0, 0, 6830, 0, 1929.55, -1776.22, 13.5469, 'Unknown', 7, 0, 0, 0, 5000000, 0, 0, 35, 0, 0, 0, 0, 0, 0, 1938.73, -1773.93, 13.3828, 0, 0, 0, 0, 0, 0, 0),
+(19, 0, 0, 0, 0, 17149, 0, 1268.33, -1547.47, 13.5606, 'Departement of Motorvehicle', 10, 0, 0, 0, 0, 0, 0, 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(20, 0, 0, 0, 0, 1605, 0, 1671.55, -2313.43, -2.65855, 'Los Santos Rental', 12, 0, 0, 0, 0, 0, 0, 37, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(21, 0, 501.978, -67.9858, 998.758, 11600, 11, 2310.08, -1643.53, 14.827, 'Ganton Bar', 2, 0, 0, 0, 5000000, 0, 99, 49, 496.994, -76.7572, 998.855, 0, 0, 0, 0, 0, 0, 497.305, -77.5615, 998.765, 2.79407, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -147,8 +151,12 @@ CREATE TABLE `characters` (
   `pLevel` int(11) NOT NULL DEFAULT 1,
   `pWantedLevel` int(11) NOT NULL DEFAULT 0,
   `pEXP` int(11) NOT NULL DEFAULT 0,
-  `pAge` varchar(20) NOT NULL DEFAULT 'Invalid',
-  `pEthnicity` varchar(60) NOT NULL DEFAULT 'Invalid',
+  `pAge` int(11) NOT NULL DEFAULT 18,
+  `pHeight` int(11) NOT NULL DEFAULT 0,
+  `pEthnicity` varchar(32) NOT NULL DEFAULT 'Invalid',
+  `pHair` varchar(32) NOT NULL DEFAULT 'Invalid',
+  `pEyes` varchar(32) NOT NULL DEFAULT 'Invalid',
+  `pDescription` varchar(32) NOT NULL DEFAULT 'Invalid',
   `pGender` int(11) NOT NULL DEFAULT 0,
   `pStory` varchar(90) NOT NULL DEFAULT 'Nothing',
   `pStoryTwo` varchar(90) NOT NULL DEFAULT 'Nothing',
@@ -196,6 +204,7 @@ CREATE TABLE `characters` (
   `pHasInjured` tinyint(1) NOT NULL DEFAULT 0,
   `pHasDeath` tinyint(1) NOT NULL DEFAULT 0,
   `pHealth` float NOT NULL DEFAULT 100,
+  `pMaxHealth` float NOT NULL DEFAULT 100,
   `pArmor` float NOT NULL DEFAULT 0,
   `pToggleAdmin` tinyint(1) NOT NULL DEFAULT 0,
   `pToggleHUD` tinyint(1) NOT NULL DEFAULT 0,
@@ -228,9 +237,11 @@ CREATE TABLE `characters` (
 -- Dumping data for table `characters`
 --
 
-INSERT INTO `characters` (`master_dbid`, `char_dbid`, `char_name`, `char_masters`, `create_date`, `create_ip`, `pAdmin`, `pLastSkin`, `pFacSkin`, `pLastPosX`, `pLastPosY`, `pLastPosZ`, `pLastInterior`, `pLastWorld`, `pLevel`, `pWantedLevel`, `pEXP`, `pAge`, `pEthnicity`, `pGender`, `pStory`, `pStoryTwo`, `pMoney`, `pBank`, `pPaycheck`, `pPhone`, `pLastOnline`, `pLastOnlineTime`, `pAdminjailed`, `pAdminJailTime`, `pOfflinejailed`, `pOfflinejailedReason`, `pFaction`, `pFactionRank`, `pFactionSubsets`, `pOwnedVehicles1`, `pOwnedVehicles2`, `pOwnedVehicles3`, `pOwnedVehicles4`, `pOwnedVehicles5`, `pVehicleSpawned`, `pVehicleSpawnedID`, `pTimeplayed`, `pMaskID`, `pMaskIDEx`, `pInProperty`, `pInBusiness`, `pInEntrance`, `pRadio1`, `pRadio2`, `pMainSlot`, `pSpawnPoint`, `pSpawnPointHouse`, `pWeaponsLicense`, `pDriversLicense`, `pTruckerLicense`, `pActiveListings`, `pPrisonTimes`, `pPrison`, `pInFaction`, `pRobberyCooldown`, `pFightstyle`, `pHasAoe`, `pHasInjured`, `pHasDeath`, `pHealth`, `pArmor`, `pToggleAdmin`, `pToggleHUD`, `pToggleJoined`, `pBodyPart1`, `pBodyPart2`, `pBodyPart3`, `pBodyPart4`, `pBodyPart5`, `pBodyPart6`, `pBodyPart7`, `pBodyPart8`, `pWound1`, `pWound2`, `pWound3`, `pWound4`, `pWound5`, `pWound6`, `pWound7`, `pWound8`, `pJobs`, `pJobsCD`, `pSweeperCD`, `pGarbageCD`, `pBusdriverCD`, `pTutorial`) VALUES
-(18, 1, 'Jayvon_Williams', 'Bleeda', 'June 2, 2024 11:49:50', '127.0.0.1', 4, 187, 20263, 1940, -1783.64, 13.3906, 0, 0, 10, 1, 2, '25/02/2000', 'Los Santos', 1, '', '', 91250, 254, 2, 94367, 'November 22, 2024 21:43:31', 0, 0, 0, 0, 'a', 2, 4, 2, 93, 87, 90, 0, 0, 0, 44, 63, 205458, 58, 0, 0, 4, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 15, 1, 0, 0, 100, 100, 0, 0, 0, 24, 100, 100, 100, 100, 1, 100, 0, 1, 100, 69, 100, 100, 100, 75, 100, 4, 0, 0, 0, 0, 1),
-(18, 53, 'Delilah_Winters', 'Delilah', 'November 6, 2024 19:47:32', '127.0.0.1', 4, 245, 0, 698.26, -1752.87, 13.5922, 0, 0, 1, 0, 0, '02/02/1960', 'Los santos', 2, '', '', 250, 250, 0, 100621, 'November 15, 2024 11:22:15', 4, 0, 0, 0, 'None', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 236393, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 0, 0, 96, 0, 0, 0, 0, 73, 100, 100, 100, 100, 100, 100, 100, 1, 100, 100, 100, 100, 100, 100, 0, 3, 0, 0, 0, 0, 1);
+INSERT INTO `characters` (`master_dbid`, `char_dbid`, `char_name`, `char_masters`, `create_date`, `create_ip`, `pAdmin`, `pLastSkin`, `pFacSkin`, `pLastPosX`, `pLastPosY`, `pLastPosZ`, `pLastInterior`, `pLastWorld`, `pLevel`, `pWantedLevel`, `pEXP`, `pAge`, `pHeight`, `pEthnicity`, `pHair`, `pEyes`, `pDescription`, `pGender`, `pStory`, `pStoryTwo`, `pMoney`, `pBank`, `pPaycheck`, `pPhone`, `pLastOnline`, `pLastOnlineTime`, `pAdminjailed`, `pAdminJailTime`, `pOfflinejailed`, `pOfflinejailedReason`, `pFaction`, `pFactionRank`, `pFactionSubsets`, `pOwnedVehicles1`, `pOwnedVehicles2`, `pOwnedVehicles3`, `pOwnedVehicles4`, `pOwnedVehicles5`, `pVehicleSpawned`, `pVehicleSpawnedID`, `pTimeplayed`, `pMaskID`, `pMaskIDEx`, `pInProperty`, `pInBusiness`, `pInEntrance`, `pRadio1`, `pRadio2`, `pMainSlot`, `pSpawnPoint`, `pSpawnPointHouse`, `pWeaponsLicense`, `pDriversLicense`, `pTruckerLicense`, `pActiveListings`, `pPrisonTimes`, `pPrison`, `pInFaction`, `pRobberyCooldown`, `pFightstyle`, `pHasAoe`, `pHasInjured`, `pHasDeath`, `pHealth`, `pMaxHealth`, `pArmor`, `pToggleAdmin`, `pToggleHUD`, `pToggleJoined`, `pBodyPart1`, `pBodyPart2`, `pBodyPart3`, `pBodyPart4`, `pBodyPart5`, `pBodyPart6`, `pBodyPart7`, `pBodyPart8`, `pWound1`, `pWound2`, `pWound3`, `pWound4`, `pWound5`, `pWound6`, `pWound7`, `pWound8`, `pJobs`, `pJobsCD`, `pSweeperCD`, `pGarbageCD`, `pBusdriverCD`, `pTutorial`) VALUES
+(18, 1, 'Jayvon_Williams', 'Radeetz', 'June 2, 2024 11:49:50', '127.0.0.1', 4, 184, 20263, 1513.49, -1839.28, 13.5469, 0, 0, 10, 1, 2, 25, 0, 'Los Santos', 'Invalid', 'Invalid', 'Invalid', 1, '', '', 17300, 254, 1002, 94367, 'November 29, 2024 20:03:27', 19, 0, 0, 0, 'a', 1, 4, 2, 94, 0, 0, 0, 0, 1, 43, 63, 205458, 58, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 15, 1, 0, 0, 100, 100, 0, 0, 0, 0, 0, 100, 100, 100, 100, 1, 100, 0, 1, 100, 69, 100, 100, 100, 75, 100, 2, 0, 0, 0, 0, 1),
+(60, 53, 'Delilah_Winters', 'Delilah', 'November 6, 2024 19:47:32', '127.0.0.1', 4, 245, 0, 508.632, -84.4331, 998.961, 11, 11600, 1, 0, 0, 2, 0, 'Los santos', 'Invalid', 'Invalid', 'Invalid', 2, '', '', 4955250, 250, 0, 100621, 'November 26, 2024 16:59:50', 0, 0, 0, 0, 'None', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 236393, 0, 0, 7, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 0, 0, 96, 100, 0, 0, 0, 0, 73, 100, 100, 100, 100, 100, 100, 100, 1, 100, 100, 100, 100, 100, 100, 0, 3, 0, 0, 0, 0, 1),
+(18, 56, 'Ethan_Patterson', 'Radeetz', 'November 28, 2024 21:59:13', '127.0.0.1', 0, 106, 0, 1685.62, -2334.3, -2.17969, 11, 0, 1, 0, 0, 17, 177, 'Black', 'Brown', 'Gray', 'Invalid', 1, '', '', 250, 250, 0, 96576, 'November 28, 2024 22:02:34', 0, 0, 0, 0, 'None', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 212894, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 0, 0, 100, 100, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+(18, 57, 'Bryan_DeOrtiz', 'Radeetz', 'November 28, 2024 22:04:10', '127.0.0.1', 0, 61, 0, 1685.55, -2330.55, -2.67969, 0, 0, 1, 0, 0, 40, 187, 'Asian', 'Black', 'Amber', 'Invalid', 1, '', '', 250, 250, 0, 100024, 'November 28, 2024 22:05:04', 2, 0, 0, 0, 'None', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 357431, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 0, 0, 100, 100, 0, 0, 0, 0, 100, 100, 100, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -278,8 +289,7 @@ INSERT INTO `court` (`ID`, `ballx`, `bally`, `ballz`, `bluex`, `bluey`, `bluez`,
 (3, 2316.91, -1527.57, 24.544, 2317, -1539.97, 24.344, 2317.02, -1515.59, 24.344, 2317.01, -1541.1, 27.364, 2316.87, -1514.77, 27.394),
 (4, 2290.52, -1528.25, 26.075, 2290.6, -1540.91, 26.075, 2290.61, -1514.93, 26.075, 2290.7, -1541.11, 28.945, 2290.49, -1514.8, 28.875),
 (5, 2782.18, -2019.61, 12.755, 2794.68, -2019.58, 12.755, 2769.08, -2019.6, 12.755, 2794.99, -2019.52, 15.445, 2768.69, -2019.7, 15.425),
-(6, 2045.32, -1690.38, 12.755, 2045.58, -1687.72, 12.755, 0, 0, 0, 2045.47, -1687.73, 15.677, 0, 0, 0),
-(7, 2528.95, -1667.76, 15.1689, 0, 0, 0, 0, 0, 0, 2533.4, -1667.53, 17.0789, 0, 0, 0);
+(6, 2045.32, -1690.38, 12.755, 2045.58, -1687.72, 12.755, 0, 0, 0, 2045.47, -1687.73, 15.677, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -300,7 +310,8 @@ CREATE TABLE `criminal_record` (
 
 INSERT INTO `criminal_record` (`idx`, `player_name`, `charge_reason`, `add_date`) VALUES
 (22, 'Radeetz', 'lorem ipsum', 'July 10, 2024 20:51:57'),
-(23, 'Blixkyy', 'Grand Theft Auto', 'July 11, 2024 11:54:27');
+(23, 'Blixkyy', 'Grand Theft Auto', 'July 11, 2024 11:54:27'),
+(24, 'Jayvon_Williams', 'Sex Harrasment', 'November 29, 2024 19:35:33');
 
 -- --------------------------------------------------------
 
@@ -503,15 +514,17 @@ CREATE TABLE `furniture` (
 --
 
 INSERT INTO `furniture` (`id`, `propertydbid`, `modelid`, `name`, `price`, `type`, `pos_x`, `pos_y`, `pos_z`, `rot_x`, `rot_y`, `rot_z`, `interior`, `world`, `door_opened`, `door_locked`, `matModel0`, `matModel1`, `matModel2`, `matModel3`, `matModel4`, `matModel5`, `matModel6`, `matModel7`, `matModel8`, `matModel9`, `matModel10`, `matModel11`, `matModel12`, `matModel13`, `matModel14`, `matTxd0`, `matTxd1`, `matTxd2`, `matTxd3`, `matTxd4`, `matTxd5`, `matTxd6`, `matTxd7`, `matTxd8`, `matTxd9`, `matTxd10`, `matTxd11`, `matTxd12`, `matTxd13`, `matTxd14`, `matTexture0`, `matTexture1`, `matTexture2`, `matTexture3`, `matTexture4`, `matTexture5`, `matTexture6`, `matTexture7`, `matTexture8`, `matTexture9`, `matTexture10`, `matTexture11`, `matTexture12`, `matTexture13`, `matTexture14`) VALUES
-(53, 39, 19379, 'Wall Static', 0, 1, 239.575, 458.411, 996.813, 0, 90, 0, 5, 38805, 0, 0, 14475, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ganghoos', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'mp_burn_carpet', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
-(54, 39, 19449, 'Wall Static', 0, 1, 239.144, 463.237, 998.619, 0, 0, 90, 5, 38805, 0, 0, 19507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ganghouse1_lax', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'comptwall7', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
-(55, 39, 19449, 'Wall Static', 0, 1, 244.034, 458.408, 998.619, 0, 0, 180, 5, 38805, 0, 0, 19507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ganghouse1_lax', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'comptwall7', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
-(56, 39, 19449, 'Wall Static', 0, 1, 239.144, 453.848, 998.619, 0, 0, 90, 5, 38805, 0, 0, 19507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ganghouse1_lax', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'comptwall7', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
-(57, 39, 19379, 'Wall Static', 0, 1, 239.575, 458.411, 1000.43, 0, 90, 0, 5, 38805, 0, 0, 19507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ganghouse1_lax', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'Heliconcrete', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
-(58, 39, 19449, 'Wall Static', 0, 1, 234.434, 458.408, 998.619, 0, 0, 180, 5, 38805, 0, 0, 19507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ganghouse1_lax', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'comptwall7', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
-(59, 39, 19802, 'Door Static', 0, 1, 238.361, 463.17, 996.899, 0, 0, 360, 5, 38805, 0, 0, 12948, 12948, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ce_bankalley1', 'ce_bankalley1', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'Bow_abbmetaldoor', 'Bow_abbmetaldoor', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
-(60, 39, 19357, 'wall005', 1500, 0, 236.123, 458.126, 998.599, 0, 0, 273.603, 5, 38805, 0, 0, 19507, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ganghouse1_lax', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'comptwall7', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
-(61, 39, 2262, 'Downtown frame', 1100, 0, 235.013, 460.342, 998.329, 0, 11.8, 90.22, 5, 38805, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None');
+(82, 42, 19379, 'Wall Static', 0, 1, 330.005, 458.411, 996.813, 0, 90, 0, 8, 38926, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
+(83, 42, 19449, 'Wall Static', 0, 1, 334.523, 448.788, 998.619, 0, -0.000007, 180, 8, 38926, 0, 0, 14792, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ab_vgsgymbits01', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'bbar_wall2', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
+(84, 42, 19379, 'Wall Static', 0, 1, 330.005, 448.791, 1000.44, 0, 90, 0, 8, 38926, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
+(85, 42, 19379, 'Wall Static', 0, 1, 330.005, 458.411, 1000.44, 0, 90, 0, 8, 38926, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
+(86, 42, 19449, 'Wall Static', 0, 1, 334.523, 458.408, 998.619, 0, -0.000007, 180, 8, 38926, 0, 0, 14792, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ab_vgsgymbits01', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'bbar_wall2', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
+(87, 42, 19449, 'Wall Static', 0, 1, 324.834, 458.407, 998.619, 0, 0, 180, 8, 38926, 0, 0, 14792, 14792, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ab_vgsgymbits01', 'ab_vgsgymbits01', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'bbar_wall2', 'bbar_wall2', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
+(88, 42, 19449, 'Wall Static', 0, 1, 324.834, 448.788, 998.619, 0, 0, 180, 8, 38926, 0, 0, 14792, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ab_vgsgymbits01', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'bbar_wall2', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
+(89, 42, 19379, 'Wall Static', 0, 1, 330.005, 448.791, 996.813, 0, 90, 0, 8, 38926, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
+(90, 42, 19449, 'Wall Static', 0, 1, 329.734, 463.137, 998.619, 0, 0, 270, 8, 38926, 0, 0, 14792, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ab_vgsgymbits01', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'bbar_wall2', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
+(91, 42, 19449, 'Wall Static', 0, 1, 329.734, 444.058, 998.619, 0, 0, 270, 8, 38926, 0, 0, 14792, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'ab_vgsgymbits01', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'bbar_wall2', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None'),
+(92, 42, 19802, 'Door Static', 0, 1, 328.981, 463.07, 996.899, 0, 0, 360, 8, 38926, 0, 0, 19486, 19486, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'burgalrystore_sfse', 'burgalrystore_sfse', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'Bow_LoadingBayDoor', 'Bow_LoadingBayDoor', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', '', 'None', 'None', 'None', 'None');
 
 -- --------------------------------------------------------
 
@@ -547,7 +560,9 @@ CREATE TABLE `gates` (
 INSERT INTO `gates` (`dbid`, `modelid`, `interior`, `world`, `faction`, `status`, `posx`, `posy`, `posz`, `posrx`, `posry`, `posrz`, `movex`, `movey`, `movez`, `moverx`, `movery`, `moverz`) VALUES
 (9, 19880, 0, 0, 2, 0, 1588.49, -1637.97, 17.1627, 0, 0, -178.7, 1588.49, -1637.97, 12.2525, 0, 0, -178.7),
 (13, 968, 0, 0, 2, 0, 1544.7, -1630.74, 13.0527, 0, 89.5999, 90.1, 1544.7, -1630.74, 13.0527, 0, 0, 91.1999),
-(17, 975, 0, 0, -1, 0, 1145.43, -1290.97, 14.2359, 0, 0, 179.487, 1136.48, -1290.89, 14.2359, 0, 0, 179.487);
+(17, 975, 0, 0, -1, 0, 1145.43, -1290.97, 14.2359, 0, 0, 179.487, 1136.48, -1290.89, 14.2359, 0, 0, 179.487),
+(18, 11714, 6, 24518, 2, 0, 250.464, 63.2729, 1003.81, 0, 0, -179.838, 250.471, 60.913, 1003.81, 0, 0, -179.838),
+(19, 11714, 6, 24518, 2, 0, 246.37, 72.4204, 1003.87, 0, 0, -89.9036, 248.82, 72.4244, 1003.87, 0, 0, -89.9036);
 
 -- --------------------------------------------------------
 
@@ -569,7 +584,9 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`ID`, `invID`, `invItem`, `invModel`, `invQuantity`, `invType`) VALUES
-(1, 749, 'Shotgun', 349, 1, 0);
+(1, 772, 'Colt 45', 346, 1, 0),
+(1, 774, 'Chainsaw', 341, 1, 0),
+(1, 778, 'Knife', 335, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -631,52 +648,7 @@ CREATE TABLE `masters` (
 
 INSERT INTO `masters` (`acc_dbid`, `acc_name`, `acc_pass`, `secret_word`, `forum_name`, `register_date`, `register_ip`, `active_ip`, `verified`, `discord`) VALUES
 (18, 'Radeetz', '051bb6ea0a45dbf11e4bbce3c21141678b10be9d', 98765, 'Radeetz', 'February 12, 2024 19:46:10', '127.0.0.1', '127.0.0.1', 1, '706433548797607957'),
-(60, 'Blixkyyy', '051bb6ea0a45dbf11e4bbce3c21141678b10be9d', 4865, 'None', 'May 2, 2024 13:04:40', '127.0.0.1', '127.0.0.1', 1, '0'),
-(62, 'Tupacc', 'f9376428edb0e1caaa01bcf9c1bd91a8d9448fb0', 2241, 'Tupacc', 'July 19, 2024 05:24:08', '114.10.21.114', '', 1, '0'),
-(63, 'MarV', '', 8714, 'Null', '', '', '', 0, '0'),
-(65, 'Sweet', '8f4f9f2dcbaf9bd8ee9e4d1a2cb971a04084157b', 9702, 'Sweet', 'July 20, 2024 20:30:16', '180.242.152.175', '180.242.152.175', 1, '0'),
-(67, 'secondx', '', 3514, 'Null', '', '', '', 0, '0'),
-(68, 'Omar', 'eaa76c03f382961040986ee4d05a340191874ce3', 2406, 'Omar', 'July 20, 2024 14:27:10', '103.255.157.178', '103.255.157.178', 1, '0'),
-(69, 'LHam', '', 9194, 'Null', '', '', '', 0, '0'),
-(70, 'kiyo', '', 7876, 'Null', '', '', '', 0, '0'),
-(71, 'Lakey', '55d23a2e19ab316570ba3e0d5074e44432bd423d', 6216, 'Lakey', 'July 20, 2024 11:45:02', '104.28.157.116', '104.28.157.116', 1, '0'),
-(73, 'BigSmoke', 'd2af5ffecd269d6aa5eecb9438248fc28fd6b830', 6829, 'BigSmoke', 'July 20, 2024 10:30:24', '182.5.8.196', '182.5.8.196', 1, '0'),
-(74, 'deyvon', '772b7554d883ca159e5f8f3cade4a654701e8d74', 6976, 'deyvon', 'July 20, 2024 10:58:35', '202.80.213.122', '202.80.213.122', 1, '0'),
-(75, 'David', 'fc54f6a0dfdb5460b82ee93387411ec85be9f779', 7857, 'David', 'July 20, 2024 15:05:19', '114.5.248.243', '114.5.248.243', 1, '0'),
-(76, 'Grote_Vanderlinde', 'e55e1e7ce85ec1a6339c596539dfa5c3011e6300', 8642, 'Grote_Vanderlinde', 'July 20, 2024 17:43:46', '125.163.226.218', '125.163.226.218', 1, '0'),
-(77, 'CrizzRocc', 'None', 3003, 'Null', 'None', 'None', 'None', 0, '0'),
-(78, 'Breeze', 'None', 6002, 'Null', 'None', 'None', 'None', 0, '0'),
-(79, 'Craig', 'None', 8903, 'Null', 'None', 'None', 'None', 0, '0'),
-(80, 'AkRow', 'e4a86ea81c680b5a1b9a0e9635ba6b49c2971bc8', 0, 'AkRow', 'September 28, 2024 18:58:31', '112.215.238.250', '140.213.15.3', 0, '0'),
-(81, 'Daffies', '79e35140f109bf6218d228336c249674d5e9f638', 0, 'Daffies', 'September 28, 2024 19:08:42', '104.28.156.108', '', 0, '0'),
-(82, 'HexySlimeDreams', '97b1726be6a1fb0f5645e625460eb0b3bb50a90a', 0, 'HexySlimeDreams', 'September 28, 2024 19:10:24', '114.10.98.246', 'None', 0, '0'),
-(83, 'Kordell_Stone', '97b1726be6a1fb0f5645e625460eb0b3bb50a90a', 0, 'Kordell_Stone', 'September 28, 2024 19:15:23', '114.10.98.246', 'None', 0, '0'),
-(84, 'Rocksout', '2d3d1937610668e9df1e73ce4268ba0efb206975', 0, 'Rocksout', 'September 28, 2024 19:17:38', '114.10.98.246', '114.10.99.5', 0, '0'),
-(85, 'float', '1a578c45d7bb3479bcda4981ed2add9532cae0c2', 0, 'float', 'September 28, 2024 19:31:26', '140.213.177.125', '103.51.205.30', 0, '0'),
-(86, 'arilflexose', '9661e57d76fce048ad1f1231df60a486a73f0e44', 0, 'arilflexose', 'September 28, 2024 19:40:52', '114.79.32.145', '114.79.47.248', 0, '0'),
-(87, 'Destin_Perry', '79e35140f109bf6218d228336c249674d5e9f638', 0, 'Destin_Perry', 'September 29, 2024 16:06:28', '104.28.159.67', 'None', 0, '0'),
-(88, 'Hobigtasa', 'fbe4c7c769befa0b94de3d6a9baf960df0eab6df', 0, 'Hobigtasa', 'September 29, 2024 17:04:51', '180.242.214.108', '180.242.214.191', 0, '0'),
-(89, 'asmyvngk', '3ca46fea48968c50bf78e820fe7a6de484797805', 0, 'asmyvngk', 'September 29, 2024 17:12:01', '103.124.199.54', '103.124.199.54', 0, '0'),
-(90, 'Droppes', '7c44cdc6bd312b2d77671313df8d558b0e6d6dce', 0, 'Droppes', 'September 29, 2024 17:12:51', '180.253.185.244', '180.253.185.244', 0, '0'),
-(91, 'nikeeee', '59ec641fc80bb8823744283f7bb93ce9949286bb', 0, 'nikeeee', 'September 29, 2024 18:08:59', '151.0.51.162', '151.0.51.162', 0, '0'),
-(92, 'ese_nikitosio', '59ec641fc80bb8823744283f7bb93ce9949286bb', 0, 'ese_nikitosio', 'September 29, 2024 18:17:33', '151.0.51.162', '151.0.51.162', 0, '0'),
-(93, 'cranky', '9cf7817906a081fea133b6791cafb653f531380b', 0, 'cranky', 'September 29, 2024 18:36:26', '36.85.219.79', '36.85.219.79', 0, '0'),
-(94, 'Jepen', '3444c02261aafa5c6000fccac0692c35c690d7c0', 0, 'Jepen', 'September 29, 2024 18:40:12', '36.68.52.212', '114.125.92.238', 0, '0'),
-(95, 'Yukimaru', '42e1e77e7ae9939a7b49ca0e5bf3460f25162ed0', 0, 'Yukimaru', 'September 29, 2024 18:41:30', '196.119.110.143', '196.119.110.143', 0, '0'),
-(96, 'Rasaun_Hubbard', '3444c02261aafa5c6000fccac0692c35c690d7c0', 0, 'Rasaun_Hubbard', 'September 29, 2024 18:42:28', '36.68.52.212', 'None', 0, '0'),
-(97, 'Martin_Chesterfield', '5e591ed84c772939812abdc81244032252cdb2d5', 0, 'Martin_Chesterfield', 'September 29, 2024 18:46:19', '154.107.172.212', 'None', 0, '0'),
-(98, 'Borisu', 'fc54f6a0dfdb5460b82ee93387411ec85be9f779', 0, 'Borisu', 'September 29, 2024 20:56:31', '103.175.229.105', '114.5.217.166', 0, '0'),
-(99, 'Akeem', '8789a2b7d869bda52a19ae74b127603e52f99f4f', 0, 'Akeem', 'September 29, 2024 21:21:22', '90.64.114.144', '90.64.114.144', 0, '0'),
-(100, '[TDB]Kolio', '1b0c2fdcc0070c002cd691b839505525dcfdcac1', 0, '[TDB]Kolio', 'September 29, 2024 22:18:36', '76.219.124.42', '76.219.124.42', 0, '0'),
-(101, 'Bazir', 'afe56c80289f0de5eba8ec64dba3bf3b1713d7e7', 0, 'Bazir', 'September 30, 2024 17:07:14', '36.74.43.76', '36.74.43.76', 0, '0'),
-(102, 'Kobi', '7590e9fb1df30759012303e39dd23c1d45c00d05', 0, 'Kobi', 'October 5, 2024 13:48:45', '103.18.34.177', '103.18.34.177', 0, '0'),
-(103, 'Marco', '695aa459a3efdbddb3a0229363de526cf2ad4a33', 0, 'Marco', 'October 5, 2024 22:21:01', '103.171.165.214', 'None', 0, '0'),
-(105, 'MarrMissHer', '695aa459a3efdbddb3a0229363de526cf2ad4a33', 0, 'MarrMissHer', 'October 6, 2024 12:12:18', '103.171.165.214', '103.171.165.214', 0, '0'),
-(106, '[RHB]Dwrld', 'f961c8be74525e2f942c024695b5890dfa04eab3', 0, '[RHB]Dwrld', 'October 6, 2024 19:23:32', '151.49.49.129', '103.124.199.54', 0, '0'),
-(107, 'Dwrld', 'f961c8be74525e2f942c024695b5890dfa04eab3', 0, 'Dwrld', 'October 6, 2024 19:31:08', '151.49.49.129', '151.49.49.129', 0, '0'),
-(108, 'siwode', '7c4a8d09ca3762af61e59520943dc26494f8941b', 0, 'siwode', 'October 8, 2024 00:30:41', '14.216.118.4', 'None', 0, '0'),
-(109, 'Verbabbter', '16a28ed822d7a312b5644c2c967cf2bf30a07348', 0, 'Verbabbter', 'October 8, 2024 03:37:24', '178.25.35.70', '178.25.35.70', 0, '0'),
-(110, 'Boris', '051bb6ea0a45dbf11e4bbce3c21141678b10be9d', 0, 'Boris', 'October 26, 2024 18:22:27', '127.0.0.1', 'None', 0, '0');
+(60, 'Blixkyyy', '051bb6ea0a45dbf11e4bbce3c21141678b10be9d', 4865, 'None', 'May 2, 2024 13:04:40', '127.0.0.1', '127.0.0.1', 1, '0');
 
 -- --------------------------------------------------------
 
@@ -711,7 +683,7 @@ CREATE TABLE `properties` (
 --
 
 INSERT INTO `properties` (`PropertyDBID`, `PropertyOwnerDBID`, `PropertyType`, `PropertyFaction`, `PropertyEntranceX`, `PropertyEntranceY`, `PropertyEntranceZ`, `PropertyEntranceInterior`, `PropertyEntranceWorld`, `PropertyInteriorX`, `PropertyInteriorY`, `PropertyInteriorZ`, `PropertyInteriorIntID`, `PropertyInteriorWorld`, `PropertyMarketPrice`, `PropertyLevel`, `PropertyLocked`, `PropertyCashbox`, `PropertyAddress`) VALUES
-(39, 1, 1, 0, 2067.08, -1731.61, 14.2066, 0, 0, 239, 462, 998, 5, 38805, 0, 0, 0, 0, '1th 107TH Street');
+(42, 1, 3, 0, 2065.1, -1703.42, 14.1484, 0, 0, 330, 462, 998, 8, 38926, 8000000, 0, 0, 0, '1th 107TH Street');
 
 -- --------------------------------------------------------
 
@@ -774,7 +746,7 @@ CREATE TABLE `server_data` (
 --
 
 INSERT INTO `server_data` (`id`, `fish`, `fabric`, `steel`, `woods`, `foods`, `clothes`, `appliances`, `materials`, `drugs`) VALUES
-(0, 50, 55, 26, 10, 10, 16, 10, 50, 10);
+(0, 50, 59, 36, 21, 20, 32, 20, 50, 20);
 
 -- --------------------------------------------------------
 
@@ -933,7 +905,7 @@ INSERT INTO `toys` (`Id`, `Owner`, `Slot0_Model`, `Slot0_Bone`, `Slot0_XPos`, `S
 (18, 11, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (17, 9, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (16, 10, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(15, 1, 18947, 2, 0.121, 0.000, 0.011, 0.000, 0.000, 0.000, 1.555, 0.948, 1.000, 19022, 2, 0.096, 0.047, 0.010, -62.600, 90.300, 150.000, 0.842, 1.327, 1.263, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(15, 1, 0, 2, 0.121, 0.000, 0.011, 0.000, 0.000, 0.000, 1.555, 0.948, 1.000, 0, 2, 0.114, 0.069, -0.004, -62.600, 89.500, 150.000, 0.842, 1.023, 1.263, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (19, 12, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (20, 13, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (21, 14, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -968,7 +940,9 @@ INSERT INTO `toys` (`Id`, `Owner`, `Slot0_Model`, `Slot0_Bone`, `Slot0_XPos`, `S
 (50, 50, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (51, 51, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (52, 52, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(53, 53, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(53, 53, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(54, 56, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(55, 57, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1129,10 +1103,8 @@ CREATE TABLE `vehicles` (
 --
 
 INSERT INTO `vehicles` (`VehicleDBID`, `VehicleOwnerDBID`, `VehicleFaction`, `VehicleModel`, `VehicleColor1`, `VehicleColor2`, `VehiclePaintjob`, `VehicleParkPosX`, `VehicleParkPosY`, `VehicleParkPosZ`, `VehicleParkPosA`, `VehicleParkInterior`, `VehicleParkWorld`, `VehiclePlates`, `VehicleFakePlates`, `VehiclePlatesStatus`, `VehiclePlatesFake`, `VehicleLocked`, `VehicleRental`, `VehicleRentalTimer`, `VehicleImpounded`, `VehicleImpoundPosX`, `VehicleImpoundPosY`, `VehicleImpoundPosZ`, `VehicleImpoundPosA`, `VehicleSirens`, `VehicleFuel`, `VehicleMiles`, `VehicleLastDrivers1`, `VehicleLastDrivers2`, `VehicleLastDrivers3`, `VehicleLastDrivers4`, `VehicleLastPassengers1`, `VehicleLastPassengers2`, `VehicleLastPassengers3`, `VehicleLastPassengers4`, `VehicleBattery`, `VehicleEngine`, `VehicleTimesDestroyed`, `VehicleXMR`, `VehicleAlarmLevel`, `VehicleLockLevel`, `VehicleImmobLevel`, `VehicleHealth`, `VehicleBody`, `VehicleTire`, `VehicleMods0`, `VehicleMods1`, `VehicleMods2`, `VehicleMods3`, `VehicleMods4`, `VehicleMods5`, `VehicleMods6`, `VehicleMods7`, `VehicleMods8`, `VehicleMods9`, `VehicleMods10`, `VehicleMods11`, `VehicleMods12`, `VehicleMods13`, `VehicleMods14`, `VehicleMods15`) VALUES
-(87, 1, 0, 462, 0, 0, -1, 1836.91, -1931.43, 12.9797, 263.624, 0, 0, '4CCX37', 'None', 0, 0, 0, 1, 43, 0, 0, 0, 0, 0, 0, 40, 2, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 0, 0, 0, 0, 1, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (88, 52, 0, 462, 0, 0, -1, 1659.28, -1731.72, 12.9811, 268.901, 0, 0, '7HJG46', 'None', 0, 0, 0, 1, 53, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 0, 0, 0, 0, 1, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(90, 1, 0, 499, 0, 0, -1, 1838.94, -1930.49, 13.3651, 3.12039, 0, 0, '8XJS22', 'None', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 98, 4, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 0, 0, 0, 0, 1, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(93, 1, 0, 527, 53, 0, -1, 1937, -1773.65, 13.1011, 1.44074, 0, 0, '0MBX21', '2UPG54', 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 0, 0, 0, 0, 1, 1000, 0, 0, 1014, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(94, 1, 0, 422, 1, 1, -1, 1520.4, -1838.77, 13.5211, 88.8226, 0, 0, 'None', 'None', 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 85, 30, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 0, 0, 0, 0, 1, 963.681, 19988481, 0, 0, 0, 0, 1007, 1013, 0, 1021, 1076, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1349,25 +1321,25 @@ ALTER TABLE `ajail_logs`
 -- AUTO_INCREMENT for table `bannedlist`
 --
 ALTER TABLE `bannedlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ban_logs`
 --
 ALTER TABLE `ban_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `businesses`
 --
 ALTER TABLE `businesses`
-  MODIFY `BusinessDBID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `BusinessDBID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `characters`
 --
 ALTER TABLE `characters`
-  MODIFY `char_dbid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `char_dbid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `court`
@@ -1379,13 +1351,13 @@ ALTER TABLE `court`
 -- AUTO_INCREMENT for table `criminal_record`
 --
 ALTER TABLE `criminal_record`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `dropped`
 --
 ALTER TABLE `dropped`
-  MODIFY `ID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `ID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT for table `entrance`
@@ -1409,19 +1381,19 @@ ALTER TABLE `faction_ranks`
 -- AUTO_INCREMENT for table `furniture`
 --
 ALTER TABLE `furniture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `gates`
 --
 ALTER TABLE `gates`
-  MODIFY `dbid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `dbid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `invID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=750;
+  MODIFY `invID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=784;
 
 --
 -- AUTO_INCREMENT for table `kick_logs`
@@ -1439,7 +1411,7 @@ ALTER TABLE `masters`
 -- AUTO_INCREMENT for table `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `PropertyDBID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `PropertyDBID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `propertiesstorage`
@@ -1469,13 +1441,13 @@ ALTER TABLE `spawnables`
 -- AUTO_INCREMENT for table `spray_tags`
 --
 ALTER TABLE `spray_tags`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=262;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=263;
 
 --
 -- AUTO_INCREMENT for table `toys`
 --
 ALTER TABLE `toys`
-  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `trashcan`
@@ -1493,13 +1465,13 @@ ALTER TABLE `tree`
 -- AUTO_INCREMENT for table `vehicles`
 --
 ALTER TABLE `vehicles`
-  MODIFY `VehicleDBID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `VehicleDBID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `vstorage`
 --
 ALTER TABLE `vstorage`
-  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

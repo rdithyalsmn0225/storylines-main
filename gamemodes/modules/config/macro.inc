@@ -50,7 +50,6 @@
 #define MAX_FACTION_RANKS 			(21)
 #define MAX_PLAYER_VEHICLES 		(5)
 #define MAX_ZONE_NAME 				(28)
-#define MAX_TURFS					(600)
 #define MAX_SPRAYTAGS   			(500)
 #define MAX_INVENTORY				(24)
 #define MAX_CAR_STORAGE 			(5)

@@ -389,6 +389,7 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 		VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = 1000.0; 
 		
 		VehicleInfo[vehicleid][E_VEHICLE_DESTROYED] = 0;
+		VehicleInfo[vehicleid][E_VEHICLE_PLATESSTATUS] = true;
 		
 		SaveVehicle(vehicleid);
 		

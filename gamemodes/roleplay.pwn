@@ -4402,6 +4402,10 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
     {
 		if(PlayerInfo[playerid][E_CHARACTER_COURT])
 		{
+			if(GetPlayerPing(playerid) > 100) 
+			{
+				SendClientMessage(playerid, COLOR_YELLOW, "Due to your high ping (100+), the game may desync. If this occurs please leave the game A.S.A.P. or contact an admin." ) ;
+			}
 			if(!PlayerInfo[playerid][E_CHARACTER_HAVEBALL])
 			{
 				new Float:x, Float:y, Float:z;
@@ -4426,7 +4430,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					GetXYInFrontOfPlayer(playerid, x2, y2, 0.8);
 					GetPlayerPos(playerid, x, y, z);
 					StopDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT]);
-					MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], x2, y2, z, 2.5);
+					MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], x2, y2, z, 7.0);
 					PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
 					CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_BOUNCE] = 0;
 				}
@@ -4450,10 +4454,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 							ClearAnimations(playerid);
 							ApplyAnimation(playerid,"BSKTBALL","BBALL_def_loop",4.0,1,0,0,0,0);
 							SetTimerEx("ClearAnim", 700, 0, "d", playerid);
-							MoveDynamicObject(CourtInfo[PlayerInfo[i][E_CHARACTER_COURT]][E_BALL_OBJECT], x, y, z, 8.0);
+							MoveDynamicObject(CourtInfo[PlayerInfo[i][E_CHARACTER_COURT]][E_BALL_OBJECT], x, y, z, 7.0);
 							PlayerInfo[i][E_CHARACTER_ANIMBALL] = 0;
 							CourtInfo[PlayerInfo[i][E_CHARACTER_COURT]][E_BALL_SHOOT] = 6;
 							ApplyAnimation(i,"BSKTBALL","BBALL_def_loop",4.0,1,0,0,0,0);
+
+							new str[128];
+							format(str, sizeof(str), "passes the basketball to %s.", ReturnName(i));
+							cmd_me(playerid, str);
 							return 1;
 						}
 					}
@@ -4465,12 +4473,16 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
     {
 		if(PlayerInfo[playerid][E_CHARACTER_COURT])
 		{	
+			if(GetPlayerPing(playerid) > 100) 
+			{
+				SendClientMessage(playerid, COLOR_YELLOW, "Due to your high ping (100+), the game may desync. If this occurs please leave the game A.S.A.P. or contact an admin." ) ;
+			}
 			if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL])
 			{
 				// Blue Team:
 				if(IsPlayerInRangeOfPoint(playerid, 2, CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][2]))
 				{
-					MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_BALL][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_BALL][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_BALL][2], 8.0);
+					MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_BALL][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_BALL][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_BALL][2], 7.0);
 					SetPlayerPosEx(playerid, CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][2]);
 					ApplyAnimation(playerid,"BSKTBALL","BBALL_Dnk",4.0,1,0,0,0,0);
 					PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
@@ -4483,7 +4495,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					new rand = random(1);
 					if(rand == 0)
 					{
-						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][2]+4, 8.0);
+						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][2]+3, 7.0);
 						ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 						CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_SHOOT] = 2;
 						PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
@@ -4497,7 +4509,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					new rand = random(2);
 					if(rand == 0)
 					{
-						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][2]+4, 8.0);
+						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][2]+3, 7.0);
 						ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 						CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_SHOOT] = 2;
 						PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
@@ -4511,7 +4523,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					new rand = random(3);
 					if(rand == 0)
 					{
-						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][0]-1, CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][2]+4, 8.0);
+						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][0]-1, CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BLUE_POS][2]+3, 7.0);
 						ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 						CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_SHOOT] = 2;
 						PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
@@ -4524,7 +4536,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				// Red Team:
 				else if(IsPlayerInRangeOfPoint(playerid, 2, CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][2]))
 				{
-					MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_BALL][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_BALL][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_BALL][2], 8.0);
+					MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_BALL][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_BALL][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_BALL][2], 7.0);
 					SetPlayerPosEx(playerid, CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][2]);
 					ApplyAnimation(playerid,"BSKTBALL","BBALL_Dnk",4.0,1,0,0,0,0);
 					PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
@@ -4537,7 +4549,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					new rand = random(1);
 					if(rand == 0)
 					{
-						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][2]+4, 8.0);
+						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][2]+3, 7.0);
 						ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 						CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_SHOOT] = 3;
 						PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
@@ -4551,7 +4563,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					new rand = random(2);
 					if(rand == 0)
 					{
-						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][2]+4, 8.0);
+						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][2]+3, 7.0);
 						ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 						CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_SHOOT] = 3;
 						PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
@@ -4565,7 +4577,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					new rand = random(3);
 					if(rand == 0)
 					{
-						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][2]+4, 8.0);
+						MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][0], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][1], CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_RED_POS][2]+3, 7.0);
 						ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 						CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_SHOOT] = 3;
 						PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
@@ -4582,7 +4594,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				new Float:x2, Float:y2;
 				GetXYInFrontOfPlayer(playerid, x2, y2, 6.0);
 				SetTimerEx("PlayerBallDown", 500, 0, "df", playerid, z);
-				MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], x2, y2, z+randomEx(5, 6), 8.0);
+				MoveDynamicObject(CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_OBJECT], x2, y2, z+randomEx(5, 6), 7.0);
 				ApplyAnimation(playerid,"BSKTBALL","BBALL_Jump_Shot",4.0,0,0,0,0,0);
 				CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_SHOOT] = 0;
 			}
@@ -4597,15 +4609,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		if(PlayerInfo[playerid][E_CHARACTER_DRINKING] > 0)
 		{
 			PlayerInfo[playerid][E_CHARACTER_DRINKING]--;
-			
-			/*new turfid = IsPlayerNearTurf(playerid);
-			if(turfid)
-			{
-				if(GetPlayerTeam(playerid) != PLAYER_STATE_WOUNDED && GlobalTurf == 0 && TurfInfo[turfid][E_FACTION_TURFTYPE] == 0 && FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] == FACTION_TYPE_ILLEGAL)
-				{
-				    TurfsPoints(playerid, turfid);
-				}
-			}*/
 			if(PlayerInfo[playerid][E_CHARACTER_DRINKING] < 0)
 			{
 				PlayerInfo[playerid][E_CHARACTER_DRINKCD] = gettime();
@@ -5525,63 +5528,63 @@ public OnDynamicObjectMoved(objectid)
 		{
 			new Float:x, Float:y, Float:z;
 			GetDynamicObjectPos(CourtInfo[court][E_BALL_OBJECT], x, y, z);
-			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2]+1.2, 8.0);
+			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2]+1.0, 7.0);
 			CourtInfo[court][E_BALL_BOUNCE] = 2;
 		}
 		else if(CourtInfo[court][E_BALL_BOUNCE] == 2)
 		{
 			new Float:x, Float:y, Float:z;
 			GetDynamicObjectPos(CourtInfo[court][E_BALL_OBJECT], x, y, z);
-			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2], 8.0);
+			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2], 7.0);
 			CourtInfo[court][E_BALL_BOUNCE] = 3;
 		}
 		else if(CourtInfo[court][E_BALL_BOUNCE] == 3)
 		{
 			new Float:x, Float:y, Float:z;
 			GetDynamicObjectPos(CourtInfo[court][E_BALL_OBJECT], x, y, z);
-			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2]+1.0, 8.0);
+			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2]+0.8, 7.0);
 			CourtInfo[court][E_BALL_BOUNCE] = 4;
 		}
 		else if(CourtInfo[court][E_BALL_BOUNCE] == 4)
 		{
 			new Float:x, Float:y, Float:z;
 			GetDynamicObjectPos(CourtInfo[court][E_BALL_OBJECT], x, y, z);
-			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2], 8.0);
+			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2], 7.0);
 			CourtInfo[court][E_BALL_BOUNCE] = 5;
 		}
 		else if(CourtInfo[court][E_BALL_BOUNCE] == 5)
 		{
 			new Float:x, Float:y, Float:z;
 			GetDynamicObjectPos(CourtInfo[court][E_BALL_OBJECT], x, y, z);
-			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2]+0.9, 8.0);
+			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2]+0.6, 7.0);
 			CourtInfo[court][E_BALL_BOUNCE] = 6;
 		}
 		else if(CourtInfo[court][E_BALL_BOUNCE] == 6)
 		{
 			new Float:x, Float:y, Float:z;
 			GetDynamicObjectPos(CourtInfo[court][E_BALL_OBJECT], x, y, z);
-			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2], 8.0);
+			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2], 7.0);
 			CourtInfo[court][E_BALL_BOUNCE] = 7;
 		}
 		else if(CourtInfo[court][E_BALL_BOUNCE] == 7)
 		{
 			new Float:x, Float:y, Float:z;
 			GetDynamicObjectPos(CourtInfo[court][E_BALL_OBJECT], x, y, z);
-			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2]+0.8, 8.0);
+			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2]+0.4, 7.0);
 			CourtInfo[court][E_BALL_BOUNCE] = 8;
 		}
 		else if(CourtInfo[court][E_BALL_BOUNCE] == 8)
 		{
 			new Float:x, Float:y, Float:z;
 			GetDynamicObjectPos(CourtInfo[court][E_BALL_OBJECT], x, y, z);
-			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2], 8.0);
+			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2], 7.0);
 			CourtInfo[court][E_BALL_BOUNCE] = 0;
 		}
 		else if(CourtInfo[court][E_BALL_BOUNCE] == 9)
 		{
 			new Float:x, Float:y, Float:z;
 			GetDynamicObjectPos(CourtInfo[court][E_BALL_OBJECT], x, y, z);
-			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2], 8.0);
+			MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x, y, CourtInfo[court][E_BALL_POS][2], 7.0);
 			CourtInfo[court][E_BALL_BOUNCE] = 1;
 		}
 
@@ -5631,7 +5634,7 @@ public OnDynamicObjectMoved(objectid)
 					StopDynamicObject(CourtInfo[court][E_BALL_OBJECT]);
 					new Float:x2, Float:y2;
 					GetXYInFrontOfPlayer(i, x2, y2, 1.5);
-					MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x2, y2, z+0.1, 8.0);
+					MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x2, y2, z+0.1, 10.0);
 					PlayNearbySound(i, 4600);
 				}
 				case 1:
@@ -5642,7 +5645,7 @@ public OnDynamicObjectMoved(objectid)
 					StopDynamicObject(CourtInfo[court][E_BALL_OBJECT]);
 					new Float:x2, Float:y2;
 					GetXYInFrontOfPlayer(i, x2, y2, 1.5);
-					MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x2, y2, CourtInfo[court][E_BALL_POS][2], 8.0);
+					MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x2, y2, CourtInfo[court][E_BALL_POS][2], 10.0);
 					PlayNearbySound(i, 4600);
 				}
 			}
@@ -5662,7 +5665,7 @@ public OnDynamicObjectMoved(objectid)
 				StopDynamicObject(CourtInfo[court][E_BALL_OBJECT]);
 				new Float:x2, Float:y2;
 				GetXYInFrontOfPlayer(i, x2, y2, 1.2);
-				MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x2, y2, z+0.1, 10.0);
+				MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x2, y2, z+0.1, 8.0);
 				PlayNearbySound(i, 4600);
 			}
 			case 1:
@@ -5673,7 +5676,7 @@ public OnDynamicObjectMoved(objectid)
 				StopDynamicObject(CourtInfo[court][E_BALL_OBJECT]);
 				new Float:x2, Float:y2;
 				GetXYInFrontOfPlayer(i, x2, y2, 1.2);
-				MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x2, y2, CourtInfo[court][E_BALL_POS][2], 10.0);
+				MoveDynamicObject(CourtInfo[court][E_BALL_OBJECT], x2, y2, CourtInfo[court][E_BALL_POS][2], 8.0);
 				PlayNearbySound(i, 4600);
 			}
 		}
