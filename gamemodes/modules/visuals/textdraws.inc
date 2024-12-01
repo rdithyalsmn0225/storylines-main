@@ -13,6 +13,8 @@ new PlayerText:pool[5][MAX_PLAYERS];
 new PlayerText:blackjack[15][MAX_PLAYERS];
 new PlayerText:idcard[19][MAX_PLAYERS];
 new PlayerText:VehicleSelection[19][MAX_PLAYERS];
+new PlayerText:HotwireTD[MAX_PLAYERS][8];
+new PlayerText:HotwireCable[MAX_PLAYERS][8];
 new PlayerText:money[MAX_PLAYERS];
 new PlayerText:MoneyFormat[MAX_PLAYERS];
 
@@ -521,6 +523,41 @@ CreateMDCTextDraws(playerid)
 	PlayerTextDrawUseBox(playerid, MDC[13][playerid], 1);
 	PlayerTextDrawSetProportional(playerid, MDC[13][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, MDC[13][playerid], 1);
+}
+
+CreateHotwireTextDraws(playerid)
+{
+	new indices[8];
+    for (new i = 0; i < 8; i++)
+    {
+        indices[i] = i;
+    }
+
+    // Shuffling the indices
+    for (new i = 0; i < 8; i++)
+    {
+        new rnd = random(8);
+        new temp = indices[i];
+        indices[i] = indices[rnd];
+        indices[rnd] = temp;
+    }
+
+	for (new i = 0; i < 8; i++)
+    {
+		new Float:posX = 357.0 + (i % 4) * 50.0;
+		new Float:posY = 269.0 + (i / 4) * 80.0;
+
+		new Float:posaX = 361.0 + (i % 4) * 50.0;
+		new Float:posaY = 280.0 + (i / 4) * 80.0;
+
+		if (i >= 4)
+        {
+            posaY -= 25.0;
+        }
+
+		HotwireCable[playerid][i] = CreatePlayerTextDraw(playerid, posaX, posaY, "ld_bum:blkdot");
+		HotwireTD[playerid][i] = CreatePlayerTextDraw(playerid, posX, posY, "ld_bum:blkdot");
+	}
 }
 
 CreateNotificationTextDraws(playerid)

@@ -101,6 +101,7 @@ main ()  {}
 #include "modules\vehicles\vehicles_rental.inc"
 #include "modules\vehicles\vehicles_commands.inc"
 #include "modules\vehicles\vehicles_modshop.inc"
+#include "modules\vehicles\vehicles_hotwire.inc"
 // FACTIONS MODULES
 #include "modules\faction\factions.inc"
 #include "modules\faction\factions_commands.inc"
@@ -334,6 +335,7 @@ public OnPlayerConnect(playerid)
 	CreatePhoneTextDraws(playerid);
 	CreateIDCARDTextDraws(playerid);
 	CreateVehicleTextDraws(playerid);
+	CreateHotwireTextDraws(playerid);
 	CreateBarInfoTextDraws(playerid);
 	CreateTutorialTextDraws(playerid);
 	CreateBlackJackTextDraws(playerid);
@@ -3542,6 +3544,47 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
 		DestroyObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
 		return 1;
+    }
+
+	//HOTWIRE
+	for (new i = 0; i < 8; i++)
+    {
+        if (playertextid == HotwireTD[playerid][i])
+        {
+            if (HotwireFirstClick[playerid] == -1)
+            {
+                HotwireFirstClick[playerid] = i;
+            }
+            else if (HotwireFirstClick[playerid] != i)
+            {
+                if (HotwireActive[playerid][i] == HotwireActive[playerid][HotwireFirstClick[playerid]])
+                {
+                    HotwireClicked[playerid]++;
+
+                    if (HotwireClicked[playerid] == 8 / 2)
+					{
+						new str[128], vehicleid = GetPlayerVehicleID(playerid);
+						if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] < 1 && !VehicleInfo[vehicleid][E_VEHICLE_ADMIN])
+							return SendClientMessage(playerid, COLOR_RED, "Vehicle is out of fuel!"); 
+						
+						if(!VehicleInfo[vehicleid][E_VEHICLE_ENGINE])
+						{	ShowBoxMessage(playerid, "~g~Turn on engine.", 5);
+							PlayerEngineValue[playerid] = 0;
+							PlayerEngineTimer[playerid] = SetTimerEx("TurnEngine", 500, true, "dd", playerid, vehicleid);
+							format(str, sizeof(str), "twists the key turning the engine of the %s on", ReturnVehicleName(vehicleid));
+							cmd_me(playerid, str);
+						}
+                        StopHotwire(playerid);
+                    }
+                }
+                else
+                {
+                    SendServerMessage(playerid, "[Hotwire]{DEDEDE} Hotwire failed.");
+                }
+                HotwireFirstClick[playerid] = -1;
+            }
+            return 1;
+        }
     }
 
 	//IDCARD
