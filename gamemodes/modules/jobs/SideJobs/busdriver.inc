@@ -17,13 +17,11 @@ function:BusDrivers(playerid, type)
                 case 7: text = "Loading passenger entering process\n(( ||||||| ))";
                 case 8:
                 {
-                    
-                    new rand = random(sizeof(BusDriver_Index));
-
-                    GPS_SetPlayerRaceCheckPoint(playerid, 1, BusDriver_Index[rand][0],BusDriver_Index[rand][1], BusDriver_Index[rand][2], 0.0, 0.0, 0.0, GPS_BUSDRIVER);
+                    PlayerBusDriverIndex[playerid]++;
+                    GPS_SetPlayerRaceCheckPoint(playerid, 1, BusDriver_Index[PlayerBusDriverIndex[playerid]][0],BusDriver_Index[PlayerBusDriverIndex[playerid]][1], BusDriver_Index[PlayerBusDriverIndex[playerid]][2], 0.0, 0.0, 0.0, GPS_BUSDRIVER);
                     TogglePlayerControllable(playerid, true);
 
-                    SendServerMessage(playerid, "[Bus Driver] {a2a2a2}Current route : %s | Next Route : %s.", ReturnLocation(playerid), GetZoneName(BusDriver_Index[rand][0],BusDriver_Index[rand][1], BusDriver_Index[rand][2]));
+                    SendServerMessage(playerid, "[Bus Driver] {DEDEDE}Current route : %s | Next Route : %s.", ReturnLocation(playerid), GetZoneName(BusDriver_Index[PlayerBusDriverIndex[playerid]][0],BusDriver_Index[PlayerBusDriverIndex[playerid]][1], BusDriver_Index[PlayerBusDriverIndex[playerid]][2]));
                     
                     PlayerInfo[playerid][E_CHARACTER_LOADING] = false;
                     PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 0;
@@ -31,26 +29,21 @@ function:BusDrivers(playerid, type)
                     Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
                     KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
-                    PlayerBusDriverIndex[playerid]++;
-
                     new gstr[128];
-                    format(gstr, sizeof(gstr),"~w~Passanger Entering~n~~r~%i~w~/~g~20", PlayerBusDriverIndex[playerid]);
+                    format(gstr, sizeof(gstr),"~w~Passanger Entering~n~~r~%i~w~/~g~34", PlayerBusDriverIndex[playerid]);
                     ShowBoxMessage(playerid, gstr, 5);
                     
-                    if(PlayerBusDriverIndex[playerid] == 19)
+                    if(PlayerBusDriverIndex[playerid] == 33)
                     {
-                        GPS_SetPlayerRaceCheckPoint(playerid, 1, 1696.8093,-1527.8206,13.4835, 0.0, 0.0, 0.0, GPS_BUSDRIVER);
-                    }
-                    if(PlayerBusDriverIndex[playerid] == 20)
-                    {
-                        new total = (PlayerBusDriverIndex[playerid] * BUSDRIVER_SALARY);
+                        new randx = randomEx(6, 8);
+                        new total = (PlayerBusDriverIndex[playerid] * randx);
 
                         new Cents = floatround(total * 100, floatround_round);
 
 	                    GiveMoney(playerid, Cents);
 
                         ShowBoxMessage(playerid, "~r~Bus Driver job ended.", 5); 
-                        SendServerMessage(playerid, "[Bus Driver] {a2a2a2}Bus Route Complete, current passenger %d x passenger and earn $%s.", PlayerBusDriverIndex[playerid], FormatMoney(Cents));
+                        SendServerMessage(playerid, "[Bus Driver] {DEDEDE}Bus Route Complete, current passenger %d x passenger and earn $%s.", PlayerBusDriverIndex[playerid], FormatMoney(Cents));
 
                         PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = false;
                         PlayerBusDriverIndex[playerid] = 0;

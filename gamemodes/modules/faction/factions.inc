@@ -198,13 +198,13 @@ function:OnPlayerFactionUpdate()
 		{
 			new Cents = floatround(10 * 100, floatround_round);
 			GivePaycheck(i, Cents);
-			SendServerMessage(i, "[Faction] {a2a2a2}You has earn $%s into your paycheck from faction duty.", FormatMoney(Cents));
+			SendServerMessage(i, "[Faction] {DEDEDE}You has earn $%s into your paycheck from faction duty.", FormatMoney(Cents));
 		}
 		if(PlayerInfo[i][E_CHARACTER_MEDICDUTY])
 		{
 			new Cents = floatround(8 * 100, floatround_round);
 			GivePaycheck(i, Cents);
-			SendServerMessage(i, "[Faction] {a2a2a2}You has earn $%s into your paycheck from faction duty.", FormatMoney(Cents));
+			SendServerMessage(i, "[Faction] {DEDEDE}You has earn $%s into your paycheck from faction duty.", FormatMoney(Cents));
 		}
 	}
 	return 1;

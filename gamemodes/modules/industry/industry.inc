@@ -175,7 +175,7 @@ Dialog:FreightLoc(playerid, response, listitem, inputtext[])
 	if(response)
 	{
 		PlayerTruckIndex[playerid] = listitem+1;
-		SendServerMessage(playerid, "[Trucker] {a2a2a2}You has selected truck missions in %s, go to checkpoint to take the trailer.", GetZoneName(FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz]));
+		SendServerMessage(playerid, "[Trucker] {DEDEDE}You has selected truck missions in %s, go to checkpoint to take the trailer.", GetZoneName(FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz]));
 		GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz], 0.0, 0.0, 0.0, GPS_TRUCKERS);
 	}
 	return 1;

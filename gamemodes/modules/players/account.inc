@@ -31,10 +31,10 @@ function:CheckBanList(playerid)
 		cache_get_value_name(0, "Date", banDate, 90);
 		cache_get_value_name(0, "BannedBy", banner, 32);
 	
-		SendServerMessage(playerid, "[Banned] {a2a2a2}Your IP %s is banned from our servers.", ReturnIP(playerid));
-		SendServerMessage(playerid, "[Banned] {a2a2a2}Your account %s is banned from our server.", ReturnName(playerid));
-		SendServerMessage(playerid, "[Banned] {a2a2a2}You were banned on %s by %s.", banDate, banner); 
-		SendServerMessage(playerid, "[Banned] {a2a2a2}You may appeal your ban on our forums."); 
+		SendServerMessage(playerid, "[Banned] {DEDEDE}Your IP %s is banned from our servers.", ReturnIP(playerid));
+		SendServerMessage(playerid, "[Banned] {DEDEDE}Your account %s is banned from our server.", ReturnName(playerid));
+		SendServerMessage(playerid, "[Banned] {DEDEDE}You were banned on %s by %s.", banDate, banner); 
+		SendServerMessage(playerid, "[Banned] {DEDEDE}You may appeal your ban on our forums."); 
 		return KickEx(playerid);
 	}
 	return 1;
@@ -142,8 +142,8 @@ function:Query_CheckBannedAccount(playerid)
 		cache_get_value_name(0, "Date", banDate, 90);
 		cache_get_value_name(0, "BannedBy", banner, 32);
 	
-		SendServerMessage(playerid, "[Banned] {a2a2a2}Your account %s is banned from our server.", ReturnName(playerid));
-		SendServerMessage(playerid, "[Banned] {a2a2a2}You were banned on %s by %s.", banDate, banner); 
+		SendServerMessage(playerid, "[Banned] {DEDEDE}Your account %s is banned from our server.", ReturnName(playerid));
+		SendServerMessage(playerid, "[Banned] {DEDEDE}You were banned on %s by %s.", banDate, banner); 
 		return KickEx(playerid);
 	}
 	return 1;

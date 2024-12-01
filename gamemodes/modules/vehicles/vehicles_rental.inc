@@ -180,6 +180,6 @@ function:OnPlayerVehicleRental(playerid, id, modelid, cost, plates[], Float:x, F
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid;
 	}
 	
-	SendServerMessage(playerid, "[Vehicle] {a2a2a2}You successfully rent a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(cost));
+	SendServerMessage(playerid, "[Vehicle] {DEDEDE}You successfully rent a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(cost));
 	return 1;
 }

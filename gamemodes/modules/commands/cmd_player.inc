@@ -48,6 +48,7 @@ CMD:settings(playerid, params[])
 	format(str, sizeof(str), "%sFaction Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGFMS] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sTips Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGTIPS] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sPhone Style\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPHONE] == false) ? ("{93C47D}Modern{ffffff}") : ("{FF6347}Old School{ffffff}"));
 	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{93C47D}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
 	ShowPlayerDialog(playerid, DIALOG_SETTINGS, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
@@ -231,8 +232,8 @@ CMD:pay(playerid, params[])
     PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
     playerLastpay[playerid] = gettime(); 
     
-    SendServerMessage(playerid, "[Pay] {a2a2a2}You have sent $%s to %s.", FormatMoney(Cents), ReturnName(playerb)); 
-    SendServerMessage(playerb, "[Pay] {a2a2a2}You have received $%s from %s.", FormatMoney(Cents), ReturnName(playerid)); 
+    SendServerMessage(playerid, "[Pay] {DEDEDE}You have sent $%s to %s.", FormatMoney(Cents), ReturnName(playerb)); 
+    SendServerMessage(playerb, "[Pay] {DEDEDE}You have received $%s from %s.", FormatMoney(Cents), ReturnName(playerid)); 
     
     if ((PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3) || Cents >= 5000) 
     {
@@ -260,7 +261,7 @@ CMD:charity(playerid, params[])
     GiveMoney(playerid, -Cents);
 
 	SaveCharacter(playerid);
-	SendServerMessage(playerid, "[Charity] {a2a2a2}You've charity {93C47D}%s{a2a2a2} for this server.", FormatMoney(Cents));
+	SendServerMessage(playerid, "[Charity] {DEDEDE}You've charity {93C47D}%s{DEDEDE} for this server.", FormatMoney(Cents));
 	return 1;
 }
 
@@ -2516,11 +2517,11 @@ CMD:afk(playerid, params[])
 
 	if(PlayerInfo[targetid][E_CHARACTER_AFK])
 	{
-	    SendServerMessage(playerid, "[Afk] {a2a2a2}%s has been marked as Away from keyboard for {d7d292}%i{a2a2a2} minutes.", ReturnName(targetid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
+	    SendServerMessage(playerid, "[Afk] {DEDEDE}%s has been marked as Away from keyboard for {d7d292}%i{DEDEDE} minutes.", ReturnName(targetid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
 	}
 	else
 	{
-	    SendServerMessage(playerid, "[Afk] {a2a2a2}%s is currently not marked as Away from keyboard.", ReturnName(targetid));
+	    SendServerMessage(playerid, "[Afk] {DEDEDE}%s is currently not marked as Away from keyboard.", ReturnName(targetid));
 	}
 
 	return 1;

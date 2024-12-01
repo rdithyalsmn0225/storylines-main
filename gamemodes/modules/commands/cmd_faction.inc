@@ -758,7 +758,7 @@ CMD:tracenumber(playerid, params[])
 	new Float:x, Float:y, Float:z;
     GetPlayerPos(targetid, x, y, z);
 
-    SendServerMessage(playerid, "[Trace] {a2a2a2}Phone number %s belongs to %s located at %s, %s.", targetNumber, ReturnName(playerid, 0), ReturnLocationStreet(playerid), ReturnLocation(playerid));
+    SendServerMessage(playerid, "[Trace] {DEDEDE}Phone number %s belongs to %s located at %s, %s.", targetNumber, ReturnName(playerid, 0), ReturnLocationStreet(playerid), ReturnLocation(playerid));
 	return 1;
 }
 
@@ -1110,8 +1110,8 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
     		SetPlayerTeam(targetid, PLAYER_STATE_ALIVE);
 			SetPlayerHealthEx(targetid, 100.0);
 
-			SendServerMessage(playerid, "[Treatment] {a2a2a2}You have been reviving %s.", ReturnName(targetid));
-			SendServerMessage(targetid, "[Treatment] {a2a2a2}You have been revived by %s.", ReturnName(playerid));
+			SendServerMessage(playerid, "[Treatment] {DEDEDE}You have been reviving %s.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {DEDEDE}You have been revived by %s.", ReturnName(playerid));
 		}
 		if(listitem == 2)
 		{
@@ -1121,8 +1121,8 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 				return SendErrorMessage(playerid, "That player already have Max Health!");
 
 			SetPlayerHealthEx(targetid, 100.0);
-			SendServerMessage(playerid, "[Treatment] {a2a2a2}You have healing %s.", ReturnName(targetid));
-			SendServerMessage(targetid, "[Treatment] {a2a2a2}You have been healed by %s.", ReturnName(playerid));
+			SendServerMessage(playerid, "[Treatment] {DEDEDE}You have healing %s.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {DEDEDE}You have been healed by %s.", ReturnName(playerid));
 		}
 		if(listitem == 3)
 		{
@@ -1141,7 +1141,7 @@ Dialog:Treatment(playerid, response, listitem, inputtext[])
 			PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
 			PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("Treatments", 5000, true, "ii", playerid, targetid);
 
-			SendServerMessage(playerid, "[Treatment] {a2a2a2}You need waiting for a minutes to operate %s.", ReturnName(targetid));
+			SendServerMessage(playerid, "[Treatment] {DEDEDE}You need waiting for a minutes to operate %s.", ReturnName(targetid));
 		}
 	}
 	return 1;
@@ -1174,8 +1174,8 @@ function:Treatments(playerid, targetid)
 				PlayerInfo[targetid][E_CHARACTER_WOUND][i] = 100;
 			}
 			
-			SendServerMessage(playerid, "[Treatment] {a2a2a2}You have operating %s.", ReturnName(targetid));
-			SendServerMessage(targetid, "[Treatment] {a2a2a2}You have been operated by %s.", ReturnName(playerid));
+			SendServerMessage(playerid, "[Treatment] {DEDEDE}You have operating %s.", ReturnName(targetid));
+			SendServerMessage(targetid, "[Treatment] {DEDEDE}You have been operated by %s.", ReturnName(playerid));
 		}
 	}
 	Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 

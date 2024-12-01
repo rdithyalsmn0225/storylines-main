@@ -115,11 +115,9 @@ stock StartMainJobs(playerid, type)
                 
                 PlayerPutIntoVehicle(playerid, PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], 0);
                 PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = true;
-                PlayerBusDriverIndex[playerid] = 1;
+                PlayerBusDriverIndex[playerid] = 0;
 
-                new rand = random(sizeof(BusDriver_Index));
-
-                GPS_SetPlayerRaceCheckPoint(playerid, 1, BusDriver_Index[rand][0],BusDriver_Index[rand][1], BusDriver_Index[rand][2], 0.0, 0.0, 0.0, GPS_BUSDRIVER);
+                GPS_SetPlayerRaceCheckPoint(playerid, 1, BusDriver_Index[PlayerBusDriverIndex[playerid]][0],BusDriver_Index[PlayerBusDriverIndex[playerid]][1], BusDriver_Index[PlayerBusDriverIndex[playerid]][2], 0.0, 0.0, 0.0, GPS_BUSDRIVER);
                 
                 SendTipMessage(playerid, "To Bus Driver jobs drive around the street and get passengers at bus stops.");
                 SendTipMessage(playerid, "Follow the checkpoint in your maps.");

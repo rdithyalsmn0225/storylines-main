@@ -9,7 +9,7 @@ InsertAdvertise()
 	CreateDynamicMapIcon(1743.3409,-1457.5900,13.5181, 36, 0, -1, -1, -1, 10.0);
 }
 
-function:OnPlayerMakeRumour(playerid, response, price)
+function:OnPlayerMakeRumour(playerid, response, Float: price)
 {
 	if(response)
 	{
@@ -53,7 +53,7 @@ CMD:advertise(playerid, params[])
 	if(!Inventory_Count(playerid, "Cellphone") && PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != CELLPHONE)
 		return SendErrorMessage(playerid, "You must hold the cellphone in your hands."); 
 
-	new price = 0.10 * strlen(text);
+	new Float: price = 0.10 * strlen(text);
 
 	if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		return SendErrorMessage(playerid, "You don't have enough money for this advertisement! You need at least $%s.", FormatMoney(price));
@@ -62,9 +62,12 @@ CMD:advertise(playerid, params[])
 
 	GiveMoney(playerid, -Cents);
 
-	new string[256];
+	new string[256], str[128];
 	format(string, sizeof(string), "[Advertisement]: %s (Phone: %d)", text, PlayerInfo[playerid][E_CHARACTER_PHONE]);
 	SendClientMessageToAll(COLOR_DARKGREEN, string);
+
+	format(str, sizeof(str), "%s has used advertise.", ReturnName(playerid));
+	SendAdminMessage(1, str);
 
 	adcooldown = gettime();
 	return 1;
@@ -99,7 +102,7 @@ CMD:badvert(playerid, params[])
 	if(!Inventory_Count(playerid, "Cellphone") && PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != CELLPHONE)
 		return SendErrorMessage(playerid, "You must hold the cellphone in your hands."); 
 
-	new price = 0.10 * strlen(text);
+	new Float: price = 0.10 * strlen(text);
 
 	if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		return SendErrorMessage(playerid, "You don't have enough money for this advertisement! You need at least $%s.", FormatMoney(price));
@@ -108,9 +111,12 @@ CMD:badvert(playerid, params[])
 
 	GiveMoney(playerid, -Cents);
 
-	new string[256];
+	new string[256], str[128];
 	format(string, sizeof(string), "[Business]: %s (%s)", text, BusinessInfo[businessid][E_BUSINESS_NAME]);
 	SendClientMessageToAll(COLOR_DARKGREEN, string);
+
+	format(str, sizeof(str), "%s has used business advertise.", ReturnName(playerid));
+	SendAdminMessage(1, str);
 
 	adcooldown = gettime();
 	return 1;
@@ -141,7 +147,7 @@ CMD:rumour(playerid, params[]) {
 	if(!Inventory_Count(playerid, "Cellphone") && PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != CELLPHONE)
 		return SendErrorMessage(playerid, "You must hold the cellphone in your hands."); 
 
-	new price = 1 * strlen(text);
+	new Float: price = 0.10 * strlen(text);
 
 	if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		return SendErrorMessage(playerid, "You don't have enough money for this rumour! You need at least {93C47D}$%s{ffffff}.", FormatMoney(price));

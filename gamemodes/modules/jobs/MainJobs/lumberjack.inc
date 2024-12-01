@@ -11,7 +11,8 @@ VehicleObjectUpdates(vehicleid)
             }
             else
             {
-                DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
+                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
             }
         }
         case 543:
@@ -23,7 +24,8 @@ VehicleObjectUpdates(vehicleid)
             }
             else
             {
-                DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
+                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
             }
         }
         case 478:
@@ -35,7 +37,8 @@ VehicleObjectUpdates(vehicleid)
             }
             else
             {
-                DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
+                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
             }
         }
         case 554:
@@ -47,7 +50,8 @@ VehicleObjectUpdates(vehicleid)
             }
             else
             {
-                DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
+                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
             }
         }
     }
@@ -83,7 +87,7 @@ function:CutTree(playerid, id)
             if(TreeInfo[id][E_TREE_PROGRESS] + rand >= 100)
             {
                 TreeInfo[id][E_TREE_PROGRESS] = 0;
-                SendServerMessage(playerid, "[Lumberjack] {a2a2a2}You've successfully cutting down the Tree.");
+                SendServerMessage(playerid, "[Lumberjack] {DEDEDE}You've successfully cutting down the Tree.");
                 SendTipMessage(playerid, "Press 'ALT' to create the wood timber.");
                 TreeInfo[id][E_TREE_CUTTED] = true;
 
@@ -92,7 +96,7 @@ function:CutTree(playerid, id)
             else
             {
                 TreeInfo[id][E_TREE_PROGRESS] += rand;
-                SendServerMessage(playerid, "[Lumberjack] {a2a2a2}The tree cutting progress now is %d percent", TreeInfo[id][E_TREE_PROGRESS]);
+                SendServerMessage(playerid, "[Lumberjack] {DEDEDE}The tree cutting progress now is %d percent", TreeInfo[id][E_TREE_PROGRESS]);
                 SendTipMessage(playerid, "Keep cut the tree until the progress is 100 percent");
             }
         }
@@ -130,7 +134,7 @@ function:CreateTimber(playerid, id)
 
             Inventory_Add(playerid, "Woods", 1463, 1);
 
-            SendServerMessage(playerid, "[Lumberjack] {a2a2a2}You've successfully take woods timber.");
+            SendServerMessage(playerid, "[Lumberjack] {DEDEDE}You've successfully take woods timber.");
             SendTipMessage(playerid, "Place the timber into your pickup vehicle.");
 
             TreeInfo[id][E_TREE_TIMER] = 10;
@@ -218,13 +222,15 @@ CMD:timbersell(playerid, params[])
 		Inventory_Remove(playerid, "Woods", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-        new Cents = floatround(LUMBERJACK_SALARY*2 * 100, floatround_round);
+
+        new rand = randomEx(7, 12);
+        new Cents = floatround(rand * 2 * 100, floatround_round);
 
 		GiveMoney(playerid, Cents);
 
 		ServerData_Plus(INDUSTRY_WOODS, 1);
 		
-		SendServerMessage(playerid, "[Lumberjack] {a2a2a2}You has sell woods for $%s into leafy hollow barn.", FormatMoney(Cents));
+		SendServerMessage(playerid, "[Lumberjack] {DEDEDE}You has sell woods for $%s into leafy hollow barn.", FormatMoney(Cents));
 	}
 	return 1;
 }
@@ -247,7 +253,7 @@ CMD:buysaw(playerid, params[])
     new Cents = floatround(80 * 100, floatround_round);
 
 	GiveMoney(playerid, -Cents);
-    SendServerMessage(playerid, "[Lumberjack] {a2a2a2}You bought a axe for {93C47D}$80.00{a2a2a2}.");
+    SendServerMessage(playerid, "[Lumberjack] {DEDEDE}You bought a axe for {93C47D}$80.00{DEDEDE}.");
     SendTipMessage(playerid, "To start cutting the tree(s) /timbercut using axe.");
     return 1;
 }

@@ -253,6 +253,7 @@ public OnGameModeInit()
 	SetTimer("OnPlayerFactionUpdate", 600000, true);
 	SetTimer("OnPlayerJobsUpdate", 60000, true);
 	SetTimer("OnPlayerLotteryUpdate", 1800000, false);
+	SetTimer("OnPlayerTipsUpdate", 900000, true);
 
 	// Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
@@ -594,7 +595,8 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 			else if(PlayerSweeperIndex[playerid] == 16)
 			{
-				new total = (PlayerSweeperIndex[playerid] * SWEEPER_SALARY);
+				new rand = randomEx(2, 4);
+				new total = (PlayerSweeperIndex[playerid] * rand);
 
             	new Cents = floatround(total * 100, floatround_round);
 
@@ -658,7 +660,7 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 					}
 					else
 					{
-						format(str, sizeof(str), "Available in: ~g~%d~w~ seconds", TreeInfo[i][E_TREE_TIMER]);
+						format(str, sizeof(str), "Available in: ~g~%d~w~ minutes", TreeInfo[i][E_TREE_TIMER]);
 					}
 				}
 				ShowBoxMessage(playerid, str, 5);
