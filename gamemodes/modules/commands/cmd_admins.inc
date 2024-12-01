@@ -1303,6 +1303,9 @@ CMD:gotofaction(playerid, params[])
 	return 1;
 }
 
+CMD:gotopos(playerid, params[]) return cmd_gotoco(playerid, params);
+CMD:gotoxyz(playerid, params[]) return cmd_gotoco(playerid, params);
+CMD:xyz(playerid, params[]) return cmd_gotoco(playerid, params);
 CMD:gotoco(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_HIGH)
@@ -1312,20 +1315,22 @@ CMD:gotoco(playerid, params[])
 		Float:x,
 		Float:y,
 		Float:z,
-		interior
+		interior,
+		virtualworld
 	; 
 	
-	if(sscanf(params, "fffi", x, y, z, interior))
-		return SendUsageMessage(playerid, "/gotoco [x] [y] [z] [interior id]"); 
+	if(sscanf(params, "fffi(0)i(0)", x, y, z, interior, virtualworld))
+		return SendUsageMessage(playerid, "/gotoco [x] [y] [z] [interior(optional)] [virtualworld(optional)]"); 
 		
 	SetPlayerPosEx(playerid, x, y, z);
 	SetPlayerInterior(playerid, interior);
+	SetPlayerVirtualWorld(playerid, virtualworld);
 	
 	SendTeleportMessage(playerid);
 	
-	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ])
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
-		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = 0;
 	}
 	return 1;
 }

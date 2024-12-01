@@ -68,6 +68,7 @@ main ()  {}
 #include "modules\config\toggle.inc"
 #include "modules\config\timer.inc"
 #include "modules\config\zones.inc"
+#include "modules\config\tips.inc"
 // TAGS MODULES
 #include "modules\tags\tablist.inc"
 // ANIMS MODULES
@@ -4435,34 +4436,34 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALL_BOUNCE] = 0;
 				}
 			}
-		}
-		else
-		{
-			// PASS & STEAL:
-			for(new i; i < MAX_PLAYERS; i++)
+			else
 			{
-				if(IsPlayerConnected(i))
+				// PASS & STEAL:
+				for(new i; i < MAX_PLAYERS; i++)
 				{
-					if(IsPlayerFacingPlayer(playerid, i, 15))
+					if(IsPlayerConnected(i))
 					{
-						new Float:x, Float:y, Float:z;
-						GetPlayerPos(i, x, y, z);
-						if(IsPlayerInRangeOfPoint(playerid, 20.0, x, y, z))
+						if(IsPlayerFacingPlayer(playerid, i, 15))
 						{
-							CourtInfo[PlayerInfo[i][E_CHARACTER_COURT]][E_BALLER] = i;
-							PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
-							ClearAnimations(playerid);
-							ApplyAnimation(playerid,"BSKTBALL","BBALL_def_loop",4.0,1,0,0,0,0);
-							SetTimerEx("ClearAnim", 700, 0, "d", playerid);
-							MoveDynamicObject(CourtInfo[PlayerInfo[i][E_CHARACTER_COURT]][E_BALL_OBJECT], x, y, z, 7.0);
-							PlayerInfo[i][E_CHARACTER_ANIMBALL] = 0;
-							CourtInfo[PlayerInfo[i][E_CHARACTER_COURT]][E_BALL_SHOOT] = 6;
-							ApplyAnimation(i,"BSKTBALL","BBALL_def_loop",4.0,1,0,0,0,0);
+							new Float:x, Float:y, Float:z;
+							GetPlayerPos(i, x, y, z);
+							if(IsPlayerInRangeOfPoint(playerid, 20.0, x, y, z))
+							{
+								CourtInfo[PlayerInfo[i][E_CHARACTER_COURT]][E_BALLER] = i;
+								PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
+								ClearAnimations(playerid);
+								ApplyAnimation(playerid,"BSKTBALL","BBALL_def_loop",4.0,1,0,0,0,0);
+								SetTimerEx("ClearAnim", 700, 0, "d", playerid);
+								MoveDynamicObject(CourtInfo[PlayerInfo[i][E_CHARACTER_COURT]][E_BALL_OBJECT], x, y, z, 7.0);
+								PlayerInfo[i][E_CHARACTER_ANIMBALL] = 0;
+								CourtInfo[PlayerInfo[i][E_CHARACTER_COURT]][E_BALL_SHOOT] = 6;
+								ApplyAnimation(i,"BSKTBALL","BBALL_def_loop",4.0,1,0,0,0,0);
 
-							new str[128];
-							format(str, sizeof(str), "passes the basketball to %s.", ReturnName(i));
-							cmd_me(playerid, str);
-							return 1;
+								new str[128];
+								format(str, sizeof(str), "passes the basketball to %s.", ReturnName(i));
+								cmd_me(playerid, str);
+								return 1;
+							}
 						}
 					}
 				}
@@ -4732,7 +4733,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
 		if(!VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_ENGINE] && IsEngineVehicle(vehicleid)){
-			SendTipMessage(playerid, "The engine is off press 'ALT' + '2' or /engine to turn on vehicle");
+			ShowBoxMessage(playerid, "The engine of this vehicle is off.~n~Use /engine to turn it on or /hotwire to hotwire it.", 5);
 	   	}
 
 	   	if (ReturnVehicleHealth(vehicleid) <= 350){

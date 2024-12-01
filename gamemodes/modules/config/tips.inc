@@ -4,7 +4,7 @@ function:OnPlayerTipsUpdate ()
 {
 	tips++;
 
-	switch ( Server [ E_SERVER_RAND_MSG ] ) {
+	switch (tips) {
 
 		case 0: SendTipsMessage(COLOR_TIP, "[TIP]{F5F6DF} To view a list of server commands, you may use /help or ask a question via /ask." ) ;
 		case 1: SendTipsMessage(COLOR_TIP, "[TIP]{F5F6DF} To view a list of server animations, you can use /animhelp and /stopanim to cancel an animation.") ;

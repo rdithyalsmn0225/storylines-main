@@ -173,6 +173,7 @@ function:OnPlayerVehicleRental(playerid, id, modelid, cost, plates[], Float:x, F
 		
 		VehicleInfo[vehicleid][E_VEHICLE_DESTROYED] = 0;
         VehicleInfo[vehicleid][E_VEHICLE_PLATESSTATUS] = true;
+        VehicleInfo[vehicleid][E_VEHICLE_TYPE] = VEHICLE_TYPE_PLAYER;
 		
 		SaveVehicle(vehicleid);
 		

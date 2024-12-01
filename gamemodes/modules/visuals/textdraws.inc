@@ -5,7 +5,7 @@ new PlayerText:VehicleName[MAX_PLAYERS];
 new PlayerText:LoginScreen[4][MAX_PLAYERS];
 new PlayerText:HeaderTD[2][MAX_PLAYERS];
 new PlayerText:Street[2][MAX_PLAYERS];
-new PlayerText:Subtitles[MAX_PLAYERS];
+new PlayerText:Footers[MAX_PLAYERS];
 new PlayerText:speedo[7][MAX_PLAYERS];
 new PlayerText:Phone[14][MAX_PLAYERS];
 new PlayerText:MDC[14][MAX_PLAYERS];
@@ -525,19 +525,19 @@ CreateMDCTextDraws(playerid)
 
 CreateNotificationTextDraws(playerid)
 {
-	Subtitles[playerid] = CreatePlayerTextDraw(playerid, 321.000000, 376.000000, "~b~Ganton Binco~n~~y~This business is for sell~n~~w~Press 'ENTER' to enter business");
-	PlayerTextDrawFont(playerid, Subtitles[playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Subtitles[playerid], 0.191659, 0.999993);
-	PlayerTextDrawTextSize(playerid, Subtitles[playerid], 502.500000, 306.500000);
-	PlayerTextDrawSetOutline(playerid, Subtitles[playerid], 1);
-	PlayerTextDrawSetShadow(playerid, Subtitles[playerid], 0);
-	PlayerTextDrawAlignment(playerid, Subtitles[playerid], 2);
-	PlayerTextDrawColor(playerid, Subtitles[playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, Subtitles[playerid], 255);
-	PlayerTextDrawBoxColor(playerid, Subtitles[playerid], 50);
-	PlayerTextDrawUseBox(playerid, Subtitles[playerid], 0);
-	PlayerTextDrawSetProportional(playerid, Subtitles[playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, Subtitles[playerid], 0);
+	Footers[playerid] = CreatePlayerTextDraw(playerid, 321.000000, 376.000000, "~b~Ganton Binco~n~~y~This business is for sell~n~~w~Press 'ENTER' to enter business");
+	PlayerTextDrawFont(playerid, Footers[playerid], 1);
+	PlayerTextDrawLetterSize(playerid, Footers[playerid], 0.191659, 0.999993);
+	PlayerTextDrawTextSize(playerid, Footers[playerid], 502.500000, 306.500000);
+	PlayerTextDrawSetOutline(playerid, Footers[playerid], 1);
+	PlayerTextDrawSetShadow(playerid, Footers[playerid], 0);
+	PlayerTextDrawAlignment(playerid, Footers[playerid], 2);
+	PlayerTextDrawColor(playerid, Footers[playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, Footers[playerid], 255);
+	PlayerTextDrawBoxColor(playerid, Footers[playerid], 50);
+	PlayerTextDrawUseBox(playerid, Footers[playerid], 0);
+	PlayerTextDrawSetProportional(playerid, Footers[playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, Footers[playerid], 0);
 
 	money[playerid] = CreatePlayerTextDraw(playerid, 607.000000, 97.000000, "~g~+1000");
 	PlayerTextDrawFont(playerid, money[playerid], 3);
@@ -2087,16 +2087,18 @@ stock ShowBoxMessage(playerid, string[], time)
 {
 	new validtime = time*1000;
 
-	PlayerTextDrawSetString(playerid, Subtitles[playerid], string);
-	PlayerTextDrawShow(playerid, Subtitles[playerid]);
+	
+	PlayerTextDrawSetString(playerid, Footers[playerid], string);
+	PlayerTextDrawShow(playerid, Footers[playerid]);
+	
 	SetTimerEx("HideBoxMessage", validtime, false, "d", playerid);
-
 	PlayerPlaySound(playerid, 1054, 0.0, 0.0, 0.0);
 	return 1;
 }
 function:HideBoxMessage(playerid)
 {
-	return PlayerTextDrawHide(playerid, Subtitles[playerid]);
+	PlayerTextDrawHide(playerid, Footers[playerid]);
+	return 1; 
 }
 
 stock ShowHeaderMessage(playerid, header[], string[], hide = 0)

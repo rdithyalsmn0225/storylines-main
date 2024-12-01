@@ -390,6 +390,7 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 		
 		VehicleInfo[vehicleid][E_VEHICLE_DESTROYED] = 0;
 		VehicleInfo[vehicleid][E_VEHICLE_PLATESSTATUS] = true;
+		VehicleInfo[vehicleid][E_VEHICLE_TYPE] = VEHICLE_TYPE_PLAYER;
 		
 		SaveVehicle(vehicleid);
 		
@@ -532,7 +533,7 @@ function:Query_LoadPrivateVehicle(playerid)
 	}
 
 	VehicleInfo[vehicleid][E_VEHICLE_CRATES] = 0;
-
+	VehicleInfo[vehicleid][E_VEHICLE_TYPE] = VEHICLE_TYPE_PLAYER;
 	VehicleInfo[vehicleid][E_VEHICLE_VCTIMER] = 0;
 	
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = true;
