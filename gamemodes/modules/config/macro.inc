@@ -3,10 +3,10 @@
 #define DEBUG_MODE
 
 #if defined MYSQL_HOST
-	#define SQL_HOSTNAME "204.10.192.68"
-	#define SQL_USERNAME "u687_r9HQObtwZ7"
-	#define SQL_DATABASE "s687_storylines_samp"
-	#define SQL_PASSWORD "f6x+!wOAb7UMmPag4MAujA0A"
+	#define SQL_HOSTNAME "127.0.0.1"
+	#define SQL_USERNAME "server_683"
+	#define SQL_DATABASE "server_683_kontol"
+	#define SQL_PASSWORD "lkvr3gdpxe"
 #else
 	#define SQL_HOSTNAME "127.0.0.1"
 	#define SQL_USERNAME "root"
@@ -14,7 +14,7 @@
 	#define SQL_PASSWORD ""
 #endif
 
-#define SERVER_NAME "Stoylines Roleplay"
+#define SERVER_NAME "Storylines Roleplay ultra-h.com"
 #define SCRIPT_REV "End of the Line v1.0"
 #define PLAYER_MOTD "Please read the rules first!"
 

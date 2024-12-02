@@ -2007,10 +2007,7 @@ CMD:whisper(playerid, params[])
 	return 1;
 }
 
-CMD:w(playerid, params[]){
-	return cmd_whisper ( playerid, params ) ;
-}
-
+CMD:w(playerid, params[]) return cmd_whisper (playerid, params);
 CMD:carwhisper(playerid, params[]) {
 
 	if (!IsPlayerInAnyVehicle(playerid)) 
@@ -2144,6 +2141,9 @@ CMD:pm(playerid, params[])
 		
 	if(!IsPlayerConnected(playerb))
 		return SendErrorMessage(playerid, "The player you specified isn't connected.");
+
+	if (playerb == playerid)
+        return SendErrorMessage(playerid, "You can't pay yourself.");
 
 	if(PlayerInfo[playerid][E_CHARACTER_TOGPMS] == true)
 		return SendErrorMessage(playerid, "You must enable Private Messages at /settings.");

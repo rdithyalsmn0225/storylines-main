@@ -14,6 +14,7 @@ new PlayerText:blackjack[15][MAX_PLAYERS];
 new PlayerText:idcard[19][MAX_PLAYERS];
 new PlayerText:VehicleSelection[19][MAX_PLAYERS];
 new PlayerText:HotwireTD[MAX_PLAYERS][8];
+new PlayerText:HotwireTDB[MAX_PLAYERS][8];
 new PlayerText:HotwireCable[MAX_PLAYERS][8];
 new PlayerText:money[MAX_PLAYERS];
 new PlayerText:MoneyFormat[MAX_PLAYERS];
@@ -556,7 +557,9 @@ CreateHotwireTextDraws(playerid)
         }
 
 		HotwireCable[playerid][i] = CreatePlayerTextDraw(playerid, posaX, posaY, "ld_bum:blkdot");
+		HotwireTDB[playerid][i] = CreatePlayerTextDraw(playerid, posX, posY, "ld_bum:blkdot");
 		HotwireTD[playerid][i] = CreatePlayerTextDraw(playerid, posX, posY, "ld_bum:blkdot");
+		
 	}
 }
 

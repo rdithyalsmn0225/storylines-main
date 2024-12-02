@@ -730,13 +730,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDD] = false;
 							SendServerMessage(playerid, "[Settings] {DEDEDE}Draw Distance has been set to Low.");
-							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 2000, playerid);
+							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 300, playerid);
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDD] = true;
 							SendServerMessage(playerid, "[Settings] {DEDEDE}Draw Distance has been set to High.");
-							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 5000, playerid);
+							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 1000, playerid);
 						}
 					}
 				}

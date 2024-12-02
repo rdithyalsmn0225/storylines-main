@@ -27,11 +27,8 @@
 #include <physics>
 #include <rSelection>
 #include <map-zones>
-#include <fader>
 #include <Pawn.RakNet>
-#include <realtime-clock>
 #include <compat>
-
 
 //Database establisher:
 new MySQL:ourConnection; 
@@ -230,10 +227,9 @@ public OnGameModeInit()
 	InsertProjectPropsData();
 
 	// Timer:
-	RealTime_SetInterval(10000, false);
-	RealTime_Sync();
-	SetClock(RealTime_GetHour(), RealTime_GetMinute());
-	SetWorldTime(RealTime_GetHour()); 
+	new hour, minute, second;
+	gettime(hour, minute, second);
+	SetWorldTime(hour); 
 
 	// Global timers:
 	SetTimerEx("RandomFire", 5400000, true, "i", 1);
@@ -304,7 +300,6 @@ public OnGameModeExit()
 	SaveFactions();
 	SaveProperties();
 	SaveBusinesses();
-	RealTime_StopTime();
 
 	forex(i, MAX_TREES) if(TreeInfo[i][E_TREE_EXISTS])
 	{
@@ -358,7 +353,7 @@ public OnPlayerConnect(playerid)
 
 	EnablePlayerCameraTarget(playerid, true);
 
-	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 5000, playerid);
+	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 300, playerid);
 
 	if(PlayerInfo[playerid][E_CHARACTER_INJURED] == 1)
 	{
@@ -4838,11 +4833,6 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		{
 			PlayAudioStreamForPlayer(playerid, VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_RADIOURL]);
 		}
-
-		new str[256];
-		format(str, sizeof(str), "%s", ReturnVehicleName(GetPlayerVehicleID(playerid)));
-		PlayerTextDrawSetString(playerid, VehicleName[playerid], str);
-		PlayerTextDrawFade(playerid, VehicleName[playerid], COLOR_DARKGREEN, 0x00000000, fade_type_text, 50, 5, 255, 0x00000000);
 	}
 	
 	if(!IsEngineVehicle(GetPlayerVehicleID(playerid)))
@@ -5468,17 +5458,6 @@ function:SaveCharacter(playerid)
 		mysql_pquery(ourConnection, query);
 	}
 	return 1;
-}
-
-public OnWorldTimeUpdate(hour, minute)
-{
-  	SetClock(hour, minute);
-
-  	new str[16];
-
-  	format(str, sizeof(str), "worldtime %02d:%02d", hour, minute);
- 	SendRconCommand(str);
-  	return 1;
 }
 
 //ObjectMove

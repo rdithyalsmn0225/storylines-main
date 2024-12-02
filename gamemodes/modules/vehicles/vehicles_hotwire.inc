@@ -42,7 +42,13 @@ function:StartHotwire(playerid)
 		PlayerTextDrawSetSelectable(playerid, HotwireTD[playerid][i], true);
 		PlayerTextDrawTextSize(playerid, HotwireTD[playerid][i], 18.500000, 41.000000);
 
+        PlayerTextDrawColor(playerid, HotwireTDB[playerid][i], 0x000000FF);
+        PlayerTextDrawFont(playerid, HotwireTDB[playerid][i], 4);
+		PlayerTextDrawSetSelectable(playerid, HotwireTDB[playerid][i], true);
+		PlayerTextDrawTextSize(playerid, HotwireTDB[playerid][i], 20.000000, 45.000000);
+
         PlayerTextDrawShow(playerid, HotwireTD[playerid][i]);
+        PlayerTextDrawShow(playerid, HotwireTDB[playerid][i]);
         PlayerTextDrawShow(playerid, HotwireCable[playerid][i]);
         HotwireActive[playerid][i] = indices[i % (8 / 2)];
     }
@@ -55,6 +61,7 @@ function:StopHotwire(playerid)
     for (new i = 0; i < 8; i++)
     {
         PlayerTextDrawHide(playerid, HotwireTD[playerid][i]);
+        PlayerTextDrawHide(playerid, HotwireTDB[playerid][i]);
         PlayerTextDrawHide(playerid, HotwireCable[playerid][i]);
         HotwireActive[playerid][i] = -1;
     }
@@ -67,7 +74,7 @@ function:StopHotwire(playerid)
 CMD:hotwire(playerid, params[])
 {
     new vehicleid = GetPlayerVehicleID(playerid);
-    if(!IsPlayerInAnyVehicle(playerid))
+    if(!IsPlayerInAnyVehicle(playerid) && GetPlayerState(playerid) != PLAYER_STATE_DRIVER)
         return SendErrorMessage(playerid, "You aren't in any vehicles.");
 
     if (!IsEngineVehicle(vehicleid))

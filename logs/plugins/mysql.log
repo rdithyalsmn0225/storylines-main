@@ -19,3 +19,27 @@
 [16:49:49] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179 -> F:\Radit Files\Storylines-main\pawno\include\realtime-clock.inc:299 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
 [16:50:51] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179 -> F:\Radit Files\Storylines-main\pawno\include\realtime-clock.inc:299 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
 [16:52:28] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179 -> F:\Radit Files\Storylines-main\pawno\include\realtime-clock.inc:299 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[16:53:34] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179 -> F:\Radit Files\Storylines-main\pawno\include\realtime-clock.inc:299 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[16:54:57] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179 -> F:\Radit Files\Storylines-main\pawno\include\realtime-clock.inc:299 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:42:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'server_683'@'localhost' (using password: YES)'
+[18:44:00] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:178 -> F:\Radit Files\Storylines-main\pawno\include\realtime-clock.inc:299 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[19:09:11] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:178 -> F:\Radit Files\Storylines-main\pawno\include\realtime-clock.inc:299 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[19:15:04] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:178 -> F:\Radit Files\Storylines-main\pawno\include\realtime-clock.inc:299 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[19:22:15] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:176 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)

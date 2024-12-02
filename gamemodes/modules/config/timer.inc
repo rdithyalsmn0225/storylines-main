@@ -3,8 +3,9 @@
 stock ReturnHour()
 {
 	new time[36]; 
-	
-	format(time, sizeof(time), "%02d:%02d", RealTime_GetHour(), RealTime_GetMinute());
+	new hour, minute, second;
+	gettime(hour, minute, second);
+	format(time, sizeof(time), "%02d:%02d", hour, minute);
 	return time;
 }
 
@@ -165,7 +166,6 @@ function:PlayersUpdates()
 					break;
 				}
 			}
-			RealTime_SyncPlayerWorldTime(playerid);
 		}
 	}
 	return 1;
