@@ -1319,7 +1319,7 @@ CMD:gotoco(playerid, params[])
 		virtualworld
 	; 
 	
-	if(sscanf(params, "fffi(0)i(0)", x, y, z, interior, virtualworld))
+	if(sscanf(params, "fffii", x, y, z, interior, virtualworld))
 		return SendUsageMessage(playerid, "/gotoco [x] [y] [z] [interior(optional)] [virtualworld(optional)]"); 
 		
 	SetPlayerPosEx(playerid, x, y, z);
