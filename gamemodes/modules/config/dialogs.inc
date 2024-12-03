@@ -730,7 +730,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDD] = false;
 							SendServerMessage(playerid, "[Settings] {DEDEDE}Draw Distance has been set to Low.");
-							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 300, playerid);
+							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 500, playerid);
 						}
 						else
 						{

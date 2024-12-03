@@ -296,6 +296,7 @@ stock LoadCharacter(playerid)
 		CreatePlayerToy(playerid);
 	}
 	LoadPlayerToys(playerid);
+	SyncPlayerTime(playerid);
 
 	SetSpawnInfo(playerid, 0, PlayerInfo[playerid][E_CHARACTER_LASTSKIN], PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2], 0, 0, 0, 0, 0, 0, 0);
 	SpawnPlayer(playerid);

@@ -252,6 +252,7 @@ public OnGameModeInit()
 	SetTimer("OnPlayerJobsUpdate", 60000, true);
 	SetTimer("OnPlayerLotteryUpdate", 1800000, false);
 	SetTimer("OnPlayerTipsUpdate", 900000, true);
+	SetTimer("WeatherRotator", 2400000, true);
 
 	// Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
@@ -353,7 +354,7 @@ public OnPlayerConnect(playerid)
 
 	EnablePlayerCameraTarget(playerid, true);
 
-	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 300, playerid);
+	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 500, playerid);
 
 	if(PlayerInfo[playerid][E_CHARACTER_INJURED] == 1)
 	{
@@ -3095,10 +3096,10 @@ public OnPlayerSpawn(playerid)
 	SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	SetPlayerArmourEx(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 
-	SetWeather(1);
-
 	KillTimer(cameraTimer[playerid]);
 	SetCameraBehindPlayer(playerid); 
+
+	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 500, playerid);
 
 	if(PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] == true)
 	{

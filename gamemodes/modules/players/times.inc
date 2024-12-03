@@ -1,4 +1,4 @@
-void:SetClock(hour, minute)
+void:SetClock(hour, minute, second)
 {
     new timestr[512];
     new weekday_str[10], j, e, month[12], date[6];
@@ -41,7 +41,7 @@ void:SetClock(hour, minute)
         case 6: weekday_str = "Friday";
     } 
 
-    format(timestr, sizeof(timestr), "%02d:%02d, %s~n~%02dth of %s %02d", hour, minute, weekday_str, date[0], month, date[2]);
+    format(timestr, sizeof(timestr), "%02d:%02d:%02d, %s~n~%02dth of %s %02d", hour, minute, second, weekday_str, date[0], month, date[2]);
     TextDrawSetString(Times, timestr);
 }
 

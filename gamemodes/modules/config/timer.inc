@@ -9,10 +9,26 @@ stock ReturnHour()
 	return time;
 }
 
+function:SyncPlayerTime(playerid)
+{
+	new hour, minutes, second;
+	gettime(hour, minutes, second);
+	SetPlayerTime(playerid, hour, minutes);
+	SetClock(hour, minutes, second);
+	return 1;
+}
+
+function:WeatherRotator()
+{
+	new index = random(sizeof(g_aWeatherRotations));
+	SetWeather(g_aWeatherRotations[index]);
+}
+
 function:PlayersUpdates()
 {
 	foreach(new playerid : Player)
 	{
+		SyncPlayerTime(playerid);
 		if(AccountInfo[playerid][E_MASTERS_LOGGED] == false)
 		{
 			if(loginTime[playerid] > 0)

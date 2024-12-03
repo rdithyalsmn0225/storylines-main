@@ -1603,6 +1603,11 @@ new BusinessActor[][E_BUSINESS_BACTOR] =
 	{141, {0.0, 0.0, 0.0, 0.0}} //gym
 };
 
+new const g_aWeatherRotations[] =
+{
+	14, 1, 7, 3, 5, 12, 8
+};
+
 new cameraIndex[MAX_PLAYERS];
 new cameraTimer[MAX_PLAYERS];
 
