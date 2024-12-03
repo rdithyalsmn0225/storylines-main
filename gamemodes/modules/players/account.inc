@@ -6,7 +6,7 @@ function:LoginTimer(playerid, rcc)
 	cameraIndex[playerid] = 0;
 	InterpolateCameraPos(playerid, 2467.694091, -1680.678100, 22.207088, 2470.404296, -1640.607177, 23.310541, 15000, 1);
 	InterpolateCameraLookAt(playerid, 2471.343017, -1681.534667, 20.810289, 2472.477294, -1643.914062, 22.434955, 15000, 1);
-	cameraTimer[playerid] = SetTimerEx("SetPlayerCamera", 10000, true, "i", playerid);
+	cameraTimer[playerid] = SetTimerEx("SetPlayerCamera", 12000, true, "i", playerid);
 
 	new existCheck[256]; 
 	mysql_format(ourConnection, existCheck, sizeof(existCheck), "SELECT * FROM bannedlist WHERE IpAddress = '%e'", ReturnIP(playerid));
@@ -47,7 +47,7 @@ function:LogPlayerIn(playerid)
 		loginTime[playerid] = 1; 
 		for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
 		
-		new str[1024];
+		new str[128];
 		format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
 		Dialog_Show(playerid, Login, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
 	}
@@ -68,7 +68,7 @@ function:OnPlayerRegister(playerid)
 	registerTime[playerid] = 0;
 	loginTime[playerid] = 1; 
 	
-	new str[1024];
+	new str[128];
 	format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
 	SendInfoMessage(playerid, "You successfully registered as %s. You need to login to continue:", ReturnName(playerid)); 
 	return Dialog_Show(playerid, Login, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
@@ -88,7 +88,7 @@ function:LoggingIn(playerid)
 			return KickEx(playerid);
 		}
 		
-		new str[1024];
+		new str[128];
 		format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
 		return Dialog_Show(playerid, Login, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
 	}
@@ -195,7 +195,6 @@ function:Query_SelectCharacter(playerid)
 	if (!rows)
 	{
 		SendErrorMessage(playerid, "An error occurred processing your character. Returning you to your character list...");
-			
 		return ShowCharacterSelection(playerid);
 	}
 	
@@ -283,7 +282,7 @@ stock LoadCharacter(playerid)
 	SetPlayerFightingStyle(playerid, PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE]);
 	format(PlayerInfo[playerid][E_CHARACTER_ACTIVEIP], 60, "%s", ReturnIP(playerid)); 
 
-	new str[1024];
+	new str[128];
     format(str, sizeof(str), "%s", PlayerInfo[playerid][E_CHARACTER_NAME]);
     SetPlayerName(playerid, str);
 
@@ -297,7 +296,10 @@ stock LoadCharacter(playerid)
 		CreatePlayerToy(playerid);
 	}
 	LoadPlayerToys(playerid);
-	
+
+	SetSpawnInfo(playerid, 0, PlayerInfo[playerid][E_CHARACTER_LASTSKIN], PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2], 0, 0, 0, 0, 0, 0, 0);
+	SpawnPlayer(playerid);
+	TogglePlayerSpectating(playerid, false);
 	return 1;
 }
 
@@ -405,7 +407,6 @@ function:Query_LoadCharacter(playerid)
 	mysql_format(ourConnection, rquery, sizeof(qquery), "SELECT * FROM `tickets` WHERE `ID` = '%i'", PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, rquery, "Query_LoadTicket", "d", playerid);
 	
-	TogglePlayerSpectating(playerid, false);
 	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{93C47D}PUBLIC{ffffff}\n#2\tLast Position\t{93C47D}PUBLIC{ffffff}\n#3\tFaction Spawn\t{93C47D}FACTION{ffffff}", "Select", "Close");
 }
 
@@ -527,7 +528,7 @@ stock ShowCharacterPreview(playerid)
 		format(playerCharactersDescription[playerid], 32, "Enthusiastic"); //enthusiastic
 	}
 
-	new str[1024];
+	new str[512];
 	format(str, sizeof(str), "Attribute\tValue\n");
 	format(str, sizeof(str), "%sName\t%s\n", str, playerCharactersName[playerid]);
 	format(str, sizeof(str), "%sSex\t%s\n", str, gender);
@@ -572,6 +573,7 @@ Dialog:Spawns(playerid, response, listitem, inputtext[])
 		{
 			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0; 
 			LoadCharacter(playerid);
+			
 		}
 		case 1:
 		{

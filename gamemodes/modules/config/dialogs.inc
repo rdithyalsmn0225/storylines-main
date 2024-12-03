@@ -93,7 +93,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				return KickEx(playerid); 
 			}
 			
-			new str[1024];
+			new str[128];
 			format(str, sizeof(str), "You are not registered user! Plase register!");
 			new insert[256]; 
 			
@@ -300,7 +300,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }	
 					registerTime[playerid] = 1;	
 					
-					new str[1024];
+					new str[128];
 					format(str, sizeof(str), "You are not registered user! Plase register!");
 					ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register:", str, "Confirm", "");
 				}
@@ -320,8 +320,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		    {
 			    new
 					itemid = PlayerInfo[playerid][E_CHARACTER_LISTITEM],
-					string[1024],
-					str[1024];
+					string[512],
+					str[512];
 
 			    strunpack(string, InventoryInfo[playerid][itemid][E_INVENTORY_ITEM]);
 

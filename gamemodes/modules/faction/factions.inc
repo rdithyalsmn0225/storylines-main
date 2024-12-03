@@ -59,7 +59,7 @@ function:Query_LoadFactions()
 	if(!cache_num_rows())
 		return printf("[SERVER]: No factions were loaded from %s database...", SQL_DATABASE);
 		
-	new newThread[1024], rows, fields; 
+	new newThread[256], rows, fields; 
 	cache_get_row_count(rows);
 	cache_get_field_count(fields);
 	

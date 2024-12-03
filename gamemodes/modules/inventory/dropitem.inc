@@ -84,7 +84,7 @@ function:Query_LoadDropped()
 DropItem(item[], player[], model, quantity, Float:x, Float:y, Float:z, Float:rx, Float:ry, Float:rz, interior, world, type = 0)
 {
 	new
-	    query[1024];
+	    query[128];
 
 	for (new i = 0; i != MAX_DROPPED_ITEMS; i ++) if (!DroppedInfo[i][E_DROPPED_MODEL])
 	{

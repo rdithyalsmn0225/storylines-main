@@ -41,7 +41,7 @@ CMD:dealership(playerid, params[])
 			
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, 684.6581,-1570.5861,14.2422))
 	{		
-		new larstr[1024],
+		new larstr[512],
 			counter = 0;
 
         CatDealershipHolder[playerid] = DEALERSHIP_CATEGORY_BIKES; 

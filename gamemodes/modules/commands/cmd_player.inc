@@ -41,7 +41,7 @@ CMD:cursor(playerid, params[])
 
 CMD:settings(playerid, params[])
 {
-	new str[512];
+	new str[256];
 	format(str, sizeof(str), "Streets TextDraws\t%s\n", (PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sJoined Logs\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGJOIN] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sAdmin Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGADMIN] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
@@ -435,7 +435,7 @@ CMD:haircut(playerid, params[])
 		SetPlayerPos(playerid, 414.4374,-19.8381,1001.8047);
 		SetPlayerFacingAngle(playerid, 88.7491);
 
-		new str[512];
+		new str[256];
 		for(new i; i < sizeof(g_aHaircut); i++)
 		{
 			format(str, sizeof(str), "%s%d\n", str, g_aHaircut[i]);
@@ -519,7 +519,7 @@ CMD:fightstyle(playerid, params[])
 
 CMD:radiochannel(playerid, params[])
 {
-	new str[512];
+	new str[256];
 	strcat(str, "Channel\tTag\tDescription\n"); 
 	strcat(str, "#911\tCENTRAL\tLSPD Central Bureau Dispatch\n"); 
 	strcat(str, "#931\tCW.TAC1\tLSPD Citywide TAC #1\n"); 

@@ -317,7 +317,7 @@ function:OnAntiCheatUpdate()
 		{
 	    	if(AC_JETPACK == true)
 			{
-                new gstr[512], str1[512];
+                new gstr[128], str1[128];
 				format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Jetpack Hack]", ReturnName(playerid));
                 SendClientMessageToAll(COLOR_YELLOW, gstr);
                 Kick(playerid);
@@ -336,12 +336,12 @@ function:OnAntiCheatUpdate()
                 {
                     LastEnteredVehicle[playerid] = vehicleid;
                     
-                    new gstr[512];
+                    new gstr[128];
                     format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Vehicle WARP Hack]", ReturnName(playerid));
                     SendClientMessageToAll(COLOR_YELLOW, gstr);
                     Kick(playerid);
 
-                    new str1[512];
+                    new str1[128];
                     format(str1, sizeof(str1), "%s has been detected for using program hack [Vehicle WARP Hack]", ReturnName(playerid)); 
 		            SendAdminMessage(1, str1);
                 }

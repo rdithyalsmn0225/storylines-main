@@ -1,7 +1,7 @@
 //Faction commands:
 CMD:factions(playerid, params[])
 {
-	new str[512], longstr[512]; 
+	new str[256], longstr[256]; 
 
 	for (new i = 1; i < MAX_FACTIONS; i ++)
 	{
@@ -217,7 +217,7 @@ CMD:factionon(playerid, params[])
 		if(!IsPlayerFaction(playerid))
 			return SendErrorMessage(playerid, "You aren't in any faction.");
 		
-		new lstr[512], str[256];
+		new lstr[256], str[256];
 		format(str, sizeof(str), "%s online:", ReturnFactionName(playerid));
 		format(lstr, sizeof(lstr), "ID\tRank\tName\n");
 		foreach(new i : Player)
@@ -477,7 +477,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
                 {
 					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
 					{
-						new str[2024];
+						new str[256];
 						for(new i; i < sizeof(g_aLspdSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLspdSkins[i]);
@@ -486,7 +486,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 					}
 					else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
-						new str[2024];
+						new str[256];
 						for(new i; i < sizeof(g_aLspdFemSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLspdFemSkins[i]);
@@ -499,7 +499,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
                 {
 					if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
 					{
-						new str[2024];
+						new str[256];
 						for(new i; i < sizeof(g_aLsmdSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLsmdSkins[i]);
@@ -508,7 +508,7 @@ Dialog:FactionLockers(playerid, response, listitem, inputtext[])
 					}
 					else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 					{
-						new str[2024];
+						new str[256];
 						for(new i; i < sizeof(g_aLsmdFemSkins); i++)
 						{
 							format(str, sizeof(str), "%s%d\n", str, g_aLsmdFemSkins[i]);

@@ -373,6 +373,12 @@ public OnPlayerConnect(playerid)
 		PlayerInfo[playerid][E_CHARACTER_ROBBERYACTOR] = -1;
 		PlayerInfo[playerid][E_CHARACTER_HASROBBIZ] = false;
 	}
+
+	if (!AccountInfo[playerid][E_MASTERS_LOGGED])
+	{
+		TogglePlayerSpectating(playerid, true);
+		SetTimerEx("LoginTimer", 500, false, "ii", playerid, g_RaceCheck{playerid});
+	}
 	return 1;
 }
 
@@ -668,21 +674,14 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 	return 1;
 }
 
-public OnPlayerRequestClass(playerid, classid)
+public OnPlayerRequestSpawn(playerid)
 {
-	if (AccountInfo[playerid][E_MASTERS_LOGGED] == false)
-	{
-		TogglePlayerSpectating(playerid, true);
-		SetTimerEx("LoginTimer", 1000, false, "ii", playerid, g_RaceCheck{playerid});
-		return 0;
-	}
-	else if(AccountInfo[playerid][E_MASTERS_LOGGED] == true)
-	{
-		SetSpawnInfo(playerid, 0, PlayerInfo[playerid][E_CHARACTER_LASTSKIN], PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2], 0, 0, 0, 0, 0, 0, 0);
-		SpawnPlayer(playerid);
-		return 0;
-	}
-	else return 0;
+    if (!IsPlayerAdmin(playerid))
+    {
+        SendClientMessage(playerid, -1, "You don't have permission to using Spawn Button");
+        return 0;
+    }
+	return 1;
 }
 
 public OnVehicleDeath(vehicleid, killerid)

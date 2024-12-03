@@ -1,12 +1,12 @@
 //Database
-//#define MYSQL_HOST
+#define MYSQL_HOST
 #define DEBUG_MODE
 
 #if defined MYSQL_HOST
-	#define SQL_HOSTNAME "127.0.0.1"
-	#define SQL_USERNAME "server_683"
-	#define SQL_DATABASE "server_683_kontol"
-	#define SQL_PASSWORD "lkvr3gdpxe"
+	#define SQL_HOSTNAME "144.76.57.59"
+	#define SQL_USERNAME "u2714504_g98SUK2cnN"
+	#define SQL_DATABASE "s2714504_db1733200129718"
+	#define SQL_PASSWORD "RdrnP.f2N40ZhIEPxn=j@4OC"
 #else
 	#define SQL_HOSTNAME "127.0.0.1"
 	#define SQL_USERNAME "root"
