@@ -52,7 +52,7 @@ stock ShowGeneralList(playerid, type)
                     format(str2, sizeof(str2), "Product\tPrice\n");
                     format(str2, sizeof(str2), "%sSpike Bat\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
                     format(str2, sizeof(str2), "%sWooden\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
-                    format(str2, sizeof(str2), "%sNail Bat\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+                    format(str2, sizeof(str2), "%sBaseball Bat\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 					Dialog_Show(playerid, GeneralStore2, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel"); 
 				}
 			}
@@ -191,7 +191,7 @@ Dialog:GeneralStore2(playerid, response, listitem, inputtext[])
             }
             case 1:
             {
-                if(Inventory_Count(playerid, "Wooden"))
+                if(Inventory_Count(playerid, "Cutscene Bat"))
                     return SendErrorMessage(playerid, "You already own a wooden.");
             
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
@@ -201,13 +201,13 @@ Dialog:GeneralStore2(playerid, response, listitem, inputtext[])
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-                Inventory_Add(playerid, "Wooden", -2201, 1);
+                Inventory_Add(playerid, "Cutscene Bat", -2201, 1);
 
                 ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
             }
             case 2:
             {
-                if(Inventory_Count(playerid, "Nail Bat"))
+                if(Inventory_Count(playerid, "Baseball Bat"))
                     return SendErrorMessage(playerid, "You already own a nailbat.");
             
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
@@ -217,7 +217,7 @@ Dialog:GeneralStore2(playerid, response, listitem, inputtext[])
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-                Inventory_Add(playerid, "Nail Bat", -2202, 1);
+                Inventory_Add(playerid, "Baseball Bat", -2202, 1);
 
                 ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
             }
@@ -346,7 +346,7 @@ Dialog:GeneralStore4(playerid, response, listitem, inputtext[])
             }
             case 1:
             {
-                if(Inventory_Count(playerid, "Crowbar") >= 1)		
+                if(Inventory_Count(playerid, "Marcos Knife") >= 1)		
                     return SendErrorMessage(playerid, "You may only hold up to 1 crowbar.");
             
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
@@ -356,7 +356,7 @@ Dialog:GeneralStore4(playerid, response, listitem, inputtext[])
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-                Inventory_Add(playerid, "Crowbar", 18634, 1);
+                Inventory_Add(playerid, "Marcos Knife", 18634, 1);
 
                 ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
             }

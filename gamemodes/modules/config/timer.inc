@@ -315,17 +315,16 @@ function:OnPlayerWeaponUpdate()
 				if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
 				{
 					format(astring, sizeof(astring), "Spike_Bat");
-					SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2200, 6, -0.044999, -0.025000, 0.000000, -3.299999, 0.000000, 0.000000, 1.742000, 1.905999, 1.117000);
+					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 2045, 6, 0.048000, 0.021999, 0.218000, 94.899993, 0.000000, 0.000000, 1.557000, 1.229001, 1.445999);
 				}
 				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)
 				{
-					format(astring, sizeof(astring), "Wooden");
-					SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2201, 6, -0.233000, -0.021000, -0.115000, 3.299999, 0.000000, 0.000000, 4.358999, 1.672000, 1.533000);
+					format(astring, sizeof(astring), "Cutscene_Bat");
+					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 19914, 6, 0.067000, 0.040999, -0.120000, 0.000000, -89.700027, -4.099999, 1.060000, 1.350001, 1.193000);
 				}
 				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)
 				{
-					format(astring, sizeof(astring), "Nail_Bat");
-					SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2203, 6, -0.055999, -0.023000, 0.041999, -0.300000, 0.000000, 0.000000, 1.966000, 1.612000, 1.240000);
+					format(astring, sizeof(astring), "Baseball_Bat");
 				}
 				PlayerTextDrawSetString(i, WeaponType[i], astring);
 				PlayerTextDrawShow(i, WeaponType[i]);
@@ -336,13 +335,13 @@ function:OnPlayerWeaponUpdate()
 				new astring[128];
 				if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
 				{
-					format(astring, sizeof(astring), "Broken_Bottle");
-					SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2210, 6, -0.088000, -0.015000, -0.153999, 0.000000, -7.600001, 0.000000, 1.862000, 1.506000, 1.838002);
+					format(astring, sizeof(astring), "Bottle");
+					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 1484, 6, 0.164000, -0.026000, 0.051999, 11.900003, -156.600097, 0.000000, 1.353998, 1.580001, 1.470999);
 				}
 				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)
 				{
-					format(astring, sizeof(astring), "Crowbar");
-					SetPlayerAttachedObject(i, ATTACH_WEAPONS, -2211, 6, -0.013000, -0.165000, -0.026000, 1.000003, -12.199998, 0.000000, 1.184000, 5.491996, 1.000000);
+					format(astring, sizeof(astring), "Marcos_Knife");
+					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 19583, 6, 0.089000, 0.039000, 0.000000, -89.199966, 176.400009, 3.699986, 1.000000, 1.000000, 1.526998);
 				}
 				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)
 				{

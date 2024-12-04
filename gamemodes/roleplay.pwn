@@ -263,8 +263,6 @@ public OnGameModeInit()
 	mysql_pquery(ourConnection, "SELECT * FROM `spray_tags`", "Query_LoadSpraytags", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `server_data`", "Query_LoadServerData", "");
 
-	SetWeather(1);
-
 	Times = TextDrawCreate(67.000000, 426.000000, "");
 	TextDrawFont(Times, 1);
 	TextDrawLetterSize(Times, 0.174992, 0.949998);

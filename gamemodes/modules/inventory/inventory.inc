@@ -605,15 +605,6 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
-	else if(!strcmp(name, "Crowbar"))
-	{
-        if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-		{
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CROWBAR;
-			SetPlayerAttachedObject(playerid, ATTACH_HAND, 18634, 6, 0.081000, 0.000000, 0.000000, 81.899993, -81.500007, 0.000000, 1.000000, 1.000000, 1.000000);
-		}
-		else SendErrorMessage(playerid, "You must store your items in inventory first.");
-	}
 	else if(!strcmp(name, "Gascan"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
@@ -644,7 +635,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
-	else if(!strcmp(name, "Crowbar"))
+	else if(!strcmp(name, "Marcos Knife"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
@@ -676,7 +667,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
-	else if(!strcmp(name, "Wooden"))
+	else if(!strcmp(name, "Cutscene Bat"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
@@ -686,7 +677,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
-	else if(!strcmp(name, "Nail Bat"))
+	else if(!strcmp(name, "Baseball Bat"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{

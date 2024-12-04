@@ -35,13 +35,13 @@ stock GetWeaponType(playerid, weaponid)
 	else if(GetPlayerWeapon(weaponid) == 5)
  	{ 
  		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Spike Bat");
- 		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)format(astring, sizeof(astring), "Wooden");
- 		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)format(astring, sizeof(astring), "Nail Bat");
+ 		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)format(astring, sizeof(astring), "Cutscene Bat");
+ 		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)format(astring, sizeof(astring), "Baseball Bat");
 	}
 	else if(GetPlayerWeapon(weaponid) == 4)
  	{ 
  		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Bottle");
- 		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)format(astring, sizeof(astring), "Crowbar");
+ 		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)format(astring, sizeof(astring), "Marcos Knife");
  		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)format(astring, sizeof(astring), "Knife");
 	}
 	else ReturnWeaponName(weaponid);
@@ -70,11 +70,11 @@ ResetPlayerWeaponEx(playerid)
 {
 	Inventory_Set(playerid, "Extinguisher", 366, 0);
 	Inventory_Set(playerid, "Bottle", 2040, 0);
-	Inventory_Set(playerid, "Crowbar", 2040, 0);
+	Inventory_Set(playerid, "Marcos Knife", 2040, 0);
 	Inventory_Set(playerid, "Knife", 2040, 0);
 	Inventory_Set(playerid, "Spike Bat", 2040, 0);
-	Inventory_Set(playerid, "Wooden", 2040, 0);
-	Inventory_Set(playerid, "Nail Bat", 2040, 0);
+	Inventory_Set(playerid, "Cutscene Bat", 2040, 0);
+	Inventory_Set(playerid, "Baseball Bat", 2040, 0);
 	Inventory_Set(playerid, "Colt 45", 346, 0);
 	Inventory_Set(playerid, "Silenced Colt", 347, 0);
 	Inventory_Set(playerid, "Desert Eagle", 384, 0);
