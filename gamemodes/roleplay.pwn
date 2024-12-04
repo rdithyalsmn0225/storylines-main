@@ -215,6 +215,7 @@ public OnGameModeInit()
 	InsertStaticArea();
 	Insert3DTextLabel();
 	InsertAcidGunLabs();
+	InsertProjectProp();
 	InsertAlhambraMaps();
 	InsertSidejobsMaps();
 	InsertDocksWorkers();
@@ -225,11 +226,6 @@ public OnGameModeInit()
 	InsertCharacterScene();
 	InsertStaticVehicles();
 	InsertProjectPropsData();
-
-	// Timer:
-	new hour, minute, second;
-	gettime(hour, minute, second);
-	SetWorldTime(hour); 
 
 	// Global timers:
 	SetTimerEx("RandomFire", 5400000, true, "i", 1);

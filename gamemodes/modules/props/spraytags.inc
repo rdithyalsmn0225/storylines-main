@@ -21,7 +21,7 @@ stock Spraytags_Delete(spid)
 	return 1;
 }
 
-Spraytags_Nearest(playerid)
+IsPlayerNearSprayTags(playerid)
 {
     for (new i = 0; i != MAX_SPRAYTAGS; i ++) if (SpraytagsInfo[i][E_SPRAYTAGS_EXISTS] && IsPlayerInRangeOfPoint(playerid, 2.5, SpraytagsInfo[i][E_SPRAYTAGS_POS][0], SpraytagsInfo[i][E_SPRAYTAGS_POS][1], SpraytagsInfo[i][E_SPRAYTAGS_POS][2]))
 	{
@@ -31,7 +31,7 @@ Spraytags_Nearest(playerid)
 	return -1;
 }
 
-stock Spraytags_Create(playerid, modelid, owner, text[], font, color, Float:x, Float:y, Float:z, Float:rx, Float:ry, Float:rz)
+stock Spraytags_Create(playerid, modelid, owner, text[], font[], color, Float:x, Float:y, Float:z, Float:rx, Float:ry, Float:rz)
 {
 	DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]); 
 	PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
@@ -133,8 +133,8 @@ function:SprayingTags(playerid, inputtext[], type, Float:x, Float:y, Float:z, Fl
     {
         case 1: //CreateSpraytags
         {
-            new idx = Spraytags_Nearest(playerid);
-			idx = Spraytags_Create(playerid, PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTOWN], PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR], x, y, z, rx, ry, rz);
+            new idx = IsPlayerNearSprayTags(playerid);
+			idx = Spraytags_Create(playerid, PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_DBID], PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR], x, y, z, rx, ry, rz);
 	    			
 	    	if (idx == -1)
 	    		return SendErrorMessage(playerid, "You can't make anymore spraytags.");	
@@ -158,13 +158,30 @@ CMD:spray(playerid, params[])
 	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
 		return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
 
+    for(new i; i < MAX_SPRAYTAGS; i++)
+    {
+        if(SpraytagsInfo[i][E_SPRAYTAGS_OWNER] == PlayerInfo[playerid][E_CHARACTER_DBID])
+        {
+            if(IsPlayerNearSprayTags(playerid))
+            {
+                Spraytags_Delete(i);
+            }
+            else
+            {
+                GPS_SetPlayerRaceCheckPoint(playerid, 1, SpraytagsInfo[i][E_SPRAYTAGS_POS][0], SpraytagsInfo[i][E_SPRAYTAGS_POS][1], SpraytagsInfo[i][E_SPRAYTAGS_POS][2], 0.0, 0.0, 0.0);
+                SendErrorMessage(playerid, "You can't make spraytags because your spraytags already spawned."); 
+            }
+            return 1;
+        }
+    }
+
     if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < 3)
-        return SendErrorMessage(playerid, "You can't make spraytags because your level must be level 3."); 
+        return SendErrorMessage(playerid, "You can't make spraytags because your level must be higher level 3."); 
 
     if(!Inventory_Count(playerid, "Spraycan"))
         return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
         
-    Dialog_Show(playerid, SprayFont, DIALOG_STYLE_INPUT, "Spraytags:", "The font you input will only be visible to visual players that only have that font\nPlease input the font below:", "Input", "Cancel");
+    Dialog_Show(playerid, SprayFont, DIALOG_STYLE_INPUT, "Spraytags:", "The font you input will only be visible to visual players that only have that font Ex: Arial\nPlease input the font below:", "Input", "Cancel");
 	return 1;
 }
 
