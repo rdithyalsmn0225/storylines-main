@@ -349,7 +349,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, -Cents);
 			PropertyInfo[id][E_PROPERTY_CASH]+= amount; 
 			
-			SendServerMessage(playerid, "[Property] {DEDEDE}You added $%s to your cashbox.", amount); 
+			SendPropertyMessage(playerid, "[Property] {DEDEDE}You added $%s to your cashbox.", amount); 
 			SaveProperty(id);
 		}
 		else if(!strcmp(pick, "take"))
@@ -365,7 +365,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, Cents);
 			PropertyInfo[id][E_PROPERTY_CASH]-= amount;
 			
-			SendServerMessage(playerid, "[Property] {DEDEDE}You took {33AA33}$%s{ffffff} from your cashbox.", amount); 
+			SendPropertyMessage(playerid, "[Property] {DEDEDE}You took {33AA33}$%s{ffffff} from your cashbox.", amount); 
 			SaveProperty(id); 
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 

@@ -82,7 +82,7 @@ SetFurnitureMaterial(playerid, objectid, materialslot, modelid, txd[], texturena
 		);
 		mysql_pquery(ourConnection, gquery);
 	}
-	SendServerMessage(playerid, "[Property] {DEDEDE}You are added material texture for #%d index #%d set into {d7d292}%d %s %s{DEDEDE}.", objectid, materialslot, modelid, txd, texturename);
+	SendPropertyMessage(playerid, "[Property] {DEDEDE}You are added material texture for #%d index #%d set into {d7d292}%d %s %s{DEDEDE}.", objectid, materialslot, modelid, txd, texturename);
 }
 
 RemoveAllFurniture(propid)

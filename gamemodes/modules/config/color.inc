@@ -17,7 +17,8 @@
 #define COLOR_GAMES         (0xb6b9e1FF)
 #define COLOR_HEADER		(0x90D7F0FF)
 #define COLOR_HINT          (0x8E94D6FF)
-
+#define COLOR_VEHICLE		(0xAA8672FF)
+#define COLOR_PROPERTY		(0x39865BFF)
 
 #define COLOR_GRAD1			(0xCCE6E6FF)
 #define COLOR_GRAD2			(0xE2FFFFFF)

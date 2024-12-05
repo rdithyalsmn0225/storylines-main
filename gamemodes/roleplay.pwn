@@ -523,7 +523,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 				new Cents = floatround(100 * 100, floatround_round);
 				StopDriverstest(playerid);
 				GiveMoney(playerid, -Cents);
-				SendServerMessage(playerid, "[Dmv] {c2c2c2}Congratulations %s, you've passed your test.", ReturnName(playerid)); 
+				SendServerMessage(playerid, "[Dmv] {DEDEDE}Congratulations %s, you've passed your test.", ReturnName(playerid)); 
 				
 				PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE] = 1;
 				SaveCharacter(playerid);
@@ -605,7 +605,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
     			GiveMoney(playerid, Cents);
 
 				ShowBoxMessage(playerid, "~r~Street Cleaner job ended.", 5); 
-				SendJobsMessage(playerid, "[Street Cleaner] {c2c2c2}You've cleaned the street, current cleaned rubbish %d x rubbish and earn $%s.", PlayerSweeperIndex[playerid], FormatMoney(Cents));
+				SendJobsMessage(playerid, "[Street Cleaner] {DEDEDE}You've cleaned the street, current cleaned rubbish %d x rubbish and earn $%s.", PlayerSweeperIndex[playerid], FormatMoney(Cents));
 
 				PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
 				PlayerSweeperIndex[playerid] = 0;
@@ -618,7 +618,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 		if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] == true && PlayerCheckpoint[playerid] == GPS_BUSDRIVER)
 		{
-			SendJobsMessage(playerid, "[Bus Driver] {c2c2c2}Wait at this stop for a few seconds, The marker will disappear when ready.");
+			SendJobsMessage(playerid, "[Bus Driver] {DEDEDE}Wait at this stop for a few seconds, The marker will disappear when ready.");
 
 			new Float:x, Float:y, Float:z;
             GetPlayerPos(playerid, x, y, z);
@@ -3105,7 +3105,7 @@ public OnPlayerSpawn(playerid)
 		SetPlayerPosEx(playerid, -10.5146,2337.2961,24.3034);
 		SetPlayerInterior(playerid, 0); SetPlayerVirtualWorld(playerid, 1338);
 		
-		SendServerMessage(playerid, "[Jail] {c2c2c2}You're currently admin jailed. You have {d7d292}%i{c2c2c2} minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
+		SendServerMessage(playerid, "[Jail] {DEDEDE}You're currently admin jailed. You have {d7d292}%i{DEDEDE} minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
 	}
 	else if(PlayerInfo[playerid][E_CHARACTER_PRISONED] == true)
 	{
@@ -3113,7 +3113,7 @@ public OnPlayerSpawn(playerid)
 		
 		SetPlayerInPrison(playerid);
 		
-		SendServerMessage(playerid, "[Prison] {c2c2c2}You're currently prison. You have {d7d292}%i{c2c2c2} minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
+		SendServerMessage(playerid, "[Prison] {DEDEDE}You're currently prison. You have {d7d292}%i{DEDEDE} minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
 	}
 	else
 	{
@@ -3373,7 +3373,7 @@ public OnPlayerUpdate(playerid)
 		    {
 		        if(ReturnFactionType(i) == FACTION_TYPE_MEDICAL && IsPlayerInRangeOfPoint(playerid, 20.0, x, y, z))
 		        {
-		            SendServerMessage(i, "[Fire] {c2c2c2}Well done! You helped put out the fire and received $%s on your paycheck.", FormatMoney(Cents));
+		            SendServerMessage(i, "[Fire] {DEDEDE}Well done! You helped put out the fire and received $%s on your paycheck.", FormatMoney(Cents));
 		            GivePaycheck(i, Cents);
 		        }
 			}
@@ -3609,7 +3609,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 
 		if (blackjackPlayerScore[playerid] > 21)
 		{
-			SendServerMessage(playerid, "[Blackjack] {c2c2c2}You lost! Your cards exceeded 21 (Bust).");
+			SendServerMessage(playerid, "[Blackjack] {DEDEDE}You lost! Your cards exceeded 21 (Bust).");
 			ResetBlackjack(playerid);
 			return 1;
 		}
@@ -3633,15 +3633,15 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		if (BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE] > 21 || blackjackPlayerScore[playerid] > BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE])
 		{
 			GiveMoney(playerid, blackjackPlayerBet[playerid] * 2);
-			SendServerMessage(playerid, "[Blackjack] {c2c2c2}You won and earn your bet x2 for $%s.", FormatMoney(blackjackPlayerBet[playerid] * 2));
+			SendServerMessage(playerid, "[Blackjack] {DEDEDE}You won and earn your bet x2 for $%s.", FormatMoney(blackjackPlayerBet[playerid] * 2));
 		}
 		else if (blackjackPlayerScore[playerid] == BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE])
 		{
-			SendServerMessage(playerid, "[Blackjack] {c2c2c2}It's draw! There are no winners (Push).");
+			SendServerMessage(playerid, "[Blackjack] {DEDEDE}It's draw! There are no winners (Push).");
 		}
 		else
 		{
-			SendServerMessage(playerid, "[Blackjack] {c2c2c2}You lost! Dealer has a higher score (Bust).");
+			SendServerMessage(playerid, "[Blackjack] {DEDEDE}You lost! Dealer has a higher score (Bust).");
 		}
 
 		ResetBlackjack(playerid);
@@ -3754,7 +3754,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendServerMessage(playerid, "[Business] {c2c2c2}You bought buster meals and eat it");
+		SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought buster meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
 
 		new Float:health;
@@ -3778,7 +3778,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendServerMessage(playerid, "[Business] {c2c2c2}You bought duoble d-luxe meals and eat it");
+		SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought duoble d-luxe meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
 
 		new Float:health;
@@ -3802,7 +3802,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendServerMessage(playerid, "[Business] {c2c2c2}You bought duoble d-luxe meals and eat it");
+		SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought duoble d-luxe meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
 
 		new Float:health;
@@ -4327,27 +4327,27 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					case 1:	
 					{
 						Inventory_Add(playerid, "Cod", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}12.5.kg{c2c2c2} of Cod.");
+						SendJobsMessage(playerid, "[Fishing] {DEDEDE}You caught a {d7d292}12.5.kg{DEDEDE} of Cod.");
 					}
 					case 2:	
 					{
 						Inventory_Add(playerid, "Carp", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}10.5.kg{c2c2c2} of Carp.");
+						SendJobsMessage(playerid, "[Fishing] {DEDEDE}You caught a {d7d292}10.5.kg{DEDEDE} of Carp.");
 					}
 					case 3:	
 					{
 						Inventory_Add(playerid, "Salmon", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}8.5 lbs{c2c2c2} of Salmon.");
+						SendJobsMessage(playerid, "[Fishing] {DEDEDE}You caught a {d7d292}8.5 lbs{DEDEDE} of Salmon.");
 					}
 					case 4:	
 					{
 						Inventory_Add(playerid, "Cat Fish", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}15.5 lbs{c2c2c2} of Cat fish.");
+						SendJobsMessage(playerid, "[Fishing] {DEDEDE}You caught a {d7d292}15.5 lbs{DEDEDE} of Cat fish.");
 					}
 					case 5:	
 					{
 						Inventory_Add(playerid, "Herring", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}1.5 lbs{c2c2c2} of Herring.");
+						SendJobsMessage(playerid, "[Fishing] {DEDEDE}You caught a {d7d292}1.5 lbs{DEDEDE} of Herring.");
 					}
 				}
 			}
@@ -4816,8 +4816,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 
-	    SendJobsMessage(driverid, "[Taxi] {c2c2c2}%s has entered your taxi as a passenger.", ReturnName(playerid, driverid));
-		SendJobsMessage(playerid, "[Taxi] {c2c2c2}You have entered {d7d292}%s's{c2c2c2} taxi.", ReturnName(driverid, playerid));
+	    SendJobsMessage(driverid, "[Taxi] {DEDEDE}%s has entered your taxi as a passenger.", ReturnName(playerid, driverid));
+		SendJobsMessage(playerid, "[Taxi] {DEDEDE}You have entered {d7d292}%s's{DEDEDE} taxi.", ReturnName(driverid, playerid));
 	}
  	if (oldstate == PLAYER_STATE_PASSENGER && PlayerInfo[playerid][E_CHARACTER_TAXITIMER] != 0 && PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
 	{
@@ -4875,7 +4875,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	    }
 	    
         PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
-        SendJobsMessage(playerid, "[taxi] {c2c2c2}You are no longer on taxi duty!");
+        SendJobsMessage(playerid, "[taxi] {DEDEDE}You are no longer on taxi duty!");
 	}
 
     if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK])

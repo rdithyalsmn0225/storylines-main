@@ -168,8 +168,8 @@ function:OnVehicleScrap(playerid, response, dbid, cash_back)
 		mysql_format(ourConnection, delQuery, sizeof(delQuery), "DELETE FROM vehicles WHERE VehicleDBID = %i", dbid);
 		mysql_pquery(ourConnection, delQuery); 
 		
-		SendServerMessage(playerid, "[Vehicle] {DEDEDE}Your %s has been permanently deleted.", ReturnVehicleName(GetPlayerVehicleID(playerid))); 
-		SendServerMessage(playerid, "[Vehicle] {DEDEDE}You earned $%s from scrapping it.", FormatMoney(cash_back));
+		SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}Your %s has been permanently deleted.", ReturnVehicleName(GetPlayerVehicleID(playerid))); 
+		SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}You earned $%s from scrapping it.", FormatMoney(cash_back));
 		
 		GiveMoney(playerid, cash_back); 
 		
@@ -200,7 +200,7 @@ function:OnVehicleTow(playerid)
 	if(IsVehicleOccupied(vehicleid))
 	{
 		KillTimer(playerTowTimer[playerid]);
-		SendServerMessage(playerid, "[Vehicle] {DEDEDE}Your vehicle tow was interrupted."); 
+		SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}Your vehicle tow was interrupted."); 
 		
 		playerTowingVehicle[playerid] = false;	
 		Delete3DTextLabel(VehicleInfo[vehicleid][E_VEHICLE_TOW]);
@@ -224,7 +224,7 @@ function:OnVehicleTow(playerid)
 	
 	if(VehicleInfo[vehicleid][E_VEHICLE_TOWCOUNT] == 9)
 	{
-		SendServerMessage(playerid, "[Vehicle] {DEDEDE}Your vehicle has been towed.");
+		SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}Your vehicle has been towed.");
 		GiveMoney(playerid, -2000);
 		
 		playerTowingVehicle[playerid] = false;	
@@ -289,7 +289,7 @@ function:OnGascanRefill(playerid, vehicleid, x, y, z)
 			VehicleInfo[vehicleid][E_VEHICLE_FUEL] += 50.0;
 			Inventory_Remove(playerid, "Gascan", 1);
 			
-			SendServerMessage(playerid, "[Vehicle] {DEDEDE}You refilled the %s to 50 percent fuel.", ReturnVehicleName(vehicleid)); 
+			SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}You refilled the %s to 50 percent fuel.", ReturnVehicleName(vehicleid)); 
 			return 1;
 		}
 	}
@@ -335,7 +335,7 @@ function:OnGasStationRefill(playerid, vehicleid, x, y, z)
 			VehicleInfo[vehicleid][E_VEHICLE_FUEL] += 50.0;
 			GiveMoney(playerid, -50);
 			
-			SendServerMessage(playerid, "[Vehicle] {DEDEDE}You refilled the %s to 50 percent fuel for $50.00.", ReturnVehicleName(vehicleid)); 
+			SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}You refilled the %s to 50 percent fuel for $50.00.", ReturnVehicleName(vehicleid)); 
 			return 1;
 		}
 	}
@@ -398,7 +398,7 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid;
 	}
 	
-	SendServerMessage(playerid, "[Vehicle] {DEDEDE}You successfully bought a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(DealershipTotalCost[playerid]));
+	SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}You successfully bought a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(DealershipTotalCost[playerid]));
 	
 	PlayerPurchasingVehicle[playerid] = false;
 	ResetDealershipVars(playerid); 
@@ -539,7 +539,7 @@ function:Query_LoadPrivateVehicle(playerid)
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = true;
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid; 
 	
-	SendServerMessage(playerid, "[Vehicle] {DEDEDE}%s has been spawned at its parking place.", ReturnVehicleName(vehicleid));
+	SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}%s has been spawned at its parking place.", ReturnVehicleName(vehicleid));
 	if(VehicleInfo[vehicleid][E_VEHICLE_IMPOUND]) SendClientMessage(playerid, COLOR_RED, "Your vehicle is impounded.");
 	GPS_SetPlayerRaceCheckPoint(playerid, 1, VehicleInfo[vehicleid][E_VEHICLE_POS][0], VehicleInfo[vehicleid][E_VEHICLE_POS][1], VehicleInfo[vehicleid][E_VEHICLE_POS][2], 0.0, 0.0, 0.0);
 	return 1;
@@ -549,8 +549,8 @@ function:Query_AddPlayerVehicle(playerid, playerb)
 {
 	PlayerInfo[playerb][E_CHARACTER_OWNEDVEHICLE][playerInsertID[playerb]] = cache_insert_id(); 
 	
-	SendServerMessage(playerb, "[Vehicle] {DEDEDE}You received a vehicle from %s in slot %d.", ReturnName(playerid), playerInsertID[playerb]);
-	SendServerMessage(playerid, "[Vehicle] {DEDEDE}You issued %s a new vehicle.", ReturnName(playerb));
+	SendVehicleMessage(playerb, "[Vehicle] {DEDEDE}You received a vehicle from %s in slot %d.", ReturnName(playerid), playerInsertID[playerb]);
+	SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}You issued %s a new vehicle.", ReturnName(playerb));
 	
 	playerInsertID[playerb] = 0;
 	SaveCharacter(playerb);

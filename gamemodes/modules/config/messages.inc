@@ -17,6 +17,12 @@
 #define SendJobsMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_HINT, ""%1) 
 
+#define SendPropertyMessage(%0,%1) \
+	SendClientMessageEx(%0, COLOR_PROPERTY, ""%1) 
+
+#define SendVehicleMessage(%0,%1) \
+	SendClientMessageEx(%0, COLOR_VEHICLE, ""%1) 
+
 #define SendDebugMessage(%0)	\
 	SendClientMessageToAllEx(COLOR_GREY, "Debug: "%0)
 

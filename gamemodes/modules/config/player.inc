@@ -1059,7 +1059,7 @@ stock randomEx(min, max)
 
 Float:randomFloat(Float:maxValue)
 {
-    return float(random(maxValue * 100)) / 100.0;
+    return float(random(100)) / 100.0 * maxValue;
 }
 
 stock GetCount() { return GetTickCount(); }

@@ -243,7 +243,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 5);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 5;
-						SendServerMessage(playerid, "[Business] {DEDEDE}You learn a fightstyle boxing for $150.00.");
+						SendPropertyMessage(playerid, "[Business] {DEDEDE}You learn a fightstyle boxing for $150.00.");
 						new Cents = floatround(150 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -252,7 +252,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 7);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 7;
-						SendServerMessage(playerid, "[Business] {DEDEDE}You learn a fightstyle KneeHead for $200.00.");
+						SendPropertyMessage(playerid, "[Business] {DEDEDE}You learn a fightstyle KneeHead for $200.00.");
 						new Cents = floatround(200 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -261,7 +261,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 15);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 15;
-						SendServerMessage(playerid, "[Business] {DEDEDE}You learn a fightstyle GrabKick for $300.00.");
+						SendPropertyMessage(playerid, "[Business] {DEDEDE}You learn a fightstyle GrabKick for $300.00.");
 						new Cents = floatround(300 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -270,7 +270,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 4);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 4;
-						SendServerMessage(playerid, "[Business] {DEDEDE}You reset a fightstyle for $100.00.");
+						SendPropertyMessage(playerid, "[Business] {DEDEDE}You reset a fightstyle for $100.00.");
 						new Cents = floatround(100 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -1316,7 +1316,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] -= rand;
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = false;
 							BusinessRefresh(IsPlayerInBusiness(playerid));
-							SendServerMessage(playerid, "[Business] {DEDEDE}You've got money $%s from take cash money on cashiers.", FormatMoney(Cents));
+							SendPropertyMessage(playerid, "[Business] {DEDEDE}You've got money $%s from take cash money on cashiers.", FormatMoney(Cents));
 						}
 					}
 				}
