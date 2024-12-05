@@ -94,7 +94,7 @@ function:FishingTimer(playerid, type)
 					ClearAnimations(playerid);
 					TogglePlayerControllable(playerid, true);
 					ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-					SendServerMessage(playerid, "[Fishing] {DEDEDE}You fish swarm away in your hook.");
+					SendJobsMessage(playerid, "[Fishing] {DEDEDE}You fish swarm away in your hook.");
 				}
 			}
 		}
@@ -113,30 +113,30 @@ CMD:sellfish(playerid, params[])
 	new str[356];
 	if(Inventory_Count(playerid, "Cod"))
 	{
-		format(str, sizeof(str), "%sCod - %d x - Worth {93C47D}$%s{ffffff}\n", str, Inventory_Count(playerid, "Cod"), FormatMoney(floatround(COD_PRICE * Inventory_Count(playerid, "Cod") * 100, floatround_round)));
+		format(str, sizeof(str), "%sCod - %d x - Worth {33AA33}$%s{ffffff}\n", str, Inventory_Count(playerid, "Cod"), FormatMoney(floatround(COD_PRICE * Inventory_Count(playerid, "Cod") * 100, floatround_round)));
 	}
 	if(Inventory_Count(playerid, "Carp"))
 	{
-		format(str, sizeof(str), "%sCarp - %d x - Worth {93C47D}$%s{ffffff}\n", str, Inventory_Count(playerid, "Carp"), FormatMoney(floatround(CARP_PRICE * Inventory_Count(playerid, "Carp") * 100, floatround_round)));
+		format(str, sizeof(str), "%sCarp - %d x - Worth {33AA33}$%s{ffffff}\n", str, Inventory_Count(playerid, "Carp"), FormatMoney(floatround(CARP_PRICE * Inventory_Count(playerid, "Carp") * 100, floatround_round)));
 	}
 	if(Inventory_Count(playerid, "Salmon"))
 	{
-		format(str, sizeof(str), "%sSalmon - %d x - Worth {93C47D}$%s{ffffff}\n", str, Inventory_Count(playerid, "Salmon"), FormatMoney(floatround(SALMON_PRICE * Inventory_Count(playerid, "Salmon") * 100, floatround_round)));
+		format(str, sizeof(str), "%sSalmon - %d x - Worth {33AA33}$%s{ffffff}\n", str, Inventory_Count(playerid, "Salmon"), FormatMoney(floatround(SALMON_PRICE * Inventory_Count(playerid, "Salmon") * 100, floatround_round)));
 	}
 	if(Inventory_Count(playerid, "Cat Fish"))
 	{
-		format(str, sizeof(str), "%sCat Fish - %d x - Worth {93C47D}$%s{ffffff}\n", str, Inventory_Count(playerid, "Cat Fish"), FormatMoney(floatround(CATFISH_PRICE * Inventory_Count(playerid, "Cat Fish") * 100, floatround_round)));
+		format(str, sizeof(str), "%sCat Fish - %d x - Worth {33AA33}$%s{ffffff}\n", str, Inventory_Count(playerid, "Cat Fish"), FormatMoney(floatround(CATFISH_PRICE * Inventory_Count(playerid, "Cat Fish") * 100, floatround_round)));
 	}
 	if(Inventory_Count(playerid, "Herring"))
 	{
-		format(str, sizeof(str), "%sHerring - %d x - Worth {93C47D}$%s{ffffff}\n", str, Inventory_Count(playerid, "Herring"), FormatMoney(floatround(HERRING_PRICE * Inventory_Count(playerid, "Herring") * 100, floatround_round)));
+		format(str, sizeof(str), "%sHerring - %d x - Worth {33AA33}$%s{ffffff}\n", str, Inventory_Count(playerid, "Herring"), FormatMoney(floatround(HERRING_PRICE * Inventory_Count(playerid, "Herring") * 100, floatround_round)));
 	}
 
 	new total;
 	total = floatround(COD_PRICE * Inventory_Count(playerid, "Cod"), floatround_round) + floatround(CARP_PRICE * Inventory_Count(playerid, "Carp"), floatround_round) + floatround(SALMON_PRICE * Inventory_Count(playerid, "Salmon"), floatround_round) + floatround(CATFISH_PRICE * Inventory_Count(playerid, "Cat Fish"), floatround_round) + floatround(HERRING_PRICE * Inventory_Count(playerid, "Herring"), floatround_round);
 	new Cents = floatround(total * 100, floatround_round);
 
-	format(str, sizeof(str), "%sTotal - {93C47D}$%s{ffffff}\n", str, FormatMoney(Cents));
+	format(str, sizeof(str), "%sTotal - {33AA33}$%s{ffffff}\n", str, FormatMoney(Cents));
 	Dialog_Show(playerid, SellFish, DIALOG_STYLE_LIST, "Sell Fish:", str, "Sell", "Cancel");
 	return 1;
 }
@@ -160,7 +160,7 @@ Dialog:SellFish(playerid, response, listitem, inputtext[])
 		new Cents = floatround(total * 100, floatround_round);
 
 		GiveMoney(playerid, Cents);
-		SendServerMessage(playerid, "[Fishing] {DEDEDE}You have sold all the fish and earn $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Fishing] {DEDEDE}You have sold all the fish and earn $%s.", FormatMoney(Cents));
 	}
 	return 1;
 }
@@ -187,7 +187,7 @@ CMD:buybait(playerid, params[])
 
 	GiveMoney(playerid, Cents);
 	Inventory_Add(playerid, "Fish Bait", 19566, amount);
-	SendServerMessage(playerid, "[Fishing] {DEDEDE}You have successfully purchase {d7d292}%d Fish bait{DEDEDE} for $%s", amount, FormatMoney(Cents));
+	SendJobsMessage(playerid, "[Fishing] {DEDEDE}You have successfully purchase {d7d292}%d Fish bait{DEDEDE} for $%s", amount, FormatMoney(Cents));
 	return 1;
 }
 
@@ -220,6 +220,6 @@ CMD:fish(playerid, params[])
 	SetTimerEx("FishingTimer", 15000, false, "ii", playerid, 1);
 	TogglePlayerControllable(playerid, false);
 	ApplyAnimation(playerid,"SWORD","sword_block",50.0 ,0,1,0,1,1);
-	SendServerMessage(playerid, "[Fishing] {DEDEDE}You start fishing, please wait for the moment...");
+	SendJobsMessage(playerid, "[Fishing] {DEDEDE}You start fishing, please wait for the moment...");
 	return 1;
 }

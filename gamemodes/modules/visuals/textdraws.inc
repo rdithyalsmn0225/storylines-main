@@ -16,6 +16,7 @@ new PlayerText:VehicleSelection[19][MAX_PLAYERS];
 new PlayerText:HotwireTD[MAX_PLAYERS][8];
 new PlayerText:HotwireTDB[MAX_PLAYERS][8];
 new PlayerText:HotwireCable[MAX_PLAYERS][8];
+new PlayerText:HE[8][MAX_PLAYERS];
 new PlayerText:money[MAX_PLAYERS];
 new PlayerText:MoneyFormat[MAX_PLAYERS];
 
@@ -126,6 +127,121 @@ stock CreateTextdraws(playerid)
 	PlayerTextDrawUseBox(playerid, LoginScreen[3][playerid], 0);
 	PlayerTextDrawSetProportional(playerid, LoginScreen[3][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, LoginScreen[3][playerid], 0);
+}
+
+CreateHETextDraws(playerid)
+{
+	HE[0][playerid] = CreatePlayerTextDraw(playerid, 612.000000, 69.000000, "ld_pool:ball");
+	PlayerTextDrawFont(playerid, HE[0][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, HE[0][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, HE[0][playerid], 22.500000, 25.000000);
+	PlayerTextDrawSetOutline(playerid, HE[0][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, HE[0][playerid], 0);
+	PlayerTextDrawAlignment(playerid, HE[0][playerid], 1);
+	PlayerTextDrawColor(playerid, HE[0][playerid], 255);
+	PlayerTextDrawBackgroundColor(playerid, HE[0][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, HE[0][playerid], 50);
+	PlayerTextDrawUseBox(playerid, HE[0][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, HE[0][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, HE[0][playerid], 0);
+
+	HE[1][playerid] = CreatePlayerTextDraw(playerid, 612.000000, 36.000000, "ld_pool:ball");
+	PlayerTextDrawFont(playerid, HE[1][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, HE[1][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, HE[1][playerid], 22.500000, 25.000000);
+	PlayerTextDrawSetOutline(playerid, HE[1][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, HE[1][playerid], 0);
+	PlayerTextDrawAlignment(playerid, HE[1][playerid], 1);
+	PlayerTextDrawColor(playerid, HE[1][playerid], 255);
+	PlayerTextDrawBackgroundColor(playerid, HE[1][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, HE[1][playerid], 50);
+	PlayerTextDrawUseBox(playerid, HE[1][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, HE[1][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, HE[1][playerid], 0);
+
+	HE[2][playerid] = CreatePlayerTextDraw(playerid, 607.000000, 64.000000, "ld_beat:cring");
+	PlayerTextDrawFont(playerid, HE[2][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, HE[2][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, HE[2][playerid], 32.000000, 35.500000);
+	PlayerTextDrawSetOutline(playerid, HE[2][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, HE[2][playerid], 0);
+	PlayerTextDrawAlignment(playerid, HE[2][playerid], 1);
+	PlayerTextDrawColor(playerid, HE[2][playerid], 16711935);
+	PlayerTextDrawBackgroundColor(playerid, HE[2][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, HE[2][playerid], 50);
+	PlayerTextDrawUseBox(playerid, HE[2][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, HE[2][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, HE[2][playerid], 0);
+
+	HE[3][playerid] = CreatePlayerTextDraw(playerid, 607.000000, 31.000000, "ld_beat:cring");
+	PlayerTextDrawFont(playerid, HE[3][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, HE[3][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, HE[3][playerid], 32.000000, 35.500000);
+	PlayerTextDrawSetOutline(playerid, HE[3][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, HE[3][playerid], 0);
+	PlayerTextDrawAlignment(playerid, HE[3][playerid], 1);
+	PlayerTextDrawColor(playerid, HE[3][playerid], 16711935);
+	PlayerTextDrawBackgroundColor(playerid, HE[3][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, HE[3][playerid], 50);
+	PlayerTextDrawUseBox(playerid, HE[3][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, HE[3][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, HE[3][playerid], 0);
+
+	HE[4][playerid] = CreatePlayerTextDraw(playerid, 617.000000, 43.000000, "HUD:radar_datefood");
+	PlayerTextDrawFont(playerid, HE[4][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, HE[4][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, HE[4][playerid], 13.000000, 12.500000);
+	PlayerTextDrawSetOutline(playerid, HE[4][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, HE[4][playerid], 0);
+	PlayerTextDrawAlignment(playerid, HE[4][playerid], 1);
+	PlayerTextDrawColor(playerid, HE[4][playerid], 16711935);
+	PlayerTextDrawBackgroundColor(playerid, HE[4][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, HE[4][playerid], 50);
+	PlayerTextDrawUseBox(playerid, HE[4][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, HE[4][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, HE[4][playerid], 0);
+
+	HE[5][playerid] = CreatePlayerTextDraw(playerid, 617.000000, 75.000000, "HUD:radar_diner");
+	PlayerTextDrawFont(playerid, HE[5][playerid], 4);
+	PlayerTextDrawLetterSize(playerid, HE[5][playerid], 0.600000, 2.000000);
+	PlayerTextDrawTextSize(playerid, HE[5][playerid], 13.500000, 13.000000);
+	PlayerTextDrawSetOutline(playerid, HE[5][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, HE[5][playerid], 0);
+	PlayerTextDrawAlignment(playerid, HE[5][playerid], 1);
+	PlayerTextDrawColor(playerid, HE[5][playerid], 16711935);
+	PlayerTextDrawBackgroundColor(playerid, HE[5][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, HE[5][playerid], 50);
+	PlayerTextDrawUseBox(playerid, HE[5][playerid], 1);
+	PlayerTextDrawSetProportional(playerid, HE[5][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, HE[5][playerid], 0);
+
+	HE[6][playerid] = CreatePlayerTextDraw(playerid, 624.000000, 59.000000, "90");
+	PlayerTextDrawFont(playerid, HE[6][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, HE[6][playerid], 0.224997, 0.800000);
+	PlayerTextDrawTextSize(playerid, HE[6][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, HE[6][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, HE[6][playerid], 0);
+	PlayerTextDrawAlignment(playerid, HE[6][playerid], 2);
+	PlayerTextDrawColor(playerid, HE[6][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, HE[6][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, HE[6][playerid], 50);
+	PlayerTextDrawUseBox(playerid, HE[6][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, HE[6][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, HE[6][playerid], 0);
+
+	HE[7][playerid] = CreatePlayerTextDraw(playerid, 624.000000, 92.000000, "90");
+	PlayerTextDrawFont(playerid, HE[7][playerid], 1);
+	PlayerTextDrawLetterSize(playerid, HE[7][playerid], 0.224997, 0.800000);
+	PlayerTextDrawTextSize(playerid, HE[7][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, HE[7][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, HE[7][playerid], 0);
+	PlayerTextDrawAlignment(playerid, HE[7][playerid], 2);
+	PlayerTextDrawColor(playerid, HE[7][playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, HE[7][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, HE[7][playerid], 50);
+	PlayerTextDrawUseBox(playerid, HE[7][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, HE[7][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, HE[7][playerid], 0);
 }
 
 CreatePhoneTextDraws(playerid)
@@ -2208,6 +2324,12 @@ stock HideVehicleSpeedometer(playerid)
 stock ShowMoneyFormat(playerid)
 {
 	PlayerTextDrawShow(playerid, MoneyFormat[playerid]);
+	return 1;
+}
+
+stock HideMoneyFormat(playerid)
+{
+	PlayerTextDrawHide(playerid, MoneyFormat[playerid]);
 	return 1;
 }
 

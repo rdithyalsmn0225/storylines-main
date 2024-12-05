@@ -624,13 +624,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						if(PlayerInfo[playerid][E_CHARACTER_TOGHUD])
 						{
+							ShowPlayerNeeds(playerid);
+							PlayerTextDrawShow(playerid, servername[playerid]);
+							ShowMoneyFormat(playerid);
 							PlayerInfo[playerid][E_CHARACTER_TOGHUD] = false;
-							SendServerMessage(playerid, "[Settings] {DEDEDE}Streets TextDraws has been Enable.");
+							SendServerMessage(playerid, "[Settings] {DEDEDE}HUD TextDraws has been Enable.");
 						}
 						else
 						{
+							HideClock(playerid);
+							HidePlayerNeeds(playerid);
+							PlayerTextDrawHide(playerid, servername[playerid]);
+							PlayerTextDrawHide(playerid, Street[0][playerid]);
+							PlayerTextDrawHide(playerid, Street[1][playerid]);
+							HideVehicleSpeedometer(playerid);
+							HideMoneyFormat(playerid);
 							PlayerInfo[playerid][E_CHARACTER_TOGHUD] = true;
-							SendServerMessage(playerid, "[Settings] {DEDEDE}Streets TextDraws has been Disable.");
+							SendServerMessage(playerid, "[Settings] {DEDEDE}HUD TextDraws has been Disable.");
 						}
 					}
 					case 1:

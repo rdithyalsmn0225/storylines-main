@@ -130,6 +130,7 @@ main ()  {}
 #include "modules\minigames\physics.inc"
 // PLAYERS MODULES
 #include "modules\players\account.inc"
+#include "modules\players\needs.inc"
 #include "modules\players\damages.inc"
 #include "modules\players\phone.inc"
 #include "modules\players\paycheck.inc"
@@ -247,7 +248,8 @@ public OnGameModeInit()
 	SetTimer("OnPlayerFactionUpdate", 600000, true);
 	SetTimer("OnPlayerJobsUpdate", 60000, true);
 	SetTimer("OnPlayerLotteryUpdate", 1800000, false);
-	SetTimer("OnPlayerTipsUpdate", 900000, true);
+	SetTimer("OnPlayerTipsUpdate", 600000, true);
+	SetTimer("OnPlayerNeedUpdate", 300000, true);
 	SetTimer("WeatherRotator", 2400000, true);
 
 	// Loading systems:
@@ -318,6 +320,7 @@ public OnPlayerConnect(playerid)
 
 	//Visuals:
 	CreateTextdraws(playerid);
+	CreateHETextDraws(playerid);
 	CreateMDCTextDraws(playerid);
 	CreateHUDTextDraws(playerid);
 	CreatePoolTextDraws(playerid);
@@ -602,7 +605,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
     			GiveMoney(playerid, Cents);
 
 				ShowBoxMessage(playerid, "~r~Street Cleaner job ended.", 5); 
-				SendServerMessage(playerid, "[Street Cleaner] {c2c2c2}You've cleaned the street, current cleaned rubbish %d x rubbish and earn $%s.", PlayerSweeperIndex[playerid], FormatMoney(Cents));
+				SendJobsMessage(playerid, "[Street Cleaner] {c2c2c2}You've cleaned the street, current cleaned rubbish %d x rubbish and earn $%s.", PlayerSweeperIndex[playerid], FormatMoney(Cents));
 
 				PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
 				PlayerSweeperIndex[playerid] = 0;
@@ -615,7 +618,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 		if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] == true && PlayerCheckpoint[playerid] == GPS_BUSDRIVER)
 		{
-			SendServerMessage(playerid, "[Bus Driver] {c2c2c2}Wait at this stop for a few seconds, The marker will disappear when ready.");
+			SendJobsMessage(playerid, "[Bus Driver] {c2c2c2}Wait at this stop for a few seconds, The marker will disappear when ready.");
 
 			new Float:x, Float:y, Float:z;
             GetPlayerPos(playerid, x, y, z);
@@ -4324,27 +4327,27 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					case 1:	
 					{
 						Inventory_Add(playerid, "Cod", 19630, 1); 
-						SendServerMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}12.5.kg{c2c2c2} of Cod.");
+						SendJobsMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}12.5.kg{c2c2c2} of Cod.");
 					}
 					case 2:	
 					{
 						Inventory_Add(playerid, "Carp", 19630, 1); 
-						SendServerMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}10.5.kg{c2c2c2} of Carp.");
+						SendJobsMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}10.5.kg{c2c2c2} of Carp.");
 					}
 					case 3:	
 					{
 						Inventory_Add(playerid, "Salmon", 19630, 1); 
-						SendServerMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}8.5 lbs{c2c2c2} of Salmon.");
+						SendJobsMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}8.5 lbs{c2c2c2} of Salmon.");
 					}
 					case 4:	
 					{
 						Inventory_Add(playerid, "Cat Fish", 19630, 1); 
-						SendServerMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}15.5 lbs{c2c2c2} of Cat fish.");
+						SendJobsMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}15.5 lbs{c2c2c2} of Cat fish.");
 					}
 					case 5:	
 					{
 						Inventory_Add(playerid, "Herring", 19630, 1); 
-						SendServerMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}1.5 lbs{c2c2c2} of Herring.");
+						SendJobsMessage(playerid, "[Fishing] {c2c2c2}You caught a {d7d292}1.5 lbs{c2c2c2} of Herring.");
 					}
 				}
 			}
@@ -4813,8 +4816,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 
-	    SendServerMessage(driverid, "[Taxi] {c2c2c2}%s has entered your taxi as a passenger.", ReturnName(playerid, driverid));
-		SendServerMessage(playerid, "[Taxi] {c2c2c2}You have entered {d7d292}%s's{c2c2c2} taxi.", ReturnName(driverid, playerid));
+	    SendJobsMessage(driverid, "[Taxi] {c2c2c2}%s has entered your taxi as a passenger.", ReturnName(playerid, driverid));
+		SendJobsMessage(playerid, "[Taxi] {c2c2c2}You have entered {d7d292}%s's{c2c2c2} taxi.", ReturnName(driverid, playerid));
 	}
  	if (oldstate == PLAYER_STATE_PASSENGER && PlayerInfo[playerid][E_CHARACTER_TAXITIMER] != 0 && PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
 	{
@@ -4872,7 +4875,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	    }
 	    
         PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
-        SendServerMessage(playerid, "[Taxi] {c2c2c2}You are no longer on taxi duty!");
+        SendJobsMessage(playerid, "[taxi] {c2c2c2}You are no longer on taxi duty!");
 	}
 
     if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK])
@@ -5305,13 +5308,13 @@ function:Query_CreateStreetNames(playerid)
 		
 		for (new i = 0; i < 20; i++){SendClientMessage(playerid, -1, " "); }
 		
-		format (string, sizeof(string), "Your new characters street name will be: {93C47D}%s", playerCharactersStreetName[playerid]);
+		format (string, sizeof(string), "Your new characters street name will be: {33AA33}%s", playerCharactersStreetName[playerid]);
 		SendClientMessage(playerid, -1, string); 
 
 		SendClientMessage(playerid, -1, " "); 
 		SendClientMessage(playerid, -1, "The next steps will require a background for your new character.");
-		SendClientMessage(playerid, -1, "Please provide your characters date of birth. The format: {93C47D}02/02/1960");
-		SendClientMessage(playerid, -1, "Press {93C47D}'T'{ffffff} to inputtext for character creation.");
+		SendClientMessage(playerid, -1, "Please provide your characters date of birth. The format: {33AA33}02/02/1960");
+		SendClientMessage(playerid, -1, "Press {33AA33}'T'{ffffff} to inputtext for character creation.");
 		playerCharacterStep[playerid] = 3; 
 	}
 	return 1;
@@ -5426,6 +5429,12 @@ function:SaveCharacter(playerid)
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
 	
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pHungry = %f, pThirsty = %f WHERE char_dbid = %i", 
+		PlayerInfo[playerid][E_CHARACTER_HUNGRY],
+		PlayerInfo[playerid][E_CHARACTER_THIRSTY],
+		PlayerInfo[playerid][E_CHARACTER_DBID]);
+	mysql_pquery(ourConnection, query);
+
 	for(new i = 1; i < 3; i++)
 	{
 		mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pRadio%i = %i WHERE char_dbid = %i", 

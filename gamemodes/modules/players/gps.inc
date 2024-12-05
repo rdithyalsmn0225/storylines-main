@@ -22,7 +22,7 @@ stock ShowTreeLocation(playerid)
 		}
 		else
 		{
-			format(str, sizeof(str), "%s%d\t{93C47D}Available{ffffff}\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
+			format(str, sizeof(str), "%s%d\t{33AA33}Available{ffffff}\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
 		}
 	}
 	return Dialog_ShowPages(playerid, GPSTREE, DIALOG_STYLE_TABLIST_HEADERS, "Tree Location", str, "Find", "Close");
@@ -40,7 +40,7 @@ stock ShowGarbageLocation(playerid)
 			{
 				if(GarbageObject[a] != INVALID_OBJECT_ID)
 				{
-					format(str, sizeof(str), "%s#%d\t{93C47D}Available{ffffff}\t%.2f Meter\n", str, b, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[b][0], Garbage_Locations[b][1], Garbage_Locations[b][2]));
+					format(str, sizeof(str), "%s#%d\t{33AA33}Available{ffffff}\t%.2f Meter\n", str, b, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[b][0], Garbage_Locations[b][1], Garbage_Locations[b][2]));
 				}
 				else
 				{

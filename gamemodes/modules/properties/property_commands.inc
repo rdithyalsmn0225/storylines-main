@@ -228,7 +228,7 @@ CMD:sellproperty(playerid, params[])
 		if(PropertyInfo[id][E_PROPERTY_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
 			return SendErrorMessage(playerid, "You don't own this property."); 
 			
-		format(str, sizeof(str), "Are you sure you want to sell your property?\nYou'll earn {93C47D}$%s{ffffff} from selling and {93C47D}$%s{ffffff} from the cashbox.", FormatMoney(PropertyInfo[id][E_PROPERTY_PRICE] / 2), FormatMoney(PropertyInfo[id][E_PROPERTY_CASH]));
+		format(str, sizeof(str), "Are you sure you want to sell your property?\nYou'll earn {33AA33}$%s{ffffff} from selling and {33AA33}$%s{ffffff} from the cashbox.", FormatMoney(PropertyInfo[id][E_PROPERTY_PRICE] / 2), FormatMoney(PropertyInfo[id][E_PROPERTY_CASH]));
 		ConfirmDialog(playerid, "Confirmation", str, "OnSellProperty", id); 
 	}
 	else return SendErrorMessage(playerid, "You aren't in a property.");
@@ -365,7 +365,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, Cents);
 			PropertyInfo[id][E_PROPERTY_CASH]-= amount;
 			
-			SendServerMessage(playerid, "[Property] {DEDEDE}You took {93C47D}$%s{ffffff} from your cashbox.", amount); 
+			SendServerMessage(playerid, "[Property] {DEDEDE}You took {33AA33}$%s{ffffff} from your cashbox.", amount); 
 			SaveProperty(id); 
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 

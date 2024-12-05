@@ -21,7 +21,7 @@ function:BusDrivers(playerid, type)
                     GPS_SetPlayerRaceCheckPoint(playerid, 1, BusDriver_Index[PlayerBusDriverIndex[playerid]][0],BusDriver_Index[PlayerBusDriverIndex[playerid]][1], BusDriver_Index[PlayerBusDriverIndex[playerid]][2], 0.0, 0.0, 0.0, GPS_BUSDRIVER);
                     TogglePlayerControllable(playerid, true);
 
-                    SendServerMessage(playerid, "[Bus Driver] {DEDEDE}Current route : %s | Next Route : %s.", ReturnLocation(playerid), GetZoneName(BusDriver_Index[PlayerBusDriverIndex[playerid]][0],BusDriver_Index[PlayerBusDriverIndex[playerid]][1], BusDriver_Index[PlayerBusDriverIndex[playerid]][2]));
+                    SendJobsMessage(playerid, "[Bus Driver] {DEDEDE}Current route : %s | Next Route : %s.", ReturnLocation(playerid), GetZoneName(BusDriver_Index[PlayerBusDriverIndex[playerid]][0],BusDriver_Index[PlayerBusDriverIndex[playerid]][1], BusDriver_Index[PlayerBusDriverIndex[playerid]][2]));
                     
                     PlayerInfo[playerid][E_CHARACTER_LOADING] = false;
                     PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 0;
@@ -43,7 +43,7 @@ function:BusDrivers(playerid, type)
 	                    GiveMoney(playerid, Cents);
 
                         ShowBoxMessage(playerid, "~r~Bus Driver job ended.", 5); 
-                        SendServerMessage(playerid, "[Bus Driver] {DEDEDE}Bus Route Complete, current passenger %d x passenger and earn $%s.", PlayerBusDriverIndex[playerid], FormatMoney(Cents));
+                        SendJobsMessage(playerid, "[Bus Driver] {DEDEDE}Bus Route Complete, current passenger %d x passenger and earn $%s.", PlayerBusDriverIndex[playerid], FormatMoney(Cents));
 
                         PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = false;
                         PlayerBusDriverIndex[playerid] = 0;

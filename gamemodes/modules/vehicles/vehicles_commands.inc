@@ -162,7 +162,7 @@ CMD:carscrap(playerid, params[])
 		}
 	}
 			
-	format(str, sizeof(str), "Are you sure you want to scrap your %s?\nYou'll receive a cashback of: {93C47D}$%s{ffffff}\n\n{FF6347}This action is permanent and cannot be undone.", ReturnVehicleName(vehicleid), FormatMoney(cash_back)); 
+	format(str, sizeof(str), "Are you sure you want to scrap your %s?\nYou'll receive a cashback of: {33AA33}$%s{ffffff}\n\n{FF6347}This action is permanent and cannot be undone.", ReturnVehicleName(vehicleid), FormatMoney(cash_back)); 
 	ConfirmDialog(playerid, "Confirmation", str, "OnVehicleScrap", VehicleInfo[vehicleid][E_VEHICLE_DBID], cash_back);
     return 1;
 }
@@ -198,7 +198,7 @@ CMD:carlock(playerid, params[])
 		if(VehicleInfo[vehicleid][E_VEHICLE_LOCKED])
 		{
 			format(statusString, sizeof(statusString), "~g~%s Unlocked", ReturnVehicleName(vehicleid));
-			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {93C47D}Unlocked", ReturnVehicleName(vehicleid));
+			SendClientMessageEx(playerid, COLOR_WHITE, "> %s {33AA33}Unlocked", ReturnVehicleName(vehicleid));
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, false, bonnet, boot, objective);
 			VehicleInfo[vehicleid][E_VEHICLE_LOCKED] = false;
 			format(str, sizeof(str), "unlocks the %s", ReturnVehicleName(vehicleid));
@@ -387,7 +387,7 @@ CMD:cartrunk(playerid, params[])
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, 1, objective);
 				
-			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {93C47D}Opened");	
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {33AA33}Opened");	
 			ShowVehicleStorage(playerid, IsPlayerNearVehicle(playerid));
 		}
 		else
@@ -412,7 +412,7 @@ CMD:cartrunk(playerid, params[])
 		if(!boot)
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, 1, objective);	
-			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {93C47D}Opened");	
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Trunk {33AA33}Opened");	
 		}
 		else
 		{
@@ -450,7 +450,7 @@ CMD:carhood(playerid, params[])
 		if(!bonnet)
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, 1, boot, objective);
-			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {93C47D}Opened");	
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {33AA33}Opened");	
 		}
 		else
 		{
@@ -474,7 +474,7 @@ CMD:carhood(playerid, params[])
 		if(!bonnet)
 		{
 			SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, 1, boot, objective);
-			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {93C47D}Opened");	
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Hood {33AA33}Opened");	
 		}
 		else
 		{
@@ -529,6 +529,31 @@ CMD:engine(playerid, params[])
 		{
 			if(VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID] && VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DUPLICATEKEY])
 				return SendErrorMessage(playerid, "You don't own this vehicles.");	
+
+			if(PlayerEngineTimer[playerid])
+				return ShowBoxMessage(playerid, "Please wait....", 5);
+
+			if (ReturnVehicleHealth(vehicleid) > 400)
+			{
+				if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] < 1 && !VehicleInfo[vehicleid][E_VEHICLE_ADMIN])
+					return SendClientMessage(playerid, COLOR_RED, "Vehicle is out of fuel!"); 
+				
+				if(!VehicleInfo[vehicleid][E_VEHICLE_ENGINE])
+				{	ShowBoxMessage(playerid, "~g~Turn on engine.", 5);
+					PlayerEngineValue[playerid] = 0;
+					PlayerEngineTimer[playerid] = SetTimerEx("TurnEngine", 500, true, "dd", playerid, vehicleid);
+					format(str, sizeof(str), "twists the key turning the engine of the %s on", ReturnVehicleName(vehicleid));
+					cmd_me(playerid, str);
+				}
+				else
+				{
+					SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {FF6347}Stopped");	
+					ToggleVehicleEngine(vehicleid, false); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = false;
+					format(str, sizeof(str), "twists the key turning the engine of the %s off", ReturnVehicleName(vehicleid));
+					cmd_me(playerid, str);
+				}
+			}
+			else ShowBoxMessage(playerid, "This vehicle is ~r~totalled~w~ and needs repairing.", 3);
 		}
 		else
 		{
@@ -600,7 +625,7 @@ function:TurnEngine(playerid, vehicleid)
 		case 4: format(message, sizeof(message), "~g~Turn on engine....");
 		case 5:
 		{
-			SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {93C47D}Started");
+			SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {33AA33}Started");
 			ToggleVehicleEngine(vehicleid, true); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = true;
 			KillTimer(PlayerEngineTimer[playerid]);
 			PlayerEngineTimer[playerid] = 0;

@@ -1,10 +1,12 @@
 //Colors:
 #define COLOR_RED 			(0xFF6347AA)
 #define COLOR_ORANGE		(0xDAA650FF)
-#define COLOR_GREEN 		(0x93C47DFF)
-#define COLOR_DARKGREEN 	(0x93C47DFF)
+#define COLOR_GREEN 		(0x33AA33FF)
+#define COLOR_DARKGREEN 	(0x33AA33FF)
 #define COLOR_YELLOW 		(0xFFFF00FF)
 #define COLOR_BROWN         (0x776858FF)
+#define COLOR_BLUE          (0xd2eab5FF)
+#define COLOR_LBLUE         (0x2986ccFF)
 
 #define COLOR_CREDITS       (0xf8b56eFF)
 #define COLOR_SYNTAX        (0x9fc5e8FF)
@@ -14,8 +16,8 @@
 #define COLOR_FACTION       (0x99A5D7FF)
 #define COLOR_GAMES         (0xb6b9e1FF)
 #define COLOR_HEADER		(0x90D7F0FF)
-#define COLOR_BLUE          (0xd2eab5FF)
-#define COLOR_LBLUE         (0x2986ccFF)
+#define COLOR_HINT          (0x8E94D6FF)
+
 
 #define COLOR_GRAD1			(0xCCE6E6FF)
 #define COLOR_GRAD2			(0xE2FFFFFF)
@@ -38,7 +40,7 @@
 #define COLOR_DEPT 			(0xF07A7AFF)
 #define COLOR_TAXI          (0xF1C232FF)
 #define COLOR_MECHANIC      (0xBFCD90FF)
-#define COLOR_FCHAT         (0x93C47DFF)
+#define COLOR_FCHAT         (0x33AA33FF)
 
 #define COLOR_SAMP			(0xADC3E7FF)
 

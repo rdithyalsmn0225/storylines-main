@@ -167,7 +167,7 @@ Dialog:DealershipSelect(playerid, response, listitem, inputtext)
 			
 		DealershipTotalCost[playerid] = Cents;
 		
-		format(caption, 60, "%s - {93C47D}%s:", g_aDealershipData[i][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+		format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[i][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 		strcat(str, "Colors\n");
 		strcat(str, "{FFFF00}Purchase Vehicle\n"); 
 		
@@ -187,7 +187,7 @@ Dialog:DealershipAppend(playerid, response, listitem, inputtext[])
 		caption[60],
 		str[400]; 
 	
-	format(caption, 60, "%s - {93C47D}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+	format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 	
 	if(response)
 	{
@@ -212,7 +212,7 @@ Dialog:DealershipAppend(playerid, response, listitem, inputtext[])
 				
 				format(dstr, sizeof(dstr), "Models:\t%s\n", ReturnVehicleName(vehicleid));
 				strcat(str, dstr);
-				format(dstr, sizeof(dstr), "Price:\t{FFFFFF}{93C47D}$%s{ffffff}\n", FormatMoney(g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_PRICE]));
+				format(dstr, sizeof(dstr), "Price:\t{FFFFFF}{33AA33}$%s{ffffff}\n", FormatMoney(g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_PRICE]));
 				strcat(str, dstr);
 				format(dstr, sizeof(dstr), "Max Speed:\t{FFFFFF}%.1f\n", GetVehicleTopSpeed(DealershipPlayerCar[playerid])); 
 				strcat(str, dstr); 
@@ -232,7 +232,7 @@ Dialog:DealershipAppendCMenu(playerid, response, listitem, inputtext[])
 		caption[60]
 	; 
 	
-	format(caption, 60, "%s - {93C47D}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+	format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 
 	if(response)
 	{
@@ -262,7 +262,7 @@ Dialog:DealershipAppendColor1(playerid, response, listitem, inputtext[])
 		color1
 	;
 	
-	format(caption, 60, "%s - {93C47D}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+	format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 	
 	if(response)
 	{
@@ -310,7 +310,7 @@ Dialog:DealershipAppendColor2(playerid, response, listitem, inputtext[])
 		color2
 	;
 	
-	format(caption, 60, "%s - {93C47D}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+	format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 	
 	if(response)
 	{

@@ -22,19 +22,19 @@ stock IndustryRefresh(id)
 	}
 	
 
-    format(str, sizeof(str), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price: {93C47D}{93C47D}$%s{ffffff}{ffffff} / unit", IndustryInfo[0][Cargo], ServerInfo[id][E_SERVER_FABRIC], FormatMoney(floatround(IndustryInfo[0][Price] * 100, floatround_round)));
+    format(str, sizeof(str), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price: {33AA33}{33AA33}$%s{ffffff}{ffffff} / unit", IndustryInfo[0][Cargo], ServerInfo[id][E_SERVER_FABRIC], FormatMoney(floatround(IndustryInfo[0][Price] * 100, floatround_round)));
     
-	format(str1, sizeof(str1), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[1][Cargo], ServerInfo[id][E_SERVER_STEEL], FormatMoney(floatround(IndustryInfo[1][Price] * 100, floatround_round)));
+	format(str1, sizeof(str1), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {33AA33}$%s{ffffff} / unit", IndustryInfo[1][Cargo], ServerInfo[id][E_SERVER_STEEL], FormatMoney(floatround(IndustryInfo[1][Price] * 100, floatround_round)));
 
-	format(str2, sizeof(str2), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[2][Cargo], ServerInfo[id][E_SERVER_WOODS], FormatMoney(floatround(IndustryInfo[2][Price] * 100, floatround_round)));
+	format(str2, sizeof(str2), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {33AA33}$%s{ffffff} / unit", IndustryInfo[2][Cargo], ServerInfo[id][E_SERVER_WOODS], FormatMoney(floatround(IndustryInfo[2][Price] * 100, floatround_round)));
 
-	format(str3, sizeof(str3), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[3][Cargo], ServerInfo[id][E_SERVER_FISH], FormatMoney(floatround(IndustryInfo[3][Price] * 100, floatround_round)));
+	format(str3, sizeof(str3), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {33AA33}$%s{ffffff} / unit", IndustryInfo[3][Cargo], ServerInfo[id][E_SERVER_FISH], FormatMoney(floatround(IndustryInfo[3][Price] * 100, floatround_round)));
 
-	format(str4, sizeof(str4), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[4][Cargo], ServerInfo[id][E_SERVER_FOODS], FormatMoney(floatround(IndustryInfo[4][Price] * 100, floatround_round)));
+	format(str4, sizeof(str4), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {33AA33}$%s{ffffff} / unit", IndustryInfo[4][Cargo], ServerInfo[id][E_SERVER_FOODS], FormatMoney(floatround(IndustryInfo[4][Price] * 100, floatround_round)));
 
-	format(str5, sizeof(str5), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[5][Cargo], ServerInfo[id][E_SERVER_CLOTHES], FormatMoney(floatround(IndustryInfo[5][Price] * 100, floatround_round)));
+	format(str5, sizeof(str5), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {33AA33}$%s{ffffff} / unit", IndustryInfo[5][Cargo], ServerInfo[id][E_SERVER_CLOTHES], FormatMoney(floatround(IndustryInfo[5][Price] * 100, floatround_round)));
 
-	format(str6, sizeof(str6), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {93C47D}$%s{ffffff} / unit", IndustryInfo[6][Cargo], ServerInfo[id][E_SERVER_APPLIANCES], FormatMoney(floatround(IndustryInfo[6][Price] * 100, floatround_round)));
+	format(str6, sizeof(str6), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {33AA33}$%s{ffffff} / unit", IndustryInfo[6][Cargo], ServerInfo[id][E_SERVER_APPLIANCES], FormatMoney(floatround(IndustryInfo[6][Price] * 100, floatround_round)));
 
 
 	ServerInfo[id][E_SERVER_3DTEXT][0] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz], 5.0);
@@ -164,7 +164,7 @@ stock ShowFreight(playerid)
 	strcat(str, "Start Locations\tCargo\tEnd Locations\n");
 	forex(i, sizeof(FreightInfo))
 	{
-		format(str, sizeof(str), "%s%s\t{93C47D}%s{ffffff}\t%s\n", str, GetZoneName(FreightInfo[i][Startx], FreightInfo[i][Starty], FreightInfo[i][Startz]), FreightInfo[i][Cargo], GetZoneName(FreightInfo[i][Endx], FreightInfo[i][Endy], FreightInfo[i][Endz]));
+		format(str, sizeof(str), "%s%s\t{33AA33}%s{ffffff}\t%s\n", str, GetZoneName(FreightInfo[i][Startx], FreightInfo[i][Starty], FreightInfo[i][Startz]), FreightInfo[i][Cargo], GetZoneName(FreightInfo[i][Endx], FreightInfo[i][Endy], FreightInfo[i][Endz]));
 	}
 	Dialog_Show(playerid, FreightLoc, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
 	return 1;
@@ -175,7 +175,7 @@ Dialog:FreightLoc(playerid, response, listitem, inputtext[])
 	if(response)
 	{
 		PlayerTruckIndex[playerid] = listitem+1;
-		SendServerMessage(playerid, "[Trucker] {DEDEDE}You has selected truck missions in %s, go to checkpoint to take the trailer.", GetZoneName(FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz]));
+		SendJobsMessage(playerid, "[Trucker] {DEDEDE}You has selected truck missions in %s, go to checkpoint to take the trailer.", GetZoneName(FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz]));
 		GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz], 0.0, 0.0, 0.0, GPS_TRUCKERS);
 	}
 	return 1;
@@ -187,7 +187,7 @@ stock ShowIndustry(playerid)
 	strcat(str, "Industries\tCargo\tType\n");
 	forex(i, sizeof(IndustryInfo))
 	{
-		format(str, sizeof(str), "%s%s\t{93C47D}%s{ffffff}\t%s\n", str, IndustryInfo[i][Name], IndustryInfo[i][Cargo], IndustryInfo[i][Type]);
+		format(str, sizeof(str), "%s%s\t{33AA33}%s{ffffff}\t%s\n", str, IndustryInfo[i][Name], IndustryInfo[i][Cargo], IndustryInfo[i][Type]);
 	}
 	Dialog_Show(playerid, IndustryLoc, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
 	return 1;

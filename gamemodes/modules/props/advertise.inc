@@ -150,7 +150,7 @@ CMD:rumour(playerid, params[]) {
 	new Float: price = 0.10 * strlen(text);
 
 	if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
-		return SendErrorMessage(playerid, "You don't have enough money for this rumour! You need at least {93C47D}$%s{ffffff}.", FormatMoney(price));
+		return SendErrorMessage(playerid, "You don't have enough money for this rumour! You need at least {33AA33}$%s{ffffff}.", FormatMoney(price));
 
 	new string [512] = "WARNING: /rumour is only meant to be used for events.\n\n\
 		It can not be used to defame another faction or to send random messages or adverts to the server.\n\n\

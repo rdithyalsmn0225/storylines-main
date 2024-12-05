@@ -167,7 +167,10 @@ function:PlayersUpdates()
 				}
 
 				format(stra, sizeof(stra), "%d", VehicleInfo[vehicleid][E_VEHICLE_MILES]);
-				ShowVehicleSpeedometer(playerid, "mph", "fuel", "miles", "siren", str, stra, stru, VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
+				if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
+	    		{
+					ShowVehicleSpeedometer(playerid, "mph", "fuel", "miles", "siren", str, stra, stru, VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
+				}
 
 				for (new i = 0; i != MAX_BARRICADES; i ++) if (BarricadeInfo[i][E_CADE_EXISTS] && BarricadeInfo[i][E_CADE_TYPE] == 1 && IsPlayerInRangeOfPoint(playerid, 3.0, BarricadeInfo[i][E_CADE_POS][0], BarricadeInfo[i][E_CADE_POS][1], BarricadeInfo[i][E_CADE_POS][2]))
 				{

@@ -25,7 +25,7 @@ CMD:rentcars(playerid, params[])
 		return 1;
 	}
 
-    Dialog_Show(playerid, RentalCars, DIALOG_STYLE_TABLIST, "Rental Cars:", "Faggio\t{93C47D}$50.00/hours{ffffff}\nSentinel\t{93C47D}$120.00/hours{ffffff}", "Select", "Cancel");
+    Dialog_Show(playerid, RentalCars, DIALOG_STYLE_TABLIST, "Rental Cars:", "Faggio\t{33AA33}$50.00/hours{ffffff}\nSentinel\t{33AA33}$120.00/hours{ffffff}", "Select", "Cancel");
     return 1;
 }
 

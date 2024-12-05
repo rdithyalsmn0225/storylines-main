@@ -55,9 +55,15 @@ void:SetClock(hour, minute, second)
 
 ShowClock(playerid)
 {
-    if (!IsPlayerConnected(playerid))
+    if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false)
     {
-       return 0;
+        TextDrawShowForPlayer(playerid, Times);
     }
-    return TextDrawShowForPlayer(playerid, Times);
+    return 1;
+}
+
+HideClock(playerid)
+{
+    TextDrawHideForPlayer(playerid, Times);
+    return 1;
 }

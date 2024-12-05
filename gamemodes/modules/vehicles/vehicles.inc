@@ -603,7 +603,7 @@ function:Query_ShowVehicleList(playerid, idx)
 		}
 
 		if (isSpawned)
-			format(color, sizeof(color), "{93C47D}Spawned");
+			format(color, sizeof(color), "{33AA33}Spawned");
 		else
 			format(color, sizeof(color), "{FF6347}Despawned");
 			

@@ -213,7 +213,7 @@ stock GetWoundStatus(condition)
 	else if (condition == WOUND_TYPE_BURN) str = "{FF6347}Broken";
 	else if (condition == WOUND_TYPE_BLEED) str = "{DAA650}Bullet";
 	else if (condition == WOUND_TYPE_BLEED) str = "{DAA650}Bleedin";
-    else if (condition == WOUND_TYPE_NONE) str = "{93C47D}Normal";
+    else if (condition == WOUND_TYPE_NONE) str = "{33AA33}Normal";
     return str;
 }
 
@@ -299,7 +299,7 @@ stock ShowPlayerCondition(playerid, targetid)
 	
 	format(str2, sizeof(str2), "%s Condition", ReturnName(targetid, 0));
 
-	format(str, sizeof(str), "{93C47D}|__________ Body Condition Status __________|\n");
+	format(str, sizeof(str), "{33AA33}|__________ Body Condition Status __________|\n");
 	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Chest | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][0]);
 	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Torso | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][1]);
 	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Groin | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][2]);
@@ -309,7 +309,7 @@ stock ShowPlayerCondition(playerid, targetid)
 	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Left Leg | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][6]);
 	format(str, sizeof(str), "%s{ffffff}Part : {DAA650}Head | {ffffff}Rating : {DAA650}%d\n", str, PlayerInfo[targetid][E_CHARACTER_BODYPART][7]);
 
-	format(str, sizeof(str), "%s{93C47D}|__________ Body Wound Status __________|\n", str);
+	format(str, sizeof(str), "%s{33AA33}|__________ Body Wound Status __________|\n", str);
 	format(str, sizeof(str), "%s{ffffff}Part : Chest - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
 	format(str, sizeof(str), "%s{ffffff}Part : Torso - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
 	format(str, sizeof(str), "%s{ffffff}Part : Groin - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));

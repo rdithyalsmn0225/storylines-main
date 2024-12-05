@@ -253,7 +253,7 @@ CMD:buysaw(playerid, params[])
     new Cents = floatround(80 * 100, floatround_round);
 
 	GiveMoney(playerid, -Cents);
-    SendServerMessage(playerid, "[Lumberjack] {DEDEDE}You bought a axe for {93C47D}$80.00{DEDEDE}.");
+    SendServerMessage(playerid, "[Lumberjack] {DEDEDE}You bought a axe for {33AA33}$80.00{DEDEDE}.");
     SendTipMessage(playerid, "To start cutting the tree(s) /timbercut using axe.");
     return 1;
 }

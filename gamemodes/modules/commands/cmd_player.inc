@@ -41,16 +41,16 @@ CMD:cursor(playerid, params[])
 
 CMD:settings(playerid, params[])
 {
-	new str[256];
-	format(str, sizeof(str), "Streets TextDraws\t%s\n", (PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sJoined Logs\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGJOIN] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sAdmin Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGADMIN] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sFaction Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGFMS] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sTips Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGTIPS] == false) ? ("{93C47D}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sPhone Style\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPHONE] == false) ? ("{93C47D}Modern{ffffff}") : ("{FF6347}Old School{ffffff}"));
-	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{93C47D}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
+	new str[512];
+	format(str, sizeof(str), "HUD TextDraws\t%s\n", (PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sJoined Logs\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGJOIN] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sAdmin Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGADMIN] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sFaction Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGFMS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sTips Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGTIPS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sPhone Style\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPHONE] == false) ? ("{33AA33}Modern{ffffff}") : ("{FF6347}Old School{ffffff}"));
+	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{33AA33}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
 	ShowPlayerDialog(playerid, DIALOG_SETTINGS, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
 	return 1;
 }
@@ -261,7 +261,7 @@ CMD:charity(playerid, params[])
     GiveMoney(playerid, -Cents);
 
 	SaveCharacter(playerid);
-	SendServerMessage(playerid, "[Charity] {DEDEDE}You've charity {93C47D}%s{DEDEDE} for this server.", FormatMoney(Cents));
+	SendServerMessage(playerid, "[Charity] {DEDEDE}You've charity {33AA33}%s{DEDEDE} for this server.", FormatMoney(Cents));
 	return 1;
 }
 

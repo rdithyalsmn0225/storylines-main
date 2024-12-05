@@ -255,7 +255,7 @@ CMD:sellbusiness(playerid, params[])
 		if(BusinessInfo[id][E_BUSINESS_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
 			return SendErrorMessage(playerid, "You don't own this business."); 
 			
-		format(str, sizeof(str), "Are you sure you want to sell your business?\nYou'll earn {93C47D}$%s{ffffff} from selling and {93C47D}$%s{ffffff} from the cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE] / 2), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
+		format(str, sizeof(str), "Are you sure you want to sell your business?\nYou'll earn {33AA33}$%s{ffffff} from selling and {33AA33}$%s{ffffff} from the cashbox.", FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE] / 2), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 		ConfirmDialog(playerid, "Confirmation", str, "OnSellBusiness", id); 
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business.");

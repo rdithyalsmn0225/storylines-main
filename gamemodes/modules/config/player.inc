@@ -123,8 +123,8 @@ public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 	if(PlayerInfo[playerb][E_CHARACTER_TAXIDUTY])
 	{
 		GPS_SetPlayerRaceCheckPoint(playerb, 1, fX, fY, fZ, 0.0, 0.0, 0.0);
-		SendServerMessage(playerid, "[Taxi] {DEDEDE}You has marked destination in driver map!");
-		SendServerMessage(playerb, "[Taxi] {DEDEDE}Passanger has marked the destination in your map!");
+		SendJobsMessage(playerid, "[Taxi] {DEDEDE}You has marked destination in driver map!");
+		SendJobsMessage(playerb, "[Taxi] {DEDEDE}Passanger has marked the destination in your map!");
 	}
     return 1;
 }
@@ -571,7 +571,7 @@ stock ShowCharacterStats(playerid, playerb)
 	}
 	
 	SendClientMessageEx(playerid, COLOR_DARKGREEN, "|______________________________ (%d) %s Statistics ______________________________|", playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
-	SendClientMessageEx(playerb, COLOR_WHITE, "[ACCOUNT]:{ffffff} [Streetname: %s] - [Account: %s] - [Date: %s]", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());	
+	SendClientMessageEx(playerb, COLOR_WHITE, "[ACCOUNT]:{ffffff} [Masters: %s] - [Account: %s] - [Date: %s]", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());	
 	SendClientMessageEx(playerb, COLOR_GREY, "[SESSION]:{ffffff} [Gender: %s] [Level: %d] [EXP: %d/10] [Time played: %d hours]", gender, PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
 	SendClientMessageEx(playerb, COLOR_WHITE, "[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
 	SendClientMessageEx(playerb, COLOR_GREY, "[JOBS]:{ffffff} [Jobs: %s] [Skills: %s]", ReturnJobName(PlayerInfo[playerid][E_CHARACTER_JOBS]), ReturnJobSkill(playerid, PlayerInfo[playerid][E_CHARACTER_JOBS]));
@@ -1055,6 +1055,11 @@ stock IsPlayerFactionRank(playerid)
 stock randomEx(min, max)
 {
     return random(max - min) + min;
+}
+
+Float:randomFloat(Float:maxValue)
+{
+    return float(random(maxValue * 100)) / 100.0;
 }
 
 stock GetCount() { return GetTickCount(); }

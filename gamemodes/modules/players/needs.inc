@@ -1,0 +1,71 @@
+function:OnPlayerNeedUpdate()
+{
+    foreach(new i : Player)
+    {
+        if(PlayerInfo[i][E_CHARACTER_SPAWNED] == false)
+            return 0;
+
+        if(PlayerInfo[i][E_CHARACTER_HUNGRY])
+        {
+            new Float:rand = randomFloat(1.00);
+            PlayerInfo[i][E_CHARACTER_HUNGRY] -= rand;
+        }
+        else if(PlayerInfo[i][E_CHARACTER_HUNGRY] < 30)
+        {
+            new Float: health;
+            GetPlayerHealth(i, health);
+            SetPlayerHealthEx(i, health-2.00);
+            SendServerMessage(i, "[Hungry] {DEDEDE}You are hungry rightnow, immediately eat at the nearest restaurant or you will unconscius.");
+        }
+        else
+        {
+            PlayerInfo[i][E_CHARACTER_HUNGRY] = 0;
+        }
+
+        if(PlayerInfo[i][E_CHARACTER_THIRSTY])
+        {
+            new Float:rand = randomFloat(1.00);
+            PlayerInfo[i][E_CHARACTER_THIRSTY] -= rand;
+        }
+        else if(PlayerInfo[i][E_CHARACTER_THIRSTY] < 30)
+        {
+            new Float: health;
+            GetPlayerHealth(i, health);
+            SetPlayerHealthEx(i, health-2.00);
+            SendServerMessage(i, "[Thirsty] {DEDEDE}You are thirsty rightnow, immediately drink at the nearest restaurant or you will unconscius.");
+        }
+        else
+        {
+            PlayerInfo[i][E_CHARACTER_THIRSTY] = 0;
+        }
+
+        if(PlayerInfo[i][E_CHARACTER_TOGHUD] == false && PlayerInfo[i][E_CHARACTER_SPAWNED] == true)
+	    {
+            ShowPlayerNeeds(i);
+        }
+    }
+    return 1;
+}
+
+ShowPlayerNeeds(playerid)
+{
+    new str[6], str1[6];
+    for(new i; i < 8; i++)
+    {
+        format(str, sizeof(str), "%f", PlayerInfo[playerid][E_CHARACTER_HUNGRY]);
+        format(str1, sizeof(str1), "%f", PlayerInfo[playerid][E_CHARACTER_THIRSTY]);
+        PlayerTextDrawSetString(playerid, HE[6][playerid], str);
+        PlayerTextDrawSetString(playerid, HE[7][playerid], str1);
+        PlayerTextDrawShow(playerid, HE[i][playerid]);
+    }
+    return 1;
+}
+
+HidePlayerNeeds(playerid)
+{
+    for(new i; i < 8; i++)
+    {
+        PlayerTextDrawHide(playerid, HE[i][playerid]);
+    }
+    return 1;
+}

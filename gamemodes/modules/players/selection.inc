@@ -214,7 +214,7 @@ SelectCharacter(playerid, id)
 		playerCharacterStep[playerid] = 0; 
 		characterSelection[playerid] = false;
 					
-		format(string, sizeof(string), "You selected the character {93C47D}%s{FFFFFF}.", characterLister[playerid][id]);
+		format(string, sizeof(string), "You selected the character {33AA33}%s{FFFFFF}.", characterLister[playerid][id]);
 		SendClientMessage(playerid, -1, string);
 
 		new str[256];

@@ -297,6 +297,7 @@ stock LoadCharacter(playerid)
 	}
 	LoadPlayerToys(playerid);
 	SyncPlayerTime(playerid);
+	ShowPlayerNeeds(playerid);
 
 	SetSpawnInfo(playerid, 0, PlayerInfo[playerid][E_CHARACTER_LASTSKIN], PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2], 0, 0, 0, 0, 0, 0, 0);
 	SpawnPlayer(playerid);
@@ -352,6 +353,8 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_int(0, "pPrisonTimes", PlayerInfo[playerid][E_CHARACTER_PRISON]); 
 	cache_get_value_name_int(0, "pHasInjured", PlayerInfo[playerid][E_CHARACTER_INJURED]); 
 	cache_get_value_name_int(0, "pHasDeath", PlayerInfo[playerid][E_CHARACTER_DEATH]); 
+	cache_get_value_name_float(0, "pHungry", PlayerInfo[playerid][E_CHARACTER_HUNGRY]); 
+	cache_get_value_name_float(0, "pThirsty", PlayerInfo[playerid][E_CHARACTER_THIRSTY]); 
 	cache_get_value_name_float(0, "pHealth", PlayerInfo[playerid][E_CHARACTER_HEALTH]); 
 	cache_get_value_name_float(0, "pMaxHealth", PlayerInfo[playerid][E_CHARACTER_MAXHEALTH]); 
 	cache_get_value_name_float(0, "pArmor", PlayerInfo[playerid][E_CHARACTER_ARMOUR]); 
@@ -408,7 +411,7 @@ function:Query_LoadCharacter(playerid)
 	mysql_format(ourConnection, rquery, sizeof(qquery), "SELECT * FROM `tickets` WHERE `ID` = '%i'", PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, rquery, "Query_LoadTicket", "d", playerid);
 	
-	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{93C47D}PUBLIC{ffffff}\n#2\tLast Position\t{93C47D}PUBLIC{ffffff}\n#3\tFaction Spawn\t{93C47D}FACTION{ffffff}", "Select", "Close");
+	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{33AA33}PUBLIC{ffffff}\n#2\tLast Position\t{33AA33}PUBLIC{ffffff}\n#3\tFaction Spawn\t{33AA33}FACTION{ffffff}", "Select", "Close");
 }
 
 stock ShowCharacterPreview(playerid)
@@ -584,7 +587,7 @@ Dialog:Spawns(playerid, response, listitem, inputtext[])
 		case 2:
 		{
 			if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
-				return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{93C47D}PUBLIC{ffffff}\n#2\tLast Position\t{93C47D}PUBLIC{ffffff}\n#3\tFaction Spawn\t{93C47D}FACTION{ffffff}", "Select", "Close");
+				return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{33AA33}PUBLIC{ffffff}\n#2\tLast Position\t{33AA33}PUBLIC{ffffff}\n#3\tFaction Spawn\t{33AA33}FACTION{ffffff}", "Select", "Close");
 
 			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 2;
 			LoadCharacter(playerid);
@@ -638,7 +641,7 @@ Dialog:CharacterPreview(playerid, response, listitem, inputtext[])
 		{
 			case 0: // Name:
 			{
-				Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{93C47D}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+				Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
 			}
 			case 1: // Sex:
 			{
@@ -646,7 +649,7 @@ Dialog:CharacterPreview(playerid, response, listitem, inputtext[])
 			}
 			case 2: // Age:
 			{
-				Dialog_Show(playerid, CharacterAge, DIALOG_STYLE_INPUT, "Character Age:", "Insert a age of your character.\n{93C47D}{93C47D}Info:{ffffff}{ffffff} Required in format cannot be less than 18 years old", "Confirm", "");	
+				Dialog_Show(playerid, CharacterAge, DIALOG_STYLE_INPUT, "Character Age:", "Insert a age of your character.\n{33AA33}{33AA33}Info:{ffffff}{ffffff} Required in format cannot be less than 18 years old", "Confirm", "");	
 			}
 			case 3: // Ethnicity:
 			{
@@ -662,11 +665,11 @@ Dialog:CharacterPreview(playerid, response, listitem, inputtext[])
 			}
 			case 6: // Height:
 			{
-				Dialog_Show(playerid, CharacterHeight, DIALOG_STYLE_INPUT, "Character Age:", "Insert a height of your character.\n{93C47D}Info:{ffffff} Required in format cannot be less than 160 cm", "Confirm", "");	
+				Dialog_Show(playerid, CharacterHeight, DIALOG_STYLE_INPUT, "Character Age:", "Insert a height of your character.\n{33AA33}Info:{ffffff} Required in format cannot be less than 160 cm", "Confirm", "");	
 			}
 			case 7: //Description
 			{
-				Dialog_Show(playerid, CharacterDescription, DIALOG_STYLE_INPUT, "Character Description:", "Insert a description of your character.\n{93C47D}Info:{ffffff} Required for description your characters", "Confirm", "");	
+				Dialog_Show(playerid, CharacterDescription, DIALOG_STYLE_INPUT, "Character Description:", "Insert a description of your character.\n{33AA33}Info:{ffffff} Required for description your characters", "Confirm", "");	
 			}
 		}
 	}
@@ -679,13 +682,13 @@ Dialog:CharacterName(playerid, response, listitem, inputtext[])
 	{
 		if(strlen(inputtext) > MAX_PLAYER_NAME + 1 || strlen(inputtext) < 3)
 		{
-			Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{93C47D}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+			Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
 			SendErrorMessage(playerid, "Your characters name must be at least 3 characters and no more than %i characters.", MAX_PLAYER_NAME);
 			return 1;
 		}
 		if(!IsValidRoleplayName(inputtext))
 		{
-			Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{93C47D}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+			Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
 			SendErrorMessage(playerid, "Please follow the Firstname_Lastname format to make your character."); 
 			return 1;
 		}
@@ -694,7 +697,7 @@ Dialog:CharacterName(playerid, response, listitem, inputtext[])
 		{
 			if(!strcmp(inputtext, ReturnName(i, playerid)))
 			{
-				Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{93C47D}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+				Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
 				SendErrorMessage(playerid, "That character already exists. Please try again."); 
 				return 1;
 			}
@@ -746,7 +749,7 @@ Dialog:CharacterAge(playerid, response, listitem, inputtext[])
 	{
 		if(strval(inputtext) > 60 || strval(inputtext) < 18 || isnull(inputtext))
 		{
-			Dialog_Show(playerid, CharacterAge, DIALOG_STYLE_INPUT, "Character Age:", "Insert a age of your character.\n{93C47D}Info:{ffffff} Required in format cannot be less than 18 years old", "Confirm", "");	
+			Dialog_Show(playerid, CharacterAge, DIALOG_STYLE_INPUT, "Character Age:", "Insert a age of your character.\n{33AA33}Info:{ffffff} Required in format cannot be less than 18 years old", "Confirm", "");	
 			SendErrorMessage(playerid, "Your characters age must be at least 18 years old and no more than 60 years old.");
 			return 1;
 		}
@@ -793,7 +796,7 @@ Dialog:CharacterHeight(playerid, response, listitem, inputtext[])
 	{
 		if(strval(inputtext) > 190 || strval(inputtext) < 160 || isnull(inputtext) || !IsNumeric(inputtext))
 		{
-			Dialog_Show(playerid, CharacterHeight, DIALOG_STYLE_INPUT, "Character Age:", "Insert a height of your character.\n{93C47D}Info:{ffffff} Required in format cannot be less than 160 cm", "Confirm", "");	
+			Dialog_Show(playerid, CharacterHeight, DIALOG_STYLE_INPUT, "Character Age:", "Insert a height of your character.\n{33AA33}Info:{ffffff} Required in format cannot be less than 160 cm", "Confirm", "");	
 			SendErrorMessage(playerid, "Your characters height must be at least 160 cm and no more than 180 cm.");
 			return 1;
 		}
@@ -810,7 +813,7 @@ Dialog:CharacterDescription(playerid, response, listitem, inputtext[])
 	{
 		if(strlen(inputtext) > 32 || strlen(inputtext) < 12 || isnull(inputtext))
 		{
-			Dialog_Show(playerid, CharacterDescription, DIALOG_STYLE_INPUT, "Character Description:", "Insert a description of your character.\n{93C47D}Info:{ffffff} Required for description your characters", "Confirm", "");	
+			Dialog_Show(playerid, CharacterDescription, DIALOG_STYLE_INPUT, "Character Description:", "Insert a description of your character.\n{33AA33}Info:{ffffff} Required for description your characters", "Confirm", "");	
 			SendErrorMessage(playerid, "Your characters description must be at least 12 characters and no more than 32 characters.");
 			return 1;
 		}
