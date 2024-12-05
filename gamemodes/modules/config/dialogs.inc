@@ -627,6 +627,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							ShowPlayerNeeds(playerid);
 							PlayerTextDrawShow(playerid, servername[playerid]);
 							ShowMoneyFormat(playerid);
+							TextDrawShowForPlayer(playerid, Times);
 							PlayerInfo[playerid][E_CHARACTER_TOGHUD] = false;
 							SendServerMessage(playerid, "[Settings] {DEDEDE}HUD TextDraws has been Enable.");
 						}
