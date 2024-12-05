@@ -4,9 +4,9 @@ CMD:credits(playerid, params[])
 {
 	SendClientMessage(playerid, COLOR_DARKGREEN, "[Development Help]:");
 	SendClientMessage(playerid, COLOR_CREDITS, "PatrickGTR:{ffffff} Open sourcing their actor robbery script.");
+	SendClientMessage(playerid, COLOR_CREDITS, "SP-RP:{ffffff} Open sourcing their some script.");
 	SendClientMessage(playerid, COLOR_CREDITS, "Radeetz:{ffffff} Development & Script gamemods for SL-RP.");
-	SendClientMessage(playerid, COLOR_CREDITS, "Crashout:{ffffff} Helping Radeetz with ideas / troubleshoting and management.");
-	SendClientMessage(playerid, COLOR_CREDITS, "Arielnatanael:{ffffff} Helping Radeetz with ideas / troubleshoting and management.");
+	SendClientMessage(playerid, COLOR_CREDITS, "Arifikhzan:{ffffff} Helping Radeetz with ideas / troubleshoting and management.");
 	SendClientMessage(playerid, COLOR_DARKGREEN, "[Server Management]:");
 	SendClientMessage(playerid, COLOR_CREDITS, "Marv:{ffffff} Helping with reassembling the community & pre-launch server.");
 	SendClientMessage(playerid, COLOR_CREDITS, "Boris:{ffffff} Helping with reassembling the community management.");
@@ -15,6 +15,7 @@ CMD:credits(playerid, params[])
 	SendClientMessage(playerid, COLOR_CREDITS, "The Community:{ffffff} for making this server possible and sticking by the staff team through sweat and frustation.");
 	return 1;
 }
+
 CMD:help(playerid, params[])
 {
 	new str[256];
@@ -23,10 +24,11 @@ CMD:help(playerid, params[])
 	return 1; 
 }
 
-CMD:cursor(playerid, params[])
+CMD:cursor(playerid, params[]) return cmd_pc(playerid, params);
+CMD:pc(playerid, params[])
 {
 	if(isnull(params))
-		return SendUsageMessage(playerid, "/cursor [show/hide]");
+		return SendUsageMessage(playerid, "/pc [show/hide]");
 
 	if(!strcmp(params, "show", true))
 	{

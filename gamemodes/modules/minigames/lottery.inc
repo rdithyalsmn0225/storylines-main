@@ -37,16 +37,17 @@ function:EndLottery()
         }
     }
     
+    new Cents = floatround(winningPrice * 100, floatround_round);
     if (winner != -1)
     {
-        GivePaycheck(winner, winningPrice);
+        GivePaycheck(winner, Cents);
         new string[128];
-        format(string, sizeof(string), "[Lottery] Congratulations %s! You won a lottery $%s with the number %d.", ReturnName(winner, winner), FormatMoney(winningPrice), winningNumber);
+        format(string, sizeof(string), "[Lottery] Congratulations %s! has won a lottery $%s with the number %d.", ReturnName(winner, winner), FormatMoney(Cents), winningNumber);
         SendClientMessageToAll(COLOR_PINK, string);
     }
     else
     {
-        SendClientMessageToAllEx(COLOR_PINK, "[Lottery] There is no lottery winner with a prize of $%s with the number %d.", FormatMoney(winningPrice), winningNumber);
+        SendClientMessageToAllEx(COLOR_PINK, "[Lottery] There is no lottery winner with a prize of $%s with the number %d.", FormatMoney(Cents), winningNumber);
     }
     
     LotteryActive = 0;

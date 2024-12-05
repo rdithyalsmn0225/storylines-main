@@ -116,6 +116,7 @@ main ()  {}
 #include "modules\props\props.inc"
 #include "modules\props\tree.inc"
 #include "modules\props\gate.inc"
+#include "modules\props\vending.inc"
 // DRUGS MODULES
 #include "modules\drugs\drugs.inc"
 #include "modules\drugs\drugsdealing.inc"
@@ -226,6 +227,7 @@ public OnGameModeInit()
 	InsertDynamicPickup();
 	InsertCharacterScene();
 	InsertStaticVehicles();
+	InsertVendingMachines();
 	InsertProjectPropsData();
 
 	// Global timers:
@@ -317,6 +319,7 @@ public OnPlayerConnect(playerid)
 	ResetPlayer(playerid);
 	PreloadAnimations(playerid); 
 	RemoveObjects(playerid);
+	RemoveDefaultVendingMachines(playerid);
 
 	//Visuals:
 	CreateTextdraws(playerid);
@@ -643,6 +646,19 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 public OnPlayerEnterDynamicArea(playerid, areaid)
 {
+	if (GetPlayerState(playerid) == PLAYER_STATE_ONFOOT) 
+	{
+		for(new i = 0; i < sizeof(sc_VendingMachines); i++) 
+		{
+			if (s_VendingMachineArea[i] == areaid ) {
+
+				OnPlayerApproachVending(playerid, i ) ;
+				break ;
+			}
+			else continue ;
+		}
+	}
+
 	forex(i, MAX_TREES) if(TreeInfo[i][E_TREE_EXISTS])
 	{
 		if(areaid == TreeInfo[i][E_TREE_AREA])
@@ -667,6 +683,23 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 				}
 				ShowBoxMessage(playerid, str, 5);
 			}
+		}
+	}
+	return 1;
+}
+
+public OnPlayerLeaveDynamicArea(playerid, areaid)
+{
+	if (GetPlayerState(playerid) == PLAYER_STATE_ONFOOT) 
+	{
+		for(new i = 0; i < sizeof(sc_VendingMachines); i++) 
+		{
+			if(s_VendingMachineArea[i] == areaid) 
+			{
+				OnPlayerLeaveVending(playerid) ;
+				break ;
+			}
+			else continue;
 		}
 	}
 	return 1;
@@ -3760,6 +3793,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		new Float:health;
 		GetPlayerHealth(playerid, health);
 		SetPlayerHealthEx(playerid, health+10.0);
+		PlayerInfo[playerid][E_CHARACTER_HUNGRY] += 10.0;
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 
 		for(new i; i < 10; i++)
@@ -3784,6 +3818,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		new Float:health;
 		GetPlayerHealth(playerid, health);
 		SetPlayerHealthEx(playerid, health+15.0);
+		PlayerInfo[playerid][E_CHARACTER_HUNGRY] += 15.0;
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 
 		for(new i; i < 10; i++)
@@ -3808,6 +3843,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		new Float:health;
 		GetPlayerHealth(playerid, health);
 		SetPlayerHealthEx(playerid, health+20.0);
+		PlayerInfo[playerid][E_CHARACTER_HUNGRY] += 20.0;
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 
 		for(new i; i < 10; i++)
@@ -4655,6 +4691,13 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	}
 	if (newkeys & KEY_SECONDARY_ATTACK && !IsPlayerInAnyVehicle(playerid))
 	{
+		for (new i = 0; i < sizeof(sc_VendingMachines); i++) {
+
+			if(IsPlayerInDynamicArea(playerid, s_VendingMachineArea[i])) 
+			{
+				OnPlayerUseVending(playerid, i);
+			}
+		}
 		if(PlayerInfo[playerid][E_CHARACTER_DRINKING] > 0)
 		{
 			PlayerInfo[playerid][E_CHARACTER_DRINKCD] = gettime();
@@ -4768,7 +4811,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
 		if(!VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_ENGINE] && IsEngineVehicle(vehicleid)){
-			ShowBoxMessage(playerid, "The engine of this vehicle is off.~n~Use /engine to turn it on or /hotwire to hotwire it.", 5);
+			ShowBoxMessage(playerid, "The engine of this vehicle is off.~n~Use /engine to turn it on or /hotwire to hotwire it.", 5, 1);
 	   	}
 
 	   	if (ReturnVehicleHealth(vehicleid) <= 350){

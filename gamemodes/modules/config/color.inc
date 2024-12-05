@@ -19,6 +19,7 @@
 #define COLOR_HINT          (0x8E94D6FF)
 #define COLOR_VEHICLE		(0xAA8672FF)
 #define COLOR_PROPERTY		(0x39865BFF)
+#define COLOR_EMMET         (0x077292FF)
 
 #define COLOR_GRAD1			(0xCCE6E6FF)
 #define COLOR_GRAD2			(0xE2FFFFFF)
@@ -36,8 +37,8 @@
 #define COLOR_FADE4 		(0x8C8C8C8C)
 #define COLOR_FADE5 		(0x6E6E6E6E)
 
-#define COLOR_COP 			(0x6583E1FF)
-#define COLOR_MEDIC         (0xDFA0C1FF)
+#define COLOR_COP 			(0x8D8DFFFF)
+#define COLOR_MEDIC         (0xFFC0CBFF)
 #define COLOR_DEPT 			(0xF07A7AFF)
 #define COLOR_TAXI          (0xF1C232FF)
 #define COLOR_MECHANIC      (0xBFCD90FF)

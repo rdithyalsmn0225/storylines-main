@@ -19,6 +19,8 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 50);
 				SaveCharacter(playerid);
+
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create colt 45 for 50g Materials and $%s.", Cents);
 			}
 			else
 			{
@@ -27,8 +29,9 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Colt 45", 346, 1);
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 50);
-
 				SaveCharacter(playerid);
+
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create colt 45 for 50g Materials and $%s.", Cents);
 			}
 		}
 		else if(weapon == WEAPON_SILENCED && type == 1)
@@ -47,6 +50,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Remove(playerid, "Materials", 60);
 
 				SaveCharacter(playerid);
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Silenced Colt for 60g Materials and $%s.", Cents);
 			}
 			else
 			{
@@ -57,6 +61,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Remove(playerid, "Materials", 60);
 
 				SaveCharacter(playerid);
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Silenced Colt for 60g Materials and $%s.", Cents);
 			}
 		}
 		if(weapon == WEAPON_DEAGLE && type == 1)
@@ -75,6 +80,8 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 80);
 				SaveCharacter(playerid);
+
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Desert Eagle for 80g Materials and $%s.", Cents);
 			}
 			else
 			{
@@ -82,8 +89,9 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Add(playerid, "Desert Eagle", 348, 1);
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 50);
-
 				SaveCharacter(playerid);
+
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Desert Eagle for 80g Materials and $%s.", Cents);
 			}
 		}
 		else if(weapon == WEAPON_UZI && type == 1)
@@ -103,6 +111,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Remove(playerid, "Materials", 80);
 
 				SaveCharacter(playerid);
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Uzi's for 80g Materials and $%s.", Cents);
 			}
 			else
 			{
@@ -113,6 +122,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Remove(playerid, "Materials", 80);
 
 				SaveCharacter(playerid);
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Uzi's for 80g Materials and $%s.", Cents);
 			}
 		}
 		else if(weapon == WEAPON_SHOTGUN && type == 1)
@@ -132,6 +142,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Remove(playerid, "Materials", 100);
 
 				SaveCharacter(playerid);
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Shotgun for 100g Materials and $%s.", Cents);
 			}
 			else
 			{
@@ -142,6 +153,7 @@ function:OnPlayerCreateWeapon(playerid, response, weapon, ammo, price, type)
 				Inventory_Remove(playerid, "Materials", 100);
 
 				SaveCharacter(playerid);
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Shotgun for 100g Materials and $%s.", Cents);
 			}
 		}
 	}
@@ -169,6 +181,8 @@ function:OnPlayerCreateAmmo(playerid, response, type, ammo, price)
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 20);
 				SaveCharacter(playerid);
+
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Regular Ammo for 20g Materials and $%s.", Cents);
 			}
 			else
 			{
@@ -177,6 +191,8 @@ function:OnPlayerCreateAmmo(playerid, response, type, ammo, price)
 				Inventory_Add(playerid, "Regular Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 20);
 				SaveCharacter(playerid);
+
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Regular Ammo for 20g Materials and $%s.", Cents);
 			}
 		}
 		else if(type == 1)
@@ -194,6 +210,8 @@ function:OnPlayerCreateAmmo(playerid, response, type, ammo, price)
 				Inventory_Add(playerid, "Surplus Ammo", 2040, ammo);
 				Inventory_Remove(playerid, "Materials", 30);
 				SaveCharacter(playerid);
+
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Surplus Ammo for 20g Materials and $%s.", Cents);
 			}
 			else
 			{
@@ -202,6 +220,8 @@ function:OnPlayerCreateAmmo(playerid, response, type, ammo, price)
 				Inventory_Add(playerid, "Surplus Ammo", 2040, ammo);	
 				Inventory_Remove(playerid, "Materials", 30);
 				SaveCharacter(playerid);
+
+				SendEmmetMessage(playerid, "[Weapons] {DEDEDE} You've create Surplus Ammo for 30g Materials and $%s.", Cents);
 			}
 		}
 	}

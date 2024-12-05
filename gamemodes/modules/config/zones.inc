@@ -819,3 +819,10 @@ stock IsObjectInSphere(objectid,Float:x,Float:y,Float:z,Float:radius2)
 	if(tmpdis < radius2) return 1;
 	return 0;
 }
+
+GetXYLeftOfPlayer(playerid, &Float:X, &Float:Y, Float:distance) {
+    new Float:Angle;
+    GetPlayerFacingAngle(playerid, Angle); Angle += 90.0;
+    X += floatmul(floatsin(-Angle, degrees), distance);
+    Y += floatmul(floatcos(-Angle, degrees), distance);
+}

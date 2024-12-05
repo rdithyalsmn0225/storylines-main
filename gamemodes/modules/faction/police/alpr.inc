@@ -24,26 +24,26 @@ stock DetectVehicleInFront(playerid)
             if (GetDistanceBetweenPoints(frontX, frontY, z, vX, vY, vZ) <= ALPR_RANGE)
             {
                 new str3[128];
-                format(str3, sizeof(str3), "Model :  ~w~%s", ReturnVehicleName(i));
-                PlayerTextDrawSetString(playerid, ALPR[2][playerid], str3);
+                format(str3, sizeof(str3), "Model : %s", ReturnVehicleName(i));
+                PlayerTextDrawSetString(playerid, ALPR[1][playerid], str3);
 
                 new str[128];
-                format(str, sizeof(str), "Plates :   ~w~%s", VehicleInfo[i][E_VEHICLE_PLATES]);
-                PlayerTextDrawSetString(playerid, ALPR[3][playerid], str);
+                format(str, sizeof(str), "Plates : %s", VehicleInfo[i][E_VEHICLE_PLATES]);
+                PlayerTextDrawSetString(playerid, ALPR[2][playerid], str);
 
                 if(!VehicleInfo[i][E_VEHICLE_PLATESSTATUS])
                 {
                     new str2[128];
-                    format(str2, sizeof(str2), "R.O :        ~w~Unregistered");
-                    PlayerTextDrawSetString(playerid, ALPR[4][playerid], str2);
+                    format(str2, sizeof(str2), "R.O : Unregistered");
+                    PlayerTextDrawSetString(playerid, ALPR[3][playerid], str2);
                 }
                 else
                 {
                     new str2[128];
-                    format(str2, sizeof(str2), "R.O :        ~w~Registered");
-                    PlayerTextDrawSetString(playerid, ALPR[4][playerid], str2);
+                    format(str2, sizeof(str2), "R.O : Registered");
+                    PlayerTextDrawSetString(playerid, ALPR[3][playerid], str2);
                 }
-                for(new b = 0; b < 5; b++)
+                for(new b = 0; b < 4; b++)
                 {
                     PlayerTextDrawShow(playerid, ALPR[b][playerid]);
                 }
@@ -51,7 +51,7 @@ stock DetectVehicleInFront(playerid)
             }
             else
             {
-                for(new a = 0; a < 5; a++)
+                for(new a = 0; a < 4; a++)
                 {
                     PlayerTextDrawHide(playerid, ALPR[a][playerid]);
                 }

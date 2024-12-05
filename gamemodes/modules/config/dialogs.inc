@@ -517,7 +517,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /stats, /admins, /report, /o(oc), /pay, /isafk, /time, /levelup, /rcp, /inventory");
 						SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /enter, /exit, /mask, /setchannel, /setslot, /radio, /licenseexam, /unimpound");
 						SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /damages, /health, /acceptdeath, /helpup, /fixr, /respawnme, /setspawn, /settings");
-			        	SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /approve, /deny, /tickets, /coin, /dice, /gascan, /repairkits, /cursor, /spray");
+			        	SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /approve, /deny, /tickets, /coin, /dice, /gascan, /repairkits, /pc, /spray");
 					}
 					case 1:
 					{
