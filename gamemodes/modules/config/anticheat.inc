@@ -209,13 +209,29 @@ stock SetPlayerHealthEx(playerid, Float:value)
 {
 	PauseAC(playerid);
 
+    PlayerInfo[playerid][E_CHARACTER_HEALTH] = value;
     if(PlayerInfo[playerid][E_CHARACTER_HEALTH] > PlayerInfo[playerid][E_CHARACTER_MAXHEALTH])
     {
         PlayerInfo[playerid][E_CHARACTER_HEALTH] = PlayerInfo[playerid][E_CHARACTER_MAXHEALTH];
-    }
+        PlayerInfo[playerid][E_CHARACTER_BODYPART][0] = 100;
+        PlayerInfo[playerid][E_CHARACTER_BODYPART][1] = 100;
+        PlayerInfo[playerid][E_CHARACTER_BODYPART][2] = 100;
+        PlayerInfo[playerid][E_CHARACTER_BODYPART][3] = 100;
+        PlayerInfo[playerid][E_CHARACTER_BODYPART][4] = 100;
+        PlayerInfo[playerid][E_CHARACTER_BODYPART][5] = 100;
+        PlayerInfo[playerid][E_CHARACTER_BODYPART][6] = 100;
+        PlayerInfo[playerid][E_CHARACTER_BODYPART][7] = 100;
 
-	PlayerInfo[playerid][E_CHARACTER_HEALTH] = value;
-	SetPlayerHealth(playerid, value);
+        PlayerInfo[playerid][E_CHARACTER_WOUND][0] = 0;
+        PlayerInfo[playerid][E_CHARACTER_WOUND][1] = 0;
+        PlayerInfo[playerid][E_CHARACTER_WOUND][2] = 0;
+        PlayerInfo[playerid][E_CHARACTER_WOUND][3] = 0;
+        PlayerInfo[playerid][E_CHARACTER_WOUND][4] = 0;
+        PlayerInfo[playerid][E_CHARACTER_WOUND][5] = 0;
+        PlayerInfo[playerid][E_CHARACTER_WOUND][6] = 0;
+        PlayerInfo[playerid][E_CHARACTER_WOUND][7] = 0;
+    }
+	SetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
     
     if(value <= 10) SetPlayerWeaponSkill(playerid, NORMAL_SKILL);
     else if(value >= 11 && value <= 30) SetPlayerWeaponSkill(playerid, MEDIUM_SKILL);

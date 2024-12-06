@@ -807,7 +807,7 @@ CMD:acceptdeath(playerid, params[])
 	if(GetPlayerTeam(playerid) != PLAYER_STATE_WOUNDED)
 		return SendErrorMessage(playerid, "You aren't brutally wounded.");
 		
-	CallLocalFunction("OnPlayerDead", "ddd", playerid, INVALID_PLAYER_ID, -1, 0); 
+	CallLocalFunction("OnPlayerDead", "ddd", playerid, INVALID_PLAYER_ID, 0); 
 	return 1;
 }
 

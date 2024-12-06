@@ -24,7 +24,7 @@ function:WeatherRotator()
 	SetWeather(g_aWeatherRotations[index]);
 }
 
-function:PlayersUpdates()
+function:OnPlayerUpdateEx()
 {
 	foreach(new playerid : Player)
 	{

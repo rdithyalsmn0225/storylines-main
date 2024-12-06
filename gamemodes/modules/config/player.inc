@@ -225,31 +225,15 @@ function:ResetPlayer(playerid)
 	
 	//Player characters:
 	PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] = false; 
-
-	PlayerInfo[playerid][E_CHARACTER_MAXHEALTH] = 100.0;
-	
-	PlayerInfo[playerid][E_CHARACTER_LASTPOS][0] = 1642.02;
-	PlayerInfo[playerid][E_CHARACTER_LASTPOS][1] = -2334.05;
-	PlayerInfo[playerid][E_CHARACTER_LASTPOS][2] = 13.5469;
 	
 	PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR] = 0;
 	PlayerInfo[playerid][E_CHARACTER_LASTWORLD] = 0;
 	
-	PlayerInfo[playerid][E_CHARACTER_LEVEL] = 1; 
-	PlayerInfo[playerid][E_CHARACTER_AGE] = 20; 
-	
-	PlayerInfo[playerid][E_CHARACTER_MONEY] = 250;
-	PlayerInfo[playerid][E_CHARACTER_BANK] = 250;
-	PlayerInfo[playerid][E_CHARACTER_PAYCHECK] = 0; 
-	
-	PlayerInfo[playerid][E_CHARACTER_PHONE] = 94000+random(6999);
 	PlayerInfo[playerid][E_CHARACTER_PHONEOFF] = false; 
 	PlayerInfo[playerid][E_CHARACTER_PHONESPEAKER] = false; 
-	
 	PlayerInfo[playerid][E_CHARACTER_CALL] = 0;
 	PlayerInfo[playerid][E_CHARACTER_PHONELINE] = INVALID_PLAYER_ID;
 
-	
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = INVALID_PLAYER_ID;
 	
 	PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE] = 0;
@@ -260,15 +244,6 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = INVALID_PLAYER_ID;
 
-	for(new i = 1; i < MAX_PLAYER_VEHICLES; i++) { 
-		PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i] = 0; 
-	}
-	
-	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = false;
-	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = INVALID_VEHICLE_ID;
-	PlayerInfo[playerid][E_CHARACTER_DUPLICATEKEY] = INVALID_VEHICLE_ID;
-	
-	
 	PlayerInfo[playerid][E_CHARACTER_POLICEDUTY] = false;
 	PlayerInfo[playerid][E_CHARACTER_MEDICDUTY] = false;
 	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
@@ -287,10 +262,6 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_STORAGESELECT] = 0;
 	PlayerInfo[playerid][E_CHARACTER_STORAGEITEM] = 0;
 
-	PlayerInfo[playerid][E_CHARACTER_MASKID] = 200000+random(199991);
-
-	PlayerInfo[playerid][E_CHARACTER_OFFJAILED] = false;
-	
 	PlayerInfo[playerid][E_CHARACTER_LASTDAMAGE] = 0;
 	
 	PlayerInfo[playerid][E_CHARACTER_OBJECTID] = 0;
@@ -301,30 +272,18 @@ function:ResetPlayer(playerid)
 	
 	PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] = 0;
 	
-	PlayerInfo[playerid][E_CHARACTER_HASRADIO] = false;
-	PlayerInfo[playerid][E_CHARACTER_MAINSLOT] = 1; 
-	
-	for(new i = 1; i < 3; i++){
-		PlayerInfo[playerid][E_CHARACTER_RADIO][i] = 0;
-	}
-	
 	PlayerInfo[playerid][E_CHARACTER_RESPAWNTIME] = 0;
 	PlayerInfo[playerid][E_CHARACTER_DRINKCD] = 0;
 	PlayerInfo[playerid][E_CHARACTER_DRUGSCD] = 0;
 
 	PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0; 
-	
-	PlayerInfo[playerid][E_CHARACTER_POLICEGUN] = false;
-	PlayerInfo[playerid][E_CHARACTER_POLICEAMMO] = 0;  
-	
-	PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE] = 0;
-	PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE] = 0;
+
 	PlayerInfo[playerid][E_CHARACTER_ACTIVELIST] = 0;
-	PlayerInfo[playerid][E_CHARACTER_PRISON] = false;
-	PlayerInfo[playerid][E_CHARACTER_PRISON] = 0;
+
 	PlayerMenuSelection[playerid] = -1;
 	PlayerHasMenuSelection[playerid] = 0;
 	PlayerLastMenuSelectionTick[playerid] = GetTickCount();
+
 	PlayerInfo[playerid][E_CHARACTER_SELECTCHAR] = -1;
 	PlayerInfo[playerid][E_CHARACTER_HASROBBIZ] = false;
 	PlayerInfo[playerid][E_CHARACTER_ROBBERYACTOR] = -1;
@@ -381,19 +340,11 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_TOGDD] = false;
 	PlayerInfo[playerid][E_CHARACTER_TOGTIPS] = false;
 
-	PlayerInfo[playerid][E_CHARACTER_SPAWNED] = false;
-
-	PlayerInfo[playerid][E_CHARACTER_DEATH] = 0;
-	PlayerInfo[playerid][E_CHARACTER_INJURED] = 0;
 	PlayerInfo[playerid][E_CHARACTER_DIEUNKNOWN] = false;
-
-	PlayerInfo[playerid][E_CHARACTER_HEALTH] = 100.0;
-	PlayerInfo[playerid][E_CHARACTER_ARMOUR] = 0.0;
 
 	PlayerInfo[playerid][E_CHARACTER_AFK] = 0;
     PlayerInfo[playerid][E_CHARACTER_AFKTIME] = 0;
 
-    PlayerInfo[playerid][E_CHARACTER_JOBSTIME] = 0;
     PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = false;
 	PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
 	PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] = 0;

@@ -2,8 +2,7 @@
 function:OnPlayerWounded(playerid, killerid, reason)
 {
 	new
-		str[128]
-	;
+		str[128];
 	
 	PlayerInfo[playerid][E_CHARACTER_DEATHFIX] = 1; 
 	
@@ -17,10 +16,11 @@ function:OnPlayerWounded(playerid, killerid, reason)
 	else
 	{
 		ApplyAnimation(playerid, "WUZI", "CS_Dead_Guy", 4.1, 0, 1, 1, 1, 0, 1);	
-	}	
-	ShowBoxMessage(playerid, "~r~Injury...", 5);
-	SetPlayerHealthEx(playerid, 26); 
+	}
+
+	SetPlayerTeam(playerid, PLAYER_STATE_WOUNDED); 
 	PlayerInfo[playerid][E_CHARACTER_INJURED] = 1;
+	PlayerInfo[playerid][E_CHARACTER_DEATH] = 0;
 	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
 	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
     PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
@@ -64,31 +64,28 @@ function:OnPlayerWounded(playerid, killerid, reason)
 			SendClientMessage(p, COLOR_DARKGREEN, "[Word on the Streetz] Smuggler packet has been spawned '/findpacket' to track packet");
 		}
 	}
-
-	SetPlayerTeam(playerid, PLAYER_STATE_WOUNDED); 
 	
+	SetPlayerPosEx(playerid, x, y, z);
 	SendInfoMessage(playerid, "You have been brutally wounded. If you aren't saved, you will die.");
 	SendTipMessage(playerid, "To accept death, type: /acceptdeath."); 
 
-	SetPlayerPosEx(playerid, x, y, z);
 	RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 	return 1;
 }
 
 function:OnPlayerDead(playerid, killerid, reason, executed)
 {
-	new
-		str[128]
-	;
+	new str[128];
 	
 	if(executed == 1)
 	{
 		format(str, sizeof(str), "%s has been executed by %s. (%s)", ReturnName(playerid), ReturnName(killerid, killerid), ReturnWeaponName(reason)); 
 		SendAdminMessageEx(COLOR_RED, 1, str); 
 	}
-	
+
 	ShowBoxMessage(playerid, "~r~Died...", 5);
 	SetPlayerTeam(playerid, PLAYER_STATE_DEAD); 
+
 	PlayerInfo[playerid][E_CHARACTER_RESPAWNTIME] = gettime(); 
 	PlayerInfo[playerid][E_CHARACTER_DEATH] = 1;
 	PlayerInfo[playerid][E_CHARACTER_INJURED] = 0;

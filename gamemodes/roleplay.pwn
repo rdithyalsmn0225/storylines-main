@@ -232,7 +232,7 @@ public OnGameModeInit()
 
 	// Global timers:
 	SetTimerEx("RandomFire", 5400000, true, "i", 1);
-	SetTimer("PlayersUpdates", 1000, true); 
+	SetTimer("OnPlayerUpdateEx", 1000, true); 
 	SetTimer("FunctionPaychecks", 60000, true);
 	SetTimer("OnVehicleFuelUpdate", 60000, true);
 	SetTimer("OnVehicleUpdate", 1000, true);
@@ -251,7 +251,7 @@ public OnGameModeInit()
 	SetTimer("OnPlayerJobsUpdate", 60000, true);
 	SetTimer("OnPlayerLotteryUpdate", 1800000, false);
 	SetTimer("OnPlayerTipsUpdate", 600000, true);
-	SetTimer("OnPlayerNeedUpdate", 300000, true);
+	SetTimer("OnPlayerNeedUpdate", 60000, true);
 	SetTimer("WeatherRotator", 2400000, true);
 
 	// Loading systems:
@@ -705,11 +705,18 @@ public OnPlayerLeaveDynamicArea(playerid, areaid)
 	return 1;
 }
 
+public OnPlayerRequestClass(playerid, classid)
+{
+	printf("Callback OnPlayerRequestClass called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+    return 0;
+}
+
 public OnPlayerRequestSpawn(playerid)
 {
+	printf("Callback OnPlayerRequestSpawn called for player %s (ID: %i)", ReturnName(playerid), playerid); 
     if (!IsPlayerAdmin(playerid))
     {
-        SendClientMessage(playerid, -1, "You don't have permission to using Spawn Button");
+		SendErrorMessage(playerid, "You don't have permission to using Spawn Button");
         return 0;
     }
 	return 1;
@@ -744,76 +751,84 @@ public OnVehicleDeath(vehicleid, killerid)
 
 public OnPlayerDeath(playerid, killerid, reason)
 {
-	PlayerInfo[playerid][E_CHARACTER_SPAWNED] = false;
-
+	foreach(new ii : Player)
+    {
+        if(IsPlayerAdmins(ii) && PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
+        {
+            SendDeathMessageToPlayer(ii, killerid, playerid, reason);
+        }
+    }
+	
 	printf("Callback OnPlayerDeath called for player %s (ID: %i)", ReturnName(playerid), playerid); 
-
-	if(killerid == INVALID_PLAYER_ID)
+	
+	if((gettime() - LastSpawn[playerid]) < 15 && reason >= 49)
 	{
-		if((gettime() - LastSpawn[playerid]) < 15 && reason >= 49)
-		{
-		    PlayerInfo[playerid][E_CHARACTER_HEALTH] = 100.0;
-
-			SendClientMessage(playerid, COLOR_RED, "Died at spawn.[Just logged in]");
-
-			SetPlayerPosEx(playerid, 2248.5664,-1260.5315,23.9566);
-			SetPlayerVirtualWorld(playerid, 0);
+		SendClientMessage(playerid, COLOR_RED, "Died at spawn.[Just logged in]");
+		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
+		SetPlayerHealthEx(playerid, 100.0);
+		SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
+		SetPlayerInterior(playerid, 0);
+		SetPlayerVirtualWorld(playerid, 0);
+	}
+	
+	if(reason == 51)
+	{
+		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		{	
+			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
+			SetPlayerHealthEx(playerid, 100.0);
+			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
 			SetPlayerInterior(playerid, 0);
-		}
-		else
-		{
-		    if(reason == 49)
-			{
-				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
-				{	
-					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
-					return 0;
-				}
-				SendInfoMessage(killerid, "You have been killed %s at %s.", ReturnName(playerid), ReturnLocationStreet(playerid));
-				SendInfoMessage(playerid, "You has been killed by %s at %s.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
-			}
-			else if(reason == 51)
-			{
-				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
-				{	
-					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
-					return 0;
-				}
-				SendInfoMessage(playerid, "You has been killed by Exploded at %s.", ReturnLocationStreet(playerid));
-			}
-			else if(reason == 50)
-			{
-				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
-				{	
-					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
-					return 0;
-				}
-				SendInfoMessage(playerid, "You has been killed by Helicopter Bladed at %s.", ReturnLocationStreet(playerid));
-			}
-			else if(reason == 54)
-			{
-				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
-				{	
-					CallLocalFunction("OnPlayerWounded", "ddd", playerid, killerid, reason); 
-					return 0;
-				}
-				SendInfoMessage(playerid, "You has been killed by Splat at %s.", ReturnLocationStreet(playerid));
-			}
-			else
-			{
-				if(killerid == INVALID_PLAYER_ID)
-				{
-					SendInfoMessage(playerid, "You has been killed by unknown at %s.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
-				}
-				else
-				{
-					SendInfoMessage(killerid, "You have been killed %s at %s.", ReturnName(playerid), ReturnLocationStreet(playerid));
-					SendInfoMessage(playerid, "You has been killed by %s at %s.", ReturnName(killerid, killerid), ReturnLocationStreet(playerid));
-				}
-				PlayerInfo[playerid][E_CHARACTER_DIEUNKNOWN] = true;
-			}
+			SetPlayerVirtualWorld(playerid, 0);
+			SpawnPlayer(playerid);
+			SendInfoMessage(playerid, "You has been killed by Exploded at %s.", ReturnLocationStreet(playerid));
 		}
 	}
+	else if(reason == 50)
+	{
+		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		{	
+			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
+			SetPlayerHealthEx(playerid, 100.0);
+			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
+			SetPlayerInterior(playerid, 0);
+			SetPlayerVirtualWorld(playerid, 0);
+			SpawnPlayer(playerid);
+			SendInfoMessage(playerid, "You has been killed by Helicopter Bladed at %s.", ReturnLocationStreet(playerid));
+		}
+	}
+	else if(reason == 53)
+	{
+		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		{	
+			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
+			SetPlayerHealthEx(playerid, 100.0);
+			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
+			SetPlayerInterior(playerid, 0);
+			SetPlayerVirtualWorld(playerid, 0);
+			SpawnPlayer(playerid);
+			SendInfoMessage(playerid, "You has been killed by Drowning at %s.", ReturnLocationStreet(playerid));
+		}	
+	}
+	else if(reason == 54)
+	{
+		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		{	
+			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
+			SetPlayerHealthEx(playerid, 100.0);
+			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
+			SetPlayerInterior(playerid, 0);
+			SetPlayerVirtualWorld(playerid, 0);
+			SpawnPlayer(playerid);
+			SendInfoMessage(playerid, "You has been killed by Splat at %s.", ReturnLocationStreet(playerid));
+		}	
+	}
+	else if(reason == 255)
+	{
+		Kick(playerid);
+		SendInfoMessage(playerid, "You has been killed by Suicide at %s.", ReturnLocationStreet(playerid));
+	}
+
 	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
 	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
     PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
@@ -1918,12 +1933,24 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		
 		if(health - amount <= 4)
 		{
-			if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
-			{	
-				CallLocalFunction("OnPlayerWounded", "ddd", playerid, issuerid, weaponid); 
-				return 0;
+			if(weaponid == 49)
+			{
+				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+				{	
+					CallLocalFunction("OnPlayerWounded", "dud", playerid, issuerid, weaponid);
+					SendInfoMessage(issuerid, "You have been killed %s at %s.", ReturnName(playerid), ReturnLocationStreet(playerid));
+					SendInfoMessage(playerid, "You has been killed by %s at %s.", ReturnName(issuerid), ReturnLocationStreet(playerid));
+					return 0;
+				}
 			}
-			
+			else
+			{
+				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+				{	
+					CallLocalFunction("OnPlayerWounded", "dud", playerid, issuerid, weaponid); 
+					return 0;
+				}
+			}
 			return 0;
 		}
 		
@@ -3094,6 +3121,8 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 
 public OnPlayerSpawn(playerid)
 {	
+	printf("Callback OnPlayerSpawn called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+
 	Streamer_Update(playerid);
 
 	LastSpawn[playerid] = gettime();
@@ -3211,12 +3240,27 @@ public OnPlayerUpdate(playerid)
 
 	new string[128];
 
-	if(GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED)
+	new Float:health;
+	GetPlayerHealth(playerid, health);
+	if(health < 10 && PlayerInfo[playerid][E_CHARACTER_SPAWNED])
+	{
+		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		{	
+			CallLocalFunction("OnPlayerWounded", "dud", playerid, playerid, 0);
+			SendInfoMessage(playerid, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
+		}
+		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		{	
+			CallLocalFunction("OnPlayerWounded", "dud", playerid, playerid, 0);
+			SendInfoMessage(playerid, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
+		}
+	}
+
+	if(GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED && PlayerInfo[playerid][E_CHARACTER_INJURED])
 	{
 		format(string, sizeof(string), "(( Has been injured %d times, /damages %d for more information. ))", TotalPlayerDamages[playerid], playerid);
 		SetPlayerChatBubble(playerid, string, COLOR_ORANGE, 30.0, 2500); 
 		
-		ShowBoxMessage(playerid, "Injury", 5);
 		if(IsPlayerInAnyVehicle(playerid))
 		{
 			ApplyAnimation(playerid, "ped", "CAR_dead_LHS", 4.1, 0, 0, 0, 1, 0, 1);
@@ -3227,9 +3271,17 @@ public OnPlayerUpdate(playerid)
 		}	
 	}
 
-	else if(GetPlayerTeam(playerid) == PLAYER_STATE_DEAD)
+	else if(GetPlayerTeam(playerid) == PLAYER_STATE_DEAD && PlayerInfo[playerid][E_CHARACTER_DEATH])
 	{
 		SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_ORANGE, 30.0, 2500); 
+		if(IsPlayerInAnyVehicle(playerid))
+		{
+			ApplyAnimation(playerid, "ped", "CAR_dead_LHS", 4.1, 0, 0, 0, 1, 0, 1);
+		}
+		else
+		{
+			ApplyAnimation(playerid, "WUZI", "CS_Dead_Guy", 4.1, 0, 1, 1, 1, 0, 1);	
+		}	
 	}
 
 	if(IsPlayerInAnyVehicle(playerid) && IsPoliceVehicle(GetPlayerVehicleID(playerid)))
@@ -4394,11 +4446,13 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	if(PRESSED(KEY_JUMP) && !PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
 	{
 	    PlayerJump[playerid][JumpPressed] = gettime();
+		return 1;
 	}
 
 	if(PRESSED(KEY_JUMP) && PlayerInfo[playerid][E_CHARACTER_WOUND][5] == 2 || PlayerInfo[playerid][E_CHARACTER_WOUND][5] == 3 || PlayerInfo[playerid][E_CHARACTER_WOUND][6] == 2 || PlayerInfo[playerid][E_CHARACTER_WOUND][6] == 3 && !PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
 	{
 	    ApplyAnimation(playerid, "ped", "fall_collapse", 4.1, 0, 1, 1, 0, 0);
+		return 1;
 	}
 
 	//Tackle

@@ -587,19 +587,21 @@ CMD:sethp(playerid, params[])
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
 		
-	if(health > 150)
+	if(health > PlayerInfo[playerb][E_CHARACTER_MAXHEALTH])
 		return SendErrorMessage(playerid, "You can't set health over 150."); 
 
-	PlayerInfo[playerb][E_CHARACTER_BODYPART][0] = 100;
-	PlayerInfo[playerb][E_CHARACTER_BODYPART][1] = 100;
-	PlayerInfo[playerb][E_CHARACTER_BODYPART][2] = 100;
-	PlayerInfo[playerb][E_CHARACTER_BODYPART][3] = 100;
-	PlayerInfo[playerb][E_CHARACTER_BODYPART][4] = 100;
-	PlayerInfo[playerb][E_CHARACTER_BODYPART][5] = 100;
-	PlayerInfo[playerb][E_CHARACTER_BODYPART][6] = 100;
-	PlayerInfo[playerb][E_CHARACTER_BODYPART][7] = 100;
-
-	SetPlayerHealthEx(playerb, health);
+	if(health < 10)
+	{
+		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		{	
+			CallLocalFunction("OnPlayerWounded", "dud", playerb, playerb, 255);
+			SendInfoMessage(playerb, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
+		}
+	}
+	else
+	{
+		SetPlayerHealthEx(playerb, health);
+	}
 
 	format(str, sizeof(str), "%s set %s's health to %d.", ReturnMixedName(playerid), ReturnName(playerb), health);
 	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
@@ -1067,6 +1069,8 @@ CMD:revive(playerid, params[])
 	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str); 
 	
 	SetPlayerTeam(playerb, PLAYER_STATE_ALIVE); 
+	PlayerInfo[playerb][E_CHARACTER_INJURED] = 0;
+	PlayerInfo[playerb][E_CHARACTER_DEATH] = 0;
 	SetPlayerHealthEx(playerb, 100); 
 	
 	TogglePlayerControllable(playerb, true); 

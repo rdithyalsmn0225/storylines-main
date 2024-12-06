@@ -43,6 +43,7 @@ function:OnPlayerNeedUpdate()
 	    {
             ShowPlayerNeeds(i);
         }
+        SaveCharacter(i); SaveCharacterPos(i);
     }
     return 1;
 }
