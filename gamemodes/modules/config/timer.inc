@@ -405,13 +405,13 @@ function:OnPlayerMinutesUpdate()
 		if(BusinessInfo[id][E_BUSINESS_ROBBERYTIME] > 0)
 		{
 			BusinessInfo[id][E_BUSINESS_ROBBERYTIME]--;
-			ClearActorAnimations(BusinessInfo[id][E_BUSINESS_ACTOR]);
-			ApplyActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "PED", "DUCK_cower", 4.1, 1, 1, 1, 1, 1);
+			ClearDynamicActorAnimations(BusinessInfo[id][E_BUSINESS_ACTOR]);
+			ApplyDynamicActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "PED", "DUCK_cower", 4.1, 1, 1, 1, 1, 1);
 		}
-		else if(!BusinessInfo[id][E_BUSINESS_ROBBERYTIME])
+		else
 		{
-			ClearActorAnimations(BusinessInfo[id][E_BUSINESS_ACTOR]);
-			ApplyActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "INT_SHOP", "shop_lookA", 4.1, 1, 1, 1, 1, 0);
+			ClearDynamicActorAnimations(BusinessInfo[id][E_BUSINESS_ACTOR]);
+			ApplyDynamicActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "FOOD", "SHP_Tray_Pose", 4.1, 1, 1, 1, 1, 0);
 			BusinessInfo[id][E_BUSINESS_ROBBERYTIME] = 0;
 			foreach(new playerid : Player)
 			{

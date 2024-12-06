@@ -437,7 +437,7 @@ CMD:haircut(playerid, params[])
 		SetPlayerPos(playerid, 414.4374,-19.8381,1001.8047);
 		SetPlayerFacingAngle(playerid, 88.7491);
 
-		new str[256];
+		new str[512];
 		for(new i; i < sizeof(g_aHaircut); i++)
 		{
 			format(str, sizeof(str), "%s%d\n", str, g_aHaircut[i]);

@@ -843,7 +843,7 @@ Dialog:BuySkins(playerid, response, listitem, inputtext[])
 
 				if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
 				{
-					new str[512];
+					new str[1024];
 					for(new i; i < sizeof(g_aMaleSkins); i++)
 					{
 						format(str, sizeof(str), "%s%d\n", str, g_aMaleSkins[i]);
@@ -852,7 +852,7 @@ Dialog:BuySkins(playerid, response, listitem, inputtext[])
 				}
 				else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 				{
-					new str[512];
+					new str[1024];
 					for(new i; i < sizeof(g_aFemaleSkins); i++)
 					{
 						format(str, sizeof(str), "%s%d\n", str, g_aFemaleSkins[i]);
@@ -867,7 +867,7 @@ Dialog:BuySkins(playerid, response, listitem, inputtext[])
 
 				SetPlayerCameraPos(playerid, 214.387527, -99.966537, 1005.545410);
 				SetPlayerCameraLookAt(playerid, 217.848388, -97.962821, 1005.458129, 1);
-				new str[512];
+				new str[1024];
 				for(new i; i < sizeof(g_aClothingCustom); i++)
 				{
 					format(str, sizeof(str), "%s%d\n", str, g_aClothingCustom[i]);

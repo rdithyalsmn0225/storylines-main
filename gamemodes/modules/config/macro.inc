@@ -14,8 +14,8 @@
 	#define SQL_PASSWORD ""
 #endif
 
-#define SERVER_NAME "Storylines Roleplay ultra-h.com"
-#define SCRIPT_REV "End of the Line v1.0"
+#define SERVER_NAME "Storylines Roleplay | Idlestreet Los Santos"
+#define SCRIPT_REV "IDLS v1.0"
 #define PLAYER_MOTD "Please read the rules first!"
 
 #define PRESSED(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
