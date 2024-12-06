@@ -200,3 +200,2083 @@ Console input: exit
 [19:59:26] = Unloaded!            =
 [19:59:26] ========================
 [19:59:26] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:19:53] filterscripts = ""  (string)
+[20:19:53] 
+[20:19:53] Server Plugins
+[20:19:53] --------------
+[20:19:53]  Loading plugin: mysql
+[20:19:53]  >> plugin.mysql: R41-4 successfully loaded.
+[20:19:53]   Loaded.
+[20:19:53]  Loading plugin: sscanf
+[20:19:53] 
+
+[20:19:53]  ===============================
+
+[20:19:53]       sscanf plugin loaded.     
+
+[20:19:53]          Version:  2.8.2        
+
+[20:19:53]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:19:53]  ===============================
+
+[20:19:53]   Loaded.
+[20:19:53]  Loading plugin: streamer
+[20:19:53] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:19:53]   Loaded.
+[20:19:53]  Loading plugin: timerfix
+[20:19:53]   >> TimerFix v1.4 successfully loaded.
+[20:19:53]   Loaded.
+[20:19:53]  Loading plugin: pawn-memory
+[20:19:53] ========================
+[20:19:53] = Memory access plugin =
+[20:19:53] =       Made by BigETI =
+[20:19:53] = Loaded!              =
+[20:19:53] ========================
+[20:19:53]   Loaded.
+[20:19:53]  Loading plugin: pawnraknet
+[20:19:53] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:19:54] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:19:54]   Loaded.
+[20:19:54]  Loading plugin: samp-compat
+[20:19:54]   -- samp-compat for 0.3.DL-R1 initialized
+[20:19:54]   Loaded.
+[20:19:54]  Loaded 7 plugins.
+
+[20:19:54] 
+[20:19:54] Filterscripts
+[20:19:54] ---------------
+[20:19:54]   Loaded 0 filterscripts.
+
+[20:19:54] [DATABASE]: Connection established to 'storylines'...
+[20:19:54] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:19:54] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:19:54] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:19:54] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:19:54] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:19:54] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:19:54] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:19:54] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:19:54] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:19:54] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:19:54] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:19:54] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:19:54] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:19:54] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:19:54] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:19:54] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:19:54] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:19:54] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:19:54] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:19:54] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:19:54] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:19:54] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:19:54] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:19:54] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:19:54] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:19:54] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:19:54] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:19:54] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:19:54] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:19:54] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:19:54] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:19:54] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:19:54] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:19:54] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:19:54] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:19:54] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:19:54] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:19:54] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:19:54] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:19:54] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:19:54] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:19:54] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:19:54] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:19:54] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:19:54] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:19:54] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:19:54] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:19:54] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:19:54] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:19:54] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:19:54] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:19:54] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:19:54] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:19:54] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:19:54] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:19:54] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:19:54] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:19:54] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:19:54] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:19:54] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:19:54] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:19:54] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:19:54] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:19:54] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:19:54] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:19:54] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:19:54] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:19:54] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:19:54] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:19:54] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:19:54] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:19:54] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:19:54] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:19:54] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:19:54] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:19:54] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:19:54] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:19:54] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:19:54] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:19:54] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:19:54] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:19:54] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:19:54] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:19:54] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:19:54] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:19:54] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:19:54] Number of vehicle models: 17
+[20:19:54] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:19:54] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:19:54] [SERVER]: 1 properties were loaded from "storylines" database...
+[20:19:54] [SERVER]: 8 businesses were loaded from "storylines" database...
+[20:19:54] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:19:54] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:19:54] [SERVER]: 4 court were loaded from "storylines" database...
+[20:19:54] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:19:54] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:20:03] [connection] incoming connection: 127.0.0.1:64015 id: 0
+[20:20:03] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:20:13] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:20:13] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:20:13] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:20:13] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:20:29] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:20:29] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:20:29] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:20:32] [part] Jayvon_Williams has left the server (0:1)
+Console input: exit
+[20:20:47] --- Server Shutting Down.
+[20:20:47] plugin.mysql: Unloading plugin...
+[20:20:47] plugin.mysql: Plugin unloaded.
+[20:20:47] 
+
+[20:20:47]  ===============================
+
+[20:20:47]      sscanf plugin unloaded.    
+
+[20:20:47]  ===============================
+
+[20:20:47] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[20:20:47] [plugin.timerfix] Plugsin successfully unloaded!
+[20:20:47] ========================
+[20:20:47] = Memory access plugin =
+[20:20:47] =       Made by BigETI =
+[20:20:47] = Unloaded!            =
+[20:20:47] ========================
+[20:20:47] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:22:19] filterscripts = ""  (string)
+[20:22:19] 
+[20:22:19] Server Plugins
+[20:22:19] --------------
+[20:22:19]  Loading plugin: mysql
+[20:22:19]  >> plugin.mysql: R41-4 successfully loaded.
+[20:22:19]   Loaded.
+[20:22:19]  Loading plugin: sscanf
+[20:22:19] 
+
+[20:22:19]  ===============================
+
+[20:22:19]       sscanf plugin loaded.     
+
+[20:22:19]          Version:  2.8.2        
+
+[20:22:19]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:22:19]  ===============================
+
+[20:22:19]   Loaded.
+[20:22:19]  Loading plugin: streamer
+[20:22:19] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:22:19]   Loaded.
+[20:22:19]  Loading plugin: timerfix
+[20:22:19]   >> TimerFix v1.4 successfully loaded.
+[20:22:19]   Loaded.
+[20:22:19]  Loading plugin: pawn-memory
+[20:22:19] ========================
+[20:22:19] = Memory access plugin =
+[20:22:19] =       Made by BigETI =
+[20:22:19] = Loaded!              =
+[20:22:19] ========================
+[20:22:19]   Loaded.
+[20:22:19]  Loading plugin: pawnraknet
+[20:22:19] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:22:19] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:22:19]   Loaded.
+[20:22:19]  Loading plugin: samp-compat
+[20:22:19]   -- samp-compat for 0.3.DL-R1 initialized
+[20:22:19]   Loaded.
+[20:22:19]  Loaded 7 plugins.
+
+[20:22:19] 
+[20:22:19] Filterscripts
+[20:22:19] ---------------
+[20:22:19]   Loaded 0 filterscripts.
+
+[20:22:19] [DATABASE]: Connection established to 'storylines'...
+[20:22:19] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:22:19] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:22:19] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:22:19] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:22:19] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:22:19] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:22:19] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:22:19] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:22:19] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:22:19] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:22:19] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:22:19] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:22:19] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:22:19] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:22:19] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:22:19] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:22:19] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:22:19] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:22:19] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:22:19] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:22:19] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:22:19] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:22:19] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:22:19] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:22:19] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:22:19] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:22:19] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:22:19] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:22:19] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:22:19] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:22:19] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:22:19] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:22:19] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:22:19] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:22:19] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:22:19] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:22:19] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:22:19] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:22:19] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:22:19] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:22:19] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:22:19] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:22:19] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:22:19] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:22:19] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:22:19] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:22:19] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:22:19] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:22:19] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:22:19] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:22:19] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:22:19] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:22:19] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:22:19] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:22:19] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:22:19] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:22:19] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:22:19] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:22:19] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:22:19] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:22:19] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:22:19] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:22:19] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:22:19] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:22:19] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:22:19] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:22:19] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:22:19] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:22:19] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:22:19] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:22:19] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:22:19] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:22:19] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:22:19] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:22:19] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:22:19] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:22:19] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:22:19] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:22:19] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:22:19] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:22:19] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:22:19] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:22:19] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:22:19] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:22:19] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:22:19] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:22:19] Number of vehicle models: 17
+[20:22:19] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:22:19] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:22:19] [SERVER]: 4 court were loaded from "storylines" database...
+[20:22:19] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:22:19] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:22:19] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:22:19] [SERVER]: 1 properties were loaded from "storylines" database...
+[20:22:19] [SERVER]: 8 businesses were loaded from "storylines" database...
+[20:22:19] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:22:28] [connection] incoming connection: 127.0.0.1:60823 id: 0
+[20:22:29] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:22:35] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:22:35] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:22:35] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:22:35] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:22:38] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:22:38] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:22:38] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:22:54] [part] Jayvon_Williams has left the server (0:1)
+Console input: exit
+[20:24:08] --- Server Shutting Down.
+[20:24:08] plugin.mysql: Unloading plugin...
+[20:24:08] plugin.mysql: Plugin unloaded.
+[20:24:08] 
+
+[20:24:08]  ===============================
+
+[20:24:08]      sscanf plugin unloaded.    
+
+[20:24:08]  ===============================
+
+[20:24:08] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[20:24:08] [plugin.timerfix] Plugsin successfully unloaded!
+[20:24:08] ========================
+[20:24:08] = Memory access plugin =
+[20:24:08] =       Made by BigETI =
+[20:24:08] = Unloaded!            =
+[20:24:08] ========================
+[20:24:08] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:24:52] filterscripts = ""  (string)
+[20:24:52] 
+[20:24:52] Server Plugins
+[20:24:52] --------------
+[20:24:52]  Loading plugin: mysql
+[20:24:52]  >> plugin.mysql: R41-4 successfully loaded.
+[20:24:52]   Loaded.
+[20:24:52]  Loading plugin: sscanf
+[20:24:52] 
+
+[20:24:52]  ===============================
+
+[20:24:52]       sscanf plugin loaded.     
+
+[20:24:52]          Version:  2.8.2        
+
+[20:24:52]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:24:52]  ===============================
+
+[20:24:52]   Loaded.
+[20:24:52]  Loading plugin: streamer
+[20:24:52] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:24:52]   Loaded.
+[20:24:52]  Loading plugin: timerfix
+[20:24:52]   >> TimerFix v1.4 successfully loaded.
+[20:24:52]   Loaded.
+[20:24:52]  Loading plugin: pawn-memory
+[20:24:52] ========================
+[20:24:52] = Memory access plugin =
+[20:24:52] =       Made by BigETI =
+[20:24:52] = Loaded!              =
+[20:24:52] ========================
+[20:24:52]   Loaded.
+[20:24:52]  Loading plugin: pawnraknet
+[20:24:52] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:24:52] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:24:52]   Loaded.
+[20:24:52]  Loading plugin: samp-compat
+[20:24:52]   -- samp-compat for 0.3.DL-R1 initialized
+[20:24:52]   Loaded.
+[20:24:52]  Loaded 7 plugins.
+
+[20:24:52] 
+[20:24:52] Filterscripts
+[20:24:52] ---------------
+[20:24:52]   Loaded 0 filterscripts.
+
+[20:24:52] [DATABASE]: Connection established to 'storylines'...
+[20:24:52] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:24:52] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:24:52] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:24:52] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:24:52] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:24:52] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:24:52] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:24:52] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:24:52] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:24:52] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:24:52] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:24:52] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:24:52] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:24:52] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:24:52] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:24:52] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:24:52] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:24:52] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:24:52] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:24:52] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:24:52] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:24:52] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:24:52] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:24:52] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:24:52] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:24:52] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:24:52] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:24:52] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:24:52] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:24:52] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:24:52] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:24:52] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:24:52] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:24:52] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:24:52] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:24:52] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:24:52] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:24:52] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:24:52] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:24:52] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:24:52] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:24:52] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:24:52] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:24:52] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:24:52] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:24:52] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:24:52] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:24:52] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:24:52] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:24:52] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:24:52] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:24:52] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:24:52] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:24:52] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:24:52] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:24:53] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:24:53] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:24:53] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:24:53] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:24:53] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:24:53] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:24:53] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:24:53] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:24:53] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:24:53] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:24:53] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:24:53] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:24:53] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:24:53] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:24:53] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:24:53] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:24:53] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:24:53] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:24:53] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:24:53] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:24:53] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:24:53] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:24:53] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:24:53] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:24:53] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:24:53] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:24:53] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:24:53] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:24:53] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:24:53] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:24:53] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:24:53] Number of vehicle models: 17
+[20:24:53] [SERVER]: 1 properties were loaded from "storylines" database...
+[20:24:53] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:24:53] [SERVER]: 4 court were loaded from "storylines" database...
+[20:24:53] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:24:53] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:24:53] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:24:53] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:24:53] [SERVER]: 8 businesses were loaded from "storylines" database...
+[20:24:53] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:25:01] [connection] incoming connection: 127.0.0.1:58156 id: 0
+[20:25:01] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:25:11] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:25:11] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:25:11] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:25:11] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:25:23] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:25:24] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:25:24] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:25:27] [part] Jayvon_Williams has left the server (0:1)
+[20:25:38] [connection] incoming connection: 127.0.0.1:55036 id: 0
+[20:25:38] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:25:49] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:25:49] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:25:49] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:25:49] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:25:51] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:25:51] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:25:51] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:26:04] [part] Jayvon_Williams has left the server (0:1)
+Console input: exit
+[20:28:06] --- Server Shutting Down.
+[20:28:06] plugin.mysql: Unloading plugin...
+[20:28:06] plugin.mysql: Plugin unloaded.
+[20:28:06] 
+
+[20:28:06]  ===============================
+
+[20:28:06]      sscanf plugin unloaded.    
+
+[20:28:06]  ===============================
+
+[20:28:06] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[20:28:06] [plugin.timerfix] Plugsin successfully unloaded!
+[20:28:06] ========================
+[20:28:06] = Memory access plugin =
+[20:28:06] =       Made by BigETI =
+[20:28:06] = Unloaded!            =
+[20:28:06] ========================
+[20:28:06] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:28:17] filterscripts = ""  (string)
+[20:28:17] 
+[20:28:17] Server Plugins
+[20:28:17] --------------
+[20:28:17]  Loading plugin: mysql
+[20:28:17]  >> plugin.mysql: R41-4 successfully loaded.
+[20:28:17]   Loaded.
+[20:28:17]  Loading plugin: sscanf
+[20:28:17] 
+
+[20:28:17]  ===============================
+
+[20:28:17]       sscanf plugin loaded.     
+
+[20:28:17]          Version:  2.8.2        
+
+[20:28:17]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:28:17]  ===============================
+
+[20:28:17]   Loaded.
+[20:28:17]  Loading plugin: streamer
+[20:28:17] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:28:17]   Loaded.
+[20:28:17]  Loading plugin: timerfix
+[20:28:17]   >> TimerFix v1.4 successfully loaded.
+[20:28:17]   Loaded.
+[20:28:17]  Loading plugin: pawn-memory
+[20:28:17] ========================
+[20:28:17] = Memory access plugin =
+[20:28:17] =       Made by BigETI =
+[20:28:17] = Loaded!              =
+[20:28:17] ========================
+[20:28:17]   Loaded.
+[20:28:17]  Loading plugin: pawnraknet
+[20:28:17] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:28:17] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:28:17]   Loaded.
+[20:28:17]  Loading plugin: samp-compat
+[20:28:17]   -- samp-compat for 0.3.DL-R1 initialized
+[20:28:17]   Loaded.
+[20:28:17]  Loaded 7 plugins.
+
+[20:28:17] 
+[20:28:17] Filterscripts
+[20:28:17] ---------------
+[20:28:17]   Loaded 0 filterscripts.
+
+[20:28:17] [DATABASE]: Connection established to 'storylines'...
+[20:28:17] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:28:17] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:28:17] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:28:17] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:28:17] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:28:17] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:28:17] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:28:17] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:28:17] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:28:17] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:28:17] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:28:17] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:28:17] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:28:17] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:28:17] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:28:17] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:28:17] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:28:17] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:28:17] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:28:17] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:28:17] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:28:17] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:28:17] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:28:17] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:28:17] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:28:17] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:28:17] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:28:17] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:28:17] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:28:17] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:28:17] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:28:17] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:28:17] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:28:17] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:28:17] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:28:17] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:28:17] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:28:17] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:28:17] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:28:17] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:28:17] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:28:17] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:28:17] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:28:17] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:28:17] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:28:17] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:28:17] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:28:17] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:28:17] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:28:17] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:28:17] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:28:17] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:28:17] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:28:17] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:28:17] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:28:17] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:28:17] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:28:17] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:28:17] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:28:17] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:28:17] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:28:17] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:28:17] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:28:17] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:28:17] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:28:17] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:28:17] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:28:17] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:28:17] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:28:17] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:28:17] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:28:17] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:28:17] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:28:17] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:28:17] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:28:17] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:28:17] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:28:17] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:28:17] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:28:17] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:28:17] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:28:17] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:28:17] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:28:17] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:28:17] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:28:17] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:28:17] Number of vehicle models: 17
+[20:28:17] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:28:17] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:28:17] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:28:17] [SERVER]: 4 court were loaded from "storylines" database...
+[20:28:17] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:28:17] [SERVER]: 1 properties were loaded from "storylines" database...
+[20:28:17] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:28:17] [SERVER]: 8 businesses were loaded from "storylines" database...
+[20:28:17] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:28:26] [connection] incoming connection: 127.0.0.1:53505 id: 0
+[20:28:26] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:28:33] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:28:33] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:28:33] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:28:33] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:28:36] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:28:36] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:28:36] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:28:39] [part] Jayvon_Williams has left the server (0:1)
+[20:28:48] [connection] incoming connection: 127.0.0.1:49183 id: 0
+[20:28:48] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:28:53] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:28:53] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:28:53] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:28:53] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:28:55] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:28:55] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:28:55] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:28:57] [part] Jayvon_Williams has left the server (0:1)
+[20:29:06] [connection] incoming connection: 127.0.0.1:49348 id: 0
+[20:29:07] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:29:13] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:29:13] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:29:13] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:29:13] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:29:15] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:29:15] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:29:15] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:29:27] [part] Jayvon_Williams has left the server (0:1)
+Console input: exit
+[20:30:22] --- Server Shutting Down.
+[20:30:22] plugin.mysql: Unloading plugin...
+[20:30:22] plugin.mysql: Plugin unloaded.
+[20:30:22] 
+
+[20:30:22]  ===============================
+
+[20:30:22]      sscanf plugin unloaded.    
+
+[20:30:22]  ===============================
+
+[20:30:22] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[20:30:22] [plugin.timerfix] Plugsin successfully unloaded!
+[20:30:22] ========================
+[20:30:22] = Memory access plugin =
+[20:30:22] =       Made by BigETI =
+[20:30:22] = Unloaded!            =
+[20:30:22] ========================
+[20:30:22] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:30:27] filterscripts = ""  (string)
+[20:30:27] 
+[20:30:27] Server Plugins
+[20:30:27] --------------
+[20:30:27]  Loading plugin: mysql
+[20:30:27]  >> plugin.mysql: R41-4 successfully loaded.
+[20:30:27]   Loaded.
+[20:30:27]  Loading plugin: sscanf
+[20:30:27] 
+
+[20:30:27]  ===============================
+
+[20:30:27]       sscanf plugin loaded.     
+
+[20:30:27]          Version:  2.8.2        
+
+[20:30:27]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:30:27]  ===============================
+
+[20:30:27]   Loaded.
+[20:30:27]  Loading plugin: streamer
+[20:30:27] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:30:27]   Loaded.
+[20:30:27]  Loading plugin: timerfix
+[20:30:27]   >> TimerFix v1.4 successfully loaded.
+[20:30:27]   Loaded.
+[20:30:27]  Loading plugin: pawn-memory
+[20:30:27] ========================
+[20:30:27] = Memory access plugin =
+[20:30:27] =       Made by BigETI =
+[20:30:27] = Loaded!              =
+[20:30:27] ========================
+[20:30:27]   Loaded.
+[20:30:27]  Loading plugin: pawnraknet
+[20:30:27] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:30:27] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:30:27]   Loaded.
+[20:30:27]  Loading plugin: samp-compat
+[20:30:27]   -- samp-compat for 0.3.DL-R1 initialized
+[20:30:27]   Loaded.
+[20:30:27]  Loaded 7 plugins.
+
+[20:30:27] 
+[20:30:27] Filterscripts
+[20:30:27] ---------------
+[20:30:27]   Loaded 0 filterscripts.
+
+[20:30:27] [DATABASE]: Connection established to 'storylines'...
+[20:30:27] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:30:27] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:30:27] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:30:27] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:30:27] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:30:27] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:30:27] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:30:27] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:30:27] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:30:27] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:30:27] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:30:27] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:30:27] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:30:27] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:30:27] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:30:27] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:30:27] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:30:27] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:30:27] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:30:27] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:30:27] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:30:27] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:30:27] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:30:27] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:30:27] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:30:27] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:30:27] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:30:27] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:30:27] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:30:27] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:30:27] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:30:27] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:30:27] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:30:27] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:30:27] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:30:27] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:30:27] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:30:27] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:30:27] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:30:27] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:30:27] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:30:27] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:30:27] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:30:27] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:30:27] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:30:27] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:30:27] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:30:27] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:30:27] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:30:27] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:30:27] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:30:27] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:30:27] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:30:27] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:30:27] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:30:27] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:30:27] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:30:27] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:30:27] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:30:27] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:30:27] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:30:27] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:30:27] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:30:27] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:30:27] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:30:27] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:30:27] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:30:27] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:30:27] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:30:27] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:30:27] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:30:27] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:30:27] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:30:27] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:30:27] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:30:27] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:30:27] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:30:27] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:30:27] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:30:27] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:30:27] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:30:27] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:30:27] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:30:27] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:30:27] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:30:27] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:30:27] Number of vehicle models: 17
+[20:30:27] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:30:27] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:30:27] [SERVER]: 4 court were loaded from "storylines" database...
+[20:30:27] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:30:27] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:30:27] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:30:27] [SERVER]: 1 properties were loaded from "storylines" database...
+[20:30:27] [SERVER]: 8 businesses were loaded from "storylines" database...
+[20:30:27] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:30:36] [connection] incoming connection: 127.0.0.1:55767 id: 0
+[20:30:37] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:30:41] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:30:41] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:30:41] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:30:41] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:30:43] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:30:43] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:30:44] [part] Jayvon_Williams has left the server (0:1)
+[20:30:53] [connection] incoming connection: 127.0.0.1:64068 id: 0
+[20:30:53] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:30:58] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:30:58] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:30:58] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:30:58] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:30:59] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:31:00] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:31:01] [part] Jayvon_Williams has left the server (0:1)
+Console input: exit
+[20:32:35] --- Server Shutting Down.
+[20:32:35] plugin.mysql: Unloading plugin...
+[20:32:35] plugin.mysql: Plugin unloaded.
+[20:32:35] 
+
+[20:32:35]  ===============================
+
+[20:32:35]      sscanf plugin unloaded.    
+
+[20:32:35]  ===============================
+
+[20:32:35] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[20:32:35] [plugin.timerfix] Plugsin successfully unloaded!
+[20:32:35] ========================
+[20:32:35] = Memory access plugin =
+[20:32:35] =       Made by BigETI =
+[20:32:35] = Unloaded!            =
+[20:32:35] ========================
+[20:32:35] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:32:41] filterscripts = ""  (string)
+[20:32:41] 
+[20:32:41] Server Plugins
+[20:32:41] --------------
+[20:32:41]  Loading plugin: mysql
+[20:32:41]  >> plugin.mysql: R41-4 successfully loaded.
+[20:32:41]   Loaded.
+[20:32:41]  Loading plugin: sscanf
+[20:32:41] 
+
+[20:32:41]  ===============================
+
+[20:32:41]       sscanf plugin loaded.     
+
+[20:32:41]          Version:  2.8.2        
+
+[20:32:41]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:32:41]  ===============================
+
+[20:32:41]   Loaded.
+[20:32:41]  Loading plugin: streamer
+[20:32:41] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:32:41]   Loaded.
+[20:32:41]  Loading plugin: timerfix
+[20:32:41]   >> TimerFix v1.4 successfully loaded.
+[20:32:41]   Loaded.
+[20:32:41]  Loading plugin: pawn-memory
+[20:32:41] ========================
+[20:32:41] = Memory access plugin =
+[20:32:41] =       Made by BigETI =
+[20:32:41] = Loaded!              =
+[20:32:41] ========================
+[20:32:41]   Loaded.
+[20:32:41]  Loading plugin: pawnraknet
+[20:32:41] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:32:41] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:32:41]   Loaded.
+[20:32:41]  Loading plugin: samp-compat
+[20:32:41]   -- samp-compat for 0.3.DL-R1 initialized
+[20:32:41]   Loaded.
+[20:32:41]  Loaded 7 plugins.
+
+[20:32:41] 
+[20:32:41] Filterscripts
+[20:32:41] ---------------
+[20:32:41]   Loaded 0 filterscripts.
+
+[20:32:41] [DATABASE]: Connection established to 'storylines'...
+[20:32:41] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:32:42] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:32:42] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:32:42] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:32:42] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:32:42] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:32:42] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:32:42] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:32:42] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:32:42] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:32:42] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:32:42] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:32:42] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:32:42] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:32:42] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:32:42] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:32:42] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:32:42] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:32:42] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:32:42] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:32:42] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:32:42] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:32:42] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:32:42] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:32:42] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:32:42] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:32:42] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:32:42] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:32:42] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:32:42] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:32:42] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:32:42] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:32:42] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:32:42] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:32:42] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:32:42] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:32:42] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:32:42] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:32:42] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:32:42] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:32:42] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:32:42] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:32:42] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:32:42] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:32:42] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:32:42] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:32:42] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:32:42] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:32:42] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:32:42] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:32:42] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:32:42] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:32:42] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:32:42] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:32:42] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:32:42] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:32:42] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:32:42] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:32:42] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:32:42] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:32:42] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:32:42] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:32:42] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:32:42] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:32:42] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:32:42] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:32:42] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:32:42] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:32:42] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:32:42] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:32:42] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:32:42] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:32:42] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:32:42] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:32:42] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:32:42] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:32:42] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:32:42] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:32:42] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:32:42] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:32:42] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:32:42] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:32:42] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:32:42] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:32:42] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:32:42] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:32:42] Number of vehicle models: 17
+[20:32:42] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:32:42] [SERVER]: 8 businesses were loaded from "storylines" database...
+[20:32:42] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:32:42] [SERVER]: 1 properties were loaded from "storylines" database...
+[20:32:42] [SERVER]: 4 court were loaded from "storylines" database...
+[20:32:42] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:32:42] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:32:42] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:32:42] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:32:50] [connection] incoming connection: 127.0.0.1:62486 id: 0
+[20:32:51] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:32:55] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:32:55] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:32:55] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:32:55] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:32:57] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:32:57] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:32:58] [part] Jayvon_Williams has left the server (0:1)
+[20:33:07] [connection] incoming connection: 127.0.0.1:55640 id: 0
+[20:33:07] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:33:13] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:33:13] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:33:13] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:33:13] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:33:14] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:33:14] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:33:19] [part] Jayvon_Williams has left the server (0:1)
+Console input: exit
+[20:35:22] --- Server Shutting Down.
+[20:35:22] plugin.mysql: Unloading plugin...
+[20:35:22] plugin.mysql: Plugin unloaded.
+[20:35:22] 
+
+[20:35:22]  ===============================
+
+[20:35:22]      sscanf plugin unloaded.    
+
+[20:35:22]  ===============================
+
+[20:35:22] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[20:35:22] [plugin.timerfix] Plugsin successfully unloaded!
+[20:35:22] ========================
+[20:35:22] = Memory access plugin =
+[20:35:22] =       Made by BigETI =
+[20:35:22] = Unloaded!            =
+[20:35:22] ========================
+[20:35:22] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:35:25] filterscripts = ""  (string)
+[20:35:25] 
+[20:35:25] Server Plugins
+[20:35:25] --------------
+[20:35:25]  Loading plugin: mysql
+[20:35:25]  >> plugin.mysql: R41-4 successfully loaded.
+[20:35:25]   Loaded.
+[20:35:25]  Loading plugin: sscanf
+[20:35:25] 
+
+[20:35:25]  ===============================
+
+[20:35:25]       sscanf plugin loaded.     
+
+[20:35:25]          Version:  2.8.2        
+
+[20:35:25]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:35:25]  ===============================
+
+[20:35:25]   Loaded.
+[20:35:25]  Loading plugin: streamer
+[20:35:25] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:35:25]   Loaded.
+[20:35:25]  Loading plugin: timerfix
+[20:35:25]   >> TimerFix v1.4 successfully loaded.
+[20:35:25]   Loaded.
+[20:35:25]  Loading plugin: pawn-memory
+[20:35:25] ========================
+[20:35:25] = Memory access plugin =
+[20:35:25] =       Made by BigETI =
+[20:35:25] = Loaded!              =
+[20:35:25] ========================
+[20:35:25]   Loaded.
+[20:35:25]  Loading plugin: pawnraknet
+[20:35:25] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:35:25] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:35:25]   Loaded.
+[20:35:25]  Loading plugin: samp-compat
+[20:35:25]   -- samp-compat for 0.3.DL-R1 initialized
+[20:35:25]   Loaded.
+[20:35:25]  Loaded 7 plugins.
+
+[20:35:25] 
+[20:35:25] Filterscripts
+[20:35:25] ---------------
+[20:35:25]   Loaded 0 filterscripts.
+
+[20:35:25] [DATABASE]: Connection established to 'storylines'...
+[20:35:25] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:35:25] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:35:25] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:35:25] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:35:25] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:35:25] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:35:25] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:35:25] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:35:25] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:35:25] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:35:25] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:35:25] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:35:25] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:35:25] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:35:25] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:35:25] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:35:25] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:35:25] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:35:25] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:35:25] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:35:25] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:35:25] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:35:25] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:35:25] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:35:25] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:35:25] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:35:25] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:35:25] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:35:25] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:35:25] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:35:25] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:35:25] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:35:25] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:35:25] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:35:25] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:35:25] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:35:25] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:35:25] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:35:25] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:35:25] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:35:25] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:35:25] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:35:25] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:35:25] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:35:25] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:35:25] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:35:25] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:35:25] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:35:25] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:35:25] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:35:25] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:35:25] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:35:25] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:35:25] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:35:25] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:35:26] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:35:26] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:35:26] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:35:26] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:35:26] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:35:26] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:35:26] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:35:26] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:35:26] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:35:26] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:35:26] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:35:26] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:35:26] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:35:26] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:35:26] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:35:26] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:35:26] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:35:26] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:35:26] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:35:26] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:35:26] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:35:26] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:35:26] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:35:26] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:35:26] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:35:26] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:35:26] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:35:26] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:35:26] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:35:26] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:35:26] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:35:26] Number of vehicle models: 17
+[20:35:26] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:35:26] [SERVER]: 1 properties were loaded from "storylines" database...
+[20:35:26] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:35:26] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:35:26] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:35:26] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:35:26] [SERVER]: 4 court were loaded from "storylines" database...
+[20:35:26] [SERVER]: 8 businesses were loaded from "storylines" database...
+[20:35:26] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:35:34] [connection] incoming connection: 127.0.0.1:58197 id: 0
+[20:35:34] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:35:38] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:35:38] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:35:38] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:35:38] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:35:41] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:35:41] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:35:42] [part] Jayvon_Williams has left the server (0:1)
+[20:35:51] [connection] incoming connection: 127.0.0.1:64630 id: 0
+[20:35:51] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:35:56] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:35:56] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:35:56] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:35:56] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:35:57] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:35:57] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:35:57] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:36:15] [part] Jayvon_Williams has left the server (0:1)
+Console input: exit
+[20:36:46] --- Server Shutting Down.
+[20:36:46] plugin.mysql: Unloading plugin...
+[20:36:46] plugin.mysql: Plugin unloaded.
+[20:36:46] 
+
+[20:36:46]  ===============================
+
+[20:36:46]      sscanf plugin unloaded.    
+
+[20:36:46]  ===============================
+
+[20:36:46] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[20:36:46] [plugin.timerfix] Plugsin successfully unloaded!
+[20:36:46] ========================
+[20:36:46] = Memory access plugin =
+[20:36:46] =       Made by BigETI =
+[20:36:46] = Unloaded!            =
+[20:36:46] ========================
+[20:36:46] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:36:51] filterscripts = ""  (string)
+[20:36:51] 
+[20:36:51] Server Plugins
+[20:36:51] --------------
+[20:36:51]  Loading plugin: mysql
+[20:36:51]  >> plugin.mysql: R41-4 successfully loaded.
+[20:36:51]   Loaded.
+[20:36:51]  Loading plugin: sscanf
+[20:36:51] 
+
+[20:36:51]  ===============================
+
+[20:36:51]       sscanf plugin loaded.     
+
+[20:36:51]          Version:  2.8.2        
+
+[20:36:51]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:36:51]  ===============================
+
+[20:36:51]   Loaded.
+[20:36:51]  Loading plugin: streamer
+[20:36:51] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:36:51]   Loaded.
+[20:36:51]  Loading plugin: timerfix
+[20:36:51]   >> TimerFix v1.4 successfully loaded.
+[20:36:51]   Loaded.
+[20:36:51]  Loading plugin: pawn-memory
+[20:36:51] ========================
+[20:36:51] = Memory access plugin =
+[20:36:51] =       Made by BigETI =
+[20:36:51] = Loaded!              =
+[20:36:51] ========================
+[20:36:51]   Loaded.
+[20:36:51]  Loading plugin: pawnraknet
+[20:36:51] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:36:51] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:36:51]   Loaded.
+[20:36:51]  Loading plugin: samp-compat
+[20:36:51]   -- samp-compat for 0.3.DL-R1 initialized
+[20:36:51]   Loaded.
+[20:36:51]  Loaded 7 plugins.
+
+[20:36:51] 
+[20:36:51] Filterscripts
+[20:36:51] ---------------
+[20:36:51]   Loaded 0 filterscripts.
+
+[20:36:52] [DATABASE]: Connection established to 'storylines'...
+[20:36:52] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:36:52] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:36:52] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:36:52] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:36:52] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:36:52] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:36:52] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:36:52] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:36:52] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:36:52] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:36:52] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:36:52] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:36:52] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:36:52] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:36:52] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:36:52] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:36:52] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:36:52] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:36:52] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:36:52] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:36:52] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:36:52] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:36:52] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:36:52] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:36:52] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:36:52] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:36:52] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:36:52] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:36:52] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:36:52] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:36:52] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:36:52] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:36:52] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:36:52] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:36:52] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:36:52] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:36:52] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:36:52] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:36:52] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:36:52] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:36:52] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:36:52] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:36:52] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:36:52] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:36:52] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:36:52] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:36:52] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:36:52] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:36:52] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:36:52] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:36:52] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:36:52] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:36:52] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:36:52] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:36:52] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:36:52] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:36:52] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:36:52] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:36:52] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:36:52] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:36:52] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:36:52] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:36:52] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:36:52] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:36:52] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:36:52] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:36:52] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:36:52] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:36:52] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:36:52] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:36:52] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:36:52] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:36:52] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:36:52] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:36:52] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:36:52] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:36:52] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:36:52] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:36:52] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:36:52] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:36:52] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:36:52] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:36:52] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:36:52] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:36:52] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:36:52] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:36:52] Number of vehicle models: 17
+[20:36:52] [SERVER]: 1 properties were loaded from "storylines" database...
+[20:36:52] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:36:52] [SERVER]: 4 court were loaded from "storylines" database...
+[20:36:52] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:36:52] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:36:52] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:36:52] [SERVER]: 8 businesses were loaded from "storylines" database...
+[20:36:52] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:36:52] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:37:01] [connection] incoming connection: 127.0.0.1:59820 id: 0
+[20:37:01] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:37:07] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:37:07] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:37:07] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:37:07] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:37:08] 	x8ÔPX\h
+[20:37:08] 	x8ÔPX\h
+[20:37:08] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:37:08] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:37:08] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:37:22] [part] Jayvon_Williams has left the server (0:1)
+Console input: \exit
+Console input: exit
+[20:37:26] --- Server Shutting Down.
+[20:37:26] plugin.mysql: Unloading plugin...
+[20:37:26] plugin.mysql: Plugin unloaded.
+[20:37:26] 
+
+[20:37:26]  ===============================
+
+[20:37:26]      sscanf plugin unloaded.    
+
+[20:37:26]  ===============================
+
+[20:37:26] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[20:37:26] [plugin.timerfix] Plugsin successfully unloaded!
+[20:37:26] ========================
+[20:37:26] = Memory access plugin =
+[20:37:26] =       Made by BigETI =
+[20:37:26] = Unloaded!            =
+[20:37:26] ========================
+[20:37:26] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:37:31] filterscripts = ""  (string)
+[20:37:31] 
+[20:37:31] Server Plugins
+[20:37:31] --------------
+[20:37:31]  Loading plugin: mysql
+[20:37:31]  >> plugin.mysql: R41-4 successfully loaded.
+[20:37:32]   Loaded.
+[20:37:32]  Loading plugin: sscanf
+[20:37:32] 
+
+[20:37:32]  ===============================
+
+[20:37:32]       sscanf plugin loaded.     
+
+[20:37:32]          Version:  2.8.2        
+
+[20:37:32]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:37:32]  ===============================
+
+[20:37:32]   Loaded.
+[20:37:32]  Loading plugin: streamer
+[20:37:32] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:37:32]   Loaded.
+[20:37:32]  Loading plugin: timerfix
+[20:37:32]   >> TimerFix v1.4 successfully loaded.
+[20:37:32]   Loaded.
+[20:37:32]  Loading plugin: pawn-memory
+[20:37:32] ========================
+[20:37:32] = Memory access plugin =
+[20:37:32] =       Made by BigETI =
+[20:37:32] = Loaded!              =
+[20:37:32] ========================
+[20:37:32]   Loaded.
+[20:37:32]  Loading plugin: pawnraknet
+[20:37:32] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:37:32] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:37:32]   Loaded.
+[20:37:32]  Loading plugin: samp-compat
+[20:37:32]   -- samp-compat for 0.3.DL-R1 initialized
+[20:37:32]   Loaded.
+[20:37:32]  Loaded 7 plugins.
+
+[20:37:32] 
+[20:37:32] Filterscripts
+[20:37:32] ---------------
+[20:37:32]   Loaded 0 filterscripts.
+
+[20:37:32] [DATABASE]: Connection established to 'storylines'...
+[20:37:32] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:37:32] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:37:32] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:37:32] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:37:32] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:37:32] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:37:32] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:37:32] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:37:32] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:37:32] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:37:32] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:37:32] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:37:32] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:37:32] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:37:32] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:37:32] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:37:32] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:37:32] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:37:32] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:37:32] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:37:32] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:37:32] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:37:32] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:37:32] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:37:32] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:37:32] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:37:32] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:37:32] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:37:32] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:37:32] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:37:32] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:37:32] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:37:32] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:37:32] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:37:32] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:37:32] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:37:32] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:37:32] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:37:32] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:37:32] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:37:32] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:37:32] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:37:32] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:37:32] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:37:32] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:37:32] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:37:32] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:37:32] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:37:32] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:37:32] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:37:32] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:37:32] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:37:32] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:37:32] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:37:32] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:37:32] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:37:32] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:37:32] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:37:32] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:37:32] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:37:32] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:37:32] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:37:32] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:37:32] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:37:32] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:37:32] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:37:32] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:37:32] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:37:32] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:37:32] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:37:32] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:37:32] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:37:32] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:37:32] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:37:32] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:37:32] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:37:32] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:37:32] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:37:32] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:37:32] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:37:32] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:37:32] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:37:32] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:37:32] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:37:32] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:37:32] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:37:32] Number of vehicle models: 17
+[20:37:32] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:37:32] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:37:32] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:37:32] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:37:32] [SERVER]: 4 court were loaded from "storylines" database...
+[20:37:32] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:37:32] [SERVER]: 1 properties were loaded from "storylines" database...
+[20:37:32] [SERVER]: 8 businesses were loaded from "storylines" database...
+[20:37:32] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:37:41] [connection] incoming connection: 127.0.0.1:59524 id: 0
+[20:37:42] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:37:46] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:37:46] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:37:46] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:37:46] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:37:47] 9
+[20:37:47] 9
+[20:37:47] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:37:47] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:37:47] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:38:22] Player [Jayvon Williams] sent command: /gotols
+[20:38:23] [part] Jayvon_Williams has left the server (0:1)
+Console input: exit
+[20:38:30] --- Server Shutting Down.
+[20:38:30] plugin.mysql: Unloading plugin...
+[20:38:30] plugin.mysql: Plugin unloaded.
+[20:38:30] 
+
+[20:38:30]  ===============================
+
+[20:38:30]      sscanf plugin unloaded.    
+
+[20:38:30]  ===============================
+
+[20:38:30] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[20:38:30] [plugin.timerfix] Plugsin successfully unloaded!
+[20:38:30] ========================
+[20:38:30] = Memory access plugin =
+[20:38:30] =       Made by BigETI =
+[20:38:30] = Unloaded!            =
+[20:38:30] ========================
+[20:38:30] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:38:40] filterscripts = ""  (string)
+[20:38:40] 
+[20:38:40] Server Plugins
+[20:38:40] --------------
+[20:38:40]  Loading plugin: mysql
+[20:38:40]  >> plugin.mysql: R41-4 successfully loaded.
+[20:38:40]   Loaded.
+[20:38:40]  Loading plugin: sscanf
+[20:38:40] 
+
+[20:38:40]  ===============================
+
+[20:38:40]       sscanf plugin loaded.     
+
+[20:38:40]          Version:  2.8.2        
+
+[20:38:40]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:38:40]  ===============================
+
+[20:38:40]   Loaded.
+[20:38:40]  Loading plugin: streamer
+[20:38:40] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:38:40]   Loaded.
+[20:38:40]  Loading plugin: timerfix
+[20:38:40]   >> TimerFix v1.4 successfully loaded.
+[20:38:40]   Loaded.
+[20:38:40]  Loading plugin: pawn-memory
+[20:38:40] ========================
+[20:38:40] = Memory access plugin =
+[20:38:40] =       Made by BigETI =
+[20:38:40] = Loaded!              =
+[20:38:40] ========================
+[20:38:40]   Loaded.
+[20:38:40]  Loading plugin: pawnraknet
+[20:38:40] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:38:40] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:38:40]   Loaded.
+[20:38:40]  Loading plugin: samp-compat
+[20:38:40]   -- samp-compat for 0.3.DL-R1 initialized
+[20:38:40]   Loaded.
+[20:38:40]  Loaded 7 plugins.
+
+[20:38:40] 
+[20:38:40] Filterscripts
+[20:38:40] ---------------
+[20:38:40]   Loaded 0 filterscripts.
+
+[20:38:40] [DATABASE]: Connection established to 'storylines'...
+[20:38:40] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:38:40] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:38:40] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:38:40] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:38:40] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:38:40] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:38:40] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:38:40] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:38:40] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:38:40] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:38:40] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:38:40] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:38:40] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:38:40] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:38:40] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:38:40] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:38:40] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:38:40] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:38:40] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:38:40] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:38:40] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:38:40] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:38:40] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:38:40] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:38:40] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:38:40] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:38:40] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:38:40] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:38:40] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:38:40] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:38:40] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:38:40] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:38:40] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:38:40] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:38:40] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:38:40] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:38:40] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:38:40] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:38:40] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:38:40] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:38:40] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:38:40] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:38:40] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:38:40] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:38:40] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:38:40] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:38:40] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:38:40] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:38:40] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:38:40] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:38:40] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:38:40] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:38:40] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:38:40] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:38:40] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:38:40] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:38:40] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:38:40] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:38:40] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:38:40] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:38:40] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:38:40] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:38:40] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:38:40] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:38:40] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:38:40] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:38:40] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:38:40] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:38:40] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:38:40] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:38:40] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:38:40] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:38:40] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:38:40] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:38:40] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:38:40] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:38:40] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:38:40] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:38:40] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:38:40] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:38:40] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:38:40] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:38:40] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:38:40] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:38:40] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:38:40] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:38:40] Number of vehicle models: 17
+[20:38:40] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:38:40] [SERVER]: 1 properties were loaded from "storylines" database...
+[20:38:40] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:38:40] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:38:40] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:38:40] [SERVER]: 4 court were loaded from "storylines" database...
+[20:38:40] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:38:40] [SERVER]: 8 businesses were loaded from "storylines" database...
+[20:38:40] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:38:50] [connection] incoming connection: 127.0.0.1:54717 id: 0
+[20:38:51] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:39:01] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:39:01] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:39:01] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:39:01] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:39:02] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:39:02] Callback OnPlayerSpawn called for player Jayvon Williams (ID: 0)
+[20:39:04] [part] Jayvon_Williams has left the server (0:1)
+Console input: exit
+[20:39:07] --- Server Shutting Down.
+[20:39:07] plugin.mysql: Unloading plugin...
+[20:39:07] plugin.mysql: Plugin unloaded.
+[20:39:07] 
+
+[20:39:07]  ===============================
+
+[20:39:07]      sscanf plugin unloaded.    
+
+[20:39:07]  ===============================
+
+[20:39:07] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[20:39:07] [plugin.timerfix] Plugsin successfully unloaded!
+[20:39:07] ========================
+[20:39:07] = Memory access plugin =
+[20:39:07] =       Made by BigETI =
+[20:39:07] = Unloaded!            =
+[20:39:07] ========================
+[20:39:07] [Pawn.RakNet] plugin unloaded

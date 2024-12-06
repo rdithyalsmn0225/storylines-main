@@ -41,9 +41,7 @@
 #define BODY_PART_HEAD (9)
 
 //Spawn points:
-#define SPAWN_POINT_HOODRATS (0)
-#define SPAWN_POINT_LAST (1)
-#define SPAWN_POINT_FACTION (2)
+#define SPAWN_POINT_LAST (10)
 
 //Robbery
 #define TYPE_SUCCESS        (0)

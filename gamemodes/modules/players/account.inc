@@ -412,7 +412,13 @@ function:Query_LoadCharacter(playerid)
 	mysql_format(ourConnection, rquery, sizeof(qquery), "SELECT * FROM `tickets` WHERE `ID` = '%i'", PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, rquery, "Query_LoadTicket", "d", playerid);
 	
-	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{33AA33}PUBLIC{ffffff}\n#2\tLast Position\t{33AA33}PUBLIC{ffffff}\n#3\tFaction Spawn\t{33AA33}FACTION{ffffff}", "Select", "Close");
+	new string[2024];
+	for(new a; a < 9; a++)
+	{
+		format(string, sizeof(string), "%s\t#%d\t%s\t{33AA33}PUBLIC{ffffff}\n", string, a, GetZoneName(BusStop_Index[a][0], BusStop_Index[a][1], BusStop_Index[a][2]));
+	}
+	format(string, sizeof(string), "%s\t#%d\tLast Position\t{33AA33}PRIVATE{ffffff}", string, 9 + 1);
+	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", string, "Select", "Close");
 }
 
 stock ShowCharacterPreview(playerid)
@@ -423,6 +429,8 @@ stock ShowCharacterPreview(playerid)
 	if(!playerCharactersSex[playerid])
 	{
 		playerCharactersSex[playerid] = 1; //male
+		new rand = random(sizeof(g_aMaleSkins));
+		playerCharactersSkins[playerid] = g_aMaleSkins[rand];
 	}
 	if(playerCharactersSex[playerid] == 1)
 	{
@@ -572,27 +580,16 @@ Dialog:Spawns(playerid, response, listitem, inputtext[])
 		SendErrorMessage(playerid, "You were kicked for not selection spawn."); 
 		return KickEx(playerid);
 	}
-	switch(listitem)
-	{
-		case 0:
-		{
-			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0; 
-			LoadCharacter(playerid);
-			
-		}
-		case 1:
-		{
-			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 1; 
-			LoadCharacter(playerid);
-		}
-		case 2:
-		{
-			if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
-				return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", "#1\tLos Santos Airport\t{33AA33}PUBLIC{ffffff}\n#2\tLast Position\t{33AA33}PUBLIC{ffffff}\n#3\tFaction Spawn\t{33AA33}FACTION{ffffff}", "Select", "Close");
 
-			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 2;
-			LoadCharacter(playerid);
-		}
+	if(listitem == 9)
+	{
+		PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = SPAWN_POINT_LAST; 
+		LoadCharacter(playerid);
+	}
+	else
+	{
+		PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = listitem; 
+		LoadCharacter(playerid);
 	}
 	return 1;
 }

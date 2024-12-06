@@ -59,45 +59,17 @@ function:OnOfflineBan(playerid, banning[], dbid, masterdbid, reason[], date[])
 
 function:SetPlayersSpawn(playerid)
 {
-	switch(PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT])
+	if(PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] == SPAWN_POINT_LAST)
 	{
-		case SPAWN_POINT_HOODRATS:
-		{
-			SetPlayerPosEx(playerid, 1685.6182,-2334.3035,-2.6797);
-			SetPlayerFacingAngle(playerid, 2.2789);
-			SetPlayerInterior(playerid, 0);
-			SetPlayerVirtualWorld(playerid, 0);
-		}
-		case SPAWN_POINT_LAST:
-		{
-			SetPlayerPosEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
-			SetPlayerInterior(playerid, PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR]);
-			SetPlayerVirtualWorld(playerid, PlayerInfo[playerid][E_CHARACTER_LASTWORLD]);
-		}
-		case SPAWN_POINT_FACTION:
-		{
-			if(!IsPlayerFaction(playerid))
-			{
-				PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = SPAWN_POINT_HOODRATS;
-				return SetPlayersSpawn(playerid);
-			}
-			else 
-			{
-				new idx; 
-				
-				idx = PlayerInfo[playerid][E_CHARACTER_FACTION];
-				
-				if(!FactionInfo[idx][E_FACTION_DBID])
-				{
-					PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = SPAWN_POINT_HOODRATS;
-					return SetPlayersSpawn(playerid);
-				}
-
-				SetPlayerInterior(playerid, FactionInfo[idx][E_FACTION_SPAWNINT]);
-				SetPlayerVirtualWorld(playerid, FactionInfo[idx][E_FACTION_SPAWNWORLD]); 
-				SetPlayerPosEx(playerid, FactionInfo[idx][E_FACTION_SPAWN][0], FactionInfo[idx][E_FACTION_SPAWN][1], FactionInfo[idx][E_FACTION_SPAWN][2]);
-			}
-		}
+		SetPlayerPosEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
+		SetPlayerInterior(playerid, PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR]);
+		SetPlayerVirtualWorld(playerid, PlayerInfo[playerid][E_CHARACTER_LASTWORLD]);
+	}
+	else
+	{
+		SetPlayerPosEx(playerid, BusStop_Index[PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT]][0], BusStop_Index[PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT]][1], BusStop_Index[PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT]][2]);
+		SetPlayerInterior(playerid, 0);
+		SetPlayerVirtualWorld(playerid, 0);
 	}
 	return 1;
 }
