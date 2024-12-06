@@ -4132,7 +4132,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading cutting trees process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
 					PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("CutTree", 500, true, "dd", playerid, id);
 					TogglePlayerControllable(playerid, false);
-					ApplyAnimation(playerid,"BASEBALL", "Bat_M", 4.1, 1, 0, 0, 1, 0, 1);
+					ApplyAnimation(playerid,"CHAINSAW", "CSAW_G", 4.1, 1, 0, 0, 1, 0, 1);
 					TreeInfo[id][E_TREE_CUT] = true;
 				}
 			}
