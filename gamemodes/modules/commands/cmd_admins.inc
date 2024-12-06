@@ -210,7 +210,7 @@ CMD:kick(playerid, params[])
 	if(!IsPlayerConnected(playerb))
 		return SendErrorMessage(playerid, "The player you specified isn't connected."); 
 		
-	if(PlayerInfo[playerb][E_CHARACTER_ADMIN] > PlayerInfo[playerid][E_CHARACTER_ADMIN])
+	if(AccountInfo[playerb][E_MASTERS_ADMINS] > AccountInfo[playerid][E_MASTERS_ADMINS])
 		return SendErrorMessage(playerid, "You can't kick %s.", ReturnName(playerb)); 
 		
 	if(strlen(reason) > 56)
@@ -304,7 +304,7 @@ CMD:ban(playerid, params[])
 	if(!IsPlayerConnected(playerb))
 		return SendErrorMessage(playerid, "The player you specified isn't connected."); 
 		
-	if(PlayerInfo[playerb][E_CHARACTER_ADMIN] > PlayerInfo[playerid][E_CHARACTER_ADMIN])
+	if(AccountInfo[playerb][E_MASTERS_ADMINS] > AccountInfo[playerid][E_MASTERS_ADMINS])
 		return SendErrorMessage(playerid, "You can't ban %s.", ReturnName(playerb)); 
 		
 	if(strlen(reason) > 56)
@@ -1921,7 +1921,7 @@ CMD:setpadmin(playerid, params[])
 	if(adminid > 4)
 		return SendErrorMessage(playerid, "Invalid admin level.");
 
-	PlayerInfo[playerb][E_CHARACTER_ADMIN] = adminid;
+	AccountInfo[playerb][E_MASTERS_ADMINS] = adminid;
 	
 	SaveCharacter(playerb);
 		

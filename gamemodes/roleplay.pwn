@@ -5413,8 +5413,9 @@ function:SaveCharacter(playerid)
 {
 	new query[1024];
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE masters SET forum_name = '%e', active_ip = '%e' WHERE acc_dbid = %i",	
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE masters SET forum_name = '%e', acc_admin = '%i', active_ip = '%e' WHERE acc_dbid = %i",	
 		AccountInfo[playerid][E_MASTERS_FORUMNAME],
+		AccountInfo[playerid][E_MASTERS_ADMINS],
 		PlayerInfo[playerid][E_CHARACTER_ACTIVEIP],
 		AccountInfo[playerid][E_MASTERS_DBID]);
 	mysql_pquery(ourConnection, query);

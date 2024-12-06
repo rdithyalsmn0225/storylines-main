@@ -101,7 +101,7 @@ function:LoggingIn(playerid)
 	
 	cache_get_value_name_int(0, "acc_dbid", AccountInfo[playerid][E_MASTERS_DBID]); 
 	cache_get_value_name(0, "forum_name", AccountInfo[playerid][E_MASTERS_FORUMNAME], 60);
-
+	cache_get_value_name_int(0, "acc_admin", AccountInfo[playerid][E_MASTERS_ADMINS]); 
 	cache_get_value_name_int(0, "secret_word", AccountInfo[playerid][E_MASTERS_CODE]);
 	cache_get_value_name(0, "active_ip", ActiveIP);
 	
@@ -557,7 +557,7 @@ Dialog:Login(playerid, response, listitem, inputtext[])
     
     new continueCheck[211]; 
     
-    mysql_format(ourConnection, continueCheck, sizeof(continueCheck), "SELECT acc_dbid, forum_name, secret_word, active_ip FROM masters WHERE acc_name = '%e' AND acc_pass = sha1('%e') LIMIT 1", 
+    mysql_format(ourConnection, continueCheck, sizeof(continueCheck), "SELECT * FROM masters WHERE acc_name = '%e' AND acc_pass = sha1('%e') LIMIT 1", 
         ReturnName(playerid, 1), inputtext);
         
     mysql_pquery(ourConnection, continueCheck, "LoggingIn", "i", playerid);

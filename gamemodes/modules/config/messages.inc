@@ -174,7 +174,7 @@ stock SendAdminMessage(level, const str[])
 	{
 		if(PlayerInfo[i][E_CHARACTER_TOGADMIN] == false && PlayerInfo[i][E_CHARACTER_ADMINDUTY] == true)
 		{
-			if(PlayerInfo[i][E_CHARACTER_ADMIN] >= level)
+			if(AccountInfo[i][E_MASTERS_ADMINS] >= level)
 			{
 				SendClientMessage(i, COLOR_RED, newString);
 			}
@@ -220,7 +220,7 @@ stock SendAdminMessageEx(color, level, const str[], {Float,_}:...)
 		{
 			if(PlayerInfo[i][E_CHARACTER_TOGADMIN] == false && PlayerInfo[i][E_CHARACTER_ADMINDUTY] == true)
 			{
-				if (PlayerInfo[i][E_CHARACTER_ADMIN] >= level) {
+				if (AccountInfo[i][E_MASTERS_ADMINS] >= level) {
   					SendClientMessage(i, color, string);
 				}
 			}
@@ -231,7 +231,7 @@ stock SendAdminMessageEx(color, level, const str[], {Float,_}:...)
 	{
 		if(PlayerInfo[i][E_CHARACTER_TOGADMIN] == false && PlayerInfo[i][E_CHARACTER_ADMINDUTY] == true)
 		{
-			if (PlayerInfo[i][E_CHARACTER_ADMIN] >= level) {
+			if (AccountInfo[i][E_MASTERS_ADMINS] >= level) {
 				SendClientMessage(i, color, str);
 			}
 		}

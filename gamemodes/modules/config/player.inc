@@ -203,8 +203,8 @@ function:ResetPlayer(playerid)
 
 	HeaderBar[playerid] = INVALID_PLAYER_BAR_ID;
 	speedobar[playerid] = INVALID_PLAYER_BAR_ID;
+	
 	//Master accounts:
-	AccountInfo[playerid][E_MASTERS_DBID] = 0; 
 	AccountInfo[playerid][E_MASTERS_LOGGED] = false; 
 	
 	playerLogin[playerid] = 0; 
@@ -224,8 +224,6 @@ function:ResetPlayer(playerid)
 	format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "");
 	
 	//Player characters:
-	PlayerInfo[playerid][E_CHARACTER_DBID] = 0; 
-	PlayerInfo[playerid][E_CHARACTER_ADMIN] = 0;
 	PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] = false; 
 
 	PlayerInfo[playerid][E_CHARACTER_MAXHEALTH] = 100.0;
@@ -254,8 +252,6 @@ function:ResetPlayer(playerid)
 	
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = INVALID_PLAYER_ID;
 	
-	PlayerInfo[playerid][E_CHARACTER_FACTION] = 0;
-	PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] = 0;
 	PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE] = 0;
 	PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED] = INVALID_PLAYER_ID;
 
@@ -984,7 +980,7 @@ stock ShowFightStyleMenu(playerid)
 
 stock IsPlayerAdmins(playerid)
 {
-	return PlayerInfo[playerid][E_CHARACTER_ADMIN];
+	return AccountInfo[playerid][E_MASTERS_ADMINS];
 }
 
 stock IsPlayerFaction(playerid)

@@ -119,7 +119,7 @@ CMD:admins(playerid, params[])
 	
 	foreach (new i : Player)
 	{
-		if (PlayerInfo[playerid][E_CHARACTER_ADMIN]) adminOn = true;
+		if (AccountInfo[playerid][E_MASTERS_ADMINS]) adminOn = true;
 	}
 	
 	if(adminOn == true)
@@ -127,13 +127,13 @@ CMD:admins(playerid, params[])
 		SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Admins __________|");
 		foreach(new i : Player)
 		{
-			if(PlayerInfo[i][E_CHARACTER_ADMIN])
+			if(AccountInfo[i][E_MASTERS_ADMINS])
 			{
 				if(PlayerInfo[i][E_CHARACTER_ADMINDUTY])
 				{
-					SendClientMessageEx(playerid, COLOR_ORANGE, "(Level: %d) %s (%s): On-Duty", PlayerInfo[i][E_CHARACTER_ADMIN], ReturnMixedName(i));
+					SendClientMessageEx(playerid, COLOR_ORANGE, "(Level: %d) %s (%s): On-Duty", AccountInfo[i][E_MASTERS_ADMINS], ReturnMixedName(i));
 				}
-				else SendClientMessageEx(playerid, COLOR_ORANGE, "(Level: %d) %s (%s): RolePlaying", PlayerInfo[i][E_CHARACTER_ADMIN], ReturnMixedName(i));
+				else SendClientMessageEx(playerid, COLOR_ORANGE, "(Level: %d) %s (%s): RolePlaying", AccountInfo[i][E_MASTERS_ADMINS], ReturnMixedName(i));
 			}
 		}
 	}

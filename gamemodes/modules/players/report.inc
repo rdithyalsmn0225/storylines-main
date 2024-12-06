@@ -31,7 +31,7 @@ function:OnPlayerReport(playerid, reportid, const text[])
 	{
 		foreach(new i : Player)
 		{
-			if(PlayerInfo[i][E_CHARACTER_ADMIN]) GameTextForPlayer(i, "~y~~h~Priority Report", 4000, 1);
+			if(AccountInfo[i][E_MASTERS_ADMINS]) GameTextForPlayer(i, "~y~~h~Priority Report", 4000, 1);
 		}
 	}
 	return 1;
