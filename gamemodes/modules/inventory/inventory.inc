@@ -531,28 +531,6 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
     }
-	else if(!strcmp(name, "Beer"))
-	{
-		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-		{
-			if(!Inventory_Count(playerid, "Beer"))
-				return SendErrorMessage(playerid, "You don't have any beer in inventory.");
-
-			if(PlayerInfo[playerid][E_CHARACTER_DRINKING] > 0)
-				return SendErrorMessage(playerid, "You are already drinking a beer.");
-
-			if(gettime() - PlayerInfo[playerid][E_CHARACTER_DRINKCD] < 60)
-				return SendErrorMessage(playerid, "You've only been drink beer for %i seconds. You need to wait at least 60 sec to drink beer.", gettime() - PlayerInfo[playerid][E_CHARACTER_DRINKCD]); 
-
-			PlayerInfo[playerid][E_CHARACTER_DRINKING] = 5;
-			Inventory_Remove(playerid, "Beer", 1);
-
-			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DRINK_BEER);
-
-			SendTipMessage(playerid, "Press 'LMB' to drink beer.");
-		}
-		else SendErrorMessage(playerid, "You must store your items in inventory first.");
-	}
 	else if(!strcmp(name, "Sprunk"))
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
@@ -625,15 +603,9 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
 	//Weapons Inventory
-	else if(!strcmp(name, "Bottle"))
+	else if(!strcmp(name, "Beer Bottle"))
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-		{
-			GivePlayerWeapon(playerid, 4, 999999);
-			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = KNIFE;
-		}
-		else SendErrorMessage(playerid, "You must store your items in inventory first.");
+		Dialog_Show(playerid, BeerBottle, DIALOG_STYLE_LIST, "Choose your beer use:", "Drink Beer\nMelee Bottle", "Select", "Cancel");
 	}
 	else if(!strcmp(name, "Marcos Knife"))
 	{

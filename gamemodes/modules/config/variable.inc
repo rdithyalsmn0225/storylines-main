@@ -793,6 +793,7 @@ enum E_DROPPED_DATA
 	Text3D:E_DROPPED_LOADINGDISPLAY,
 	E_DROPPED_INTERIOR,
 	E_DROPPED_WORLD,
+	Text3D:E_DROPPED_3DTEXT,
 	E_DROPPED_OBJECT
 };
 
@@ -2335,7 +2336,6 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Cellphone", 18867, 0},
 	{"Portable Radio", 19942, 0},
 	{"Mask", 19036, 0},
-	{"Beer", 1486, 0},
 	{"Sprunk", 2601, 0},
 	{"Spraycan", 365, 0},
 	{"Chainsaw", 341, 0},
@@ -2352,7 +2352,7 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Raw Meat", 19582, 0},
 	{"Bandage", 17738, 0},
 	{"BBQ", 19882, 0},
-	{"Bottle", 1484, 0},
+	{"Beer Bottle", 1484, 0},
 	{"Marcos Knife", -2211, 0},
 	{"Knife", 335, 0},
 	{"Spike Bat", 2045, 0},

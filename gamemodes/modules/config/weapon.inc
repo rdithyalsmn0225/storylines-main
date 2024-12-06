@@ -40,7 +40,7 @@ stock GetWeaponType(playerid, weaponid)
 	}
 	else if(GetPlayerWeapon(weaponid) == 4)
  	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Bottle");
+ 		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Beer Bottle");
  		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)format(astring, sizeof(astring), "Marcos Knife");
  		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)format(astring, sizeof(astring), "Knife");
 	}
@@ -69,7 +69,7 @@ stock RemovePlayerWeapon(playerid, weaponid)
 ResetPlayerWeaponEx(playerid)
 {
 	Inventory_Set(playerid, "Extinguisher", 366, 0);
-	Inventory_Set(playerid, "Bottle", 2040, 0);
+	Inventory_Set(playerid, "Beer Bottle", 2040, 0);
 	Inventory_Set(playerid, "Marcos Knife", 2040, 0);
 	Inventory_Set(playerid, "Knife", 2040, 0);
 	Inventory_Set(playerid, "Spike Bat", 2040, 0);
@@ -208,6 +208,49 @@ Dialog:WeaponColt(playerid, response, listitem, inputtext[])
 				PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
 				PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_RUBBER;
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = PISTOL;
+			}
+		}
+	}
+	return 1;
+}
+
+Dialog:BeerBottle(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		switch(listitem)
+		{
+			case 0:
+			{
+				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+				{
+					if(!Inventory_Count(playerid, "Beer Bottle"))
+						return SendErrorMessage(playerid, "You don't have any beer in inventory.");
+
+					if(PlayerInfo[playerid][E_CHARACTER_DRINKING] > 0)
+						return SendErrorMessage(playerid, "You are already drinking a beer.");
+
+					if(gettime() - PlayerInfo[playerid][E_CHARACTER_DRINKCD] < 60)
+						return SendErrorMessage(playerid, "You've only been drink beer for %i seconds. You need to wait at least 60 sec to drink beer.", gettime() - PlayerInfo[playerid][E_CHARACTER_DRINKCD]); 
+
+					PlayerInfo[playerid][E_CHARACTER_DRINKING] = 5;
+					Inventory_Remove(playerid, "Beer Bottle", 1);
+
+					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DRINK_BEER);
+
+					SendTipMessage(playerid, "Press 'LMB' to drink beer.");
+				}
+				else SendErrorMessage(playerid, "You must store your items in inventory first.");
+			}
+			case 1:
+			{
+				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+				{
+					GivePlayerWeapon(playerid, 4, 999999);
+					PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = KNIFE;
+				}
+				else SendErrorMessage(playerid, "You must store your items in inventory first.");
 			}
 		}
 	}

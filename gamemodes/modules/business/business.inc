@@ -57,7 +57,7 @@ Dialog:BarStore(playerid, response, listitem, inputtext[])
 		{
 			case 0:
 			{
-				if(Inventory_Count(playerid, "Beer") >= 5)
+				if(Inventory_Count(playerid, "Beer Bottle") >= 5)
 					return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
 			
 				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
@@ -67,11 +67,11 @@ Dialog:BarStore(playerid, response, listitem, inputtext[])
 				GiveMoney(playerid, BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
 				
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-				Inventory_Add(playerid, "Beer", 1486, 1);
+				Inventory_Add(playerid, "Beer Bottle", 1486, 1);
 			}
 			case 1:
 			{
-				if(Inventory_Count(playerid, "Beer") >= 5)
+				if(Inventory_Count(playerid, "Beer Bottle") >= 5)
 					return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
 			
 				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
@@ -82,11 +82,11 @@ Dialog:BarStore(playerid, response, listitem, inputtext[])
 				GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
 				
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-				Inventory_Add(playerid, "Beer", 1486, 1);
+				Inventory_Add(playerid, "Beer Bottle", 1486, 1);
 			}
 			case 2:
 			{
-				if(Inventory_Count(playerid, "Beer") >= 5)
+				if(Inventory_Count(playerid, "Beer Bottle") >= 5)
 					return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
 			
 				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
@@ -96,7 +96,7 @@ Dialog:BarStore(playerid, response, listitem, inputtext[])
 				GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
 				
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-				Inventory_Add(playerid, "Beer", 1486, 1);
+				Inventory_Add(playerid, "Beer Bottle", 1486, 1);
 			}
 		}
 	}

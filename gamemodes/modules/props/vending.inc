@@ -133,8 +133,8 @@ InsertVendingMachines() {
 OnPlayerApproachVending(playerid, arrayid) 
 {
 	switch (sc_VendingMachines[arrayid][e_Model] ) {
-		case 955: ShowBoxMessage(playerid, "RETURN Buy Sprunk: $0.10", 2, 2); // sprunk
-		case 1209: ShowBoxMessage(playerid, "RETURN Buy eCola: $0.10", 2, 2); // soda
+		case 955: ShowBoxMessage(playerid, "RETURN Buy Sprunk: $0.10", 5, 2); // sprunk
+		case 1209: ShowBoxMessage(playerid, "RETURN Buy eCola: $0.10", 5, 2); // soda
 	}
 	return 1;
 }
@@ -232,6 +232,7 @@ function:Vending_AnimatePlayer(playerid, arrayid, anim_reel) {
             GetPlayerPos(playerid, x, y, z);
             GetXYLeftOfPlayer(playerid, x, y, 0.35);
 
+            PlayerInfo[playerid][E_CHARACTER_THIRSTY] += 5.0;
             RemovePlayerAttachedObject(playerid, 0);
             g_PlayerVendingProp[playerid] = CreateDynamicObject(g_PlayerVendingModel[playerid], x, y, z, 0.0, 90.0, 90.0);
             Streamer_Update(playerid, STREAMER_TYPE_OBJECT);

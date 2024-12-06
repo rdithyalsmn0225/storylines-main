@@ -184,6 +184,7 @@ stock Gates_Delete(gid)
 	return 1;
 }
 
+CMD:door(playerid, params[]) return cmd_gate(playerid, params);
 CMD:gate(playerid, params[])
 {
 	new id = IsPlayerNearGates(playerid);

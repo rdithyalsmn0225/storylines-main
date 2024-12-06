@@ -13,6 +13,7 @@ stock Item_Delete(itemid)
 	    DroppedInfo[itemid][E_DROPPED_INTERIOR] = 0;
 	    DroppedInfo[itemid][E_DROPPED_WORLD] = 0;
 
+		DestroyDynamic3DTextLabel(DroppedInfo[itemid][E_DROPPED_3DTEXT]);
 	    DestroyDynamicObject(DroppedInfo[itemid][E_DROPPED_OBJECT]);
 
 	    mysql_format(ourConnection, query, sizeof(query), "DELETE FROM `dropped` WHERE `ID` = '%d'", DroppedInfo[itemid][E_DROPPED_DBID]);
@@ -104,6 +105,7 @@ DropItem(item[], player[], model, quantity, Float:x, Float:y, Float:z, Float:rx,
 		DroppedInfo[i][E_DROPPED_INTERIOR] = interior;
 		DroppedInfo[i][E_DROPPED_WORLD] = world;
 
+		DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(DroppedInfo[i][E_DROPPED_ITEM], COLOR_INFO, x, y, z, 3.0);
 		DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior);
 
  		format(query, sizeof(query), "INSERT INTO `dropped` (`itemName`, `itemPlayer`, `itemModel`, `itemQuantity`, `itemType`, `itemX`, `itemY`, `itemZ`, `itemRX`, `itemRY`, `itemRZ`, `itemInt`, `itemWorld`) VALUES('%s', '%s', '%d', '%d', '%d', '%.4f', '%.4f', '%.4f', '%.4f', '%.4f', '%.4f', '%d', '%d')", item, player, model, quantity, type, x, y, z, rx, ry, rz, interior, world);

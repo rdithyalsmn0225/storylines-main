@@ -338,7 +338,7 @@ function:OnPlayerWeaponUpdate()
 				new astring[128];
 				if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
 				{
-					format(astring, sizeof(astring), "Bottle");
+					format(astring, sizeof(astring), "Beer Bottle");
 					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 1484, 6, 0.164000, -0.026000, 0.051999, 11.900003, -156.600097, 0.000000, 1.353998, 1.580001, 1.470999);
 				}
 				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)

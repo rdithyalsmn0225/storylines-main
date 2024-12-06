@@ -653,7 +653,7 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 			if (s_VendingMachineArea[i] == areaid ) {
 
 				OnPlayerApproachVending(playerid, i ) ;
-				break ;
+				break;
 			}
 			else continue ;
 		}
@@ -707,13 +707,17 @@ public OnPlayerLeaveDynamicArea(playerid, areaid)
 
 public OnPlayerRequestClass(playerid, classid)
 {
-	printf("Callback OnPlayerRequestClass called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerRequestClass called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
     return 0;
 }
 
 public OnPlayerRequestSpawn(playerid)
 {
-	printf("Callback OnPlayerRequestSpawn called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerRequestSpawn called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
     if (!IsPlayerAdmin(playerid))
     {
 		SendErrorMessage(playerid, "You don't have permission to using Spawn Button");
@@ -759,7 +763,9 @@ public OnPlayerDeath(playerid, killerid, reason)
         }
     }
 	
-	printf("Callback OnPlayerDeath called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerDeath called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
 	
 	if((gettime() - LastSpawn[playerid]) < 15 && reason >= 49)
 	{
@@ -3121,7 +3127,9 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 
 public OnPlayerSpawn(playerid)
 {	
-	printf("Callback OnPlayerSpawn called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerSpawn called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
 
 	Streamer_Update(playerid);
 
