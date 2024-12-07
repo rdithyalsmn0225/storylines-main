@@ -532,6 +532,8 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 				SaveCharacter(playerid);
 				
 				PlayerCheckpoint[playerid] = GPS_NONE; 
+				PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 2.0;
+				PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 5.0;
 				return 1; 
 			}
 		}
@@ -613,6 +615,9 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 				PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
 				PlayerSweeperIndex[playerid] = 0;
 				PlayerInfo[playerid][E_CHARACTER_SWEEPERCD] = 8;
+
+				PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 3.0;
+				PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 6.0;
                     
 				GPS_DisablePlayerRaceCheckPoint(playerid);
 				DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
@@ -3877,6 +3882,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		GetPlayerHealth(playerid, health);
 		SetPlayerHealthEx(playerid, health+10.0);
 		PlayerInfo[playerid][E_CHARACTER_HUNGRY] += 10.0;
+		PlayerInfo[playerid][E_CHARACTER_THIRSTY] += 5.0;
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 
 		for(new i; i < 10; i++)
@@ -3902,6 +3908,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		GetPlayerHealth(playerid, health);
 		SetPlayerHealthEx(playerid, health+15.0);
 		PlayerInfo[playerid][E_CHARACTER_HUNGRY] += 15.0;
+		PlayerInfo[playerid][E_CHARACTER_THIRSTY] += 10.0;
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 
 		for(new i; i < 10; i++)
@@ -3927,6 +3934,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		GetPlayerHealth(playerid, health);
 		SetPlayerHealthEx(playerid, health+20.0);
 		PlayerInfo[playerid][E_CHARACTER_HUNGRY] += 20.0;
+		PlayerInfo[playerid][E_CHARACTER_THIRSTY] += 15.0;
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 
 		for(new i; i < 10; i++)
@@ -4191,6 +4199,9 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_LUMBERJACK)
 				return SendErrorMessage(playerid, "You aren't lumberjack.");
 
+			if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+				return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
+
 			if(!Inventory_Count(playerid, "Chainsaw"))
 				return SendErrorMessage(playerid, "You don't have any axe in inventory.");
 
@@ -4436,6 +4447,9 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				PlayerInfo[playerid][E_CHARACTER_FISHING] = false;
 				PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] = false;
 				PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] = 0;
+
+				PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 3.0;
+	        	PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 6.0;
 
 				DestroyGameBar(playerid);
 				KillTimer(PlayerInfo[playerid][E_CHARACTER_FISHINGTIMER]);

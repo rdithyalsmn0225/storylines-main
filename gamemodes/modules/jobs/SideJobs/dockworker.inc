@@ -40,6 +40,9 @@ function:DockWorkers(playerid, type)
                     Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
                     KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
+                    PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 0.8;
+	                PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 2.0;
+
                     CrateObject[vehicleid] = CreateDynamicObject(1221,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
                     AttachDynamicObjectToVehicle(CrateObject[vehicleid], vehicleid, 0.000, 0.630, 0.360, 0.000, 0.000, 0.000);
                     VehicleInfo[vehicleid][E_VEHICLE_CRATES] = 1;
@@ -79,6 +82,8 @@ function:DockWorkers(playerid, type)
 
 	                GiveMoney(playerid, Cents);
 
+                    PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 1.0;
+	                PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 3.0;
                     VehicleInfo[vehicleid][E_VEHICLE_CRATES] = 0;
                 }
             }
@@ -99,6 +104,9 @@ CMD:takecargo(playerid, params[])
 
     if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
 		return SendErrorMessage(playerid, "You can't use this right now"); 
+
+    if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+		return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
     if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {
@@ -129,6 +137,9 @@ CMD:storecargo(playerid, params[])
         
     if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
 		return SendErrorMessage(playerid, "You can't use this right now"); 
+
+    if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+		return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
     if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {

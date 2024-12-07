@@ -47,6 +47,9 @@ CMD:mechmenu(playerid, params[])
 	if (!PlayerInfo[playerid][E_CHARACTER_MECHDUTY])
 	    return SendErrorMessage(playerid, "You must be on mechanic duty to access mechanic menu.");
 
+    if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+		return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
+        
     if(IsPlayerInAnyVehicle(playerid))
 		return SendErrorMessage(playerid, "You can't be in a vehicle.");
 			
@@ -419,6 +422,9 @@ function:repairengine(playerid, vehicleid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
+            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
+	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -462,6 +468,9 @@ function:repairbody(playerid, vehicleid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
+            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
+	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -504,6 +513,9 @@ function:repairtire(playerid, vehicleid)
 
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
+
+            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
+	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
@@ -549,6 +561,9 @@ function:repaintexterior(playerid, vehicleid, modelid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
+            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
+	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -591,6 +606,9 @@ function:repaintinterior(playerid, vehicleid, modelid)
             SaveVehicle(vehicleid);
             PauseAC(playerid);
 
+            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
+	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
 				ResetVarInventory(playerid);
@@ -628,6 +646,10 @@ function:repaintpaintjob1(playerid, vehicleid)
             ChangeVehiclePaintjob(vehicleid, 0);
             VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = 0;
             SaveVehicle(vehicleid);
+
+            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
+	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
@@ -667,6 +689,10 @@ function:repaintpaintjob2(playerid, vehicleid)
             ChangeVehiclePaintjob(vehicleid, 1);
             VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = 1;
             SaveVehicle(vehicleid);
+
+            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
+	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
@@ -706,6 +732,10 @@ function:repaintpaintjob3(playerid, vehicleid)
             ChangeVehiclePaintjob(vehicleid, 2);
             VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = 2;
             SaveVehicle(vehicleid);
+
+            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
+	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
@@ -759,6 +789,10 @@ function:repaintplates(playerid, vehicleid)
             VehicleInfo[vehicleid][E_VEHICLE_PLATESSTATUS] = false;
 
             SaveVehicle(vehicleid);
+
+            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
+	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+            
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)

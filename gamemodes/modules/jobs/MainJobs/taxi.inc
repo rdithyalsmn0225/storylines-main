@@ -81,6 +81,9 @@ Dialog:AcceptTaxi(playerid, response, listitem, inputtext[])
 		if (!PlayerInfo[targetid][E_CHARACTER_TAXICALLED])
 		    return SendErrorMessage(playerid, "That player's call was accepted by another taxi driver.");
 
+		if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+			return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
+
 		static
 			Float:x,
 			Float:y,
@@ -135,6 +138,9 @@ CMD:taxicall(playerid, params[])
 
 	if (!PlayerInfo[playerid][E_CHARACTER_TAXIDUTY])
 	    return SendErrorMessage(playerid, "You must be on taxi duty to accept calls.");
+
+	if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+		return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
 	Taxi_ShowCalls(playerid);
 	return 1;

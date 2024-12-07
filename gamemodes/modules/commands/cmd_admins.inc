@@ -784,7 +784,7 @@ UpdateSpectatorPanel(playerid, targetid)
 	new vehiclename[128];
 	format(vehiclename, sizeof(vehiclename), "Disabled");
 
-	new Float: clienthealth, Float: clientarmour ;
+	new Float: clienthealth, Float: clientarmour;
 	GetPlayerHealth(targetid, clienthealth);
 	GetPlayerArmour(targetid, clientarmour);
 

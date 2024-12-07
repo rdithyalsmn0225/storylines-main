@@ -56,7 +56,10 @@ function:OnPlayerUpdateEx()
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true && AccountInfo[playerid][E_MASTERS_LOGGED] == true)
 		{
 			AFKCheck(playerid);
-			
+			if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false)
+	    	{
+				ShowPlayerNeeds(playerid);
+			}
 			//Anti-Money Hack
 			if(GetPlayerMoney(playerid) > PlayerInfo[playerid][E_CHARACTER_MONEY])
 			{

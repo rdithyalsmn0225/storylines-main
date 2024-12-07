@@ -9,7 +9,6 @@ stock StartMainJobs(playerid, type)
     {
         case 1: //Dockworker
         {
-            
             if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] == false) //Start
             {
                 PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = CreateVehicle(530, x, y, z, 0.0, 1, 1, 5000, 0);
@@ -347,6 +346,9 @@ CMD:quitjobs(playerid, params[])
 
 CMD:jobduty(playerid, params[])
 {
+    if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+		return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
+
     if(GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
     {
         if(IsPlayerInRangeOfPoint(playerid, 3.0, 1529.5608,-1849.4032,13.5469))

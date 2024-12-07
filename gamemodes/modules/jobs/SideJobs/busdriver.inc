@@ -29,6 +29,9 @@ function:BusDrivers(playerid, type)
                     Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
                     KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
+                    PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 0.3;
+				    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 0.5;
+
                     new gstr[128];
                     format(gstr, sizeof(gstr),"~w~Passanger Entering~n~~r~%i~w~/~g~34", PlayerBusDriverIndex[playerid]);
                     ShowBoxMessage(playerid, gstr, 5);

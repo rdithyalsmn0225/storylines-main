@@ -148,6 +148,9 @@ CMD:storepacket(playerid, params[])
 
         ServerData_Plus(INDUSTRY_DRUGS, rand);
 
+        PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
+	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+
         SendJobsMessage(playerid, "[Smugglers] {DEDEDE}You has stored packet and earn $%s", FormatMoney(Cents));
 
         PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
