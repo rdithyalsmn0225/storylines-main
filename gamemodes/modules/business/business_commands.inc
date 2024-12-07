@@ -89,7 +89,7 @@ CMD:bizproduct(playerid, params[])
 	{
 		case 1:
 		{
-			if (value < 1.00 || value > 10.00)
+			if (value < 1.00 || value > 100.00)
         		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][1] = Cents;
@@ -97,7 +97,7 @@ CMD:bizproduct(playerid, params[])
 		}
 		case 2:
 		{
-			if (value < 1.00 || value > 10.00)
+			if (value < 1.00 || value > 100.00)
         		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][2] = Cents;
@@ -105,7 +105,7 @@ CMD:bizproduct(playerid, params[])
 		}
 		case 3:
 		{
-			if (value < 1.00 || value > 10.00)
+			if (value < 1.00 || value > 100.00)
         		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][3] = Cents;
