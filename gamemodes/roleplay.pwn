@@ -144,6 +144,8 @@ main ()  {}
 #include "modules\players\gps.inc"
 #include "modules\players\accessories.inc"
 #include "modules\players\afk.inc"
+//COMPENSATION
+#include "modules\competation\competation.inc"
 // INDUSTRIAL MODULES
 #include "modules\industry\industry.inc"
 // JOBS MODULES
@@ -253,6 +255,7 @@ public OnGameModeInit()
 	SetTimer("OnPlayerTipsUpdate", 600000, true);
 	SetTimer("OnPlayerNeedUpdate", 60000, true);
 	SetTimer("WeatherRotator", 2400000, true);
+	SetTimer("CleanupExpiredCodes", 1000, true);
 
 	// Loading systems:
 	mysql_pquery(ourConnection, "SELECT * FROM factions ORDER BY dbid ASC", "Query_LoadFactions"); 
@@ -837,7 +840,12 @@ public OnPlayerDeath(playerid, killerid, reason)
 	}
 	else if(reason == 255)
 	{
-		KickEx(playerid);
+		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
+		SetPlayerHealthEx(playerid, 100.0);
+		SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
+		SetPlayerInterior(playerid, 0);
+		SetPlayerVirtualWorld(playerid, 0);
+		SpawnPlayer(playerid);
 		SendInfoMessage(playerid, "You has been killed by Suicide at %s.", ReturnLocationStreet(playerid));
 	}
 
@@ -3218,7 +3226,7 @@ public OnPlayerSpawn(playerid)
 		
 		InterpolateCameraPos(playerid, 1413.479736, -1727.495483, 32.772384, 1551.484497, -1726.705932, 32.781917, 8000, 1);
         InterpolateCameraLookAt(playerid, 1415.520385, -1730.730590, 31.602050, 1548.272216, -1729.019531, 32.208690, 8000, 1);
-
+		SetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
 		PlayerInfo[playerid][E_CHARACTER_TUTORIALSTEP] = 1;
 		TogglePlayerControllable(playerid, false);
 		SelectTextDraw(playerid, COLOR_YELLOW);
