@@ -13,6 +13,7 @@ stock NextTutorial(playerid)
         PlayerTextDrawHide(playerid, tutorialbox[playerid]);
         PlayerTextDrawHide(playerid, tutorialheader[playerid]);
         PlayerTextDrawHide(playerid, tutorialclick[playerid]);
+        PlayerTextDrawHide(playerid, tutorialskip[playerid]);
         CancelSelectTextDraw(playerid);
 
         SetCameraBehindPlayer(playerid);
@@ -229,5 +230,6 @@ ShowTutorial(playerid)
 	PlayerTextDrawShow(playerid, tutorialbox[playerid]);
 	PlayerTextDrawShow(playerid, tutorialtext[playerid]);
 	PlayerTextDrawShow(playerid, tutorialclick[playerid]);
+    PlayerTextDrawShow(playerid, tutorialskip[playerid]);
     return 1;
 }

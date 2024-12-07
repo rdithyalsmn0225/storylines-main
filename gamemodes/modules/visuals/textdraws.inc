@@ -18,7 +18,7 @@ new PlayerText:VehicleSelection[19][MAX_PLAYERS];
 new PlayerText:HotwireTD[MAX_PLAYERS][8];
 new PlayerText:HotwireTDB[MAX_PLAYERS][8];
 new PlayerText:HotwireCable[MAX_PLAYERS][8];
-new PlayerText:HE[8][MAX_PLAYERS];
+new PlayerText:HE[4][MAX_PLAYERS];
 new PlayerText:money[MAX_PLAYERS];
 new PlayerText:MoneyFormat[MAX_PLAYERS];
 
@@ -41,6 +41,7 @@ new PlayerText:tutorialtext[MAX_PLAYERS];
 new PlayerText:tutorialbox[MAX_PLAYERS];
 new PlayerText:tutorialheader[MAX_PLAYERS];
 new PlayerText:tutorialclick[MAX_PLAYERS];
+new PlayerText:tutorialskip[MAX_PLAYERS];
 
 new PlayerText:gui_spec_label[MAX_PLAYERS][5];
 
@@ -133,117 +134,61 @@ stock CreateTextdraws(playerid)
 
 CreateHETextDraws(playerid)
 {
-	HE[0][playerid] = CreatePlayerTextDraw(playerid, 612.000000, 69.000000, "ld_pool:ball");
+	HE[0][playerid] = CreatePlayerTextDraw(playerid, 613.000000, 36.000000, "HUD:radar_burgershot");
 	PlayerTextDrawFont(playerid, HE[0][playerid], 4);
 	PlayerTextDrawLetterSize(playerid, HE[0][playerid], 0.600000, 2.000000);
-	PlayerTextDrawTextSize(playerid, HE[0][playerid], 22.500000, 25.000000);
+	PlayerTextDrawTextSize(playerid, HE[0][playerid], 20.000000, 21.000000);
 	PlayerTextDrawSetOutline(playerid, HE[0][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, HE[0][playerid], 0);
 	PlayerTextDrawAlignment(playerid, HE[0][playerid], 1);
-	PlayerTextDrawColor(playerid, HE[0][playerid], 255);
+	PlayerTextDrawColor(playerid, HE[0][playerid], -1061109505);
 	PlayerTextDrawBackgroundColor(playerid, HE[0][playerid], 255);
 	PlayerTextDrawBoxColor(playerid, HE[0][playerid], 50);
 	PlayerTextDrawUseBox(playerid, HE[0][playerid], 1);
 	PlayerTextDrawSetProportional(playerid, HE[0][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, HE[0][playerid], 0);
 
-	HE[1][playerid] = CreatePlayerTextDraw(playerid, 612.000000, 36.000000, "ld_pool:ball");
+	HE[2][playerid] = CreatePlayerTextDraw(playerid, 624.000000, 51.000000, "90");
+	PlayerTextDrawFont(playerid, HE[2][playerid], 3);
+	PlayerTextDrawLetterSize(playerid, HE[2][playerid], 0.358330, 1.099999);
+	PlayerTextDrawTextSize(playerid, HE[2][playerid], 400.000000, 17.000000);
+	PlayerTextDrawSetOutline(playerid, HE[2][playerid], 1);
+	PlayerTextDrawSetShadow(playerid, HE[2][playerid], 0);
+	PlayerTextDrawAlignment(playerid, HE[2][playerid], 2);
+	PlayerTextDrawColor(playerid, HE[2][playerid], -1061109505);
+	PlayerTextDrawBackgroundColor(playerid, HE[2][playerid], 255);
+	PlayerTextDrawBoxColor(playerid, HE[2][playerid], 50);
+	PlayerTextDrawUseBox(playerid, HE[2][playerid], 0);
+	PlayerTextDrawSetProportional(playerid, HE[2][playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, HE[2][playerid], 0);
+
+	HE[1][playerid] = CreatePlayerTextDraw(playerid, 614.000000, 67.000000, "HUD:radar_diner");
 	PlayerTextDrawFont(playerid, HE[1][playerid], 4);
 	PlayerTextDrawLetterSize(playerid, HE[1][playerid], 0.600000, 2.000000);
-	PlayerTextDrawTextSize(playerid, HE[1][playerid], 22.500000, 25.000000);
+	PlayerTextDrawTextSize(playerid, HE[1][playerid], 19.500000, 22.500000);
 	PlayerTextDrawSetOutline(playerid, HE[1][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, HE[1][playerid], 0);
 	PlayerTextDrawAlignment(playerid, HE[1][playerid], 1);
-	PlayerTextDrawColor(playerid, HE[1][playerid], 255);
+	PlayerTextDrawColor(playerid, HE[1][playerid], -1061109505);
 	PlayerTextDrawBackgroundColor(playerid, HE[1][playerid], 255);
 	PlayerTextDrawBoxColor(playerid, HE[1][playerid], 50);
 	PlayerTextDrawUseBox(playerid, HE[1][playerid], 1);
 	PlayerTextDrawSetProportional(playerid, HE[1][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, HE[1][playerid], 0);
 
-	HE[2][playerid] = CreatePlayerTextDraw(playerid, 607.000000, 64.000000, "ld_beat:cring");
-	PlayerTextDrawFont(playerid, HE[2][playerid], 4);
-	PlayerTextDrawLetterSize(playerid, HE[2][playerid], 0.600000, 2.000000);
-	PlayerTextDrawTextSize(playerid, HE[2][playerid], 32.000000, 35.500000);
-	PlayerTextDrawSetOutline(playerid, HE[2][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, HE[2][playerid], 0);
-	PlayerTextDrawAlignment(playerid, HE[2][playerid], 1);
-	PlayerTextDrawColor(playerid, HE[2][playerid], 16711935);
-	PlayerTextDrawBackgroundColor(playerid, HE[2][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, HE[2][playerid], 50);
-	PlayerTextDrawUseBox(playerid, HE[2][playerid], 1);
-	PlayerTextDrawSetProportional(playerid, HE[2][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, HE[2][playerid], 0);
-
-	HE[3][playerid] = CreatePlayerTextDraw(playerid, 607.000000, 31.000000, "ld_beat:cring");
-	PlayerTextDrawFont(playerid, HE[3][playerid], 4);
-	PlayerTextDrawLetterSize(playerid, HE[3][playerid], 0.600000, 2.000000);
-	PlayerTextDrawTextSize(playerid, HE[3][playerid], 32.000000, 35.500000);
+	HE[3][playerid] = CreatePlayerTextDraw(playerid, 624.000000, 84.000000, "90");
+	PlayerTextDrawFont(playerid, HE[3][playerid], 3);
+	PlayerTextDrawLetterSize(playerid, HE[3][playerid], 0.324996, 1.099999);
+	PlayerTextDrawTextSize(playerid, HE[3][playerid], 400.000000, 17.000000);
 	PlayerTextDrawSetOutline(playerid, HE[3][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, HE[3][playerid], 0);
-	PlayerTextDrawAlignment(playerid, HE[3][playerid], 1);
-	PlayerTextDrawColor(playerid, HE[3][playerid], 16711935);
+	PlayerTextDrawAlignment(playerid, HE[3][playerid], 2);
+	PlayerTextDrawColor(playerid, HE[3][playerid], -1061109505);
 	PlayerTextDrawBackgroundColor(playerid, HE[3][playerid], 255);
 	PlayerTextDrawBoxColor(playerid, HE[3][playerid], 50);
-	PlayerTextDrawUseBox(playerid, HE[3][playerid], 1);
+	PlayerTextDrawUseBox(playerid, HE[3][playerid], 0);
 	PlayerTextDrawSetProportional(playerid, HE[3][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, HE[3][playerid], 0);
-
-	HE[4][playerid] = CreatePlayerTextDraw(playerid, 617.000000, 43.000000, "HUD:radar_datefood");
-	PlayerTextDrawFont(playerid, HE[4][playerid], 4);
-	PlayerTextDrawLetterSize(playerid, HE[4][playerid], 0.600000, 2.000000);
-	PlayerTextDrawTextSize(playerid, HE[4][playerid], 13.000000, 12.500000);
-	PlayerTextDrawSetOutline(playerid, HE[4][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, HE[4][playerid], 0);
-	PlayerTextDrawAlignment(playerid, HE[4][playerid], 1);
-	PlayerTextDrawColor(playerid, HE[4][playerid], 16711935);
-	PlayerTextDrawBackgroundColor(playerid, HE[4][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, HE[4][playerid], 50);
-	PlayerTextDrawUseBox(playerid, HE[4][playerid], 1);
-	PlayerTextDrawSetProportional(playerid, HE[4][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, HE[4][playerid], 0);
-
-	HE[5][playerid] = CreatePlayerTextDraw(playerid, 617.000000, 75.000000, "HUD:radar_diner");
-	PlayerTextDrawFont(playerid, HE[5][playerid], 4);
-	PlayerTextDrawLetterSize(playerid, HE[5][playerid], 0.600000, 2.000000);
-	PlayerTextDrawTextSize(playerid, HE[5][playerid], 13.500000, 13.000000);
-	PlayerTextDrawSetOutline(playerid, HE[5][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, HE[5][playerid], 0);
-	PlayerTextDrawAlignment(playerid, HE[5][playerid], 1);
-	PlayerTextDrawColor(playerid, HE[5][playerid], 16711935);
-	PlayerTextDrawBackgroundColor(playerid, HE[5][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, HE[5][playerid], 50);
-	PlayerTextDrawUseBox(playerid, HE[5][playerid], 1);
-	PlayerTextDrawSetProportional(playerid, HE[5][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, HE[5][playerid], 0);
-
-	HE[6][playerid] = CreatePlayerTextDraw(playerid, 624.000000, 59.000000, "90");
-	PlayerTextDrawFont(playerid, HE[6][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, HE[6][playerid], 0.224997, 0.800000);
-	PlayerTextDrawTextSize(playerid, HE[6][playerid], 400.000000, 17.000000);
-	PlayerTextDrawSetOutline(playerid, HE[6][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, HE[6][playerid], 0);
-	PlayerTextDrawAlignment(playerid, HE[6][playerid], 2);
-	PlayerTextDrawColor(playerid, HE[6][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, HE[6][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, HE[6][playerid], 50);
-	PlayerTextDrawUseBox(playerid, HE[6][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, HE[6][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, HE[6][playerid], 0);
-
-	HE[7][playerid] = CreatePlayerTextDraw(playerid, 624.000000, 92.000000, "90");
-	PlayerTextDrawFont(playerid, HE[7][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, HE[7][playerid], 0.224997, 0.800000);
-	PlayerTextDrawTextSize(playerid, HE[7][playerid], 400.000000, 17.000000);
-	PlayerTextDrawSetOutline(playerid, HE[7][playerid], 1);
-	PlayerTextDrawSetShadow(playerid, HE[7][playerid], 0);
-	PlayerTextDrawAlignment(playerid, HE[7][playerid], 2);
-	PlayerTextDrawColor(playerid, HE[7][playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, HE[7][playerid], 255);
-	PlayerTextDrawBoxColor(playerid, HE[7][playerid], 50);
-	PlayerTextDrawUseBox(playerid, HE[7][playerid], 0);
-	PlayerTextDrawSetProportional(playerid, HE[7][playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, HE[7][playerid], 0);
 }
 
 CreatePhoneTextDraws(playerid)
@@ -1868,6 +1813,20 @@ CreateTutorialTextDraws(playerid)
 	PlayerTextDrawUseBox(playerid, tutorialclick[playerid], 0);
 	PlayerTextDrawSetProportional(playerid, tutorialclick[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, tutorialclick[playerid], 1);
+
+	tutorialskip[playerid] = CreatePlayerTextDraw(playerid, 440.000000, 296.000000, "SKIP");
+	PlayerTextDrawFont(playerid, tutorialskip[playerid], 3);
+	PlayerTextDrawLetterSize(playerid, tutorialskip[playerid], 0.245832, 1.049998);
+	PlayerTextDrawTextSize(playerid, tutorialskip[playerid], 446.000000, 24.000000);
+	PlayerTextDrawSetOutline(playerid, tutorialskip[playerid], 1);
+	PlayerTextDrawSetShadow(playerid, tutorialskip[playerid], 0);
+	PlayerTextDrawAlignment(playerid, tutorialskip[playerid], 2);
+	PlayerTextDrawColor(playerid, tutorialskip[playerid], -1);
+	PlayerTextDrawBackgroundColor(playerid, tutorialskip[playerid], 255);
+	PlayerTextDrawBoxColor(playerid, tutorialskip[playerid], 200);
+	PlayerTextDrawUseBox(playerid, tutorialskip[playerid], 0);
+	PlayerTextDrawSetProportional(playerid, tutorialskip[playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, tutorialskip[playerid], 1);
 }
 
 CreateSelectFactionTextDraws(playerid)

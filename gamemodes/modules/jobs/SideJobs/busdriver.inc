@@ -35,7 +35,7 @@ function:BusDrivers(playerid, type)
                     
                     if(PlayerBusDriverIndex[playerid] == 33)
                     {
-                        new randx = randomEx(6, 8);
+                        new randx = randomEx(3, 5);
                         new total = (PlayerBusDriverIndex[playerid] * randx);
 
                         new Cents = floatround(total * 100, floatround_round);

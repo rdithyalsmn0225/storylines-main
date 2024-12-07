@@ -1,6 +1,6 @@
 //Database
-#define MYSQL_HOST
-#define DEBUG_MODE
+//#define MYSQL_HOST
+//#define DEBUG_MODE
 
 #if defined MYSQL_HOST
 	#define SQL_HOSTNAME "db1.sampryzen.tech"

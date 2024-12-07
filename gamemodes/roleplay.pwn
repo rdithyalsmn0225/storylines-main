@@ -600,7 +600,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 			else if(PlayerSweeperIndex[playerid] == 16)
 			{
-				new rand = randomEx(2, 4);
+				new rand = randomEx(3, 4);
 				new total = (PlayerSweeperIndex[playerid] * rand);
 
             	new Cents = floatround(total * 100, floatround_round);
@@ -767,7 +767,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		printf("Callback OnPlayerDeath called for player %s (ID: %i)", ReturnName(playerid), playerid); 
 	#endif
 	
-	if((gettime() - LastSpawn[playerid]) < 15 && reason >= 49)
+	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && (gettime() - LastSpawn[playerid]) < 15 && reason >= 49)
 	{
 		SendClientMessage(playerid, COLOR_RED, "Died at spawn.[Just logged in]");
 		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
@@ -780,7 +780,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	
 	if(reason == 51)
 	{
-		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 			SetPlayerHealthEx(playerid, 100.0);
@@ -793,7 +793,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	}
 	else if(reason == 50)
 	{
-		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 			SetPlayerHealthEx(playerid, 100.0);
@@ -806,7 +806,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	}
 	else if(reason == 53)
 	{
-		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 			SetPlayerHealthEx(playerid, 100.0);
@@ -819,7 +819,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	}
 	else if(reason == 54)
 	{
-		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 			SetPlayerHealthEx(playerid, 100.0);
@@ -832,7 +832,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	}
 	else if(reason == 255)
 	{
-		Kick(playerid);
+		KickEx(playerid);
 		SendInfoMessage(playerid, "You has been killed by Suicide at %s.", ReturnLocationStreet(playerid));
 	}
 
@@ -3570,6 +3570,28 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		if(PlayerInfo[playerid][E_CHARACTER_TUTORIAL] == 0 && PlayerInfo[playerid][E_CHARACTER_TUTORIALSTEP] != 16)
 		{
 			NextTutorial(playerid);
+		}
+		return 1;
+    }
+
+	if (playertextid == tutorialskip[playerid])
+    {
+		if(PlayerInfo[playerid][E_CHARACTER_TUTORIAL] == 0 && PlayerInfo[playerid][E_CHARACTER_TUTORIALSTEP] != 16)
+		{
+			PlayerInfo[playerid][E_CHARACTER_TUTORIALSTEP] = 0;
+			PlayerInfo[playerid][E_CHARACTER_TUTORIAL] = 1;
+			SaveCharacter(playerid);
+
+			PlayerTextDrawHide(playerid, tutorialtext[playerid]);
+			PlayerTextDrawHide(playerid, tutorialbox[playerid]);
+			PlayerTextDrawHide(playerid, tutorialheader[playerid]);
+			PlayerTextDrawHide(playerid, tutorialclick[playerid]);
+			PlayerTextDrawHide(playerid, tutorialskip[playerid]);
+			CancelSelectTextDraw(playerid);
+
+			SetCameraBehindPlayer(playerid);
+			LoadCharacter(playerid);
+			TogglePlayerSpectating(playerid, false);
 		}
 		return 1;
     }
