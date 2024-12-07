@@ -89,6 +89,15 @@ LoadCustomModels()
 	AddCharModel(67, 20011, "misc/skin/citizen/bmpretty3.dff", "misc/skin/citizen/bmpretty3.txd");
 	AddCharModel(184, 20012, "misc/skin/citizen/bmpretty4.dff", "misc/skin/citizen/bmpretty4.txd");
 	AddCharModel(67, 20013, "misc/skin/citizen/hmyec3.dff", "misc/skin/citizen/hmyec3.txd");
+	AddCharModel(105, 20014, "misc/skin/citizen/fam1.dff", "misc/skin/citizen/fam1.txd");
+	AddCharModel(106, 20015, "misc/skin/citizen/fam2.dff", "misc/skin/citizen/fam2.txd");
+	AddCharModel(107, 20016, "misc/skin/citizen/fam3.dff", "misc/skin/citizen/fam3.txd");
+	AddCharModel(47, 20017, "misc/skin/citizen/hmycr.dff", "misc/skin/citizen/hmycr.txd");
+	AddCharModel(30, 20018, "misc/skin/citizen/hmydrug.dff", "misc/skin/citizen/hmydrug.txd");
+	AddCharModel(241, 20019, "misc/skin/citizen/smyst.dff", "misc/skin/citizen/smyst.txd");
+	AddCharModel(242, 20020, "misc/skin/citizen/smyst2.dff", "misc/skin/citizen/smyst2.txd");
+	AddCharModel(101, 20021, "misc/skin/citizen/wmyst.dff", "misc/skin/citizen/wmyst.txd");
+	AddCharModel(189, 20022, "misc/skin/citizen/wmyva.dff", "misc/skin/citizen/wmyva.txd");
 
 	AddCharModel(300, 20260, "misc/skin/lspd/male/amypd2.dff", "misc/skin/lspd/male/amypd2.txd");
 	AddCharModel(301, 20261, "misc/skin/lspd/male/bmopd1.dff", "misc/skin/lspd/male/bmopd1.txd");
