@@ -53,8 +53,8 @@ ShowPlayerNeeds(playerid)
     new str[6], str1[6];
     for(new i; i < 4; i++)
     {
-        format(str, sizeof(str), "%0.2f", PlayerInfo[playerid][E_CHARACTER_HUNGRY]);
-        format(str1, sizeof(str1), "%0.2f", PlayerInfo[playerid][E_CHARACTER_THIRSTY]);
+        format(str, sizeof(str), "%0.1f", PlayerInfo[playerid][E_CHARACTER_HUNGRY]);
+        format(str1, sizeof(str1), "%0.1f", PlayerInfo[playerid][E_CHARACTER_THIRSTY]);
         PlayerTextDrawSetString(playerid, HE[2][playerid], str);
         PlayerTextDrawSetString(playerid, HE[3][playerid], str1);
         PlayerTextDrawShow(playerid, HE[i][playerid]);
