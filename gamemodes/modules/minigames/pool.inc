@@ -279,7 +279,7 @@ function:RestoreCamera(playerid, businessid)
 		PHY_SetObjectWorld(PoolBall[0][businessid][E_POOLBALL_OBJECT], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
 		InitBall(0, businessid);
 	}
-	GameTextForPlayer(playerid, " ", 100000, 4);
+
 	if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid) return 0;
 	TogglePlayerControllable(playerid, 1);
 	for(new a; a < 5; a++)
@@ -325,52 +325,72 @@ function:PlayPoolSound(soundid)
 	}
 	return 1;
 }
-
 CMD:pool(playerid, params[])
 {
-	new playerb;
-	new businessid = IsPlayerInBusiness(playerid);
-
-	if(sscanf(params, "d", playerb)) 
-		return SendUsageMessage(playerid, "/pool [playerid(opponent)]");
-
 	if(!IsPlayerInBusiness(playerid))
+		return 0;
+		
+    new playerb;
+    new businessid = IsPlayerInBusiness(playerid);
+
+    if (sscanf(params, "u", playerb))
+        return SendUsageMessage(playerid, "/pool [playerid(opponent)]");
+
+    if (!IsPlayerConnected(playerb)) // Pastikan lawan terhubung ke server
+        return SendErrorMessage(playerid, "The selected player is not connected.");
+
+    if (!IsPlayerInBusiness(playerid))
         return SendErrorMessage(playerid, "You aren't in any business.");
-    
-    if(BusinessInfo[businessid][E_BUSINESS_TYPE] != BUSINESS_TYPE_BAR)
-        return SendErrorMessage(playerid, "You aren't in any business bar.");
 
-	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 510.0676574707, -85.232200622559, 998.86749267578))
-		return SendErrorMessage(playerid, "You aren't near pool table.");
+    if (BusinessInfo[businessid][E_BUSINESS_TYPE] != BUSINESS_TYPE_BAR)
+        return SendErrorMessage(playerid, "You aren't in a business bar.");
 
-	if(playerb == playerid)
-		return SendErrorMessage(playerid, "You can't started pool with your self.");
+    if (!IsPlayerInRangeOfPoint(playerid, 3.0, 510.0676574707, -85.232200622559, 998.86749267578))
+        return SendErrorMessage(playerid, "You aren't near the pool table.");
 
-	if(!PoolInfo[businessid][E_POOL_STARTED])
-	{
-		if(!PlayingPool[playerid] && !PlayingPool[playerb])
-		{
-			PlayingPool[playerid] = true;
-			PlayingPool[playerb] = true;
-			
-			PoolInfo[businessid][E_POOL_PLAYER1] = playerid;
-			PoolInfo[businessid][E_POOL_PLAYER2] = playerb;
-			PoolInfo[businessid][E_POOL_PLAYER1SCORE] = 0;
-			PoolInfo[businessid][E_POOL_PLAYER2SCORE] = 0;
-			
-			PoolInfo[businessid][E_POOL_STARTED] = true;
-			RespawnPoolBalls(1, businessid);
-			
-			new Cents = floatround(10 * 100, floatround_round);
-			GiveMoney(playerid, -Cents);
-			GiveMoney(playerb, -Cents);
-			BusinessInfo[businessid][E_BUSINESS_CASH] += Cents * 2;
-			SendServerMessage(playerid, "[8Ball] {DEDEDE}You has started pool at %s you paying %s for the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
-			SendServerMessage(playerb, "[8Ball] {DEDEDE}You has started pool at %s you paying %s for the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
-		}
-	}
-	else SendErrorMessage(playerid, "There is player using this table.");
-	return 1;
+    if (!IsPlayerInRangeOfPoint(playerb, 3.0, 510.0676574707, -85.232200622559, 998.86749267578))
+        return SendErrorMessage(playerid, "The selected player is not near the pool table.");
+
+    //if (playerb == playerid)
+    //    return SendErrorMessage(playerid, "You can't start a pool game with yourself.");
+
+    if (PoolInfo[businessid][E_POOL_STARTED])
+        return SendErrorMessage(playerid, "There is already a game in progress at this table.");
+
+    if (PlayingPool[playerid] || PlayingPool[playerb])
+        return SendErrorMessage(playerid, "One of you is already playing pool.");
+
+    PlayingPool[playerid] = true;
+    PlayingPool[playerb] = true;
+
+    PoolInfo[businessid][E_POOL_PLAYER1] = playerid;
+    PoolInfo[businessid][E_POOL_PLAYER2] = playerb;
+    PoolInfo[businessid][E_POOL_PLAYER1SCORE] = 0;
+    PoolInfo[businessid][E_POOL_PLAYER2SCORE] = 0;
+
+    PoolInfo[businessid][E_POOL_STARTED] = true;
+    RespawnPoolBalls(1, businessid);
+
+    new Cents = floatround(10 * 100, floatround_round);
+    GiveMoney(playerid, -Cents);
+    GiveMoney(playerb, -Cents);
+    BusinessInfo[businessid][E_BUSINESS_CASH] += Cents * 2;
+
+    SendServerMessage(playerid, "[8Ball] {DEDEDE}You have started a pool game at %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
+    SendServerMessage(playerb, "[8Ball] {DEDEDE}You have started a pool game at %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
+
+    new string[512], balltype[16];
+
+    if (PlayerPoolBallType[playerid] == 1) format(balltype, sizeof(balltype), "Solid");
+    else if (PlayerPoolBallType[playerid] == 2) format(balltype, sizeof(balltype), "Stripe");
+    else format(balltype, sizeof(balltype), "Unknown");
+
+    format(string, sizeof(string), "You are %s. It's %s's turn.\n\n~r~%s's score: ~w~%d\n~b~%s's score: ~w~%d", balltype, ReturnName(PoolInfo[businessid][E_POOL_TURN]),ReturnName(playerid), PoolInfo[businessid][E_POOL_PLAYER1SCORE],ReturnName(playerb), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
+
+    ShowHeaderMessage(playerid, "Pool: 8-Ball", string, 1);
+    ShowHeaderMessage(playerb, "Pool: 8-Ball", string, 1);
+
+    return 1;
 }
 
 CMD:poolexit(playerid, params[])
@@ -388,31 +408,42 @@ CMD:poolexit(playerid, params[])
 
 	if(PoolInfo[businessid][E_POOL_STARTED])
 	{
-		if(PlayingPool[playerid])
+		foreach(new i : Player)
 		{
-			if(PoolInfo[businessid][E_POOL_PLAYERAIMER] != playerid)
+			if(PlayingPool[i])
 			{
-				PlayingPool[playerid] = false;
+				if(PoolInfo[businessid][E_POOL_PLAYERAIMER] != i)
+				{
+					PlayingPool[i] = false;
 
-				if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
-				{
-					PoolInfo[businessid][E_POOL_STARTED] = false;
-					RespawnPoolBalls(0, businessid);
-				}
+					if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
+					{
+						PoolInfo[businessid][E_POOL_STARTED] = false;
+						RespawnPoolBalls(0, businessid);
+					}
 
-				if(PoolInfo[businessid][E_POOL_PLAYER1] == playerid)
-				{
-					PoolInfo[businessid][E_POOL_PLAYER1] = -1;
+					if(PoolInfo[businessid][E_POOL_PLAYER1] == i)
+					{
+						PoolInfo[businessid][E_POOL_PLAYER1] = -1;
+					}
+					if(PoolInfo[businessid][E_POOL_PLAYER2] == i)
+					{
+						PoolInfo[businessid][E_POOL_PLAYER2] = -1;
+					}
+					RestorePoolStick(i);
+					HideHeaderMessage(i);
+					SendServerMessage(i, "[8Ball] {DEDEDE}You has exit pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
 				}
-				if(PoolInfo[businessid][E_POOL_PLAYER2] == playerid)
-				{
-					PoolInfo[businessid][E_POOL_PLAYER2] = -1;
-				}
-				RestorePoolStick(playerid);
-				HideHeaderMessage(playerid);
-				SendServerMessage(playerid, "[8Ball] {DEDEDE}You has exit pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
 			}
 		}
 	}
+	return 1;
+}
+
+CMD:test(playerid, params[])
+{
+	SendServerMessage(playerid, "%s", ReturnName(PoolInfo[IsPlayerInBusiness(playerid)][E_POOL_PLAYER1]));
+	SendServerMessage(playerid, "%s", ReturnName(PoolInfo[IsPlayerInBusiness(playerid)][E_POOL_PLAYER2]));
+	SendServerMessage(playerid, "%s", ReturnName(PoolInfo[IsPlayerInBusiness(playerid)][E_POOL_TURN]));
 	return 1;
 }

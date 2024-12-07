@@ -269,6 +269,7 @@ public OnGameModeInit()
 	mysql_pquery(ourConnection, "SELECT * FROM `dropped`", "Query_LoadDropped", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `spray_tags`", "Query_LoadSpraytags", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `server_data`", "Query_LoadServerData", "");
+	mysql_pquery(ourConnection, "SELECT * FROM `compensation_codes`", "Query_LoadCompensation", "");
 
 	Times = TextDrawCreate(67.000000, 426.000000, "");
 	TextDrawFont(Times, 1);
@@ -465,7 +466,7 @@ public OnPlayerDisconnect(playerid, reason)
 		}
 	}
 
-	KillTimer(cameraTimer[playerid]);
+	
 
 	new playerTime = NetStats_GetConnectedTime(playerid);
 	new secondsConnection = (playerTime % (1000*60*60)) / (1000*60);
@@ -477,8 +478,18 @@ public OnPlayerDisconnect(playerid, reason)
 		SaveCharacter(playerid); SaveCharacterPos(playerid);
 	}
 
-	KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
+	KillTimer(cameraTimer[playerid]);
+	KillTimer(PlayerEngineTimer[playerid]);
+	KillTimer(PlayerTimerGym[playerid]);
+	KillTimer(playerPhone[playerid]);
+	KillTimer(playerText[playerid]);
+	KillTimer(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_LOADINGTIMER]);
 
+	PlayerInfo[playerid][E_CHARACTER_LOADING] = false;
+    PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 0;
+
+    Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
+    KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 	ResetPlayerJump(playerid);
 
 	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
@@ -775,7 +786,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		printf("Callback OnPlayerDeath called for player %s (ID: %i)", ReturnName(playerid), playerid); 
 	#endif
 	
-	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && (gettime() - LastSpawn[playerid]) < 15 && reason >= 49)
+	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && (gettime() - LastSpawn[playerid]) < 15 && reason >= 49 && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 	{
 		SendClientMessage(playerid, COLOR_RED, "Died at spawn.[Just logged in]");
 		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
@@ -788,7 +799,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	
 	if(reason == 51)
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 			SetPlayerHealthEx(playerid, 100.0);
@@ -801,7 +812,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	}
 	else if(reason == 50)
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 			SetPlayerHealthEx(playerid, 100.0);
@@ -814,7 +825,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	}
 	else if(reason == 53)
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 			SetPlayerHealthEx(playerid, 100.0);
@@ -827,7 +838,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	}
 	else if(reason == 54)
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 			SetPlayerHealthEx(playerid, 100.0);
@@ -840,13 +851,16 @@ public OnPlayerDeath(playerid, killerid, reason)
 	}
 	else if(reason == 255)
 	{
-		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-		SetPlayerHealthEx(playerid, 100.0);
-		SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
-		SetPlayerInterior(playerid, 0);
-		SetPlayerVirtualWorld(playerid, 0);
-		SpawnPlayer(playerid);
-		SendInfoMessage(playerid, "You has been killed by Suicide at %s.", ReturnLocationStreet(playerid));
+		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
+		{
+			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
+			SetPlayerHealthEx(playerid, 100.0);
+			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
+			SetPlayerInterior(playerid, 0);
+			SetPlayerVirtualWorld(playerid, 0);
+			SpawnPlayer(playerid);
+			SendInfoMessage(playerid, "You has been killed by Suicide at %s.", ReturnLocationStreet(playerid));
+		}
 	}
 
 	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
@@ -3217,8 +3231,6 @@ public OnPlayerSpawn(playerid)
 		}
 		else SetPlayersSpawn(playerid); 
 	}
-	
-	PlayerInfo[playerid][E_CHARACTER_SPAWNED] = true;
 
 	if(!PlayerInfo[playerid][E_CHARACTER_TUTORIAL])
 	{
@@ -3266,12 +3278,12 @@ public OnPlayerUpdate(playerid)
 	GetPlayerHealth(playerid, health);
 	if(health < 10 && PlayerInfo[playerid][E_CHARACTER_SPAWNED])
 	{
-		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			CallLocalFunction("OnPlayerWounded", "dud", playerid, playerid, 0);
 			SendInfoMessage(playerid, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
 		}
-		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
+		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			CallLocalFunction("OnPlayerWounded", "dud", playerid, playerid, 0);
 			SendInfoMessage(playerid, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
@@ -5489,7 +5501,7 @@ function:SaveCharacterPos(playerid)
 {
 	new thread[512]; 
 	
-	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
+	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING || !PlayerInfo[playerid][E_CHARACTER_SPAWNED])
 		return 0;
 
 	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
@@ -5614,12 +5626,6 @@ function:SaveCharacter(playerid)
 	return 1;
 }
 
-//ObjectMove
-public OnObjectMoved(objectid)
-{
-    return 1;
-}
-
 public OnIncomingRPC(playerid, rpcid, BitStream:bs)
 {
     if (rpcid == 136)
@@ -5640,7 +5646,7 @@ public OnIncomingRPC(playerid, rpcid, BitStream:bs)
                 {
                     new gstr[512];
                     format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Rem.cs]", ReturnName(playerid));
-                    SendClientMessageToAll(COLOR_YELLOW, gstr);
+                    SendClientMessage(playerid, COLOR_YELLOW, gstr);
 
                     player_rpc_count[playerid] = 0;
                     player_rpc_last_time[playerid] = 0;

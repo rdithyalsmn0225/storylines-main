@@ -130,9 +130,9 @@ CMD:goto(playerid, params[])
 		
 	SendTeleportMessage(playerid);	
 	
-	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ])
+	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
-		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
+		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = 0;
 	}
 	return 1;
 }
@@ -391,7 +391,7 @@ CMD:oajail(playerid, params[])
 	if(!DoesCharactersPlayerExist(playerb))
 		return SendErrorMessage(playerid, "%s doesn't exist in the database.", playerb); 
 		
-	mysql_format(ourConnection, insertQuery, sizeof(insertQuery), "UPDATE characters SET pOfflinejailed = 1, pOfflinejailedReason = '%e', E_CHARACTER_ADMINJAIL = %i WHERE char_masters = '%e'", reason, length * 60, playerb);
+	mysql_format(ourConnection, insertQuery, sizeof(insertQuery), "UPDATE characters SET pOfflinejailed = 1, pOfflinejailedReason = '%e', pAdminJailed = %i WHERE char_masters = '%e'", reason, length * 60, playerb);
 	mysql_pquery(ourConnection, insertQuery, "OnOfflineAjail", "issi", playerid, playerb, reason, length); 
 
 	return 1;

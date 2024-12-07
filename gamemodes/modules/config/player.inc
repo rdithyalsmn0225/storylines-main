@@ -297,7 +297,18 @@ function:ResetPlayer(playerid)
 
 	PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = INVALID_VEHICLE_ID;
 
+	KillTimer(cameraTimer[playerid]);
 	KillTimer(PlayerTimerGym[playerid]);
+	KillTimer(playerPhone[playerid]);
+	KillTimer(playerText[playerid]);
+	KillTimer(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_LOADINGTIMER]);
+
+	PlayerInfo[playerid][E_CHARACTER_LOADING] = false;
+    PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 0;
+
+    Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
+    KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
+	
     PlayerGymMachine[playerid] = -1;
     PlayerPointGym[playerid] = 0;  
     PlayerUsingGym[playerid] = false;

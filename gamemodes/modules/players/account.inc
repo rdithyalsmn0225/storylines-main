@@ -167,13 +167,9 @@ function:DB_ListCharacters(playerid)
 		PlayerTextDrawColor(playerid,SelectFactionName[playerid], COLOR_WHITE);
 	}
 
-	for (new i = 0; i < 4; i ++)
-	{
-		characterLister[playerid][i][0] = EOS;
-	}
-
 	for (new i = 0; i < cache_num_rows(); i ++)
 	{
+		characterLister[playerid][i][0] = EOS;
 		cache_get_value_name(i, "char_name", characterLister[playerid][i], 128); 
 		cache_get_value_name_int(i, "pLastSkin", characterSkin[playerid][i]);
 		cache_get_value_name_int(i, "pFaction", characterFaction[playerid][i]);
@@ -235,10 +231,14 @@ stock LoadCharacter(playerid)
 
 	new stri[256];
 	format(stri, sizeof stri, ".:. %s has joined the GTA Storylines (joined)", AccountInfo[playerid][E_MASTERS_ACCNAME]);
-	if(PlayerInfo[playerid][E_CHARACTER_TOGJOIN] == false)
+	
+	foreach(new ii : Player)
 	{
-		SendClientMessageToAll(COLOR_DARKGREEN, stri);
-	}	
+		if(PlayerInfo[ii][E_CHARACTER_TOGJOIN] == false)
+		{
+			SendClientMessage(ii, COLOR_DARKGREEN, stri);
+		}	
+	}
 
 	for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
 	SendClientMessageEx(playerid, COLOR_WHITE, "Hey {9CC8E9}%s{ffffff}, Welcome back to {4cb989}GTA Storylines{ffffff}.", AccountInfo[playerid][E_MASTERS_ACCNAME]);
@@ -289,19 +289,20 @@ stock LoadCharacter(playerid)
 	KillTimer(cameraTimer[playerid]);
 	SetCameraBehindPlayer(playerid); 
 
-	TogglePlayerControllable(playerid, true);
-
 	if(PlayerInfo[playerid][E_CHARACTER_AOE] == 0)
 	{
 		CreatePlayerToy(playerid);
 	}
+
+	PlayerInfo[playerid][E_CHARACTER_SPAWNED] = true;
+
 	LoadPlayerToys(playerid);
 	SyncPlayerTime(playerid);
 	ShowPlayerNeeds(playerid);
-
+	
 	SetSpawnInfo(playerid, 0, PlayerInfo[playerid][E_CHARACTER_LASTSKIN], PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2], 0, 0, 0, 0, 0, 0, 0);
 	SpawnPlayer(playerid);
-	
+	TogglePlayerControllable(playerid, true);
 	TogglePlayerSpectating(playerid, false);
 	return 1;
 }
@@ -412,12 +413,14 @@ function:Query_LoadCharacter(playerid)
 	mysql_format(ourConnection, rquery, sizeof(qquery), "SELECT * FROM `tickets` WHERE `ID` = '%i'", PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, rquery, "Query_LoadTicket", "d", playerid);
 	
+	TogglePlayerControllable(playerid, false);
 	new string[2024];
 	for(new a; a < 9; a++)
 	{
 		format(string, sizeof(string), "%s\t#%d\t%s\t{33AA33}PUBLIC{ffffff}\n", string, a, GetZoneName(BusStop_Index[a][0], BusStop_Index[a][1], BusStop_Index[a][2]));
+		
 	}
-	format(string, sizeof(string), "%s\t#%d\tLast Position\t{33AA33}PRIVATE{ffffff}", string, 9 + 1);
+	format(string, sizeof(string), "%s\t#%d\tLast Position\t{33AA33}PRIVATE{ffffff}", string, 8 + 1);
 	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", string, "Select", "Close");
 }
 

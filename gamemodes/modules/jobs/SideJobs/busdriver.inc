@@ -54,6 +54,11 @@ function:BusDrivers(playerid, type)
                             
                         GPS_DisablePlayerRaceCheckPoint(playerid);
                         DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+                        PlayerInfo[playerid][E_CHARACTER_LOADING] = false;
+                        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 0;
+
+                        Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
+                        KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
                     }
                 }
             }

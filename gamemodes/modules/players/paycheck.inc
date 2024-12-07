@@ -42,6 +42,7 @@ CallPaycheck(playerid)
 	PlayerInfo[playerid][E_CHARACTER_PAYCHECK] = 0; 
 	PlayerInfo[playerid][E_CHARACTER_BANK]+= total; 
 	
+	SetPlayerScore(playerid, PlayerInfo[playerid][E_CHARACTER_LEVEL]);
 	SaveCharacter(playerid); 
 	return 1;
 }

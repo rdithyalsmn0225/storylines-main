@@ -576,7 +576,7 @@ CMD:recruit(playerid, params[])
 	    return SendErrorMessage(playerid, "You cannot use this command right now.");
 
 	if (sscanf(params, "d", type))
-	    return SendErrorMessage(playerid, "/recruit [1-2]");
+	    return SendUsageMessage(playerid, "/recruit [1-2]");
 
 	if (type < 1 || type > 2)
 	    return SendErrorMessage(playerid, "Invalid type specified.");

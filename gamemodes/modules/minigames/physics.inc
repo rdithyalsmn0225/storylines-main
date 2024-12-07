@@ -1,7 +1,8 @@
 public PHY_OnObjectUpdate(objectid)
 {
-    for (new businessid = 1; businessid < MAX_BUSINESS; businessid++)
+    foreach(new ii : Player)
     {
+        new businessid = IsPlayerInBusiness(ii);
         if (PoolInfo[businessid][E_POOL_STARTED])
         {
             for (new i; i < sizeof PoolBall; i++)
@@ -43,6 +44,7 @@ public PHY_OnObjectUpdate(objectid)
                                     PlayingPool[p] = false;
 
                                     RestorePoolStick(p);
+                                    HideHeaderMessage(p);
                                     PlayingPool[p] = false;
 
                                     if(PoolInfo[businessid][E_POOL_PLAYER1] == p)
@@ -88,7 +90,25 @@ public PHY_OnObjectUpdate(objectid)
                                     else
                                         PoolInfo[businessid][E_POOL_PLAYER1SCORE]++;
 
-                                    PoolInfo[businessid][E_POOL_TURN] = (PoolInfo[businessid][E_POOL_TURN] == PoolInfo[businessid][E_POOL_PLAYER1]) ? PoolInfo[businessid][E_POOL_PLAYER2] : PoolInfo[businessid][E_POOL_PLAYER1];
+                                    PoolInfo[businessid][E_POOL_TURN] = (PoolInfo[businessid][E_POOL_TURN] == PoolInfo[businessid][E_POOL_PLAYER1]
+                                    ? PoolInfo[businessid][E_POOL_PLAYER2]
+                                    : PoolInfo[businessid][E_POOL_PLAYER1]);
+
+                                    new string[512], balltype[16];
+                                    if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 1) balltype = "Solid";
+                                    else if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 2) balltype = "Stripe";
+                                    else balltype = "Unknown";
+
+                                    if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER2]] == 1) balltype = "Solid";
+                                    else if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER2]] == 2) balltype = "Stripe";
+                                    else balltype = "Unknown";
+
+                                    format(string, sizeof(string), "You are %s. It's %s turn~n~~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d", 
+                                    balltype, ReturnName(PoolInfo[businessid][E_POOL_TURN]), ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
+
+                                    ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER1], "Pool: 8-Ball", string, 1);
+                                    ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER2], "Pool: 8-Ball", string, 1);
+                                    
                                     SendPoolPlayersMessage("[8Ball] {DEDEDE}Wrong ball type! Opponent scores a point.");
                                     RestoreCamera(PoolInfo[businessid][E_POOL_LASTSHOOTER], businessid);
                                     return 1;
@@ -104,7 +124,24 @@ public PHY_OnObjectUpdate(objectid)
                                 PoolInfo[businessid][E_POOL_PLAYER2SCORE]++;
                             }
 
-                            PoolInfo[businessid][E_POOL_TURN] = (PoolInfo[businessid][E_POOL_TURN] == PoolInfo[businessid][E_POOL_PLAYER1]) ? PoolInfo[businessid][E_POOL_PLAYER2] : PoolInfo[businessid][E_POOL_PLAYER1];
+                            PoolInfo[businessid][E_POOL_TURN] = (PoolInfo[businessid][E_POOL_TURN] == PoolInfo[businessid][E_POOL_PLAYER1]
+                            ? PoolInfo[businessid][E_POOL_PLAYER2]
+                            : PoolInfo[businessid][E_POOL_PLAYER1]);
+
+                            new string[512], balltype[16];
+                            if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 1) balltype = "Solid";
+                            else if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 2) balltype = "Stripe";
+                            else balltype = "Unknown";
+
+                            if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER2]] == 1) balltype = "Solid";
+                            else if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER2]] == 2) balltype = "Stripe";
+                            else balltype = "Unknown";
+
+                            format(string, sizeof(string), "You are %s. It's %s turn~n~~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d", 
+                            balltype, ReturnName(PoolInfo[businessid][E_POOL_TURN]), ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
+
+                            ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER1], "Pool: 8-Ball", string, 1);
+                            ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER2], "Pool: 8-Ball", string, 1);
 
                             PlayerPlaySound(PoolInfo[businessid][E_POOL_TURN], 1250, 0.0, 0.0, 0.0);
                         }    
@@ -137,6 +174,7 @@ public PHY_OnObjectUpdate(objectid)
                                     SendPoolPlayersMessage(string);
                                     RestorePoolStick(p);
                                     PlayingPool[p] = false;
+                                    HideHeaderMessage(p);
                                     if(PoolInfo[businessid][E_POOL_PLAYER1] == p)
                                     {
                                         PoolInfo[businessid][E_POOL_PLAYER1] = -1;
@@ -159,10 +197,6 @@ public PHY_OnObjectUpdate(objectid)
                             SetTimerEx("RestoreCamera", 800, 0, "dd", PoolInfo[businessid][E_POOL_LASTSHOOTER], businessid);
                             PoolInfo[businessid][E_POOL_LASTSHOOTER] = -1;
                         }
-                    }
-                    else
-                    {
-                        PoolInfo[businessid][E_POOL_TURN] = (PoolInfo[businessid][E_POOL_TURN] == PoolInfo[businessid][E_POOL_PLAYER1] ? PoolInfo[businessid][E_POOL_PLAYER2] : PoolInfo[businessid][E_POOL_PLAYER1]);
                     }
                     return 1;
                 }
