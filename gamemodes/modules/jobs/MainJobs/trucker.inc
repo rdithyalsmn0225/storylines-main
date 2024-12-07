@@ -21,8 +21,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[0][Price] * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 0.5;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 1.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 		
 	    GiveMoney(playerid, -Cents);
 
@@ -45,8 +44,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[1][Price] * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 0.5;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 1.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -69,8 +67,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[2][Price] * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 0.5;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 1.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -93,8 +90,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[3][Price] * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 0.5;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 1.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -119,8 +115,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[4][Price] * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 0.5;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 1.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -143,8 +138,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[5][Price] * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 0.5;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 1.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -167,8 +161,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[6][Price] * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 0.5;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 1.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -203,8 +196,7 @@ CMD:cargosell(playerid, params[])
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		new Cents = floatround(IndustryInfo[3][Price] * 2 * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 1.0;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 3.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 
 	    GiveMoney(playerid, Cents);
 
@@ -225,8 +217,7 @@ CMD:cargosell(playerid, params[])
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		new Cents = floatround(IndustryInfo[0][Price] * 2 * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 1.0;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 3.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 
 	    GiveMoney(playerid, Cents);
 
@@ -266,8 +257,7 @@ CMD:cargosell(playerid, params[])
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		new Cents = floatround(IndustryInfo[2][Price] * 2 * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 1.0;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 3.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 
 	    GiveMoney(playerid, Cents);
 
@@ -293,8 +283,7 @@ CMD:cargosell(playerid, params[])
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		new Cents = floatround(IndustryInfo[6][Price] * 2 * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 1.0;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 3.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 
 	    GiveMoney(playerid, Cents);
 
@@ -356,8 +345,7 @@ CMD:cargosell(playerid, params[])
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		new Cents = floatround(IndustryInfo[4][Price] * 2 * 100, floatround_round);
 
-		PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 1.0;
-	    PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 3.0;
+		SetPlayerNeeds(playerid, -0.5, -1.0);
 
 	    GiveMoney(playerid, Cents);
 
@@ -557,8 +545,7 @@ DettachVehicleFreight(playerid, vehicleid)
 	DestroyVehicle(PlayerTruckAttach[playerid]);
 	DetachTrailerFromVehicle(vehicleid);
 
-	PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
-	PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 10.0;
+	SetPlayerNeeds(playerid, -5.0, -10.0);
 
 	GivePaycheck(playerid, Cents);
 	SendJobsMessage(playerid, "[Trucker] {DEDEDE}You has deliver trailer into destination and earn into your paycheck $%s.", FormatMoney(Cents));

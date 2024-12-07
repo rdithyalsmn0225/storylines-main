@@ -84,8 +84,7 @@ function:CutTree(playerid, id)
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
-            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 1.0;
-	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 3.0;
+            SetPlayerNeeds(playerid, -1.0, -3.0);
 
             if(TreeInfo[id][E_TREE_PROGRESS] + rand >= 100)
             {
@@ -137,8 +136,7 @@ function:CreateTimber(playerid, id)
 
             Inventory_Add(playerid, "Woods", 1463, 1);
 
-            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 2.0;
-	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 5.0;
+            SetPlayerNeeds(playerid, -2.0, -5.0);
 
             SendServerMessage(playerid, "[Lumberjack] {DEDEDE}You've successfully take woods timber.");
             SendTipMessage(playerid, "Place the timber into your pickup vehicle.");

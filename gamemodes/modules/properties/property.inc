@@ -106,9 +106,8 @@ function:OnSellProperty(playerid, response, propertyid)
 			totalPay;
 		
 		totalPay = PropertyInfo[propertyid][E_PROPERTY_PRICE] / 2 + PropertyInfo[propertyid][E_PROPERTY_CASH]; 
-		new Cents = floatround(totalPay * 100, floatround_round);
 
-    	GiveMoney(playerid, Cents);
+    	GiveMoney(playerid, totalPay);
 		
 		PropertyInfo[propertyid][E_PROPERTY_OWNERDBID] = 0; 
 		

@@ -2187,7 +2187,9 @@ CMD:clearchat(playerid, params[])
 	return 1;
 }
 
-CMD:aoe(playerid, params[]) return cmd_accessories(playerid, "");
+CMD:aoe(playerid, params[]) return cmd_accessories(playerid, params);
+CMD:acc(playerid, params[]) return cmd_accessories(playerid, params);
+CMD:toys(playerid, params[]) return cmd_accessories(playerid, params);
 CMD:accessories(playerid, params[])
 {
 	if(IsPlayerInAnyVehicle(playerid)) 

@@ -422,8 +422,7 @@ function:repairengine(playerid, vehicleid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
-            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
-	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+            SetPlayerNeeds(playerid, -5.0, -8.0);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
@@ -468,8 +467,7 @@ function:repairbody(playerid, vehicleid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
-            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
-	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+            SetPlayerNeeds(playerid, -5.0, -3.0);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
@@ -514,8 +512,7 @@ function:repairtire(playerid, vehicleid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
-            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
-	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+            SetPlayerNeeds(playerid, -3.0, -4.0);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
@@ -561,8 +558,7 @@ function:repaintexterior(playerid, vehicleid, modelid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
-            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
-	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+            SetPlayerNeeds(playerid, -6.0, -4.0);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
@@ -606,8 +602,7 @@ function:repaintinterior(playerid, vehicleid, modelid)
             SaveVehicle(vehicleid);
             PauseAC(playerid);
 
-            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
-	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+            SetPlayerNeeds(playerid, -6.0, -4.0);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
@@ -647,8 +642,7 @@ function:repaintpaintjob1(playerid, vehicleid)
             VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = 0;
             SaveVehicle(vehicleid);
 
-            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
-	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+            SetPlayerNeeds(playerid, -6.0, -4.0);
 
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
@@ -690,8 +684,7 @@ function:repaintpaintjob2(playerid, vehicleid)
             VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = 1;
             SaveVehicle(vehicleid);
 
-            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
-	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+            SetPlayerNeeds(playerid, -6.0, -4.0);
 
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
@@ -733,8 +726,7 @@ function:repaintpaintjob3(playerid, vehicleid)
             VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = 2;
             SaveVehicle(vehicleid);
 
-            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
-	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+            SetPlayerNeeds(playerid, -6.0, -4.0);
 
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
@@ -790,8 +782,7 @@ function:repaintplates(playerid, vehicleid)
 
             SaveVehicle(vehicleid);
 
-            PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 5.0;
-	        PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 8.0;
+            SetPlayerNeeds(playerid, -6.0, -4.0);
             
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 

@@ -245,7 +245,7 @@ CMD:sellbusiness(playerid, params[])
 {
 	new
 		id,
-		str[128];
+		str[256];
 	
 	if(!CountPlayerBusiness(playerid))
 		return SendErrorMessage(playerid, "You don't own a business.");

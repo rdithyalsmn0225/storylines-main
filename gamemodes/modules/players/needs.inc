@@ -48,6 +48,31 @@ function:OnPlayerNeedUpdate()
     return 1;
 }
 
+SetPlayerNeeds(playerid, Float:hungry, Float:thirsty)
+{
+    PlayerInfo[playerid][E_CHARACTER_HUNGRY] += hungry;
+    PlayerInfo[playerid][E_CHARACTER_THIRSTY] += thirsty;
+
+    if(PlayerInfo[playerid][E_CHARACTER_THIRSTY] > 100.0)
+    {
+        PlayerInfo[playerid][E_CHARACTER_THIRSTY] = 100.0;
+    }
+    if(PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 0)
+    {
+        PlayerInfo[playerid][E_CHARACTER_THIRSTY] = 0;
+    }
+
+    if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] > 100.0)
+    {
+        PlayerInfo[playerid][E_CHARACTER_HUNGRY] = 100.0;
+    }
+    if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 0)
+    {
+        PlayerInfo[playerid][E_CHARACTER_HUNGRY] = 0;
+    }
+    return 1;
+}
+
 ShowPlayerNeeds(playerid)
 {
     new str[6], str1[6];

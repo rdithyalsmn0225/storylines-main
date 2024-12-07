@@ -40,8 +40,7 @@ stock CollectGarbage(playerid)
                 if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] >= 30)
                     return SendTipMessage(playerid, "Your garbage bag is full, take it to the HQ and empty it");
 
-                PlayerInfo[playerid][E_CHARACTER_HUNGRY] -= 1.0;
-	            PlayerInfo[playerid][E_CHARACTER_THIRSTY] -= 3.0;
+                SetPlayerNeeds(playerid, -0.2, -0.3);
 
                 ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 0);
                 SendJobsMessage(playerid, "[Garbageman] {DEDEDE}You've picked up rubbish, current garbage bag %d x rubbish.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]);
