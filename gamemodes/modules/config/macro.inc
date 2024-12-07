@@ -1,5 +1,5 @@
 //Database
-//#define MYSQL_HOST
+#define MYSQL_HOST
 #define DEBUG_MODE
 
 #if defined MYSQL_HOST

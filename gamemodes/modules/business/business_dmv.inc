@@ -58,6 +58,11 @@ stock StopDriverstest(playerid)
 CMD:licenseexam(playerid, params[])
 {
 	new vehicleid = IsPlayerInAnyVehicle(playerid);
+	new Cents = floatround(100 * 100, floatround_round);
+	
+	if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		return SendErrorMessage(playerid, "You can't afford a license exam");
+
 	if(IsPlayerInDMVVehicle(playerid))
     {
         if(PlayerTakingLicense[playerid])

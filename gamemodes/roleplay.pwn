@@ -775,6 +775,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
 		SetPlayerInterior(playerid, 0);
 		SetPlayerVirtualWorld(playerid, 0);
+		SpawnPlayer(playerid);
 	}
 	
 	if(reason == 51)
