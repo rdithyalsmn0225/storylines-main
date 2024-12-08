@@ -4434,7 +4434,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	}
 
 	// FISHING:
-	if(newkeys == KEY_SPRINT && !IsPlayerInAnyVehicle(playerid))
+	if(newkeys == KEY_YES && !IsPlayerInAnyVehicle(playerid))
     {
 		if(PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] == true)
 		{

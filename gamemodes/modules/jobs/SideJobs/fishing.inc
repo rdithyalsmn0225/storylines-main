@@ -74,7 +74,7 @@ function:FishingTimer(playerid, type)
 				PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] = 10.0;
 				PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] = true;
 				ShowGameBar(playerid, PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE], "Fishing");
-				ShowHeaderMessage(playerid, "Fishing", "Something is hooked in your line.\nPress SPACE to reel it in.");
+				ShowHeaderMessage(playerid, "Fishing", "Something is hooked in your line.\nPress 'Y' to reel it in.");
 				PlayerInfo[playerid][E_CHARACTER_FISHINGTIMER] = SetTimerEx("FishingTimer", 500, true, "ii", playerid, 2);
 			}
 			case 2:
