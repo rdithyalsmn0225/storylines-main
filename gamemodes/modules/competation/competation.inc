@@ -61,7 +61,7 @@ function:CleanupExpiredCodes()
 
 CMD:createcode(playerid, params[])
 {
-    if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
+    if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
         return 0;
 
     new code[32], players, days, moneyc;
@@ -103,6 +103,32 @@ CMD:createcode(playerid, params[])
     return 1;
 }
 
+CMD:clearcode(playerid, params[])
+{
+    if (IsPlayerAdmins(playerid) < ADMINS_OWNER)
+        return 0;
+
+    new query[256];
+    
+    for (new i = 0; i < MAX_COMPENSATION; i++)
+    {
+        CompetationInfo[i][E_COMPETATION_EXISTS] = false;
+        CompetationInfo[i][E_COMPETATION_USED] = 0;
+        CompetationInfo[i][E_COMPETATION_PLAYERS] = 0;
+        CompetationInfo[i][E_COMPETATION_EXPIRED] = 0;
+        CompetationInfo[i][E_COMPETATION_MONEY] = 0;
+
+        mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_claims WHERE code = '%s'", CompetationInfo[i][E_COMPETATION_CODE]);
+        mysql_tquery(ourConnection, query);
+    }
+
+    mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_codes");
+    mysql_tquery(ourConnection, query);
+
+    SendServerMessage(playerid, "[Compensation] {DEDEDE}All compensation codes have been cleared successfully!");
+    return 1;
+}
+
 CMD:claim(playerid, params[])
 {
     Dialog_Show(playerid, Compensation, DIALOG_STYLE_INPUT, "Claim Compensation:", "Enter your compensation code:", "Submit", "Cancel");
@@ -111,9 +137,9 @@ CMD:claim(playerid, params[])
 
 Dialog:Compensation(playerid, response, listitem, inputtext[])
 {
-    for (new i = 0; i < MAX_COMPENSATION; i++)
+    for (new i = 0; i < MAX_COMPENSATION; i++) if(CompetationInfo[i][E_COMPETATION_EXISTS])
     {
-        if (strcmp(CompetationInfo[i][E_COMPETATION_CODE], inputtext, true) == 0 && CompetationInfo[i][E_COMPETATION_EXISTS])
+        if (strcmp(CompetationInfo[i][E_COMPETATION_CODE], inputtext, true) == 0)
         {
             if (gettime() > CompetationInfo[i][E_COMPETATION_EXPIRED])
             {
@@ -147,10 +173,10 @@ Dialog:Compensation(playerid, response, listitem, inputtext[])
             mysql_format(ourConnection, query, sizeof(query), "SELECT * FROM compensation_claims WHERE player_id = %d AND code = '%s'", PlayerInfo[playerid][E_CHARACTER_DBID], inputtext);
             mysql_pquery(ourConnection, query, "CompensationCallback", "ii", playerid, i);
         }
-        else
-        {
-            SendErrorMessage(playerid, "Invalid or not available compensation code at this time.");
-        }
+    }
+    else
+    {
+        SendErrorMessage(playerid, "Invalid or not available compensation code at this time.");
     }
     return 1;
 }

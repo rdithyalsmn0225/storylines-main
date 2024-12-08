@@ -787,18 +787,14 @@ public OnPlayerDeath(playerid, killerid, reason)
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && (gettime() - LastSpawn[playerid]) < 15 && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 	{
 		SendClientMessage(playerid, COLOR_RED, "Died at spawn.[Just logged in]");
-		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-		RespawnPlayer(playerid);
-		CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
+		CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
 	}
 	
 	if(reason == 51)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
-			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-			RespawnPlayer(playerid);
-			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
+			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
 			SendInfoMessage(playerid, "You has been killed by Exploded at %s.", ReturnLocationStreet(playerid));
 		}
 	}
@@ -806,8 +802,6 @@ public OnPlayerDeath(playerid, killerid, reason)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
-			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-			RespawnPlayer(playerid);
 			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
 			SendInfoMessage(playerid, "You has been killed by Helicopter Bladed at %s.", ReturnLocationStreet(playerid));
 		}
@@ -829,9 +823,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
-			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-			RespawnPlayer(playerid);
-			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
+			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
 			SendInfoMessage(playerid, "You has been killed by Splat at %s.", ReturnLocationStreet(playerid));
 		}	
 	}
@@ -839,9 +831,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{
-			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-			RespawnPlayer(playerid);
-			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
+			CallLocalFunction("OnPlayerWounded", "dud", playerid, playerid, 0);
 			SendInfoMessage(playerid, "You has been killed by Suicide at %s.", ReturnLocationStreet(playerid));
 		}
 	}
@@ -3212,6 +3202,14 @@ public OnPlayerSpawn(playerid)
 			PlayerInfo[playerid][E_CHARACTER_DIEUNKNOWN] = false;
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 		}
+		if(GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED && PlayerInfo[playerid][E_CHARACTER_INJURED])
+		{	
+			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
+		}
+		if(GetPlayerTeam(playerid) == PLAYER_STATE_DEAD && PlayerInfo[playerid][E_CHARACTER_DEATH])
+		{	
+			CallLocalFunction("OnPlayerDead", "dddd", playerid, playerid, 0, 0);
+		}
 		else SetPlayersSpawn(playerid); 
 	}
 
@@ -3270,12 +3268,7 @@ public OnPlayerUpdate(playerid)
 	{
 		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
-			CallLocalFunction("OnPlayerWounded", "dud", playerid, playerid, 0);
-			SendInfoMessage(playerid, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
-		}
-		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
-		{	
-			CallLocalFunction("OnPlayerWounded", "dud", playerid, playerid, 0);
+			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
 			SendInfoMessage(playerid, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
 		}
 	}

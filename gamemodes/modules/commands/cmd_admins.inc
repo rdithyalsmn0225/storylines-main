@@ -8,31 +8,31 @@ CMD:ahelp(playerid, params[])
 		
 	if(IsPlayerAdmins(playerid) >= 1)
 	{
-		SendClientMessage(playerid, COLOR_HEADER, "Staff Commands:");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /aduty, /forumname, /goto, /gethere, /bring, /a (achat), /showmain, /kick, /(o)ajail,"); 
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /rjail, /rprison, /setint, /setvw, /skin, /sethp, /setar, /reports, /ar (accept), /dr (disregard),"); 
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /slap, /mute, /freeze, /unfreeze, /spec, /specoff, /stats (id), /gotols, /respawncar, /respawnstatic,"); 
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Helper:{ffffff} /gotocar, /getcar, /listmasks, /aooc, /revive.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Staff Commands __________|");
+		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /aduty, /forumname, /goto, /gethere, /bring, /a (achat), /showmain, /kick, /(o)ajail,"); 
+		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /rjail, /rprison, /setint, /setvw, /skin, /sethp, /setar, /reports, /ar (accept), /dr (disregard),"); 
+		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /slap, /mute, /freeze, /unfreeze, /spec, /specoff, /stats (id), /gotols, /respawncar, /respawnstatic,"); 
+		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /gotocar, /getcar, /listmasks, /aooc, /revive.");
 	}
 	
 	if(IsPlayerAdmins(playerid) >= 2)
 	{
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{ffffff} /(o)ban, /unban, /armor, /clearreports, /p2p, /gotoproperty, /gotofaction, /gotoco,");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Admin:{ffffff} /gotobusiness, /noooc, /backup, /repair.");
+		SendClientMessage(playerid, COLOR_ORANGE, "Admin: /(o)ban, /unban, /armor, /clearreports, /p2p, /gotoproperty, /gotofaction, /gotoco,");
+		SendClientMessage(playerid, COLOR_ORANGE, "Admin: /gotobusiness, /noooc, /backup, /repair.");
 	}
 	if(IsPlayerAdmins(playerid) >= 3)
 	{
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /spawncar, /despawncar, /createpcar, /setstats, /setneeds, /givemoney.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /setcar, /setcarparams, /setpfaction, /setinv, /respawnpacket.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /randomfire, /destroyfire.");
+		SendClientMessage(playerid, COLOR_ORANGE, "Operator: /spawncar, /despawncar, /createpcar, /setstats, /setneeds, /givemoney.");
+		SendClientMessage(playerid, COLOR_ORANGE, "Operator: /setcar, /setcarparams, /setpfaction, /setinv, /respawnpacket.");
+		SendClientMessage(playerid, COLOR_ORANGE, "Operator: /randomfire, /destroyfire.");
 	}
 	if(IsPlayerAdmins(playerid) >= 4)
 	{
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createfaction, /editfaction, /createproperty, /editproperty.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createbusiness, /editbusiness, /gotomark.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createntrance, /editentrance, /createcourt, /editcourt.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /createtree, /edittree, /destroytree, /creategate, /editgate.");
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Owner:{ffffff} /destroygate.");
+		SendClientMessage(playerid, COLOR_ORANGE, "Owner: /createfaction, /editfaction, /createproperty, /editproperty.");
+		SendClientMessage(playerid, COLOR_ORANGE, "Owner: /createbusiness, /editbusiness, /gotomark.");
+		SendClientMessage(playerid, COLOR_ORANGE, "Owner: /createntrance, /editentrance, /createcourt, /editcourt.");
+		SendClientMessage(playerid, COLOR_ORANGE, "Owner: /createtree, /edittree, /destroytree, /creategate, /editgate.");
+		SendClientMessage(playerid, COLOR_ORANGE, "Owner: /destroygate, /createcode, /clearcode.");
 	}
 	 
 	return 1; 
