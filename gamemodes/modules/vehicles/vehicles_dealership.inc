@@ -12,12 +12,6 @@ InsertDealership()
 	CreateDynamic3DTextLabel("[Four Door Dealership]", COLOR_3DTEXT, 1629.6158,-1903.5123,13.5530, 5.0);
 	CreateDynamic3DTextLabel("[Industry Dealership]", COLOR_3DTEXT, 2684.1277,-2515.6733,13.1552, 5.0);
 	CreateDynamic3DTextLabel("[Taxi Dealership]", COLOR_3DTEXT, 666.1486,-1419.0734,14.0272, 5.0);
-
-	CreateDynamicMapIcon(684.6581,-1570.5861,14.2422, 55, 0, -1, -1, -1, 999999.0);
-	CreateDynamicMapIcon(2132.0190,-1149.9902,24.2088, 55, 0, -1, -1, -1, 999999.0);
-	CreateDynamicMapIcon(1629.6158,-1903.5123,13.5530, 55, 0, -1, -1, -1, 999999.0);
-	CreateDynamicMapIcon(2684.1277,-2515.6733,13.1552, 55, 0, -1, -1, -1, 999999.0);
-	CreateDynamicMapIcon(666.1486,-1419.0734,14.0272, 55, 0, -1, -1, -1, 999999.0);
 }
 
 CMD:dealership(playerid, params[])

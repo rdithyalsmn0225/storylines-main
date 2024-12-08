@@ -16,12 +16,14 @@
 
 | Changelogs |
 
-[+]
+[Additional]
 
-[x]
+[Changed]
 
-[*]
-
-[-]
+[Improvement]
+- 8BALL POOL Fixed.
+- Fixed Minor Bugs.
+[Remove]
+- Business MapIcon.
 
 */

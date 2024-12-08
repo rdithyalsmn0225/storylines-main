@@ -204,7 +204,6 @@ public OnGameModeInit()
 	InsertASGH();
 	InsertPrison();
 	InsertObjects();
-	InsertMapIcon();
 	InsertASGHMaps();
 	InsertModshops();
 	InsertSAFDMaps();
@@ -413,23 +412,42 @@ public OnPlayerDisconnect(playerid, reason)
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
     if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) Court_Refresh(PlayerInfo[playerid][E_CHARACTER_COURT]);
 	
-	if(PlayingPool[playerid])
+	if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid)
 	{
-		RestorePoolStick(PoolInfo[businessid][E_POOL_PLAYER1]);
-		RestorePoolStick(PoolInfo[businessid][E_POOL_PLAYER2]);
-		if(PoolInfo[businessid][E_POOL_PLAYER1] == playerid)
+		PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
+		DestroyDynamicObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
+	}
+	if(PoolInfo[businessid][E_POOL_STARTED])
+	{
+		foreach(new i : Player)
 		{
-			PoolInfo[businessid][E_POOL_PLAYER1] = -1;
-		}
-		if(PoolInfo[businessid][E_POOL_PLAYER2] == playerid)
-		{
-			PoolInfo[businessid][E_POOL_PLAYER2] = -1;
-		}
-		PlayingPool[playerid] = false;
-		if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
-		{
-			PoolInfo[businessid][E_POOL_STARTED] = false;
-			RespawnPoolBalls(0, businessid);
+			if(PlayingPool[i])
+			{
+				if(PoolInfo[businessid][E_POOL_PLAYERAIMER] != i)
+				{
+					PlayingPool[i] = false;
+
+					if(PoolInfo[businessid][E_POOL_PLAYER1] == i)
+					{
+						PoolInfo[businessid][E_POOL_PLAYER1] = -1;
+					}
+					if(PoolInfo[businessid][E_POOL_PLAYER2] == i)
+					{
+						PoolInfo[businessid][E_POOL_PLAYER2] = -1;
+					}
+
+					if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
+					{
+						PoolInfo[businessid][E_POOL_STARTED] = false;
+						RespawnPoolBalls(0, businessid);
+					}
+
+					PoolInfo[businessid][E_POOL_STARTED] = false;
+					RestorePoolStick(i);
+					HideHeaderMessage(i);
+					SendServerMessage(i, "[8Ball] {DEDEDE}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+				}
+			}
 		}
 	}
 

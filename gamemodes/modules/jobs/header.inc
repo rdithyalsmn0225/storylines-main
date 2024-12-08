@@ -194,12 +194,6 @@ stock InsertJobsPoint()
         JobsPickup[i] = CreateDynamicPickup(1210, 1, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], -1, -1, -1, 5.0);
         format(str, sizeof(str), "[%s]", JobsInfo[i][E_JOBSNAMES]);
         CreateDynamic3DTextLabel(str, COLOR_3DTEXT, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], 5.0);
-
-
-        CreateDynamicMapIcon(JobsInfo[1][E_JOBSPOSX], JobsInfo[1][E_JOBSPOSY], JobsInfo[1][E_JOBSPOSZ], 51, 0, -1, -1, -1, 999999.0);
-        CreateDynamicMapIcon(JobsInfo[2][E_JOBSPOSX], JobsInfo[2][E_JOBSPOSY], JobsInfo[2][E_JOBSPOSZ], 11, 0, -1, -1, -1, 999999.0);
-        CreateDynamicMapIcon(JobsInfo[3][E_JOBSPOSX], JobsInfo[3][E_JOBSPOSY], JobsInfo[3][E_JOBSPOSZ], 42, 0, -1, -1, -1, 999999.0);
-        CreateDynamicMapIcon(JobsInfo[4][E_JOBSPOSX], JobsInfo[4][E_JOBSPOSY], JobsInfo[4][E_JOBSPOSZ], 27, 0, -1, -1, -1, 999999.0);
     }
     return 1;
 }

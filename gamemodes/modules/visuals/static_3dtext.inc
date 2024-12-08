@@ -38,18 +38,3 @@ Insert3DTextLabel()
 
 	fittingRoomDoor = CreateDynamicObject(2877, 216.760360, -97.310455, 1005.337768, 0.0, 0.0, 360.0, .interiorid = 15);
 }
-
-InsertMapIcon()
-{
-	// SideJobs:
-	CreateDynamicMapIcon(1529.5608,-1849.4032,13.5469, 56, 0, -1, -1, -1, 999999.0);
-	CreateDynamicMapIcon(2748.7725,-2451.0012,13.6484, 56, 0, -1, -1, -1, 999999.0);
-	CreateDynamicMapIcon(860.7480,-1372.0948,13.5469, 56, 0, -1, -1, -1, 999999.0);
-	CreateDynamicMapIcon(1696.8093,-1527.8206,13.4835, 56, 0, -1, -1, -1, 999999.0);
-
-	//VehicleScrap:
-	CreateDynamicMapIcon(2412.9312,-1425.4226,23.9835, 23, 0, -1, -1, -1, 999999.0);
-
-	//Fish Factory:
-	CreateDynamicMapIcon(2610.7708,-2441.7927,13.6310, 9, 0, -1, -1, -1, 999999.0);
-}

@@ -33,23 +33,37 @@ function:OnPlayerWounded(playerid, killerid, reason)
 		PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
 		DestroyDynamicObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
 	}
-	if(PlayingPool[playerid])
+	if(PoolInfo[businessid][E_POOL_STARTED])
 	{
-		RestorePoolStick(PoolInfo[businessid][E_POOL_PLAYER1]);
-		RestorePoolStick(PoolInfo[businessid][E_POOL_PLAYER2]);
-		if(PoolInfo[businessid][E_POOL_PLAYER1] == playerid)
+		foreach(new i : Player)
 		{
-			PoolInfo[businessid][E_POOL_PLAYER1] = -1;
-		}
-		if(PoolInfo[businessid][E_POOL_PLAYER2] == playerid)
-		{
-			PoolInfo[businessid][E_POOL_PLAYER2] = -1;
-		}
-		PlayingPool[playerid] = false;
-		if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
-		{
-			PoolInfo[businessid][E_POOL_STARTED] = false;
-			RespawnPoolBalls(0, businessid);
+			if(PlayingPool[i])
+			{
+				if(PoolInfo[businessid][E_POOL_PLAYERAIMER] != i)
+				{
+					PlayingPool[i] = false;
+
+					if(PoolInfo[businessid][E_POOL_PLAYER1] == i)
+					{
+						PoolInfo[businessid][E_POOL_PLAYER1] = -1;
+					}
+					if(PoolInfo[businessid][E_POOL_PLAYER2] == i)
+					{
+						PoolInfo[businessid][E_POOL_PLAYER2] = -1;
+					}
+
+					if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
+					{
+						PoolInfo[businessid][E_POOL_STARTED] = false;
+						RespawnPoolBalls(0, businessid);
+					}
+
+					PoolInfo[businessid][E_POOL_STARTED] = false;
+					RestorePoolStick(i);
+					HideHeaderMessage(i);
+					SendServerMessage(i, "[8Ball] {DEDEDE}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+				}
+			}
 		}
 	}
 	
@@ -101,23 +115,37 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 		PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
 		DestroyDynamicObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
 	}
-	if(PlayingPool[playerid])
+	if(PoolInfo[businessid][E_POOL_STARTED])
 	{
-		RestorePoolStick(PoolInfo[businessid][E_POOL_PLAYER1]);
-		RestorePoolStick(PoolInfo[businessid][E_POOL_PLAYER2]);
-		if(PoolInfo[businessid][E_POOL_PLAYER1] == playerid)
+		foreach(new i : Player)
 		{
-			PoolInfo[businessid][E_POOL_PLAYER1] = -1;
-		}
-		if(PoolInfo[businessid][E_POOL_PLAYER2] == playerid)
-		{
-			PoolInfo[businessid][E_POOL_PLAYER2] = -1;
-		}
-		PlayingPool[playerid] = false;
-		if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
-		{
-			PoolInfo[businessid][E_POOL_STARTED] = false;
-			RespawnPoolBalls(0, businessid);
+			if(PlayingPool[i])
+			{
+				if(PoolInfo[businessid][E_POOL_PLAYERAIMER] != i)
+				{
+					PlayingPool[i] = false;
+
+					if(PoolInfo[businessid][E_POOL_PLAYER1] == i)
+					{
+						PoolInfo[businessid][E_POOL_PLAYER1] = -1;
+					}
+					if(PoolInfo[businessid][E_POOL_PLAYER2] == i)
+					{
+						PoolInfo[businessid][E_POOL_PLAYER2] = -1;
+					}
+
+					if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
+					{
+						PoolInfo[businessid][E_POOL_STARTED] = false;
+						RespawnPoolBalls(0, businessid);
+					}
+
+					PoolInfo[businessid][E_POOL_STARTED] = false;
+					RestorePoolStick(i);
+					HideHeaderMessage(i);
+					SendServerMessage(i, "[8Ball] {DEDEDE}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+				}
+			}
 		}
 	}
 	

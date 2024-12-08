@@ -113,10 +113,7 @@ stock BusinessRefresh(businessid)
 {
 	if(IsValidDynamicPickup(BusinessInfo[businessid][E_BUSINESS_PICKUP]))
 		DestroyDynamicPickup(BusinessInfo[businessid][E_BUSINESS_PICKUP]); 
-
-	if(IsValidDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_MAPICON]))
-		DestroyDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_MAPICON]); 
-			
+	
 	if(IsValidObject(BusinessInfo[businessid][E_BUSINESS_RDUMBELL]))
 		DestroyObject(BusinessInfo[businessid][E_BUSINESS_RDUMBELL]); 
 
@@ -199,11 +196,6 @@ stock BusinessRefresh(businessid)
 		{
 			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/fightstyle' to learn fightstyles.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
-	}
-
-	if(BusinessInfo[businessid][E_BUSINESS_TYPE] != BUSINESS_TYPE_ACID && BusinessInfo[businessid][E_BUSINESS_TYPE] != BUSINESS_TYPE_GUNSTORE)
-	{
-		BusinessInfo[businessid][E_BUSINESS_MAPICON] = CreateDynamicMapIcon(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], BusinessInfo[businessid][E_BUSINESS_MAPICONTYPE], 0, -1, -1, -1, 999999.0);
 	}
 	
 	BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_SKIN], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][0], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][1], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][2], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][3], false);

@@ -408,12 +408,6 @@ CMD:poolexit(playerid, params[])
 				{
 					PlayingPool[i] = false;
 
-					if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
-					{
-						PoolInfo[businessid][E_POOL_STARTED] = false;
-						RespawnPoolBalls(0, businessid);
-					}
-
 					if(PoolInfo[businessid][E_POOL_PLAYER1] == i)
 					{
 						PoolInfo[businessid][E_POOL_PLAYER1] = -1;
@@ -422,9 +416,17 @@ CMD:poolexit(playerid, params[])
 					{
 						PoolInfo[businessid][E_POOL_PLAYER2] = -1;
 					}
+
+					if(PoolInfo[businessid][E_POOL_PLAYER1] == -1 && PoolInfo[businessid][E_POOL_PLAYER1] == -1)
+					{
+						PoolInfo[businessid][E_POOL_STARTED] = false;
+						RespawnPoolBalls(0, businessid);
+					}
+
+					PoolInfo[businessid][E_POOL_STARTED] = false;
 					RestorePoolStick(i);
 					HideHeaderMessage(i);
-					SendServerMessage(i, "[8Ball] {DEDEDE}You has exit pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+					SendServerMessage(i, "[8Ball] {DEDEDE}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
 				}
 			}
 		}
