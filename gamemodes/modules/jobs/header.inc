@@ -11,6 +11,9 @@ stock StartMainJobs(playerid, type)
         {
             if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] == false) //Start
             {
+                if(PlayerInfo[playerid][E_CHARACTER_DOCKWORKERCD])
+                    return SendErrorMessage(playerid, "You cannot use this commands right now.");
+
                 PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = CreateVehicle(530, x, y, z, 0.0, 1, 1, 5000, 0);
                 VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_HEALTH] = 1000.0;
                 VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_FUEL] = 1000;
@@ -180,6 +183,15 @@ function:OnPlayerJobsUpdate()
             if(PlayerInfo[i][E_CHARACTER_BUSDRIVERCD] < 0)
             {
                 PlayerInfo[i][E_CHARACTER_BUSDRIVERCD] = 0;
+                SendServerMessage(i, "[Jobs] {DEDEDE}You can start {d7d292}Bus Driver{DEDEDE} SideJobs rightnow.");
+            }
+        }
+        if(PlayerInfo[i][E_CHARACTER_DOCKWORKERCD])
+        {
+            PlayerInfo[i][E_CHARACTER_DOCKWORKERCD]--;
+            if(PlayerInfo[i][E_CHARACTER_DOCKWORKERCD] < 0)
+            {
+                PlayerInfo[i][E_CHARACTER_DOCKWORKERCD] = 0;
                 SendServerMessage(i, "[Jobs] {DEDEDE}You can start {d7d292}Bus Driver{DEDEDE} SideJobs rightnow.");
             }
         }

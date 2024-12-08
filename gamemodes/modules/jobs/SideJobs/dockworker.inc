@@ -40,7 +40,7 @@ function:DockWorkers(playerid, type)
                     Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
                     KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
-                    SetPlayerNeeds(playerid, -0.2, -0.3);
+                    SetPlayerNeeds(playerid, -0.1, -0.2);
 
                     CrateObject[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]] = CreateDynamicObject(1221,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
                     AttachDynamicObjectToVehicle(CrateObject[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]], PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], 0.000, 0.630, 0.360, 0.000, 0.000, 0.000);
@@ -81,7 +81,13 @@ function:DockWorkers(playerid, type)
 
 	                GiveMoney(playerid, Cents);
 
-                    SetPlayerNeeds(playerid, -0.2, -0.3);
+                    SetPlayerNeeds(playerid, -0.1, -0.2);
+                    PlayerDockworkerLimit[playerid]++;
+                    if(PlayerDockworkerLimit[playerid] > 10)
+                    {
+                        PlayerDockworkerLimit[playerid] = 0;
+                        PlayerInfo[playerid][E_CHARACTER_DOCKWORKERCD] = 10;
+                    }
                     VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_CRATES] = 0;
                 }
             }

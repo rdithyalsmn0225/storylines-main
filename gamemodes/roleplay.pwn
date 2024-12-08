@@ -5565,12 +5565,13 @@ function:SaveCharacter(playerid)
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
 
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pJobs = %d, pJobsCD = %d, pSweeperCD = %d, pGarbageCD = %d, pBusdriverCD = %d,  pTutorial = %d, pEXP = %d WHERE char_dbid = %i",
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pJobs = %d, pJobsCD = %d, pSweeperCD = %d, pGarbageCD = %d, pBusdriverCD = %d, pDockworkerCD = %d,  pTutorial = %d, pEXP = %d WHERE char_dbid = %i",
 		PlayerInfo[playerid][E_CHARACTER_JOBS],
 		PlayerInfo[playerid][E_CHARACTER_JOBSCD],
 		PlayerInfo[playerid][E_CHARACTER_SWEEPERCD],
 		PlayerInfo[playerid][E_CHARACTER_GARBAGECD],
 		PlayerInfo[playerid][E_CHARACTER_BUSDRIVERCD],
+		PlayerInfo[playerid][E_CHARACTER_DOCKWORKERCD],
 		PlayerInfo[playerid][E_CHARACTER_TUTORIAL],
 		PlayerInfo[playerid][E_CHARACTER_EXP],
 		PlayerInfo[playerid][E_CHARACTER_DBID]);

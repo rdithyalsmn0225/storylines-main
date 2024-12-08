@@ -368,6 +368,7 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_int(0, "pSweeperCD", PlayerInfo[playerid][E_CHARACTER_SWEEPERCD]); 
 	cache_get_value_name_int(0, "pGarbageCD", PlayerInfo[playerid][E_CHARACTER_GARBAGECD]); 
 	cache_get_value_name_int(0, "pBusdriverCD", PlayerInfo[playerid][E_CHARACTER_BUSDRIVERCD]); 
+	cache_get_value_name_int(0, "pDockworkerCD", PlayerInfo[playerid][E_CHARACTER_DOCKWORKERCD]); 
 	cache_get_value_name_int(0, "pTutorial", PlayerInfo[playerid][E_CHARACTER_TUTORIAL]); 
 
 	new str[128];
