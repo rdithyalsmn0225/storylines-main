@@ -784,15 +784,12 @@ public OnPlayerDeath(playerid, killerid, reason)
         }
     }
 	
-	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && (gettime() - LastSpawn[playerid]) < 15 && reason >= 49 && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
+	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && (gettime() - LastSpawn[playerid]) < 15 && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 	{
 		SendClientMessage(playerid, COLOR_RED, "Died at spawn.[Just logged in]");
 		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-		SetPlayerHealthEx(playerid, 100.0);
-		SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
-		SetPlayerInterior(playerid, 0);
-		SetPlayerVirtualWorld(playerid, 0);
 		RespawnPlayer(playerid);
+		CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
 	}
 	
 	if(reason == 51)
@@ -800,8 +797,8 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
 			RespawnPlayer(playerid);
+			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
 			SendInfoMessage(playerid, "You has been killed by Exploded at %s.", ReturnLocationStreet(playerid));
 		}
 	}
@@ -810,8 +807,8 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
 			RespawnPlayer(playerid);
+			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
 			SendInfoMessage(playerid, "You has been killed by Helicopter Bladed at %s.", ReturnLocationStreet(playerid));
 		}
 	}
@@ -833,8 +830,8 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
 			RespawnPlayer(playerid);
+			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
 			SendInfoMessage(playerid, "You has been killed by Splat at %s.", ReturnLocationStreet(playerid));
 		}	
 	}
@@ -843,11 +840,8 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-			SetPlayerHealthEx(playerid, 100.0);
-			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
-			SetPlayerInterior(playerid, 0);
-			SetPlayerVirtualWorld(playerid, 0);
 			RespawnPlayer(playerid);
+			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
 			SendInfoMessage(playerid, "You has been killed by Suicide at %s.", ReturnLocationStreet(playerid));
 		}
 	}
@@ -5501,7 +5495,8 @@ function:SaveCharacterPos(playerid)
 		return 0;
 
 	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
-	
+	PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR] = GetPlayerInterior(playerid);
+	PlayerInfo[playerid][E_CHARACTER_LASTWORLD] = GetPlayerInterior(playerid);
 	GetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	GetPlayerArmour(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 
@@ -5509,8 +5504,8 @@ function:SaveCharacterPos(playerid)
 		PlayerInfo[playerid][E_CHARACTER_LASTPOS][0],
 		PlayerInfo[playerid][E_CHARACTER_LASTPOS][1],
 		PlayerInfo[playerid][E_CHARACTER_LASTPOS][2],
-		GetPlayerInterior(playerid),
-		GetPlayerVirtualWorld(playerid),
+		PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR],
+		PlayerInfo[playerid][E_CHARACTER_LASTWORLD],
 		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP],
 		PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ],
 		PlayerInfo[playerid][E_CHARACTER_INSIDEENT],
