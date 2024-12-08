@@ -1346,7 +1346,12 @@ CMD:time(playerid, params[])
 		format(string, sizeof(string), "~g~|~w~%02d:%02d~g~|", hour, minute);
 		
 	GameTextForPlayer(playerid, string, 2000, 1);
-	
+	return 1;
+}
+
+CMD:delay(playerid, params[]) return cmd_delays(playerid, params);
+CMD:delays(playerid, params[])
+{
 	SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Player(s) Cooldowns __________|");
 	SendClientMessageEx(playerid, COLOR_ORANGE, "ADMIN JAIL : %d minutes.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] * 60);
 	SendClientMessageEx(playerid, COLOR_ORANGE, "PRISON : %d minutes.", PlayerInfo[playerid][E_CHARACTER_PRISON] * 60);
@@ -1354,6 +1359,7 @@ CMD:time(playerid, params[])
 	SendClientMessageEx(playerid, COLOR_ORANGE, "STREET CLEANER : %d minutes.", PlayerInfo[playerid][E_CHARACTER_SWEEPERCD]);
 	SendClientMessageEx(playerid, COLOR_ORANGE, "GARBAGEMAN : %d minutes.", PlayerInfo[playerid][E_CHARACTER_GARBAGECD]);
 	SendClientMessageEx(playerid, COLOR_ORANGE, "BUS DRIVER : %d minutes.", PlayerInfo[playerid][E_CHARACTER_BUSDRIVERCD]);
+	SendClientMessageEx(playerid, COLOR_ORANGE, "DOCKWORKERS : %d minutes.", PlayerInfo[playerid][E_CHARACTER_DOCKWORKERCD]);
 	return 1;
 }
 
