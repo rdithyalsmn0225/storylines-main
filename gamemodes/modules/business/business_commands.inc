@@ -196,7 +196,7 @@ CMD:bizcash(playerid, params[])
 			new Cents = floatround(amount * 100, floatround_round);
 
     		GiveMoney(playerid, -Cents);
-			BusinessInfo[id][E_BUSINESS_CASH]+= Cents;
+			BusinessInfo[id][E_BUSINESS_CASH]-= Cents;
 			
 			SendInfoMessage(playerid, "You withdraw $%s from your business. (Total: $%s)", FormatMoney(Cents), FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]));
 			SaveBusiness(id); SaveCharacter(playerid);
@@ -413,7 +413,7 @@ CMD:editbusiness(playerid, params[])
 			
 		BusinessInfo[id][E_BUSINESS_STOCK] = products;
 		
-		SendInfoMessage(playerid, "You set business #%i's level to %i.", id, products);
+		SendInfoMessage(playerid, "You set business #%i's stock to %i.", id, products);
 		BusinessRefresh(id);
 		SaveBusiness(id);	
 	}

@@ -26,6 +26,7 @@ function:SetPlayerSkinAndExit(playerid, skinid)
 
 	BusinessInfo[businessid][E_BUSINESS_STOCK]--;
 	GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]);
+    BusinessInfo[businessid][E_BUSINESS_CASH]+= BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 	SaveCharacter(playerid);
     
     SetTimerEx("ExitFittingRoom", 2500, false, "i", playerid);
