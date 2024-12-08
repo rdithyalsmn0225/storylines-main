@@ -697,27 +697,14 @@ GetPlayerStreet(playerid, zone[], len)
 
 	for(new i = 0; i != sizeof(Streets); ++i)
 	{
-        if(x >= Streets[i][STREET_MINX] && x <= Streets[i][STREET_MAXX] && y >= Streets[i][STREET_MINY] && y <= Streets[i][STREET_MAXY])
-        {
-            return format(zone, len, Streets[i][STREET_NAME], 0);
-        }
+		if(x >= Streets[i][STREET_MINX] && x <= Streets[i][STREET_MAXX] &&
+		 	y >= Streets[i][STREET_MINY] && y <= Streets[i][STREET_MAXY])
+		{
+        	return format(zone, len, Streets[i][STREET_NAME], 0);
+		}
 	}
 	return format(zone, len, "", 0);
 }
-
-/*
-GetStreet(Float: x, Float: y, zone[], len)
-{
-	for(new i = 0; i != sizeof(Streets); ++i)
-	{
-        if(x >= Streets[i][STREET_AREA][0] && x <= Streets[i][STREET_AREA][2] && y >= Streets[i][STREET_AREA][1] && y <= Streets[i][STREET_AREA][3])
-        {
-            return format(zone, len, Streets[i][STREET_NAME], 0);
-        }
-	}
-	return format(zone, len, "", 0);
-}
-*/
 
 GetZoneName(Float:x, Float:y, Float:z)
 {

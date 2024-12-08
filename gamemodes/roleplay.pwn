@@ -811,7 +811,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
 		SetPlayerInterior(playerid, 0);
 		SetPlayerVirtualWorld(playerid, 0);
-		SpawnPlayer(playerid);
+		RespawnPlayer(playerid);
 	}
 	
 	if(reason == 51)
@@ -823,7 +823,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
 			SetPlayerInterior(playerid, 0);
 			SetPlayerVirtualWorld(playerid, 0);
-			SpawnPlayer(playerid);
+			RespawnPlayer(playerid);
 			SendInfoMessage(playerid, "You has been killed by Exploded at %s.", ReturnLocationStreet(playerid));
 		}
 	}
@@ -836,7 +836,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
 			SetPlayerInterior(playerid, 0);
 			SetPlayerVirtualWorld(playerid, 0);
-			SpawnPlayer(playerid);
+			RespawnPlayer(playerid);
 			SendInfoMessage(playerid, "You has been killed by Helicopter Bladed at %s.", ReturnLocationStreet(playerid));
 		}
 	}
@@ -849,7 +849,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
 			SetPlayerInterior(playerid, 0);
 			SetPlayerVirtualWorld(playerid, 0);
-			SpawnPlayer(playerid);
+			RespawnPlayer(playerid);
 			SendInfoMessage(playerid, "You has been killed by Drowning at %s.", ReturnLocationStreet(playerid));
 		}	
 	}
@@ -862,7 +862,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
 			SetPlayerInterior(playerid, 0);
 			SetPlayerVirtualWorld(playerid, 0);
-			SpawnPlayer(playerid);
+			RespawnPlayer(playerid);
 			SendInfoMessage(playerid, "You has been killed by Splat at %s.", ReturnLocationStreet(playerid));
 		}	
 	}
@@ -875,7 +875,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
 			SetPlayerInterior(playerid, 0);
 			SetPlayerVirtualWorld(playerid, 0);
-			SpawnPlayer(playerid);
+			RespawnPlayer(playerid);
 			SendInfoMessage(playerid, "You has been killed by Suicide at %s.", ReturnLocationStreet(playerid));
 		}
 	}
@@ -3251,6 +3251,7 @@ public OnPlayerSpawn(playerid)
 
 	if(!PlayerInfo[playerid][E_CHARACTER_TUTORIAL])
 	{
+		SetSpawnInfo(playerid, 0, PlayerInfo[playerid][E_CHARACTER_LASTSKIN], 1684.4392, 1771.6658, 10.8203, 270.0000, 0, 0, 0, 0, 0, 0);
 		TogglePlayerSpectating(playerid, true);
 		
 		InterpolateCameraPos(playerid, 1413.479736, -1727.495483, 32.772384, 1551.484497, -1726.705932, 32.781917, 8000, 1);

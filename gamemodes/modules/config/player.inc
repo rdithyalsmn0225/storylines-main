@@ -57,6 +57,23 @@ function:OnOfflineBan(playerid, banning[], dbid, masterdbid, reason[], date[])
 	return 1;
 }
 
+stock RespawnPlayer(playerid)
+{
+	if (IsPlayerInAnyVehicle(playerid))
+	{
+        new
+		    Float:x,
+		    Float:y,
+	    	Float:z;
+
+	    GetPlayerPos(playerid, x, y, z);
+	    SetPlayerPos(playerid, x, y, z + 1);
+	}
+	SpawnPlayer(playerid);
+	SetPlayersSpawn(playerid);
+	return 1;
+}
+
 function:SetPlayersSpawn(playerid)
 {
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] == SPAWN_POINT_LAST)
