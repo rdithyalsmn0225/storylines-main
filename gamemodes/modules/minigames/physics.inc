@@ -48,10 +48,12 @@ public PHY_OnObjectUpdate(objectid)
                             else
                                 balltype2 = "Unknown";
 
-                            format(string, sizeof(string), "You are %s. It's %s turn~n~~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d~n~~n~r~%s has %s balls~n~~b~%s has %s balls", 
-                            balltype1, ReturnName(PoolInfo[businessid][E_POOL_TURN]), ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], 
+                            format(string, sizeof(string), "It's %s's turn.~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d~n~~n~~r~%s has ~w~%s balls~n~~b~%s has ~w~%s balls", 
+                            ReturnName(PoolInfo[businessid][E_POOL_TURN]), 
+                            ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], 
                             ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE], 
-                            ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), balltype1, ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), balltype2);
+                            ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), balltype1, 
+                            ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), balltype2);
 
                             ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER1], "Pool: 8-Ball", string, 1);
                             ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER2], "Pool: 8-Ball", string, 1);
@@ -159,10 +161,12 @@ public PHY_OnObjectUpdate(objectid)
                                     else
                                         balltype2 = "Unknown";
 
-                                    format(string, sizeof(string), "You are %s. It's %s turn~n~~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d~n~~n~r~%s has %s balls~n~~b~%s has %s balls", 
-                                    balltype1, ReturnName(PoolInfo[businessid][E_POOL_TURN]), ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], 
+                                    format(string, sizeof(string), "It's %s's turn.~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d~n~~n~~r~%s has ~w~%s balls~n~~b~%s has ~w~%s balls", 
+                                    ReturnName(PoolInfo[businessid][E_POOL_TURN]), 
+                                    ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], 
                                     ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE], 
-                                    ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), balltype1, ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), balltype2);
+                                    ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), balltype1, 
+                                    ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), balltype2);
 
                                     ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER1], "Pool: 8-Ball", string, 1);
                                     ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER2], "Pool: 8-Ball", string, 1);
@@ -187,13 +191,28 @@ public PHY_OnObjectUpdate(objectid)
                             ? PoolInfo[businessid][E_POOL_PLAYER2]
                             : PoolInfo[businessid][E_POOL_PLAYER1]);
 
-                            new string[512], balltype[16];
-                            if(PlayerPoolBallType[ii] == 1) balltype = "Solid";
-                            else if(PlayerPoolBallType[ii] == 2) balltype = "Stripe";
-                            else balltype = "Unknown";
+                            new string[512], balltype1[16], balltype2[16];
 
-                            format(string, sizeof(string), "You are %s. It's %s turn~n~~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d", 
-                            balltype, ReturnName(PoolInfo[businessid][E_POOL_TURN]), ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
+                            if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 1)
+                                balltype1 = "Solid";
+                            else if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 2)
+                                balltype1 = "Stripe";
+                            else
+                                balltype1 = "Unknown";
+
+                            if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER2]] == 1)
+                                balltype2 = "Solid";
+                            else if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER2]] == 2)
+                                balltype2 = "Stripe";
+                            else
+                                balltype2 = "Unknown";
+
+                            format(string, sizeof(string), "It's %s's turn.~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d~n~~n~~r~%s has ~w~%s balls~n~~b~%s has ~w~%s balls", 
+                            ReturnName(PoolInfo[businessid][E_POOL_TURN]), 
+                            ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], 
+                            ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE], 
+                            ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), balltype1, 
+                            ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), balltype2);
 
                             ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER1], "Pool: 8-Ball", string, 1);
                             ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER2], "Pool: 8-Ball", string, 1);
@@ -275,10 +294,12 @@ public PHY_OnObjectUpdate(objectid)
                         else
                             balltype2 = "Unknown";
 
-                        format(string, sizeof(string), "You are %s. It's %s turn~n~~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d~n~~n~r~%s has %s balls~n~~b~%s has %s balls", 
-                        balltype1, ReturnName(PoolInfo[businessid][E_POOL_TURN]), ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], 
+                        format(string, sizeof(string), "It's %s's turn.~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d~n~~n~~r~%s has ~w~%s balls~n~~b~%s has ~w~%s balls", 
+                        ReturnName(PoolInfo[businessid][E_POOL_TURN]), 
+                        ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], 
                         ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE], 
-                        ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), balltype1, ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), balltype2);
+                        ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), balltype1, 
+                        ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), balltype2);
 
                         ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER1], "Pool: 8-Ball", string, 1);
                         ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER2], "Pool: 8-Ball", string, 1);

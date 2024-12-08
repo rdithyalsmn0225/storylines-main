@@ -195,21 +195,6 @@ function:PoolTimer(businessid)
 		SetTimerEx("RestoreCamera", 800, 0, "dd", PoolInfo[businessid][E_POOL_LASTSHOOTER], businessid);
 		PoolInfo[businessid][E_POOL_LASTSHOOTER] = -1;
 	}
-
-	new string[512], balltype[16];
-	if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 1) balltype = "Solid";
-	else if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 2) balltype = "Stripe";
-	else balltype = "Unknown";
-
-	if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER2]] == 1) balltype = "Solid";
-	else if(PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER2]] == 2) balltype = "Stripe";
-	else balltype = "Unknown";
-
-	format(string, sizeof(string), "You are %s. It's %s turn~n~~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d", 
-	balltype, ReturnName(PoolInfo[businessid][E_POOL_TURN]), ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
-
-	ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER1], "Pool: 8-Ball", string, 1);
-	ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER2], "Pool: 8-Ball", string, 1);
 	return 1;
 }
 
@@ -343,8 +328,8 @@ CMD:pool(playerid, params[])
     if (!IsPlayerInRangeOfPoint(playerb, 3.0, 510.0676574707, -85.232200622559, 998.86749267578))
         return SendErrorMessage(playerid, "The selected player is not near the pool table.");
 
-    if (playerb == playerid)
-    	return SendErrorMessage(playerid, "You can't start a pool game with yourself.");
+    //if (playerb == playerid)
+    //	return SendErrorMessage(playerid, "You can't start a pool game with yourself.");
 
     if (PoolInfo[businessid][E_POOL_STARTED])
         return SendErrorMessage(playerid, "There is already a game in progress at this table.");
@@ -360,6 +345,10 @@ CMD:pool(playerid, params[])
     PoolInfo[businessid][E_POOL_PLAYER1SCORE] = 0;
     PoolInfo[businessid][E_POOL_PLAYER2SCORE] = 0;
 
+	PoolInfo[businessid][E_POOL_TURN] = (PoolInfo[businessid][E_POOL_TURN] == PoolInfo[businessid][E_POOL_PLAYER1]
+	? PoolInfo[businessid][E_POOL_PLAYER2]
+	: PoolInfo[businessid][E_POOL_PLAYER1]);
+
     PoolInfo[businessid][E_POOL_STARTED] = true;
     RespawnPoolBalls(1, businessid);
 
@@ -371,7 +360,7 @@ CMD:pool(playerid, params[])
     SendServerMessage(playerid, "[8Ball] {DEDEDE}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), FormatMoney(Cents));
     SendServerMessage(playerb, "[8Ball] {DEDEDE}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), FormatMoney(Cents));
 
-    new string[512], balltype1[16], balltype2[16];
+    new string[1024], balltype1[16], balltype2[16];
 
 	if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 1)
 		balltype1 = "Solid";
@@ -387,14 +376,15 @@ CMD:pool(playerid, params[])
 	else
 		balltype2 = "Unknown";
 
-	format(string, sizeof(string), "You are %s. It's %s turn~n~~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d~n~~n~r~%s has %s balls~n~~b~%s has %s balls", 
-	balltype1, ReturnName(PoolInfo[businessid][E_POOL_TURN]), ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], 
-	ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE], 
-	ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), balltype1, ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), balltype2);
-
+	format(string, sizeof(string), "It's %s's turn.~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d~n~~n~~r~%s has ~w~%s balls~n~~b~%s has ~w~%s balls", 
+    ReturnName(PoolInfo[businessid][E_POOL_TURN]), 
+    ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], 
+    ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE], 
+    ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), balltype1, 
+    ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), balltype2);
+	
     ShowHeaderMessage(playerid, "Pool: 8-Ball", string, 1);
     ShowHeaderMessage(playerb, "Pool: 8-Ball", string, 1);
-
     return 1;
 }
 

@@ -213,6 +213,9 @@ stock SetPlayerHealthEx(playerid, Float:value)
     if(PlayerInfo[playerid][E_CHARACTER_HEALTH] > PlayerInfo[playerid][E_CHARACTER_MAXHEALTH])
     {
         PlayerInfo[playerid][E_CHARACTER_HEALTH] = PlayerInfo[playerid][E_CHARACTER_MAXHEALTH];
+    }
+    if(PlayerInfo[playerid][E_CHARACTER_HEALTH] == PlayerInfo[playerid][E_CHARACTER_MAXHEALTH])
+    {
         PlayerInfo[playerid][E_CHARACTER_BODYPART][0] = 100;
         PlayerInfo[playerid][E_CHARACTER_BODYPART][1] = 100;
         PlayerInfo[playerid][E_CHARACTER_BODYPART][2] = 100;

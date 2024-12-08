@@ -181,6 +181,40 @@ function:ResetPlayer(playerid)
 	for (new i = 0; i < MAX_LISTED_ITEMS; i ++) {
 	    NearestItems[playerid][i] = -1;
 	}
+
+	for (new i = 0; i < 4; i ++) {
+	    characterLister[playerid][i][0] = 0;
+	}
+	for (new i = 0; i != MAX_INVENTORY; i ++) {
+	    InventoryInfo[playerid][i][E_INVENTORY_EXISTS] = false;
+	    InventoryInfo[playerid][i][E_INVENTORY_MODEL] = 0;
+	    InventoryInfo[playerid][i][E_INVENTORY_QUANTITY] = 0;
+	}
+	for (new i = 0; i != MAX_CONTACTS; i ++) {
+	    ContactInfo[playerid][i][E_CONTACT_EXISTS] = false;
+	    ContactInfo[playerid][i][E_CONTACT_DBID] = 0;
+	    ContactInfo[playerid][i][E_CONTACT_NUMBER] = 0;
+	    ListedContacts[playerid][i] = -1;
+	}
+	for (new i = 0; i != MAX_TICKETS; i ++) {
+	    TicketInfo[playerid][i][E_TICKET_DBID] = 0;
+		TicketInfo[playerid][i][E_TICKET_EXISTS] = false;
+		TicketInfo[playerid][i][E_TICKET_FEE] = 0;
+	}
+	for(new i; i < 4; i++)
+	{
+		format(characterLister[playerid][i], 128, "");
+		characterSkin[playerid][i] = 0;
+		characterFaction[playerid][i] = 0;
+	}
+	for (new i = 0; i < sizeof(ReportInfo); i ++)
+	{
+		if(ReportInfo[i][E_REPORT_BY] == playerid)
+		{
+			ReportInfo[i][E_REPORT_EXISTS] = false; 
+			ReportInfo[i][E_REPORT_BY] = INVALID_PLAYER_ID;
+		}
+	}
 	
 	//Anticheat
 	CurrentHealthVar[playerid] = 0;
@@ -293,13 +327,6 @@ function:ResetPlayer(playerid)
 	KillTimer(ptmCBugFreezeOver[playerid]);
 	ptsLastFiredWeapon[playerid] = 0;
 
-	for(new i; i < 4; i++)
-	{
-		format(characterLister[playerid][i], 128, "");
-		characterSkin[playerid][i] = 0;
-		characterFaction[playerid][i] = 0;
-	}
-
 	//Offer
 	PlayerInfo[playerid][E_CHARACTER_FRISKOFFER] = INVALID_PLAYER_ID;
 	PlayerInfo[playerid][E_CHARACTER_SHAKEOFFER] = INVALID_PLAYER_ID;
@@ -315,6 +342,7 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = INVALID_VEHICLE_ID;
 
 	KillTimer(cameraTimer[playerid]);
+	KillTimer(PlayerEngineTimer[playerid]);
 	KillTimer(PlayerTimerGym[playerid]);
 	KillTimer(playerPhone[playerid]);
 	KillTimer(playerText[playerid]);
@@ -322,9 +350,18 @@ function:ResetPlayer(playerid)
 
 	PlayerInfo[playerid][E_CHARACTER_LOADING] = false;
     PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 0;
+	PlayerInfo[playerid][E_CHARACTER_SPAWNED] = false;
+	AccountInfo[playerid][E_MASTERS_LOGGED] = false;
 
     Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
     KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
+	ResetPlayerJump(playerid);
+
+	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
+	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
+    PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
+	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
+    if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
 	
     PlayerGymMachine[playerid] = -1;
     PlayerPointGym[playerid] = 0;  
@@ -355,8 +392,14 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
 
 	PlayerInfo[playerid][E_CHARACTER_TUTORIALSTEP] = 0;
-
 	ResetLotteryVar(playerid);
+	ResetBlackjack(playerid);
+
+	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
+	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
+    PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
+	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
+    if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) Court_Refresh(PlayerInfo[playerid][E_CHARACTER_COURT]);
 	return 1;
 }
 
@@ -517,24 +560,25 @@ stock ShowCharacterStats(playerid, playerb)
 			format(business_key, 20, "%d", BusinessInfo[i][E_BUSINESS_DBID]); 
 	}
 	
-	SendClientMessageEx(playerid, COLOR_DARKGREEN, "|______________________________ (%d) %s Statistics ______________________________|", playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
+	SendClientMessageEx(playerb, COLOR_DARKGREEN, "|______________________________ (%d) %s Statistics ______________________________|", playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
 	SendClientMessageEx(playerb, COLOR_WHITE, "[ACCOUNT]:{ffffff} [Masters: %s] - [Account: %s] - [Date: %s]", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());	
-	SendClientMessageEx(playerb, COLOR_GREY, "[SESSION]:{ffffff} [Gender: %s] [Level: %d] [EXP: %d/10] [Time played: %d hours]", gender, PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
-	SendClientMessageEx(playerb, COLOR_WHITE, "[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
-	SendClientMessageEx(playerb, COLOR_GREY, "[JOBS]:{ffffff} [Jobs: %s] [Skills: %s]", ReturnJobName(PlayerInfo[playerid][E_CHARACTER_JOBS]), ReturnJobSkill(playerid, PlayerInfo[playerid][E_CHARACTER_JOBS]));
-	SendClientMessageEx(playerb, COLOR_WHITE, "[KEYS]:{ffffff} VehicleKey:[%s] DuplicateKey:[%s] BusinessKey:[%s]", vehicle_key, duplicate_key, business_key);	
+	SendClientMessageEx(playerb, COLOR_GREY, "[PLAYERS]:{ffffff} [Health: %0.1f/%0.1f] - [Armour: %0.1f/100]", PlayerInfo[playerid][E_CHARACTER_HEALTH], PlayerInfo[playerid][E_CHARACTER_MAXHEALTH], PlayerInfo[playerid][E_CHARACTER_ARMOUR]);	
+	SendClientMessageEx(playerb, COLOR_WHITE, "[SESSION]:{ffffff} [Gender: %s] [Level: %d] [EXP: %d/10] [Time played: %d hours]", gender, PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
+	SendClientMessageEx(playerb, COLOR_GREY, "[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
+	SendClientMessageEx(playerb, COLOR_WHITE, "[JOBS]:{ffffff} [Jobs: %s] [Skills: %s]", ReturnJobName(PlayerInfo[playerid][E_CHARACTER_JOBS]), ReturnJobSkill(playerid, PlayerInfo[playerid][E_CHARACTER_JOBS]));
+	SendClientMessageEx(playerb, COLOR_GREY, "[KEYS]:{ffffff} VehicleKey:[%s] DuplicateKey:[%s] BusinessKey:[%s]", vehicle_key, duplicate_key, business_key);	
 	if(PlayerInfo[playerb][E_CHARACTER_FACTION])
 	{
-		SendClientMessageEx(playerb, COLOR_GREY, "[FACTION]:{ffffff} [Faction: %s] [Rank: %s]", ReturnFactionName(playerid), IsPlayerFactionRank(playerid));
+		SendClientMessageEx(playerb, COLOR_WHITE, "[FACTION]:{ffffff} [Faction: %s] [Rank: %s]", ReturnFactionName(playerid), IsPlayerFactionRank(playerid));
 	}
 	
 	if(PlayerInfo[playerb][E_CHARACTER_ADMINDUTY])
 	{
-		SendClientMessageEx(playerb, COLOR_WHITE, "[FOR ADMIN]: DBID:[%d] Master:[%s (%d)] Interior:[%d] Local:[%d]", PlayerInfo[playerid][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID], GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid));
+		SendClientMessageEx(playerb, COLOR_GREY, "[FOR ADMIN]: DBID:[%d] Master:[%s (%d)] Interior:[%d] Local:[%d]", PlayerInfo[playerid][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID], GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid));
 		
-		SendClientMessageEx(playerb, COLOR_GREY, "[CONNECTION]: IP:[%s] Last Online:[%s] Duration:[%d Minutes]", ReturnIP(playerid), ReturnLastOnline(playerid), PlayerInfo[playerid][E_CHARACTER_LASTONLINE]);
+		SendClientMessageEx(playerb, COLOR_WHITE, "[CONNECTION]: IP:[%s] Last Online:[%s] Duration:[%d Minutes]", ReturnIP(playerid), ReturnLastOnline(playerid), PlayerInfo[playerid][E_CHARACTER_LASTONLINE]);
 		
-		SendClientMessageEx(playerb, COLOR_WHITE, "[MISC]: InsideProperty:[%i] InsideBusiness:[%i]", IsPlayerInProperty(playerid), IsPlayerInBusiness(playerid)); 
+		SendClientMessageEx(playerb, COLOR_GREY, "[MISC]: InsideProperty:[%i] InsideBusiness:[%i]", IsPlayerInProperty(playerid), IsPlayerInBusiness(playerid)); 
 	}
 	SendTipMessage(playerb, "To see your inventory type '/inventory' or press 'Y'.");
 	SendTipMessage(playerb, "To see your vehicles type '/mycars'.");

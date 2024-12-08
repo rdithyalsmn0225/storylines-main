@@ -507,7 +507,6 @@ CMD:carradio(playerid, params[])
     return 1;
 }
 
-new PlayerEngineTimer[MAX_PLAYERS], PlayerEngineValue[MAX_PLAYERS];
 CMD:en(playerid, params[]) return cmd_engine(playerid, params);
 CMD:carengine(playerid, params[]) return cmd_engine(playerid, params);
 CMD:engine(playerid, params[])

@@ -588,7 +588,7 @@ CMD:sethp(playerid, params[])
 		return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
 		
 	if(health > PlayerInfo[playerb][E_CHARACTER_MAXHEALTH])
-		return SendErrorMessage(playerid, "You can't set health over 150."); 
+		return SendErrorMessage(playerid, "You can't set health over maxhealth."); 
 
 	if(health < 10)
 	{

@@ -27,6 +27,7 @@
 #include <physics>
 #include <rSelection>
 #include <map-zones>
+#include <PawnPlus>
 #include <Pawn.RakNet>
 #include <compat>
 
@@ -218,7 +219,7 @@ public OnGameModeInit()
 	InsertStaticArea();
 	Insert3DTextLabel();
 	InsertAcidGunLabs();
-	InsertProjectProp();
+	//InsertProjectProp();
 	InsertAlhambraMaps();
 	InsertSidejobsMaps();
 	InsertDocksWorkers();
@@ -288,6 +289,10 @@ public OnGameModeInit()
 
 public OnGameModeExit()
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnGameModeExit called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
+
 	foreach (new i : Player)
 	{
 		SetPlayerName(i, AccountInfo[i][E_MASTERS_ACCNAME]);
@@ -315,6 +320,10 @@ public OnGameModeExit()
 
 public OnPlayerConnect(playerid)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerConnect called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
+
 	g_RaceCheck{playerid}++;
 	PlayAudioStreamForPlayer(playerid, "https://e.top4top.io/m_3254pyq011.mp3");
 
@@ -377,41 +386,29 @@ public OnPlayerConnect(playerid)
 		PlayerInfo[playerid][E_CHARACTER_ROBBERYACTOR] = -1;
 		PlayerInfo[playerid][E_CHARACTER_HASROBBIZ] = false;
 	}
-
-	if (!AccountInfo[playerid][E_MASTERS_LOGGED])
-	{
-		TogglePlayerSpectating(playerid, true);
-		SetTimerEx("LoginTimer", 500, false, "ii", playerid, g_RaceCheck{playerid});
-	}
 	return 1;
 }
 
 public OnPlayerDisconnect(playerid, reason)
 {
-	NameTagsDisconnect(playerid);
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerDisconnect called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
 
-	for (new i = 0; i < sizeof(ReportInfo); i ++)
+	NameTagsDisconnect(playerid);
+	ResetPlayer(playerid);
+
+	new playerTime = NetStats_GetConnectedTime(playerid);
+	new secondsConnection = (playerTime % (1000*60*60)) / (1000*60);
+	
+	PlayerInfo[playerid][E_CHARACTER_LASTONLINE] = secondsConnection;
+
+	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true && PlayerInfo[playerid][E_CHARACTER_TUTORIAL])
 	{
-		if(ReportInfo[i][E_REPORT_BY] == playerid)
-		{
-			ReportInfo[i][E_REPORT_EXISTS] = false; 
-			ReportInfo[i][E_REPORT_BY] = INVALID_PLAYER_ID;
-		}
+		SaveCharacter(playerid); SaveCharacterPos(playerid);
 	}
 
 	new businessid = IsPlayerInBusiness(playerid);
-	if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid)
-	{
-		PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
-		DestroyDynamicObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
-	}
-
-	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
-	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
-    PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
-	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
-    if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) Court_Refresh(PlayerInfo[playerid][E_CHARACTER_COURT]);
-	
 	if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid)
 	{
 		PoolInfo[businessid][E_POOL_PLAYERAIMER] = -1;
@@ -451,13 +448,6 @@ public OnPlayerDisconnect(playerid, reason)
 		}
 	}
 
-	if(blackjackInProgress[playerid])
-	{
-		ResetBlackjack(playerid);
-	}
-
-	ResetLotteryVar(playerid);
-
 	if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == true)
 	{
 		new Float:x, Float:y, Float:z;
@@ -483,38 +473,6 @@ public OnPlayerDisconnect(playerid, reason)
 			SendClientMessage(i, COLOR_FACTION, "Your faction invitation was disregarded. Your inviter disconnected.");
 		}
 	}
-
-	
-
-	new playerTime = NetStats_GetConnectedTime(playerid);
-	new secondsConnection = (playerTime % (1000*60*60)) / (1000*60);
-	
-	PlayerInfo[playerid][E_CHARACTER_LASTONLINE] = secondsConnection;
-
-	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true && PlayerInfo[playerid][E_CHARACTER_TUTORIAL])
-	{
-		SaveCharacter(playerid); SaveCharacterPos(playerid);
-	}
-
-	KillTimer(cameraTimer[playerid]);
-	KillTimer(PlayerEngineTimer[playerid]);
-	KillTimer(PlayerTimerGym[playerid]);
-	KillTimer(playerPhone[playerid]);
-	KillTimer(playerText[playerid]);
-	KillTimer(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_LOADINGTIMER]);
-
-	PlayerInfo[playerid][E_CHARACTER_LOADING] = false;
-    PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 0;
-
-    Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
-    KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
-	ResetPlayerJump(playerid);
-
-	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
-	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
-    PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
-	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
-    if(PlayerInfo[playerid][E_CHARACTER_HAVEBALL]) CourtInfo[PlayerInfo[playerid][E_CHARACTER_COURT]][E_BALLER] = 999;
 
 	if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK])
     {
@@ -544,11 +502,16 @@ public OnPlayerDisconnect(playerid, reason)
 	    case 1: SendNearbyMessage(playerid, 20.0, COLOR_DARKGREEN, "** %s has left the GTA Storylines. (Leaving)", ReturnName(playerid));
 	    case 2: SendNearbyMessage(playerid, 20.0, COLOR_DARKGREEN, "** %s has left the GTA Storylines. (Kicked)", ReturnName(playerid));
 	}
+
 	return 1; 
 }
 
 public OnPlayerEnterRaceCheckpoint(playerid)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerEnterRaceCheckpoint called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
+
 	new vehicleid = GetPlayerVehicleID(playerid);
 	if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {
@@ -682,6 +645,10 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 public OnPlayerEnterDynamicArea(playerid, areaid)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerEnterDynamicArea called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
+	
 	if (GetPlayerState(playerid) == PLAYER_STATE_ONFOOT) 
 	{
 		for(new i = 0; i < sizeof(sc_VendingMachines); i++) 
@@ -726,6 +693,10 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 
 public OnPlayerLeaveDynamicArea(playerid, areaid)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnLeaveDynamicArea called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
+
 	if (GetPlayerState(playerid) == PLAYER_STATE_ONFOOT) 
 	{
 		for(new i = 0; i < sizeof(sc_VendingMachines); i++) 
@@ -746,7 +717,16 @@ public OnPlayerRequestClass(playerid, classid)
 	#if defined DEBUG_MODE
 		printf("Callback OnPlayerRequestClass called for player %s (ID: %i)", ReturnName(playerid), playerid); 
 	#endif
-    return 0;
+
+	if (IsPlayerNPC(playerid))
+	    return 1;
+
+	if (!AccountInfo[playerid][E_MASTERS_LOGGED])
+	{
+		TogglePlayerSpectating(playerid, true);
+		SetTimerEx("LoginTimer", 500, false, "ii", playerid, g_RaceCheck{playerid});
+	}
+    return 1;
 }
 
 public OnPlayerRequestSpawn(playerid)
@@ -754,6 +734,7 @@ public OnPlayerRequestSpawn(playerid)
 	#if defined DEBUG_MODE
 		printf("Callback OnPlayerRequestSpawn called for player %s (ID: %i)", ReturnName(playerid), playerid); 
 	#endif
+
     if (!IsPlayerAdmin(playerid))
     {
 		SendErrorMessage(playerid, "You don't have permission to using Spawn Button");
@@ -819,10 +800,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-			SetPlayerHealthEx(playerid, 100.0);
-			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
-			SetPlayerInterior(playerid, 0);
-			SetPlayerVirtualWorld(playerid, 0);
+			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
 			RespawnPlayer(playerid);
 			SendInfoMessage(playerid, "You has been killed by Exploded at %s.", ReturnLocationStreet(playerid));
 		}
@@ -832,10 +810,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-			SetPlayerHealthEx(playerid, 100.0);
-			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
-			SetPlayerInterior(playerid, 0);
-			SetPlayerVirtualWorld(playerid, 0);
+			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
 			RespawnPlayer(playerid);
 			SendInfoMessage(playerid, "You has been killed by Helicopter Bladed at %s.", ReturnLocationStreet(playerid));
 		}
@@ -858,10 +833,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
-			SetPlayerHealthEx(playerid, 100.0);
-			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
-			SetPlayerInterior(playerid, 0);
-			SetPlayerVirtualWorld(playerid, 0);
+			CallLocalFunction("OnPlayerWounded", "dud", playerid, killerid, reason);
 			RespawnPlayer(playerid);
 			SendInfoMessage(playerid, "You has been killed by Splat at %s.", ReturnLocationStreet(playerid));
 		}	
@@ -4311,6 +4283,11 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	new businessid = IsPlayerInBusiness(playerid);
 	if(PoolInfo[businessid][E_POOL_STARTED] && PlayingPool[playerid])
 	{
+		if(GetPlayerPing(playerid) > 100) 
+		{
+			SendClientMessage(playerid, COLOR_YELLOW, "Due to your high ping (100+), the game may desync. If this occurs please leave the game A.S.A.P. or contact an admin." ) ;
+		}
+
 		if(IsKeyJustUp(KEY_SECONDARY_ATTACK, newkeys, oldkeys))
 		{
 			if(!PlayerUsingChalk[playerid])

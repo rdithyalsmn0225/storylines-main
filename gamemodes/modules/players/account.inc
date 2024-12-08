@@ -415,6 +415,7 @@ function:Query_LoadCharacter(playerid)
 	
 	TogglePlayerControllable(playerid, false);
 	new string[2024];
+	
 	for(new a; a < 9; a++)
 	{
 		format(string, sizeof(string), "%s\t#%d\t%s\t{33AA33}PUBLIC{ffffff}\n", string, a, GetZoneName(BusStop_Index[a][0], BusStop_Index[a][1], BusStop_Index[a][2]));

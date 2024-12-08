@@ -95,6 +95,14 @@ function:OnPlayerUpdateEx()
 				PlayerInfo[playerid][E_CHARACTER_THIRSTY] = 0;
 			}
 
+			for(new i; i < 8; i++)
+			{
+				if(PlayerInfo[playerid][E_CHARACTER_WOUND][i] < 0)
+				{
+					PlayerInfo[playerid][E_CHARACTER_WOUND][i] = 0;
+				}
+			}
+
 			if (PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] == true)
 			{
 				PlayerInfo[playerid][E_CHARACTER_ADMINJAIL]--; 
