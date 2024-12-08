@@ -91,11 +91,6 @@ stock RespawnPoolBalls(init = 0, businessid)
 		DestroyObject(PoolInfo[businessid][E_POOL_AIMOBJECT]);
 	}
 
-	PoolInfo[businessid][E_POOL_PLAYER1] = -1;
-	PoolInfo[businessid][E_POOL_PLAYER2] = -1;
-	PoolInfo[businessid][E_POOL_PLAYER1SCORE] = 0;
-	PoolInfo[businessid][E_POOL_PLAYER2SCORE] = 0;
-
 	if(init)
 	{
 		CreateBalls(businessid);
@@ -326,17 +321,14 @@ function:PlayPoolSound(soundid)
 	return 1;
 }
 CMD:pool(playerid, params[])
-{
-	if(!IsPlayerInBusiness(playerid))
-		return 0;
-		
+{		
     new playerb;
     new businessid = IsPlayerInBusiness(playerid);
 
-    if (sscanf(params, "u", playerb))
+    if (sscanf(params, "d", playerb))
         return SendUsageMessage(playerid, "/pool [playerid(opponent)]");
 
-    if (!IsPlayerConnected(playerb)) // Pastikan lawan terhubung ke server
+    if (!IsPlayerConnected(playerb))
         return SendErrorMessage(playerid, "The selected player is not connected.");
 
     if (!IsPlayerInBusiness(playerid))
@@ -376,8 +368,8 @@ CMD:pool(playerid, params[])
     GiveMoney(playerb, -Cents);
     BusinessInfo[businessid][E_BUSINESS_CASH] += Cents * 2;
 
-    SendServerMessage(playerid, "[8Ball] {DEDEDE}You have started a pool game at %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
-    SendServerMessage(playerb, "[8Ball] {DEDEDE}You have started a pool game at %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(Cents));
+    SendServerMessage(playerid, "[8Ball] {DEDEDE}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), FormatMoney(Cents));
+    SendServerMessage(playerb, "[8Ball] {DEDEDE}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), FormatMoney(Cents));
 
     new string[512], balltype[16];
 
@@ -385,7 +377,7 @@ CMD:pool(playerid, params[])
     else if (PlayerPoolBallType[playerid] == 2) format(balltype, sizeof(balltype), "Stripe");
     else format(balltype, sizeof(balltype), "Unknown");
 
-    format(string, sizeof(string), "You are %s. It's %s's turn.\n\n~r~%s's score: ~w~%d\n~b~%s's score: ~w~%d", balltype, ReturnName(PoolInfo[businessid][E_POOL_TURN]),ReturnName(playerid), PoolInfo[businessid][E_POOL_PLAYER1SCORE],ReturnName(playerb), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
+    format(string, sizeof(string), "You are %s. It's %s's turn.\n\n~r~%s's score: ~w~%d\n~b~%s's score: ~w~%d", balltype, ReturnName(PoolInfo[businessid][E_POOL_TURN]),ReturnName(playerid), PoolInfo[businessid][E_POOL_PLAYER1SCORE], ReturnName(playerb), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
 
     ShowHeaderMessage(playerid, "Pool: 8-Ball", string, 1);
     ShowHeaderMessage(playerb, "Pool: 8-Ball", string, 1);
@@ -437,13 +429,5 @@ CMD:poolexit(playerid, params[])
 			}
 		}
 	}
-	return 1;
-}
-
-CMD:test(playerid, params[])
-{
-	SendServerMessage(playerid, "%s", ReturnName(PoolInfo[IsPlayerInBusiness(playerid)][E_POOL_PLAYER1]));
-	SendServerMessage(playerid, "%s", ReturnName(PoolInfo[IsPlayerInBusiness(playerid)][E_POOL_PLAYER2]));
-	SendServerMessage(playerid, "%s", ReturnName(PoolInfo[IsPlayerInBusiness(playerid)][E_POOL_TURN]));
 	return 1;
 }
