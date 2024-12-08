@@ -15,7 +15,7 @@
 #endif
 
 #define SERVER_NAME "Storylines Roleplay | Idlestreet Los Santos"
-#define SCRIPT_REV "IDLS v1.0 Rev"
+#define SCRIPT_REV "IDLS v1.0.1 Rev"
 #define PLAYER_MOTD "Please read the rules first!"
 
 #define PRESSED(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))

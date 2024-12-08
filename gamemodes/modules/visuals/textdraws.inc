@@ -52,9 +52,9 @@ new PlayerBar:speedobar[MAX_PLAYERS];
 
 stock CreateTextdraws(playerid)
 {
-	servername[playerid] = CreatePlayerTextDraw(playerid, 320.000000, 440.000000, "GTA Storylines - ~y~Roleplay~w~ v1.12.1");
+	servername[playerid] = CreatePlayerTextDraw(playerid, 320.000000, 436.000000, "GTA Storylines - ~b~Roleplay v1.0");
 	PlayerTextDrawFont(playerid, servername[playerid], 1);
-	PlayerTextDrawLetterSize(playerid, servername[playerid], 0.141661, 0.749996);
+	PlayerTextDrawLetterSize(playerid, servername[playerid], 0.179159, 0.849995);
 	PlayerTextDrawTextSize(playerid, servername[playerid], 502.500000, 306.500000);
 	PlayerTextDrawSetOutline(playerid, servername[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, servername[playerid], 0);
@@ -644,13 +644,13 @@ CreateNotificationTextDraws(playerid)
 
 	Subtittles[playerid] = CreatePlayerTextDraw(playerid, 321.000000, 376.000000, "The engine of this vehicle is off.~n~Use /engine to turn it on or /hotwire to hotwire it.");
 	PlayerTextDrawFont(playerid, Subtittles[playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Subtittles[playerid], 0.291658, 1.599992);
+	PlayerTextDrawLetterSize(playerid, Subtittles[playerid], 0.291658, 1.149992);
 	PlayerTextDrawTextSize(playerid, Subtittles[playerid], 502.500000, 306.500000);
 	PlayerTextDrawSetOutline(playerid, Subtittles[playerid], 0);
-	PlayerTextDrawSetShadow(playerid, Subtittles[playerid], 0);
+	PlayerTextDrawSetShadow(playerid, Subtittles[playerid], 1);
 	PlayerTextDrawAlignment(playerid, Subtittles[playerid], 2);
 	PlayerTextDrawColor(playerid, Subtittles[playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, Subtittles[playerid], -741092353);
+	PlayerTextDrawBackgroundColor(playerid, Subtittles[playerid], 255);
 	PlayerTextDrawBoxColor(playerid, Subtittles[playerid], 50);
 	PlayerTextDrawUseBox(playerid, Subtittles[playerid], 0);
 	PlayerTextDrawSetProportional(playerid, Subtittles[playerid], 1);
@@ -701,7 +701,7 @@ CreateNotificationTextDraws(playerid)
 
 CreateHUDTextDraws(playerid)
 {
-	Street[0][playerid] = CreatePlayerTextDraw(playerid, 543.000000, 418.000000, "South North~n~~y~SW");
+	Street[0][playerid] = CreatePlayerTextDraw(playerid, 519.000000, 418.000000, "South North~n~~y~SW");
 	PlayerTextDrawFont(playerid, Street[0][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, Street[0][playerid], 0.212491, 1.199998);
 	PlayerTextDrawTextSize(playerid, Street[0][playerid], 400.000000, 93.500000);
@@ -715,9 +715,9 @@ CreateHUDTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, Street[0][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, Street[0][playerid], 0);
 
-	Street[1][playerid] = CreatePlayerTextDraw(playerid, 602.000000, 408.000000, "Westmont Avenue~n~El Corona~n~Los Santos");
+	Street[1][playerid] = CreatePlayerTextDraw(playerid, 584.000000, 408.000000, "Westmont Avenue~n~El Corona~n~Los Santos");
 	PlayerTextDrawFont(playerid, Street[1][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Street[1][playerid], 0.199990, 1.249994);
+	PlayerTextDrawLetterSize(playerid, Street[1][playerid], 0.191656, 1.049994);
 	PlayerTextDrawTextSize(playerid, Street[1][playerid], 400.000000, 93.500000);
 	PlayerTextDrawSetOutline(playerid, Street[1][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, Street[1][playerid], 0);

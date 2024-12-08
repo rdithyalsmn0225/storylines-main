@@ -32,10 +32,10 @@ function:BusDrivers(playerid, type)
                     SetPlayerNeeds(playerid, -0.2, -0.3);
 
                     new gstr[128];
-                    format(gstr, sizeof(gstr),"~w~Passanger Entering~n~~r~%i~w~/~g~34", PlayerBusDriverIndex[playerid]);
+                    format(gstr, sizeof(gstr),"~w~Passanger Entering~n~~r~%i~w~/~g~22", PlayerBusDriverIndex[playerid]);
                     ShowBoxMessage(playerid, gstr, 5);
                     
-                    if(PlayerBusDriverIndex[playerid] == 33)
+                    if(PlayerBusDriverIndex[playerid] == 21)
                     {
                         new randx = randomEx(3, 5);
                         new total = (PlayerBusDriverIndex[playerid] * randx);

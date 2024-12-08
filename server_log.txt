@@ -14935,3 +14935,1533 @@ Console input: exit
 [09:33:29] = Unloaded!            =
 [09:33:29] ========================
 [09:33:29] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[10:03:01] filterscripts = ""  (string)
+[10:03:01] 
+[10:03:01] Server Plugins
+[10:03:01] --------------
+[10:03:01]  Loading plugin: mysql
+[10:03:01]  >> plugin.mysql: R41-4 successfully loaded.
+[10:03:01]   Loaded.
+[10:03:01]  Loading plugin: sscanf
+[10:03:01] 
+
+[10:03:01]  ===============================
+
+[10:03:01]       sscanf plugin loaded.     
+
+[10:03:01]          Version:  2.8.2        
+
+[10:03:01]    (c) 2012 Alex "Y_Less" Cole  
+
+[10:03:01]  ===============================
+
+[10:03:01]   Loaded.
+[10:03:01]  Loading plugin: streamer
+[10:03:01] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[10:03:01]   Loaded.
+[10:03:01]  Loading plugin: timerfix
+[10:03:01]   >> TimerFix v1.4 successfully loaded.
+[10:03:01]   Loaded.
+[10:03:01]  Loading plugin: pawn-memory
+[10:03:01] ========================
+[10:03:01] = Memory access plugin =
+[10:03:01] =       Made by BigETI =
+[10:03:01] = Loaded!              =
+[10:03:01] ========================
+[10:03:01]   Loaded.
+[10:03:01]  Loading plugin: pawnraknet
+[10:03:01] [Pawn.RakNet] plugin v1.6.0 loading...
+[10:03:01] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[10:03:01]   Loaded.
+[10:03:01]  Loading plugin: samp-compat
+[10:03:01]   -- samp-compat for 0.3.DL-R1 initialized
+[10:03:01]   Loaded.
+[10:03:01]  Loaded 7 plugins.
+
+[10:03:01] 
+[10:03:01] Filterscripts
+[10:03:01] ---------------
+[10:03:01]   Loaded 0 filterscripts.
+
+[10:03:01] [DATABASE]: Connection established to 'storylines'...
+[10:03:01] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[10:03:01] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[10:03:01] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[10:03:01] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[10:03:01] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[10:03:01] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[10:03:01] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[10:03:01] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[10:03:01] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[10:03:01] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[10:03:01] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[10:03:01] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[10:03:01] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[10:03:01] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[10:03:01] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[10:03:01] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[10:03:01] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[10:03:01] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[10:03:01] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[10:03:01] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[10:03:01] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[10:03:01] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[10:03:01] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[10:03:01] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[10:03:01] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[10:03:01] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[10:03:01] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[10:03:01] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[10:03:01] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[10:03:01] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[10:03:01] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[10:03:01] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[10:03:01] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[10:03:01] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[10:03:01] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[10:03:01] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[10:03:01] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[10:03:01] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[10:03:01] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[10:03:01] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[10:03:01] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[10:03:01] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[10:03:01] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[10:03:01] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[10:03:01] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[10:03:01] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[10:03:01] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[10:03:01] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[10:03:01] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[10:03:01] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[10:03:01] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[10:03:01] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[10:03:01] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[10:03:01] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[10:03:01] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[10:03:01] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[10:03:01] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[10:03:01] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[10:03:01] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[10:03:01] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[10:03:01] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[10:03:01] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[10:03:01] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[10:03:01] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[10:03:01] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[10:03:01] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[10:03:01] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[10:03:01] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[10:03:01] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[10:03:01] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[10:03:01] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[10:03:01] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[10:03:01] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[10:03:01] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[10:03:01] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[10:03:01] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[10:03:01] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[10:03:01] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[10:03:01] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[10:03:01] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[10:03:01] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[10:03:02] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[10:03:02] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[10:03:02] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[10:03:02] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[10:03:02] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[10:03:02] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[10:03:02] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[10:03:02] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[10:03:02] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[10:03:02] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[10:03:02] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[10:03:02] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[10:03:02] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[10:03:02] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[10:03:02] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[10:03:02] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[10:03:02] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[10:03:02] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[10:03:02] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[10:03:02] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[10:03:02] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[10:03:02] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[10:03:02] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[10:03:02] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[10:03:02] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[10:03:02] Number of vehicle models: 17
+[10:03:02] [SERVER]: 4 entrance were loaded from "storylines" database...
+[10:03:02] [SERVER]: 2 factions were loaded from "storylines" database...
+[10:03:02] [SERVER]: 9 businesses were loaded from "storylines" database...
+[10:03:02] [SERVER]: 2 properties were loaded from "storylines" database...
+[10:03:02] [SERVER]: No compensation were loaded from "storylines" database...
+[10:03:02] [SERVER]: 17 tree were loaded from "storylines" database...
+[10:03:02] [SERVER]: 6 gates were loaded from "storylines" database...
+[10:03:02] [SERVER]: 4 court were loaded from "storylines" database...
+[10:03:02] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[10:03:02] [SERVER]: 0 property storage were loaded from "storylines" database...
+[10:03:02] [SERVER]: 0 property storage were loaded from "storylines" database...
+[10:03:13] [connection] incoming connection: 127.0.0.1:55269 id: 0
+[10:03:13] [join] Radeetz has joined the server (0:127.0.0.1)
+[10:03:22] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[10:03:22] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[10:03:22] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[10:03:22] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[10:03:25] Player [Jayvon Williams] sent command: /aduty
+[10:03:36] Player [Jayvon Williams] sent command: /aduty
+[10:03:45] Player [Jayvon Williams] sent command: /jobduty
+[10:13:47] [part] Jayvon_Williams has left the server (0:1)
+Console input: exit
+[10:14:24] --- Server Shutting Down.
+[10:14:24] plugin.mysql: Unloading plugin...
+[10:14:24] plugin.mysql: Plugin unloaded.
+[10:14:24] 
+
+[10:14:24]  ===============================
+
+[10:14:24]      sscanf plugin unloaded.    
+
+[10:14:24]  ===============================
+
+[10:14:24] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[10:14:24] [plugin.timerfix] Plugsin successfully unloaded!
+[10:14:24] ========================
+[10:14:24] = Memory access plugin =
+[10:14:24] =       Made by BigETI =
+[10:14:24] = Unloaded!            =
+[10:14:24] ========================
+[10:14:24] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[10:19:48] filterscripts = ""  (string)
+[10:19:48] 
+[10:19:48] Server Plugins
+[10:19:48] --------------
+[10:19:48]  Loading plugin: mysql
+[10:19:48]  >> plugin.mysql: R41-4 successfully loaded.
+[10:19:48]   Loaded.
+[10:19:48]  Loading plugin: sscanf
+[10:19:48] 
+
+[10:19:48]  ===============================
+
+[10:19:48]       sscanf plugin loaded.     
+
+[10:19:48]          Version:  2.8.2        
+
+[10:19:48]    (c) 2012 Alex "Y_Less" Cole  
+
+[10:19:48]  ===============================
+
+[10:19:48]   Loaded.
+[10:19:48]  Loading plugin: streamer
+[10:19:48] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[10:19:48]   Loaded.
+[10:19:48]  Loading plugin: timerfix
+[10:19:48]   >> TimerFix v1.4 successfully loaded.
+[10:19:48]   Loaded.
+[10:19:48]  Loading plugin: pawn-memory
+[10:19:48] ========================
+[10:19:48] = Memory access plugin =
+[10:19:48] =       Made by BigETI =
+[10:19:48] = Loaded!              =
+[10:19:48] ========================
+[10:19:48]   Loaded.
+[10:19:48]  Loading plugin: pawnraknet
+[10:19:48] [Pawn.RakNet] plugin v1.6.0 loading...
+[10:19:48] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[10:19:48]   Loaded.
+[10:19:48]  Loading plugin: samp-compat
+[10:19:48]   -- samp-compat for 0.3.DL-R1 initialized
+[10:19:48]   Loaded.
+[10:19:48]  Loaded 7 plugins.
+
+[10:19:48] 
+[10:19:48] Filterscripts
+[10:19:48] ---------------
+[10:19:48]   Loaded 0 filterscripts.
+
+[10:19:48] [DATABASE]: Connection established to 'storylines'...
+[10:19:48] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[10:19:48] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[10:19:48] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[10:19:48] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[10:19:48] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[10:19:48] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[10:19:48] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[10:19:48] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[10:19:48] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[10:19:48] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[10:19:48] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[10:19:48] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[10:19:48] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[10:19:48] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[10:19:48] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[10:19:48] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[10:19:48] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[10:19:48] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[10:19:48] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[10:19:49] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[10:19:49] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[10:19:49] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[10:19:49] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[10:19:49] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[10:19:49] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[10:19:49] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[10:19:49] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[10:19:49] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[10:19:49] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[10:19:49] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[10:19:49] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[10:19:49] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[10:19:49] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[10:19:49] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[10:19:49] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[10:19:49] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[10:19:49] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[10:19:49] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[10:19:49] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[10:19:49] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[10:19:49] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[10:19:49] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[10:19:49] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[10:19:49] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[10:19:49] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[10:19:49] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[10:19:49] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[10:19:49] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[10:19:49] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[10:19:49] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[10:19:49] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[10:19:49] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[10:19:49] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[10:19:49] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[10:19:49] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[10:19:49] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[10:19:49] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[10:19:49] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[10:19:49] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[10:19:49] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[10:19:49] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[10:19:49] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[10:19:49] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[10:19:49] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[10:19:49] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[10:19:49] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[10:19:49] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[10:19:49] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[10:19:49] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[10:19:49] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[10:19:49] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[10:19:49] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[10:19:49] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[10:19:49] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[10:19:49] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[10:19:49] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[10:19:49] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[10:19:49] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[10:19:49] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[10:19:49] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[10:19:49] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[10:19:49] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[10:19:49] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[10:19:49] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[10:19:49] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[10:19:49] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[10:19:49] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[10:19:49] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[10:19:49] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[10:19:49] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[10:19:49] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[10:19:49] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[10:19:49] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[10:19:49] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[10:19:49] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[10:19:49] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[10:19:49] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[10:19:49] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[10:19:49] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[10:19:49] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[10:19:49] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[10:19:49] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[10:19:49] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[10:19:49] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[10:19:49] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[10:19:49] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[10:19:49] Number of vehicle models: 17
+[10:19:49] [SERVER]: 4 court were loaded from "storylines" database...
+[10:19:49] [SERVER]: 2 factions were loaded from "storylines" database...
+[10:19:49] [SERVER]: 9 businesses were loaded from "storylines" database...
+[10:19:49] [SERVER]: 2 properties were loaded from "storylines" database...
+[10:19:49] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[10:19:49] [SERVER]: 17 tree were loaded from "storylines" database...
+[10:19:49] [SERVER]: 6 gates were loaded from "storylines" database...
+[10:19:49] [SERVER]: No compensation were loaded from "storylines" database...
+[10:19:49] [SERVER]: 4 entrance were loaded from "storylines" database...
+[10:19:49] [SERVER]: 0 property storage were loaded from "storylines" database...
+[10:19:49] [SERVER]: 0 property storage were loaded from "storylines" database...
+Console input: exit
+[10:28:56] --- Server Shutting Down.
+[10:28:56] plugin.mysql: Unloading plugin...
+[10:28:56] plugin.mysql: Plugin unloaded.
+[10:28:56] 
+
+[10:28:56]  ===============================
+
+[10:28:56]      sscanf plugin unloaded.    
+
+[10:28:56]  ===============================
+
+[10:28:56] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[10:28:56] [plugin.timerfix] Plugsin successfully unloaded!
+[10:28:56] ========================
+[10:28:56] = Memory access plugin =
+[10:28:56] =       Made by BigETI =
+[10:28:56] = Unloaded!            =
+[10:28:56] ========================
+[10:28:56] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[10:45:35] filterscripts = ""  (string)
+[10:45:35] 
+[10:45:35] Server Plugins
+[10:45:35] --------------
+[10:45:35]  Loading plugin: mysql
+[10:45:35]  >> plugin.mysql: R41-4 successfully loaded.
+[10:45:35]   Loaded.
+[10:45:35]  Loading plugin: sscanf
+[10:45:35] 
+
+[10:45:35]  ===============================
+
+[10:45:35]       sscanf plugin loaded.     
+
+[10:45:35]          Version:  2.8.2        
+
+[10:45:35]    (c) 2012 Alex "Y_Less" Cole  
+
+[10:45:35]  ===============================
+
+[10:45:35]   Loaded.
+[10:45:35]  Loading plugin: streamer
+[10:45:35] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[10:45:35]   Loaded.
+[10:45:35]  Loading plugin: timerfix
+[10:45:35]   >> TimerFix v1.4 successfully loaded.
+[10:45:35]   Loaded.
+[10:45:35]  Loading plugin: pawn-memory
+[10:45:35] ========================
+[10:45:35] = Memory access plugin =
+[10:45:35] =       Made by BigETI =
+[10:45:35] = Loaded!              =
+[10:45:35] ========================
+[10:45:35]   Loaded.
+[10:45:35]  Loading plugin: pawnraknet
+[10:45:35] [Pawn.RakNet] plugin v1.6.0 loading...
+[10:45:35] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[10:45:35]   Loaded.
+[10:45:35]  Loading plugin: samp-compat
+[10:45:35]   -- samp-compat for 0.3.DL-R1 initialized
+[10:45:35]   Loaded.
+[10:45:35]  Loaded 7 plugins.
+
+[10:45:35] 
+[10:45:35] Filterscripts
+[10:45:35] ---------------
+[10:45:35]   Loaded 0 filterscripts.
+
+[10:45:35] [DATABASE]: Connection established to 'storylines'...
+[10:45:35] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[10:45:35] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[10:45:35] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[10:45:35] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[10:45:36] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[10:45:36] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[10:45:36] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[10:45:36] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[10:45:36] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[10:45:36] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[10:45:36] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[10:45:36] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[10:45:36] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[10:45:36] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[10:45:36] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[10:45:36] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[10:45:36] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[10:45:36] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[10:45:36] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[10:45:36] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[10:45:36] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[10:45:36] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[10:45:36] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[10:45:36] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[10:45:36] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[10:45:36] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[10:45:36] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[10:45:36] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[10:45:36] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[10:45:36] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[10:45:36] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[10:45:36] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[10:45:36] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[10:45:36] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[10:45:36] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[10:45:36] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[10:45:36] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[10:45:36] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[10:45:36] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[10:45:36] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[10:45:36] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[10:45:36] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[10:45:36] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[10:45:36] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[10:45:36] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[10:45:36] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[10:45:36] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[10:45:36] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[10:45:36] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[10:45:36] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[10:45:36] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[10:45:36] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[10:45:36] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[10:45:36] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[10:45:36] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[10:45:36] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[10:45:36] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[10:45:36] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[10:45:36] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[10:45:36] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[10:45:36] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[10:45:36] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[10:45:36] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[10:45:36] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[10:45:36] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[10:45:36] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[10:45:36] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[10:45:36] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[10:45:36] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[10:45:36] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[10:45:36] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[10:45:36] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[10:45:36] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[10:45:36] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[10:45:36] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[10:45:36] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[10:45:36] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[10:45:36] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[10:45:36] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[10:45:36] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[10:45:36] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[10:45:36] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[10:45:36] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[10:45:36] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[10:45:36] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[10:45:36] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[10:45:36] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[10:45:36] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[10:45:36] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[10:45:36] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[10:45:36] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[10:45:36] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[10:45:36] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[10:45:36] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[10:45:36] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[10:45:36] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[10:45:36] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[10:45:36] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[10:45:36] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[10:45:36] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[10:45:36] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[10:45:36] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[10:45:36] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[10:45:36] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[10:45:36] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[10:45:36] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[10:45:36] Number of vehicle models: 17
+[10:45:36] [SERVER]: 2 properties were loaded from "storylines" database...
+[10:45:36] [SERVER]: 4 entrance were loaded from "storylines" database...
+[10:45:36] [SERVER]: 4 court were loaded from "storylines" database...
+[10:45:36] [SERVER]: 2 factions were loaded from "storylines" database...
+[10:45:36] [SERVER]: 9 businesses were loaded from "storylines" database...
+[10:45:36] [SERVER]: No compensation were loaded from "storylines" database...
+[10:45:36] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[10:45:36] [SERVER]: 6 gates were loaded from "storylines" database...
+[10:45:36] [SERVER]: 17 tree were loaded from "storylines" database...
+[10:45:36] [SERVER]: 0 property storage were loaded from "storylines" database...
+[10:45:36] [SERVER]: 0 property storage were loaded from "storylines" database...
+[10:45:49] [connection] incoming connection: 127.0.0.1:58692 id: 0
+[10:45:49] [join] Radeetz has joined the server (0:127.0.0.1)
+[10:46:36] [SERVER]: Ethan Bilek contacts were loaded from "storylines" database...
+[10:46:36] [SERVER]: Ethan Bilek ticket were loaded from "storylines" database...
+[10:46:36] [SERVER]: Ethan Bilek inventory were loaded from "storylines" database...
+[10:46:36] [SERVER]: Ethan Bilek relations were loaded from "storylines" database...
+[10:47:01] Player [Ethan Bilek] sent command: /viewroute
+[10:47:06] Player [Ethan Bilek] sent command: /viewroute
+[10:47:11] [part] Ethan_Bilek has left the server (0:1)
+Console input: exit
+[11:46:40] --- Server Shutting Down.
+[11:46:40] plugin.mysql: Unloading plugin...
+[11:46:40] plugin.mysql: Plugin unloaded.
+[11:46:40] 
+
+[11:46:40]  ===============================
+
+[11:46:40]      sscanf plugin unloaded.    
+
+[11:46:40]  ===============================
+
+[11:46:40] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[11:46:40] [plugin.timerfix] Plugsin successfully unloaded!
+[11:46:40] ========================
+[11:46:40] = Memory access plugin =
+[11:46:40] =       Made by BigETI =
+[11:46:40] = Unloaded!            =
+[11:46:40] ========================
+[11:46:40] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[11:48:31] filterscripts = ""  (string)
+[11:48:31] 
+[11:48:31] Server Plugins
+[11:48:31] --------------
+[11:48:31]  Loading plugin: mysql
+[11:48:31]  >> plugin.mysql: R41-4 successfully loaded.
+[11:48:31]   Loaded.
+[11:48:31]  Loading plugin: sscanf
+[11:48:31] 
+
+[11:48:31]  ===============================
+
+[11:48:31]       sscanf plugin loaded.     
+
+[11:48:31]          Version:  2.8.2        
+
+[11:48:31]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:48:31]  ===============================
+
+[11:48:31]   Loaded.
+[11:48:31]  Loading plugin: streamer
+[11:48:31] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[11:48:31]   Loaded.
+[11:48:31]  Loading plugin: timerfix
+[11:48:31]   >> TimerFix v1.4 successfully loaded.
+[11:48:31]   Loaded.
+[11:48:31]  Loading plugin: pawn-memory
+[11:48:31] ========================
+[11:48:31] = Memory access plugin =
+[11:48:31] =       Made by BigETI =
+[11:48:31] = Loaded!              =
+[11:48:31] ========================
+[11:48:31]   Loaded.
+[11:48:31]  Loading plugin: pawnraknet
+[11:48:31] [Pawn.RakNet] plugin v1.6.0 loading...
+[11:48:31] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[11:48:31]   Loaded.
+[11:48:31]  Loading plugin: samp-compat
+[11:48:31]   -- samp-compat for 0.3.DL-R1 initialized
+[11:48:31]   Loaded.
+[11:48:31]  Loaded 7 plugins.
+
+[11:48:31] 
+[11:48:31] Filterscripts
+[11:48:31] ---------------
+[11:48:31]   Loaded 0 filterscripts.
+
+[11:48:32] [DATABASE]: Connection established to 'storylines'...
+[11:48:32] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[11:48:32] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[11:48:32] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[11:48:32] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[11:48:32] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[11:48:32] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[11:48:32] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[11:48:32] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[11:48:32] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[11:48:32] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[11:48:32] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[11:48:32] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[11:48:32] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[11:48:32] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[11:48:32] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[11:48:32] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[11:48:32] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[11:48:32] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[11:48:32] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[11:48:32] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[11:48:32] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[11:48:32] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[11:48:32] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[11:48:32] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[11:48:32] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[11:48:32] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[11:48:32] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[11:48:32] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[11:48:32] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[11:48:32] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[11:48:32] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[11:48:32] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[11:48:32] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[11:48:32] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[11:48:32] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[11:48:32] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[11:48:32] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[11:48:32] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[11:48:32] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[11:48:32] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[11:48:32] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[11:48:32] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[11:48:32] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[11:48:32] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[11:48:32] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[11:48:32] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[11:48:32] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[11:48:32] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[11:48:32] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[11:48:32] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[11:48:32] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[11:48:32] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[11:48:32] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[11:48:32] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[11:48:32] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[11:48:32] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[11:48:32] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[11:48:32] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[11:48:32] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[11:48:32] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[11:48:32] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[11:48:32] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[11:48:32] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[11:48:32] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[11:48:32] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[11:48:32] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[11:48:32] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[11:48:32] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[11:48:32] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[11:48:32] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[11:48:32] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[11:48:32] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[11:48:32] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[11:48:32] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[11:48:32] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[11:48:32] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[11:48:32] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[11:48:32] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[11:48:32] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[11:48:32] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[11:48:32] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[11:48:32] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[11:48:32] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[11:48:32] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[11:48:32] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[11:48:32] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[11:48:32] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[11:48:32] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[11:48:32] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[11:48:32] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[11:48:32] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[11:48:32] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[11:48:32] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[11:48:32] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:48:32] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[11:48:32] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:48:32] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[11:48:32] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:48:32] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[11:48:32] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[11:48:32] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[11:48:32] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:48:32] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[11:48:32] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:48:32] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[11:48:32] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:48:32] Number of vehicle models: 17
+[11:48:32] [SERVER]: 2 factions were loaded from "storylines" database...
+[11:48:32] [SERVER]: 2 properties were loaded from "storylines" database...
+[11:48:32] [SERVER]: 17 tree were loaded from "storylines" database...
+[11:48:32] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[11:48:32] [SERVER]: 6 gates were loaded from "storylines" database...
+[11:48:32] [SERVER]: 4 court were loaded from "storylines" database...
+[11:48:32] [SERVER]: 4 entrance were loaded from "storylines" database...
+[11:48:32] [SERVER]: No compensation were loaded from "storylines" database...
+[11:48:32] [SERVER]: 9 businesses were loaded from "storylines" database...
+[11:48:32] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:48:32] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:48:44] [connection] incoming connection: 127.0.0.1:57959 id: 0
+[11:48:45] [join] Radeetz has joined the server (0:127.0.0.1)
+[11:49:51] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[11:49:51] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[11:49:51] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[11:49:51] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[11:49:56] Player [Jayvon Williams] sent command: /gotobusienss 9
+[11:49:58] Player [Jayvon Williams] sent command: /gotobusienss 7
+[11:50:02] Player [Jayvon Williams] sent command: /gotobusiness 7
+[11:50:06] Player [Jayvon Williams] sent command: /pool
+[11:50:18] [connection] incoming connection: 127.0.0.1:52493 id: 1
+[11:50:19] [join] Blikxyyy has joined the server (1:127.0.0.1)
+[11:50:24] [part] Blikxyyy has left the server (1:1)
+[11:50:37] [connection] incoming connection: 127.0.0.1:61194 id: 1
+[11:50:37] [join] Blixkyyy has joined the server (1:127.0.0.1)
+[11:50:45] [SERVER]: Bryan Desean inventory were loaded from "storylines" database...
+[11:50:45] [SERVER]: Bryan Desean ticket were loaded from "storylines" database...
+[11:50:45] [SERVER]: Bryan Desean relations were loaded from "storylines" database...
+[11:50:45] [SERVER]: Bryan Desean contacts were loaded from "storylines" database...
+[11:50:56] Player [Jayvon Williams] sent command: /pool 1
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:22] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:61194 (3083) Limit: 3000/sec
+[11:51:23] [warning] client exceeded 'ackslimit' 127.0.0.1:57959 (3023) Limit: 3000/sec
+[11:51:38] [part] Jayvon_Williams has left the server (0:1)
+[11:51:41] [part] Bryan_Desean has left the server (1:1)
+Console input: exit
+[11:56:55] --- Server Shutting Down.
+[11:56:55] plugin.mysql: Unloading plugin...
+[11:56:55] plugin.mysql: Plugin unloaded.
+[11:56:55] 
+
+[11:56:55]  ===============================
+
+[11:56:55]      sscanf plugin unloaded.    
+
+[11:56:55]  ===============================
+
+[11:56:55] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[11:56:55] [plugin.timerfix] Plugsin successfully unloaded!
+[11:56:55] ========================
+[11:56:55] = Memory access plugin =
+[11:56:55] =       Made by BigETI =
+[11:56:55] = Unloaded!            =
+[11:56:55] ========================
+[11:56:55] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[11:57:06] filterscripts = ""  (string)
+[11:57:06] 
+[11:57:06] Server Plugins
+[11:57:06] --------------
+[11:57:06]  Loading plugin: mysql
+[11:57:06]  >> plugin.mysql: R41-4 successfully loaded.
+[11:57:06]   Loaded.
+[11:57:06]  Loading plugin: sscanf
+[11:57:06] 
+
+[11:57:06]  ===============================
+
+[11:57:06]       sscanf plugin loaded.     
+
+[11:57:06]          Version:  2.8.2        
+
+[11:57:06]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:57:06]  ===============================
+
+[11:57:06]   Loaded.
+[11:57:06]  Loading plugin: streamer
+[11:57:06] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[11:57:06]   Loaded.
+[11:57:06]  Loading plugin: timerfix
+[11:57:06]   >> TimerFix v1.4 successfully loaded.
+[11:57:06]   Loaded.
+[11:57:06]  Loading plugin: pawn-memory
+[11:57:06] ========================
+[11:57:06] = Memory access plugin =
+[11:57:06] =       Made by BigETI =
+[11:57:06] = Loaded!              =
+[11:57:06] ========================
+[11:57:06]   Loaded.
+[11:57:06]  Loading plugin: pawnraknet
+[11:57:06] [Pawn.RakNet] plugin v1.6.0 loading...
+[11:57:06] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[11:57:06]   Loaded.
+[11:57:06]  Loading plugin: samp-compat
+[11:57:06]   -- samp-compat for 0.3.DL-R1 initialized
+[11:57:06]   Loaded.
+[11:57:06]  Loaded 7 plugins.
+
+[11:57:06] 
+[11:57:06] Filterscripts
+[11:57:06] ---------------
+[11:57:06]   Loaded 0 filterscripts.
+
+[11:57:06] [DATABASE]: Connection established to 'storylines'...
+[11:57:06] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[11:57:06] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[11:57:06] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[11:57:06] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[11:57:06] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[11:57:06] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[11:57:06] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[11:57:06] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[11:57:06] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[11:57:06] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[11:57:06] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[11:57:06] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[11:57:06] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[11:57:06] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[11:57:06] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[11:57:06] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[11:57:06] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[11:57:06] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[11:57:06] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[11:57:06] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[11:57:06] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[11:57:06] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[11:57:06] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[11:57:06] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[11:57:06] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[11:57:06] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[11:57:06] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[11:57:06] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[11:57:06] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[11:57:06] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[11:57:06] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[11:57:06] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[11:57:06] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[11:57:06] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[11:57:06] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[11:57:06] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[11:57:06] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[11:57:06] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[11:57:06] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[11:57:06] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[11:57:06] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[11:57:06] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[11:57:06] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[11:57:06] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[11:57:06] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[11:57:06] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[11:57:06] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[11:57:06] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[11:57:06] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[11:57:06] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[11:57:06] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[11:57:06] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[11:57:06] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[11:57:06] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[11:57:06] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[11:57:06] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[11:57:06] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[11:57:06] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[11:57:06] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[11:57:06] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[11:57:06] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[11:57:06] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[11:57:06] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[11:57:06] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[11:57:06] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[11:57:06] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[11:57:06] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[11:57:06] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[11:57:06] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[11:57:06] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[11:57:06] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[11:57:06] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[11:57:06] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[11:57:06] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[11:57:06] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[11:57:06] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[11:57:06] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[11:57:06] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[11:57:06] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[11:57:06] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[11:57:06] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[11:57:06] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[11:57:06] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[11:57:06] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[11:57:06] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[11:57:06] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[11:57:06] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[11:57:06] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[11:57:06] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[11:57:06] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[11:57:06] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[11:57:06] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[11:57:06] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[11:57:06] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:57:06] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[11:57:06] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:57:06] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[11:57:06] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:57:06] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[11:57:06] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[11:57:06] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[11:57:06] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:57:06] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[11:57:06] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:57:06] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[11:57:06] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:57:06] Number of vehicle models: 17
+[11:57:06] [SERVER]: 2 factions were loaded from "storylines" database...
+[11:57:06] [SERVER]: 2 properties were loaded from "storylines" database...
+[11:57:06] [SERVER]: 17 tree were loaded from "storylines" database...
+[11:57:06] [SERVER]: 4 court were loaded from "storylines" database...
+[11:57:06] [SERVER]: 6 gates were loaded from "storylines" database...
+[11:57:06] [SERVER]: 4 entrance were loaded from "storylines" database...
+[11:57:06] [SERVER]: No compensation were loaded from "storylines" database...
+[11:57:06] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[11:57:06] [SERVER]: 9 businesses were loaded from "storylines" database...
+[11:57:06] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:57:06] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:57:17] [connection] incoming connection: 127.0.0.1:54191 id: 0
+[11:57:17] [join] Blixkyyy has joined the server (0:127.0.0.1)
+[11:57:22] [SERVER]: Bryan Desean inventory were loaded from "storylines" database...
+[11:57:22] [SERVER]: Bryan Desean contacts were loaded from "storylines" database...
+[11:57:22] [SERVER]: Bryan Desean relations were loaded from "storylines" database...
+[11:57:22] [SERVER]: Bryan Desean ticket were loaded from "storylines" database...
+[11:57:34] [connection] incoming connection: 127.0.0.1:64755 id: 1
+[11:57:35] [join] Radeetz has joined the server (1:127.0.0.1)
+[11:57:57] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[11:57:57] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[11:57:57] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[11:57:57] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[11:58:01] Player [Jayvon Williams] sent command: /pool 0
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:48] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3120) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[11:58:49] [warning] client exceeded 'ackslimit' 127.0.0.1:64755 (3748) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:06] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:02:07] [warning] client exceeded 'ackslimit' 127.0.0.1:54191 (3342) Limit: 3000/sec
+[12:04:54] [part] Jayvon_Williams has left the server (1:1)
+[12:04:57] [part] Bryan_Desean has left the server (0:1)
+Console input: exit
+[12:11:49] --- Server Shutting Down.
+[12:11:49] plugin.mysql: Unloading plugin...
+[12:11:49] plugin.mysql: Plugin unloaded.
+[12:11:49] 
+
+[12:11:49]  ===============================
+
+[12:11:49]      sscanf plugin unloaded.    
+
+[12:11:49]  ===============================
+
+[12:11:49] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[12:11:49] [plugin.timerfix] Plugsin successfully unloaded!
+[12:11:49] ========================
+[12:11:49] = Memory access plugin =
+[12:11:49] =       Made by BigETI =
+[12:11:49] = Unloaded!            =
+[12:11:49] ========================
+[12:11:49] [Pawn.RakNet] plugin unloaded

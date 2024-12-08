@@ -343,8 +343,8 @@ CMD:pool(playerid, params[])
     if (!IsPlayerInRangeOfPoint(playerb, 3.0, 510.0676574707, -85.232200622559, 998.86749267578))
         return SendErrorMessage(playerid, "The selected player is not near the pool table.");
 
-    //if (playerb == playerid)
-    //    return SendErrorMessage(playerid, "You can't start a pool game with yourself.");
+    if (playerb == playerid)
+    	return SendErrorMessage(playerid, "You can't start a pool game with yourself.");
 
     if (PoolInfo[businessid][E_POOL_STARTED])
         return SendErrorMessage(playerid, "There is already a game in progress at this table.");
@@ -371,13 +371,26 @@ CMD:pool(playerid, params[])
     SendServerMessage(playerid, "[8Ball] {DEDEDE}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), FormatMoney(Cents));
     SendServerMessage(playerb, "[8Ball] {DEDEDE}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), FormatMoney(Cents));
 
-    new string[512], balltype[16];
+    new string[512], balltype1[16], balltype2[16];
 
-    if (PlayerPoolBallType[playerid] == 1) format(balltype, sizeof(balltype), "Solid");
-    else if (PlayerPoolBallType[playerid] == 2) format(balltype, sizeof(balltype), "Stripe");
-    else format(balltype, sizeof(balltype), "Unknown");
+	if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 1)
+		balltype1 = "Solid";
+	else if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 2)
+		balltype1 = "Stripe";
+	else
+		balltype1 = "Unknown";
 
-    format(string, sizeof(string), "You are %s. It's %s's turn.\n\n~r~%s's score: ~w~%d\n~b~%s's score: ~w~%d", balltype, ReturnName(PoolInfo[businessid][E_POOL_TURN]),ReturnName(playerid), PoolInfo[businessid][E_POOL_PLAYER1SCORE], ReturnName(playerb), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
+	if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER2]] == 1)
+		balltype2 = "Solid";
+	else if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER2]] == 2)
+		balltype2 = "Stripe";
+	else
+		balltype2 = "Unknown";
+
+	format(string, sizeof(string), "You are %s. It's %s turn~n~~n~~r~%s score: ~w~%d~n~~b~%s score: ~w~%d~n~~n~r~%s has %s balls~n~~b~%s has %s balls", 
+	balltype1, ReturnName(PoolInfo[businessid][E_POOL_TURN]), ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE], 
+	ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE], 
+	ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), balltype1, ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), balltype2);
 
     ShowHeaderMessage(playerid, "Pool: 8-Ball", string, 1);
     ShowHeaderMessage(playerb, "Pool: 8-Ball", string, 1);

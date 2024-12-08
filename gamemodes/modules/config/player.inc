@@ -1078,26 +1078,26 @@ function:PlayerPosTimer(playerid)
 	return 1;
 }
 
-stock ConvertHBEColor(value) 
+stock ConvertHBEColor(Float:value) 
 {
     new color;
-    if(value >= 90 && value <= 100)
+    if(value >= 90 && value <= 100.0)
         color = 0x15a014FF;
-    else if(value >= 80 && value < 90)
+    else if(value >= 80 && value < 90.0)
         color = 0x1b9913FF;
-    else if(value >= 70 && value < 80)
+    else if(value >= 70 && value < 80.0)
         color = 0x1a7f08FF;
-    else if(value >= 60 && value < 70)
+    else if(value >= 60 && value < 70.0)
         color = 0x326305FF;
-    else if(value >= 50 && value < 60)
+    else if(value >= 50 && value < 60.0)
         color = 0x375d04FF;
-    else if(value >= 40 && value < 50)
+    else if(value >= 40 && value < 50.0)
         color = 0x603304FF;
-    else if(value >= 30 && value < 40)
+    else if(value >= 30 && value < 40.0)
         color = 0xd72800FF;
-    else if(value >= 10 && value < 30)
+    else if(value >= 10 && value < 30.0)
         color = 0xfb3508FF;
-    else if(value >= 0 && value < 10)
+    else if(value >= 0 && value < 10.0)
         color = 0xFF0000FF;
     else 
         color = COLOR_WHITE;

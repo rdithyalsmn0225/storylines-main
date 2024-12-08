@@ -520,6 +520,7 @@ public OnPlayerDisconnect(playerid, reason)
     {
         PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
         ShowBoxMessage(playerid, "~r~Dockworker job stopped.", 5); 
+		DestroyDynamicObject(CrateObject[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]]);
 		DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
     }   
 
@@ -664,7 +665,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
             PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading passenger entering process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
-	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("BusDrivers", 500, true, "ii", playerid, 0);
+	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("BusDrivers", 2000, true, "ii", playerid, 0);
 	        TogglePlayerControllable(playerid, false);
 		}
 		return 1;
@@ -5060,6 +5061,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
     {
         PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
         ShowBoxMessage(playerid, "~r~Dockworker job stopped.", 5); 
+		DestroyDynamicObject(CrateObject[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]]);
 		DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
 		GPS_DisablePlayerRaceCheckPoint(playerid);
     }   

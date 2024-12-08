@@ -12,7 +12,7 @@ InsertDocksWorkers()
 }
 function:DockWorkers(playerid, type)
 {
-    new text[256], vehicleid = GetPlayerVehicleID(playerid);
+    new text[256];
     switch(type)
     {
         case 0:
@@ -42,9 +42,9 @@ function:DockWorkers(playerid, type)
 
                     SetPlayerNeeds(playerid, -0.2, -0.3);
 
-                    CrateObject[vehicleid] = CreateDynamicObject(1221,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
-                    AttachDynamicObjectToVehicle(CrateObject[vehicleid], vehicleid, 0.000, 0.630, 0.360, 0.000, 0.000, 0.000);
-                    VehicleInfo[vehicleid][E_VEHICLE_CRATES] = 1;
+                    CrateObject[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]] = CreateDynamicObject(1221,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
+                    AttachDynamicObjectToVehicle(CrateObject[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]], PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], 0.000, 0.630, 0.360, 0.000, 0.000, 0.000);
+                    VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_CRATES] = 1;
                 }
             }
         }
@@ -73,7 +73,7 @@ function:DockWorkers(playerid, type)
                     Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
                     KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
-                    DestroyDynamicObject(CrateObject[vehicleid]);
+                    DestroyDynamicObject(CrateObject[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]]);
                     SendJobsMessage(playerid, "[Dockworker] {DEDEDE}Next task: fetch some %s from the %s and store it in the next warehouse.", Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_DESCRIPTION], Dockworker_Store[PlayerDockworkerCollect[playerid]][E_DOCKWORK_DESCRIPTION]);
                     
                     new rand = randomEx(8, 10);
@@ -82,7 +82,7 @@ function:DockWorkers(playerid, type)
 	                GiveMoney(playerid, Cents);
 
                     SetPlayerNeeds(playerid, -0.2, -0.3);
-                    VehicleInfo[vehicleid][E_VEHICLE_CRATES] = 0;
+                    VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_CRATES] = 0;
                 }
             }
         }
