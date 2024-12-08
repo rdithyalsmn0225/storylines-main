@@ -155,7 +155,7 @@ CMD:bizcash(playerid, params[])
 		
 	new
 		id,
-		amount,
+		Float:amount,
 		astr[30],
 		bstr[30]
 	;
