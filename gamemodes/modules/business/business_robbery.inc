@@ -59,7 +59,7 @@ function:RunActorAnimationSequence(playerid, actorid, animation_pattern)
 		case 0: 
 		{
 			ClearDynamicActorAnimations(actorid);
-			ApplyDynamicActorAnimation(actorid, "SHOP", "SHP_Serve_Loop", 4.1, 0, 1, 1, 1, 0);
+			ApplyDynamicActorAnimation(actorid, "SHOP", "SHP_Serve_Loop", 4.1, 0, 0, 0, 1, 0);
 
 			SetTimerEx("RunActorAnimationSequence", 2500, false, "iii", playerid, actorid, 1);
 		}

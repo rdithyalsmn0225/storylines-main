@@ -227,13 +227,9 @@ Dialog:BeerBottle(playerid, response, listitem, inputtext[])
 					if(!Inventory_Count(playerid, "Beer Bottle"))
 						return SendErrorMessage(playerid, "You don't have any beer in inventory.");
 
-					if(PlayerInfo[playerid][E_CHARACTER_DRINKING] > 0)
+					if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DRINK_BEER)
 						return SendErrorMessage(playerid, "You are already drinking a beer.");
 
-					if(gettime() - PlayerInfo[playerid][E_CHARACTER_DRINKCD] < 60)
-						return SendErrorMessage(playerid, "You've only been drink beer for %i seconds. You need to wait at least 60 sec to drink beer.", gettime() - PlayerInfo[playerid][E_CHARACTER_DRINKCD]); 
-
-					PlayerInfo[playerid][E_CHARACTER_DRINKING] = 5;
 					Inventory_Remove(playerid, "Beer Bottle", 1);
 
 					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DRINK_BEER);

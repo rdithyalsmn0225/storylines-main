@@ -10,6 +10,10 @@ function:OnPlayerNeedUpdate()
             new Float:rand = randomFloat(1.00);
             PlayerInfo[i][E_CHARACTER_HUNGRY] -= rand;
         }
+        else if(PlayerInfo[i][E_CHARACTER_HUNGRY] > 100.0)
+        {
+            PlayerInfo[i][E_CHARACTER_HUNGRY] = 100.0;
+        }
         else if(PlayerInfo[i][E_CHARACTER_HUNGRY] < 30)
         {
             new Float: health;
@@ -27,7 +31,11 @@ function:OnPlayerNeedUpdate()
             new Float:rand = randomFloat(1.00);
             PlayerInfo[i][E_CHARACTER_THIRSTY] -= rand;
         }
-        else if(PlayerInfo[i][E_CHARACTER_THIRSTY] < 30)
+        else if(PlayerInfo[i][E_CHARACTER_THIRSTY] > 100.0)
+        {
+            PlayerInfo[i][E_CHARACTER_THIRSTY] = 100.0;
+        }
+        else if(PlayerInfo[i][E_CHARACTER_THIRSTY] < 30.0)
         {
             new Float: health;
             GetPlayerHealth(i, health);

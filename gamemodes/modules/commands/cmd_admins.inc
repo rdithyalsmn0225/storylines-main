@@ -22,7 +22,7 @@ CMD:ahelp(playerid, params[])
 	}
 	if(IsPlayerAdmins(playerid) >= 3)
 	{
-		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /spawncar, /despawncar, /createpcar, /setstats, /givemoney.");
+		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /spawncar, /despawncar, /createpcar, /setstats, /setneeds, /givemoney.");
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /setcar, /setcarparams, /setpfaction, /setinv, /respawnpacket.");
 		SendClientMessage(playerid, COLOR_DARKGREEN, "Operator:{ffffff} /randomfire, /destroyfire.");
 	}
@@ -1546,6 +1546,60 @@ CMD:createpcar(playerid, params[])
 		mysql_pquery(ourConnection, insertQuery, "Query_AddPlayerVehicle", "ii", playerid, playerb); 
 	}
 	
+	return 1;
+}
+
+CMD:setneeds(playerid, params[])
+{
+	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
+		return SendUnauthMessage(playerid);
+		
+	new 
+		playerb, 
+		statid, 
+		Float: value,
+		str[128];
+
+	if(sscanf(params, "uif(-1)", playerb, statid, value))
+	{
+		SendUsageMessage(playerid, "/setneeds [playerid OR name] [stat code] [value]"); 
+		SendTipMessage(playerid, "1. Hungry, 2. Thirsty.");
+		return 1;
+	}
+
+	switch(statid)
+	{
+		case 1: 
+		{
+			if(value == -1)
+				return SendUsageMessage(playerid, "/setstats [playerid OR name] 1 [value required]"); 
+		
+			if(value < 1.0 && value != -1 || value > 100.0)
+				return SendErrorMessage(playerid, "You specified an invalid hungry. (1.0-100.0)");
+
+			PlayerInfo[playerb][E_CHARACTER_HUNGRY] = value;
+			SaveCharacter(playerb); 
+			
+			format(str, sizeof(str), "%s set %s's faction rank to %i.", ReturnMixedName(playerid), ReturnName(playerb), value); 
+			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str); 
+		}
+
+		case 2: 
+		{
+			if(value == -1)
+				return SendUsageMessage(playerid, "/setstats [playerid OR name] 2 [value required]"); 
+		
+			if(value < 1.0 && value != -1 || value > 100.0)
+				return SendErrorMessage(playerid, "You specified an invalid thirsty. (1.0-100.0)");
+
+			PlayerInfo[playerb][E_CHARACTER_THIRSTY] = value;
+			SaveCharacter(playerb); 
+			
+			format(str, sizeof(str), "%s set %s's faction rank to %i.", ReturnMixedName(playerid), ReturnName(playerb), value); 
+			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str); 
+		}
+	}
+
 	return 1;
 }
 

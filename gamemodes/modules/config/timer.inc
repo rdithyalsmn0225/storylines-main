@@ -78,6 +78,23 @@ function:OnPlayerUpdateEx()
 				}
 			}
 					
+			if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] > 100.0)
+			{
+				PlayerInfo[playerid][E_CHARACTER_HUNGRY] = 100.0;
+			}
+			if(PlayerInfo[playerid][E_CHARACTER_THIRSTY] > 100.0)
+			{
+				PlayerInfo[playerid][E_CHARACTER_THIRSTY] = 100.0;
+			}
+			if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 0)
+			{
+				PlayerInfo[playerid][E_CHARACTER_HUNGRY] = 0;
+			}
+			if(PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 0)
+			{
+				PlayerInfo[playerid][E_CHARACTER_THIRSTY] = 0;
+			}
+
 			if (PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] == true)
 			{
 				PlayerInfo[playerid][E_CHARACTER_ADMINJAIL]--; 
@@ -409,12 +426,12 @@ function:OnPlayerMinutesUpdate()
 		{
 			BusinessInfo[id][E_BUSINESS_ROBBERYTIME]--;
 			ClearDynamicActorAnimations(BusinessInfo[id][E_BUSINESS_ACTOR]);
-			ApplyDynamicActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "PED", "DUCK_cower", 4.1, 1, 1, 1, 1, 1);
+			ApplyDynamicActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "PED", "DUCK_cower", 4.1, 0, 0, 0, 1, 1);
 		}
 		else
 		{
 			ClearDynamicActorAnimations(BusinessInfo[id][E_BUSINESS_ACTOR]);
-			ApplyDynamicActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "FOOD", "SHP_Tray_Pose", 4.1, 1, 1, 1, 1, 0);
+			ApplyDynamicActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "FOOD", "SHP_Tray_Pose", 4.1, 0, 0, 0, 1, 0);
 			BusinessInfo[id][E_BUSINESS_ROBBERYTIME] = 0;
 			foreach(new playerid : Player)
 			{

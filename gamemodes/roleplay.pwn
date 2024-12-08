@@ -772,6 +772,10 @@ public OnVehicleDeath(vehicleid, killerid)
 
 public OnPlayerDeath(playerid, killerid, reason)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerDeath called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
+	
 	foreach(new ii : Player)
     {
         if(IsPlayerAdmins(ii) && PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
@@ -779,10 +783,6 @@ public OnPlayerDeath(playerid, killerid, reason)
             SendDeathMessageToPlayer(ii, killerid, playerid, reason);
         }
     }
-	
-	#if defined DEBUG_MODE
-		printf("Callback OnPlayerDeath called for player %s (ID: %i)", ReturnName(playerid), playerid); 
-	#endif
 	
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && (gettime() - LastSpawn[playerid]) < 15 && reason >= 49 && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 	{
@@ -808,7 +808,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SendInfoMessage(playerid, "You has been killed by Exploded at %s.", ReturnLocationStreet(playerid));
 		}
 	}
-	else if(reason == 50)
+	if(reason == 50)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
@@ -821,7 +821,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SendInfoMessage(playerid, "You has been killed by Helicopter Bladed at %s.", ReturnLocationStreet(playerid));
 		}
 	}
-	else if(reason == 53)
+	if(reason == 53)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
@@ -834,7 +834,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SendInfoMessage(playerid, "You has been killed by Drowning at %s.", ReturnLocationStreet(playerid));
 		}	
 	}
-	else if(reason == 54)
+	if(reason == 54)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
@@ -847,7 +847,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SendInfoMessage(playerid, "You has been killed by Splat at %s.", ReturnLocationStreet(playerid));
 		}	
 	}
-	else if(reason == 255)
+	if(reason == 255)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{
@@ -3266,6 +3266,12 @@ public OnPlayerUpdate(playerid)
 	{
 		PauseAC(playerid);
 	}
+
+	if(!PlayerInfo[playerid][E_CHARACTER_SPAWNED])
+	{
+		SetPlayerHealth(playerid, 100.0);
+		TogglePlayerControllable(playerid, false);
+	}
 	
 	if(GetPlayerMoney(playerid) > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		SetMoney(playerid, PlayerInfo[playerid][E_CHARACTER_MONEY]);
@@ -4791,15 +4797,13 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	}
 	if(newkeys == KEY_FIRE)
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_DRINKING] > 0)
+		if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DRINK_SPRUNK)
 		{
-			PlayerInfo[playerid][E_CHARACTER_DRINKING]--;
-			if(PlayerInfo[playerid][E_CHARACTER_DRINKING] < 0)
-			{
-				PlayerInfo[playerid][E_CHARACTER_DRINKCD] = gettime();
-				PlayerInfo[playerid][E_CHARACTER_DRINKING] = 0;
-				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-			}
+			SetPlayerNeeds(playerid, 0, 2.0);
+		}
+		if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DRINK_BEER)
+		{
+			SetPlayerNeeds(playerid, 0, 2.5);
 		}
 	}
 	if (newkeys & KEY_SECONDARY_ATTACK && !IsPlayerInAnyVehicle(playerid))
