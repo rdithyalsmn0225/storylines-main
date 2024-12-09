@@ -902,7 +902,7 @@ CMD:deposit(playerid, params[])
 	if(sscanf(params, "f", amount))
 		return SendUsageMessage(playerid, "/deposit [deposit amount]");
 		
-	if(amount < 0.0 || amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
+	if(amount < 1.0 || amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		return SendErrorMessage(playerid, "You can't deposit that amount."); 
 		
 	new Cents = floatround(amount * 100, floatround_round);
@@ -931,7 +931,7 @@ CMD:withdraw(playerid, params[])
 	if(sscanf(params, "f", amount))
 		return SendUsageMessage(playerid, "/withdraw [amount]");
 		
-	if(amount < 1 || amount > PlayerInfo[playerid][E_CHARACTER_BANK])
+	if(amount < 1.0 || amount > PlayerInfo[playerid][E_CHARACTER_BANK])
 		return SendErrorMessage(playerid, "You can't withdraw that amount."); 
 
 		

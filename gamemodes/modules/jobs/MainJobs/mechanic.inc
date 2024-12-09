@@ -422,7 +422,7 @@ function:repairengine(playerid, vehicleid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
-            SetPlayerNeeds(playerid, -5.0, -8.0);
+            SetPlayerNeeds(playerid, -0.8, -0.5);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
@@ -467,7 +467,7 @@ function:repairbody(playerid, vehicleid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
-            SetPlayerNeeds(playerid, -5.0, -3.0);
+            SetPlayerNeeds(playerid, -0.8, -0.5);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
@@ -512,7 +512,7 @@ function:repairtire(playerid, vehicleid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
-            SetPlayerNeeds(playerid, -3.0, -4.0);
+            SetPlayerNeeds(playerid, -0.8, -0.5);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
@@ -558,7 +558,7 @@ function:repaintexterior(playerid, vehicleid, modelid)
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
-            SetPlayerNeeds(playerid, -6.0, -4.0);
+            SetPlayerNeeds(playerid, -0.8, -0.5);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
@@ -602,7 +602,7 @@ function:repaintinterior(playerid, vehicleid, modelid)
             SaveVehicle(vehicleid);
             PauseAC(playerid);
 
-            SetPlayerNeeds(playerid, -6.0, -4.0);
+            SetPlayerNeeds(playerid, -0.8, -0.5);
 
             if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 			{
@@ -642,7 +642,7 @@ function:repaintpaintjob1(playerid, vehicleid)
             VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = 0;
             SaveVehicle(vehicleid);
 
-            SetPlayerNeeds(playerid, -6.0, -4.0);
+            SetPlayerNeeds(playerid, -0.8, -0.5);
 
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
@@ -684,7 +684,7 @@ function:repaintpaintjob2(playerid, vehicleid)
             VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = 1;
             SaveVehicle(vehicleid);
 
-            SetPlayerNeeds(playerid, -6.0, -4.0);
+            SetPlayerNeeds(playerid, -0.8, -0.5);
 
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
@@ -726,7 +726,7 @@ function:repaintpaintjob3(playerid, vehicleid)
             VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = 2;
             SaveVehicle(vehicleid);
 
-            SetPlayerNeeds(playerid, -6.0, -4.0);
+            SetPlayerNeeds(playerid, -0.8, -0.5);
 
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 
@@ -782,7 +782,7 @@ function:repaintplates(playerid, vehicleid)
 
             SaveVehicle(vehicleid);
 
-            SetPlayerNeeds(playerid, -6.0, -4.0);
+            SetPlayerNeeds(playerid, -0.8, -0.5);
             
             PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 

@@ -529,7 +529,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 				SaveCharacter(playerid);
 				
 				PlayerCheckpoint[playerid] = GPS_NONE; 
-				SetPlayerNeeds(playerid, -2.0, -5.0);
+				SetPlayerNeeds(playerid, -0.5, -0.4);
 				return 1; 
 			}
 		}
@@ -612,7 +612,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 				PlayerSweeperIndex[playerid] = 0;
 				PlayerInfo[playerid][E_CHARACTER_SWEEPERCD] = 8;
 
-				SetPlayerNeeds(playerid, -3.0, -6.0);
+				SetPlayerNeeds(playerid, -0.2, -0.5);
                     
 				GPS_DisablePlayerRaceCheckPoint(playerid);
 				DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
@@ -4454,7 +4454,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] = false;
 				PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] = 0;
 
-				SetPlayerNeeds(playerid, -3.0, -6.0);
+				SetPlayerNeeds(playerid, -0.2, -0.5);
 
 				DestroyGameBar(playerid);
 				KillTimer(PlayerInfo[playerid][E_CHARACTER_FISHINGTIMER]);
@@ -4784,11 +4784,11 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	{
 		if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DRINK_SPRUNK)
 		{
-			SetPlayerNeeds(playerid, 0, 2.0);
+			SetPlayerNeeds(playerid, 0, 5.0);
 		}
 		if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DRINK_BEER)
 		{
-			SetPlayerNeeds(playerid, 0, 2.5);
+			SetPlayerNeeds(playerid, 0, 5.5);
 		}
 	}
 	if (newkeys & KEY_SECONDARY_ATTACK && !IsPlayerInAnyVehicle(playerid))

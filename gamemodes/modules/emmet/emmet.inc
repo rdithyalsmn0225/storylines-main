@@ -30,9 +30,9 @@ InsertEmmetInit()
 stock BuyGunFromEmmet(playerid)
 {
     new str1[512];
-	format(str1, sizeof(str1), "Faction Storage: %d supplies", FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE]);
 	if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
 	{
+        format(str1, sizeof(str1), "Faction Storage: %d supplies", FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE]);
         Dialog_Show(playerid, Emmets, DIALOG_STYLE_TABLIST, "Emmet Hardware:", "Emmet Colt\tGlock 17\nMagazine\t9mm clip", "Select", "Cancel");
     }
     return 1;

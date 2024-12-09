@@ -21,7 +21,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[0][Price] * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 		
 	    GiveMoney(playerid, -Cents);
 
@@ -44,7 +44,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[1][Price] * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -67,7 +67,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[2][Price] * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -90,7 +90,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[3][Price] * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -115,7 +115,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[4][Price] * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -138,7 +138,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[5][Price] * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -161,7 +161,7 @@ CMD:cargobuy(playerid, params[])
 		SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
 		new Cents = floatround(IndustryInfo[6][Price] * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 
 	    GiveMoney(playerid, -Cents);
 
@@ -196,7 +196,7 @@ CMD:cargosell(playerid, params[])
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		new Cents = floatround(IndustryInfo[3][Price] * 2 * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 
 	    GiveMoney(playerid, Cents);
 
@@ -217,7 +217,7 @@ CMD:cargosell(playerid, params[])
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		new Cents = floatround(IndustryInfo[0][Price] * 2 * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 
 	    GiveMoney(playerid, Cents);
 
@@ -257,7 +257,7 @@ CMD:cargosell(playerid, params[])
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		new Cents = floatround(IndustryInfo[2][Price] * 2 * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 
 	    GiveMoney(playerid, Cents);
 
@@ -283,7 +283,7 @@ CMD:cargosell(playerid, params[])
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		new Cents = floatround(IndustryInfo[6][Price] * 2 * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 
 	    GiveMoney(playerid, Cents);
 
@@ -345,7 +345,7 @@ CMD:cargosell(playerid, params[])
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 		new Cents = floatround(IndustryInfo[4][Price] * 2 * 100, floatround_round);
 
-		SetPlayerNeeds(playerid, -0.5, -1.0);
+		SetPlayerNeeds(playerid, -0.3, -0.2);
 
 	    GiveMoney(playerid, Cents);
 
