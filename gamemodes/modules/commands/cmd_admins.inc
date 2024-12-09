@@ -125,8 +125,7 @@ CMD:goto(playerid, params[])
 		
 	SetPlayerVirtualWorld(playerid, GetPlayerVirtualWorld(playerb));
 	
-	if(GetPlayerInterior(playerb) != 0)
-		SetPlayerInterior(playerid, GetPlayerInterior(playerb)); 
+	SetPlayerInterior(playerid, GetPlayerInterior(playerb)); 
 		
 	SendTeleportMessage(playerid);	
 	
