@@ -3385,7 +3385,7 @@ public OnPlayerUpdate(playerid)
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CRATES;
 				RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
+				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.293999, 0.497999, -0.006000, -99.500007, 90.300033, 99.600013, 0.620999, 0.673000, 0.648999);
 			}
 		}
 		else if(Inventory_Count(playerid, "Woods"))
@@ -3395,7 +3395,7 @@ public OnPlayerUpdate(playerid)
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
 				RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 1, -0.019, 0.713999, -0.076, 0, 87.1, -9.4, 1.0000, 1.0000, 1.0000);
+				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 1, 0.000000, 0.465000, 0.000000, 0.000000, 89.699958, 0.000000, 0.348999, 0.340999, 0.444999);
 			}
 		}
 		else
