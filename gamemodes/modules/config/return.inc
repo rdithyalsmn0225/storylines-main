@@ -237,7 +237,18 @@ stock ResetVehicleVars(vehicleid)
 		VehicleInfo[vehicleid][E_VEHICLE_LASTDRIVER][i] = 0;
 		VehicleInfo[vehicleid][E_VEHICLE_LASTPASSENGERS][i] = 0;
 	}
+
+	for(new i = 0; i < MAX_CAR_STORAGE; i++)
+	{
+		VstorageInfo[vehicleid][i][E_VEHICLE_TRUNKEXISTS] = false;
+		VstorageInfo[vehicleid][i][E_VEHICLE_TRUNKMODEL] = 0;
+		VstorageInfo[vehicleid][i][E_VEHICLE_TRUNKQUANTITY] = 0;
+		format(VstorageInfo[vehicleid][i][E_VEHICLE_TRUNKEXISTS], 32, "");
+	}
 	
+	if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
+        DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+
 	VehicleInfo[vehicleid][E_VEHICLE_TOWCOUNT] = 0;
 	
 	VehicleInfo[vehicleid][E_VEHICLE_DESTROYED] = 0;

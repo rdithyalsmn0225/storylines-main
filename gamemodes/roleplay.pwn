@@ -103,6 +103,7 @@ main ()  {}
 // FACTIONS MODULES
 #include "modules\faction\factions.inc"
 #include "modules\faction\factions_commands.inc"
+#include "modules\faction\factions_vehicle.inc"
 #include "modules\faction\police\mdc.inc"
 #include "modules\faction\police\alpr.inc"
 #include "modules\faction\police\tackle.inc"
@@ -3957,8 +3958,8 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 	// Vehicle Selection:
 	if (playertextid == VehicleSelection[14][playerid])
     {
-		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
 		
 		for(new i; i < MAX_VEHICLES; i++)
 		{
@@ -3977,8 +3978,8 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
     }
 	if (playertextid == VehicleSelection[15][playerid])
     {
-		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
 		
 		for(new i; i < MAX_VEHICLES; i++)
 		{
@@ -3997,8 +3998,8 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
     }
 	if (playertextid == VehicleSelection[16][playerid])
     {
-		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
 		
 		for(new i; i < MAX_VEHICLES; i++)
 		{
@@ -4017,8 +4018,8 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
     }
 	if (playertextid == VehicleSelection[17][playerid])
     {
-		/*if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); */
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned.");
 		
 		for(new i; i < MAX_VEHICLES; i++)
 		{
@@ -4434,7 +4435,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	}
 
 	// FISHING:
-	if(newkeys == KEY_YES && !IsPlayerInAnyVehicle(playerid))
+	if(newkeys == KEY_WALK && !IsPlayerInAnyVehicle(playerid))
     {
 		if(PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] == true)
 		{

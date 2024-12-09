@@ -14,7 +14,7 @@ InsertStaticVehicles()
 	DMV_Vehicles[3] = AddStaticVehicleEx(405, 1273.0470, -1536.0962, 13.5405, -91.0000, 1, 1, 1800, 0);SetVehicleNumberPlate(DMV_Vehicles[3], "DMV");
 
 	//SAPD
-	SAPD_Vehicles[30] = AddStaticVehicleEx(596,1602.3312,-1684.0071,5.6185,91.2188,0,1, 1800, 1); // Cruiser
+	/*SAPD_Vehicles[30] = AddStaticVehicleEx(596,1602.3312,-1684.0071,5.6185,91.2188,0,1, 1800, 1); // Cruiser
 	SetVehicleNumberPlate(SAPD_Vehicles[30], "LINCON-1");
 	SAPD_Vehicles[31] = AddStaticVehicleEx(596,1602.5184,-1687.9525,5.6098,89.0430,0,1, 1800, 1); // Cruiser
 	SetVehicleNumberPlate(SAPD_Vehicles[31], "LINCON-2");
@@ -86,7 +86,7 @@ InsertStaticVehicles()
 	SAMD_Vehicles[7] = AddStaticVehicleEx(487, 1163.0469, -1297.5098, 31.5550, 269.6279, -1, 3, 1800, 1);
 	SAMD_Vehicles[8] = AddStaticVehicleEx(407, 1098.8644, -1295.2787, 13.7938, 273.7230, 1, 3, 1800, 1); 
 	SAMD_Vehicles[9] = AddStaticVehicleEx(407, 1097.8621, -1303.2229, 13.8167, 273.2676, 1, 3, 1800, 1); 
-	SAMD_Vehicles[10] = AddStaticVehicleEx(407, 1097.5540, -1312.1210, 13.8991, 270.9483, 1, 3, 1800, 1);
+	SAMD_Vehicles[10] = AddStaticVehicleEx(407, 1097.5540, -1312.1210, 13.8991, 270.9483, 1, 3, 1800, 1);*/
 
 	for (new i = 0; i < 39; i ++) if (IsValidVehicle(SAPD_Vehicles[i])) 
 	{

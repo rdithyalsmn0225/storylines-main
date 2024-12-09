@@ -585,7 +585,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_LUMBERJACK)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "Lumberjack Commands: /buyaxe, /timbercut, /timbersell");
+							SendClientMessage(playerid, COLOR_ORANGE, "Lumberjack Commands: /buysaw, /cutwood, /sellwood");
 							SendTipMessage(playerid, "Press 'ALT' to cutting tree(s) using axe.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TAXI)
@@ -1567,6 +1567,24 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							}
 							else
 							{
+								if (!strcmp(string, "Woods"))
+								{
+									if (GetVehicleModel(carid) != 422 && GetVehicleModel(carid) != 478 && GetVehicleModel(carid) != 554 && GetVehicleModel(carid) != 543)
+									{
+										return SendErrorMessage(playerid, "Woods can only be placed in specific vehicles.");
+									}
+								}
+								else if (!strcmp(string, "Fabric Cargo") && !strcmp(string, "Steel Cargo") && !strcmp(string, "Woods Cargo") && !strcmp(string, "Foods Cargo")
+								&& !strcmp(string, "Clothes Cargo") && !strcmp(string, "Appliances Cargo") && !strcmp(string, "Fish Cargo"))
+								{
+									if (GetVehicleModel(carid) != 422 && GetVehicleModel(carid) != 478 && GetVehicleModel(carid) != 554 && GetVehicleModel(carid) != 543 && 
+										GetVehicleModel(carid) != 459 && GetVehicleModel(carid) != 482 && GetVehicleModel(carid) != 440 && GetVehicleModel(carid) != 413 && 
+										GetVehicleModel(carid) != 499 && GetVehicleModel(carid) != 414 && GetVehicleModel(carid) != 456 && GetVehicleModel(carid) != 455)
+									{
+										SendErrorMessage(playerid, "Woods can only be placed in specific vehicles.");
+									}
+								}
+
 								if (id == -1) {
 									return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
 								}
@@ -1611,13 +1629,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					new amount = strval(inputtext);
 
+					// Cek apakah item adalah Woods atau Cargo
+					if (!strcmp(string, "Woods") || !strcmp(string, "Fabric Cargo") || !strcmp(string, "Steel Cargo") || 
+						!strcmp(string, "Woods Cargo") || !strcmp(string, "Foods Cargo") || !strcmp(string, "Clothes Cargo") || 
+						!strcmp(string, "Appliances Cargo") || !strcmp(string, "Fish Cargo"))
+					{
+						amount = 1; // Batasi hanya bisa 1
+					}
+
 					if (amount < 1 || amount > InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY])
 					{
 						new str[512];
 						format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 						return ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 					}
-					
+
 					VS_AddItem(carid, string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_MODEL], amount);
 					Inventory_Remove(playerid, string, amount);
 					VehicleObjectUpdates(carid);
@@ -1639,7 +1665,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				if (response)
 				{
 					new amount = strval(inputtext);
-					
+
+					// Cek apakah item adalah Woods atau Cargo
+					if (!strcmp(string, "Woods") || !strcmp(string, "Fabric Cargo") || !strcmp(string, "Steel Cargo") || 
+						!strcmp(string, "Woods Cargo") || !strcmp(string, "Foods Cargo") || !strcmp(string, "Clothes Cargo") || 
+						!strcmp(string, "Appliances Cargo") || !strcmp(string, "Fish Cargo"))
+					{
+						amount = 1; // Batasi hanya bisa 1
+					}
+
 					if (amount < 1 || amount > VstorageInfo[carid][PlayerInfo[playerid][E_CHARACTER_STORAGEITEM]][E_VEHICLE_TRUNKQUANTITY])
 					{
 						new str[512];
@@ -1659,6 +1693,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else ShowVehicleStorage(playerid, carid);
 			}
 		}
+
 	}
 	PlayerPlaySound(playerid, 1054, 0.0, 0.0, 0.0);
 	return 0;

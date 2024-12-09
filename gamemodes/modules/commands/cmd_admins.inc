@@ -1560,9 +1560,9 @@ CMD:setneeds(playerid, params[])
 		Float: value,
 		str[128];
 
-	if(sscanf(params, "uif(-1)", playerb, statid, value))
+	if(sscanf(params, "uif", playerb, statid, value))
 	{
-		SendUsageMessage(playerid, "/setneeds [playerid OR name] [stat code] [value]"); 
+		SendUsageMessage(playerid, "/setneeds [playerid OR name] [needs code] [value]"); 
 		SendTipMessage(playerid, "1. Hungry, 2. Thirsty.");
 		return 1;
 	}

@@ -17,17 +17,11 @@
 | Changelogs |
 
 [Additional]
-- 
 
 [Changed]
-- Bus Driver Stop.
 
 [Improvement]
-- Fixed 8BALL POOL.
-- Fixed Dockworkers Box.
-- Fixed Minor Bugs.
 
 [Remove]
-- Business MapIcon.
 
 */

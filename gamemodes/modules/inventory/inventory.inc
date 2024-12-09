@@ -386,6 +386,24 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 					}
 					else
 					{
+						if (!strcmp(name, "Woods"))
+						{
+							if (GetVehicleModel(id) != 422 && GetVehicleModel(id) != 478 && GetVehicleModel(id) != 554 && GetVehicleModel(id) != 543)
+							{
+								return SendErrorMessage(playerid, "Woods can only be placed in specific vehicles.");
+							}
+						}
+						else if (!strcmp(name, "Fabric Cargo") && !strcmp(name, "Steel Cargo") && !strcmp(name, "Woods Cargo") && !strcmp(name, "Foods Cargo")
+						&& !strcmp(name, "Clothes Cargo") && !strcmp(name, "Appliances Cargo") && !strcmp(name, "Fish Cargo"))
+						{
+							if (GetVehicleModel(id) != 422 && GetVehicleModel(id) != 478 && GetVehicleModel(id) != 554 && GetVehicleModel(id) != 543 && 
+								GetVehicleModel(id) != 459 && GetVehicleModel(id) != 482 && GetVehicleModel(id) != 440 && GetVehicleModel(id) != 413 && 
+								GetVehicleModel(id) != 499 && GetVehicleModel(id) != 414 && GetVehicleModel(id) != 456 && GetVehicleModel(id) != 455)
+							{
+								SendErrorMessage(playerid, "Cargo can only be placed in specific vehicles.");
+							}
+						}
+
 						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
 						{
 							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);

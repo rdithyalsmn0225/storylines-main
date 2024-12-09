@@ -6,6 +6,9 @@ VehicleObjectUpdates(vehicleid)
         {
             if(VS_Count(vehicleid, "Woods"))
             {
+                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
+                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+                    
                 VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0] = CreateDynamicObject(1463,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
                 AttachDynamicObjectToVehicle(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0], vehicleid, 0.000, -1.280, 0.270, 0.000, 0.000, 89.400);
             }
@@ -19,6 +22,9 @@ VehicleObjectUpdates(vehicleid)
         {
             if(VS_Count(vehicleid, "Woods"))
             {
+                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
+                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+
                 VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0] = CreateDynamicObject(1463,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
                 AttachDynamicObjectToVehicle(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0], vehicleid, 0.000, -1.531, 0.440, 0.000, 0.000, 90.000);
             }
@@ -32,6 +38,9 @@ VehicleObjectUpdates(vehicleid)
         {
             if(VS_Count(vehicleid, "Woods"))
             {
+                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
+                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+
                 VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0] = CreateDynamicObject(1463,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
                 AttachDynamicObjectToVehicle(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0], vehicleid, 0.000, -1.731, 0.300, 0.000, 0.000, 0.000);
             }
@@ -45,6 +54,9 @@ VehicleObjectUpdates(vehicleid)
         {
             if(VS_Count(vehicleid, "Woods"))
             {
+                if(IsValidDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]))
+                    DestroyDynamicObject(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0]);
+
                 VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0] = CreateDynamicObject(1463,0.0,0.0,-1000.0,0.0,0.0,0.0,-1,-1,-1,300.0,300.0);
                 AttachDynamicObjectToVehicle(VehicleInfo[vehicleid][E_VEHICLE_OBJECTS][0], vehicleid, 0.000, -1.651, 0.290, 0.000, 0.000, -89.399);
             }
@@ -153,7 +165,7 @@ function:CreateTimber(playerid, id)
 	return 1;
 }
 
-CMD:timbercut(playerid, params[])
+CMD:cutwood(playerid, params[])
 {
     if(IsPlayerNearestTree(playerid) != -1)
     {
@@ -253,16 +265,15 @@ CMD:buysaw(playerid, params[])
     if(Inventory_Count(playerid, "Chainsaw"))
         return SendErrorMessage(playerid, "You already own a axe.");
 
-    new Cents = floatround(35 * 100, floatround_round);
+    new Cents = floatround(20 * 100, floatround_round);
     
     if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
         return SendErrorMessage(playerid, "You can't afford axe.");
 
     Inventory_Add(playerid, "Chainsaw", 341, 1);
-    
 
 	GiveMoney(playerid, -Cents);
-    SendServerMessage(playerid, "[Lumberjack] {DEDEDE}You bought a axe for $35.00.");
-    SendTipMessage(playerid, "To start cutting the tree(s) /timbercut using axe.");
+    SendServerMessage(playerid, "[Lumberjack] {DEDEDE}You bought a axe for $20.00.");
+    SendTipMessage(playerid, "To start cutting the tree(s) /cutwood using axe.");
     return 1;
 }

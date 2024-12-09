@@ -17,9 +17,10 @@ function:VehicleStorage_Load(vehicleid)
 
 		cache_get_value_name(i, "itemName", str, sizeof(str));
 		strpack(VstorageInfo[vehicleid][i][E_VEHICLE_TRUNKNAME], str, 32 char);
+		VehicleObjectUpdates(vehicleid);
 	}
 
-	VehicleObjectUpdates(vehicleid);
+	
 	printf("[SERVER]: %s vehicle storage were loaded from \"%s\" database...", ReturnVehicleName(vehicleid), SQL_DATABASE);
 	return 1;
 }
