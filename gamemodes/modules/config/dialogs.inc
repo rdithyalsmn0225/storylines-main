@@ -586,7 +586,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_LUMBERJACK)
 						{
 							SendClientMessage(playerid, COLOR_ORANGE, "Lumberjack Commands: /buysaw, /cutwood, /sellwood");
-							SendTipMessage(playerid, "Press 'ALT' to cutting tree(s) using axe.");
+							SendTipMessage(playerid, "Press 'ALT' to cutting tree(s) using chainsaw.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TAXI)
 						{

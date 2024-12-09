@@ -4204,10 +4204,10 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
 			if(!Inventory_Count(playerid, "Chainsaw"))
-				return SendErrorMessage(playerid, "You don't have any axe in inventory.");
+				return SendErrorMessage(playerid, "You don't have any chainsaw in inventory.");
 
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != CHAINSAW)
-				return SendErrorMessage(playerid, "You must hold the axe in your hands.");
+				return SendErrorMessage(playerid, "You must hold the chainsaw in your hands.");
 
 			if(TreeInfo[id][E_TREE_TIMER] > 0)
 				return SendErrorMessage(playerid, "This tree still unavailable.");

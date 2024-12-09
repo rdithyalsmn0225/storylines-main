@@ -179,10 +179,10 @@ CMD:cutwood(playerid, params[])
             return SendErrorMessage(playerid, "You aren't lumberjack.");
 
         if(!Inventory_Count(playerid, "Chainsaw"))
-            return SendErrorMessage(playerid, "You don't have any axe in inventory.");
+            return SendErrorMessage(playerid, "You don't have any chainsaw in inventory.");
 
         if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != CHAINSAW)
-            return SendErrorMessage(playerid, "You must hold the axe in your hands.");
+            return SendErrorMessage(playerid, "You must hold the chainsaw in your hands.");
 
         if(TreeInfo[id][E_TREE_TIMER] > 0)
             return SendErrorMessage(playerid, "This tree still unavailable.");
@@ -263,17 +263,17 @@ CMD:buysaw(playerid, params[])
         return SendErrorMessage(playerid, "You aren't lumberjack.");
 
     if(Inventory_Count(playerid, "Chainsaw"))
-        return SendErrorMessage(playerid, "You already own a axe.");
+        return SendErrorMessage(playerid, "You already own a chainsaw.");
 
     new Cents = floatround(20 * 100, floatround_round);
     
     if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
-        return SendErrorMessage(playerid, "You can't afford axe.");
+        return SendErrorMessage(playerid, "You can't afford chainsaw.");
 
     Inventory_Add(playerid, "Chainsaw", 341, 1);
 
 	GiveMoney(playerid, -Cents);
-    SendServerMessage(playerid, "[Lumberjack] {DEDEDE}You bought a axe for $20.00.");
-    SendTipMessage(playerid, "To start cutting the tree(s) /cutwood using axe.");
+    SendServerMessage(playerid, "[Lumberjack] {DEDEDE}You bought a chainsaw for $20.00.");
+    SendTipMessage(playerid, "To start cutting the tree(s) /cutwood using chainsaw.");
     return 1;
 }

@@ -69,6 +69,7 @@
 #define MAX_PRISON_CELLS 			(20)
 #define MAX_CARDS       			(5)
 #define MAX_FIRES                   (100)
+#define MAX_FACTION_VEHICLES 		(38)
 
 LoadCustomModels()
 {

@@ -44,7 +44,7 @@ stock ShowGarbageLocation(playerid)
 				}
 				else
 				{
-					format(str, sizeof(str), "%s#%d\t{FF6347}Unavailable{ffffff}\t%.2f Meter\n", str, b, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[b][0], Garbage_Locations[b][1], Garbage_Locations[b][2]));
+					format(str, sizeof(str), "%s#%d\t{FF6347}Unvailable{ffffff}\t%.2f Meter\n", str, b, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[b][0], Garbage_Locations[b][1], Garbage_Locations[b][2]));
 				}
 			}
 		}

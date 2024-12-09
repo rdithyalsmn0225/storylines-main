@@ -7,18 +7,18 @@ InsertFactionLocker()
 
 stock IsPoliceVehicle(vehicleid)
 {
-	for(new i = 0; i < sizeof SAPD_Vehicles; i++)
+	for(new i = 0; i < 27; i++)
 	{
-		if(vehicleid == SAPD_Vehicles[i]) return 1;
+		if(vehicleid == FactionVehicle[i][E_FACVEHICLE_VEH]) return 1;
 	}	
 	return 0;
 }
 
 stock IsMedicalVehicle(carid)
 {
-	for(new v = 0; v < 11; v++)
+	for(new i = 27; i < 38; i++)
 	{
-	    if(carid == SAMD_Vehicles[v]) return 1;
+	    if(carid == FactionVehicle[i][E_FACVEHICLE_VEH]) return 1;
 	}
 	return 0;
 }
