@@ -573,7 +573,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 7:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Jobs Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /takejobs, /quitjobs, /jobduty, ");
+						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /joinjob, /quitjob, /jobduty, ");
 						SendClientMessage(playerid, COLOR_ORANGE, "Docksworker Commands: /loadcargo, /storecargo");
 						SendClientMessage(playerid, COLOR_ORANGE, "Garbageman Commands: /collectgarbage, /dumpgarbage");
 						SendClientMessage(playerid, COLOR_ORANGE, "Fishing Commands: /fish, /sellfish, /buybait");
@@ -1581,7 +1581,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 										GetVehicleModel(carid) != 459 && GetVehicleModel(carid) != 482 && GetVehicleModel(carid) != 440 && GetVehicleModel(carid) != 413 && 
 										GetVehicleModel(carid) != 499 && GetVehicleModel(carid) != 414 && GetVehicleModel(carid) != 456 && GetVehicleModel(carid) != 455)
 									{
-										SendErrorMessage(playerid, "Woods can only be placed in specific vehicles.");
+										SendErrorMessage(playerid, "Cargo can only be placed in specific vehicles.");
 									}
 								}
 

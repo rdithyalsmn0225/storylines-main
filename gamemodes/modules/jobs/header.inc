@@ -322,7 +322,7 @@ ReturnJobName(jobid)
 	return name;
 }
 
-CMD:takejobs(playerid, params[])
+CMD:joinjob(playerid, params[])
 {
     for(new i = 0; i != sizeof(JobsInfo); i++)
     {
@@ -339,7 +339,7 @@ CMD:takejobs(playerid, params[])
     return 1;
 }
 
-CMD:quitjobs(playerid, params[])
+CMD:quitjob(playerid, params[])
 {
     if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_NONE)
     {
