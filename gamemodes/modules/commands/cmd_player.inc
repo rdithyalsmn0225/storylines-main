@@ -890,7 +890,7 @@ CMD:deposit(playerid, params[])
 {
 	new
 		id = IsPlayerInBusiness(playerid),
-		amount
+		Float:amount
 	;
 		
 	if(!id)
@@ -919,7 +919,7 @@ CMD:withdraw(playerid, params[])
 {
 	new
 		id = IsPlayerInBusiness(playerid),
-		amount
+		Float:amount
 	;
 		
 	if(!id)
