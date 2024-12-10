@@ -124,7 +124,7 @@ CMD:bizfee(playerid, params[])
 		
 	new
 		id,
-		amount
+		Float:amount
 	;
 	
 	if((id = IsPlayerInBusiness(playerid)) != 0)
