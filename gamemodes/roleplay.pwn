@@ -20,7 +20,6 @@
 #include <progress2>
 #include <easyDialog>
 #include <PreviewModelDialog>
-#include <strlib>
 #include <timerfix>
 #include <zcmd>
 #include <sscanf2>
@@ -366,8 +365,6 @@ public OnPlayerConnect(playerid)
 	LastEnteredVehicle[playerid] = INVALID_VEHICLE_ID;
 
 	EnablePlayerCameraTarget(playerid, true);
-
-	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 500, playerid);
 
 	if(PlayerInfo[playerid][E_CHARACTER_INJURED] == 1)
 	{
@@ -3167,8 +3164,6 @@ public OnPlayerSpawn(playerid)
 
 	KillTimer(cameraTimer[playerid]);
 	SetCameraBehindPlayer(playerid); 
-
-	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 500, playerid);
 
 	if(PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] == true)
 	{

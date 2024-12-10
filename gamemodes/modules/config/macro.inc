@@ -51,7 +51,7 @@
 #define MAX_PLAYER_VEHICLES 		(5)
 #define MAX_ZONE_NAME 				(28)
 #define MAX_SPRAYTAGS   			(500)
-#define MAX_INVENTORY				(24)
+#define MAX_INVENTORY				(10)
 #define MAX_CAR_STORAGE 			(5)
 #define MAX_DROPPED_ITEMS 			(1000)
 #define MAX_LISTED_ITEMS 			(10)

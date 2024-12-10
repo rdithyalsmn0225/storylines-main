@@ -62,7 +62,9 @@ public PHY_OnObjectUpdate(objectid)
                             ? PoolInfo[businessid][E_POOL_PLAYER2]
                             : PoolInfo[businessid][E_POOL_PLAYER1]);
 
-                            SendPoolPlayersMessage(sprintf("[8Ball] {DEDEDE}%s has pocketed the cue ball.", ReturnName(PoolInfo[businessid][E_POOL_LASTSHOOTER])));
+                            new str[128];
+                            format(str, sizeof(str), "[8Ball] {DEDEDE}%s has pocketed the cue ball.", ReturnName(PoolInfo[businessid][E_POOL_LASTSHOOTER]));
+                            SendPoolPlayersMessage(str);
                             RestoreCamera(PoolInfo[businessid][E_POOL_LASTSHOOTER], businessid);
 
                             PlayerPlaySound(PoolInfo[businessid][E_POOL_TURN], 1250, 0.0, 0.0, 0.0);

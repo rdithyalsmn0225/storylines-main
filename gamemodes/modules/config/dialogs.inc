@@ -138,14 +138,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				if(pToys[playerid][listitem][E_TOY_MODEL] == 0)
 					return SendErrorMessage(playerid, "There is no accessory on selected index!");
 
-				new string[512];
+				new string[256], str[64];
 				toySelect[playerid] = listitem;
 				if(pToys[playerid][listitem][E_TOY_TYPE] == ACC_HAIRCUT)
 					format(string, sizeof(string), "Place %s", (!toyToggle[playerid][toySelect[playerid]]) ? ("On") : ("Off"));
 				else
 					format(string, sizeof(string), "Place %s\nChange Bone\nChange Placement\nRemove", (!toyToggle[playerid][toySelect[playerid]]) ? ("On") : ("Off"));
 
-				ShowPlayerDialog(playerid, DIALOG_CLOTHEDIT, DIALOG_STYLE_LIST, sprintf("Accessories %d:", listitem), string, "Select", "Cancel");
+				format(str, sizeof(str), "Accessories %d:", listitem);
+				ShowPlayerDialog(playerid, DIALOG_CLOTHEDIT, DIALOG_STYLE_LIST, str, string, "Select", "Cancel");
 			}
 		}
 		case DIALOG_CLOTHEDIT:
@@ -735,7 +736,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							SendServerMessage(playerid, "[Settings] {DEDEDE}switched your phonestyle to modern.");
 						}
 					}
-					case 8:
+					/*case 8:
 					{
 						if(PlayerInfo[playerid][E_CHARACTER_TOGDD])
 						{
@@ -749,7 +750,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							SendServerMessage(playerid, "[Settings] {DEDEDE}Draw Distance has been set to High.");
 							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 1000, playerid);
 						}
-					}
+					}*/
 				}
 			}
 		}

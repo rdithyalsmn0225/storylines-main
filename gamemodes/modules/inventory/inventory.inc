@@ -196,30 +196,28 @@ stock ShowInventory(playerid, targetid)
 	    return 0;
 
 	new
-	    items[MAX_INVENTORY],
 		amounts[MAX_INVENTORY],
 		str[2024],
 		string[352],
 		count = 0;
 
-	format(str, sizeof(str), "%d\tMoney\t~g~$%s\n", 1212, FormatMoney(PlayerInfo[targetid][E_CHARACTER_MONEY]));
+	format(str, sizeof(str), "[SLOT]: Money $%s\n", FormatMoney(PlayerInfo[targetid][E_CHARACTER_MONEY]));
     for (new i = 0; i < MAX_INVENTORY; i ++)
 	{
  		if (InventoryInfo[targetid][i][E_INVENTORY_EXISTS])
         {
 			if (!InventoryInfo[targetid][i][E_INVENTORY_EXISTS] && InventoryInfo[targetid][i][E_INVENTORY_MODEL] == 0)
-	        	format(str, sizeof(str), "%s18631\tEMPTY\n", str);
+	        	format(str, sizeof(str), "%s[SLOT]: <EMPTY>\n", str);
 			else
 			{
 				count++;
-				items[i] = InventoryInfo[targetid][i][E_INVENTORY_MODEL];
 				amounts[i] = InventoryInfo[targetid][i][E_INVENTORY_QUANTITY];
 				strunpack(string, InventoryInfo[targetid][i][E_INVENTORY_ITEM]);
-				format(str, sizeof(str), "%s%d\t%s\t%dx\n", str, items[i], string, amounts[i]);
+				format(str, sizeof(str), "%s[SLOT]: %s %d\n", str, string, amounts[i]);
 			}
 		}
 	}
-	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_PREVIEW_MODEL,"Inventory:", str,  "Close", "");
+	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST,"Inventory:", str,  "Close", "");
 	return 1;
 
 }
@@ -230,7 +228,6 @@ stock OpenInventory(playerid)
 	    return 0;
 
 	new
-		items[MAX_INVENTORY],
 		amounts[MAX_INVENTORY],
 		str[2024],
 		string[256];
@@ -238,16 +235,15 @@ stock OpenInventory(playerid)
     for (new i = 0; i < MAX_INVENTORY; i ++)
 	{
 		if (!InventoryInfo[playerid][i][E_INVENTORY_EXISTS] && InventoryInfo[playerid][i][E_INVENTORY_MODEL] == 0)
-	        format(str, sizeof(str), "%s18631\tEMPTY\n", str);
+	        format(str, sizeof(str), "%s[SLOT]: <EMPTY>\n", str);
 		else
 		{
-			items[i] = InventoryInfo[playerid][i][E_INVENTORY_MODEL];
 			amounts[i] = InventoryInfo[playerid][i][E_INVENTORY_QUANTITY];
 			strunpack(string, InventoryInfo[playerid][i][E_INVENTORY_ITEM]);
-			format(str, sizeof(str), "%s%d\t%s\t%dx\n", str, items[i], string, amounts[i]);
+			format(str, sizeof(str), "%s[SLOT]: %s %d\n", str, string, amounts[i]);
 		}
 	}
-	Dialog_Show(playerid, Inventory, DIALOG_STYLE_PREVIEW_MODEL, "Inventory:", str, "Select", "Close");
+	Dialog_Show(playerid, Inventory, DIALOG_STYLE_TABLIST, "Inventory:", str, "Select", "Close");
 	return 1;
 }
 

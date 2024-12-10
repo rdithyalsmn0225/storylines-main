@@ -52,7 +52,7 @@ CMD:settings(playerid, params[])
 	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sTips Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGTIPS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sPhone Style\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPHONE] == false) ? ("{33AA33}Modern{ffffff}") : ("{FF6347}Old School{ffffff}"));
-	format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{33AA33}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
+	//format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{33AA33}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
 	ShowPlayerDialog(playerid, DIALOG_SETTINGS, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
 	return 1;
 }
@@ -2009,7 +2009,9 @@ CMD:whisper(playerid, params[])
 	format(string, sizeof ( string ), "%s{FFCC22} whispers: %s", ReturnName(playerid), text )  ;
 	SendClientMessageEx(userid, 0xFFCC2299, string );
 
-	ProxDetectorEx(playerid, 5.0, COLOR_EMOTE, "", sprintf("mutters something to %s.", ReturnSignName(userid)));
+	new str[128];
+	format(str, sizeof(str), "mutters something to %s.", ReturnSignName(userid));
+	ProxDetectorEx(playerid, 5.0, COLOR_EMOTE, "", str);
 	return 1;
 }
 
@@ -2055,7 +2057,9 @@ static SendPlayerLocalOOC(playerid, text[144], bool:islow=false, bool:insidecar 
 		{
 			if (PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])  {
 				format(string,sizeof(string), "{A3A3A3} [low]: %s ))", text);
-				ProxDetectorEx(playerid, 10.0, 0xA3A3A3FF, sprintf("(( [LOCAL](%d){E8871B}", playerid), string, .autospacing=false); 
+				new str[128];
+				format(str, sizeof(str), "(( [LOCAL](%d){E8871B}", playerid);
+				ProxDetectorEx(playerid, 10.0, 0xA3A3A3FF, str, string, .autospacing=false); 
 			}
 			else {
 				format ( string, sizeof ( string ), "[low]: %s ))", text ) ;
@@ -2066,7 +2070,9 @@ static SendPlayerLocalOOC(playerid, text[144], bool:islow=false, bool:insidecar 
 		{
 			if (PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])  {
 				format(string,sizeof(string), "{A3A3A3}: %s ))", text);
-				ProxDetectorEx(playerid, 10.0, 0xA3A3A3FF, sprintf("(( [LOCAL](%d){E8871B}", playerid), string, .autospacing=false); 
+				new str[128];
+				format(str, sizeof(str), "(( [LOCAL](%d){E8871B}", playerid);
+				ProxDetectorEx(playerid, 10.0, 0xA3A3A3FF, str, string, .autospacing=false); 
 			}
 			else {
 				format(string, sizeof (string), ": %s ))", text);

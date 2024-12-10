@@ -303,32 +303,44 @@ CMD:carwindow(playerid, params[])
         {
             if (VehicleInfo[vehicleid][E_VEHICLE_WINDOWS])
             {
-                cmd_me(playerid, sprintf("rolls up the windows of the %s.", ReturnVehicleName(vehicleid)));
+				new str[128];
+				format(str, sizeof(str), "rolls up the windows of the %s.", ReturnVehicleName(vehicleid));
+                cmd_me(playerid, str);
             }
             else
             {
-                cmd_me(playerid, sprintf("rolls down the windows of the %s.", ReturnVehicleName(vehicleid)));
+                new str[128];
+				format(str, sizeof(str), "rolls downs the windows of the %s.", ReturnVehicleName(vehicleid));
+                cmd_me(playerid, str);
             }
         }
 
         case 1:
         {
-            cmd_me(playerid, sprintf("rolls %s the front-left window of the %s.", driver ? "up" : "down", ReturnVehicleName(vehicleid)));
+			new str[128];
+			format(str, sizeof(str), "rolls %s the front-left window of the %s.", driver ? "up" : "down", ReturnVehicleName(vehicleid));
+            cmd_me(playerid, str);
         }
 
         case 2:
         {
-            cmd_me(playerid,  sprintf("rolls %s the front-right window of the %s.", passenger ? "up" : "down", ReturnVehicleName(vehicleid)));
+            new str[128];
+			format(str, sizeof(str), "rolls %s the front-right window of the %s.", driver ? "up" : "down", ReturnVehicleName(vehicleid));
+            cmd_me(playerid, str);
         }
 
         case 3:
         {
-            cmd_me(playerid,  sprintf("rolls %s the rear-left window of the %s.", backleft ? "up" : "down", ReturnVehicleName(vehicleid)));
+            new str[128];
+			format(str, sizeof(str), "rolls %s the rear-left window of the %s.", driver ? "up" : "down", ReturnVehicleName(vehicleid));
+            cmd_me(playerid, str);
         }
 
         case 4:
         {
-            cmd_me(playerid, sprintf("rolls %s the rear-right window of the %s.", backright ? "up" : "down", ReturnVehicleName(vehicleid)));
+            new str[128];
+			format(str, sizeof(str), "rolls %s the front-right window of the %s.", driver ? "up" : "down", ReturnVehicleName(vehicleid));
+            cmd_me(playerid, str);
         }
     }
 
