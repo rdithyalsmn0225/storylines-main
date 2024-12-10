@@ -2477,7 +2477,7 @@ new const JobLocName[][62] =
 	"Royal Fishers.co (Activity: Fishing)"
 };
 
-new const IndustryInfo[][E_INDUSTRY_DATA] = 
+new IndustryInfo[][E_INDUSTRY_DATA] = 
 {
 	{"Solarin Industries", "Primary", "Fabric", 5.0, 830.0101,-612.8276,16.3432}, // Fabric Industrial - Primary (Clothes)
 	{"Solarin Industries", "Primary", "Steel", 5.3, 820.1189,-612.7189,16.3432}, // Steel Industrial - Primary (Appliances)
@@ -2489,7 +2489,7 @@ new const IndustryInfo[][E_INDUSTRY_DATA] =
 	{"Waterford Industries", "Secondary", "Appliances", 6.7, 856.2750,-1199.0627,16.9766} // Appliances Industrial - Secondary
 };
 
-new const FreightInfo[][E_FREIGHT_DATA] = 
+new FreightInfo[][E_FREIGHT_DATA] = 
 {	
 	{"Fabric", 1197.8492,165.9476,21.1472, 		2471.8384,-2090.3818,13.5469}, // Montgomery Fabric
 	{"Steel", -544.9263,-86.5519,63.9614, 		-1987.9716,-2382.5554,30.6250}, // Panopticon Woods

@@ -227,43 +227,41 @@ CMD:cargosell(playerid, params[])
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
 	{
-		if(!Inventory_Count(playerid, "Steel Cargo"))
-			return SendErrorMessage(playerid, "You are not carrying your cargo.");
+		if(Inventory_Count(playerid, "Steel Cargo"))
+		{
+			if(!ServerInfo[0][E_SERVER_APPLIANCES] >= 100)
+				return SendErrorMessage(playerid, "This cargo storage is full of stock.");
 
-		if(!ServerInfo[0][E_SERVER_APPLIANCES] >= 100)
-			return SendErrorMessage(playerid, "This cargo storage is full of stock.");
+			Inventory_Remove(playerid, "Steel Cargo", 1);
+			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+			RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+			new Cents = floatround(IndustryInfo[1][Price] * 2 * 100, floatround_round);
 
-		Inventory_Remove(playerid, "Steel Cargo", 1);
-		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		new Cents = floatround(IndustryInfo[1][Price] * 2 * 100, floatround_round);
+			GiveMoney(playerid, Cents);
 
-	    GiveMoney(playerid, Cents);
+			ServerData_Plus(INDUSTRY_APPLIANCES, 1);
+			
+			SendJobsMessage(playerid, "[Trucker] {DEDEDE}You has sell cargo for $%s.", FormatMoney(Cents));
+		}
+		else if(Inventory_Count(playerid, "Woods Cargo"))
+		{
+			if(!ServerInfo[0][E_SERVER_APPLIANCES] >= 100)
+				return SendErrorMessage(playerid, "This cargo storage is full of stock.");
 
-		ServerData_Plus(INDUSTRY_APPLIANCES, 1);
-		
-		SendJobsMessage(playerid, "[Trucker] {DEDEDE}You has sell cargo for $%s.", FormatMoney(Cents));
-	}
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
-	{
-		if(!Inventory_Count(playerid, "Woods Cargo"))
-			return SendErrorMessage(playerid, "You are not carrying your cargo.");
+			Inventory_Remove(playerid, "Woods Cargo", 1);
+			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+			RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+			new Cents = floatround(IndustryInfo[2][Price] * 2 * 100, floatround_round);
 
-		if(!ServerInfo[0][E_SERVER_APPLIANCES] >= 100)
-			return SendErrorMessage(playerid, "This cargo storage is full of stock.");
+			SetPlayerNeeds(playerid, -0.3, -0.2);
 
-		Inventory_Remove(playerid, "Woods Cargo", 1);
-		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		new Cents = floatround(IndustryInfo[2][Price] * 2 * 100, floatround_round);
+			GiveMoney(playerid, Cents);
 
-		SetPlayerNeeds(playerid, -0.3, -0.2);
-
-	    GiveMoney(playerid, Cents);
-
-		ServerData_Plus(INDUSTRY_APPLIANCES, 1);
-		
-		SendJobsMessage(playerid, "[Trucker] {DEDEDE}You has sell cargo for $%s.", FormatMoney(Cents));
+			ServerData_Plus(INDUSTRY_APPLIANCES, 1);
+			
+			SendJobsMessage(playerid, "[Trucker] {DEDEDE}You has sell cargo for $%s.", FormatMoney(Cents));
+		}
+		else SendErrorMessage(playerid, "You are not carrying your cargo.");
 	}
 
 	// Secondary Sell:
