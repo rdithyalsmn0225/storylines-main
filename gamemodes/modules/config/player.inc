@@ -341,6 +341,9 @@ function:ResetPlayer(playerid)
 
 	PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = INVALID_VEHICLE_ID;
 
+	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = INVALID_VEHICLE_ID;
+	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = false;
+
 	KillTimer(cameraTimer[playerid]);
 	KillTimer(PlayerEngineTimer[playerid]);
 	KillTimer(PlayerTimerGym[playerid]);

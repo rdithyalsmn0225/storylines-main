@@ -179,6 +179,13 @@ function:OnPlayerVehicleRental(playerid, id, modelid, cost, plates[], Float:x, F
 		
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = true;
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid;
+
+        if(VehicleInfo[vehicleid][E_VEHICLE_EXISTS] && IsValidVehicle(vehicleid))
+		{
+            new str[128];
+			format(str, sizeof(str), "SELECT * FROM `vstorage` WHERE `ID` = '%d'", VehicleInfo[vehicleid][E_VEHICLE_DBID]);
+			mysql_pquery(ourConnection, str, "VehicleStorage_Load", "d", vehicleid);
+		}
 	}
 	
 	SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}You successfully rent a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(cost));
