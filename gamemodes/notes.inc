@@ -17,16 +17,14 @@
 | Changelogs |
 
 [Additional]
-- Faction Vehicle (Static)
 
 [Changed]
-- Vehicle Trunk specific vehicles
-- Reduce Industry Restock 10 minutes > 30 minutes
+- 
+
 [Improvement]
-- Fix Lumberjack missed text Axe > Chainsaw
-- Fix Missed Text /help
-- Wood & Cargo Size
+- Fix Trucker Steel & Woods Cargo.
+- Vehicle Trunk Fixed.
 
 [Remove]
-
+- /carfind.
 */

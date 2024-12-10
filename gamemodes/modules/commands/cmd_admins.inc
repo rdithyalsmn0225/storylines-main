@@ -115,24 +115,26 @@ CMD:goto(playerid, params[])
 		return SendErrorMessage(playerid, "The player you specified hasn't logged in yet.");
 		
 	GetPlayerPos(playerb, PlayerInfo[playerb][E_CHARACTER_LASTPOS][0], PlayerInfo[playerb][E_CHARACTER_LASTPOS][1], PlayerInfo[playerb][E_CHARACTER_LASTPOS][2]);
-	//Using the player variable to avoid making other variables; 
 	
+	new vw = GetPlayerVirtualWorld(playerb), int = GetPlayerInterior(playerb);
+
 	if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
 		SetVehiclePos(GetPlayerVehicleID(playerid), PlayerInfo[playerb][E_CHARACTER_LASTPOS][0], PlayerInfo[playerb][E_CHARACTER_LASTPOS][1] - 1, PlayerInfo[playerb][E_CHARACTER_LASTPOS][2]);
 	
 	else
 		SetPlayerPosEx(playerid, PlayerInfo[playerb][E_CHARACTER_LASTPOS][0], PlayerInfo[playerb][E_CHARACTER_LASTPOS][1] - 1, PlayerInfo[playerb][E_CHARACTER_LASTPOS][2]);
 		
-	SetPlayerVirtualWorld(playerid, GetPlayerVirtualWorld(playerb));
-	
-	SetPlayerInterior(playerid, GetPlayerInterior(playerb)); 
+	SetPlayerVirtualWorld(playerid, vw);
+	SetPlayerInterior(playerid, int); 
 		
 	SendTeleportMessage(playerid);	
 	
-	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
-	{
-		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0; PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = 0;
-	}
+	
+	PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = PlayerInfo[playerb][E_CHARACTER_INSIDEPROP]; 
+	PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = PlayerInfo[playerb][E_CHARACTER_INSIDEBIZ]; 
+	PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = PlayerInfo[playerb][E_CHARACTER_INSIDEENT];
+
+	SendInfoMessage(playerb, "%s was teleported to you.", ReturnName(playerid));
 	return 1;
 }
 
@@ -157,8 +159,9 @@ CMD:gethere(playerid, params[])
 	if(AccountInfo[playerid][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "The player you specified hasn't logged in yet.");
 		
-	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
+	new vw = GetPlayerVirtualWorld(playerb), int = GetPlayerInterior(playerb);
 
+	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
 	
 	if(GetPlayerState(playerb) == PLAYER_STATE_DRIVER)
 		SetVehiclePos(GetPlayerVehicleID(playerb), PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1] - 1, PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
@@ -166,12 +169,15 @@ CMD:gethere(playerid, params[])
 	else
 		SetPlayerPosEx(playerb, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1] - 1, PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
 		
-	SetPlayerVirtualWorld(playerb, GetPlayerVirtualWorld(playerid));
-	
-	if(GetPlayerInterior(playerid) != 0)
-		SetPlayerInterior(playerb, GetPlayerInterior(playerid)); 
+	SetPlayerVirtualWorld(playerid, vw);
+	SetPlayerInterior(playerid, int); 
 		
-	SendTeleportMessage(playerb);
+	SendTeleportMessage(playerid);	
+	
+	PlayerInfo[playerb][E_CHARACTER_INSIDEPROP] = PlayerInfo[playerid][E_CHARACTER_INSIDEPROP]; 
+	PlayerInfo[playerb][E_CHARACTER_INSIDEBIZ] = PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ]; 
+	PlayerInfo[playerb][E_CHARACTER_INSIDEENT] = PlayerInfo[playerid][E_CHARACTER_INSIDEENT];
+
 	SendInfoMessage(playerid, "%s was teleported to you.", ReturnName(playerb));
 	return 1;
 }
