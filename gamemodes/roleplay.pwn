@@ -220,7 +220,7 @@ public OnGameModeInit()
 	InsertStaticArea();
 	Insert3DTextLabel();
 	InsertAcidGunLabs();
-	//InsertProjectProp();
+	InsertProjectProp();
 	InsertAlhambraMaps();
 	InsertSidejobsMaps();
 	InsertDocksWorkers();

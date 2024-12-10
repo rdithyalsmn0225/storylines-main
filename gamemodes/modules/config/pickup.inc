@@ -173,6 +173,13 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
         return 1;	
     }
 
+    if(pickupid == SAMDPickup)
+    {
+        format(str, sizeof(str), "~p~Faction Vehicles~n~~w~Type '~y~/spawn~w~' to spawn faction vehicles~n~~w~Type '~y~/despawn~w~' to despawn faction vehicles."); 
+        ShowBoxMessage(playerid, str, 5); 
+        return 1;	
+    }
+
     for(new i; i < sizeof(BusStop_Index); i++)
 	{
         if(pickupid == BusStopPickup[i])

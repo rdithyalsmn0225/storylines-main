@@ -22,8 +22,9 @@
 - 
 
 [Improvement]
-- Fix Trucker Steel & Woods Cargo.
-- Vehicle Trunk Fixed.
+- Fixed Trucker Steel & Woods Cargo.
+- Fixed Vehicle Trunk.
+- Fixed /goto /gethere.
 
 [Remove]
 - /carfind.

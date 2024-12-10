@@ -890,8 +890,7 @@ CMD:deposit(playerid, params[])
 {
 	new
 		id = IsPlayerInBusiness(playerid),
-		Float:amount
-	;
+		Float:amount;
 		
 	if(!id)
 		return SendErrorMessage(playerid, "You aren't in a business.");
@@ -919,8 +918,7 @@ CMD:withdraw(playerid, params[])
 {
 	new
 		id = IsPlayerInBusiness(playerid),
-		Float:amount
-	;
+		Float:amount;
 		
 	if(!id)
 		return SendErrorMessage(playerid, "You aren't in a business.");

@@ -1585,7 +1585,7 @@ CMD:setneeds(playerid, params[])
 			PlayerInfo[playerb][E_CHARACTER_HUNGRY] = value;
 			SaveCharacter(playerb); 
 			
-			format(str, sizeof(str), "%s set %s's faction rank to %i.", ReturnMixedName(playerid), ReturnName(playerb), value); 
+			format(str, sizeof(str), "%s set %s's faction rank to %f.", ReturnMixedName(playerid), ReturnName(playerb), value); 
 			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str); 
 		}
 
@@ -1600,7 +1600,7 @@ CMD:setneeds(playerid, params[])
 			PlayerInfo[playerb][E_CHARACTER_THIRSTY] = value;
 			SaveCharacter(playerb); 
 			
-			format(str, sizeof(str), "%s set %s's faction rank to %i.", ReturnMixedName(playerid), ReturnName(playerb), value); 
+			format(str, sizeof(str), "%s set %s's faction rank to %f.", ReturnMixedName(playerid), ReturnName(playerb), value); 
 			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str); 
 		}
 	}
