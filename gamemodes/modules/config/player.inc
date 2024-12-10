@@ -215,6 +215,10 @@ function:ResetPlayer(playerid)
 			ReportInfo[i][E_REPORT_BY] = INVALID_PLAYER_ID;
 		}
 	}
+	for(new i; i < 2; i++)
+	{
+		HEBAR[i][playerid] = INVALID_PLAYER_BAR_ID;
+	}
 	
 	//Anticheat
 	CurrentHealthVar[playerid] = 0;

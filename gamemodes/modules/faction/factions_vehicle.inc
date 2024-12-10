@@ -63,6 +63,9 @@ CMD:despawn(playerid, params[])
         {
             new vehicleid = GetPlayerVehicleID(playerid);
 
+            if(!IsPlayerInAnyVehicle(playerid))
+                return SendErrorMessage(playerid, "You aren't in any vehicles.");
+                
             // Loop through faction vehicles to find a match
             for (new i = 0; i < sizeof(FactionVehicle); i++)
             {
@@ -71,13 +74,6 @@ CMD:despawn(playerid, params[])
                     if ((ReturnFactionType(playerid) == FACTION_TYPE_POLICE && i < 27) ||
                         (ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL && i >= 27 && i < 38))
                     {
-                        
-                        if (IsVehicleOccupied(vehicleid) != INVALID_PLAYER_ID)
-                        {
-                            return SendErrorMessage(playerid, "You cannot despawn this vehicle while it's in use.");
-                        }
-                        
-
                         DestroyVehicle(vehicleid);
                         FactionVehicle[i][E_FACVEHICLE_SPAWNED] = false;
                         FactionVehicle[i][E_FACVEHICLE_VEH] = INVALID_VEHICLE_ID;

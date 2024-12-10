@@ -83,23 +83,22 @@ SetPlayerNeeds(playerid, Float:hungry, Float:thirsty)
 
 ShowPlayerNeeds(playerid)
 {
-    new str[6], str1[6];
-    for(new i; i < 4; i++)
+    for(new i; i < 2; i++)
     {
-        format(str, sizeof(str), "%0.1f", PlayerInfo[playerid][E_CHARACTER_HUNGRY]);
-        format(str1, sizeof(str1), "%0.1f", PlayerInfo[playerid][E_CHARACTER_THIRSTY]);
-        PlayerTextDrawSetString(playerid, HE[2][playerid], str);
-        PlayerTextDrawSetString(playerid, HE[3][playerid], str1);
+        SetPlayerProgressBarValue(playerid, HEBAR[0][playerid], PlayerInfo[playerid][E_CHARACTER_HUNGRY]);
+        SetPlayerProgressBarValue(playerid, HEBAR[1][playerid], PlayerInfo[playerid][E_CHARACTER_THIRSTY]);
         PlayerTextDrawShow(playerid, HE[i][playerid]);
+        ShowPlayerProgressBar(playerid, HEBAR[i][playerid]);
     }
     return 1;
 }
 
 HidePlayerNeeds(playerid)
 {
-    for(new i; i < 4; i++)
+    for(new i; i < 2; i++)
     {
         PlayerTextDrawHide(playerid, HE[i][playerid]);
+        HidePlayerProgressBar(playerid, HEBAR[i][playerid]);
     }
     return 1;
 }
