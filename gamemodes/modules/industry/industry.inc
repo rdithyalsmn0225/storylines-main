@@ -13,7 +13,7 @@ enum
 
 stock IndustryRefresh(id)
 {
-    new str[512], str1[512], str2[512], str3[512], str4[512], str5[512], str6[512];
+    new str[312], str1[312], str2[312], str3[312], str4[312], str5[312], str6[312];
 
 	for(new i; i < 6; i++)
 	{
@@ -205,7 +205,7 @@ Dialog:IndustryLoc(playerid, response, listitem, inputtext[])
 stock ShowShipments(playerid)
 {
     static
-	    string[512],
+	    string[32],
 		type[24];
 
 	string[0] = 0;

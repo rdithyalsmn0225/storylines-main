@@ -18,7 +18,7 @@ function:CheckBanList(playerid)
 {	
 	if(!cache_num_rows())
 	{
-		new existCheck[512];
+		new existCheck[314];
 		for(new i = 0; i < 4; i ++) {PlayerTextDrawShow(playerid, LoginScreen[i][playerid]);}
 		
 		mysql_format(ourConnection, existCheck, sizeof(existCheck), "SELECT acc_dbid, secret_word, verified FROM masters WHERE acc_name = '%e'", ReturnName(playerid, 1));
@@ -130,7 +130,7 @@ function:Query_CheckBannedAccount(playerid)
 		loginTime[playerid] = 0; 
 		characterPickTime[playerid] = 1;
 		
-		new fetchChars[512];
+		new fetchChars[256];
 	
 		mysql_format(ourConnection, fetchChars, sizeof(fetchChars), "SELECT * FROM characters WHERE `master_dbid` = '%d' LIMIT 4", AccountInfo[playerid][E_MASTERS_DBID]);
 		mysql_pquery(ourConnection, fetchChars, "DB_ListCharacters", "i", playerid);
@@ -415,7 +415,7 @@ function:Query_LoadCharacter(playerid)
 	mysql_pquery(ourConnection, rquery, "Query_LoadTicket", "d", playerid);
 	
 	TogglePlayerControllable(playerid, false);
-	new string[2024];
+	new string[1024];
 	
 	for(new a; a < 9; a++)
 	{

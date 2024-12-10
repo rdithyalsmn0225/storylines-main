@@ -70,7 +70,7 @@ Dialog:PaynSpray(playerid, response, listitem, inputtext[])
 	if(response)
 	{
 		new vehicleid = GetPlayerVehicleID(playerid), 
-			str[512],
+			str[64],
 			modelid = SubVehicleComponentArr[playerid][listitem];
 		
 		format(str, sizeof(str), "Hope you like new mods!!");

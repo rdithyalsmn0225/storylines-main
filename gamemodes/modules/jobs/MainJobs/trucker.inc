@@ -379,7 +379,7 @@ Dialog:Industry(playerid, response, listitem, inputtext[])
 		{
 			case 0:
 			{
-				new str[512];
+				new str[256];
 				strcat(str, "Welcome to los santos economy!\n\nThe ship & warehouses is currently restocked product every 30 minute(s).\n\nYou can buy cargo products if stock is still available on the ship or warehouses.");
 				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Information:", str, "Confirm", "");
 			}

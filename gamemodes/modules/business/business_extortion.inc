@@ -76,7 +76,7 @@ stock Relations_Add(playerid, name[])
 {
 	new
 		rid = Relations_GetID(playerid, name),
-		query[512];
+		query[256];
 
 	if (rid == -1)
 	{
@@ -199,7 +199,7 @@ CMD:extort(playerid, params[])
 				case 4: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xDEDEDEFF, "Cashiers says: Please don't take my money! I need to feed my children!");
 			}
 
-			new str[512];
+			new str[133];
 			format(str, sizeof(str), "You have started the extorting in %s.~n~~n~Hit the store clerk to break them. When the extortion bar is full use /extort again.", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 			ShowHeaderMessage(playerid, "Extortion", str);
 
@@ -218,7 +218,7 @@ CMD:extort(playerid, params[])
 			PlayerInfo[playerid][E_CHARACTER_ROBBERYCD] = 10;
 			BusinessRefresh(IsPlayerInBusiness(playerid));
 
-			new str[512];
+			new str[128];
 			format(str, sizeof(str), "You have finished the extorting in %s.~n~~n~take the cash inside cashiers.", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 			ShowHeaderMessage(playerid, "Extortion", str);
 			

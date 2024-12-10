@@ -588,8 +588,8 @@ function:Query_ShowVehicleList(playerid, idx)
 		vehicleRentalTimer,
 		bool:vehicleRental,
 		bool:isSpawned = false,
-		color[512],
-		rent[512];
+		color[64],
+		rent[64];
 
 	for (new i = 0; i < rows; i++)
 	{
@@ -619,7 +619,7 @@ function:Query_ShowVehicleList(playerid, idx)
 		else
 			format(rent, sizeof(rent), "Owned");
 
-		new str[512], str2[512];
+		new str[128], str2[128];
 		
 		if(idx == 1)
 		{

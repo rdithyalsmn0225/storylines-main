@@ -4,7 +4,7 @@ stock ShowGeneralList(playerid, type)
 	if(BusinessInfo[businessid][E_BUSINESS_STOCK] < 1)
 		return SendErrorMessage(playerid, "This business is out of stock"); 
 
-	new str[128], str2[512];
+	new str[128], str2[128];
 
 	switch(type)
 	{

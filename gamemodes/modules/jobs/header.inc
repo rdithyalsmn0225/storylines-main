@@ -202,7 +202,7 @@ stock InsertJobsPoint()
 {
     for(new i = 0; i < sizeof(JobsInfo); i++)
     {
-        new str[512];
+        new str[32];
         JobsPickup[i] = CreateDynamicPickup(1210, 1, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], -1, -1, -1, 5.0);
         format(str, sizeof(str), "[%s]", JobsInfo[i][E_JOBSNAMES]);
         CreateDynamic3DTextLabel(str, COLOR_3DTEXT, JobsInfo[i][E_JOBSPOSX], JobsInfo[i][E_JOBSPOSY], JobsInfo[i][E_JOBSPOSZ], 5.0);

@@ -19,7 +19,7 @@ CMD:spawn(playerid, params[])
 {
     if(IsPlayerInRangeOfPoint(playerid, 3.0, 1568.7626,-1695.0494,5.8906) && ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
     {
-        new str[1024];
+        new str[512];
         for (new i = 0; i < 27; i++)
         {
             if (FactionVehicle[i][E_FACVEHICLE_SPAWNED])
@@ -36,7 +36,7 @@ CMD:spawn(playerid, params[])
     }
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 1124.1577,-1324.4509,13.6212) && ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
     {
-        new str[1024];
+        new str[512];
         for (new i = 27; i < 38; i++)
         {
             if (FactionVehicle[i][E_FACVEHICLE_SPAWNED])

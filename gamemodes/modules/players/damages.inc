@@ -319,7 +319,7 @@ function:OnPlayerConditionUpdate()
 
 stock ShowPlayerCondition(playerid, targetid)
 {
-	new str[2024], str2[512];
+	new str[1024], str2[64];
 
 	
 	format(str2, sizeof(str2), "%s Condition", ReturnName(targetid, 0));
@@ -352,8 +352,8 @@ stock ShowPlayerDamages(damageid, playerid, adminView)
 {
 	new
 		caption[33],
-		str[355], 
-		longstr[512]
+		str[128], 
+		longstr[128]
 	; 
 	
 	format(caption, sizeof(caption), "%s:", ReturnName(damageid, playerid));

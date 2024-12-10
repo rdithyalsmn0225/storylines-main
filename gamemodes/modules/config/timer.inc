@@ -126,7 +126,7 @@ function:OnPlayerUpdateEx()
 			if (PlayerInfo[playerid][E_CHARACTER_PRISONED] == true)
 			{
 				PlayerInfo[playerid][E_CHARACTER_PRISON]--; 
-				new str[512];
+				new str[64];
 				format(str, sizeof(str), "~w~%d Prison Time", PlayerInfo[playerid][E_CHARACTER_PRISON]);
 				GameTextForPlayer(playerid, str, 100, 1);
 				

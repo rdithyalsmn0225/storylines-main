@@ -198,7 +198,7 @@ stock ShowInventory(playerid, targetid)
 	new
 		amounts[MAX_INVENTORY],
 		str[2024],
-		string[352],
+		string[256],
 		count = 0;
 
 	format(str, sizeof(str), "[SLOT]: Money $%s\n", FormatMoney(PlayerInfo[targetid][E_CHARACTER_MONEY]));
@@ -252,7 +252,7 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 	if(response)
 	{
 		new
-			name[512], id = -1;
+			name[128], id = -1;
 
 		strunpack(name, InventoryInfo[playerid][listitem][E_INVENTORY_ITEM]);
 		PlayerInfo[playerid][E_CHARACTER_LISTITEM] = listitem;
@@ -289,7 +289,7 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 						}
 						else
 						{
-							new str[512];
+							new str[128];
 							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 						}
@@ -311,7 +311,7 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 						}
 						else
 						{
-							new str[512];
+							new str[128];
 							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 						}
@@ -333,7 +333,7 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 						}
 						else
 						{
-							new str[512];
+							new str[128];
 							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 						}
@@ -355,7 +355,7 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 						}
 						else
 						{
-							new str[512];
+							new str[128];
 							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 						}
@@ -375,7 +375,7 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 						}
 						else
 						{
-							new str[512];
+							new str[128];
 							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 						}
@@ -408,7 +408,7 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 						}
 						else 
 						{
-							new str[512];
+							new str[128];
 							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 						}
@@ -429,7 +429,7 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 					}
 					else 
 					{
-						new str[512];
+						new str[128];
 						format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 						Dialog_Show(playerid, PropertyDeposit, DIALOG_STYLE_INPUT, "Property Safe Place:", str, "Store", "Back");
 					}

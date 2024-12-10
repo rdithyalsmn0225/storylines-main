@@ -29,12 +29,7 @@ InsertEmmetInit()
 
 stock BuyGunFromEmmet(playerid)
 {
-    new str1[512];
-	if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
-	{
-        format(str1, sizeof(str1), "Faction Storage: %d supplies", FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE]);
-        Dialog_Show(playerid, Emmets, DIALOG_STYLE_TABLIST, "Emmet Hardware:", "Emmet Colt\tGlock 17\nMagazine\t9mm clip", "Select", "Cancel");
-    }
+    Dialog_Show(playerid, Emmets, DIALOG_STYLE_TABLIST, "Emmet Hardware:", "Emmet Colt\tGlock 17\nMagazine\t9mm clip", "Select", "Cancel");
     return 1;
 }
 
@@ -110,7 +105,7 @@ Dialog:BuyGuns(playerid, response, listitem, inputtext[])
 {
     if (response)
     {
-        new str[512];
+        new str[256];
         switch(listitem)
         {
             case 0:
@@ -168,13 +163,13 @@ Dialog:Emmets(playerid, response, listitem, inputtext[])
         {
             case 0:
             {
-                new str[512];
+                new str[256];
                 format(str, sizeof(str), "Are you sure you want to purchase a Emmet Pistol for {33AA33}$%s{ffffff}?", FormatMoney(WEAPON_SLC));
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_COLT45, 25, WEAPON_SLC, 1); 
             }
             case 1:
             {
-                new str[512];
+                new str[256];
                 format(str, sizeof(str), "Are you sure you want to buy ammo for {33AA33}$%s{ffffff}?", FormatMoney(A9MM)); 
                 ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 0, 25, A9MM); 
             }

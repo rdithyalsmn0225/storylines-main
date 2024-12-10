@@ -30,7 +30,7 @@ InsertDynamicPickup()
 
 Insert3DTextLabel()
 {
-    new str1[512], str2[512]; 
+    new str1[256], str2[256]; 
     
     format(str1, sizeof(str1), "[Gunstore Materials]\n{ffffff}Available stock: %d / 1000\nMaterials Price $5 / gram", ServerInfo[0][E_SERVER_MATERIALS]);
     CreateDynamic3DTextLabel(str1, COLOR_3DTEXT, -576.3427,-505.8364,25.5234, 5.0);

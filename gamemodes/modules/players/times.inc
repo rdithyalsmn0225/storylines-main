@@ -1,6 +1,6 @@
 void:SetClock(hour, minute, second)
 {
-    new timestr[512];
+    new timestr[256];
     new weekday_str[10], month[12], date[6];
     new suffix[3]; // Untuk menampung akhiran (st, nd, rd, th)
 

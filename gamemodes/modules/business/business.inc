@@ -1,6 +1,6 @@
 stock ShowBusinessShop(playerid, businessid)
 {
-	new str[512], str2[512], str3[512], str4[512];
+	new str[128], str2[128], str3[128], str4[128];
 	if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_BAR)
 	{
 		format(str, sizeof(str), "%s:", BusinessInfo[businessid][E_BUSINESS_NAME]);
@@ -581,7 +581,7 @@ function:Query_LoadBusinesses()
 
 		for(new a = 1; a < 4; a++)
 		{
-			new str[512];
+			new str[32];
 			format(str, sizeof(str), "BusinessProducts%d", a);
 			cache_get_value_name_int(i, str, BusinessInfo[i+1][E_BUSINESS_PRODUCTS][a]);
 		}

@@ -321,8 +321,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		    {
 			    new
 					itemid = PlayerInfo[playerid][E_CHARACTER_LISTITEM],
-					string[512],
-					str[512];
+					string[128],
+					str[128];
 
 			    strunpack(string, InventoryInfo[playerid][itemid][E_INVENTORY_ITEM]);
 
@@ -1153,7 +1153,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				PlayerInfo[playerid][E_CHARACTER_CONTACT] = GetNumberOwner(number);
 
-				new str[512];
+				new str[128];
 				format(str, sizeof(str), "Please enter the message to send to %s:", ReturnName(PlayerInfo[playerid][E_CHARACTER_CONTACT], playerid));
 				ShowPlayerDialog(playerid, DIALOG_SMSTEXT, DIALOG_STYLE_INPUT, "Text Message:", str, "Send", "Back");
 			}
@@ -1173,7 +1173,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				SendErrorMessage(playerid, "Your text message is being sent.");
 
-				new str[512];
+				new str[128];
 				format(str, sizeof(str), "* %s takes out their cellphone.", ReturnName(playerid, 0));
 				SetPlayerChatBubble(playerid, str, COLOR_EMOTE, 20.0, 3000); 
 				
@@ -1218,7 +1218,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				strpack(PlayerInfo[playerid][E_CHARACTER_EDITINGITEM], inputtext, 32);
 
-				new str[512];
+				new str[128];
 				format(str, sizeof(str), "Contact Name: %s\nPlease enter the phone number for this contact:");
 				ShowPlayerDialog(playerid, DIALOG_ENTERNUMBER, DIALOG_STYLE_INPUT, "Contact Number:", str, "Submit", "Back");
 			}
@@ -1233,7 +1233,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				if (isnull(inputtext) || !IsNumeric(inputtext))
 				{
-					new str[512];
+					new str[128];
 					format(str, sizeof(str),  "Contact Name: %s\nPlease enter the phone number for this contact:");
 					ShowPlayerDialog(playerid, DIALOG_ENTERNUMBER, DIALOG_STYLE_INPUT, "Contact Number:", str, "Submit", "Back");
 				}
@@ -1420,7 +1420,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								}
 								else
 								{
-									new str[512];
+									new str[256];
 									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to take for this item:", string, VstorageInfo[carid][itemid][E_VEHICLE_TRUNKQUANTITY]);
 									ShowPlayerDialog(playerid, DIALOG_VTAKE, DIALOG_STYLE_INPUT, "Vehicle Take:", str, "Take", "Back");
 								}
@@ -1453,7 +1453,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								{
 									PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
 
-									new str[512];
+									new str[128];
 									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
@@ -1481,7 +1481,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								{
 									PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
 
-									new str[512];
+									new str[128];
 									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
@@ -1509,7 +1509,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								{
 									PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
 
-									new str[512];
+									new str[128];
 									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
@@ -1537,7 +1537,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								{
 									PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
 
-									new str[512];
+									new str[128];
 									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
@@ -1561,7 +1561,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								{
 									PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
 
-									new str[512];
+									new str[128];
 									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
@@ -1601,7 +1601,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								{
 									PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
 
-									new str[512];
+									new str[128];
 									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 								}
@@ -1640,7 +1640,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 					if (amount < 1 || amount > InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY])
 					{
-						new str[512];
+						new str[128];
 						format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
 						return ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
 					}
@@ -1677,7 +1677,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 					if (amount < 1 || amount > VstorageInfo[carid][PlayerInfo[playerid][E_CHARACTER_STORAGEITEM]][E_VEHICLE_TRUNKQUANTITY])
 					{
-						new str[512];
+						new str[128];
 						format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to take for this item:", string, VstorageInfo[carid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_VEHICLE_TRUNKQUANTITY]);
 						return ShowPlayerDialog(playerid, DIALOG_VTAKE, DIALOG_STYLE_INPUT, "Vehicle Take:", str, "Take", "Back");
 					}

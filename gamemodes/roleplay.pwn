@@ -4823,7 +4823,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		   	new
 				count = 0,
 				id = Item_Nearest(playerid);
-			new string[512];
+			new string[128];
 
 			if (id != -1)
 			{
@@ -5317,7 +5317,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 		                    return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_PRICE]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 					    new
-					        queryBuffer[512];
+					        queryBuffer[256];
 
 					    GiveMoney(playerid, -g_aFurnitureArray[PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_FURNITUREVAR_PRICE]);
 
@@ -5343,7 +5343,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 			{
 				if(response == EDIT_RESPONSE_FINAL)
 				{
-					new queryBuffer[512];
+					new queryBuffer[256];
 					mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "UPDATE furniture SET pos_x = '%f', pos_y = '%f', pos_z = '%f', rot_x = '%f', rot_y = '%f', rot_z = '%f' WHERE id = %i", x, y, z, rx, ry, rz, Streamer_GetExtraInt(objectid, E_OBJECT_INDEX_ID));
 					mysql_tquery(ourConnection, queryBuffer);
 
@@ -5625,7 +5625,7 @@ public OnIncomingRPC(playerid, rpcid, BitStream:bs)
                 player_rpc_count[playerid]++;
                 if (player_rpc_count[playerid] >= 5)
                 {
-                    new gstr[512];
+                    new gstr[128];
                     format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Rem.cs]", ReturnName(playerid));
                     SendClientMessage(playerid, COLOR_YELLOW, gstr);
 
@@ -5887,7 +5887,7 @@ public OnVehicleSirenStateChange(playerid, vehicleid, newstate)
 
 public OnVehicleMod(playerid, vehicleid, componentid)
 {
-	new str1[512];
+	new str1[128];
 	new vehicleide = GetVehicleModel(vehicleid);
     new modok = islegalcarmod(vehicleide, componentid);
     if (!modok && ACPauseTimer[playerid] == 0 && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true) {

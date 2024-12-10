@@ -32,7 +32,7 @@ public PHY_OnObjectUpdate(objectid)
 
                         if (i == 0)
                         {
-                            new string[512], balltype1[16], balltype2[16];
+                            new string[128], balltype1[16], balltype2[16];
 
                             if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 1)
                                 balltype1 = "Solid";
@@ -147,7 +147,7 @@ public PHY_OnObjectUpdate(objectid)
                                     ? PoolInfo[businessid][E_POOL_PLAYER2]
                                     : PoolInfo[businessid][E_POOL_PLAYER1]);
 
-                                    new string[512], balltype1[16], balltype2[16];
+                                    new string[128], balltype1[16], balltype2[16];
 
                                     if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 1)
                                         balltype1 = "Solid";
@@ -193,7 +193,7 @@ public PHY_OnObjectUpdate(objectid)
                             ? PoolInfo[businessid][E_POOL_PLAYER2]
                             : PoolInfo[businessid][E_POOL_PLAYER1]);
 
-                            new string[512], balltype1[16], balltype2[16];
+                            new string[128], balltype1[16], balltype2[16];
 
                             if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 1)
                                 balltype1 = "Solid";
@@ -280,7 +280,7 @@ public PHY_OnObjectUpdate(objectid)
                         ? PoolInfo[businessid][E_POOL_PLAYER2]
                         : PoolInfo[businessid][E_POOL_PLAYER1]);
 
-                        new string[512], balltype1[16], balltype2[16];
+                        new string[128], balltype1[16], balltype2[16];
 
                         if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 1)
                             balltype1 = "Solid";

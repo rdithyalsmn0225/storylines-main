@@ -331,7 +331,7 @@ Dialog:SprayText(playerid, response, listitem, inputtext[])
 
 function:OnSprayTagsUpdate()
 {
-    new queryBuffer[512];
+    new queryBuffer[256];
     for(new i; i < MAX_SPRAYTAGS; i++)
     {
         if(SpraytagsInfo[i][E_SPRAYTAGS_TIMER])

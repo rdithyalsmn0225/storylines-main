@@ -110,8 +110,8 @@ function:OnPlateSelect(playerid, listitem)
 		owner,
 		impounded,
 		
-		primary_str[512],
-		sub_str[512]
+		primary_str[128],
+		sub_str[128]
 	;
 	
 	cache_get_value_name_int(0, "VehicleModel", model);
@@ -170,7 +170,7 @@ Dialog:MdcName(playerid, response, listitem, inputtext[])
 		
 		format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", inputtext); 
 
-		new str[512];
+		new str[128];
 		format(str, sizeof(str), "Please enter the description of the crime committed by %s:", ReturnName(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], playerid));
 		Dialog_Show(playerid, MdcPlace, DIALOG_STYLE_INPUT, "Given Charge:", str, "Search", "Back");
 	}
@@ -186,7 +186,7 @@ Dialog:MdcPlace(playerid, response, listitem, inputtext[])
 	{
 		if (isnull(inputtext))
 		{
-			new str[512];
+			new str[128];
 			format(str, sizeof(str), "Please enter the name of the player:");
 			return Dialog_Show(playerid, MdcPlace, DIALOG_STYLE_INPUT, "Given Charge:", str, "Enter", "Back");
 		}
@@ -202,7 +202,7 @@ Dialog:MdcPlate(playerid, response, listitem, inputtext[])
 {
 	if(response)
 	{
-		new query[512];
+		new query[128];
 		if(strlen(inputtext) > 6 || strlen(inputtext) < 3)
 			return Dialog_Show(playerid, MdcPlate, DIALOG_STYLE_INPUT, "Plates Search:", "Please enter the vehicle plates:", "Search", "Back"); 
 		

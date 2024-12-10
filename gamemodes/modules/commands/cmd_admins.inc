@@ -1459,7 +1459,7 @@ CMD:despawncars(playerid, params[])
 	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
 		return 0;
 
-	new vehicleCount, str[512];
+	new vehicleCount, str[128];
 
 	for(new i = 0; i != MAX_VEHICLES; ++i)
 	{

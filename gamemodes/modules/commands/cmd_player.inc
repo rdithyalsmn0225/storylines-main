@@ -2001,7 +2001,7 @@ CMD:whisper(playerid, params[])
 	if (!IsPlayerInRangeOfPoint(playerid, 2.5, x, y, z))
 		return SendErrorMessage(playerid, "You're not near the player you're trying to whisper!");
  
-	new string[384];
+	new string[256];
 
 	format(string, sizeof (string), "Whisper to %s{FFFF22}: %s", ReturnName(userid), text )  ;
 	SendClientMessageEx(playerid, 0xFFFF22AA, string ); 
@@ -2205,7 +2205,7 @@ CMD:accessories(playerid, params[])
 	if(IsPlayerInAnyVehicle(playerid)) 
 		return SendErrorMessage(playerid, "This command can only be used on foot, exit your vehicle!");
 
-	new string[350];
+	new string[256];
 	format(string, sizeof(string), "ID\tModel\tBone\n");
 	forex(i, 4)
 	{

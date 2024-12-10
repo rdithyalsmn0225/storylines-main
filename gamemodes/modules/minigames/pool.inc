@@ -360,7 +360,7 @@ CMD:pool(playerid, params[])
     SendServerMessage(playerid, "[8Ball] {DEDEDE}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), FormatMoney(Cents));
     SendServerMessage(playerb, "[8Ball] {DEDEDE}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), FormatMoney(Cents));
 
-    new string[1024], balltype1[16], balltype2[16];
+    new string[256], balltype1[16], balltype2[16];
 
 	if (PlayerPoolBallType[PoolInfo[businessid][E_POOL_PLAYER1]] == 1)
 		balltype1 = "Solid";

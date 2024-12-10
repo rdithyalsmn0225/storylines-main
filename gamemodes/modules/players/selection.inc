@@ -1,6 +1,6 @@
 SetupCharacterSelection(playerid)
 {
-	new str[512], str1[512];
+	new str[128], str1[512];
 
 	// CHARACTERS SELECTION]======*/
 	if(characterSelection[playerid])

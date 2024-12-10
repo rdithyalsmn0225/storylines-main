@@ -61,7 +61,7 @@ function:OnPlayerTaxiUpdate()
 		        PlayerInfo[i][E_CHARACTER_TAXITIMER] = 0;
 		        PlayerInfo[i][E_CHARACTER_TAXIFARE] += PlayerInfo[i][E_CHARACTER_DRIVERFARE];
 		    }
-            new str[512];
+            new str[64];
 		    format(str, sizeof(str), "~y~Taxi Fare: ~g~$%d", PlayerInfo[i][E_CHARACTER_DRIVERFARE]);
             ShowBoxMessage(i, str, 5);
             ShowBoxMessage(GetVehicleDriver(GetPlayerVehicleID(i)), str, 5);

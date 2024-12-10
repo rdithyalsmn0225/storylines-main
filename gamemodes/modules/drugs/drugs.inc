@@ -24,7 +24,7 @@ function:CookDrugs(playerid, type, id)
 					
 					BusinessInfo[id][E_BUSINESS_AMOUNT] = 1;
 
-					new string[512];
+					new string[128];
 					format(string, sizeof(string), "UPDATE `businesses` SET `BusinessAmount` = %d WHERE `BusinessDBID` = '%d'", 1, id);
 	    			mysql_pquery(ourConnection, string);
 
@@ -54,7 +54,7 @@ function:CookDrugs(playerid, type, id)
 					
 					BusinessInfo[id][E_BUSINESS_AMOUNT] = 1;
 
-					new string[512];
+					new string[256];
 					format(string, sizeof(string), "UPDATE `businesses` SET `BusinessAmount` = %d WHERE `BusinessDBID` = '%d'", 1, id);
 	    			mysql_pquery(ourConnection, string);
 					
@@ -321,7 +321,7 @@ CMD:buydrugs(playerid, params[])
 	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 122.0707,-319.1785,1.5781))
 		return SendErrorMessage(playerid, "You aren't near drugs labs.");
 
-	new str[512];
+	new str[256];
 	strcat(str, "Drugs\tPrice\n");
 	strcat(str, "Marijuana\t$3000\n");
 	strcat(str, "Cocaine\t$5000\n");
@@ -334,7 +334,7 @@ Dialog:BuyDrugs(playerid, response, listitem, inputtext[])
 {
 	if(response)
 	{
-		new str[512];
+		new str[256];
         switch(listitem)
         {
             case 0:
