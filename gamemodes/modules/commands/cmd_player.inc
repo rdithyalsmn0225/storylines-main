@@ -202,7 +202,7 @@ CMD:helpup(playerid, params[])
 CMD:pay(playerid, params[])
 {
     new playerb, str[128];
-    new Float:amount;
+    new Float: amount;
 
     if (sscanf(params, "uf", playerb, amount))
         return SendUsageMessage(playerid, "/pay [playerid OR name] [amount]");
@@ -221,7 +221,7 @@ CMD:pay(playerid, params[])
         
     new Cents = floatround(amount * 100, floatround_round);
 
-    if (amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
+    if (Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
         return SendErrorMessage(playerid, "You don't have that amount of money.");
 
     if (amount < 0.0)
@@ -890,7 +890,7 @@ CMD:deposit(playerid, params[])
 {
 	new
 		id = IsPlayerInBusiness(playerid),
-		Float:amount;
+		Float: amount;
 		
 	if(!id)
 		return SendErrorMessage(playerid, "You aren't in a business.");
@@ -901,16 +901,18 @@ CMD:deposit(playerid, params[])
 	if(sscanf(params, "f", amount))
 		return SendUsageMessage(playerid, "/deposit [deposit amount]");
 		
-	if(amount < 1.0 || amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
-		return SendErrorMessage(playerid, "You can't deposit that amount."); 
-		
 	new Cents = floatround(amount * 100, floatround_round);
 
-    GiveMoney(playerid, -Cents);
+	if (Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+        return SendErrorMessage(playerid, "You don't have that amount of money.");
+
+    if (amount < 0.01)
+        return SendErrorMessage(playerid, "Amount must be greater than $0.01.");
+
 	PlayerInfo[playerid][E_CHARACTER_BANK]+= Cents;
+	GiveMoney(playerid, -Cents);
 	
 	SendInfoMessage(playerid, "You have deposited $%s into Your account, Total:$%s.", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
-	SaveCharacter(playerid);
 	return 1; 
 }
 
@@ -918,41 +920,41 @@ CMD:withdraw(playerid, params[])
 {
 	new
 		id = IsPlayerInBusiness(playerid),
-		Float:amount;
+		Float: amount;
 		
 	if(!id)
 		return SendErrorMessage(playerid, "You aren't in a business.");
 		
-	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GENERAL)
+	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK)
 		return SendErrorMessage(playerid, "You can't do this inside this business."); 
 		
 	if(sscanf(params, "f", amount))
 		return SendUsageMessage(playerid, "/withdraw [amount]");
-		
-	if(amount < 1.0 || amount > PlayerInfo[playerid][E_CHARACTER_BANK])
-		return SendErrorMessage(playerid, "You can't withdraw that amount."); 
 
-		
 	new Cents = floatround(amount * 100, floatround_round);
 
-    GiveMoney(playerid, Cents);
-	PlayerInfo[playerid][E_CHARACTER_BANK]-= Cents;
+	if (Cents > PlayerInfo[playerid][E_CHARACTER_BANK])
+        return SendErrorMessage(playerid, "You don't have that amount of money.");
+
+    if (amount < 0.01)
+        return SendErrorMessage(playerid, "Amount must be greater than $0.01.");
+
+	PlayerInfo[playerid][E_CHARACTER_BANK]-= Cents;    
+	GiveMoney(playerid, Cents);
 
 	SendInfoMessage(playerid, "You have withdrawn $%s from Your account, Total:$%s", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
-	SaveCharacter(playerid);
 	return 1;
 }
 
 CMD:balance(playerid, params[])
 {
 	new
-		id = IsPlayerInBusiness(playerid)
-	;
+		id = IsPlayerInBusiness(playerid);
 		
 	if(!id)
 		return SendErrorMessage(playerid, "You aren't in a business.");
 		
-	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GENERAL)
+	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK)
 		return SendErrorMessage(playerid, "You can't do this inside this business."); 
 	
 	SendInfoMessage(playerid, "You have $%s in your bank and $%s in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	

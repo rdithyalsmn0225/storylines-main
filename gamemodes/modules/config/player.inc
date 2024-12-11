@@ -253,9 +253,6 @@ function:ResetPlayer(playerid)
 	//Player characters:
 	PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] = false; 
 	
-	PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR] = 0;
-	PlayerInfo[playerid][E_CHARACTER_LASTWORLD] = 0;
-	
 	PlayerInfo[playerid][E_CHARACTER_PHONEOFF] = false; 
 	PlayerInfo[playerid][E_CHARACTER_PHONESPEAKER] = false; 
 	PlayerInfo[playerid][E_CHARACTER_CALL] = 0;
@@ -279,10 +276,6 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_LOOPANIM] = 0;
 
 	PlayerInfo[playerid][E_CHARACTER_DRINKING] = 0;
-	
-	PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0; 
-	PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
-	PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = 0;
 
 	PlayerInfo[playerid][E_CHARACTER_TARGET] = 0;
 	PlayerInfo[playerid][E_CHARACTER_LISTITEM] = 0;
@@ -621,17 +614,20 @@ stock GiveMoney(playerid, amount)
 	
 	new string[128]; 
 	
-	if(amount < 0) {
+	if(amount < 0) 
+	{
 		format(string, sizeof(string), "~r~$%d", amount);
 		PlayerTextDrawSetString(playerid, money[playerid], string);
 		PlayerTextDrawShow(playerid, money[playerid]);
 	}
-	else{
+	else
+	{
 		format(string, sizeof(string), "~g~$%d", amount);
 		PlayerTextDrawSetString(playerid, money[playerid], string);
 		PlayerTextDrawShow(playerid, money[playerid]);
 	}
 	SetTimerEx("GiveMoneys", 3000, false, "i", playerid);
+	SaveCharacter(playerid);
 	return 1;
 }
 

@@ -33,7 +33,7 @@ function:OnVehicleRental()
 	{
 		foreach(new playerid : Player)
 		{
-			if(VehicleInfo[i][E_VEHICLE_RENTAL])
+			if(VehicleInfo[i][E_VEHICLE_RENTAL] && VehicleInfo[i][E_VEHICLE_EXISTS])
 			{
 				VehicleInfo[i][E_VEHICLE_RENTTIMER]--;
 				if (VehicleInfo[i][E_VEHICLE_RENTTIMER] <= 0)

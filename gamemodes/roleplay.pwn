@@ -5454,6 +5454,9 @@ function:SaveCharacterPos(playerid)
 function:SaveCharacter(playerid)
 {
 	new query[1024];
+
+	if(!PlayerInfo[playerid][E_CHARACTER_SPAWNED])
+		return 0;
 	
 	mysql_format(ourConnection, query, sizeof(query), "UPDATE masters SET forum_name = '%e', acc_admin = '%i', active_ip = '%e' WHERE acc_dbid = %i",	
 		AccountInfo[playerid][E_MASTERS_FORUMNAME],
