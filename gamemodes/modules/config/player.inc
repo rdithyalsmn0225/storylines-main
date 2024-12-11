@@ -381,12 +381,9 @@ function:ResetPlayer(playerid)
 
     PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN] = false;
 	PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = false;
+	PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = false;
+	PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
 	PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] = 0;
-
-	PlayerInfo[playerid][E_CHARACTER_COURT] = 0;
-	PlayerInfo[playerid][E_CHARACTER_HAVEBALL] = 0;
-    PlayerInfo[playerid][E_CHARACTER_ANIMBALL] = 0;
-	PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
 
 	PlayerInfo[playerid][E_CHARACTER_TUTORIALSTEP] = 0;
 	ResetLotteryVar(playerid);

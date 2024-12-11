@@ -895,8 +895,8 @@ CMD:deposit(playerid, params[])
 	if(!id)
 		return SendErrorMessage(playerid, "You aren't in a business.");
 		
-	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK)
-		return SendErrorMessage(playerid, "You aren't inside a bank."); 
+	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && !IsPlayerNearCashiers(playerid))
+		return SendErrorMessage(playerid, "You aren't in bank."); 
 		
 	if(sscanf(params, "f", amount))
 		return SendUsageMessage(playerid, "/deposit [deposit amount]");
@@ -925,8 +925,8 @@ CMD:withdraw(playerid, params[])
 	if(!id)
 		return SendErrorMessage(playerid, "You aren't in a business.");
 		
-	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK)
-		return SendErrorMessage(playerid, "You can't do this inside this business."); 
+	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && !IsPlayerNearCashiers(playerid))
+		return SendErrorMessage(playerid, "You aren't in bank."); 
 		
 	if(sscanf(params, "f", amount))
 		return SendUsageMessage(playerid, "/withdraw [amount]");
@@ -946,6 +946,23 @@ CMD:withdraw(playerid, params[])
 	return 1;
 }
 
+CMD:bank(playerid, params[])
+{
+	new
+		id = IsPlayerInBusiness(playerid);
+		
+	if(!id)
+		return SendErrorMessage(playerid, "You aren't in a business.");
+	
+	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && !IsPlayerNearCashiers(playerid))
+		return SendErrorMessage(playerid, "You aren't in bank."); 
+		
+	SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Bank Commands __________|");
+	SendClientMessage(playerid, COLOR_ORANGE, "/balance, /withdraw, /deposit");
+	SendInfoMessage(playerid, "You have $%s in your bank and $%s in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
+	return 1;
+}
+
 CMD:balance(playerid, params[])
 {
 	new
@@ -954,8 +971,8 @@ CMD:balance(playerid, params[])
 	if(!id)
 		return SendErrorMessage(playerid, "You aren't in a business.");
 		
-	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK)
-		return SendErrorMessage(playerid, "You can't do this inside this business."); 
+	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && !IsPlayerNearCashiers(playerid))
+		return SendErrorMessage(playerid, "You aren't in bank."); 
 	
 	SendInfoMessage(playerid, "You have $%s in your bank and $%s in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
 	return 1;

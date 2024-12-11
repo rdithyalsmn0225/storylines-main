@@ -159,7 +159,7 @@ CMD:gethere(playerid, params[])
 	if(AccountInfo[playerid][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "The player you specified hasn't logged in yet.");
 		
-	new vw = GetPlayerVirtualWorld(playerb), int = GetPlayerInterior(playerb);
+	new vw = GetPlayerVirtualWorld(playerid), int = GetPlayerInterior(playerid);
 
 	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
 	
@@ -169,16 +169,16 @@ CMD:gethere(playerid, params[])
 	else
 		SetPlayerPosEx(playerb, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1] - 1, PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
 		
-	SetPlayerVirtualWorld(playerid, vw);
-	SetPlayerInterior(playerid, int); 
+	SetPlayerVirtualWorld(playerb, vw);
+	SetPlayerInterior(playerb, int); 
 		
-	SendTeleportMessage(playerid);	
+	SendTeleportMessage(playerb);	
 	
 	PlayerInfo[playerb][E_CHARACTER_INSIDEPROP] = PlayerInfo[playerid][E_CHARACTER_INSIDEPROP]; 
 	PlayerInfo[playerb][E_CHARACTER_INSIDEBIZ] = PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ]; 
 	PlayerInfo[playerb][E_CHARACTER_INSIDEENT] = PlayerInfo[playerid][E_CHARACTER_INSIDEENT];
 
-	SendInfoMessage(playerid, "%s was teleported to you.", ReturnName(playerb));
+	SendInfoMessage(playerb, "You has teleported to %s.", ReturnName(playerid));
 	return 1;
 }
 

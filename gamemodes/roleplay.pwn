@@ -295,7 +295,7 @@ public OnGameModeExit()
 	foreach (new i : Player)
 	{
 		SetPlayerName(i, AccountInfo[i][E_MASTERS_ACCNAME]);
-		if(PlayerInfo[i][E_CHARACTER_TUTORIAL])
+		if(PlayerInfo[i][E_CHARACTER_TUTORIAL] && PlayerInfo[i][E_CHARACTER_SPAWNED])
 		{
 			SaveCharacter(i); SaveCharacterPos(i);
 		}
@@ -393,17 +393,18 @@ public OnPlayerDisconnect(playerid, reason)
 	#endif
 
 	NameTagsDisconnect(playerid);
-	ResetPlayer(playerid);
-
+	
 	new playerTime = NetStats_GetConnectedTime(playerid);
 	new secondsConnection = (playerTime % (1000*60*60)) / (1000*60);
 	
 	PlayerInfo[playerid][E_CHARACTER_LASTONLINE] = secondsConnection;
 
-	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true && PlayerInfo[playerid][E_CHARACTER_TUTORIAL])
+	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && PlayerInfo[playerid][E_CHARACTER_TUTORIAL])
 	{
 		SaveCharacter(playerid); SaveCharacterPos(playerid);
 	}
+
+	ResetPlayer(playerid);
 
 	new businessid = IsPlayerInBusiness(playerid);
 	if(PoolInfo[businessid][E_POOL_PLAYERAIMER] == playerid)
