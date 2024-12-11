@@ -331,19 +331,15 @@ Dialog:SprayText(playerid, response, listitem, inputtext[])
 
 function:OnSprayTagsUpdate()
 {
-    new queryBuffer[256];
     for(new i; i < MAX_SPRAYTAGS; i++)
     {
-        if(SpraytagsInfo[i][E_SPRAYTAGS_TIMER])
+        if(SpraytagsInfo[i][E_SPRAYTAGS_TIMER] && SpraytagsInfo[i][E_SPRAYTAGS_EXISTS])
         {
             SpraytagsInfo[i][E_SPRAYTAGS_TIMER]--;
         }
         else
         {
-            mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "DELETE FROM `spray_tags` WHERE `id` = '%i'", SpraytagsInfo[i][E_SPRAYTAGS_DBID]);
-	        mysql_pquery(ourConnection, queryBuffer);
-
-            Spraytags_Refresh(i);
+            Spraytags_Delete(i);
         }
     }
 }

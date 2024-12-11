@@ -66,14 +66,14 @@ function:OnVehicleRental()
 	}
 }
 
-stock TotalledCheck()
+stock TotalledCheck(vehicleid)
 {
 	static
 	    Float:fHealth;
 
-	for (new i = 1; i != MAX_VEHICLES; i ++) if (IsValidVehicle(i) && GetVehicleHealth(i, fHealth) && fHealth < 400.0) {
-	    SetVehicleHealthEx(i, 400.0);
-	    ToggleVehicleEngine(i, false);
+	if (IsValidVehicle(vehicleid) && GetVehicleHealth(vehicleid, fHealth) && fHealth < 400.0) {
+	    SetVehicleHealthEx(vehicleid, 400.0);
+	    ToggleVehicleEngine(vehicleid, false);
 	}
 	return 1;
 }
@@ -105,9 +105,12 @@ function:OnVehicleUpdate()
 		VehicleInfo[i][E_VEHICLE_POS][2] = z;
 		VehicleInfo[i][E_VEHICLE_POS][3] = a;
 		VehicleInfo[i][E_VEHICLE_HEALTH] = vehicle_health;
-		SaveVehicle(i);
-		
-		TotalledCheck();
+
+		if(VehicleInfo[i][E_VEHICLE_EXISTS])
+		{
+			SaveVehicle(i);
+		}
+		TotalledCheck(i);
 	}
 	return 1;
 }

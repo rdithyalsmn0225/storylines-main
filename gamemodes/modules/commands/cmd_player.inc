@@ -552,7 +552,7 @@ CMD:setchannel(playerid, params[])
 		return 1;
 	}
 		
-	if(!Inventory_Count(playerid, "Portable Radio"))
+	if(!Inventory_Count(playerid, "Radio"))
 		return SendErrorMessage(playerid, "You don't own a radio.");
 		
 	if(slot > 2 || slot < 1)
@@ -593,7 +593,7 @@ CMD:setslot(playerid, params[])
 	if(sscanf(params, "i", slot))
 		return SendUsageMessage(playerid, "/setslot [slot id]");
 		
-	if(!Inventory_Count(playerid, "Portable Radio"))
+	if(!Inventory_Count(playerid, "Radio"))
 		return SendErrorMessage(playerid, "You don't own a radio.");
 		
 	if(slot > 2 || slot < 1)
@@ -609,11 +609,11 @@ CMD:setslot(playerid, params[])
 CMD:r(playerid, params[]) return cmd_radio(playerid, params);
 CMD:radio(playerid, params[])
 {
-	if(!Inventory_Count(playerid, "Portable Radio"))
+	if(!Inventory_Count(playerid, "Radio"))
 		return SendErrorMessage(playerid, "You don't own a radio.");
 
 	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != PORTABLE_RADIO)
-		return SendErrorMessage(playerid, "You must hold the portable radio in your hands.");
+		return SendErrorMessage(playerid, "You must hold the Radio in your hands.");
 
 	new
 		local,
@@ -661,7 +661,7 @@ CMD:radio(playerid, params[])
 
 CMD:rlow(playerid, params[])
 {
-	if(!Inventory_Count(playerid, "Portable Radio"))
+	if(!Inventory_Count(playerid, "Radio"))
 		return SendErrorMessage(playerid, "You don't own a radio.");
 
 	new
@@ -710,7 +710,7 @@ CMD:rlow(playerid, params[])
 
 CMD:r2(playerid, params[])
 {
-	if(!Inventory_Count(playerid, "Portable Radio"))
+	if(!Inventory_Count(playerid, "Radio"))
 		return SendErrorMessage(playerid, "You don't own a radio.");
 
 	new
@@ -757,7 +757,7 @@ CMD:r2(playerid, params[])
 
 CMD:r2low(playerid, params[])
 {
-	if(!Inventory_Count(playerid, "Portable Radio"))
+	if(!Inventory_Count(playerid, "Radio"))
 		return SendErrorMessage(playerid, "You don't own a radio.");
 
 	new

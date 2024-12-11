@@ -469,14 +469,14 @@ function:LoadPlayerItems(playerid)
 
 function:OnPlayerUseItem(playerid, itemid, name[])
 {
-	if(!strcmp(name, "Portable Radio"))
+	if(!strcmp(name, "Radio"))
 	{
         if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
 			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = PORTABLE_RADIO;
 			SetPlayerAttachedObject(playerid, ATTACH_HAND, 330, 6, 0.000000, -0.015000, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000, 1.000000, 1.000000);
 
-			SendTipMessage(playerid, "Type /(r)adio /setchannel /setslot to using portable radio.");
+			SendTipMessage(playerid, "Type /(r)adio /setchannel /setslot to using Radio.");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}

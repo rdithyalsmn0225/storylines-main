@@ -203,13 +203,14 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
                     return SendErrorMessage(playerid, "You can't use this right now"); 
 
-                static
-				    colors[256];
-
-                for (new i = 0; i < sizeof(colors); i ++) {
-                    colors[i] = i;
+                new colors[3100];
+                for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+                {
+                    format(colors, sizeof colors, "%s{%06x}%03d%s", colors, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
                 }
-                ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR1, colors);
+
+                format(colors, sizeof(colors), "%s\n\n{ffffff}Enter the Color ID below: (Ex: 255)", colors);
+                Dialog_Show(playerid, MechanicSpray1, DIALOG_STYLE_INPUT, "Select Color:", colors, "Enter", "Close");
             }
             case 4:
             {
@@ -234,13 +235,14 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
                     return SendErrorMessage(playerid, "You can't use this right now"); 
 
-                static
-				    colors[256];
-
-                for (new i = 0; i < sizeof(colors); i ++) {
-                    colors[i] = i;
+                new colors[3100];
+                for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+                {
+                    format(colors, sizeof colors, "%s{%06x}%03d%s", colors, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
                 }
-                ShowColorSelectionMenu(playerid, MODEL_SELECTION_COLOR2, colors);
+
+                format(colors, sizeof(colors), "%s\n\n{ffffff}Enter the Color ID below: (Ex: 255)", colors);
+                Dialog_Show(playerid, MechanicSpray2, DIALOG_STYLE_INPUT, "Select Color:", colors, "Enter", "Close");
             }
             case 5:
             {
@@ -408,7 +410,7 @@ function:repairengine(playerid, vehicleid)
         case 8:
         {
 		    TogglePlayerControllable(playerid, true);
-
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
@@ -452,7 +454,7 @@ function:repairbody(playerid, vehicleid)
         case 8:
         {
 		    TogglePlayerControllable(playerid, true);
-
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
@@ -497,7 +499,7 @@ function:repairtire(playerid, vehicleid)
         case 8:
         {
 		    TogglePlayerControllable(playerid, true);
-
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
@@ -542,7 +544,7 @@ function:repaintexterior(playerid, vehicleid, modelid)
         case 8:
         {
 		    TogglePlayerControllable(playerid, true);
-
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
@@ -588,7 +590,7 @@ function:repaintinterior(playerid, vehicleid, modelid)
         case 8:
         {
 		    TogglePlayerControllable(playerid, true);
-
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
@@ -632,7 +634,7 @@ function:repaintpaintjob1(playerid, vehicleid)
         case 8:
         {
 		    TogglePlayerControllable(playerid, true);
-
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
@@ -674,7 +676,7 @@ function:repaintpaintjob2(playerid, vehicleid)
         case 8:
         {
 		    TogglePlayerControllable(playerid, true);
-
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
@@ -716,7 +718,7 @@ function:repaintpaintjob3(playerid, vehicleid)
         case 8:
         {
 		    TogglePlayerControllable(playerid, true);
-
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
@@ -758,7 +760,7 @@ function:repaintplates(playerid, vehicleid)
         case 8:
         {
 		    TogglePlayerControllable(playerid, true);
-
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
@@ -796,4 +798,66 @@ function:repaintplates(playerid, vehicleid)
 		}
     }
     Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
+}
+
+Dialog:MechanicSpray1(playerid, response, listitem, inputtext[])
+{
+    if(response)
+    {
+        if (strval(inputtext) < 0 || strval(inputtext) > g_MaxVehicleColors || isnull(inputtext))
+            return SendErrorMessage(playerid, "Invalid Color ID.");
+            
+        new vehicleid = IsPlayerNearVehicle(playerid);
+
+		if(IsPlayerInAnyVehicle(playerid))
+			return SendErrorMessage(playerid, "You can't be in a vehicle.");
+				
+		if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+			return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+		new Float:x, Float:y, Float:z;
+		GetPlayerPos(playerid, x, y, z);
+		TogglePlayerControllable(playerid, false);
+		ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 0);
+
+		PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+		PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+		PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+		PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintexterior", 4375, true, "iii", playerid, vehicleid, strval(inputtext));
+
+		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+    }
+    return 1;
+}
+
+Dialog:MechanicSpray2(playerid, response, listitem, inputtext[])
+{
+    if(response)
+    {
+        if (strval(inputtext) < 0 || strval(inputtext) > g_MaxVehicleColors || isnull(inputtext))
+            return SendErrorMessage(playerid, "Invalid Color ID.");
+            
+        new vehicleid = IsPlayerNearVehicle(playerid);
+
+		if(IsPlayerInAnyVehicle(playerid))
+			return SendErrorMessage(playerid, "You can't be in a vehicle.");
+				
+		if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+			return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+		new Float:x, Float:y, Float:z;
+		GetPlayerPos(playerid, x, y, z);
+		TogglePlayerControllable(playerid, false);
+		ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 0);
+
+		PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+		PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+		PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+		PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintinterior", 4375, true, "iii", playerid, vehicleid, strval(inputtext));
+
+		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+    }
+    return 1;
 }

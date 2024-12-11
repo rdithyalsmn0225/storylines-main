@@ -1,0 +1,1913 @@
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[19:57:41] filterscripts = ""  (string)
+[19:57:41] 
+[19:57:41] Server Plugins
+[19:57:41] --------------
+[19:57:41]  Loading plugin: crashdetect
+[19:57:41]   CrashDetect plugin 4.21
+[19:57:41]   Loaded.
+[19:57:41]  Loading plugin: mysql
+[19:57:41]  >> plugin.mysql: R41-4 successfully loaded.
+[19:57:41]   Loaded.
+[19:57:41]  Loading plugin: sscanf
+[19:57:41] 
+
+[19:57:41]  ===============================
+
+[19:57:41]       sscanf plugin loaded.     
+
+[19:57:41]          Version:  2.8.2        
+
+[19:57:41]    (c) 2012 Alex "Y_Less" Cole  
+
+[19:57:41]  ===============================
+
+[19:57:41]   Loaded.
+[19:57:41]  Loading plugin: streamer
+[19:57:41] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[19:57:41]   Loaded.
+[19:57:41]  Loading plugin: timerfix
+[19:57:41]   >> TimerFix v1.4 successfully loaded.
+[19:57:41]   Loaded.
+[19:57:41]  Loading plugin: pawn-memory
+[19:57:41] ========================
+[19:57:41] = Memory access plugin =
+[19:57:41] =       Made by BigETI =
+[19:57:41] = Loaded!              =
+[19:57:41] ========================
+[19:57:41]   Loaded.
+[19:57:41]  Loading plugin: pawnraknet
+[19:57:41] [Pawn.RakNet] plugin v1.6.0 loading...
+[19:57:41] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[19:57:41]   Loaded.
+[19:57:41]  Loading plugin: samp-compat
+[19:57:41]   -- samp-compat for 0.3.DL-R1 initialized
+[19:57:41]   Loaded.
+[19:57:41]  Loaded 8 plugins.
+
+[19:57:41] 
+[19:57:41] Filterscripts
+[19:57:41] ---------------
+[19:57:41]   Loaded 0 filterscripts.
+
+[19:57:42] [DATABASE]: Connection established to 'storylines'...
+[19:57:42] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[19:57:42] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[19:57:42] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[19:57:42] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[19:57:42] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[19:57:42] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[19:57:42] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[19:57:42] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[19:57:42] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[19:57:42] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[19:57:42] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[19:57:42] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[19:57:42] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[19:57:42] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[19:57:42] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[19:57:42] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[19:57:42] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[19:57:42] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[19:57:42] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[19:57:42] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[19:57:42] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[19:57:42] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[19:57:42] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[19:57:42] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[19:57:42] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[19:57:42] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[19:57:42] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[19:57:42] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[19:57:42] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[19:57:42] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[19:57:42] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[19:57:42] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[19:57:42] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[19:57:42] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[19:57:42] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[19:57:42] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[19:57:42] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[19:57:42] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[19:57:42] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[19:57:42] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[19:57:42] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[19:57:42] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[19:57:42] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[19:57:42] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[19:57:42] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[19:57:42] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[19:57:42] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[19:57:42] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[19:57:42] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[19:57:42] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[19:57:42] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[19:57:42] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[19:57:42] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[19:57:42] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[19:57:42] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[19:57:42] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[19:57:42] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[19:57:42] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[19:57:42] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[19:57:42] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[19:57:42] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[19:57:42] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[19:57:42] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[19:57:42] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[19:57:42] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[19:57:42] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[19:57:42] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[19:57:42] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[19:57:42] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[19:57:42] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[19:57:42] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[19:57:42] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[19:57:42] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[19:57:42] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[19:57:42] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[19:57:42] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[19:57:42] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[19:57:42] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[19:57:42] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[19:57:42] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[19:57:42] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[19:57:43] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[19:57:43] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[19:57:43] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[19:57:43] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[19:57:43] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[19:57:43] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[19:57:43] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[19:57:43] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[19:57:43] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[19:57:43] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[19:57:43] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[19:57:43] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[19:57:43] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[19:57:43] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[19:57:43] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[19:57:43] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[19:57:43] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[19:57:43] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[19:57:43] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[19:57:43] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[19:57:43] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[19:57:43] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[19:57:43] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[19:57:43] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[19:57:43] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[19:57:43] [debug] Long callback execution detected (hang or performance issue)
+[19:57:43] [debug] AMX backtrace:
+[19:57:43] [debug] #0 00066f70 in InsertASGH () at modules\visuals\enviroment.inc:1267
+[19:57:43] [debug] #1 002bb22c in public PawnRakNet_OnGameModeInit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:207
+[19:57:43] [debug] #2 00038fe8 in public PHY_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1153
+[19:57:43] [debug] #3 native CallLocalFunction () in samp-server.exe
+[19:57:43] [debug] #4 00023d70 in public Itter_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\physics.inc:193
+[19:57:43] [debug] #5 native CallLocalFunction () in samp-server.exe
+[19:57:43] [debug] #6 00022f20 in public SSCANF_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:637
+[19:57:43] [debug] #7 0001bf68 in public zcmd_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:211
+[19:57:43] [debug] #8 native CallLocalFunction () in samp-server.exe
+[19:57:43] [debug] #9 0001b5b0 in public PDialog_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\zcmd.inc:68
+[19:57:43] [debug] #10 000165b4 in public OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:836
+[19:57:43] Number of vehicle models: 1
+[19:57:43] [SERVER]: 2 factions were loaded from "storylines" database...
+[19:57:43] [SERVER]: 9 businesses were loaded from "storylines" database...
+[19:57:43] [debug] Long callback execution detected (hang or performance issue)
+[19:57:43] [debug] AMX backtrace:
+[19:57:43] [debug] #0 0014ba14 in HexToInt (string[]=@05a407f0 "0xFFFFFFFF") at modules\config\player.inc:652
+[19:57:43] [debug] #1 0019dc20 in public Query_LoadFurniture (labels=0) at modules\properties\property_furniture.inc:176
+[19:57:43] [SERVER]: 2 properties were loaded from "storylines" database...
+[19:57:43] [SERVER]: No compensation were loaded from "storylines" database...
+[19:57:43] [SERVER]: 17 tree were loaded from "storylines" database...
+[19:57:43] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[19:57:43] [SERVER]: 6 gates were loaded from "storylines" database...
+[19:57:43] [SERVER]: 4 court were loaded from "storylines" database...
+[19:57:43] [SERVER]: 4 entrance were loaded from "storylines" database...
+[19:57:43] [SERVER]: 0 property storage were loaded from "storylines" database...
+[19:57:43] [SERVER]: 0 property storage were loaded from "storylines" database...
+[19:57:44] [debug] Long callback execution detected (hang or performance issue)
+[19:57:44] [debug] AMX backtrace:
+[19:57:44] [debug] #0 001c17ec in TotalledCheck () at modules\vehicles\vehicles_timer.inc:74
+[19:57:44] [debug] #1 001c1f30 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[19:57:45] [debug] Long callback execution detected (hang or performance issue)
+[19:57:45] [debug] AMX backtrace:
+[19:57:45] [debug] #0 001c17e4 in TotalledCheck () at modules\vehicles\vehicles_timer.inc:74
+[19:57:45] [debug] #1 001c1f30 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[19:57:46] [debug] Long callback execution detected (hang or performance issue)
+[19:57:46] [debug] AMX backtrace:
+[19:57:46] [debug] #0 0013b318 in SaveVehicle (vehicleid=3) at modules\config\savemysql.inc:85
+[19:57:46] [debug] #1 001c1f1c in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[19:57:47] [debug] Long callback execution detected (hang or performance issue)
+[19:57:47] [debug] AMX backtrace:
+[19:57:47] [debug] #0 001c17b0 in TotalledCheck () at modules\vehicles\vehicles_timer.inc:74
+[19:57:47] [debug] #1 001c1f30 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[19:57:48] [debug] Long callback execution detected (hang or performance issue)
+[19:57:48] [debug] AMX backtrace:
+[19:57:48] [debug] #0 001c17cc in TotalledCheck () at modules\vehicles\vehicles_timer.inc:74
+[19:57:48] [debug] #1 001c1f30 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[19:57:49] [debug] Long callback execution detected (hang or performance issue)
+[19:57:49] [debug] AMX backtrace:
+[19:57:49] [debug] #0 001c17d8 in TotalledCheck () at modules\vehicles\vehicles_timer.inc:74
+[19:57:49] [debug] #1 001c1f30 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[19:57:50] [debug] Long callback execution detected (hang or performance issue)
+[19:57:50] [debug] AMX backtrace:
+[19:57:50] [debug] #0 001c17f0 in TotalledCheck () at modules\vehicles\vehicles_timer.inc:74
+[19:57:50] [debug] #1 001c1f30 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[19:57:51] [debug] Long callback execution detected (hang or performance issue)
+[19:57:51] [debug] AMX backtrace:
+[19:57:51] [debug] #0 001c1800 in TotalledCheck () at modules\vehicles\vehicles_timer.inc:74
+[19:57:51] [debug] #1 001c1f30 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[19:57:52] [debug] Long callback execution detected (hang or performance issue)
+[19:57:52] [debug] AMX backtrace:
+[19:57:52] [debug] #0 0013bcd4 in SaveVehicle (vehicleid=3) at modules\config\savemysql.inc:133
+[19:57:52] [debug] #1 001c1f1c in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[19:57:53] [debug] Long callback execution detected (hang or performance issue)
+[19:57:53] [debug] AMX backtrace:
+[19:57:53] [debug] #0 001c17b4 in TotalledCheck () at modules\vehicles\vehicles_timer.inc:74
+[19:57:53] [debug] #1 001c1f30 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[19:57:54] [debug] Long callback execution detected (hang or performance issue)
+[19:57:54] [debug] AMX backtrace:
+[19:57:54] [debug] #0 001c17b0 in TotalledCheck () at modules\vehicles\vehicles_timer.inc:74
+[19:57:54] [debug] #1 001c1f30 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[19:57:55] [debug] Long callback execution detected (hang or performance issue)
+[19:57:55] [debug] AMX backtrace:
+[19:57:55] [debug] #0 001c17e0 in TotalledCheck () at modules\vehicles\vehicles_timer.inc:74
+[19:57:55] [debug] #1 001c1f30 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+Console input: exit
+[19:57:55] --- Server Shutting Down.
+[19:57:55] [debug] Long callback execution detected (hang or performance issue)
+[19:57:55] [debug] AMX backtrace:
+[19:57:55] [debug] #0 0013d80c in SaveBusiness (id=6) at modules\config\savemysql.inc:244
+[19:57:55] [debug] #1 0013a984 in SaveBusinesses () at modules\config\savemysql.inc:32
+[19:57:55] [debug] #2 002bc2a8 in public PDialog_OnGameModeExit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:312
+[19:57:55] [debug] #3 000165e8 in public OnGameModeExit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:855
+[19:57:55] plugin.mysql: Unloading plugin...
+[19:57:55] plugin.mysql: Plugin unloaded.
+[19:57:55] 
+
+[19:57:55]  ===============================
+
+[19:57:55]      sscanf plugin unloaded.    
+
+[19:57:55]  ===============================
+
+[19:57:55] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[19:57:55] [plugin.timerfix] Plugsin successfully unloaded!
+[19:57:55] ========================
+[19:57:55] = Memory access plugin =
+[19:57:55] =       Made by BigETI =
+[19:57:55] = Unloaded!            =
+[19:57:55] ========================
+[19:57:55] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:02:05] filterscripts = ""  (string)
+[20:02:05] 
+[20:02:05] Server Plugins
+[20:02:05] --------------
+[20:02:05]  Loading plugin: crashdetect
+[20:02:05]   CrashDetect plugin 4.21
+[20:02:05]   Loaded.
+[20:02:05]  Loading plugin: mysql
+[20:02:05]  >> plugin.mysql: R41-4 successfully loaded.
+[20:02:05]   Loaded.
+[20:02:05]  Loading plugin: sscanf
+[20:02:05] 
+
+[20:02:05]  ===============================
+
+[20:02:05]       sscanf plugin loaded.     
+
+[20:02:05]          Version:  2.8.2        
+
+[20:02:05]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:02:05]  ===============================
+
+[20:02:05]   Loaded.
+[20:02:05]  Loading plugin: streamer
+[20:02:05] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:02:05]   Loaded.
+[20:02:05]  Loading plugin: timerfix
+[20:02:05]   >> TimerFix v1.4 successfully loaded.
+[20:02:05]   Loaded.
+[20:02:05]  Loading plugin: pawn-memory
+[20:02:05] ========================
+[20:02:05] = Memory access plugin =
+[20:02:05] =       Made by BigETI =
+[20:02:05] = Loaded!              =
+[20:02:05] ========================
+[20:02:05]   Loaded.
+[20:02:05]  Loading plugin: pawnraknet
+[20:02:05] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:02:05] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:02:05]   Loaded.
+[20:02:05]  Loading plugin: samp-compat
+[20:02:05]   -- samp-compat for 0.3.DL-R1 initialized
+[20:02:05]   Loaded.
+[20:02:05]  Loaded 8 plugins.
+
+[20:02:05] 
+[20:02:05] Filterscripts
+[20:02:05] ---------------
+[20:02:05]   Loaded 0 filterscripts.
+
+[20:02:05] [DATABASE]: Connection established to 'storylines'...
+[20:02:05] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:02:05] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:02:05] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:02:05] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:02:05] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:02:05] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:02:05] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:02:05] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:02:05] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:02:05] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:02:05] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:02:05] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:02:05] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:02:05] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:02:05] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:02:05] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:02:05] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:02:05] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:02:05] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:02:05] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:02:05] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:02:05] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:02:05] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:02:05] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:02:05] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:02:05] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:02:05] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:02:05] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:02:05] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[20:02:05] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[20:02:05] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[20:02:05] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[20:02:05] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[20:02:05] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[20:02:05] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[20:02:05] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[20:02:05] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[20:02:05] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[20:02:05] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[20:02:05] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[20:02:05] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[20:02:05] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[20:02:05] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[20:02:05] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[20:02:05] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[20:02:05] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[20:02:05] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[20:02:05] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[20:02:05] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:02:05] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:02:05] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:02:05] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:02:05] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:02:05] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:02:05] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:02:05] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:02:05] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:02:05] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:02:05] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:02:05] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:02:05] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:02:05] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:02:05] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:02:05] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:02:05] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:02:05] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:02:05] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:02:05] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:02:05] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:02:05] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:02:05] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:02:05] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:02:05] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:02:05] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:02:05] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:02:05] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:02:05] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:02:05] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:02:05] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:02:05] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:02:05] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:02:05] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:02:05] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:02:05] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:02:05] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:02:05] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:02:05] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:02:05] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:02:05] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:02:05] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:02:05] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:02:05] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:02:05] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:02:05] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:02:05] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:02:05] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:02:05] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:02:05] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:02:05] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:02:05] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:02:05] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:02:05] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:02:05] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:02:05] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:02:05] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:02:05] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:02:05] [debug] Long callback execution detected (hang or performance issue)
+[20:02:05] [debug] AMX backtrace:
+[20:02:05] [debug] #0 00066f70 in InsertASGH () at modules\visuals\enviroment.inc:1267
+[20:02:05] [debug] #1 002bb1d4 in public PawnRakNet_OnGameModeInit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:207
+[20:02:05] [debug] #2 00038fe8 in public PHY_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1153
+[20:02:05] [debug] #3 native CallLocalFunction () in samp-server.exe
+[20:02:05] [debug] #4 00023d70 in public Itter_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\physics.inc:193
+[20:02:05] [debug] #5 native CallLocalFunction () in samp-server.exe
+[20:02:05] [debug] #6 00022f20 in public SSCANF_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:637
+[20:02:05] [debug] #7 0001bf68 in public zcmd_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:211
+[20:02:05] [debug] #8 native CallLocalFunction () in samp-server.exe
+[20:02:05] [debug] #9 0001b5b0 in public PDialog_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\zcmd.inc:68
+[20:02:05] [debug] #10 000165b4 in public OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:836
+[20:02:05] Number of vehicle models: 1
+[20:02:05] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:02:05] [SERVER]: 4 court were loaded from "storylines" database...
+[20:02:05] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:02:05] [SERVER]: 9 businesses were loaded from "storylines" database...
+[20:02:05] [debug] Long callback execution detected (hang or performance issue)
+[20:02:05] [debug] AMX backtrace:
+[20:02:05] [debug] #0 0014b9c8 in HexToInt (string[]=@05a407f0 "0xFFFFFFFF") at modules\config\player.inc:652
+[20:02:05] [debug] #1 0019dc20 in public Query_LoadFurniture (labels=0) at modules\properties\property_furniture.inc:176
+[20:02:05] [SERVER]: 2 properties were loaded from "storylines" database...
+[20:02:05] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:02:05] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:02:05] [SERVER]: No compensation were loaded from "storylines" database...
+[20:02:05] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:02:05] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:02:05] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:02:06] [debug] Long callback execution detected (hang or performance issue)
+[20:02:06] [debug] AMX backtrace:
+[20:02:06] [debug] #0 001c1974 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:88
+[20:02:07] [debug] Long callback execution detected (hang or performance issue)
+[20:02:07] [debug] AMX backtrace:
+[20:02:07] [debug] #0 0013bf90 in SaveVehicle (vehicleid=3) at modules\config\savemysql.inc:143
+[20:02:07] [debug] #1 001c1eb8 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[20:02:08] [debug] Long callback execution detected (hang or performance issue)
+[20:02:08] [debug] AMX backtrace:
+[20:02:08] [debug] #0 001c1d2c in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:104
+[20:02:09] [debug] Long callback execution detected (hang or performance issue)
+[20:02:09] [debug] AMX backtrace:
+[20:02:09] [debug] #0 0013becc in SaveVehicle (vehicleid=4) at modules\config\savemysql.inc:141
+[20:02:09] [debug] #1 001c1eb8 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[20:02:11] [debug] Long callback execution detected (hang or performance issue)
+[20:02:11] [debug] AMX backtrace:
+[20:02:11] [debug] #0 0013bf44 in SaveVehicle (vehicleid=3) at modules\config\savemysql.inc:143
+[20:02:11] [debug] #1 001c1eb8 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[20:02:12] [debug] Long callback execution detected (hang or performance issue)
+[20:02:12] [debug] AMX backtrace:
+[20:02:12] [debug] #0 0013bc98 in SaveVehicle (vehicleid=3) at modules\config\savemysql.inc:131
+[20:02:12] [debug] #1 001c1eb8 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[20:02:13] [debug] Long callback execution detected (hang or performance issue)
+[20:02:13] [debug] AMX backtrace:
+[20:02:13] [debug] #0 0013bfb4 in SaveVehicle (vehicleid=2) at modules\config\savemysql.inc:143
+[20:02:13] [debug] #1 001c1eb8 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[20:02:14] [debug] Long callback execution detected (hang or performance issue)
+[20:02:14] [debug] AMX backtrace:
+[20:02:14] [debug] #0 0013bf54 in SaveVehicle (vehicleid=4) at modules\config\savemysql.inc:143
+[20:02:14] [debug] #1 001c1eb8 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[20:02:15] [debug] Long callback execution detected (hang or performance issue)
+[20:02:15] [debug] AMX backtrace:
+[20:02:15] [debug] #0 0013b3e8 in SaveVehicle (vehicleid=4) at modules\config\savemysql.inc:85
+[20:02:15] [debug] #1 001c1eb8 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:110
+[20:02:16] [debug] Server received interrupt signal
+[20:02:16] [debug] Native backtrace:
+[20:02:16] [debug] #0 77992dcc in ?? () in C:\Windows\SYSTEM32\ntdll.dll
+[20:02:16] [debug] #1 76286d6f in ?? () in C:\Windows\System32\KERNELBASE.dll
+[20:02:16] [debug] #2 00492d0c in ?? () in samp-server.exe
+[20:02:16] [debug] #3 004a1d61 in ?? () in samp-server.exe
+[20:02:16] [debug] #4 004a1d71 in ?? () in samp-server.exe
+[20:02:16] --- Server Shutting Down.
+[20:02:16] [debug] Long callback execution detected (hang or performance issue)
+[20:02:16] [debug] AMX backtrace:
+[20:02:16] [debug] #0 0013a920 in SaveBusinesses () at modules\config\savemysql.inc:29
+[20:02:16] [debug] #1 002bc250 in public PDialog_OnGameModeExit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:312
+[20:02:16] [debug] #2 000165e8 in public OnGameModeExit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:855
+[20:02:16] plugin.mysql: Unloading plugin...
+[20:02:16] plugin.mysql: Plugin unloaded.
+[20:02:16] 
+
+[20:02:16]  ===============================
+
+[20:02:16]      sscanf plugin unloaded.    
+
+[20:02:16]  ===============================
+
+[20:02:16] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[20:02:16] [plugin.timerfix] Plugsin successfully unloaded!
+[20:02:16] ========================
+[20:02:16] = Memory access plugin =
+[20:02:16] =       Made by BigETI =
+[20:02:16] = Unloaded!            =
+[20:02:16] ========================
+[20:02:16] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[20:05:48] filterscripts = ""  (string)
+[20:05:48] 
+[20:05:48] Server Plugins
+[20:05:48] --------------
+[20:05:48]  Loading plugin: crashdetect
+[20:05:48]   CrashDetect plugin 4.21
+[20:05:48]   Loaded.
+[20:05:48]  Loading plugin: mysql
+[20:05:48]  >> plugin.mysql: R41-4 successfully loaded.
+[20:05:48]   Loaded.
+[20:05:48]  Loading plugin: sscanf
+[20:05:48] 
+
+[20:05:48]  ===============================
+
+[20:05:48]       sscanf plugin loaded.     
+
+[20:05:48]          Version:  2.8.2        
+
+[20:05:48]    (c) 2012 Alex "Y_Less" Cole  
+
+[20:05:48]  ===============================
+
+[20:05:48]   Loaded.
+[20:05:48]  Loading plugin: streamer
+[20:05:48] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[20:05:48]   Loaded.
+[20:05:48]  Loading plugin: timerfix
+[20:05:48]   >> TimerFix v1.4 successfully loaded.
+[20:05:48]   Loaded.
+[20:05:48]  Loading plugin: pawn-memory
+[20:05:49] ========================
+[20:05:49] = Memory access plugin =
+[20:05:49] =       Made by BigETI =
+[20:05:49] = Loaded!              =
+[20:05:49] ========================
+[20:05:49]   Loaded.
+[20:05:49]  Loading plugin: pawnraknet
+[20:05:49] [Pawn.RakNet] plugin v1.6.0 loading...
+[20:05:49] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[20:05:49]   Loaded.
+[20:05:49]  Loading plugin: samp-compat
+[20:05:49]   -- samp-compat for 0.3.DL-R1 initialized
+[20:05:49]   Loaded.
+[20:05:49]  Loaded 8 plugins.
+
+[20:05:49] 
+[20:05:49] Filterscripts
+[20:05:49] ---------------
+[20:05:49]   Loaded 0 filterscripts.
+
+[20:05:49] [DATABASE]: Connection established to 'storylines'...
+[20:05:49] [artwork:crc] misc/textdraws/idlstxt.dff CRC = 0x4BC6EDFF
+[20:05:49] [artwork:crc] misc/textdraws/idlstxt.txd CRC = 0xAD6DBF24
+[20:05:49] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[20:05:49] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[20:05:49] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[20:05:49] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[20:05:49] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[20:05:49] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[20:05:49] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[20:05:49] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[20:05:49] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[20:05:49] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[20:05:49] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[20:05:49] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[20:05:49] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[20:05:49] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[20:05:49] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[20:05:49] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[20:05:49] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[20:05:49] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[20:05:49] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[20:05:49] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[20:05:49] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[20:05:49] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[20:05:49] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[20:05:49] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[20:05:49] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[20:05:49] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[20:05:49] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[20:05:49] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[20:05:49] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[20:05:49] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[20:05:49] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[20:05:49] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[20:05:49] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[20:05:49] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[20:05:49] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[20:05:49] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[20:05:49] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[20:05:49] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[20:05:49] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[20:05:49] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[20:05:49] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[20:05:49] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[20:05:49] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[20:05:49] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[20:05:49] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[20:05:49] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[20:05:49] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[20:05:49] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[20:05:49] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[20:05:49] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[20:05:49] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[20:05:49] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[20:05:49] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[20:05:49] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[20:05:49] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[20:05:49] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[20:05:49] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[20:05:49] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[20:05:49] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[20:05:49] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[20:05:49] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[20:05:49] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[20:05:49] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[20:05:49] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[20:05:49] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[20:05:49] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[20:05:49] [artwork:crc] misc/weapons/hardbat.dff CRC = 0xABAB6F
+[20:05:49] [artwork:crc] misc/weapons/hardbat.txd CRC = 0xBBEB933F
+[20:05:49] [artwork:crc] misc/weapons/woodbat.dff CRC = 0xD8ECAF1E
+[20:05:49] [artwork:crc] misc/weapons/woodbat.txd CRC = 0xAC858004
+[20:05:49] [artwork:crc] misc/weapons/bloodbat.dff CRC = 0xC053297D
+[20:05:49] [artwork:crc] misc/weapons/bloodbat.txd CRC = 0xE4468108
+[20:05:49] [artwork:crc] misc/weapons/glock17.dff CRC = 0x9036E3
+[20:05:49] [artwork:crc] misc/weapons/glock17.txd CRC = 0x7DCFEBB3
+[20:05:49] [artwork:crc] misc/weapons/glock19.dff CRC = 0x405C7580
+[20:05:49] [artwork:crc] misc/weapons/glock19.txd CRC = 0xD532848
+[20:05:49] [artwork:crc] misc/weapons/glockp80.dff CRC = 0xE45D1B59
+[20:05:49] [artwork:crc] misc/weapons/glockp80.txd CRC = 0x2F963036
+[20:05:49] [artwork:crc] misc/weapons/mac11.dff CRC = 0x6A356558
+[20:05:49] [artwork:crc] misc/weapons/mac11.txd CRC = 0xBBDA13AE
+[20:05:49] [artwork:crc] misc/weapons/mac10.dff CRC = 0xE09BF710
+[20:05:49] [artwork:crc] misc/weapons/mac10.txd CRC = 0xE02CD8F2
+[20:05:49] [artwork:crc] misc/weapons/socimi.dff CRC = 0xC6854C8
+[20:05:49] [artwork:crc] misc/weapons/socimi.txd CRC = 0x5BA31A32
+[20:05:49] [artwork:crc] misc/weapons/brokenbottle.dff CRC = 0xEF719194
+[20:05:49] [artwork:crc] misc/weapons/brokenbottle.txd CRC = 0xCB1E042F
+[20:05:49] [artwork:crc] misc/weapons/glasses.dff CRC = 0x591792E
+[20:05:49] [artwork:crc] misc/weapons/glasses.txd CRC = 0x6B5B8CAC
+[20:05:49] [artwork:crc] misc/weapons/axe.dff CRC = 0xE00D46A5
+[20:05:49] [artwork:crc] misc/weapons/axe.txd CRC = 0x35B37ADC
+[20:05:49] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[20:05:49] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:05:49] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[20:05:49] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:05:49] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[20:05:49] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[20:05:49] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[20:05:49] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[20:05:49] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[20:05:49] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:05:49] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[20:05:49] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:05:49] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[20:05:49] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[20:05:49] [debug] Long callback execution detected (hang or performance issue)
+[20:05:49] [debug] AMX backtrace:
+[20:05:49] [debug] #0 00066f70 in InsertASGH () at modules\visuals\enviroment.inc:1267
+[20:05:49] [debug] #1 002bb22c in public PawnRakNet_OnGameModeInit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:207
+[20:05:49] [debug] #2 00038fe8 in public PHY_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1153
+[20:05:49] [debug] #3 native CallLocalFunction () in samp-server.exe
+[20:05:49] [debug] #4 00023d70 in public Itter_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\physics.inc:193
+[20:05:49] [debug] #5 native CallLocalFunction () in samp-server.exe
+[20:05:49] [debug] #6 00022f20 in public SSCANF_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:637
+[20:05:49] [debug] #7 0001bf68 in public zcmd_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:211
+[20:05:49] [debug] #8 native CallLocalFunction () in samp-server.exe
+[20:05:49] [debug] #9 0001b5b0 in public PDialog_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\zcmd.inc:68
+[20:05:49] [debug] #10 000165b4 in public OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:836
+[20:05:49] Number of vehicle models: 1
+[20:05:49] [SERVER]: 2 factions were loaded from "storylines" database...
+[20:05:49] [SERVER]: 9 businesses were loaded from "storylines" database...
+[20:05:49] [debug] Long callback execution detected (hang or performance issue)
+[20:05:49] [debug] AMX backtrace:
+[20:05:49] [debug] #0 0019db14 in public Query_LoadFurniture (labels=0) at modules\properties\property_furniture.inc:170
+[20:05:49] [SERVER]: No compensation were loaded from "storylines" database...
+[20:05:49] [SERVER]: 2 properties were loaded from "storylines" database...
+[20:05:49] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[20:05:49] [SERVER]: 6 gates were loaded from "storylines" database...
+[20:05:49] [SERVER]: 17 tree were loaded from "storylines" database...
+[20:05:49] [SERVER]: 4 court were loaded from "storylines" database...
+[20:05:49] [SERVER]: 4 entrance were loaded from "storylines" database...
+[20:05:49] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:05:49] [SERVER]: 0 property storage were loaded from "storylines" database...
+[20:06:08] [connection] incoming connection: 127.0.0.1:54106 id: 0
+[20:06:08] [join] Radeetz has joined the server (0:127.0.0.1)
+[20:06:08] [debug] Long callback execution detected (hang or performance issue)
+[20:06:08] [debug] AMX backtrace:
+[20:06:08] [debug] #0 000f9184 in CreateIDCARDTextDraws (playerid=0) at modules\visuals\textdraws.inc:1082
+[20:06:08] [debug] #1 002bc638 in public PHY_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:346
+[20:06:08] [debug] #2 native CallLocalFunction () in samp-server.exe
+[20:06:08] [debug] #3 00023e30 in public Itter_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\physics.inc:202
+[20:06:08] [debug] #4 native CallLocalFunction () in samp-server.exe
+[20:06:08] [debug] #5 00022de0 in public SSCANF_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:594
+[20:06:08] [debug] #6 0001c05c in public PDialog_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:242
+[20:06:08] [debug] #7 00016738 in public OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:914
+[20:06:25] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[20:06:25] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[20:06:25] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[20:06:25] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[20:06:26] [debug] Long callback execution detected (hang or performance issue)
+[20:06:26] [debug] AMX backtrace:
+[20:06:26] [debug] #0 0000831c in IsValidPlayerProgressBar (playerid=0, PlayerBar:barid=0) at F:\Radit Files\Storylines-main\pawno\include\progress2.inc:434
+[20:06:26] [debug] #1 000017c8 in ShowPlayerProgressBar (playerid=0, PlayerBar:barid=0) at F:\Radit Files\Storylines-main\pawno\include\progress2.inc:208
+[20:06:26] [debug] #2 00230b44 in ShowPlayerNeeds (playerid=0) at modules\players\needs.inc:91
+[20:06:26] [debug] #3 00227a84 in LoadCharacter (playerid=0) at modules\players\account.inc:301
+[20:06:26] [debug] #4 0022c6ec in public dialog_Spawns (playerid=0, response=1, listitem=9, inputtext[]=@05b0d9d8 "#9") at modules\players\account.inc:592
+[20:06:26] [debug] #5 native CallLocalFunction () in samp-server.exe
+[20:06:26] [debug] #6 0000a5a8 in public OnDialogResponse (playerid=0, dialogid=5000, response=1, listitem=9, inputtext[]=@05b0d9cc "#9") at F:\Radit Files\Storylines-main\pawno\include\easyDialog.inc:93
+[20:06:47] Player [Jayvon Williams] sent command: /help
+[20:06:49] [debug] Long callback execution detected (hang or performance issue)
+[20:06:49] [debug] AMX backtrace:
+[20:06:49] [debug] #0 001ec238 in Spraytags_Refresh (spid=101) at modules\props\spraytags.inc:71
+[20:06:49] [debug] #1 001f0544 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:346
+[20:06:57] [part] Jayvon_Williams has left the server (0:1)
+[20:07:49] [debug] Long callback execution detected (hang or performance issue)
+[20:07:49] [debug] AMX backtrace:
+[20:07:49] [debug] #0 001f04c8 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:343
+[20:08:49] [debug] Long callback execution detected (hang or performance issue)
+[20:08:49] [debug] AMX backtrace:
+[20:08:49] [debug] #0 001ec244 in Spraytags_Refresh (spid=140) at modules\props\spraytags.inc:71
+[20:08:49] [debug] #1 001f0544 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:346
+[20:09:49] [debug] Long callback execution detected (hang or performance issue)
+[20:09:49] [debug] AMX backtrace:
+[20:09:49] [debug] #0 001f04e4 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:344
+[20:10:49] [debug] Long callback execution detected (hang or performance issue)
+[20:10:49] [debug] AMX backtrace:
+[20:10:49] [debug] #0 001ec254 in Spraytags_Refresh (spid=106) at modules\props\spraytags.inc:71
+[20:10:49] [debug] #1 001f0544 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:346
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[13:17:21] filterscripts = ""  (string)
+[13:17:21] 
+[13:17:21] Server Plugins
+[13:17:21] --------------
+[13:17:21]  Loading plugin: crashdetect
+[13:17:21]   CrashDetect plugin 4.21
+[13:17:21]   Loaded.
+[13:17:21]  Loading plugin: mysql
+[13:17:21]  >> plugin.mysql: R41-4 successfully loaded.
+[13:17:21]   Loaded.
+[13:17:21]  Loading plugin: sscanf
+[13:17:21] 
+
+[13:17:21]  ===============================
+
+[13:17:21]       sscanf plugin loaded.     
+
+[13:17:21]          Version:  2.8.2        
+
+[13:17:21]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:17:21]  ===============================
+
+[13:17:21]   Loaded.
+[13:17:21]  Loading plugin: streamer
+[13:17:21] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[13:17:21]   Loaded.
+[13:17:21]  Loading plugin: timerfix
+[13:17:21]   >> TimerFix v1.4 successfully loaded.
+[13:17:21]   Loaded.
+[13:17:21]  Loading plugin: pawn-memory
+[13:17:21] ========================
+[13:17:21] = Memory access plugin =
+[13:17:21] =       Made by BigETI =
+[13:17:21] = Loaded!              =
+[13:17:21] ========================
+[13:17:21]   Loaded.
+[13:17:21]  Loading plugin: pawnraknet
+[13:17:21] [Pawn.RakNet] plugin v1.6.0 loading...
+[13:17:21] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[13:17:21]   Loaded.
+[13:17:21]  Loading plugin: samp-compat
+[13:17:21]   -- samp-compat for 0.3.DL-R1 initialized
+[13:17:21]   Loaded.
+[13:17:21]  Loaded 8 plugins.
+
+[13:17:21] 
+[13:17:21] Filterscripts
+[13:17:21] ---------------
+[13:17:21]   Loaded 0 filterscripts.
+
+[13:17:21] [DATABASE]: Connection established to 'storylines'...
+[13:17:21] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[13:17:21] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[13:17:21] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[13:17:21] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[13:17:21] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[13:17:21] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[13:17:21] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[13:17:21] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[13:17:21] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[13:17:21] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[13:17:21] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[13:17:21] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[13:17:21] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[13:17:21] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[13:17:21] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[13:17:21] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[13:17:21] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[13:17:21] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[13:17:21] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[13:17:21] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[13:17:21] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[13:17:21] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[13:17:21] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[13:17:21] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[13:17:21] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[13:17:21] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[13:17:21] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[13:17:21] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[13:17:21] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[13:17:21] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[13:17:21] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[13:17:21] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[13:17:21] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[13:17:21] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[13:17:21] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[13:17:21] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[13:17:21] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[13:17:21] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[13:17:21] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[13:17:21] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[13:17:21] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[13:17:21] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[13:17:21] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[13:17:21] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[13:17:21] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[13:17:21] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[13:17:21] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[13:17:21] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[13:17:21] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[13:17:21] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[13:17:21] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[13:17:21] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[13:17:21] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[13:17:21] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[13:17:21] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[13:17:21] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[13:17:21] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[13:17:21] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[13:17:21] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[13:17:21] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[13:17:21] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[13:17:21] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[13:17:21] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[13:17:21] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[13:17:21] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[13:17:21] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[13:17:21] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[13:17:21] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:17:21] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[13:17:21] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:17:21] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[13:17:21] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:17:21] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[13:17:21] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[13:17:21] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[13:17:21] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:17:21] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[13:17:21] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:17:21] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[13:17:21] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:17:21] [debug] Long callback execution detected (hang or performance issue)
+[13:17:21] [debug] AMX backtrace:
+[13:17:21] [debug] #0 00060184 in InsertASGH () at modules\visuals\enviroment.inc:1274
+[13:17:21] [debug] #1 002b51e0 in public PawnRakNet_OnGameModeInit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:205
+[13:17:21] [debug] #2 0003224c in public PHY_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1153
+[13:17:21] [debug] #3 native CallLocalFunction () in samp-server.exe
+[13:17:21] [debug] #4 00023d30 in public Itter_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\physics.inc:193
+[13:17:21] [debug] #5 native CallLocalFunction () in samp-server.exe
+[13:17:21] [debug] #6 00022ee0 in public SSCANF_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:637
+[13:17:21] [debug] #7 0001bf28 in public zcmd_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:211
+[13:17:21] [debug] #8 native CallLocalFunction () in samp-server.exe
+[13:17:21] [debug] #9 0001b570 in public PDialog_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\zcmd.inc:68
+[13:17:21] [debug] #10 000165b4 in public OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:836
+[13:17:21] Number of vehicle models: 1
+[13:17:22] [SERVER]: No compensation were loaded from "storylines" database...
+[13:17:22] [SERVER]: 4 entrance were loaded from "storylines" database...
+[13:17:22] [SERVER]: 2 factions were loaded from "storylines" database...
+[13:17:22] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[13:17:22] [SERVER]: 4 court were loaded from "storylines" database...
+[13:17:22] [SERVER]: 2 properties were loaded from "storylines" database...
+[13:17:22] [debug] Long callback execution detected (hang or performance issue)
+[13:17:22] [debug] AMX backtrace:
+[13:17:22] [debug] #0 00196a54 in public Query_LoadFurniture (labels=0) at modules\properties\property_furniture.inc:176
+[13:17:22] [SERVER]: 17 tree were loaded from "storylines" database...
+[13:17:22] [debug] Long callback execution detected (hang or performance issue)
+[13:17:22] [debug] AMX backtrace:
+[13:17:22] [debug] #0 0016e1fc in BusinessRefresh (businessid=6) at modules\business\business.inc:132
+[13:17:22] [debug] #1 001759e0 in public Query_LoadBusinesses () at modules\business\business.inc:589
+[13:17:22] [SERVER]: 9 businesses were loaded from "storylines" database...
+[13:17:22] [SERVER]: 6 gates were loaded from "storylines" database...
+[13:17:22] [SERVER]: 0 property storage were loaded from "storylines" database...
+[13:17:22] [SERVER]: 0 property storage were loaded from "storylines" database...
+[13:17:52] [connection] incoming connection: 127.0.0.1:56266 id: 0
+[13:17:53] [join] Radeetz has joined the server (0:127.0.0.1)
+[13:17:53] [debug] Long callback execution detected (hang or performance issue)
+[13:17:53] [debug] AMX backtrace:
+[13:17:53] [debug] #0 002e9624 in public SaveCharacter (playerid=0) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:5531
+[13:17:53] [debug] #1 0014ecb4 in SetPlayerArmourEx (playerid=0, Float:value=0.00000) at modules\config\anticheat.inc:253
+[13:17:53] [debug] #2 002b684c in public PHY_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:362
+[13:17:53] [debug] #3 native CallLocalFunction () in samp-server.exe
+[13:17:53] [debug] #4 00023df0 in public Itter_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\physics.inc:202
+[13:17:53] [debug] #5 native CallLocalFunction () in samp-server.exe
+[13:17:53] [debug] #6 00022da0 in public SSCANF_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:594
+[13:17:53] [debug] #7 0001c01c in public PDialog_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:242
+[13:17:53] [debug] #8 00016738 in public OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:914
+[13:18:10] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[13:18:10] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[13:18:10] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[13:18:10] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[13:18:11] [debug] Long callback execution detected (hang or performance issue)
+[13:18:11] [debug] AMX backtrace:
+[13:18:11] [debug] #0 000089a8 in SetPlayerProgressBarValue (playerid=0, PlayerBar:barid=0, Float:value=37.11010) at F:\Radit Files\Storylines-main\pawno\include\progress2.inc:561
+[13:18:11] [debug] #1 00229758 in ShowPlayerNeeds (playerid=0) at modules\players\needs.inc:89
+[13:18:11] [debug] #2 00220870 in LoadCharacter (playerid=0) at modules\players\account.inc:301
+[13:18:11] [debug] #3 002254d8 in public dialog_Spawns (playerid=0, response=1, listitem=9, inputtext[]=@05873110 "#9") at modules\players\account.inc:592
+[13:18:11] [debug] #4 native CallLocalFunction () in samp-server.exe
+[13:18:11] [debug] #5 0000a5a8 in public OnDialogResponse (playerid=0, dialogid=5000, response=1, listitem=9, inputtext[]=@05873104 "#9") at F:\Radit Files\Storylines-main\pawno\include\easyDialog.inc:93
+[13:18:11] [debug] Long callback execution detected (hang or performance issue)
+[13:18:11] [debug] AMX backtrace:
+[13:18:11] [debug] #0 002e988c in public SaveCharacter (playerid=0) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:5542
+[13:18:11] [debug] #1 0014ecb4 in SetPlayerArmourEx (playerid=0, Float:value=0.00000) at modules\config\anticheat.inc:253
+[13:18:11] [debug] #2 002c7378 in public OnPlayerSpawn (playerid=0) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:3164
+[13:18:15] Player [Jayvon Williams] sent command: /setstats
+[13:18:18] Player [Jayvon Williams] sent command: /setstats 0 6 3
+[13:18:21] Player [Jayvon Williams] sent command: /setstats 0 6 4
+[13:18:21] [debug] Long callback execution detected (hang or performance issue)
+[13:18:21] [debug] AMX backtrace:
+[13:18:21] [debug] #0 001e9308 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:344
+[13:18:21] [debug] Long callback execution detected (hang or performance issue)
+[13:18:21] [debug] AMX backtrace:
+[13:18:21] [debug] #0 002e8ca0 in public SaveCharacter (playerid=0) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:5494
+[13:18:21] [debug] #1 002290f8 in public OnPlayerNeedUpdate () at modules\players\needs.inc:54
+[13:18:22] Player [Jayvon Williams] sent command: /setstats 0 6 5
+[13:18:25] Player [Jayvon Williams] sent command: /setstats 0 6 4
+[13:18:30] Player [Jayvon Williams] sent command: /mycars
+[13:18:32] [DEBUG] Vehicle ID 5 was respawned.
+[13:18:32] [debug] Long callback execution detected (hang or performance issue)
+[13:18:32] [debug] AMX backtrace:
+[13:18:32] [debug] #0 00134dec in SaveVehicle (vehicleid=5) at modules\config\savemysql.inc:147
+[13:18:32] [debug] #1 001a8bc4 in SetVehicleHealthEx (vehicleid=5, Float:VehicleHealth=1000.00000) at modules\vehicles\vehicles.inc:725
+[13:18:32] [debug] #2 001a63dc in public Query_LoadPrivateVehicle (playerid=0) at modules\vehicles\vehicles.inc:528
+[13:18:33] [SERVER]: Sultan vehicle storage were loaded from "storylines" database...
+[13:18:36] Player [Jayvon Williams] sent command: /aduty
+[13:18:40] [debug] Run time error 4: "Array index out of bounds"
+[13:18:40] [debug]  Attempted to read/write array element at index 65535 in array of size 1000
+[13:18:40] [debug] AMX backtrace:
+[13:18:40] [debug] #0 0013c938 in public OnPlayerClickMap (playerid=0, Float:fX=1553.66455, Float:fY=-1618.37500, Float:fZ=22.00000) at modules\config\player.inc:112
+[13:18:41] [debug] Run time error 4: "Array index out of bounds"
+[13:18:41] [debug]  Attempted to read/write array element at index 65535 in array of size 1000
+[13:18:41] [debug] AMX backtrace:
+[13:18:41] [debug] #0 0013c938 in public OnPlayerClickMap (playerid=0, Float:fX=1553.66455, Float:fY=-1618.37500, Float:fZ=14.54688) at modules\config\player.inc:112
+[13:18:45] Player [Jayvon Williams] sent command: /getcar 5
+[13:18:54] Player [Jayvon Williams] sent command: /setinv 0 1 spraycan
+[13:19:06] Player [Jayvon Williams] sent command: /mechmenu
+[13:19:21] [debug] Long callback execution detected (hang or performance issue)
+[13:19:21] [debug] AMX backtrace:
+[13:19:21] [debug] #0 001e927c in public OnSprayTagsUpdate () at modules\props\spraytags.inc:343
+[13:19:23] Player [Jayvon Williams] sent command: /spawncar 525
+[13:19:25] Player [Jayvon Williams] sent command: /spawncar 525 1 1
+[13:19:29] Player [Jayvon Williams] sent command: /jobduty
+[13:19:39] Player [Jayvon Williams] sent command: /mechmenu
+[13:19:56] Player [Jayvon Williams] sent command: /setinv 0 5 spraycan
+[13:19:58] Player [Jayvon Williams] sent command: /mechmenu
+[13:20:21] [debug] Long callback execution detected (hang or performance issue)
+[13:20:21] [debug] AMX backtrace:
+[13:20:21] [debug] #0 001e503c in Spraytags_Refresh (spid=78) at modules\props\spraytags.inc:71
+[13:20:21] [debug] #1 001e9330 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:346
+[13:20:34] [debug] Run time error 4: "Array index out of bounds"
+[13:20:34] [debug]  Attempted to read/write array element at index 14 in array of size 14
+[13:20:34] [debug] AMX backtrace:
+[13:20:34] [debug] #0 00232524 in HidePlayerPhone (playerid=0) at modules\players\phone.inc:261
+[13:20:34] [debug] #1 0013d2d4 in ResetVarInventory (playerid=0) at modules\config\player.inc:173
+[13:20:34] [debug] #2 00266100 in public repaintpaintjob1 (playerid=0, vehicleid=5) at modules\jobs\MainJobs\mechanic.inc:656
+[13:20:36] Player [Jayvon Williams] sent command: /mechmenu
+[13:20:47] Player [Jayvon Williams] sent command: /mechmenu
+[13:20:51] Player [Jayvon Williams] sent command: /mechmenu
+[13:20:53] [debug] Long callback execution detected (hang or performance issue)
+[13:20:53] [debug] AMX backtrace:
+[13:20:53] [debug] #0 00000718 in bool:operator<=(Float:,Float:) (Float:oper1=1560.80249, Float:oper2=1096.40002) at F:\Radit Files\Storylines-main\pawno\include\float.inc:490
+[13:20:53] [debug] #1 00159d2c in GetZoneName (Float:x=1560.80249, Float:y=-1622.46204, Float:z=13.54688) at modules\config\zones.inc:715
+[13:20:53] [debug] #2 0015a1a8 in ReturnLocation (playerid=0) at modules\config\zones.inc:734
+[13:20:53] [debug] #3 002cc3f8 in public OnPlayerUpdate (playerid=0) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:3519
+[13:21:05] [debug] Long callback execution detected (hang or performance issue)
+[13:21:05] [debug] AMX backtrace:
+[13:21:05] [debug] #0 000006e4 in bool:operator<=(Float:,Float:) (Float:oper1=1560.80249, Float:oper2=2581.69995) at F:\Radit Files\Storylines-main\pawno\include\float.inc:490
+[13:21:05] [debug] #1 00159d2c in GetZoneName (Float:x=1560.80249, Float:y=-1622.46204, Float:z=13.54688) at modules\config\zones.inc:715
+[13:21:05] [debug] #2 0015a1a8 in ReturnLocation (playerid=0) at modules\config\zones.inc:734
+[13:21:05] [debug] #3 002cc3f8 in public OnPlayerUpdate (playerid=0) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:3519
+[13:21:21] [debug] Long callback execution detected (hang or performance issue)
+[13:21:21] [debug] AMX backtrace:
+[13:21:21] [debug] #0 001e4fe8 in Spraytags_Refresh (spid=109) at modules\props\spraytags.inc:71
+[13:21:21] [debug] #1 001e9330 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:346
+[13:22:17] [part] Jayvon_Williams has left the server (0:1)
+[13:22:21] [debug] Long callback execution detected (hang or performance issue)
+[13:22:21] [debug] AMX backtrace:
+[13:22:21] [debug] #0 001e91c4 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:337
+[13:23:21] [debug] Long callback execution detected (hang or performance issue)
+[13:23:21] [debug] AMX backtrace:
+[13:23:21] [debug] #0 001e4ff4 in Spraytags_Refresh (spid=114) at modules\props\spraytags.inc:71
+[13:23:21] [debug] #1 001e9330 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:346
+[13:23:22] [debug] Long callback execution detected (hang or performance issue)
+[13:23:22] [debug] AMX backtrace:
+[13:23:22] [debug] #0 00134dd0 in SaveVehicle (vehicleid=5) at modules\config\savemysql.inc:147
+[13:23:22] [debug] #1 001bacfc in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:113
+Console input: exit
+[13:23:43] --- Server Shutting Down.
+[13:23:43] [debug] Long callback execution detected (hang or performance issue)
+[13:23:43] [debug] AMX backtrace:
+[13:23:43] [debug] #0 00136160 in SaveBusiness (id=8) at modules\config\savemysql.inc:235
+[13:23:43] [debug] #1 00133770 in SaveBusinesses () at modules\config\savemysql.inc:32
+[13:23:43] [debug] #2 002b625c in public PDialog_OnGameModeExit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:310
+[13:23:43] [debug] #3 000165e8 in public OnGameModeExit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:855
+[13:23:43] plugin.mysql: Unloading plugin...
+[13:23:43] plugin.mysql: Plugin unloaded.
+[13:23:43] 
+
+[13:23:43]  ===============================
+
+[13:23:43]      sscanf plugin unloaded.    
+
+[13:23:43]  ===============================
+
+[13:23:43] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[13:23:43] [plugin.timerfix] Plugsin successfully unloaded!
+[13:23:43] ========================
+[13:23:43] = Memory access plugin =
+[13:23:43] =       Made by BigETI =
+[13:23:43] = Unloaded!            =
+[13:23:43] ========================
+[13:23:43] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[13:23:47] filterscripts = ""  (string)
+[13:23:47] 
+[13:23:47] Server Plugins
+[13:23:47] --------------
+[13:23:47]  Loading plugin: crashdetect
+[13:23:47]   CrashDetect plugin 4.21
+[13:23:47]   Loaded.
+[13:23:47]  Loading plugin: mysql
+[13:23:47]  >> plugin.mysql: R41-4 successfully loaded.
+[13:23:47]   Loaded.
+[13:23:47]  Loading plugin: sscanf
+[13:23:47] 
+
+[13:23:47]  ===============================
+
+[13:23:47]       sscanf plugin loaded.     
+
+[13:23:47]          Version:  2.8.2        
+
+[13:23:47]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:23:47]  ===============================
+
+[13:23:47]   Loaded.
+[13:23:47]  Loading plugin: streamer
+[13:23:47] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[13:23:47]   Loaded.
+[13:23:47]  Loading plugin: timerfix
+[13:23:47]   >> TimerFix v1.4 successfully loaded.
+[13:23:47]   Loaded.
+[13:23:47]  Loading plugin: pawn-memory
+[13:23:47] ========================
+[13:23:47] = Memory access plugin =
+[13:23:47] =       Made by BigETI =
+[13:23:47] = Loaded!              =
+[13:23:47] ========================
+[13:23:47]   Loaded.
+[13:23:47]  Loading plugin: pawnraknet
+[13:23:47] [Pawn.RakNet] plugin v1.6.0 loading...
+[13:23:47] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[13:23:47]   Loaded.
+[13:23:47]  Loading plugin: samp-compat
+[13:23:47]   -- samp-compat for 0.3.DL-R1 initialized
+[13:23:47]   Loaded.
+[13:23:47]  Loaded 8 plugins.
+
+[13:23:47] 
+[13:23:47] Filterscripts
+[13:23:47] ---------------
+[13:23:47]   Loaded 0 filterscripts.
+
+[13:23:48] [DATABASE]: Connection established to 'storylines'...
+[13:23:48] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[13:23:48] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[13:23:48] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[13:23:48] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[13:23:48] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[13:23:48] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[13:23:48] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[13:23:48] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[13:23:48] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[13:23:48] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[13:23:48] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[13:23:48] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[13:23:48] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[13:23:48] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[13:23:48] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[13:23:48] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[13:23:48] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[13:23:48] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[13:23:48] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[13:23:48] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[13:23:48] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[13:23:48] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[13:23:48] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[13:23:48] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[13:23:48] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[13:23:48] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[13:23:48] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[13:23:48] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[13:23:48] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[13:23:48] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[13:23:48] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[13:23:48] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[13:23:48] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[13:23:48] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[13:23:48] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[13:23:48] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[13:23:48] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[13:23:48] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[13:23:48] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[13:23:48] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[13:23:48] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[13:23:48] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[13:23:48] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[13:23:48] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[13:23:48] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[13:23:48] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[13:23:48] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[13:23:48] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[13:23:48] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[13:23:48] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[13:23:48] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[13:23:48] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[13:23:48] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[13:23:48] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[13:23:48] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[13:23:48] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[13:23:48] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[13:23:48] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[13:23:48] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[13:23:48] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[13:23:48] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[13:23:48] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[13:23:48] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[13:23:48] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[13:23:48] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[13:23:48] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[13:23:48] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[13:23:48] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:23:48] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[13:23:48] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:23:48] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[13:23:48] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:23:48] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[13:23:48] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[13:23:48] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[13:23:48] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:23:48] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[13:23:48] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:23:48] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[13:23:48] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:23:48] [debug] Long callback execution detected (hang or performance issue)
+[13:23:48] [debug] AMX backtrace:
+[13:23:48] [debug] #0 00060184 in InsertASGH () at modules\visuals\enviroment.inc:1274
+[13:23:48] [debug] #1 002b551c in public PawnRakNet_OnGameModeInit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:205
+[13:23:48] [debug] #2 0003224c in public PHY_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1153
+[13:23:48] [debug] #3 native CallLocalFunction () in samp-server.exe
+[13:23:48] [debug] #4 00023d30 in public Itter_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\physics.inc:193
+[13:23:48] [debug] #5 native CallLocalFunction () in samp-server.exe
+[13:23:48] [debug] #6 00022ee0 in public SSCANF_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:637
+[13:23:48] [debug] #7 0001bf28 in public zcmd_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:211
+[13:23:48] [debug] #8 native CallLocalFunction () in samp-server.exe
+[13:23:48] [debug] #9 0001b570 in public PDialog_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\zcmd.inc:68
+[13:23:48] [debug] #10 000165b4 in public OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:836
+[13:23:48] Number of vehicle models: 1
+[13:23:48] [SERVER]: 2 factions were loaded from "storylines" database...
+[13:23:48] [SERVER]: 2 properties were loaded from "storylines" database...
+[13:23:48] [SERVER]: 4 court were loaded from "storylines" database...
+[13:23:48] [SERVER]: 4 entrance were loaded from "storylines" database...
+[13:23:48] [debug] Long callback execution detected (hang or performance issue)
+[13:23:48] [debug] AMX backtrace:
+[13:23:48] [debug] #0 00144784 in HexToInt (string[]=@057a62bc "0xFFFFFFFF") at modules\config\player.inc:652
+[13:23:48] [debug] #1 00196a0c in public Query_LoadFurniture (labels=0) at modules\properties\property_furniture.inc:176
+[13:23:48] [SERVER]: 6 gates were loaded from "storylines" database...
+[13:23:48] [SERVER]: 17 tree were loaded from "storylines" database...
+[13:23:48] [debug] Long callback execution detected (hang or performance issue)
+[13:23:48] [debug] AMX backtrace:
+[13:23:48] [debug] #0 00170848 in BusinessRefresh (businessid=7) at modules\business\business.inc:203
+[13:23:48] [debug] #1 001759e0 in public Query_LoadBusinesses () at modules\business\business.inc:589
+[13:23:48] [SERVER]: 9 businesses were loaded from "storylines" database...
+[13:23:48] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[13:23:48] [SERVER]: No compensation were loaded from "storylines" database...
+[13:23:48] [SERVER]: 0 property storage were loaded from "storylines" database...
+[13:23:48] [SERVER]: 0 property storage were loaded from "storylines" database...
+Console input: exit
+[13:23:52] --- Server Shutting Down.
+[13:23:52] [debug] Long callback execution detected (hang or performance issue)
+[13:23:52] [debug] AMX backtrace:
+[13:23:52] [debug] #0 001336e0 in SaveBusinesses () at modules\config\savemysql.inc:27
+[13:23:52] [debug] #1 002b6598 in public PDialog_OnGameModeExit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:310
+[13:23:52] [debug] #2 000165e8 in public OnGameModeExit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:855
+[13:23:52] plugin.mysql: Unloading plugin...
+[13:23:52] plugin.mysql: Plugin unloaded.
+[13:23:52] 
+
+[13:23:52]  ===============================
+
+[13:23:52]      sscanf plugin unloaded.    
+
+[13:23:52]  ===============================
+
+[13:23:52] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[13:23:52] [plugin.timerfix] Plugsin successfully unloaded!
+[13:23:52] ========================
+[13:23:52] = Memory access plugin =
+[13:23:52] =       Made by BigETI =
+[13:23:52] = Unloaded!            =
+[13:23:52] ========================
+[13:23:52] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[13:24:32] filterscripts = ""  (string)
+[13:24:32] 
+[13:24:32] Server Plugins
+[13:24:32] --------------
+[13:24:32]  Loading plugin: crashdetect
+[13:24:32]   CrashDetect plugin 4.21
+[13:24:32]   Loaded.
+[13:24:32]  Loading plugin: mysql
+[13:24:32]  >> plugin.mysql: R41-4 successfully loaded.
+[13:24:32]   Loaded.
+[13:24:32]  Loading plugin: sscanf
+[13:24:32] 
+
+[13:24:32]  ===============================
+
+[13:24:32]       sscanf plugin loaded.     
+
+[13:24:32]          Version:  2.8.2        
+
+[13:24:32]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:24:32]  ===============================
+
+[13:24:32]   Loaded.
+[13:24:32]  Loading plugin: streamer
+[13:24:32] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[13:24:32]   Loaded.
+[13:24:32]  Loading plugin: timerfix
+[13:24:32]   >> TimerFix v1.4 successfully loaded.
+[13:24:32]   Loaded.
+[13:24:32]  Loading plugin: pawn-memory
+[13:24:32] ========================
+[13:24:32] = Memory access plugin =
+[13:24:32] =       Made by BigETI =
+[13:24:32] = Loaded!              =
+[13:24:32] ========================
+[13:24:32]   Loaded.
+[13:24:32]  Loading plugin: pawnraknet
+[13:24:32] [Pawn.RakNet] plugin v1.6.0 loading...
+[13:24:32] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[13:24:32]   Loaded.
+[13:24:32]  Loading plugin: samp-compat
+[13:24:32]   -- samp-compat for 0.3.DL-R1 initialized
+[13:24:32]   Loaded.
+[13:24:32]  Loaded 8 plugins.
+
+[13:24:32] 
+[13:24:32] Filterscripts
+[13:24:32] ---------------
+[13:24:32]   Loaded 0 filterscripts.
+
+[13:24:32] [DATABASE]: Connection established to 'storylines'...
+[13:24:32] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[13:24:32] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[13:24:32] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[13:24:32] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[13:24:32] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[13:24:32] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[13:24:32] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[13:24:32] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[13:24:32] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[13:24:32] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[13:24:32] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[13:24:32] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[13:24:32] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[13:24:32] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[13:24:32] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[13:24:32] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[13:24:32] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[13:24:32] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[13:24:32] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[13:24:32] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[13:24:32] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[13:24:32] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[13:24:32] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[13:24:32] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[13:24:32] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[13:24:32] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[13:24:32] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[13:24:32] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[13:24:32] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[13:24:32] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[13:24:32] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[13:24:32] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[13:24:32] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[13:24:32] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[13:24:32] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[13:24:32] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[13:24:32] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[13:24:32] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[13:24:32] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[13:24:32] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[13:24:32] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[13:24:32] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[13:24:32] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[13:24:32] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[13:24:32] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[13:24:32] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[13:24:32] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[13:24:32] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[13:24:32] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[13:24:32] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[13:24:32] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[13:24:32] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[13:24:32] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[13:24:32] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[13:24:32] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[13:24:32] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[13:24:32] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[13:24:32] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[13:24:32] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[13:24:32] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[13:24:32] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[13:24:32] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[13:24:32] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[13:24:32] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[13:24:32] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[13:24:32] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[13:24:32] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[13:24:32] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:24:32] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[13:24:32] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:24:32] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[13:24:32] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:24:32] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[13:24:32] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[13:24:32] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[13:24:32] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:24:32] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[13:24:32] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:24:32] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[13:24:32] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:24:32] [debug] Long callback execution detected (hang or performance issue)
+[13:24:32] [debug] AMX backtrace:
+[13:24:32] [debug] #0 00060184 in InsertASGH () at modules\visuals\enviroment.inc:1274
+[13:24:32] [debug] #1 002b551c in public PawnRakNet_OnGameModeInit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:205
+[13:24:32] [debug] #2 0003224c in public PHY_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1153
+[13:24:32] [debug] #3 native CallLocalFunction () in samp-server.exe
+[13:24:32] [debug] #4 00023d30 in public Itter_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\physics.inc:193
+[13:24:32] [debug] #5 native CallLocalFunction () in samp-server.exe
+[13:24:32] [debug] #6 00022ee0 in public SSCANF_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:637
+[13:24:32] [debug] #7 0001bf28 in public zcmd_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:211
+[13:24:32] [debug] #8 native CallLocalFunction () in samp-server.exe
+[13:24:32] [debug] #9 0001b570 in public PDialog_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\zcmd.inc:68
+[13:24:32] [debug] #10 000165b4 in public OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:836
+[13:24:32] Number of vehicle models: 1
+[13:24:32] [SERVER]: 2 factions were loaded from "storylines" database...
+[13:24:32] [SERVER]: 2 properties were loaded from "storylines" database...
+[13:24:32] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[13:24:32] [SERVER]: 17 tree were loaded from "storylines" database...
+[13:24:32] [SERVER]: 6 gates were loaded from "storylines" database...
+[13:24:32] [SERVER]: 4 court were loaded from "storylines" database...
+[13:24:32] [debug] Long callback execution detected (hang or performance issue)
+[13:24:32] [debug] AMX backtrace:
+[13:24:32] [debug] #0 0014478c in HexToInt (string[]=@057a62bc "0xFFFFFFFF") at modules\config\player.inc:652
+[13:24:32] [debug] #1 00196a0c in public Query_LoadFurniture (labels=0) at modules\properties\property_furniture.inc:176
+[13:24:32] [SERVER]: No compensation were loaded from "storylines" database...
+[13:24:32] [SERVER]: 4 entrance were loaded from "storylines" database...
+[13:24:33] [SERVER]: 9 businesses were loaded from "storylines" database...
+[13:24:33] [SERVER]: 0 property storage were loaded from "storylines" database...
+[13:24:33] [SERVER]: 0 property storage were loaded from "storylines" database...
+[13:24:41] [connection] incoming connection: 127.0.0.1:63615 id: 0
+[13:24:42] [join] Radeetz has joined the server (0:127.0.0.1)
+[13:24:42] [debug] Long callback execution detected (hang or performance issue)
+[13:24:42] [debug] AMX backtrace:
+[13:24:42] [debug] #0 002e9d04 in public SaveCharacter (playerid=0) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:5547
+[13:24:42] [debug] #1 0014ecb4 in SetPlayerArmourEx (playerid=0, Float:value=0.00000) at modules\config\anticheat.inc:253
+[13:24:42] [debug] #2 002b6b88 in public PHY_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:362
+[13:24:42] [debug] #3 native CallLocalFunction () in samp-server.exe
+[13:24:42] [debug] #4 00023df0 in public Itter_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\physics.inc:202
+[13:24:42] [debug] #5 native CallLocalFunction () in samp-server.exe
+[13:24:42] [debug] #6 00022da0 in public SSCANF_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:594
+[13:24:42] [debug] #7 0001c01c in public PDialog_OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:242
+[13:24:42] [debug] #8 00016738 in public OnPlayerConnect (playerid=0) at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:914
+[13:24:49] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[13:24:49] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[13:24:49] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[13:24:49] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[13:24:50] [debug] Long callback execution detected (hang or performance issue)
+[13:24:50] [debug] AMX backtrace:
+[13:24:50] [debug] #0 00008780 in SetPlayerProgressBarValue (playerid=0, PlayerBar:barid=1, Float:value=80.02000) at F:\Radit Files\Storylines-main\pawno\include\progress2.inc:559
+[13:24:50] [debug] #1 00229818 in ShowPlayerNeeds (playerid=0) at modules\players\needs.inc:90
+[13:24:50] [debug] #2 00220870 in LoadCharacter (playerid=0) at modules\players\account.inc:301
+[13:24:50] [debug] #3 002254d8 in public dialog_Spawns (playerid=0, response=1, listitem=9, inputtext[]=@05873110 "#9") at modules\players\account.inc:592
+[13:24:50] [debug] #4 native CallLocalFunction () in samp-server.exe
+[13:24:50] [debug] #5 0000a5a8 in public OnDialogResponse (playerid=0, dialogid=5000, response=1, listitem=9, inputtext[]=@05873104 "#9") at F:\Radit Files\Storylines-main\pawno\include\easyDialog.inc:93
+[13:24:53] Player [Jayvon Williams] sent command: /mycars
+[13:24:54] [DEBUG] Vehicle ID 5 was respawned.
+[13:24:54] [SERVER]: Sultan vehicle storage were loaded from "storylines" database...
+[13:25:02] Player [Jayvon Williams] sent command: /stats
+[13:25:07] Player [Jayvon Williams] sent command: /getcar 5
+[13:25:17] Player [Jayvon Williams] sent command: /despawncar
+[13:25:18] Player [Jayvon Williams] sent command: /despawncar
+[13:25:22] Player [Jayvon Williams] sent command: /cardespawn
+[13:25:25] Player [Jayvon Williams] sent command: /spawncar
+[13:25:29] Player [Jayvon Williams] sent command: /spawncar 525 1 1
+[13:25:31] Player [Jayvon Williams] sent command: /jobduty
+[13:25:32] [debug] Long callback execution detected (hang or performance issue)
+[13:25:32] [debug] AMX backtrace:
+[13:25:32] [debug] #0 001e56d4 in Spraytags_Refresh (spid=117) at modules\props\spraytags.inc:83
+[13:25:32] [debug] #1 001e9330 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:346
+[13:25:53] Player [Jayvon Williams] sent command: /mycars
+[13:25:55] [DEBUG] Vehicle ID 6 was respawned.
+[13:25:55] [SERVER]: Bobcat vehicle storage were loaded from "storylines" database...
+[13:25:58] Player [Jayvon Williams] sent command: /getcar 5
+[13:26:04] Player [Jayvon Williams] sent command: /getcar 6
+[13:26:32] [debug] Long callback execution detected (hang or performance issue)
+[13:26:32] [debug] AMX backtrace:
+[13:26:32] [debug] #0 001e9320 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:346
+[13:26:35] Player [Jayvon Williams] sent command: /jobduty
+[13:26:38] Player [Jayvon Williams] sent command: /cc
+[13:26:42] Player [Jayvon Williams] sent command: /mechmenu
+[13:26:54] [part] Jayvon_Williams has left the server (0:1)
+[13:27:32] [debug] Long callback execution detected (hang or performance issue)
+[13:27:32] [debug] AMX backtrace:
+[13:27:32] [debug] #0 001e91a8 in public OnSprayTagsUpdate () at modules\props\spraytags.inc:337
+Console input: exit
+[13:27:41] --- Server Shutting Down.
+[13:27:41] [debug] Long callback execution detected (hang or performance issue)
+[13:27:41] [debug] AMX backtrace:
+[13:27:41] [debug] #0 00133700 in SaveBusinesses () at modules\config\savemysql.inc:29
+[13:27:41] [debug] #1 002b6598 in public PDialog_OnGameModeExit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:310
+[13:27:41] [debug] #2 000165e8 in public OnGameModeExit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:855
+[13:27:41] plugin.mysql: Unloading plugin...
+[13:27:41] plugin.mysql: Plugin unloaded.
+[13:27:41] 
+
+[13:27:41]  ===============================
+
+[13:27:41]      sscanf plugin unloaded.    
+
+[13:27:41]  ===============================
+
+[13:27:41] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[13:27:41] [plugin.timerfix] Plugsin successfully unloaded!
+[13:27:41] ========================
+[13:27:41] = Memory access plugin =
+[13:27:41] =       Made by BigETI =
+[13:27:41] = Unloaded!            =
+[13:27:41] ========================
+[13:27:41] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[13:30:20] filterscripts = ""  (string)
+[13:30:20] 
+[13:30:20] Server Plugins
+[13:30:20] --------------
+[13:30:20]  Loading plugin: crashdetect
+[13:30:20]   CrashDetect plugin 4.21
+[13:30:20]   Loaded.
+[13:30:20]  Loading plugin: mysql
+[13:30:20]  >> plugin.mysql: R41-4 successfully loaded.
+[13:30:20]   Loaded.
+[13:30:20]  Loading plugin: sscanf
+[13:30:20] 
+
+[13:30:20]  ===============================
+
+[13:30:20]       sscanf plugin loaded.     
+
+[13:30:20]          Version:  2.8.2        
+
+[13:30:20]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:30:20]  ===============================
+
+[13:30:20]   Loaded.
+[13:30:20]  Loading plugin: streamer
+[13:30:20] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[13:30:20]   Loaded.
+[13:30:20]  Loading plugin: timerfix
+[13:30:20]   >> TimerFix v1.4 successfully loaded.
+[13:30:20]   Loaded.
+[13:30:20]  Loading plugin: pawn-memory
+[13:30:20] ========================
+[13:30:20] = Memory access plugin =
+[13:30:21] =       Made by BigETI =
+[13:30:21] = Loaded!              =
+[13:30:21] ========================
+[13:30:21]   Loaded.
+[13:30:21]  Loading plugin: pawnraknet
+[13:30:21] [Pawn.RakNet] plugin v1.6.0 loading...
+[13:30:21] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[13:30:21]   Loaded.
+[13:30:21]  Loading plugin: samp-compat
+[13:30:21]   -- samp-compat for 0.3.DL-R1 initialized
+[13:30:21]   Loaded.
+[13:30:21]  Loaded 8 plugins.
+
+[13:30:21] 
+[13:30:21] Filterscripts
+[13:30:21] ---------------
+[13:30:21]   Loaded 0 filterscripts.
+
+[13:30:21] [DATABASE]: Connection established to 'storylines'...
+[13:30:21] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[13:30:21] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[13:30:21] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[13:30:21] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[13:30:21] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[13:30:21] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[13:30:21] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[13:30:21] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[13:30:21] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[13:30:21] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[13:30:21] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[13:30:21] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[13:30:21] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[13:30:21] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[13:30:21] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[13:30:21] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[13:30:21] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[13:30:21] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[13:30:21] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[13:30:21] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[13:30:21] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[13:30:21] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[13:30:21] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[13:30:21] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[13:30:21] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[13:30:21] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[13:30:21] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[13:30:21] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[13:30:21] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[13:30:21] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[13:30:21] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[13:30:21] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[13:30:21] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[13:30:21] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[13:30:21] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[13:30:21] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[13:30:21] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[13:30:21] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[13:30:21] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[13:30:21] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[13:30:21] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[13:30:21] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[13:30:21] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[13:30:21] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[13:30:21] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[13:30:21] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[13:30:21] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[13:30:21] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[13:30:21] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[13:30:21] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[13:30:21] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[13:30:21] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[13:30:21] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[13:30:21] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[13:30:21] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[13:30:21] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[13:30:21] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[13:30:21] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[13:30:21] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[13:30:21] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[13:30:21] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[13:30:21] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[13:30:21] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[13:30:21] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[13:30:21] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[13:30:21] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[13:30:21] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[13:30:21] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:30:21] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[13:30:21] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:30:21] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[13:30:21] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[13:30:21] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[13:30:21] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[13:30:21] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[13:30:21] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:30:21] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[13:30:21] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:30:21] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[13:30:21] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[13:30:21] [debug] Long callback execution detected (hang or performance issue)
+[13:30:21] [debug] AMX backtrace:
+[13:30:21] [debug] #0 00060184 in InsertASGH () at modules\visuals\enviroment.inc:1274
+[13:30:21] [debug] #1 002b548c in public PawnRakNet_OnGameModeInit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:205
+[13:30:21] [debug] #2 0003224c in public PHY_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1153
+[13:30:21] [debug] #3 native CallLocalFunction () in samp-server.exe
+[13:30:21] [debug] #4 00023d30 in public Itter_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\physics.inc:193
+[13:30:21] [debug] #5 native CallLocalFunction () in samp-server.exe
+[13:30:21] [debug] #6 00022ee0 in public SSCANF_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:637
+[13:30:21] [debug] #7 0001bf28 in public zcmd_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:211
+[13:30:21] [debug] #8 native CallLocalFunction () in samp-server.exe
+[13:30:21] [debug] #9 0001b570 in public PDialog_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\zcmd.inc:68
+[13:30:21] [debug] #10 000165b4 in public OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:836
+[13:30:21] Number of vehicle models: 1
+[13:30:21] [SERVER]: 2 properties were loaded from "storylines" database...
+[13:30:21] [SERVER]: 6 gates were loaded from "storylines" database...
+[13:30:21] [SERVER]: 2 factions were loaded from "storylines" database...
+[13:30:21] [SERVER]: 4 court were loaded from "storylines" database...
+[13:30:21] [SERVER]: 4 entrance were loaded from "storylines" database...
+[13:30:21] [SERVER]: 9 businesses were loaded from "storylines" database...
+[13:30:21] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[13:30:21] [SERVER]: 17 tree were loaded from "storylines" database...
+[13:30:21] [SERVER]: No compensation were loaded from "storylines" database...
+[13:30:21] [debug] Long callback execution detected (hang or performance issue)
+[13:30:21] [debug] AMX backtrace:
+[13:30:21] [debug] #0 00196938 in public Query_LoadFurniture (labels=0) at modules\properties\property_furniture.inc:171
+[13:30:21] [SERVER]: 0 property storage were loaded from "storylines" database...
+[13:30:21] [SERVER]: 0 property storage were loaded from "storylines" database...
+[13:30:31] [connection] incoming connection: 127.0.0.1:55879 id: 0
+[13:30:32] [join] Radeetz has joined the server (0:127.0.0.1)
+[13:30:40] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[13:30:40] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[13:30:40] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[13:30:40] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[13:30:41] [debug] Long callback execution detected (hang or performance issue)
+[13:30:41] [debug] AMX backtrace:
+[13:30:41] [debug] #0 000089c4 in SetPlayerProgressBarValue (playerid=0, PlayerBar:barid=1, Float:value=78.34000) at F:\Radit Files\Storylines-main\pawno\include\progress2.inc:561
+[13:30:41] [debug] #1 00229788 in ShowPlayerNeeds (playerid=0) at modules\players\needs.inc:90
+[13:30:41] [debug] #2 002207e0 in LoadCharacter (playerid=0) at modules\players\account.inc:301
+[13:30:41] [debug] #3 00225448 in public dialog_Spawns (playerid=0, response=1, listitem=9, inputtext[]=@058730a4 "#9") at modules\players\account.inc:592
+[13:30:41] [debug] #4 native CallLocalFunction () in samp-server.exe
+[13:30:41] [debug] #5 0000a5a8 in public OnDialogResponse (playerid=0, dialogid=5000, response=1, listitem=9, inputtext[]=@05873098 "#9") at F:\Radit Files\Storylines-main\pawno\include\easyDialog.inc:93
+[13:30:45] Player [Jayvon Williams] sent command: /aduty
+[13:30:46] Player [Jayvon Williams] sent command: /aduty
+[13:30:48] Player [Jayvon Williams] sent command: /mycars
+[13:30:50] [DEBUG] Vehicle ID 5 was respawned.
+[13:30:50] [debug] Long callback execution detected (hang or performance issue)
+[13:30:50] [debug] AMX backtrace:
+[13:30:50] [debug] #0 001126c4 in GPS_SetPlayerRaceCheckPoint (playerid=0, type=1, Float:x=-1085.20996, Float:y=-1314.91003, Float:z=129.20200, Float:nextx=0.00000, Float:nexty=0.00000, Float:nextz=0.00000, gps=0) at modules\visuals\textdraws.inc:2191
+[13:30:50] [debug] #1 001a6b68 in public Query_LoadPrivateVehicle (playerid=0) at modules\vehicles\vehicles.inc:552
+[13:30:50] [SERVER]: Bobcat vehicle storage were loaded from "storylines" database...
+[13:30:54] Player [Jayvon Williams] sent command: /getcar 6
+[13:30:56] Player [Jayvon Williams] sent command: /getcar 5
+[13:30:57] Player [Jayvon Williams] sent command: /cc
+[13:31:16] Player [Jayvon Williams] sent command: /spawncar 525
+[13:31:18] Player [Jayvon Williams] sent command: /spawncar 525 1 1
+[13:31:31] Player [Jayvon Williams] sent command: /jobduty
+[13:31:41] Player [Jayvon Williams] sent command: /mechmenu
+[13:32:00] [part] Jayvon_Williams has left the server (0:1)
+[13:32:15] [connection] incoming connection: 127.0.0.1:65256 id: 0
+[13:32:15] [join] Radeetz has joined the server (0:127.0.0.1)
+[13:32:20] [SERVER]: Jayvon Williams contacts were loaded from "storylines" database...
+[13:32:20] [SERVER]: Jayvon Williams inventory were loaded from "storylines" database...
+[13:32:20] [SERVER]: Jayvon Williams relations were loaded from "storylines" database...
+[13:32:20] [SERVER]: Jayvon Williams ticket were loaded from "storylines" database...
+[13:32:21] [debug] Long callback execution detected (hang or performance issue)
+[13:32:21] [debug] AMX backtrace:
+[13:32:21] [debug] #0 0014d334 in PauseAC (playerid=0) at modules\config\anticheat.inc:5
+[13:32:21] [debug] #1 0021f67c in LoadCharacter (playerid=0) at modules\players\account.inc:227
+[13:32:21] [debug] #2 00225448 in public dialog_Spawns (playerid=0, response=1, listitem=9, inputtext[]=@058730a4 "#9") at modules\players\account.inc:592
+[13:32:21] [debug] #3 native CallLocalFunction () in samp-server.exe
+[13:32:21] [debug] #4 0000a5a8 in public OnDialogResponse (playerid=0, dialogid=5000, response=1, listitem=9, inputtext[]=@05873098 "#9") at F:\Radit Files\Storylines-main\pawno\include\easyDialog.inc:93
+[13:32:24] Player [Jayvon Williams] sent command: /mycars
+[13:32:27] [DEBUG] Vehicle ID 7 was respawned.
+[13:32:27] [SERVER]: Sultan vehicle storage were loaded from "storylines" database...
+[13:32:34] Player [Jayvon Williams] sent command: /mycars
+[13:32:47] Player [Jayvon Williams] sent command: /mycars
+[13:32:51] Player [Jayvon Williams] sent command: /mechmenu
+[13:33:14] [debug] Long callback execution detected (hang or performance issue)
+[13:33:14] [debug] AMX backtrace:
+[13:33:14] [debug] #0 00000528 in bool:operator>=(Float:,Float:) (Float:oper1=1277.39417, Float:oper2=1119.00000) at F:\Radit Files\Storylines-main\pawno\include\float.inc:442
+[13:33:14] [debug] #1 001598e0 in GetPlayerStreet (playerid=0, zone[]=@05876bc8 "", len=28) at modules\config\zones.inc:700
+[13:33:14] [debug] #2 0015a280 in ReturnLocationStreet (playerid=0) at modules\config\zones.inc:748
+[13:33:14] [debug] #3 002cc6d4 in public OnPlayerUpdate (playerid=0) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:3519
+[13:33:35] [debug] Run time error 4: "Array index out of bounds"
+[13:33:35] [debug]  Attempted to read/write array element at index 14 in array of size 14
+[13:33:35] [debug] AMX backtrace:
+[13:33:35] [debug] #0 00232494 in HidePlayerPhone (playerid=0) at modules\players\phone.inc:261
+[13:33:35] [debug] #1 0013d2d4 in ResetVarInventory (playerid=0) at modules\config\player.inc:173
+[13:33:35] [debug] #2 002653b0 in public repaintexterior (playerid=0, vehicleid=5, modelid=3) at modules\jobs\MainJobs\mechanic.inc:570
+[13:33:54] Player [Jayvon Williams] sent command: /getcar 7
+[13:33:57] [part] Jayvon_Williams has left the server (0:1)
+Console input: exit
+[13:34:01] --- Server Shutting Down.
+[13:34:01] [debug] Long callback execution detected (hang or performance issue)
+[13:34:01] [debug] AMX backtrace:
+[13:34:01] [debug] #0 00135f54 in SaveBusiness (id=8) at modules\config\savemysql.inc:219
+[13:34:01] [debug] #1 00133770 in SaveBusinesses () at modules\config\savemysql.inc:32
+[13:34:01] [debug] #2 002b6508 in public PDialog_OnGameModeExit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:310
+[13:34:01] [debug] #3 000165e8 in public OnGameModeExit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:855
+[13:34:01] plugin.mysql: Unloading plugin...
+[13:34:01] plugin.mysql: Plugin unloaded.
+[13:34:01] 
+
+[13:34:01]  ===============================
+
+[13:34:01]      sscanf plugin unloaded.    
+
+[13:34:01]  ===============================
+
+[13:34:01] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[13:34:01] [plugin.timerfix] Plugsin successfully unloaded!
+[13:34:01] ========================
+[13:34:01] = Memory access plugin =
+[13:34:01] =       Made by BigETI =
+[13:34:01] = Unloaded!            =
+[13:34:01] ========================
+[13:34:01] [Pawn.RakNet] plugin unloaded

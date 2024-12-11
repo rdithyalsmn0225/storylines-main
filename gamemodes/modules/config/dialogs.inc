@@ -344,7 +344,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					    if(!strcmp(string, "Cellphone"))
 					        return SendErrorMessage(playerid, "You can't do that on this item!");
 
-					    if(!strcmp(string, "Portable Radio"))
+					    if(!strcmp(string, "Radio"))
 					        return SendErrorMessage(playerid, "You can't do that on this item!");
 
 					    if(!strcmp(string, "Mask"))
@@ -361,7 +361,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					    if(!strcmp(string, "Cellphone"))
 					        return SendErrorMessage(playerid, "You can't do that on this item!");
 
-					    if(!strcmp(string, "Portable Radio"))
+					    if(!strcmp(string, "Radio"))
 					        return SendErrorMessage(playerid, "You can't do that on this item!");
 
 					    if(!strcmp(string, "Mask"))

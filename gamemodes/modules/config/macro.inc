@@ -1,5 +1,5 @@
 //Database
-#define MYSQL_HOST
+//#define MYSQL_HOST
 //#define DEBUG_MODE
 
 #if defined MYSQL_HOST
@@ -74,8 +74,7 @@
 LoadCustomModels()
 {
     //======================================Textdraws======================================
-	AddSimpleModel(-1, 19379, -2001, "misc/textdraws/idlstxt.dff", "misc/textdraws/idlstxt.txd");
-
+	
 	//========================================Skins========================================
 	AddCharModel(7, 20001, "misc/skin/citizen/bmciv1.dff", "misc/skin/citizen/bmciv1.txd");
 	AddCharModel(183, 20002, "misc/skin/citizen/bmciv2.dff", "misc/skin/citizen/bmciv2.txd");
@@ -114,18 +113,7 @@ LoadCustomModels()
 	AddCharModel(307, 20269, "misc/skin/lspd/female/wfysuit.dff", "misc/skin/lspd/female/wfysuit.txd");
 	
 	//==========================================Weapons======================================
-	AddSimpleModel(-1, 18634, -2200, "misc/weapons/hardbat.dff", "misc/weapons/hardbat.txd");
-	AddSimpleModel(-1, 18634, -2201, "misc/weapons/woodbat.dff", "misc/weapons/woodbat.txd");
-	AddSimpleModel(-1, 18634, -2203, "misc/weapons/bloodbat.dff", "misc/weapons/bloodbat.txd");
-	AddSimpleModel(-1, 18634, -2204, "misc/weapons/glock17.dff", "misc/weapons/glock17.txd");
-	AddSimpleModel(-1, 18634, -2205, "misc/weapons/glock19.dff", "misc/weapons/glock19.txd");
-	AddSimpleModel(-1, 18634, -2206, "misc/weapons/glockp80.dff", "misc/weapons/glockp80.txd");
-	AddSimpleModel(-1, 18634, -2207, "misc/weapons/mac11.dff", "misc/weapons/mac11.txd");
-	AddSimpleModel(-1, 18634, -2208, "misc/weapons/mac10.dff", "misc/weapons/mac10.txd");
-	AddSimpleModel(-1, 18634, -2209, "misc/weapons/socimi.dff", "misc/weapons/socimi.txd");
-	AddSimpleModel(-1, 18634, -2210, "misc/weapons/brokenbottle.dff", "misc/weapons/brokenbottle.txd");
-	AddSimpleModel(-1, 18634, -2211, "misc/weapons/glasses.dff", "misc/weapons/glasses.txd");
-	AddSimpleModel(-1, 18634, -2212, "misc/weapons/axe.dff", "misc/weapons/axe.txd");
+	
 	//==========================================Objects==========================================
 	AddSimpleModel(-1, 1575, -2500, "misc/drugs/heroine.dff", "misc/drugs/drugs.txd"); //Heroine
 	AddSimpleModel(-1, 1575, -2501, "misc/drugs/marijuana.dff", "misc/drugs/drugs.txd"); //Marijuana

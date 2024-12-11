@@ -16,6 +16,7 @@
 #include <a_samp>
 #include <a_mysql>
 #include <a_http>
+#include <crashdetect>
 #include <streamer>
 #include <progress2>
 #include <easyDialog>
@@ -24,8 +25,6 @@
 #include <zcmd>
 #include <sscanf2>
 #include <physics>
-#include <rSelection>
-#include <map-zones>
 #include <PawnPlus>
 #include <Pawn.RakNet>
 #include <compat>
@@ -745,7 +744,7 @@ public OnVehicleDeath(vehicleid, killerid)
 {
 	new Float: vehicle_health;
 	GetVehicleHealth(vehicleid, vehicle_health); 
-	TotalledCheck();
+	TotalledCheck(vehicleid);
 
 	printf("[DEBUG] Vehicle ID: %i (%s) (Health: %.2f) destroyed by %s", vehicleid, ReturnVehicleName(vehicleid), vehicle_health, ReturnName(killerid, killerid)); 
 		
@@ -3223,6 +3222,7 @@ public OnPlayerSpawn(playerid)
 		ShowTutorial(playerid);
 	}
 
+	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 100);
 	PlayerTextDrawShow(playerid, servername[playerid]);
 	ShowMoneyFormat(playerid);
 	return 1;
@@ -3504,19 +3504,19 @@ public OnPlayerUpdate(playerid)
 			GetPlayerFacingAngle(playerid, rz);
 		}
 
-		if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "North~n~~y~N";
-		else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "North East~n~~y~NE";
-		else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "East~n~~y~E";
-		else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "South East~n~~y~SE";
-		else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "South~n~~y~S";
-		else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "South West~n~~y~SW";
-		else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "West~n~~y~W";
-		else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "North West~n~~y~NW";
+		if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "North I ~y~N";
+		else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "North East I ~y~NE";
+		else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "East I ~y~E";
+		else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "South East I ~y~SE";
+		else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "South I ~y~S";
+		else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "South West I ~y~SW";
+		else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "West I ~y~W";
+		else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "North West I ~y~NW";
 
 		PlayerTextDrawSetString(playerid, Street[0][playerid], PlayerDirection[playerid]);
 
 		new str[128];
-		format(str, sizeof(str), "%s~n~%s~n~San Andreas", ReturnLocationStreet(playerid), ReturnLocation(playerid));
+		format(str, sizeof(str), "%s I %s I San Andreas", ReturnLocationStreet(playerid), ReturnLocation(playerid));
 		PlayerTextDrawSetString(playerid, Street[1][playerid], str);
 	}
 
@@ -4042,63 +4042,6 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         return 1;
     }
 
-	return 1;
-}
-
-
-public OnModelSelectionResponse(playerid, extraid, index, modelid, response)
-{
-	if ((response) && (extraid == MODEL_SELECTION_COLOR1))
-	{
-		new vehicleid = IsPlayerNearVehicle(playerid);
-
-		if(IsPlayerInAnyVehicle(playerid))
-			return SendErrorMessage(playerid, "You can't be in a vehicle.");
-				
-		if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
-			return SendErrorMessage(playerid, "You aren't near a vehicle.");
-
-		new Float:x, Float:y, Float:z;
-		GetPlayerPos(playerid, x, y, z);
-		TogglePlayerControllable(playerid, false);
-		ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 0);
-
-		PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
-		PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-
-		PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-		PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintexterior", 4375, true, "iii", playerid, vehicleid, modelid);
-
-		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-	}
-	if ((response) && (extraid == MODEL_SELECTION_COLOR2))
-	{
-		new vehicleid = IsPlayerNearVehicle(playerid);
-		
-		if(IsPlayerInAnyVehicle(playerid))
-			return SendErrorMessage(playerid, "You can't be in a vehicle.");
-				
-		if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
-			return SendErrorMessage(playerid, "You aren't near a vehicle.");
-		
-		new Float:x, Float:y, Float:z;
-		GetPlayerPos(playerid, x, y, z);
-		TogglePlayerControllable(playerid, false);
-		ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 0);
-
-		PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
-		PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
-
-		PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
-		PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintinterior", 4375, true, "ii", playerid, vehicleid);
-		
-		PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
-	}
-	else
-	{
-		SetCameraBehindPlayer(playerid);
-		TogglePlayerControllable(playerid, true);
-	}
 	return 1;
 }
 

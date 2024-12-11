@@ -26,7 +26,7 @@ stock ShowGeneralList(playerid, type)
 				}
 			}
 		}
-		case 2: //Cellphone & Portable Radio
+		case 2: //Cellphone & Radio
 		{
 			if(IsPlayerInBusiness(playerid))
 			{	
@@ -35,7 +35,7 @@ stock ShowGeneralList(playerid, type)
 					format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
                     format(str2, sizeof(str2), "Product\tPrice\n");
                     format(str2, sizeof(str2), "%sCellphone\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
-                    format(str2, sizeof(str2), "%sPortable Radio\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+                    format(str2, sizeof(str2), "%sRadio\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
                     format(str2, sizeof(str2), "%sGascan\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
                     format(str2, sizeof(str2), "%sRepairkit\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 					Dialog_Show(playerid, GeneralStore1, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel"); 
@@ -114,7 +114,7 @@ Dialog:GeneralStore1(playerid, response, listitem, inputtext[])
             }
             case 1:
             {
-                if(Inventory_Count(playerid, "Portable Radio"))
+                if(Inventory_Count(playerid, "Radio"))
                     return SendErrorMessage(playerid, "You already own a radio.");
             
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
@@ -124,7 +124,7 @@ Dialog:GeneralStore1(playerid, response, listitem, inputtext[])
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-                Inventory_Add(playerid, "Portable Radio", 19942, 1);
+                Inventory_Add(playerid, "Radio", 19942, 1);
 
                 ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
             }
