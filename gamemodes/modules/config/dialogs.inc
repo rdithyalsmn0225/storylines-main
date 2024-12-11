@@ -234,10 +234,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendServerMessage(playerid, "[Clothing] {DEDEDE}Accessories bone position now is %s", Bone_Name[listitem + 1]);
 			}
 		}
-		case DIALOG_FIGHTSTYLE:
+		case DIALOG_GYM:
 		{
 			if(response)
 			{
+				new businessid = IsPlayerInBusiness(playerid);
 				switch(listitem)
 				{
 					case 0:
@@ -248,6 +249,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new Cents = floatround(150 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
+						BusinessInfo[businessid][E_BUSINESS_CASH] += Cents;
 					}	
 					case 1:
 					{
@@ -257,6 +259,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new Cents = floatround(200 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
+						BusinessInfo[businessid][E_BUSINESS_CASH] += Cents;
 					}
 					case 2:
 					{
@@ -266,6 +269,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new Cents = floatround(300 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
+						BusinessInfo[businessid][E_BUSINESS_CASH] += Cents;
 					}
 					case 3:
 					{
@@ -275,6 +279,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new Cents = floatround(100 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
+						BusinessInfo[businessid][E_BUSINESS_CASH] += Cents;
+					}
+					case 4:
+					{
+						if(BusinessInfo[businessid][E_BUSINESS_STOCK] < 1)
+							return SendErrorMessage(playerid, "This business is out of stock"); 
+
+						if(Inventory_Count(playerid, "Sprunk") >= 5)	
+							return SendErrorMessage(playerid, "You may only hold up to 5 sprunk.");
+					
+						if(2 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a sprunk.");
+					
+						SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a sprunk for $2.");
+
+						new Cents = floatround(2 * 100, floatround_round);
+						BusinessInfo[businessid][E_BUSINESS_CASH] += Cents;
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						GiveMoney(playerid, -Cents);
+						Inventory_Add(playerid, "Sprunk", 2601, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 					}
 				}
 			}

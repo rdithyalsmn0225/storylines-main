@@ -1,0 +1,1 @@
+[21:10:52] [plugins/mysql] CConnection::CConnection - establishing connection to MySQL database failed: #2013 'Lost connection to MySQL server at 'handshake: reading inital communication packet', system error: 0'

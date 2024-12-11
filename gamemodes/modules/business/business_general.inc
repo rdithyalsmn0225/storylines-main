@@ -1,6 +1,7 @@
 stock ShowGeneralList(playerid, type)
 {
     new businessid = IsPlayerInBusiness(playerid);
+    
 	if(BusinessInfo[businessid][E_BUSINESS_STOCK] < 1)
 		return SendErrorMessage(playerid, "This business is out of stock"); 
 
@@ -374,7 +375,7 @@ Dialog:GeneralStore5(playerid, response, listitem, inputtext[])
         {
             case 0:
             {
-                if(Inventory_Count(playerid, "Spraycan") >= 5)	
+                if(Inventory_Count(playerid, "Sprunk") >= 5)	
                     return SendErrorMessage(playerid, "You may only hold up to 5 sprunk.");
             
                 if(2 > PlayerInfo[playerid][E_CHARACTER_MONEY])

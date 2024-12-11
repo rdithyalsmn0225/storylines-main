@@ -7511,3 +7511,102 @@ Console input: exit
 [21:04:49] = Unloaded!            =
 [21:04:49] ========================
 [21:04:49] [Pawn.RakNet] plugin unloaded
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[21:10:52] filterscripts = ""  (string)
+[21:10:52] 
+[21:10:52] Server Plugins
+[21:10:52] --------------
+[21:10:52]  Loading plugin: crashdetect
+[21:10:52]   CrashDetect plugin 4.21
+[21:10:52]   Loaded.
+[21:10:52]  Loading plugin: mysql
+[21:10:52]  >> plugin.mysql: R41-4 successfully loaded.
+[21:10:52]   Loaded.
+[21:10:52]  Loading plugin: sscanf
+[21:10:52] 
+
+[21:10:52]  ===============================
+
+[21:10:52]       sscanf plugin loaded.     
+
+[21:10:52]          Version:  2.8.2        
+
+[21:10:52]    (c) 2012 Alex "Y_Less" Cole  
+
+[21:10:52]  ===============================
+
+[21:10:52]   Loaded.
+[21:10:52]  Loading plugin: streamer
+[21:10:52] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[21:10:52]   Loaded.
+[21:10:52]  Loading plugin: timerfix
+[21:10:52]   >> TimerFix v1.4 successfully loaded.
+[21:10:52]   Loaded.
+[21:10:52]  Loading plugin: pawn-memory
+[21:10:52] ========================
+[21:10:52] = Memory access plugin =
+[21:10:52] =       Made by BigETI =
+[21:10:52] = Loaded!              =
+[21:10:52] ========================
+[21:10:52]   Loaded.
+[21:10:52]  Loading plugin: pawnraknet
+[21:10:52] [Pawn.RakNet] plugin v1.6.0 loading...
+[21:10:52] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[21:10:52]   Loaded.
+[21:10:52]  Loading plugin: samp-compat
+[21:10:52]   -- samp-compat for 0.3.DL-R1 initialized
+[21:10:52]   Loaded.
+[21:10:52]  Loaded 8 plugins.
+
+[21:10:52] 
+[21:10:52] Filterscripts
+[21:10:52] ---------------
+[21:10:52]   Loaded 0 filterscripts.
+
+[21:10:53] [DATABASE]: Connection failed to 's823_storylines_samp'...
+[21:10:53] Number of vehicle models: 0
+[21:10:53] --- Server Shutting Down.
+[21:10:53] plugin.mysql: Unloading plugin...
+[21:10:53] plugin.mysql: Plugin unloaded.
+[21:10:53] 
+
+[21:10:53]  ===============================
+
+[21:10:53]      sscanf plugin unloaded.    
+
+[21:10:53]  ===============================
+
+[21:10:53] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[21:10:53] [plugin.timerfix] Plugsin successfully unloaded!
+[21:10:53] ========================
+[21:10:53] = Memory access plugin =
+[21:10:53] =       Made by BigETI =
+[21:10:53] = Unloaded!            =
+[21:10:53] ========================
+[21:10:53] [Pawn.RakNet] plugin unloaded
