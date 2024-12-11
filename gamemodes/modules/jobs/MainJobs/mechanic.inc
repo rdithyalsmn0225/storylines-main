@@ -203,7 +203,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
                     return SendErrorMessage(playerid, "You can't use this right now"); 
 
-                new colors[3100];
+                new colors[3200];
                 for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
                 {
                     format(colors, sizeof colors, "%s{%06x}%03d%s", colors, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
@@ -235,7 +235,7 @@ Dialog:MechMenu(playerid, response, listitem, inputtext[])
                 if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
                     return SendErrorMessage(playerid, "You can't use this right now"); 
 
-                new colors[3100];
+                new colors[3200];
                 for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
                 {
                     format(colors, sizeof colors, "%s{%06x}%03d%s", colors, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));

@@ -12,12 +12,12 @@ CallPaycheck(playerid)
 	new tax = (paycheck / 100) * gTax; // 10% tax
 	new total = paycheck - tax;
 
-	if(PlayerInfo[playerid][E_CHARACTER_EXP] == 10)
+	if(PlayerInfo[playerid][E_CHARACTER_EXP] > 5)
 	{
 		PlayerInfo[playerid][E_CHARACTER_EXP] = 0;
 		PlayerInfo[playerid][E_CHARACTER_LEVEL]++;
 		format(str, sizeof(str), "Leveled up to level %i", PlayerInfo[playerid][E_CHARACTER_LEVEL]);
-		ShowBoxMessage(playerid, str, 5);
+		ShowBoxMessage(playerid, str, 5, 2);
 
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
 		SetPlayerScore(playerid, PlayerInfo[playerid][E_CHARACTER_LEVEL]); 

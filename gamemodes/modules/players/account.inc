@@ -297,6 +297,9 @@ stock LoadCharacter(playerid)
 	LoadPlayerToys(playerid);
 	SyncPlayerTime(playerid);
 	ShowPlayerNeeds(playerid);
+
+	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 100);
+	Streamer_Update(playerid, STREAMER_TYPE_OBJECT);
 	
 	SetSpawnInfo(playerid, 0, PlayerInfo[playerid][E_CHARACTER_LASTSKIN], PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2], 0, 0, 0, 0, 0, 0, 0);
 	SpawnPlayer(playerid);

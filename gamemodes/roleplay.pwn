@@ -3224,6 +3224,7 @@ public OnPlayerSpawn(playerid)
 	}
 
 	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 100);
+	Streamer_Update(playerid, STREAMER_TYPE_OBJECT);
 	PlayerTextDrawShow(playerid, servername[playerid]);
 	ShowMoneyFormat(playerid);
 	return 1;
