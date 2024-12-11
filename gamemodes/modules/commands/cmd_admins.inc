@@ -124,8 +124,8 @@ CMD:goto(playerid, params[])
 	else
 		SetPlayerPosEx(playerid, PlayerInfo[playerb][E_CHARACTER_LASTPOS][0], PlayerInfo[playerb][E_CHARACTER_LASTPOS][1] - 1, PlayerInfo[playerb][E_CHARACTER_LASTPOS][2]);
 		
-	SetPlayerVirtualWorld(playerid, vw);
-	SetPlayerInterior(playerid, int); 
+	SetPlayerVirtualWorldEx(playerid, vw);
+	SetPlayerInteriorEx(playerid, int); 
 		
 	SendTeleportMessage(playerid);	
 	
@@ -169,8 +169,8 @@ CMD:gethere(playerid, params[])
 	else
 		SetPlayerPosEx(playerb, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1] - 1, PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
 		
-	SetPlayerVirtualWorld(playerb, vw);
-	SetPlayerInterior(playerb, int); 
+	SetPlayerVirtualWorldEx(playerb, vw);
+	SetPlayerInteriorEx(playerb, int); 
 		
 	SendTeleportMessage(playerb);	
 	
@@ -431,7 +431,7 @@ CMD:ajail(playerid, params[])
 	ClearAnimations(playerb); 
 	
 	SetPlayerPosEx(playerb, -10.5146,2337.2961,24.3034);
-	SetPlayerInterior(playerb, 0); SetPlayerVirtualWorld(playerb, 999);
+	SetPlayerInteriorEx(playerb, 0); SetPlayerVirtualWorldEx(playerb, 999);
 	
 	PlayerInfo[playerb][E_CHARACTER_ADMINJAILED] = true;
 	PlayerInfo[playerb][E_CHARACTER_ADMINJAIL] = length * 60; 
@@ -466,7 +466,7 @@ CMD:rjail(playerid, params[])
 	if(PlayerInfo[playerb][E_CHARACTER_ADMINJAILED] == false)
 		return SendErrorMessage(playerid, "The player you specified isn't admin jailed."); 
 		
-	SetPlayerVirtualWorld(playerb, 0); SetPlayerInterior(playerb, 0);
+	SetPlayerVirtualWorldEx(playerb, 0); SetPlayerInteriorEx(playerb, 0);
 	SetPlayerPosEx(playerb, 1553.0421, -1675.4706, 16.1953);
 	
 	PlayerInfo[playerb][E_CHARACTER_ADMINJAILED] = false;
@@ -496,7 +496,7 @@ CMD:rprison(playerid, params[])
 	if(PlayerInfo[playerb][E_CHARACTER_PRISONED] == false)
 		return SendErrorMessage(playerid, "The player you specified isn't prisoned."); 
 		
-	SetPlayerVirtualWorld(playerb, 0); SetPlayerInterior(playerb, 0);
+	SetPlayerVirtualWorldEx(playerb, 0); SetPlayerInteriorEx(playerb, 0);
 	SetPlayerPosEx(playerb, 1797.4276,-1578.8496,14.0764);
 
 	PlayerInfo[playerb][E_CHARACTER_PRISONED] = false;
@@ -523,7 +523,7 @@ CMD:setint(playerid, params[])
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
 	
-	SetPlayerInterior(playerb, int);
+	SetPlayerInteriorEx(playerb, int);
 	
 	format(str, sizeof(str), "%s set %s's interior to %d.", ReturnMixedName(playerid), ReturnName(playerb), int);
 	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
@@ -546,7 +546,7 @@ CMD:setvw(playerid, params[])
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "The player you specified isn't logged in."); 
 	
-	SetPlayerVirtualWorld(playerb, world);
+	SetPlayerVirtualWorldEx(playerb, world);
 	
 	format(str, sizeof(str), "%s set %s's local world to %d.", ReturnMixedName(playerid), ReturnName(playerb), world);
 	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
@@ -847,8 +847,8 @@ CMD:spec(playerid, params[])
 
 	UpdateSpectatorPanel(playerid, playerb); 
 	
-	SetPlayerInterior(playerid, GetPlayerInterior(playerb));
-	SetPlayerVirtualWorld(playerid, GetPlayerVirtualWorld(playerb));
+	SetPlayerInteriorEx(playerid, GetPlayerInterior(playerb));
+	SetPlayerVirtualWorldEx(playerid, GetPlayerVirtualWorld(playerb));
 	
 	TogglePlayerSpectating(playerid, true); 
 	PlayerSpectatePlayer(playerid, playerb);
@@ -880,7 +880,7 @@ CMD:gotols(playerid, params[])
 		return SendUnauthMessage(playerid);
 		
 	SetPlayerPosEx(playerid, 1514.1836, -1677.8027, 14.0469);
-	SetPlayerInterior(playerid, 0); SetPlayerVirtualWorld(playerid, 0);
+	SetPlayerInteriorEx(playerid, 0); SetPlayerVirtualWorldEx(playerid, 0);
 	
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1162,7 +1162,7 @@ CMD:p2p(playerid, params[])
 	//Using the player variable to avoid making other variables; 
 	
 	SetPlayerPosEx(playerb, PlayerInfo[targetid][E_CHARACTER_LASTPOS][0], PlayerInfo[targetid][E_CHARACTER_LASTPOS][1], PlayerInfo[targetid][E_CHARACTER_LASTPOS][2]);
-	SetPlayerInterior(playerb, GetPlayerInterior(targetid)); SetPlayerVirtualWorld(playerb, GetPlayerVirtualWorld(targetid)); 
+	SetPlayerInteriorEx(playerb, GetPlayerInterior(targetid)); SetPlayerVirtualWorldEx(playerb, GetPlayerVirtualWorld(targetid)); 
 	
 	SendTeleportMessage(playerb);
 	return 1;
@@ -1222,8 +1222,8 @@ CMD:gotoentrance(playerid, params[])
 	
 	SendInfoMessage(playerid, "You teleported to entrance #%i.", id);
 
-	SetPlayerVirtualWorld(playerid, 0);
-	SetPlayerInterior(playerid, 0); 
+	SetPlayerVirtualWorldEx(playerid, 0);
+	SetPlayerInteriorEx(playerid, 0); 
 	
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1247,8 +1247,8 @@ CMD:gotoproperty(playerid, params[])
 		
 	SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][2]);
 	
-	SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
-	SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]);
+	SetPlayerVirtualWorldEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
+	SetPlayerInteriorEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]);
 	
 	SendInfoMessage(playerid, "You teleported to Property #%i.", id);
 	
@@ -1275,8 +1275,8 @@ CMD:gotobusiness(playerid, params[])
 	SetPlayerPosEx(playerid, BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][2]); 
 	SendInfoMessage(playerid, "You teleported to business #%i.", id); 
 	
-	SetPlayerVirtualWorld(playerid, 0);
-	SetPlayerInterior(playerid, 0); 
+	SetPlayerVirtualWorldEx(playerid, 0);
+	SetPlayerInteriorEx(playerid, 0); 
 
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1300,8 +1300,8 @@ CMD:gotofaction(playerid, params[])
 		
 	SetPlayerPosEx(playerid, FactionInfo[id][E_FACTION_SPAWN][0], FactionInfo[id][E_FACTION_SPAWN][1], FactionInfo[id][E_FACTION_SPAWN][2]);
 	
-	SetPlayerVirtualWorld(playerid, FactionInfo[id][E_FACTION_SPAWNWORLD]);
-	SetPlayerInterior(playerid, FactionInfo[id][E_FACTION_SPAWNINT]); 
+	SetPlayerVirtualWorldEx(playerid, FactionInfo[id][E_FACTION_SPAWNWORLD]);
+	SetPlayerInteriorEx(playerid, FactionInfo[id][E_FACTION_SPAWNINT]); 
 	
 	SendInfoMessage(playerid, "You teleported to %s spawn point.", ReturnFactionNameEx(id)); 
 
@@ -1332,8 +1332,8 @@ CMD:gotoco(playerid, params[])
 		return SendUsageMessage(playerid, "/gotoco [x] [y] [z] [interior(optional)] [virtualworld(optional)]"); 
 		
 	SetPlayerPosEx(playerid, x, y, z);
-	SetPlayerInterior(playerid, interior);
-	SetPlayerVirtualWorld(playerid, virtualworld);
+	SetPlayerInteriorEx(playerid, interior);
+	SetPlayerVirtualWorldEx(playerid, virtualworld);
 	
 	SendTeleportMessage(playerid);
 	

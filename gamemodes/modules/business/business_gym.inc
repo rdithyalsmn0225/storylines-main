@@ -2,7 +2,9 @@
 // FUNCTION PLAYER:
 function:PlayerGYMTimers(playerid, type)
 {
-    PlayerPointGym[playerid] -= 10.0;
+    new businessid = IsPlayerInBusiness(playerid);
+    PlayerPointGym[playerid] -= 1.0;
+    SetPlayerGameBar(playerid, PlayerPointGym[playerid]);
 
     if(type == 1)
     {
@@ -11,23 +13,54 @@ function:PlayerGYMTimers(playerid, type)
             PlayerPointGym[playerid] = 0;  
             ApplyAnimation(playerid, "gymnasium", "gym_tread_falloff", 4.1, 0, 0, 0, 0, 0, 1 );  
             KillTimer(PlayerTimerGym[playerid]);
+            KillTimer(PlayerTimerUsingGym[playerid]);
             PlayerGymMachine[playerid] = -1;
+            PlayerUsingGym[playerid] = false;
             DestroyGameBar(playerid);
             ClearAnimations(playerid, 1);
             SetCameraBehindPlayer(playerid);
+            PlayerPlaySound(playerid, 0, 0.0, 0.0, 0.0);
             TogglePlayerControllable(playerid, true);
+            BusinessInfo[businessid][E_BUSINESS_TREADMILL] = false;
+            RemovePlayerAttachedObject(playerid, ATTACH_ANIMS);
+            RemovePlayerAttachedObject(playerid, ATTACH_ANIMS2);
+            PlayerPlaySound(playerid, 0, 0.0, 0.0, 0.0);
         }
     }
     else
     {
         if(PlayerPointGym[playerid] < 0)
         {
+            if(PlayerGymMachine[playerid] == GYM_DUMBELLS)
+            {
+                ApplyAnimation(playerid, "freeweights", "gym_free_putdown", 4.1, 0, 0, 0, 0, 0, 1 );  
+                BusinessInfo[businessid][E_BUSINESS_DUMBELL] = false;
+            }
+            else if(PlayerGymMachine[playerid] == GYM_BENCH)
+            {
+                ApplyAnimation(playerid, "benchpress", "gym_bp_getoff", 4.1, 0, 0, 0, 0, 0, 1 );  
+                BusinessInfo[businessid][E_BUSINESS_BENCH] = false;
+            }
+            else if(PlayerGymMachine[playerid] == GYM_BICYLE)
+            {
+                ApplyAnimation(playerid, "gymnasium", "gym_bike_getoff", 4.1, 0, 0, 0, 0, 0, 1 ); 
+                BusinessInfo[businessid][E_BUSINESS_BYCICLE] = false; 
+            }
             PlayerPointGym[playerid] = 0;  
             KillTimer(PlayerTimerGym[playerid]);
+            KillTimer(PlayerTimerUsingGym[playerid]);
+            PlayerGymMachine[playerid] = -1;
+            PlayerUsingGym[playerid] = false;
+            SetCameraBehindPlayer(playerid);
+            DestroyGameBar(playerid);
+            ClearAnimations(playerid, 1);
+            PlayerPlaySound(playerid, 0, 0.0, 0.0, 0.0);
+            TogglePlayerControllable(playerid, true);
+            RemovePlayerAttachedObject(playerid, ATTACH_ANIMS);
+            RemovePlayerAttachedObject(playerid, ATTACH_ANIMS2);
+            PlayerPlaySound(playerid, 0, 0.0, 0.0, 0.0);
         }
     }
-    PlayerPlaySound(playerid, 0, 0, 0, 0);
-    SetPlayerGameBar(playerid, PlayerPointGym[playerid]);
     return 1;
 }
 
@@ -43,6 +76,7 @@ stock IsPlayerUsingMachine(playerid, type)
 			SetPlayerAttachedObject(playerid, ATTACH_ANIMS2, -2506, 5);
 
             PlayerGymMachine[playerid] = GYM_DUMBELLS;
+            PlayerPointGym[playerid] = 10.0;
         }
         case GYM_TREADMILLS: //Treadmills
         {
@@ -50,12 +84,14 @@ stock IsPlayerUsingMachine(playerid, type)
 			PlayerPlaySound(playerid, 17800, 0, 0, 0);
 
             PlayerGymMachine[playerid] = GYM_TREADMILLS;
+            PlayerPointGym[playerid] = 10.0;
         }
         case GYM_BICYLE: //Bicycle
         {
             ApplyAnimation(playerid, "gymnasium", "gym_bike_still", 4.1, 1, 0, 0, 1, 1, 1);	
 
             PlayerGymMachine[playerid] = GYM_BICYLE;
+            PlayerPointGym[playerid] = 10.0;
         }
         case GYM_BENCH: //Bench
         {
@@ -63,6 +99,7 @@ stock IsPlayerUsingMachine(playerid, type)
             SetPlayerAttachedObject(playerid, ATTACH_ANIMS, -2504, 6, 0.0, 0.0, -0.1);
             
             PlayerGymMachine[playerid] = GYM_BENCH;
+            PlayerPointGym[playerid] = 10.0;
         }
     }
     return 1;
@@ -72,7 +109,7 @@ stock IsPlayerPlayingMachine(playerid)
 {
     if(PlayerGymMachine[playerid] == GYM_DUMBELLS)
     {
-        PlayerPointGym[playerid] += 10.0;  
+        PlayerPointGym[playerid] += 5.0;  
 
         if(PlayerPointGym[playerid] >= 100)
         {
@@ -80,24 +117,30 @@ stock IsPlayerPlayingMachine(playerid)
             {
 				case 0: 
                 {
-					ApplyAnimation(playerid, "freeweights", "gym_free_a", 4.1, 0, 0, 0, 1, 0, 1 );
+					ApplyAnimation(playerid, "freeweights", "gym_free_a", 4.1, 0, 0, 0, 1, 0, 1);
 				}
 				case 1: 
                 {
-					ApplyAnimation(playerid, "freeweights", "gym_free_b", 4.1, 0, 0, 0, 1, 0, 1 );
+					ApplyAnimation(playerid, "freeweights", "gym_free_b", 4.1, 0, 0, 0, 1, 0, 1);
 				}
 			}
-            PlayerPointGym[playerid] = 0;
+            PlayerPointGym[playerid] = 10.0;
+            SetPlayerNeeds(playerid, 0.0, -0.1);
+        }
+        else if(PlayerPointGym[playerid] == 10.0)
+        {
+            ApplyAnimation(playerid, "freeweights", "gym_free_putdown", 4.1, 0, 0, 0, 1, 0, 1);
         }
     }
     else if(PlayerGymMachine[playerid] == GYM_TREADMILLS)
     {
-        PlayerPointGym[playerid] += 10.0;   
+        PlayerPointGym[playerid] += 2.0;   
 
         if(PlayerPointGym[playerid] >= 100.0)
         {
 			ApplyAnimation(playerid, "gymnasium", "gym_tread_sprint", 4.1, 1, 0, 0, 1, 1, 1);	
             PlayerPointGym[playerid] = 100.0;
+            SetPlayerNeeds(playerid, 0.0, -0.1);
         }
         else if(PlayerPointGym[playerid] >= 30.0)
         {
@@ -105,28 +148,31 @@ stock IsPlayerPlayingMachine(playerid)
         }
         else if(PlayerPointGym[playerid] >= 0)
         {
-            ApplyAnimation(playerid, "gymnasium", "gym_tread_walk", 4.1, 1, 0, 0, 1, 1, 1);	
+            ApplyAnimation(playerid, "gymnasium", "gym_tread_alt", 4.1, 1, 0, 0, 1, 1, 1);	
         }
+        
     }
     else if(PlayerGymMachine[playerid] == GYM_BICYLE)
     {
-        PlayerPointGym[playerid] += 10.0;  
+        PlayerPointGym[playerid] += 2.0;  
 
         if(PlayerPointGym[playerid] >= 100.0)
         {
 			PlayerPlaySound(playerid, 17801, 0, 0, 0);
 			ApplyAnimation(playerid, "gymnasium", "gym_bike_faster", 4.1, 1, 0, 0, 1, 1, 1);	
             PlayerPointGym[playerid] = 100.0;
+            SetPlayerNeeds(playerid, 0.0, -0.1);
         }
         else if(PlayerPointGym[playerid] >= 0)
         {
             ApplyAnimation(playerid, "gymnasium", "gym_bike_slow", 4.1, 1, 0, 0, 1, 1, 1);	
             PlayerPlaySound(playerid, 17801, 0, 0, 0);
         }
+        
     }
     else if(PlayerGymMachine[playerid] == GYM_BENCH)
     {
-        PlayerPointGym[playerid] += 10.0;  
+        PlayerPointGym[playerid] += 5.0;  
 
         if(PlayerPointGym[playerid] >= 100.0)
         {
@@ -141,8 +187,9 @@ stock IsPlayerPlayingMachine(playerid)
 					ApplyAnimation(playerid, "benchpress", "gym_bp_up_B", 4.1, 0, 0, 0, 1, 0, 1 );
 				}
 			}
+            SetPlayerNeeds(playerid, 0.0, -0.1);
             PlayerPlaySound(playerid, 17807, 0, 0, 0);
-            PlayerPointGym[playerid] = 0;
+            PlayerPointGym[playerid] = 10.0;
         }
         else if(PlayerPointGym[playerid] == 10.0)
         {
@@ -154,6 +201,80 @@ stock IsPlayerPlayingMachine(playerid)
     return 1;
 }
 
+function:IsPlayerUsingGymTimers(playerid)
+{
+    if(PlayerGymMachine[playerid] == GYM_DUMBELLS)
+    {
+        if(PlayerPointGym[playerid] == 5.0)
+        {
+            ApplyAnimation(playerid, "freeweights", "gym_free_down", 4.1, 0, 0, 0, 1, 0, 1);
+        }
+        else if(PlayerPointGym[playerid] >= 100)
+        {
+            switch(random(2)) 
+            {
+				case 0: 
+                {
+					ApplyAnimation(playerid, "freeweights", "gym_free_a", 4.1, 0, 0, 0, 1, 0, 1);
+				}
+				case 1: 
+                {
+					ApplyAnimation(playerid, "freeweights", "gym_free_b", 4.1, 0, 0, 0, 1, 0, 1);
+				}
+			}
+        }
+        
+    }
+    else if(PlayerGymMachine[playerid] == GYM_TREADMILLS)
+    {
+        if(PlayerPointGym[playerid] >= 100.0)
+        {
+			ApplyAnimation(playerid, "gymnasium", "gym_tread_sprint", 4.1, 1, 0, 0, 1, 1, 1);	
+        }
+        else if(PlayerPointGym[playerid] >= 30.0)
+        {
+            ApplyAnimation(playerid, "gymnasium", "gym_tread_jog", 4.1, 1, 0, 0, 1, 1, 1);	
+        }
+        else if(PlayerPointGym[playerid] >= 0)
+        {
+            ApplyAnimation(playerid, "gymnasium", "gym_tread_alt", 4.1, 1, 0, 0, 1, 1, 1);	
+        }
+    }
+    else if(PlayerGymMachine[playerid] == GYM_BICYLE)
+    {
+        if(PlayerPointGym[playerid] >= 100.0)
+        {
+			ApplyAnimation(playerid, "gymnasium", "gym_bike_faster", 4.1, 1, 0, 0, 1, 1, 1);	
+        }
+        else if(PlayerPointGym[playerid] >= 0)
+        {
+            ApplyAnimation(playerid, "gymnasium", "gym_bike_slow", 4.1, 1, 0, 0, 1, 1, 1);	
+        }
+    }
+    else if(PlayerGymMachine[playerid] == GYM_BENCH)
+    {
+        if(PlayerPointGym[playerid] == 5.0)
+        {
+            ApplyAnimation(playerid, "benchpress", "gym_bp_getoff", 4.1, 0, 0, 0, 1, 0, 1);
+        }
+        else if(PlayerPointGym[playerid] >= 100.0)
+        {
+            switch(random(2)) 
+            {
+				case 0: 
+                {
+					ApplyAnimation(playerid, "benchpress", "gym_bp_up_A", 4.1, 0, 0, 0, 1, 0, 1 );
+				}
+				case 1: 
+                {
+					ApplyAnimation(playerid, "benchpress", "gym_bp_up_B", 4.1, 0, 0, 0, 1, 0, 1 );
+				}
+			}
+        }
+    }
+    return 1;
+}
+
 stock IsPlayerExitMachine(playerid)
 {
     new businessid = IsPlayerInBusiness(playerid);
@@ -161,6 +282,7 @@ stock IsPlayerExitMachine(playerid)
     {
         ApplyAnimation(playerid, "freeweights", "gym_free_putdown", 4.1, 0, 0, 0, 0, 0, 1 );
         KillTimer(PlayerTimerGym[playerid]);
+        KillTimer(PlayerTimerUsingGym[playerid]);
         PlayerGymMachine[playerid] = -1;
         PlayerPointGym[playerid] = 0;  
         PlayerUsingGym[playerid] = false;
@@ -171,6 +293,7 @@ stock IsPlayerExitMachine(playerid)
     {
         ApplyAnimation(playerid, "gymnasium", "gym_tread_getoff", 4.1, 0, 0, 0, 0, 0, 1 );
         KillTimer(PlayerTimerGym[playerid]);
+        KillTimer(PlayerTimerUsingGym[playerid]);
         PlayerGymMachine[playerid] = -1;
         PlayerPointGym[playerid] = 0;  
         PlayerUsingGym[playerid] = false;
@@ -179,8 +302,9 @@ stock IsPlayerExitMachine(playerid)
     }
     else if(PlayerGymMachine[playerid] == GYM_BICYLE)
     {
-        ApplyAnimation(playerid, "gymnasium", "gym_bike_getoff", 4.1, 0, 0, 0, 0, 0, 1 );
+        ApplyAnimation(playerid, "gymnasium", "gym_bike_getoff", 4.1, 0, 0, 0, 0, 0, 1);
         KillTimer(PlayerTimerGym[playerid]);
+        KillTimer(PlayerTimerUsingGym[playerid]);
         PlayerGymMachine[playerid] = -1;
         PlayerPointGym[playerid] = 0;  
         PlayerUsingGym[playerid] = false;
@@ -191,6 +315,7 @@ stock IsPlayerExitMachine(playerid)
     {
         ApplyAnimation(playerid, "benchpress", "gym_bp_getoff", 4.1, 0, 0, 0, 0, 0, 1 );
         KillTimer(PlayerTimerGym[playerid]);
+        KillTimer(PlayerTimerUsingGym[playerid]);
         PlayerGymMachine[playerid] = -1;
         PlayerPointGym[playerid] = 0;  
         PlayerUsingGym[playerid] = false;
@@ -202,6 +327,7 @@ stock IsPlayerExitMachine(playerid)
     RemovePlayerAttachedObject(playerid, ATTACH_ANIMS2);
     ClearAnimations(playerid, 0);
     SetCameraBehindPlayer(playerid);
+    PlayerPlaySound(playerid, 0, 0.0, 0.0, 0.0);
     TogglePlayerControllable(playerid, true);
     return 1;
 }
@@ -225,7 +351,7 @@ stock IsPlayerUsingDumbell(playerid, businessid, area)
             BusinessInfo[businessid][E_BUSINESS_DUMBELL] = true;
             ShowHeaderMessage(playerid, "GYM", "To lift the dumbbells, use SPACE rapidly.");
 
-            ApplyAnimation(playerid, "freeweights", "gym_free_down", 4.1, 0, 0, 0, 1, 0, 1 );
+            ApplyAnimation(playerid, "freeweights", "gym_free_down", 4.1, 0, 0, 0, 0, 0, 1);
 
             PlayerPointGym[playerid] = 0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Dumbbells");
@@ -239,7 +365,7 @@ stock IsPlayerUsingDumbell(playerid, businessid, area)
 			SetPlayerFacingAngle(playerid, 270);
             ShowHeaderMessage(playerid, "GYM", "To lift the dumbbells, use SPACE rapidly.");
 
-            ApplyAnimation(playerid, "freeweights", "gym_free_down", 4.1, 0, 0, 0, 1, 0, 1 );
+            ApplyAnimation(playerid, "freeweights", "gym_free_down", 4.1, 0, 0, 0, 0, 0, 1);
 
             PlayerPointGym[playerid] = 0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Dumbbells");
@@ -250,6 +376,7 @@ stock IsPlayerUsingDumbell(playerid, businessid, area)
     IsPlayerUsingMachine(playerid, GYM_DUMBELLS);
     TogglePlayerControllable(playerid, false);
     PlayerTimerGym[playerid] = SetTimerEx("PlayerGYMTimers", 1000, true, "ii", playerid, 0);
+    PlayerTimerUsingGym[playerid] = SetTimerEx("IsPlayerUsingGymTimers", 1000, true, "i", playerid);
     
     return 1;
 }
@@ -273,9 +400,9 @@ stock IsPlayerUsingTreadMill(playerid, businessid, area)
             BusinessInfo[businessid][E_BUSINESS_TREADMILL] = true;
             ShowHeaderMessage(playerid, "GYM", "To begin running, use SPACE rapidly. Do not allow your power bar to empty or you will fall off the treadmill.");
 
-            ApplyAnimation(playerid, "gymnasium", "gym_tread_walk", 4.1, 1, 0, 0, 1, 1, 1);	
+            ApplyAnimation(playerid, "gymnasium", "gym_tread_alt", 4.1, 0, 0, 0, 0, 0, 1);	
 
-            PlayerPointGym[playerid] = 50.0;
+            PlayerPointGym[playerid] = 10.0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Treadmill");
         }
         case 2: //Verona Beach
@@ -287,9 +414,9 @@ stock IsPlayerUsingTreadMill(playerid, businessid, area)
 			SetPlayerFacingAngle(playerid, 90);
             ShowHeaderMessage(playerid, "GYM", "To begin running, use SPACE rapidly. Do not allow your power bar to empty or you will fall off the treadmill.");
 
-            ApplyAnimation(playerid, "gymnasium", "gym_tread_walk", 4.1, 1, 0, 0, 1, 1, 1);	
+            ApplyAnimation(playerid, "gymnasium", "gym_tread_alt", 4.1, 0, 0, 0, 0, 0, 1);	
 
-            PlayerPointGym[playerid] = 50.0;
+            PlayerPointGym[playerid] = 10.0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Treadmill");
         }
     }
@@ -298,6 +425,7 @@ stock IsPlayerUsingTreadMill(playerid, businessid, area)
     IsPlayerUsingMachine(playerid, GYM_TREADMILLS);
     TogglePlayerControllable(playerid, false);
     PlayerTimerGym[playerid] = SetTimerEx("PlayerGYMTimers", 1000, true, "ii", playerid, 1);
+    PlayerTimerUsingGym[playerid] = SetTimerEx("IsPlayerUsingGymTimers", 1000, true, "i", playerid);
     
     return 1;
 }
@@ -320,7 +448,7 @@ stock IsPlayerUsingBycle(playerid, businessid, area)
             BusinessInfo[businessid][E_BUSINESS_BYCICLE] = true;
             ShowHeaderMessage(playerid, "GYM", "Use SPACE rapidly to begin pedalling the bicycle.");
 
-            PlayerPointGym[playerid] = 0.0;
+            PlayerPointGym[playerid] = 10.0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Bicycle");
         }
         case 2: //Verona Beach
@@ -332,7 +460,7 @@ stock IsPlayerUsingBycle(playerid, businessid, area)
 			SetPlayerFacingAngle(playerid, 180);
             ShowHeaderMessage(playerid, "GYM", "Use SPACE rapidly to begin pedalling the bicycle.");
         
-            PlayerPointGym[playerid] = 0;
+            PlayerPointGym[playerid] = 10.0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Bicycle");
         }
     }
@@ -341,6 +469,7 @@ stock IsPlayerUsingBycle(playerid, businessid, area)
     IsPlayerUsingMachine(playerid, GYM_BICYLE);
     TogglePlayerControllable(playerid, false);
     PlayerTimerGym[playerid] = SetTimerEx("PlayerGYMTimers", 1000, true, "ii", playerid, 0);
+    PlayerTimerUsingGym[playerid] = SetTimerEx("IsPlayerUsingGymTimers", 1000, true, "i", playerid);
     
     return 1;
 }
@@ -361,11 +490,11 @@ stock IsPlayerUsingBench(playerid, businessid, area)
 			SetPlayerFacingAngle(playerid, 270);
 
             BusinessInfo[businessid][E_BUSINESS_BENCH] = true;
-            ShowHeaderMessage(playerid, "GYM", "To lift the weight, use ~k~~PED_SPRINT~ rapidly.");
+            ShowHeaderMessage(playerid, "GYM", "To lift the weight, use ALT rapidly.");
 
             ApplyAnimation(playerid, "benchpress", "gym_bp_down", 4.1, 0, 0, 0, 1, 0, 1 );
 
-            PlayerPointGym[playerid] = 0;
+            PlayerPointGym[playerid] = 10.0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Benchpress");
         }
         case 2: //Verona Beach
@@ -375,11 +504,11 @@ stock IsPlayerUsingBench(playerid, businessid, area)
 
 			SetPlayerPos(playerid, 653.9518,-1865.0546,5.4609);
 			SetPlayerFacingAngle(playerid, 0);
-            ShowHeaderMessage(playerid, "GYM", "To lift the weight, use ~k~~PED_SPRINT~ rapidly.");
+            ShowHeaderMessage(playerid, "GYM", "To lift the weight, use ALT rapidly.");
 
             ApplyAnimation(playerid, "benchpress", "gym_bp_down", 4.1, 0, 0, 0, 1, 0, 1 );
 
-            PlayerPointGym[playerid] = 0;
+            PlayerPointGym[playerid] = 10.0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Benchpress");
         }
     }
@@ -388,6 +517,43 @@ stock IsPlayerUsingBench(playerid, businessid, area)
     IsPlayerUsingMachine(playerid, GYM_BENCH);
     TogglePlayerControllable(playerid, false);
     PlayerTimerGym[playerid] = SetTimerEx("PlayerGYMTimers", 1000, true, "ii", playerid, 0);
+    PlayerTimerUsingGym[playerid] = SetTimerEx("IsPlayerUsingGymTimers", 1000, true, "i", playerid);
 
+    return 1;
+}
+
+//Commands:
+CMD:gym(playerid, params[])
+{
+    if(PlayerUsingGym[playerid] == false)
+    {
+        new businessid = IsPlayerInBusiness(playerid);
+        if(!IsPlayerInBusiness(playerid) && BusinessInfo[businessid][E_BUSINESS_TYPE != BUSINESS_TYPE_GYM])
+            return SendErrorMessage(playerid, "You aren't in business.");
+            
+        if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+            return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
+
+        if(IsPlayerInRangeOfPoint(playerid, 2.0, 772.6528,5.4322,1000.7802)) 
+        {
+            IsPlayerUsingDumbell(playerid, IsPlayerInBusiness(playerid), 1);
+        }
+        else if(IsPlayerInRangeOfPoint(playerid, 2.0, 773.4765,-1.3899,1000.7261)) 
+        {
+            IsPlayerUsingTreadMill(playerid, IsPlayerInBusiness(playerid), 1);
+        }
+        else if(IsPlayerInRangeOfPoint(playerid, 2.0, 773.1308,8.9508,1000.7061)) 
+        {
+            IsPlayerUsingBycle(playerid, IsPlayerInBusiness(playerid), 1);
+        }
+        else if(IsPlayerInRangeOfPoint(playerid, 2.0, 773.1153,1.3875,1000.7209)) 
+        {
+            IsPlayerUsingBench(playerid, IsPlayerInBusiness(playerid), 1);
+        }
+    }
+    else if(PlayerUsingGym[playerid] == true)
+    {
+        IsPlayerExitMachine(playerid);
+    }
     return 1;
 }

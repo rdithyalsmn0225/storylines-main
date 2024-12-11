@@ -651,7 +651,8 @@ enum
 new bool:PlayerUsingGym[MAX_PLAYERS],
     PlayerGymMachine[MAX_PLAYERS],
     Float: PlayerPointGym[MAX_PLAYERS],
-    PlayerTimerGym[MAX_PLAYERS];
+    PlayerTimerGym[MAX_PLAYERS],
+	PlayerTimerUsingGym[MAX_PLAYERS];
 
 enum E_JOBS_LOCATIONS
 {

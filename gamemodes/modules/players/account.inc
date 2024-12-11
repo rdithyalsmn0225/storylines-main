@@ -155,8 +155,8 @@ function:DB_ListCharacters(playerid)
 	cache_get_row_count(rows);
 	
 	new vwid = AccountInfo[playerid][E_MASTERS_DBID];
-	SetPlayerVirtualWorld(playerid, vwid);
-	SetPlayerInterior(playerid, 11);
+	SetPlayerVirtualWorldEx(playerid, vwid);
+	SetPlayerInteriorEx(playerid, 11);
 
 	if(!rows)
 	{
@@ -259,7 +259,7 @@ stock LoadCharacter(playerid)
 	SetCameraBehindPlayer(playerid);
 	SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]);
 	SetPlayerPosEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
-	
+	SetPlayerInteriorEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR]); SetPlayerVirtualWorldEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTWORLD]);
 	if(PlayerInfo[playerid][E_CHARACTER_OFFJAILED])
 	{
 		if(strlen(PlayerInfo[playerid][E_CHARACTER_OFFJAILREASON]) > 1)
@@ -272,7 +272,7 @@ stock LoadCharacter(playerid)
 		ClearAnimations(playerid);
 		
 		SetPlayerPosEx(playerid, 264.4271,78.0998,1001.0391);
-		SetPlayerInterior(playerid, 0); SetPlayerVirtualWorld(playerid, 999);
+		SetPlayerInteriorEx(playerid, 0); SetPlayerVirtualWorldEx(playerid, 999);
 		
 		PlayerInfo[playerid][E_CHARACTER_OFFJAILED] = false; 
 		PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] = true; 
@@ -297,6 +297,10 @@ stock LoadCharacter(playerid)
 	LoadPlayerToys(playerid);
 	SyncPlayerTime(playerid);
 	ShowPlayerNeeds(playerid);
+
+	PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = PlayerInfo[playerid][E_CHARACTER_INSIDEPROP]; 
+	PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ]; 
+	PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = PlayerInfo[playerid][E_CHARACTER_INSIDEENT];
 
 	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 100);
 	Streamer_Update(playerid, STREAMER_TYPE_OBJECT);

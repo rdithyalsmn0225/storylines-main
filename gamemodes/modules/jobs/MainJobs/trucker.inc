@@ -1,4 +1,4 @@
-CMD:cargobuy(playerid, params[])
+CMD:buycargo(playerid, params[])
 {
 	if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TRUCKER)
         return SendErrorMessage(playerid, "You aren't truckers.");
@@ -173,7 +173,7 @@ CMD:cargobuy(playerid, params[])
 	return 1;
 }
 
-CMD:cargosell(playerid, params[])
+CMD:sellcargo(playerid, params[])
 {
 	new id;
 	if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TRUCKER)

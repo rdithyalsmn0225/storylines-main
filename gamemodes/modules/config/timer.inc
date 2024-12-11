@@ -60,6 +60,7 @@ function:OnPlayerUpdateEx()
 	    	{
 				ShowPlayerNeeds(playerid);
 			}
+			
 			//Anti-Money Hack
 			if(GetPlayerMoney(playerid) > PlayerInfo[playerid][E_CHARACTER_MONEY])
 			{
@@ -118,7 +119,7 @@ function:OnPlayerUpdateEx()
 					format(str, sizeof(str), "%s was released from admin jail.", ReturnName(playerid));
 					SendAdminMessage(1, str);
 						
-					SetPlayerVirtualWorld(playerid, 0); SetPlayerInterior(playerid, 0);
+					SetPlayerVirtualWorldEx(playerid, 0); SetPlayerInteriorEx(playerid, 0);
 					SetPlayerPosEx(playerid, 1553.0421, -1675.4706, 16.1953);
 				}
 			}
@@ -137,7 +138,7 @@ function:OnPlayerUpdateEx()
 						
 					SendServerMessage(playerid, "[Prison] {DEDEDE}you have been released from prison.");
 						
-					SetPlayerVirtualWorld(playerid, 0); SetPlayerInterior(playerid, 0);
+					SetPlayerVirtualWorldEx(playerid, 0); SetPlayerInteriorEx(playerid, 0);
 					SetPlayerPosEx(playerid, 1797.4276,-1578.8496,14.0764);
 				}
 			}

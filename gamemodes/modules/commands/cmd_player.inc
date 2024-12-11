@@ -828,8 +828,8 @@ CMD:respawnme(playerid, params[])
 	SetPlayerHealthEx(playerid, 50);
 	SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 	SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
-	SetPlayerInterior(playerid, 0);
-	SetPlayerVirtualWorld(playerid, 0);
+	SetPlayerInteriorEx(playerid, 0);
+	SetPlayerVirtualWorldEx(playerid, 0);
  
 	return 1;
 }
@@ -1408,8 +1408,8 @@ CMD:enter(playerid, params[])
 
 		SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_INTERIORPOS][0], PropertyInfo[id][E_PROPERTY_INTERIORPOS][1], PropertyInfo[id][E_PROPERTY_INTERIORPOS][2]);
 			
-		SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_INTERIORWORLD]);
-		SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_INTERIORINTERIOR]);
+		SetPlayerVirtualWorldEx(playerid, PropertyInfo[id][E_PROPERTY_INTERIORWORLD]);
+		SetPlayerInteriorEx(playerid, PropertyInfo[id][E_PROPERTY_INTERIORINTERIOR]);
 			
 		TogglePlayerControllable(playerid, false);
 		SetTimerEx("OnPlayerEnterProperty", 2000, false, "ii", playerid, id); 	
@@ -1440,11 +1440,10 @@ CMD:enter(playerid, params[])
 		PlayerEnterTimer[playerid] = true;
 
 		PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = b_id; 
-		
 		SetPlayerPosEx(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][0], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][1], BusinessInfo[b_id][E_BUSINESS_INTERIORPOS][2]); 
 		
-		SetPlayerInterior(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSINTERIOR]); 
-		SetPlayerVirtualWorld(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSWORLD]); 
+		SetPlayerInteriorEx(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSINTERIOR]); 
+		SetPlayerVirtualWorldEx(playerid, BusinessInfo[b_id][E_BUSINESS_INTERIORPOSWORLD]); 
 		
 		TogglePlayerControllable(playerid, false);
 		SetTimerEx("OnPlayerEnterBusiness", 2000, false, "ii", playerid, e_id); 
@@ -1466,8 +1465,8 @@ CMD:enter(playerid, params[])
 
 		SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_INT][0], EntranceInfo[e_id][E_ENTRANCE_INT][1], EntranceInfo[e_id][E_ENTRANCE_INT][2]);
 				
-		SetPlayerVirtualWorld(playerid, EntranceInfo[e_id][E_ENTRANCE_WORLD]);
-		SetPlayerInterior(playerid, EntranceInfo[e_id][E_ENTRANCE_INTERIOR]); 
+		SetPlayerVirtualWorldEx(playerid, EntranceInfo[e_id][E_ENTRANCE_WORLD]);
+		SetPlayerInteriorEx(playerid, EntranceInfo[e_id][E_ENTRANCE_INTERIOR]); 
 				
 		TogglePlayerControllable(playerid, false);
 		SetTimerEx("OnPlayerEnterEntrance", 2000, false, "ii", playerid, e_id); 	
@@ -1483,8 +1482,8 @@ CMD:enter(playerid, params[])
 		{
 			SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][2]);
 			
-			SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
-			SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]); 
+			SetPlayerVirtualWorldEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
+			SetPlayerInteriorEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]); 
 			
 			PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0;
 		}
@@ -1505,8 +1504,8 @@ CMD:enter(playerid, params[])
 		
 			SetPlayerPosEx(playerid, BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][2]);
 			
-			SetPlayerVirtualWorld(playerid, 0);
-			SetPlayerInterior(playerid, 0);
+			SetPlayerVirtualWorldEx(playerid, 0);
+			SetPlayerInteriorEx(playerid, 0);
 			
 			PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
 		}
@@ -1521,8 +1520,8 @@ CMD:enter(playerid, params[])
 		{
 			SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_POS][0], EntranceInfo[e_id][E_ENTRANCE_POS][1], EntranceInfo[e_id][E_ENTRANCE_POS][2]);
 			
-			SetPlayerVirtualWorld(playerid, 0);
-			SetPlayerInterior(playerid, 0); 
+			SetPlayerVirtualWorldEx(playerid, 0);
+			SetPlayerInteriorEx(playerid, 0); 
 			
 			PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0;
 		}
@@ -1549,8 +1548,8 @@ CMD:exit(playerid, params[])
 	
 		SetPlayerPosEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[id][E_PROPERTY_ENTRANCEPOS][2]);
 		
-		SetPlayerVirtualWorld(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
-		SetPlayerInterior(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]); 
+		SetPlayerVirtualWorldEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
+		SetPlayerInteriorEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]); 
 		
 		PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0;
 		return 1;
@@ -1570,8 +1569,8 @@ CMD:exit(playerid, params[])
 		
 			SetPlayerPosEx(playerid, BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][2]);
 			
-			SetPlayerVirtualWorld(playerid, 0);
-			SetPlayerInterior(playerid, 0);
+			SetPlayerVirtualWorldEx(playerid, 0);
+			SetPlayerInteriorEx(playerid, 0);
 			
 			PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = 0;
 		}
@@ -1586,8 +1585,8 @@ CMD:exit(playerid, params[])
 		{
 			SetPlayerPosEx(playerid, EntranceInfo[e_id][E_ENTRANCE_POS][0], EntranceInfo[e_id][E_ENTRANCE_POS][1], EntranceInfo[e_id][E_ENTRANCE_POS][2]);
 			
-			SetPlayerVirtualWorld(playerid, 0);
-			SetPlayerInterior(playerid, 0); 
+			SetPlayerVirtualWorldEx(playerid, 0);
+			SetPlayerInteriorEx(playerid, 0); 
 			
 			PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] = 0;
 		}

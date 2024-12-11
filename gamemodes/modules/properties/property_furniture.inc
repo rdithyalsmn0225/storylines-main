@@ -173,7 +173,7 @@ function:Query_LoadFurniture(labels)
 			format(str2, sizeof(str2), "matTexture%d", a);
 			cache_get_value_name(i, str2, mattexture, 32);
 
-			SetDynamicObjectMaterial(objectid, a, matmodels, mattxds, mattexture, HexToInt("0xFFFFFFFF"));
+			SetDynamicObjectMaterial(objectid, a, matmodels, mattxds, mattexture, 0);
 		}
 
 		if(labels)

@@ -127,7 +127,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-			    SetPlayerInterior(playerid, g_arrInteriorData[listitem][E_INT_ID]);
+			    SetPlayerInteriorEx(playerid, g_arrInteriorData[listitem][E_INT_ID]);
 			    SetPlayerPosEx(playerid, g_arrInteriorData[listitem][E_INT_X], g_arrInteriorData[listitem][E_INT_Y], g_arrInteriorData[listitem][E_INT_Z]);
 			}
 		}
@@ -581,7 +581,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendClientMessage(playerid, COLOR_ORANGE, "Press 'ALT' collect garbage");
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRUCKER)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "Truckers Commands: /tpda, /cargobuy, /cargosell, /cargodrop");
+							SendClientMessage(playerid, COLOR_ORANGE, "Truckers Commands: /tpda, /buycargo, /sellcargo");
 							SendTipMessage(playerid, "Type '/cartrunk' to place cargo into truck.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_LUMBERJACK)

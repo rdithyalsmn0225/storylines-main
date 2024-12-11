@@ -79,14 +79,14 @@ function:SetPlayersSpawn(playerid)
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] == SPAWN_POINT_LAST)
 	{
 		SetPlayerPosEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
-		SetPlayerInterior(playerid, PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR]);
-		SetPlayerVirtualWorld(playerid, PlayerInfo[playerid][E_CHARACTER_LASTWORLD]);
+		SetPlayerInteriorEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR]);
+		SetPlayerVirtualWorldEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTWORLD]);
 	}
 	else
 	{
 		SetPlayerPosEx(playerid, BusStop_Index[PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT]][0], BusStop_Index[PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT]][1], BusStop_Index[PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT]][2]);
-		SetPlayerInterior(playerid, 0);
-		SetPlayerVirtualWorld(playerid, 0);
+		SetPlayerInteriorEx(playerid, 0);
+		SetPlayerVirtualWorldEx(playerid, 0);
 	}
 	return 1;
 }
@@ -98,13 +98,13 @@ public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
     	new vehicleid = GetPlayerVehicleID(playerid);
         if(vehicleid > 0 && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
         {
-                SetVehiclePos(vehicleid, fX, fY, fZ+10);
+            SetVehiclePos(vehicleid, fX, fY, fZ+10);
         }
         else
         {
-                SetPlayerPosFindZ(playerid, fX, fY, 999.0);
-                SetPlayerVirtualWorld(playerid, 0);
-                SetPlayerInterior(playerid, 0);
+            SetPlayerPosFindZ(playerid, fX, fY, 999.0);
+            SetPlayerVirtualWorldEx(playerid, 0);
+            SetPlayerInteriorEx(playerid, 0);
         }
     }
 	new vehicleid = GetPlayerVehicleID(playerid);
@@ -225,8 +225,6 @@ function:ResetPlayer(playerid)
 	CurrentArmourVar[playerid] = 0;
 	ResetPlayerJump(playerid);
 	ResetTeleportAC(playerid);
-	
-	KillTimer(cameraTimer[playerid]);
 
 	HeaderBar[playerid] = INVALID_PLAYER_BAR_ID;
 	speedobar[playerid] = INVALID_PLAYER_BAR_ID;
@@ -341,6 +339,7 @@ function:ResetPlayer(playerid)
 	KillTimer(cameraTimer[playerid]);
 	KillTimer(PlayerEngineTimer[playerid]);
 	KillTimer(PlayerTimerGym[playerid]);
+	KillTimer(PlayerTimerUsingGym[playerid]);
 	KillTimer(playerPhone[playerid]);
 	KillTimer(playerText[playerid]);
 	KillTimer(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_LOADINGTIMER]);
@@ -966,7 +965,7 @@ stock ShowFightStyleMenu(playerid)
 	new id = IsPlayerInBusiness(playerid), str[128];
 
 	format(str, sizeof(str), "%s:", BusinessInfo[id][E_BUSINESS_NAME]);
-	ShowPlayerDialog(playerid, DIALOG_FIGHTSTYLE, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nBoxing\t$1000\nKneehead\t$2500\nGrabKick\t$3000\nReset\t$500", "Select", "Cancel");
+	ShowPlayerDialog(playerid, DIALOG_FIGHTSTYLE, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nBoxing\t$150.00\nKneehead\t$200.00\nGrabKick\t$300.00\nReset\t$100.00", "Select", "Cancel");
 	return 1;
 }
 
@@ -1126,6 +1125,22 @@ stock SetPlayerPosEx(playerid, Float:x, Float:y, Float:z)
 	TogglePlayerControllable(playerid, false);
 	ShowBoxMessage(playerid, "Please wait....", 3);
 	SetTimerEx("PlayerPosTimer", 2500, false, "i", playerid);
+    return 1;
+}
+
+stock SetPlayerVirtualWorldEx(playerid, value)
+{	
+	PauseAC(playerid);
+    SetPlayerVirtualWorld(playerid, value);
+	PlayerInfo[playerid][E_CHARACTER_LASTWORLD] = value;
+    return 1;
+}
+
+stock SetPlayerInteriorEx(playerid, value)
+{	
+	PauseAC(playerid);
+    SetPlayerInteriorEx(playerid, value);
+	PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR] = value;
     return 1;
 }
 

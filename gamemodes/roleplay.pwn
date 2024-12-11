@@ -811,8 +811,8 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 			SetPlayerHealthEx(playerid, 100.0);
 			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
-			SetPlayerInterior(playerid, 0);
-			SetPlayerVirtualWorld(playerid, 0);
+			SetPlayerInteriorEx(playerid, 0);
+			SetPlayerVirtualWorldEx(playerid, 0);
 			RespawnPlayer(playerid);
 			SendInfoMessage(playerid, "You has been killed by Drowning at %s.", ReturnLocationStreet(playerid));
 		}	
@@ -3170,7 +3170,7 @@ public OnPlayerSpawn(playerid)
 		ClearAnimations(playerid); 
 		
 		SetPlayerPosEx(playerid, -10.5146,2337.2961,24.3034);
-		SetPlayerInterior(playerid, 0); SetPlayerVirtualWorld(playerid, 1338);
+		SetPlayerInteriorEx(playerid, 0); SetPlayerVirtualWorldEx(playerid, 1338);
 		
 		SendServerMessage(playerid, "[Jail] {DEDEDE}You're currently admin jailed. You have {d7d292}%i{DEDEDE} minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
 	}
@@ -3193,8 +3193,8 @@ public OnPlayerSpawn(playerid)
 		{
 			SetPlayerHealthEx(playerid, 100);
 			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
-			SetPlayerInterior(playerid, 0);
-			SetPlayerVirtualWorld(playerid, 0);
+			SetPlayerInteriorEx(playerid, 0);
+			SetPlayerVirtualWorldEx(playerid, 0);
 			PlayerInfo[playerid][E_CHARACTER_DIEUNKNOWN] = false;
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 		}
@@ -3955,9 +3955,6 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 	// Vehicle Selection:
 	if (playertextid == VehicleSelection[14][playerid])
     {
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
-		
 		for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][1])
@@ -3968,6 +3965,9 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			}
 		}
 
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
+
 		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][1]);
 		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
@@ -3975,9 +3975,6 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
     }
 	if (playertextid == VehicleSelection[15][playerid])
     {
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
-		
 		for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][2])
@@ -3988,6 +3985,9 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			}
 		}
 
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
+
 		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][2]);
 		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
@@ -3995,9 +3995,6 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
     }
 	if (playertextid == VehicleSelection[16][playerid])
     {
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
-		
 		for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][3])
@@ -4008,6 +4005,9 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			}
 		}
 
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
+
 		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][3]);
 		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
@@ -4015,9 +4015,6 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
     }
 	if (playertextid == VehicleSelection[17][playerid])
     {
-		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
-			return SendErrorMessage(playerid, "You already have a vehicle spawned.");
-		
 		for(new i; i < MAX_VEHICLES; i++)
 		{
 			if(VehicleInfo[i][E_VEHICLE_DBID] == PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][4])
@@ -4027,6 +4024,9 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 				return 1;
 			}
 		}
+
+		if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
+			return SendErrorMessage(playerid, "You already have a vehicle spawned."); 
 
 		new threadLoad[128]; 
 		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][4]);
@@ -4098,6 +4098,8 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
+	new businessid = IsPlayerInBusiness(playerid);
+
 	if(newkeys & KEY_CROUCH && IsPlayerInAnyVehicle(playerid))
 	{
 		cmd_gate(playerid, "");
@@ -4208,7 +4210,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		}
 	}
 	// POOL:
-	new businessid = IsPlayerInBusiness(playerid);
 	if(PoolInfo[businessid][E_POOL_STARTED] && PlayingPool[playerid])
 	{
 		if(GetPlayerPing(playerid) > 100) 
@@ -4338,38 +4339,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			CollectGarbage(playerid);
 		}
 	}
-	// PLAYER GYM:
-	if(newkeys == KEY_SECONDARY_ATTACK && !IsPlayerInAnyVehicle(playerid))
-    {
-		if(PlayerUsingGym[playerid] == false)
-		{
-			if(IsPlayerInRangeOfPoint(playerid, 2.0, 772.6528,5.4322,1000.7802)) 
-			{
-				IsPlayerUsingDumbell(playerid, IsPlayerInBusiness(playerid), 1);
-			}
-			else if(IsPlayerInRangeOfPoint(playerid, 2.0, 773.4765,-1.3899,1000.7261)) 
-			{
-				IsPlayerUsingTreadMill(playerid, IsPlayerInBusiness(playerid), 1);
-			}
-			else if(IsPlayerInRangeOfPoint(playerid, 2.0, 773.1308,8.9508,1000.7061)) 
-			{
-				IsPlayerUsingBycle(playerid, IsPlayerInBusiness(playerid), 1);
-			}
-			else if(IsPlayerInRangeOfPoint(playerid, 2.0, 773.1153,1.3875,1000.7209)) 
-			{
-				IsPlayerUsingBench(playerid, IsPlayerInBusiness(playerid), 1);
-			}
-		}
-		else if(PlayerUsingGym[playerid] == true)
-		{
-			IsPlayerExitMachine(playerid);
-		}
-	}
 
-	if(newkeys == KEY_SPRINT && !IsPlayerInAnyVehicle(playerid))
+	if(newkeys == KEY_WALK && !IsPlayerInAnyVehicle(playerid))
     {
 		if(PlayerUsingGym[playerid] == true)
 		{
+			if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+				return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
+
 			IsPlayerPlayingMachine(playerid);
 		}
 	}
@@ -5423,7 +5400,7 @@ function:Query_CreateCharacter(playerid)
 
 function:SaveCharacterPos(playerid)
 {
-	new thread[512]; 
+	new thread[1024]; 
 	
 	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING || !PlayerInfo[playerid][E_CHARACTER_SPAWNED])
 		return 0;

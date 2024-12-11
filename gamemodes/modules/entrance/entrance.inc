@@ -74,7 +74,7 @@ function:OnENTInteriorChange(playerid, response, newid)
 		foreach(new i : Player) if(IsPlayerInEntrance(i) == newid)
 		{
 			SetPlayerPosEx(i, EntranceInfo[newid][E_ENTRANCE_INT][0], EntranceInfo[newid][E_ENTRANCE_INT][1], EntranceInfo[newid][E_ENTRANCE_INT][2]);
-			SetPlayerInterior(i, GetPlayerInterior(playerid)); SetPlayerVirtualWorld(i, world); 
+			SetPlayerInteriorEx(i, GetPlayerInterior(playerid)); SetPlayerVirtualWorldEx(i, world); 
 			
 			SendInfoMessage(i, "The entrance you were in was amended."); 
 		}

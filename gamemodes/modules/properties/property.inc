@@ -161,7 +161,7 @@ function:OnInteriorChange(playerid, response, property)
 		foreach(new i : Player) if(IsPlayerInProperty(i) == property)
 		{
 			SetPlayerPosEx(i, PropertyInfo[property][E_PROPERTY_INTERIORPOS][0], PropertyInfo[property][E_PROPERTY_INTERIORPOS][1], PropertyInfo[property][E_PROPERTY_INTERIORPOS][2]);
-			SetPlayerInterior(i, GetPlayerInterior(playerid)); SetPlayerVirtualWorld(i, world); 
+			SetPlayerInteriorEx(i, GetPlayerInterior(playerid)); SetPlayerVirtualWorldEx(i, world); 
 			
 			SendInfoMessage(i, "The property you were in was amended."); 
 		}
