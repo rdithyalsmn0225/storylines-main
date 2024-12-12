@@ -289,7 +289,7 @@ stock SaveServerDatas(id)
 
 stock Tree_Save(id)
 {
-	new query[400];
+	new query[512];
 	
 	mysql_format(ourConnection, query, sizeof(query), "UPDATE tree SET posx = %f, posy = %f, posz = %f, posrx = %f, posry = %f, posrz = %f, time = %i WHERE id = %i",
 		TreeInfo[id][E_TREE_POS][0],

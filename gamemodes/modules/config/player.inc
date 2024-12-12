@@ -2,29 +2,25 @@
 //Function
 function:SetPlayerCamera(playerid)
 {
-    if(cameraIndex[playerid] < 5)
-    {
-        new Float:fromX = cameraPositions[cameraIndex[playerid]][0];
-        new Float:fromY = cameraPositions[cameraIndex[playerid]][1];
-        new Float:fromZ = cameraPositions[cameraIndex[playerid]][2];
-        new Float:toX = cameraPositions[cameraIndex[playerid]][3];
-        new Float:toY = cameraPositions[cameraIndex[playerid]][4];
-        new Float:toZ = cameraPositions[cameraIndex[playerid]][5];
-        new Float:lookFromX = cameraPositions[cameraIndex[playerid]][6];
-        new Float:lookFromY = cameraPositions[cameraIndex[playerid]][7];
-        new Float:lookFromZ = cameraPositions[cameraIndex[playerid]][8];
-        new Float:lookToX = cameraPositions[cameraIndex[playerid]][9];
-        new Float:lookToY = cameraPositions[cameraIndex[playerid]][10];
-        new Float:lookToZ = cameraPositions[cameraIndex[playerid]][11];
+    new rand = randomEx(1, 3);
 
-        InterpolateCameraPos(playerid, fromX, fromY, fromZ, toX, toY, toZ, 20000, CAMERA_MOVE);
-        InterpolateCameraLookAt(playerid, lookFromX, lookFromY, lookFromZ, lookToX, lookToY, lookToZ, 20000, CAMERA_MOVE);
-        
-        cameraIndex[playerid]++;
-    }
-    else
-    {
-		cameraIndex[playerid] = 0;
+	switch(rand)
+	{
+		case 1:
+		{
+			InterpolateCameraPos(playerid, 1368.013671, -949.489013, 35.609745, 1368.013671, -949.489013, 82.879753, 15000, 1);
+			InterpolateCameraLookAt(playerid, 1369.147827, -945.724914, 36.348087, 1369.125000, -945.677185, 83.364494, 15000, 1);
+		}
+		case 2:
+		{
+			InterpolateCameraPos(playerid, 231.056640, -1864.201293, 34.755920, 231.056640, -1864.201293, 34.755920, 3000, 1);
+			InterpolateCameraLookAt(playerid, 228.553604, -1867.319580, 34.651535, 228.490478, -1867.267089, 34.631008, 3000, 1);
+		}
+		case 3:
+		{
+			InterpolateCameraPos(playerid, 1631.904907, -1159.781616, 138.438232, 1602.145507, -1518.966308, 98.418022, 15000, 1);
+			InterpolateCameraLookAt(playerid, 1631.338500, -1163.728759, 138.123687, 1601.992065, -1522.941528, 98.001243, 15000, 1);
+		}
 	}
 	return 1;
 }
@@ -338,7 +334,6 @@ function:ResetPlayer(playerid)
 
 	PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE] = INVALID_VEHICLE_ID;
 
-	KillTimer(cameraTimer[playerid]);
 	KillTimer(PlayerEngineTimer[playerid]);
 	KillTimer(PlayerTimerGym[playerid]);
 	KillTimer(PlayerTimerUsingGym[playerid]);
@@ -1137,8 +1132,7 @@ stock SetPlayerVirtualWorldEx(playerid, value)
 	PlayerInfo[playerid][E_CHARACTER_LASTWORLD] = value;
 	
 	new thread[256];
-	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastInterior = %i, pLastWorld = %i WHERE char_dbid = %i",
-		PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR],
+	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastWorld = %i WHERE char_dbid = %i",
 		PlayerInfo[playerid][E_CHARACTER_LASTWORLD],
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, thread);
@@ -1152,9 +1146,8 @@ stock SetPlayerInteriorEx(playerid, value)
 	PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR] = value;
 
 	new thread[256];
-	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastInterior = %i, pLastWorld = %i WHERE char_dbid = %i",
+	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastInterior = %i WHERE char_dbid = %i",
 		PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR],
-		PlayerInfo[playerid][E_CHARACTER_LASTWORLD],
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, thread);
     return 1;

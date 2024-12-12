@@ -827,8 +827,8 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SetPlayerTeam(playerid, PLAYER_STATE_ALIVE); 
 			SetPlayerHealthEx(playerid, 100.0);
 			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
-			SetPlayerInteriorEx(playerid, 0);
-			SetPlayerVirtualWorldEx(playerid, 0);
+			SetPlayerInterior(playerid, 0);
+			SetPlayerVirtualWorld(playerid, 0);
 			RespawnPlayer(playerid);
 			SendInfoMessage(playerid, "You has been killed by Drowning at %s.", ReturnLocationStreet(playerid));
 		}	
@@ -3178,7 +3178,6 @@ public OnPlayerSpawn(playerid)
 	SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	SetPlayerArmourEx(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 
-	KillTimer(cameraTimer[playerid]);
 	SetCameraBehindPlayer(playerid); 
 
 	if(PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] == true)

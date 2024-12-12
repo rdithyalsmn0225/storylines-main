@@ -3,10 +3,9 @@ function:LoginTimer(playerid, rcc)
 	if(rcc != g_RaceCheck{playerid})
 	    return Kick(playerid);
 
-	cameraIndex[playerid] = 0;
 	InterpolateCameraPos(playerid, 2467.694091, -1680.678100, 22.207088, 2470.404296, -1640.607177, 23.310541, 15000, 1);
 	InterpolateCameraLookAt(playerid, 2471.343017, -1681.534667, 20.810289, 2472.477294, -1643.914062, 22.434955, 15000, 1);
-	cameraTimer[playerid] = SetTimerEx("SetPlayerCamera", 12000, true, "i", playerid);
+	SetPlayerCamera(playerid);
 
 	new existCheck[256]; 
 	mysql_format(ourConnection, existCheck, sizeof(existCheck), "SELECT * FROM bannedlist WHERE IpAddress = '%e'", ReturnIP(playerid));
@@ -111,7 +110,6 @@ function:LoggingIn(playerid)
 	{
 		AccountInfo[playerid][E_MASTERS_LOGGED] = true;
 	}
-	KillTimer(cameraTimer[playerid]);
 	SetCameraBehindPlayer(playerid); 
 
 	mysql_format(ourConnection, fetchChars, sizeof(fetchChars), "SELECT * FROM bannedlist WHERE MasterDBID = %d", AccountInfo[playerid][E_MASTERS_DBID]);
@@ -155,8 +153,8 @@ function:DB_ListCharacters(playerid)
 	cache_get_row_count(rows);
 	
 	new vwid = AccountInfo[playerid][E_MASTERS_DBID];
-	SetPlayerVirtualWorldEx(playerid, vwid);
-	SetPlayerInteriorEx(playerid, 11);
+	SetPlayerVirtualWorld(playerid, vwid);
+	SetPlayerInterior(playerid, 11);
 
 	if(!rows)
 	{
@@ -177,8 +175,6 @@ function:DB_ListCharacters(playerid)
 
 	CreatePlayerActor(playerid, characterSkin[playerid][0]);
 	ShowCharacterSelection(playerid);
-	
-	KillTimer(cameraTimer[playerid]);
 	return 1;
 }
 
@@ -285,8 +281,6 @@ stock LoadCharacter(playerid)
 	new str[128];
     format(str, sizeof(str), "%s", PlayerInfo[playerid][E_CHARACTER_NAME]);
     SetPlayerName(playerid, str);
-
-	KillTimer(cameraTimer[playerid]);
 	SetCameraBehindPlayer(playerid); 
 
 	if(PlayerInfo[playerid][E_CHARACTER_AOE] == 0)

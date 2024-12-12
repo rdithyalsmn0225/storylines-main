@@ -8,6 +8,8 @@ stock CollectGarbage(playerid, trashid)
 
     SetPlayerNeeds(playerid, -0.1, -0.1);
 
+    Trashcan_Refresh(trashid);
+
     ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 0);
     SendJobsMessage(playerid, "[Garbageman] {DEDEDE}You've picked up rubbish, current garbage bag %d x rubbish.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]);
     SendTipMessage(playerid, "You can empty your garbage bag in HQ by type '/dumpgarbage'");
