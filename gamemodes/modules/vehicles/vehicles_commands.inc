@@ -53,6 +53,22 @@ CMD:carsell(playerid, params[])
 	return 1;
 }
 
+CMD:carfind(playerid, params[])
+{
+    if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == false) 
+		return SendErrorMessage(playerid, "You don't have a vehicle spawned.");
+			
+	if(IsVehicleOccupied(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN]))
+		return SendErrorMessage(playerid, "Your vehicle is in use / stolen by another player.");
+			
+	new 
+		Float:fetchPos[3];
+		
+	GetVehiclePos(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN], fetchPos[0], fetchPos[1], fetchPos[2]);
+	GPS_SetPlayerRaceCheckPoint(playerid, 1, fetchPos[0], fetchPos[1], fetchPos[2], 0.0, 0.0, 0.0);
+    return 1;
+}
+
 CMD:carkey(playerid, params[])
 {
     if(!IsPlayerInAnyVehicle(playerid))

@@ -1133,14 +1133,28 @@ stock SetPlayerVirtualWorldEx(playerid, value)
 	PauseAC(playerid);
     SetPlayerVirtualWorld(playerid, value);
 	PlayerInfo[playerid][E_CHARACTER_LASTWORLD] = value;
+	
+	new thread[256];
+	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastInterior = %i, pLastWorld = %i WHERE char_dbid = %i",
+		PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR],
+		PlayerInfo[playerid][E_CHARACTER_LASTWORLD],
+		PlayerInfo[playerid][E_CHARACTER_DBID]);
+	mysql_pquery(ourConnection, thread);
     return 1;
 }
 
 stock SetPlayerInteriorEx(playerid, value)
 {	
 	PauseAC(playerid);
-    SetPlayerInteriorEx(playerid, value);
+    SetPlayerInterior(playerid, value);
 	PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR] = value;
+
+	new thread[256];
+	mysql_format(ourConnection, thread, sizeof(thread), "UPDATE characters SET pLastInterior = %i, pLastWorld = %i WHERE char_dbid = %i",
+		PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR],
+		PlayerInfo[playerid][E_CHARACTER_LASTWORLD],
+		PlayerInfo[playerid][E_CHARACTER_DBID]);
+	mysql_pquery(ourConnection, thread);
     return 1;
 }
 
