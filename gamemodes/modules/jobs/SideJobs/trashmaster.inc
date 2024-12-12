@@ -1,54 +1,16 @@
-
-function:OnGarbageUpdate()
+stock CollectGarbage(playerid, trashid) 
 {
-    GarbageCount = 0;
-    for (new i = 0; i < sizeof(Garbage_Locations); i++) {
-        if (GarbageCount >= MAX_GARBAGE) break;
-        
-        new Float:x = Garbage_Locations[i][0];
-        new Float:y = Garbage_Locations[i][1];
-        new Float:z = Garbage_Locations[i][2];
-        new Float:rx = Garbage_Locations[i][3];
-        new Float:ry = Garbage_Locations[i][4];
-        new Float:rz = Garbage_Locations[i][5];
+    TrashInfo[trashid][E_TRASH_CAPACITY]--;
+    PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]++;
 
-        GarbageObject[GarbageCount] = CreateDynamicObject(2672, x, y, z, rx, ry, rz, -1, -1, -1, 800.0, 800.0);
-        GarbageCount++;
-    }
-    return 1;
-}
+    if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] >= 30)
+        return SendTipMessage(playerid, "Your garbage bag is full, take it to the HQ and empty it");
 
-stock CollectGarbage(playerid) 
-{
-    new Float:x, Float:y, Float:z;
-    GetPlayerPos(playerid, x, y, z);
+    SetPlayerNeeds(playerid, -0.1, -0.1);
 
-    for (new i = 0; i < GarbageCount; i++) 
-    {
-        if (IsValidDynamicObject(GarbageObject[i])) 
-        {
-            new Float:gx, Float:gy, Float:gz;
-            GetDynamicObjectPos(GarbageObject[i], gx, gy, gz);
-
-            if (GetDistanceBetweenPoints(x, y, z, gx, gy, gz) <= 2.0) 
-            { 
-                DestroyDynamicObject(GarbageObject[i]);
-                GarbageObject[i] = INVALID_OBJECT_ID;
-
-                PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]++;
-
-                if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] >= 30)
-                    return SendTipMessage(playerid, "Your garbage bag is full, take it to the HQ and empty it");
-
-                SetPlayerNeeds(playerid, -0.2, -0.3);
-
-                ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 0);
-                SendJobsMessage(playerid, "[Garbageman] {DEDEDE}You've picked up rubbish, current garbage bag %d x rubbish.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]);
-                SendTipMessage(playerid, "You can empty your garbage bag in HQ by type '/dumpgarbage'");
-                return 1;
-            }
-        }
-    }
+    ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 0);
+    SendJobsMessage(playerid, "[Garbageman] {DEDEDE}You've picked up rubbish, current garbage bag %d x rubbish.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]);
+    SendTipMessage(playerid, "You can empty your garbage bag in HQ by type '/dumpgarbage'");
     return 1;
 }
 
@@ -59,7 +21,15 @@ CMD:collectgarbage(playerid, params[])
         if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
 		    return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
-        CollectGarbage(playerid);
+        new id = -1;
+        
+        if ((id = IsPlayerNearTrashcan(playerid)) != -1)
+        { 
+            if(!TrashInfo[id][E_TRASH_CAPACITY])
+        		return SendErrorMessage(playerid, "Trashcan is empty.");
+            
+            CollectGarbage(playerid, id);
+        }
     }
     return 1;
 }

@@ -96,24 +96,26 @@ public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
 	{
     	new vehicleid = GetPlayerVehicleID(playerid);
-        if(vehicleid > 0 && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+        if(IsPlayerInAnyVehicle(playerid) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
         {
             SetVehiclePos(vehicleid, fX, fY, fZ+10);
         }
         else
         {
-            SetPlayerPosFindZ(playerid, fX, fY, 999.0);
-            SetPlayerVirtualWorldEx(playerid, 0);
-            SetPlayerInteriorEx(playerid, 0);
+            SetPlayerPosFindZ(playerid, fX, fY, fZ);
         }
     }
+
 	new vehicleid = GetPlayerVehicleID(playerid);
 	new playerb = GetVehicleDriver(vehicleid);
-	if(PlayerInfo[playerb][E_CHARACTER_TAXIDUTY])
+	if(IsPlayerInAnyVehicle(playerid) && GetPlayerState(playerid) == PLAYER_STATE_PASSENGER)
 	{
-		GPS_SetPlayerRaceCheckPoint(playerb, 1, fX, fY, fZ, 0.0, 0.0, 0.0);
-		SendJobsMessage(playerid, "[Taxi] {DEDEDE}You has marked destination in driver map!");
-		SendJobsMessage(playerb, "[Taxi] {DEDEDE}Passanger has marked the destination in your map!");
+		if(PlayerInfo[playerb][E_CHARACTER_TAXIDUTY])
+		{
+			GPS_SetPlayerRaceCheckPoint(playerb, 1, fX, fY, fZ, 0.0, 0.0, 0.0);
+			SendJobsMessage(playerid, "[Taxi] {DEDEDE}You has marked destination in driver map!");
+			SendJobsMessage(playerb, "[Taxi] {DEDEDE}Passanger has marked the destination in your map!");
+		}
 	}
     return 1;
 }

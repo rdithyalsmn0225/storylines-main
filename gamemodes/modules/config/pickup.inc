@@ -1,6 +1,6 @@
 public OnPlayerPickUpDynamicPickup(playerid, pickupid)
 {
-    new str[128];
+    new str[256];
     for(new i = 1; i < MAX_BUSINESS; i++)
 	{
         if(pickupid == BusinessInfo[i][E_BUSINESS_PICKUP])

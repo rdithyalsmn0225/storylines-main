@@ -381,6 +381,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			        }
 			        case 3:
 			        {
+						new id = -1;
 			            if (IsPlayerInAnyVehicle(playerid))
 			                return SendErrorMessage(playerid, "You can't drop items right now.");
 
@@ -393,6 +394,18 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					    if(!strcmp(string, "Mask"))
 					        return SendErrorMessage(playerid, "You can't do that on this item!");
 					    
+						else if ((id = IsPlayerNearTrashcan(playerid)) != -1)
+						{
+							if (TrashInfo[id][E_TRASH_CAPACITY] >= 20)
+								return SendErrorMessage(playerid, "This trashcan is full of trash.");
+
+							TrashInfo[id][E_TRASH_CAPACITY]++;
+							Trashcan_Save(id);
+
+							Inventory_Remove(playerid, string);
+							
+							Trashcan_Refresh(id);
+						}
 						else if (InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY] == 1)
 						{
 							DropPlayerItem(playerid, itemid);						

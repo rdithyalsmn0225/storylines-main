@@ -22,7 +22,7 @@ stock ShowTreeLocation(playerid)
 		}
 		else
 		{
-			format(str, sizeof(str), "%s%d\t{33AA33}Available{ffffff}\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
+			format(str, sizeof(str), "%s%d\t{33AA33}Available{ffffff}\t%.2f Meter\n", str, i, GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
 		}
 	}
 	return Dialog_ShowPages(playerid, GPSTREE, DIALOG_STYLE_TABLIST_HEADERS, "Tree Location", str, "Find", "Close");
@@ -32,22 +32,9 @@ stock ShowGarbageLocation(playerid)
 {
 	new str[1524];
 	format(str, sizeof(str), "Index\tStatus\tDistance\n");
-	for(new i; i < sizeof(Garbage_Locations); i++)
+	forex(i, MAX_TRASH) if(TrashInfo[i][E_TRASH_EXISTS])
 	{
-		for(new b; b < sizeof(Garbage_Locations); b++)
-		{
-			for (new a = 0; a < GarbageCount; a++) 
-			{
-				if(GarbageObject[a] != INVALID_OBJECT_ID)
-				{
-					format(str, sizeof(str), "%s#%d\t{33AA33}Available{ffffff}\t%.2f Meter\n", str, b, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[b][0], Garbage_Locations[b][1], Garbage_Locations[b][2]));
-				}
-				else
-				{
-					format(str, sizeof(str), "%s#%d\t{FF6347}Unvailable{ffffff}\t%.2f Meter\n", str, b, GetPlayerDistanceFromPoint(playerid, Garbage_Locations[b][0], Garbage_Locations[b][1], Garbage_Locations[b][2]));
-				}
-			}
-		}
+		format(str, sizeof(str), "%s%d\t{33AA33}Available{ffffff}\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, TrashInfo[i][E_TRASH_POS][0], TrashInfo[i][E_TRASH_POS][1], TrashInfo[i][E_TRASH_POS][2]));
 	}
 	return Dialog_ShowPages(playerid, GPSGARBAGE, DIALOG_STYLE_TABLIST_HEADERS, "Garbage Location", str, "Find", "Close");
 }
@@ -193,7 +180,7 @@ Dialog:GPSGARBAGE(playerid, response, listitem, inputtext[])
 {
 	if (response)
 	{
-		GPS_SetPlayerRaceCheckPoint(playerid, 1, Garbage_Locations[listitem][0], Garbage_Locations[listitem][1], Garbage_Locations[listitem][2], 0.0, 0.0, 0.0);
+		GPS_SetPlayerRaceCheckPoint(playerid, 1, TrashInfo[listitem][E_TRASH_POS][0], TrashInfo[listitem][E_TRASH_POS][1], TrashInfo[listitem][E_TRASH_POS][2], 0.0, 0.0, 0.0);
 	}
 	return 1;
 }

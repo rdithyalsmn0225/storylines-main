@@ -113,8 +113,8 @@ main ()  {}
 // PROPS MODULES
 #include "modules\props\spraytags.inc"
 #include "modules\props\advertise.inc"
-#include "modules\props\props.inc"
 #include "modules\props\tree.inc"
+#include "modules\props\trash.inc"
 #include "modules\props\gate.inc"
 #include "modules\props\vending.inc"
 // DRUGS MODULES
@@ -229,7 +229,6 @@ public OnGameModeInit()
 	InsertCharacterScene();
 	InsertStaticVehicles();
 	InsertVendingMachines();
-	InsertProjectPropsData();
 
 	// Global timers:
 	SetTimerEx("RandomFire", 5400000, true, "i", 1);
@@ -246,7 +245,6 @@ public OnGameModeInit()
 	SetTimer("OnTreeUpdate", 60000, true);
 	SetTimer("OnPlayerTaxiUpdate", 1000, true);
 	SetTimer("OnPlayerPacketUpdate", 1800000, true);
-	SetTimer("OnGarbageUpdate", 600000, true);
 	SetTimer("OnPlayerConditionUpdate", 1000, true);
 	SetTimer("OnPlayerFactionUpdate", 600000, true);
 	SetTimer("OnPlayerJobsUpdate", 60000, true);
@@ -265,6 +263,7 @@ public OnGameModeInit()
 	mysql_pquery(ourConnection, "SELECT * FROM `court`", "Query_LoadCourt", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `gates`", "Query_LoadGates", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `tree`", "Query_LoadTree", ""); 
+	mysql_pquery(ourConnection, "SELECT * FROM `trashcan`", "Query_LoadTrashcan", ""); 
 	mysql_pquery(ourConnection, "SELECT * FROM `dropped`", "Query_LoadDropped", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `spray_tags`", "Query_LoadSpraytags", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `server_data`", "Query_LoadServerData", "");
@@ -684,6 +683,23 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 				}
 				ShowBoxMessage(playerid, str, 5);
 			}
+		}
+	}
+
+	forex(i, MAX_TRASH) if(TrashInfo[i][E_TRASH_EXISTS])
+	{
+		if(areaid == TrashInfo[i][E_TRASH_AREA])
+		{
+			new str[128];
+			if(!TrashInfo[i][E_TRASH_CAPACITY])
+			{
+				format(str, sizeof(str), "Trashcan is empty.");
+			}
+			else
+			{
+				format(str, sizeof(str), "Press '~r~ALT~w~' to collect trash.");
+			}
+			ShowBoxMessage(playerid, str, 5);
 		}
 	}
 	return 1;
@@ -4335,7 +4351,15 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN])
 		{
-			CollectGarbage(playerid);
+			new id = -1;
+        
+			if ((id = IsPlayerNearTrashcan(playerid)) != -1)
+			{ 
+				if(!TrashInfo[id][E_TRASH_CAPACITY])
+        			return SendErrorMessage(playerid, "Trashcan is empty.");
+
+				CollectGarbage(playerid, id);
+			}
 		}
 	}
 

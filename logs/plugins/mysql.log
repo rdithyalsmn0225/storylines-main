@@ -1,4 +1,6 @@
-[21:22:53] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
-[21:29:42] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
-[21:35:58] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
-[21:39:36] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2013 'Lost connection to MySQL server at 'handshake: reading inital communication packet', system error: 0'
+[11:27:08] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[11:28:03] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[11:31:17] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[11:39:55] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[11:50:03] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[11:53:06] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)

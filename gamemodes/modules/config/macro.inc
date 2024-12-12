@@ -1,5 +1,5 @@
 //Database
-#define MYSQL_HOST
+//#define MYSQL_HOST
 //#define DEBUG_MODE
 
 #if defined MYSQL_HOST
@@ -61,6 +61,7 @@
 #define MAX_COURT					(20)
 #define MAX_RELATIONS 				(100)
 #define MAX_TREES 					(100)
+#define MAX_TRASH      				(35)
 #define MAX_PROPERTY_STORAGE 		(10)
 #define MAX_FURNITURE 				(300)
 #define MAX_GARBAGE 				(100)

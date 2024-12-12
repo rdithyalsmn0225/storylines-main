@@ -265,7 +265,12 @@ Dialog:Inventory(playerid, response, listitem, inputtext[])
 			case 0:
 			{
 				format(name, sizeof(name), "%s (%d):", name, InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY]);
-				ShowPlayerDialog(playerid, DIALOG_INVACTION, DIALOG_STYLE_LIST, name, "Equip Item\nUnequip Item\nGive Item\nDrop Item", "Select", "Cancel");
+				if (IsPlayerNearTrashcan(playerid) != -1) {
+					ShowPlayerDialog(playerid, DIALOG_INVACTION, DIALOG_STYLE_LIST, name, "Equip Item\nUnequip Item\nGive Item\nThrow Item", "Select", "Cancel");
+				}
+				else {
+				    ShowPlayerDialog(playerid, DIALOG_INVACTION, DIALOG_STYLE_LIST, name, "Equip Item\nUnequip Item\nGive Item\nDrop Item", "Select", "Cancel");
+				}
 			}
 			case 1:
 			{
