@@ -223,6 +223,8 @@ function:ResetPlayer(playerid)
 	//Anticheat
 	CurrentHealthVar[playerid] = 0;
 	CurrentArmourVar[playerid] = 0;
+	KillTimer(PlayerEngineTimer[playerid]);
+	PlayerEngineValue[playerid] = 0;
 	ResetPlayerJump(playerid);
 	ResetTeleportAC(playerid);
 

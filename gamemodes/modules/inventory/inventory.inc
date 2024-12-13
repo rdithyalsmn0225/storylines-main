@@ -201,19 +201,20 @@ stock ShowInventory(playerid, targetid)
 		string[256],
 		count = 0;
 
-	format(str, sizeof(str), "[SLOT]: Money $%s\n", FormatMoney(PlayerInfo[targetid][E_CHARACTER_MONEY]));
+	format(str, sizeof(str), "Index\tItems\tQuantity\n");
+	format(str, sizeof(str), "[SLOT]: Money\t$%s\n", FormatMoney(PlayerInfo[targetid][E_CHARACTER_MONEY]));
     for (new i = 0; i < MAX_INVENTORY; i ++)
 	{
  		if (InventoryInfo[targetid][i][E_INVENTORY_EXISTS])
         {
 			if (!InventoryInfo[targetid][i][E_INVENTORY_EXISTS] && InventoryInfo[targetid][i][E_INVENTORY_MODEL] == 0)
-	        	format(str, sizeof(str), "%s[SLOT]: <EMPTY>\n", str);
+	        	format(str, sizeof(str), "%s[SLOT]:\t<EMPTY>\n", str);
 			else
 			{
 				count++;
 				amounts[i] = InventoryInfo[targetid][i][E_INVENTORY_QUANTITY];
 				strunpack(string, InventoryInfo[targetid][i][E_INVENTORY_ITEM]);
-				format(str, sizeof(str), "%s[SLOT]: %s %d\n", str, string, amounts[i]);
+				format(str, sizeof(str), "%s[SLOT]: %s\t%d\n", str, string, amounts[i]);
 			}
 		}
 	}
@@ -232,15 +233,16 @@ stock OpenInventory(playerid)
 		str[2024],
 		string[256];
 
+	format(str, sizeof(str), "Index\tItems\tQuantity\n");
     for (new i = 0; i < MAX_INVENTORY; i ++)
 	{
 		if (!InventoryInfo[playerid][i][E_INVENTORY_EXISTS] && InventoryInfo[playerid][i][E_INVENTORY_MODEL] == 0)
-	        format(str, sizeof(str), "%s[SLOT]: <EMPTY>\n", str);
+	        format(str, sizeof(str), "%s[SLOT]:\t<EMPTY>\n", str);
 		else
 		{
 			amounts[i] = InventoryInfo[playerid][i][E_INVENTORY_QUANTITY];
 			strunpack(string, InventoryInfo[playerid][i][E_INVENTORY_ITEM]);
-			format(str, sizeof(str), "%s[SLOT]: %s %d\n", str, string, amounts[i]);
+			format(str, sizeof(str), "%s[SLOT]: %s\t%d\n", str, string, amounts[i]);
 		}
 	}
 	Dialog_Show(playerid, Inventory, DIALOG_STYLE_TABLIST, "Inventory:", str, "Select", "Close");

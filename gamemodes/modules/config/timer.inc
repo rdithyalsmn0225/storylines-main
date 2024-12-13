@@ -115,26 +115,22 @@ function:OnPlayerUpdateEx()
 			if(IsPlayerInAnyVehicle(playerid)) 
 			{
 				GetVehicleZAngle(GetPlayerVehicleID(playerid), rz);
+
+				if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "North I ~y~N";
+				else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "North East I ~y~NE";
+				else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "East I ~y~E";
+				else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "South East I ~y~SE";
+				else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "South I ~y~S";
+				else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "South West I ~y~SW";
+				else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "West I ~y~W";
+				else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "North West I ~y~NW";
+
+				PlayerTextDrawSetString(playerid, Street[0][playerid], PlayerDirection[playerid]);
+
+				new str1[180];
+				format(str1, sizeof(str1), "%s I %s I San Andreas", ReturnLocationStreet(playerid), ReturnLocation(playerid));
+				PlayerTextDrawSetString(playerid, Street[1][playerid], str1);
 			}
-			else 
-			{
-				GetPlayerFacingAngle(playerid, rz);
-			}
-
-			if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "North I ~y~N";
-			else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "North East I ~y~NE";
-			else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "East I ~y~E";
-			else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "South East I ~y~SE";
-			else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "South I ~y~S";
-			else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "South West I ~y~SW";
-			else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "West I ~y~W";
-			else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "North West I ~y~NW";
-
-			PlayerTextDrawSetString(playerid, Street[0][playerid], PlayerDirection[playerid]);
-
-			new str1[180];
-			format(str1, sizeof(str1), "%s I %s I San Andreas", ReturnLocationStreet(playerid), ReturnLocation(playerid));
-			PlayerTextDrawSetString(playerid, Street[1][playerid], str1);
 			
 			if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false)
 	    	{
