@@ -218,7 +218,7 @@ stock ShowInventory(playerid, targetid)
 			}
 		}
 	}
-	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST,"Inventory:", str,  "Close", "");
+	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS,"Inventory:", str,  "Close", "");
 	return 1;
 
 }
@@ -245,7 +245,7 @@ stock OpenInventory(playerid)
 			format(str, sizeof(str), "%s[SLOT]: %s\t%d\n", str, string, amounts[i]);
 		}
 	}
-	Dialog_Show(playerid, Inventory, DIALOG_STYLE_TABLIST, "Inventory:", str, "Select", "Close");
+	Dialog_Show(playerid, Inventory, DIALOG_STYLE_TABLIST_HEADERS, "Inventory:", str, "Select", "Close");
 	return 1;
 }
 

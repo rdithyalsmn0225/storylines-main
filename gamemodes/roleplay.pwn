@@ -201,25 +201,25 @@ public OnGameModeInit()
 	DisableInteriorEnterExits();
 	
 	// Insert:
-	InsertASGH();
+	//InsertASGH();
 	InsertPrison();
 	InsertObjects();
-	InsertASGHMaps();
+	//InsertASGHMaps();
 	InsertModshops();
-	InsertSAFDMaps();
+	//InsertSAFDMaps();
 	InsertBlackjack();
 	InsertEmmetInit();
 	InsertJobsPoint();
 	InsertAntiCheat();
 	InsertEmmetMaps();
 	InsertAdvertise();
-	InsertPrisonCell();
+	//InsertPrisonCell();
 	InsertDealership();
 	InsertStaticArea();
 	Insert3DTextLabel();
 	InsertAcidGunLabs();
-	InsertProjectProp();
-	InsertAlhambraMaps();
+	//InsertProjectProp();
+	//InsertAlhambraMaps();
 	InsertSidejobsMaps();
 	InsertDocksWorkers();
 	InsertDonatorStars();

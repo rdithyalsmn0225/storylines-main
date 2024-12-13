@@ -291,9 +291,9 @@ CMD:id(playerid, params[])
 		playerb = strval(params);
 		
 		if(!IsPlayerConnected(playerb))
-			return SendClientMessage(playerid, COLOR_RED, "Player not found."); 
+			return SendClientMessage(playerid, COLOR_RED, "Player not found.");
 			
-		SendClientMessageEx(playerid, COLOR_GREY, "(ID: %i) %s | Level: %i", playerb, ReturnName(playerb), PlayerInfo[playerb][E_CHARACTER_LEVEL]); 
+		SendClientMessageEx(playerid, COLOR_GREY, "(ID: %i) %s | Level: %i | Packetloss: %.2f | Ping: %i", playerb, ReturnName(playerb), PlayerInfo[playerb][E_CHARACTER_LEVEL], NetStats_PacketLossPercent(playerb), GetPlayerPing(playerb)); 
 	}
 	else
 	{
