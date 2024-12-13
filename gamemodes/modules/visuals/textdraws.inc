@@ -49,10 +49,35 @@ new PlayerText:gui_spec_label[MAX_PLAYERS][5];
 new PlayerBar:HeaderBar[MAX_PLAYERS];
 new PlayerBar:speedobar[MAX_PLAYERS];
 
+new Text:UpdateIn[2];
+
 //Textdraws
 
 stock CreateTextdraws(playerid)
 {
+
+	UpdateIn[0] = TextDrawCreate(465, 431.007720, "Server_update_in:");
+	TextDrawLetterSize(UpdateIn[0], 0.424666, 1.612444);
+	TextDrawAlignment(UpdateIn[0], 1);
+	TextDrawColor(UpdateIn[0], -1);
+	TextDrawSetShadow(UpdateIn[0], 0);
+	TextDrawSetOutline(UpdateIn[0], 1);
+	TextDrawBackgroundColor(UpdateIn[0], 255);
+	TextDrawFont(UpdateIn[0], 1);
+	TextDrawSetProportional(UpdateIn[0], 1);
+	TextDrawSetShadow(UpdateIn[0], 0);
+
+	UpdateIn[1] = TextDrawCreate(595.0, 431.007720, "00:00");
+	TextDrawLetterSize(UpdateIn[1], 0.424666, 1.612444);
+	TextDrawAlignment(UpdateIn[1], 1);
+	TextDrawColor(UpdateIn[1], -1);
+	TextDrawSetShadow(UpdateIn[1], 0);
+	TextDrawSetOutline(UpdateIn[1], 1);
+	TextDrawBackgroundColor(UpdateIn[1], 255);
+	TextDrawFont(UpdateIn[1], 1);
+	TextDrawSetProportional(UpdateIn[1], 1);
+	TextDrawSetShadow(UpdateIn[1], 0);
+
 	servername[playerid] = CreatePlayerTextDraw(playerid, 320.000000, 436.000000, "GTA Storylines - ~y~"SCRIPT_REV"");
 	PlayerTextDrawFont(playerid, servername[playerid], 1);
 	PlayerTextDrawLetterSize(playerid, servername[playerid], 0.179159, 0.849995);

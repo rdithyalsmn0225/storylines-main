@@ -65,6 +65,7 @@ main ()  {}
 #include "modules\config\timer.inc"
 #include "modules\config\zones.inc"
 #include "modules\config\tips.inc"
+#include "modules\config\maintenance.inc"
 // TAGS MODULES
 #include "modules\tags\tablist.inc"
 // ANIMS MODULES
