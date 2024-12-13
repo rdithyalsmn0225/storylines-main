@@ -27,7 +27,7 @@ function:SetPlayerCamera(playerid)
 
 function:OnOfflineAjail(playerid, jailing[], reason[], length)
 {
-	SendServerMessage(playerid, "[Jail] {DEDEDE}%s was successfully admin jailed.", jailing); 
+	SendServerMessage(playerid, "[Jail] {cdcdcd}%s was successfully admin jailed.", jailing); 
 	
 	new
 		logQuery[256]
@@ -40,7 +40,7 @@ function:OnOfflineAjail(playerid, jailing[], reason[], length)
 
 function:OnOfflineBan(playerid, banning[], dbid, masterdbid, reason[], date[])
 {
-	SendServerMessage(playerid, "[Banned] {DEDEDE}%s was successfully banned.", banning);
+	SendServerMessage(playerid, "[Banned] {cdcdcd}%s was successfully banned.", banning);
 	
 	new
 		logQuery[256]
@@ -98,7 +98,7 @@ public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
         }
         else
         {
-            SetPlayerPosFindZ(playerid, fX, fY, fZ);
+            SetPlayerPosFindZ(playerid, fX, fY, fZ+10);
         }
     }
 
@@ -109,8 +109,8 @@ public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 		if(PlayerInfo[playerb][E_CHARACTER_TAXIDUTY])
 		{
 			GPS_SetPlayerRaceCheckPoint(playerb, 1, fX, fY, fZ, 0.0, 0.0, 0.0);
-			SendJobsMessage(playerid, "[Taxi] {DEDEDE}You has marked destination in driver map!");
-			SendJobsMessage(playerb, "[Taxi] {DEDEDE}Passanger has marked the destination in your map!");
+			SendJobsMessage(playerid, "[Taxi] {cdcdcd}You has marked destination in driver map!");
+			SendJobsMessage(playerb, "[Taxi] {cdcdcd}Passanger has marked the destination in your map!");
 		}
 	}
     return 1;
@@ -148,7 +148,7 @@ function:OnAjailRecord(playerid)
 		
 		cache_get_value_name_int(i, "Time", Time); 
 		
-		SendServerMessage(playerid, "[Jail] {DEDEDE}[%s] %s was admin jailed by %s for %d minutes, Reason: %d", Date, JailedName, JailedBy, Time, Reason);
+		SendServerMessage(playerid, "[Jail] {cdcdcd}[%s] %s was admin jailed by %s for %d minutes, Reason: %d", Date, JailedName, JailedBy, Time, Reason);
 	}
 		
 	return 1;
@@ -194,11 +194,13 @@ function:ResetPlayer(playerid)
 	    ContactInfo[playerid][i][E_CONTACT_NUMBER] = 0;
 	    ListedContacts[playerid][i] = -1;
 	}
+	
 	for (new i = 0; i != MAX_TICKETS; i ++) {
 	    TicketInfo[playerid][i][E_TICKET_DBID] = 0;
 		TicketInfo[playerid][i][E_TICKET_EXISTS] = false;
 		TicketInfo[playerid][i][E_TICKET_FEE] = 0;
 	}
+
 	for(new i; i < 4; i++)
 	{
 		format(characterLister[playerid][i], 128, "");

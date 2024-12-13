@@ -356,8 +356,6 @@ public OnPlayerConnect(playerid)
 	NameTagsConnect(playerid);
 
 	//Player:
-	SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
-	SetPlayerArmourEx(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 	SetPlayerColor(playerid, COLOR_WHITE);
 
 	LastEnteredVehicle[playerid] = INVALID_VEHICLE_ID;
@@ -439,7 +437,7 @@ public OnPlayerDisconnect(playerid, reason)
 					PoolInfo[businessid][E_POOL_STARTED] = false;
 					RestorePoolStick(i);
 					HideHeaderMessage(i);
-					SendServerMessage(i, "[8Ball] {DEDEDE}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+					SendServerMessage(i, "[8Ball] {cdcdcd}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
 				}
 			}
 		}
@@ -519,7 +517,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 				new Cents = floatround(100 * 100, floatround_round);
 				StopDriverstest(playerid);
 				GiveMoney(playerid, -Cents);
-				SendServerMessage(playerid, "[Dmv] {DEDEDE}Congratulations %s, you've passed your test.", ReturnName(playerid)); 
+				SendServerMessage(playerid, "[Dmv] {cdcdcd}Congratulations %s, you've passed your test.", ReturnName(playerid)); 
 				
 				PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE] = 1;
 				SaveCharacter(playerid);
@@ -602,7 +600,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
     			GiveMoney(playerid, Cents);
 
 				ShowBoxMessage(playerid, "~r~Street Cleaner job ended.", 5); 
-				SendJobsMessage(playerid, "[Street Cleaner] {DEDEDE}You've cleaned the street, current cleaned rubbish %d x rubbish and earn $%s.", PlayerSweeperIndex[playerid], FormatMoney(Cents));
+				SendJobsMessage(playerid, "[Street Cleaner] {cdcdcd}You've cleaned the street, current cleaned rubbish %d x rubbish and earn $%s.", PlayerSweeperIndex[playerid], FormatMoney(Cents));
 
 				PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
 				PlayerSweeperIndex[playerid] = 0;
@@ -617,7 +615,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 		if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] == true && PlayerCheckpoint[playerid] == GPS_BUSDRIVER)
 		{
-			SendJobsMessage(playerid, "[Bus Driver] {DEDEDE}Wait at this stop for a few seconds, The marker will disappear when ready.");
+			SendJobsMessage(playerid, "[Bus Driver] {cdcdcd}Wait at this stop for a few seconds, The marker will disappear when ready.");
 
 			new Float:x, Float:y, Float:z;
             GetPlayerPos(playerid, x, y, z);
@@ -3174,9 +3172,6 @@ public OnPlayerSpawn(playerid)
 	SetPlayerSkillLevel(playerid, WEAPONSKILL_AK47, 300);
 	SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 200);
 	SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 300);
-	
-	SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
-	SetPlayerArmourEx(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 
 	SetCameraBehindPlayer(playerid); 
 
@@ -3187,7 +3182,7 @@ public OnPlayerSpawn(playerid)
 		SetPlayerPosEx(playerid, -10.5146,2337.2961,24.3034);
 		SetPlayerInteriorEx(playerid, 0); SetPlayerVirtualWorldEx(playerid, 1338);
 		
-		SendServerMessage(playerid, "[Jail] {DEDEDE}You're currently admin jailed. You have {d7d292}%i{DEDEDE} minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
+		SendServerMessage(playerid, "[Jail] {cdcdcd}You're currently admin jailed. You have {d7d292}%i{cdcdcd} minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
 	}
 	else if(PlayerInfo[playerid][E_CHARACTER_PRISONED] == true)
 	{
@@ -3195,7 +3190,7 @@ public OnPlayerSpawn(playerid)
 		
 		SetPlayerInPrison(playerid);
 		
-		SendServerMessage(playerid, "[Prison] {DEDEDE}You're currently prison. You have {d7d292}%i{DEDEDE} minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
+		SendServerMessage(playerid, "[Prison] {cdcdcd}You're currently prison. You have {d7d292}%i{cdcdcd} minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
 	}
 	else
 	{
@@ -3257,8 +3252,6 @@ public OnPlayerText(playerid, text[])
 
 public OnPlayerUpdate(playerid)
 {
-	UpdateNameTagsTicks(playerid);
-
 	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
 	{
 		PauseAC(playerid);
@@ -3269,88 +3262,8 @@ public OnPlayerUpdate(playerid)
 		SetPlayerHealth(playerid, 100.0);
 		TogglePlayerControllable(playerid, false);
 	}
+
 	
-	if(GetPlayerMoney(playerid) > PlayerInfo[playerid][E_CHARACTER_MONEY])
-		SetMoney(playerid, PlayerInfo[playerid][E_CHARACTER_MONEY]);
-
-	new string[128];
-
-	new Float:health;
-	GetPlayerHealth(playerid, health);
-	if(health < 10 && PlayerInfo[playerid][E_CHARACTER_SPAWNED])
-	{
-		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
-		{	
-			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
-			SendInfoMessage(playerid, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
-		}
-	}
-
-	if(GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED && PlayerInfo[playerid][E_CHARACTER_INJURED])
-	{
-		format(string, sizeof(string), "(( Has been injured %d times, /damages %d for more information. ))", TotalPlayerDamages[playerid], playerid);
-		SetPlayerChatBubble(playerid, string, COLOR_ORANGE, 30.0, 2500); 
-		
-		if(IsPlayerInAnyVehicle(playerid))
-		{
-			ApplyAnimation(playerid, "ped", "CAR_dead_LHS", 4.1, 0, 0, 0, 1, 0, 1);
-		}
-		else
-		{
-			ApplyAnimation(playerid, "WUZI", "CS_Dead_Guy", 4.1, 0, 1, 1, 1, 0, 1);	
-		}	
-	}
-
-	else if(GetPlayerTeam(playerid) == PLAYER_STATE_DEAD && PlayerInfo[playerid][E_CHARACTER_DEATH])
-	{
-		SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_ORANGE, 30.0, 2500); 
-		if(IsPlayerInAnyVehicle(playerid))
-		{
-			ApplyAnimation(playerid, "ped", "CAR_dead_LHS", 4.1, 0, 0, 0, 1, 0, 1);
-		}
-		else
-		{
-			ApplyAnimation(playerid, "WUZI", "CS_Dead_Guy", 4.1, 0, 1, 1, 1, 0, 1);	
-		}	
-	}
-
-	if(IsPlayerInAnyVehicle(playerid) && IsPoliceVehicle(GetPlayerVehicleID(playerid)))
-	{
-		if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
-		{
-			DetectVehicleInFront(playerid);
-		}
-	}
-
-	if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
-	{
-		if(IsPlayerInAnyVehicle(playerid))
-		{
-			PlayerTextDrawShow(playerid, Street[0][playerid]);
-			PlayerTextDrawShow(playerid, Street[1][playerid]);
-			p_Direction[playerid] = true;
-		}
-		else
-		{
-			PlayerTextDrawHide(playerid, Street[0][playerid]);
-			PlayerTextDrawHide(playerid, Street[1][playerid]);
-			p_Direction[playerid] = false;
-		}
-	}
-
-	if (IsPlayerInAnyVehicle(playerid))
-    {
-        new vehicleid = GetPlayerVehicleID(playerid);
-        new Float:velocity[3];
-        GetVehicleVelocity(vehicleid, velocity[0], velocity[1], velocity[2]);
-
-        new Float:speed = floatsqroot((velocity[0] * velocity[0]) + (velocity[1] * velocity[1]) + (velocity[2] * velocity[2])) * 100;
-
-        if (PlayerSpeedLimit[playerid] > 0 && speed > float(PlayerSpeedLimit[playerid])) 
-        {
-            SetVehicleVelocity(vehicleid, velocity[0] * 0.8, velocity[1] * 0.8, velocity[2] * 0.8); 
-        }
-    }
 
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	{
@@ -3382,42 +3295,6 @@ public OnPlayerUpdate(playerid)
 				
 				PlayerJump[playerid][JumpAt] = 0;
 				PlayerJump[playerid][JumpCD] = gettime();
-			}
-		}
-	}
-
-	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
-	{
-		if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") 
-		|| Inventory_Count(playerid, "Foods Cargo") || Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo")
-		|| Inventory_Count(playerid, "Fish Cargo"))
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-			{
-				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CRATES;
-				RemovePlayerAttachedObject(playerid, ATTACH_HAND);
-				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.293999, 0.497999, -0.006000, -99.500007, 90.300033, 99.600013, 0.620999, 0.673000, 0.648999);
-			}
-		}
-		else if(Inventory_Count(playerid, "Woods"))
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-			{
-				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
-				RemovePlayerAttachedObject(playerid, ATTACH_HAND);
-				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 1, 0.000000, 0.465000, 0.000000, 0.000000, 89.699958, 0.000000, 0.348999, 0.340999, 0.444999);
-			}
-		}
-		else
-		{
-			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES || PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == WOODS)
-			{
-				RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-				RemovePlayerAttachedObject(playerid, ATTACH_HAND);
-				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
 			}
 		}
 	}
@@ -3488,7 +3365,7 @@ public OnPlayerUpdate(playerid)
 		    {
 		        if(ReturnFactionType(i) == FACTION_TYPE_MEDICAL && IsPlayerInRangeOfPoint(playerid, 20.0, x, y, z))
 		        {
-		            SendServerMessage(i, "[Fire] {DEDEDE}Well done! You helped put out the fire and received $%s on your paycheck.", FormatMoney(Cents));
+		            SendServerMessage(i, "[Fire] {cdcdcd}Well done! You helped put out the fire and received $%s on your paycheck.", FormatMoney(Cents));
 		            GivePaycheck(i, Cents);
 		        }
 			}
@@ -3503,38 +3380,6 @@ public OnPlayerUpdate(playerid)
 		{
 			UpdateSpectatorPanel(playerid, i);
 		}
-	}
-
-	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
-	{
-		new Float:rz;
-		new p_PreviousDirection[8];
-
-		strcat((p_PreviousDirection[0] = EOS, p_PreviousDirection), PlayerDirection[playerid]);
-
-		if(IsPlayerInAnyVehicle(playerid)) 
-		{
-			GetVehicleZAngle(GetPlayerVehicleID(playerid), rz);
-		}
-		else 
-		{
-			GetPlayerFacingAngle(playerid, rz);
-		}
-
-		if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "North I ~y~N";
-		else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "North East I ~y~NE";
-		else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "East I ~y~E";
-		else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "South East I ~y~SE";
-		else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "South I ~y~S";
-		else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "South West I ~y~SW";
-		else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "West I ~y~W";
-		else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "North West I ~y~NW";
-
-		PlayerTextDrawSetString(playerid, Street[0][playerid], PlayerDirection[playerid]);
-
-		new str[128];
-		format(str, sizeof(str), "%s I %s I San Andreas", ReturnLocationStreet(playerid), ReturnLocation(playerid));
-		PlayerTextDrawSetString(playerid, Street[1][playerid], str);
 	}
 
 	return 1;
@@ -3708,7 +3553,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
                 }
                 else
                 {
-                    SendServerMessage(playerid, "[Hotwire]{DEDEDE} Hotwire failed.");
+                    SendServerMessage(playerid, "[Hotwire]{cdcdcd} Hotwire failed.");
                 }
                 HotwireFirstClick[playerid] = -1;
             }
@@ -3746,7 +3591,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 
 		if (blackjackPlayerScore[playerid] > 21)
 		{
-			SendServerMessage(playerid, "[Blackjack] {DEDEDE}You lost! Your cards exceeded 21 (Bust).");
+			SendServerMessage(playerid, "[Blackjack] {cdcdcd}You lost! Your cards exceeded 21 (Bust).");
 			ResetBlackjack(playerid);
 			return 1;
 		}
@@ -3770,15 +3615,15 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		if (BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE] > 21 || blackjackPlayerScore[playerid] > BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE])
 		{
 			GiveMoney(playerid, blackjackPlayerBet[playerid] * 2);
-			SendServerMessage(playerid, "[Blackjack] {DEDEDE}You won and earn your bet x2 for $%s.", FormatMoney(blackjackPlayerBet[playerid] * 2));
+			SendServerMessage(playerid, "[Blackjack] {cdcdcd}You won and earn your bet x2 for $%s.", FormatMoney(blackjackPlayerBet[playerid] * 2));
 		}
 		else if (blackjackPlayerScore[playerid] == BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE])
 		{
-			SendServerMessage(playerid, "[Blackjack] {DEDEDE}It's draw! There are no winners (Push).");
+			SendServerMessage(playerid, "[Blackjack] {cdcdcd}It's draw! There are no winners (Push).");
 		}
 		else
 		{
-			SendServerMessage(playerid, "[Blackjack] {DEDEDE}You lost! Dealer has a higher score (Bust).");
+			SendServerMessage(playerid, "[Blackjack] {cdcdcd}You lost! Dealer has a higher score (Bust).");
 		}
 
 		ResetBlackjack(playerid);
@@ -3891,7 +3736,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought buster meals and eat it");
+		SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought buster meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
 
 		new Float:health;
@@ -3916,7 +3761,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought duoble d-luxe meals and eat it");
+		SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought duoble d-luxe meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
 
 		new Float:health;
@@ -3941,7 +3786,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought duoble d-luxe meals and eat it");
+		SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought duoble d-luxe meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
 
 		new Float:health;
@@ -4404,27 +4249,27 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					case 1:	
 					{
 						Inventory_Add(playerid, "Cod", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {DEDEDE}You caught a {d7d292}12.5.kg{DEDEDE} of Cod.");
+						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a {d7d292}12.5.kg{cdcdcd} of Cod.");
 					}
 					case 2:	
 					{
 						Inventory_Add(playerid, "Carp", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {DEDEDE}You caught a {d7d292}10.5.kg{DEDEDE} of Carp.");
+						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a {d7d292}10.5.kg{cdcdcd} of Carp.");
 					}
 					case 3:	
 					{
 						Inventory_Add(playerid, "Salmon", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {DEDEDE}You caught a {d7d292}8.5 lbs{DEDEDE} of Salmon.");
+						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a {d7d292}8.5 lbs{cdcdcd} of Salmon.");
 					}
 					case 4:	
 					{
 						Inventory_Add(playerid, "Cat Fish", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {DEDEDE}You caught a {d7d292}15.5 lbs{DEDEDE} of Cat fish.");
+						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a {d7d292}15.5 lbs{cdcdcd} of Cat fish.");
 					}
 					case 5:	
 					{
 						Inventory_Add(playerid, "Herring", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {DEDEDE}You caught a {d7d292}1.5 lbs{DEDEDE} of Herring.");
+						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a {d7d292}1.5 lbs{cdcdcd} of Herring.");
 					}
 				}
 			}
@@ -4852,7 +4697,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
 		if(!VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_ENGINE] && IsEngineVehicle(vehicleid)){
-			ShowBoxMessage(playerid, "The engine of this vehicle is off.~n~Use /engine to turn it on or /hotwire to hotwire it.", 5, 1);
+			ShowBoxMessage(playerid, "The engine of this vehicle is off.~n~Use /engine to turn it on or /hotwire to hotwire it.", 2, 1);
 	   	}
 
 	   	if (ReturnVehicleHealth(vehicleid) <= 350){
@@ -4863,7 +4708,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			SendClientMessage(playerid, COLOR_RED, "You don't own a driver license, drive safety or the cops may issue you a ticket.");
 			
 		if(VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID])
-			SendClientMessage(playerid, COLOR_BROWN, "This vehicle is owned by you.");
+			SendClientMessage(playerid, COLOR_VEHICLE, "This vehicle is owned by you.");
 			
 		for(new i = 0; i < sizeof DMV_Vehicles; i++) if(GetPlayerVehicleID(playerid) == DMV_Vehicles[i])
 			SendTipMessage(playerid, "This vehicle is part of departement of motor vehicles. in order to start it '/licenseexam'.");
@@ -4873,22 +4718,15 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 
 		if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && IsPoliceVehicle(vehicleid))
 		{
-			SetVehicleToRespawnEx(vehicleid);
 			RemovePlayerFromVehicle(playerid);
 			SendErrorMessage(playerid, "You aren't apart of police departement.");
 			return 1;
 		}
 		if(ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL && IsMedicalVehicle(vehicleid))
 		{
-			SetVehicleToRespawnEx(vehicleid);
 			RemovePlayerFromVehicle(playerid);
 			SendErrorMessage(playerid, "You aren't apart of medical departement.");
 			return 1;
-		}
-
-		if(IsABoat(vehicleid))
-		{
-			SendTipMessage(playerid, "You are now entering boat, /fish to start fishing.");
 		}
 	}
 
@@ -4900,8 +4738,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 
-	    SendJobsMessage(driverid, "[Taxi] {DEDEDE}%s has entered your taxi as a passenger.", ReturnName(playerid, driverid));
-		SendJobsMessage(playerid, "[Taxi] {DEDEDE}You have entered {d7d292}%s's{DEDEDE} taxi.", ReturnName(driverid, playerid));
+	    SendJobsMessage(driverid, "[Taxi] {cdcdcd}%s has entered your taxi as a passenger.", ReturnName(playerid, driverid));
+		SendJobsMessage(playerid, "[Taxi] {cdcdcd}You have entered {d7d292}%s's{cdcdcd} taxi.", ReturnName(driverid, playerid));
 	}
  	if (oldstate == PLAYER_STATE_PASSENGER && PlayerInfo[playerid][E_CHARACTER_TAXITIMER] != 0 && PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
 	{
@@ -4959,7 +4797,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	    }
 	    
         PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
-        SendJobsMessage(playerid, "[taxi] {DEDEDE}You are no longer on taxi duty!");
+        SendJobsMessage(playerid, "[taxi] {cdcdcd}You are no longer on taxi duty!");
 	}
 
     if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK])
@@ -5454,9 +5292,9 @@ function:SaveCharacterPos(playerid)
 
 function:SaveCharacter(playerid)
 {
-	new query[1024];
+	new query[2024];
 
-	if(!PlayerInfo[playerid][E_CHARACTER_SPAWNED])
+	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING || !PlayerInfo[playerid][E_CHARACTER_SPAWNED])
 		return 0;
 	
 	mysql_format(ourConnection, query, sizeof(query), "UPDATE masters SET forum_name = '%e', acc_admin = '%i', active_ip = '%e' WHERE acc_dbid = %i",	

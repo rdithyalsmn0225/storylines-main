@@ -61,7 +61,7 @@ function:OnPlayerWounded(playerid, killerid, reason)
 					PoolInfo[businessid][E_POOL_STARTED] = false;
 					RestorePoolStick(i);
 					HideHeaderMessage(i);
-					SendServerMessage(i, "[8Ball] {DEDEDE}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+					SendServerMessage(i, "[8Ball] {cdcdcd}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
 				}
 			}
 		}
@@ -143,7 +143,7 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 					PoolInfo[businessid][E_POOL_STARTED] = false;
 					RestorePoolStick(i);
 					HideHeaderMessage(i);
-					SendServerMessage(i, "[8Ball] {DEDEDE}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+					SendServerMessage(i, "[8Ball] {cdcdcd}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
 				}
 			}
 		}

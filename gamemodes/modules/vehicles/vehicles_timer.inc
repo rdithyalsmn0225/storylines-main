@@ -1,6 +1,6 @@
 function:OnVehicleFuelUpdate()
 {
-	for (new i = 1; i != MAX_VEHICLES; i ++) if (IsEngineVehicle(i) && GetVehicleEngineStatus(i))
+	for (new i = 1; i != GetVehiclePoolSize(); i ++) if (VehicleInfo[i][E_VEHICLE_EXISTS] && IsEngineVehicle(i) && GetVehicleEngineStatus(i))
 	{
 		if(VehicleInfo[i][E_VEHICLE_ADMIN]) //kalo kendaraan admin ga bisa ngurang.
 			return 0;
@@ -13,7 +13,7 @@ function:OnVehicleFuelUpdate()
 
 			if (VehicleInfo[i][E_VEHICLE_FUEL] >= 1.0 && VehicleInfo[i][E_VEHICLE_FUEL] <= 5.0)
 			{
-			    SendVehicleMessage(GetVehicleDriver(i), "[Vehicle] {DEDEDE}This vehicle is low on fuel.");
+			    SendVehicleMessage(GetVehicleDriver(i), "[Vehicle] {cdcdcd}This vehicle is low on fuel.");
 			}
             SaveVehicle(i);
 		}
@@ -44,7 +44,7 @@ function:OnVehicleRental()
 					mysql_format(ourConnection, delQuery, sizeof(delQuery), "DELETE FROM vehicles WHERE VehicleDBID = %i", dbid);
 					mysql_pquery(ourConnection, delQuery); 
 					
-					SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}Your rental vehicle %s has been returned.", ReturnVehicleName(i)); 
+					SendVehicleMessage(playerid, "[Vehicle] {cdcdcd}Your rental vehicle %s has been returned.", ReturnVehicleName(i)); 
 					
 					ResetVehicleVars(i); 
 					VS_RemoveAllItems(i);
@@ -85,7 +85,7 @@ function:OnVehicleUpdate()
 
 	new Float:x, Float:y, Float:z, Float:a;
 
-	for(new i = 1, j = GetVehiclePoolSize(); i <= j; i++)
+	for(new i = 1, j = GetVehiclePoolSize(); i <= j; i++) if(VehicleInfo[i][E_VEHICLE_EXISTS])
     {
 		if(VehicleInfo[i][E_VEHICLE_ADMIN]) //kalo kendaraan admin ga bisa ngurang.
 			return 0;

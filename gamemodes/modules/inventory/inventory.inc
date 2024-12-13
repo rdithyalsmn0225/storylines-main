@@ -511,12 +511,12 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		if(PlayerInfo[playerid][E_CHARACTER_MASKON])
 		{
 			PlayerInfo[playerid][E_CHARACTER_MASKON] = false;
-			SendServerMessage(playerid, "[Mask] {DEDEDE}Mask has been Disable.");
+			SendServerMessage(playerid, "[Mask] {cdcdcd}Mask has been Disable.");
 		}
 		else
 		{
 			PlayerInfo[playerid][E_CHARACTER_MASKON] = true;
-			SendServerMessage(playerid, "[Mask] {DEDEDE}Mask has been Enable.");
+			SendServerMessage(playerid, "[Mask] {cdcdcd}Mask has been Enable.");
 		}
 	}
 	else if(!strcmp(name, "Marijuana"))

@@ -234,8 +234,8 @@ CMD:pay(playerid, params[])
     PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
     playerLastpay[playerid] = gettime(); 
     
-    SendServerMessage(playerid, "[Pay] {DEDEDE}You have sent $%s to %s.", FormatMoney(Cents), ReturnName(playerb)); 
-    SendServerMessage(playerb, "[Pay] {DEDEDE}You have received $%s from %s.", FormatMoney(Cents), ReturnName(playerid)); 
+    SendServerMessage(playerid, "[Pay] {cdcdcd}You have sent $%s to %s.", FormatMoney(Cents), ReturnName(playerb)); 
+    SendServerMessage(playerb, "[Pay] {cdcdcd}You have received $%s from %s.", FormatMoney(Cents), ReturnName(playerid)); 
     
     if ((PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3) || Cents >= 5000) 
     {
@@ -263,7 +263,7 @@ CMD:charity(playerid, params[])
     GiveMoney(playerid, -Cents);
 
 	SaveCharacter(playerid);
-	SendServerMessage(playerid, "[Charity] {DEDEDE}You've charity {33AA33}%s{DEDEDE} for this server.", FormatMoney(Cents));
+	SendServerMessage(playerid, "[Charity] {cdcdcd}You've charity {33AA33}%s{cdcdcd} for this server.", FormatMoney(Cents));
 	return 1;
 }
 
@@ -1855,7 +1855,7 @@ CMD:low(playerid, params[])
 					if (GetPlayerVehicleID(targetid) == GetPlayerVehicleID (playerid) ) {
 
 						format(string, sizeof(string), "(Windows Closed) %s says [low]: %s", ReturnName(playerid), text);
-						SendClientMessageEx(targetid, 0xDEDEDEFF, string);
+						SendClientMessageEx(targetid, 0xcdcdcdFF, string);
 					}
 				}
 			}
@@ -1900,7 +1900,7 @@ CMD:to(playerid, params[])
 
 	new prox[256];
 	new Float: max_range = 15.0;
-	new color = 0xDEDEDEFF;
+	new color = 0xcdcdcdFF;
 	
 	new vehicleid = GetPlayerVehicleID(playerid);
 	if (vehicleid && IsPlayerInAnyVehicle(playerid) && IsWindowedVehicle(vehicleid)) 
@@ -1912,11 +1912,11 @@ CMD:to(playerid, params[])
 					if ( GetPlayerVehicleID(targetid) == GetPlayerVehicleID ( playerid ) ) {
 
 						if(playerid == userid) {
-							format ( prox, sizeof ( prox ), "(Windows Closed) %s{DEDEDE} says (to self): %s",  ReturnName(playerid), text ) ;
+							format ( prox, sizeof ( prox ), "(Windows Closed) %s{cdcdcd} says (to self): %s",  ReturnName(playerid), text ) ;
 						} 
-						else format ( prox, sizeof ( prox ), "(Windows Closed) %s{DEDEDE} says (to %s{DEDEDE}): %s",  ReturnName(playerid), ReturnName(userid), text ) ;
+						else format ( prox, sizeof ( prox ), "(Windows Closed) %s{cdcdcd} says (to %s{cdcdcd}): %s",  ReturnName(playerid), ReturnName(userid), text ) ;
 		
-						SendClientMessageEx(targetid, 0xDEDEDEFF, prox);
+						SendClientMessageEx(targetid, 0xcdcdcdFF, prox);
 						
 					}
 				}
@@ -2549,11 +2549,11 @@ CMD:afk(playerid, params[])
 
 	if(PlayerInfo[targetid][E_CHARACTER_AFK])
 	{
-	    SendServerMessage(playerid, "[Afk] {DEDEDE}%s has been marked as Away from keyboard for {d7d292}%i{DEDEDE} minutes.", ReturnName(targetid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
+	    SendServerMessage(playerid, "[Afk] {cdcdcd}%s has been marked as Away from keyboard for {d7d292}%i{cdcdcd} minutes.", ReturnName(targetid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
 	}
 	else
 	{
-	    SendServerMessage(playerid, "[Afk] {DEDEDE}%s is currently not marked as Away from keyboard.", ReturnName(targetid));
+	    SendServerMessage(playerid, "[Afk] {cdcdcd}%s is currently not marked as Away from keyboard.", ReturnName(targetid));
 	}
 
 	return 1;

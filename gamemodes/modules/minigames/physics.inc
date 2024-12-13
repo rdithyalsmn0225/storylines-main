@@ -63,7 +63,7 @@ public PHY_OnObjectUpdate(objectid)
                             : PoolInfo[businessid][E_POOL_PLAYER1]);
 
                             new str[128];
-                            format(str, sizeof(str), "[8Ball] {DEDEDE}%s has pocketed the cue ball.", ReturnName(PoolInfo[businessid][E_POOL_LASTSHOOTER]));
+                            format(str, sizeof(str), "[8Ball] {cdcdcd}%s has pocketed the cue ball.", ReturnName(PoolInfo[businessid][E_POOL_LASTSHOOTER]));
                             SendPoolPlayersMessage(str);
                             RestoreCamera(PoolInfo[businessid][E_POOL_LASTSHOOTER], businessid);
 
@@ -76,7 +76,7 @@ public PHY_OnObjectUpdate(objectid)
                             {
                                 if (PlayingPool[p])
                                 {
-                                    format(string, sizeof(string), "[8Ball] {DEDEDE}The winner is: %s because PoolBall 8 was pocketed.", ReturnName(p));
+                                    format(string, sizeof(string), "[8Ball] {cdcdcd}The winner is: %s because PoolBall 8 was pocketed.", ReturnName(p));
                                     SendPoolPlayersMessage(string);
 
                                     PlayingPool[p] = false;
@@ -173,7 +173,7 @@ public PHY_OnObjectUpdate(objectid)
                                     ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER1], "Pool: 8-Ball", string, 1);
                                     ShowHeaderMessage(PoolInfo[businessid][E_POOL_PLAYER2], "Pool: 8-Ball", string, 1);
                                     
-                                    SendPoolPlayersMessage("[8Ball] {DEDEDE}Wrong ball type! Opponent scores a point.");
+                                    SendPoolPlayersMessage("[8Ball] {cdcdcd}Wrong ball type! Opponent scores a point.");
                                     RestoreCamera(PoolInfo[businessid][E_POOL_LASTSHOOTER], businessid);
                                     return 1;
                                 }
@@ -236,15 +236,15 @@ public PHY_OnObjectUpdate(objectid)
                                     new string[128];
                                     if (PoolInfo[businessid][E_POOL_PLAYER1SCORE] > PoolInfo[businessid][E_POOL_PLAYER2SCORE])
                                     {
-                                        format(string, sizeof(string), "[8Ball] {DEDEDE}The winner is: %s with %d points.", ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE]);
+                                        format(string, sizeof(string), "[8Ball] {cdcdcd}The winner is: %s with %d points.", ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), PoolInfo[businessid][E_POOL_PLAYER1SCORE]);
                                     }
                                     else if (PoolInfo[businessid][E_POOL_PLAYER2SCORE] > PoolInfo[businessid][E_POOL_PLAYER1SCORE])
                                     {
-                                        format(string, sizeof(string), "[8Ball] {DEDEDE}The winner is: %s with %d points.", ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
+                                        format(string, sizeof(string), "[8Ball] {cdcdcd}The winner is: %s with %d points.", ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), PoolInfo[businessid][E_POOL_PLAYER2SCORE]);
                                     }
                                     else
                                     {
-                                        format(string, sizeof(string), "[8Ball] {DEDEDE}The game is a draw with %d points each.", PoolInfo[businessid][E_POOL_PLAYER1SCORE]);
+                                        format(string, sizeof(string), "[8Ball] {cdcdcd}The game is a draw with %d points each.", PoolInfo[businessid][E_POOL_PLAYER1SCORE]);
                                     }
 
                                     SendPoolPlayersMessage(string);

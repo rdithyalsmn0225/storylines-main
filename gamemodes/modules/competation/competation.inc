@@ -99,7 +99,7 @@ CMD:createcode(playerid, params[])
     mysql_format(ourConnection, query, sizeof(query), "INSERT INTO compensation_codes (code, max_players, expired, money, players_used) VALUES ('%s', %d, %d, %d, 0)", code, players, expired, Cents);
     mysql_tquery(ourConnection, query);
 
-    SendServerMessage(playerid, "[Compensation] {DEDEDE}Compensation code created successfully!");
+    SendServerMessage(playerid, "[Compensation] {cdcdcd}Compensation code created successfully!");
     return 1;
 }
 
@@ -125,7 +125,7 @@ CMD:clearcode(playerid, params[])
     mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_codes");
     mysql_tquery(ourConnection, query);
 
-    SendServerMessage(playerid, "[Compensation] {DEDEDE}All compensation codes have been cleared successfully!");
+    SendServerMessage(playerid, "[Compensation] {cdcdcd}All compensation codes have been cleared successfully!");
     return 1;
 }
 
@@ -203,7 +203,7 @@ function:CompensationCallback(playerid, codeid)
         mysql_format(ourConnection, query, sizeof(query), "UPDATE compensation_codes SET players_used = players_used + 1 WHERE code = '%s'", CompetationInfo[codeid][E_COMPETATION_CODE]);
         mysql_tquery(ourConnection, query);
 
-        SendServerMessage(playerid, "[Competation] {DEDEDE}You have successfully claimed your compensation!");
+        SendServerMessage(playerid, "[Competation] {cdcdcd}You have successfully claimed your compensation!");
     }
     return 1;
 }

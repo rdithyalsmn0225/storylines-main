@@ -105,7 +105,7 @@ Dialog:GeneralStore1(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a cellphone.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a cellphone for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a cellphone for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -121,7 +121,7 @@ Dialog:GeneralStore1(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a radio.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a radio for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a radio for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -137,7 +137,7 @@ Dialog:GeneralStore1(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a gasoline.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a gasoline for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a gasoline for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -153,7 +153,7 @@ Dialog:GeneralStore1(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a repairkit.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a repairkit for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a repairkit for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -181,7 +181,7 @@ Dialog:GeneralStore2(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a spikebat.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a spikebat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a spikebat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 
@@ -198,7 +198,7 @@ Dialog:GeneralStore2(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a wooden.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a wooden for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a wooden for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -214,7 +214,7 @@ Dialog:GeneralStore2(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a nailbat.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a nailbat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a nailbat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -242,7 +242,7 @@ Dialog:GeneralStore3(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a raw meat.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a raw meat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a raw meat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -258,7 +258,7 @@ Dialog:GeneralStore3(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a parsley.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a parsley for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a parsley for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -274,7 +274,7 @@ Dialog:GeneralStore3(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a mint.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a mint for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a mint for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -290,7 +290,7 @@ Dialog:GeneralStore3(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a oregano.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a oregano for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a oregano for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -306,7 +306,7 @@ Dialog:GeneralStore3(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a baking soda.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a baking soda for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a baking soda for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -335,7 +335,7 @@ Dialog:GeneralStore4(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a spraycan.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a spraycan for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a spraycan for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 
@@ -353,7 +353,7 @@ Dialog:GeneralStore4(playerid, response, listitem, inputtext[])
                 if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a crowbar.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a crowbar for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a crowbar for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -381,7 +381,7 @@ Dialog:GeneralStore5(playerid, response, listitem, inputtext[])
                 if(2 > PlayerInfo[playerid][E_CHARACTER_MONEY])
                     return SendErrorMessage(playerid, "You can't afford a sprunk.");
             
-                SendPropertyMessage(playerid, "[Business] {DEDEDE}You bought a sprunk for $2.");
+                SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a sprunk for $2.");
 
                 PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 5; 
                 BusinessInfo[businessid][E_BUSINESS_STOCK]--;

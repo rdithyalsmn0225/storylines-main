@@ -94,7 +94,7 @@ CMD:bizproduct(playerid, params[])
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][1] = Cents;
 			SaveBusiness(id);
-			SendPropertyMessage(playerid, "[Business] {DEDEDE}You has set your business product {d7d292}#1{DEDEDE} to $%s.", FormatMoney(Cents));
+			SendPropertyMessage(playerid, "[Business] {cdcdcd}You has set your business product {d7d292}#1{cdcdcd} to $%s.", FormatMoney(Cents));
 		}
 		case 2:
 		{
@@ -103,7 +103,7 @@ CMD:bizproduct(playerid, params[])
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][2] = Cents;
 			SaveBusiness(id);
-			SendPropertyMessage(playerid, "[Business] {DEDEDE}You has set your business product {d7d292}#2{DEDEDE} to $%s.", FormatMoney(Cents));
+			SendPropertyMessage(playerid, "[Business] {cdcdcd}You has set your business product {d7d292}#2{cdcdcd} to $%s.", FormatMoney(Cents));
 		}
 		case 3:
 		{
@@ -112,7 +112,7 @@ CMD:bizproduct(playerid, params[])
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][3] = Cents;
 			SaveBusiness(id);
-			SendPropertyMessage(playerid, "[Business] {DEDEDE}You has set your business product {d7d292}#3{DEDEDE} to $%s.", FormatMoney(Cents));
+			SendPropertyMessage(playerid, "[Business] {cdcdcd}You has set your business product {d7d292}#3{cdcdcd} to $%s.", FormatMoney(Cents));
 		}
 	}
 	return 1;
@@ -177,10 +177,13 @@ CMD:bizcash(playerid, params[])
 			if(sscanf(bstr, "f", amount))
 				return SendUsageMessage(playerid, "/bizcash deposit [amount]"); 
 				
-			if(amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
-				return SendErrorMessage(playerid, "You don't have that much money.");
-				
 			new Cents = floatround(amount * 100, floatround_round);
+			
+			if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+				return SendErrorMessage(playerid, "You don't have that much money.");
+
+			if (amount < 0.01)
+        		return SendErrorMessage(playerid, "Amount must be greater than $0.01.");
 
     		GiveMoney(playerid, -Cents);
 			BusinessInfo[id][E_BUSINESS_CASH]+= Cents;
@@ -192,12 +195,16 @@ CMD:bizcash(playerid, params[])
 		{	
 			if(sscanf(bstr, "f", amount))
 				return SendUsageMessage(playerid, "/bizcash deposit [amount]"); 
-			
-			if(amount > BusinessInfo[id][E_BUSINESS_CASH])
-				return SendErrorMessage(playerid, "Your business doesn't have that much money.");
 				
 			new Cents = floatround(amount * 100, floatround_round);
+			
+			if(Cents > BusinessInfo[id][E_BUSINESS_CASH])
+				return SendErrorMessage(playerid, "Your business doesn't have that much money.");
 
+			if (amount < 0.01)
+        		return SendErrorMessage(playerid, "Amount must be greater than $0.01.");
+				
+			
     		GiveMoney(playerid, -Cents);
 			BusinessInfo[id][E_BUSINESS_CASH]-= Cents;
 			

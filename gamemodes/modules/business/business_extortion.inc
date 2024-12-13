@@ -84,7 +84,7 @@ stock Relations_Add(playerid, name[])
 
 	    if (rid != -1)
 	    {
-            SendServerMessage(playerid, "[Extort] {DEDEDE}You've got relations with %s.", name);
+            SendServerMessage(playerid, "[Extort] {cdcdcd}You've got relations with %s.", name);
 
 	        RelationsInfo[playerid][rid][E_RELATIONS_EXISTS] = true;
             RelationsInfo[playerid][rid][E_RELATIONS_POINTS] = 100;
@@ -126,7 +126,7 @@ stock Relations_Remove(playerid, name[], value)
 	    	{
 				RelationsInfo[playerid][rid][E_RELATIONS_POINTS] = 0;
 			}
-            SendServerMessage(playerid, "[Extort] {DEDEDE}You've lost %d relations with %s.", value, name);
+            SendServerMessage(playerid, "[Extort] {cdcdcd}You've lost %d relations with %s.", value, name);
 
 			format(query, sizeof(query), "UPDATE relations SET RelationsPoints = %i WHERE RelationsID = %i AND ID = %i",
                 RelationsInfo[playerid][rid][E_RELATIONS_POINTS],
@@ -192,11 +192,11 @@ CMD:extort(playerid, params[])
 			new interior = GetPlayerInterior(playerid);
 
 			switch (random(5)) {
-				case 0: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xDEDEDEFF, "Cashiers says: Aye mane! Just take the cash don't shoot me!");
-				case 1: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xDEDEDEFF, "Cashiers says: W-woah! Brozza please don't shoot... Just take the cash!");
-				case 2: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xDEDEDEFF, "Cashiers says: Don't shoot! Take the cash, it ain't mine anyway!");
-				case 3: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xDEDEDEFF, "Cashiers says: You makin' a big mistake.. Just take the cash and don't shoot!");
-				case 4: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xDEDEDEFF, "Cashiers says: Please don't take my money! I need to feed my children!");
+				case 0: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xcdcdcdFF, "Cashiers says: Aye mane! Just take the cash don't shoot me!");
+				case 1: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xcdcdcdFF, "Cashiers says: W-woah! Brozza please don't shoot... Just take the cash!");
+				case 2: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xcdcdcdFF, "Cashiers says: Don't shoot! Take the cash, it ain't mine anyway!");
+				case 3: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xcdcdcdFF, "Cashiers says: You makin' a big mistake.. Just take the cash and don't shoot!");
+				case 4: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xcdcdcdFF, "Cashiers says: Please don't take my money! I need to feed my children!");
 			}
 
 			new str[133];

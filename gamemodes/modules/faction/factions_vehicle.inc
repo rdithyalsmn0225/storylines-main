@@ -78,7 +78,7 @@ CMD:despawn(playerid, params[])
                         FactionVehicle[i][E_FACVEHICLE_SPAWNED] = false;
                         FactionVehicle[i][E_FACVEHICLE_VEH] = INVALID_VEHICLE_ID;
 
-                        SendServerMessage(playerid, "[Faction] {DEDEDE}Faction Vehicle despawned successfully.");
+                        SendServerMessage(playerid, "[Faction] {cdcdcd}Faction Vehicle despawned successfully.");
                         return 1;
                     }
                     else
@@ -128,7 +128,7 @@ Dialog:LSMDFactionVehicles(playerid, response, listitem, inputtext[])
 
         FactionVehicle[index][E_FACVEHICLE_SPAWNED] = true;
 
-        SendServerMessage(playerid, "[Faction] {DEDEDE} Faction Vehicle spawned successfully.");
+        SendServerMessage(playerid, "[Faction] {cdcdcd} Faction Vehicle spawned successfully.");
     }
     return 1;
 }
@@ -158,7 +158,7 @@ Dialog:LSPDFactionVehicles(playerid, response, listitem, inputtext[])
         SetVehicleNumberPlate(FactionVehicle[listitem][E_FACVEHICLE_VEH], FactionVehicle[FactionVehicle[listitem][E_FACVEHICLE_VEH]][E_FACVEHICLE_PLATES]);
         FactionVehicle[listitem][E_FACVEHICLE_SPAWNED] = true;
 
-        SendServerMessage(playerid, "[Faction] {DEDEDE} Faction Vehicles spawned successfully.");
+        SendServerMessage(playerid, "[Faction] {cdcdcd} Faction Vehicles spawned successfully.");
     }
     return 1;
 }

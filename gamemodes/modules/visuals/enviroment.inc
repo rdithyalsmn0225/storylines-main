@@ -1285,7 +1285,7 @@ InsertASGH()
 	tmpobjid = CreateDynamicObject(19353, 1249.915649, -1282.021850, 1064.399536, 0.000000, 0.000000, 0.000000, -1, -1, -1, 300.00, 300.00);
 	SetDynamicObjectMaterial(tmpobjid, 0, 17547, "eastbeach4a_lae2", "bluestucco1", 0);
 	tmpobjid = CreateDynamicObject(1893, 1265.468872, -1280.564575, 1064.009765, 0.000000, 0.000007, 0.000000, -1, -1, -1, 300.00, 300.00);
-	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "ws_whitestripe", 0);
+	//SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "ws_whitestripe", 0);
 	SetDynamicObjectMaterial(tmpobjid, 1, 10765, "airportgnd_sfse", "ws_whitestripe", 0);
 	tmpobjid = CreateDynamicObject(9131, 1265.619873, -1280.566528, 1064.579467, 0.000000, 180.000000, 0.000000, -1, -1, -1, 300.00, 300.00);
 	SetDynamicObjectMaterial(tmpobjid, 0, 10765, "airportgnd_sfse", "ws_whitestripe", 0);

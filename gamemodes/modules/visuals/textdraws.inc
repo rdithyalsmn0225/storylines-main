@@ -678,13 +678,13 @@ CreateNotificationTextDraws(playerid)
 
 CreateHUDTextDraws(playerid)
 {
-	Street[0][playerid] = CreatePlayerTextDraw(playerid, 569.000000, 409.000000, "South North I ~y~SN");
+	Street[0][playerid] = CreatePlayerTextDraw(playerid, 636.000000, 411.000000, "South North I ~y~SN");
 	PlayerTextDrawFont(playerid, Street[0][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, Street[0][playerid], 0.212491, 1.199998);
 	PlayerTextDrawTextSize(playerid, Street[0][playerid], 400.000000, 93.500000);
 	PlayerTextDrawSetOutline(playerid, Street[0][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, Street[0][playerid], 0);
-	PlayerTextDrawAlignment(playerid, Street[0][playerid], 2);
+	PlayerTextDrawAlignment(playerid, Street[0][playerid], 3);
 	PlayerTextDrawColor(playerid, Street[0][playerid], -1);
 	PlayerTextDrawBackgroundColor(playerid, Street[0][playerid], 255);
 	PlayerTextDrawBoxColor(playerid, Street[0][playerid], 50);
@@ -692,13 +692,13 @@ CreateHUDTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, Street[0][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, Street[0][playerid], 0);
 
-	Street[1][playerid] = CreatePlayerTextDraw(playerid, 569.000000, 421.000000, "Westmont Avenue I El Corona I Los santos");
+	Street[1][playerid] = CreatePlayerTextDraw(playerid, 637.000000, 423.000000, "St. Nicholas Avenue I Los Santos International I San Andreas");
 	PlayerTextDrawFont(playerid, Street[1][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Street[1][playerid], 0.166656, 1.099993);
-	PlayerTextDrawTextSize(playerid, Street[1][playerid], 402.000000, 124.500000);
+	PlayerTextDrawLetterSize(playerid, Street[1][playerid], 0.137489, 0.899993);
+	PlayerTextDrawTextSize(playerid, Street[1][playerid], 3940.500000, 266.500000);
 	PlayerTextDrawSetOutline(playerid, Street[1][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, Street[1][playerid], 0);
-	PlayerTextDrawAlignment(playerid, Street[1][playerid], 2);
+	PlayerTextDrawAlignment(playerid, Street[1][playerid], 3);
 	PlayerTextDrawColor(playerid, Street[1][playerid], -1);
 	PlayerTextDrawBackgroundColor(playerid, Street[1][playerid], 255);
 	PlayerTextDrawBoxColor(playerid, Street[1][playerid], 50);

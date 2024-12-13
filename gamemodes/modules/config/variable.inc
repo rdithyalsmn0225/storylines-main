@@ -1025,7 +1025,8 @@ new TotalPlayerDamages[MAX_PLAYERS],
 	DealershipPlayerCar[MAX_PLAYERS], 
 	DealershipTotalCost[MAX_PLAYERS],
 	DealershipAlarmLevel[MAX_PLAYERS], 
-	DealershipImmobLevel[MAX_PLAYERS];
+	DealershipImmobLevel[MAX_PLAYERS],
+	bool:p_Direction[MAX_PLAYERS];
 
 new DrugsDealerType[MAX_PLAYERS],
 	DrugsDealerAmount[MAX_PLAYERS],

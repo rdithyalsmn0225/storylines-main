@@ -357,8 +357,8 @@ CMD:pool(playerid, params[])
     GiveMoney(playerb, -Cents);
     BusinessInfo[businessid][E_BUSINESS_CASH] += Cents * 2;
 
-    SendServerMessage(playerid, "[8Ball] {DEDEDE}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), FormatMoney(Cents));
-    SendServerMessage(playerb, "[8Ball] {DEDEDE}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), FormatMoney(Cents));
+    SendServerMessage(playerid, "[8Ball] {cdcdcd}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER2]), FormatMoney(Cents));
+    SendServerMessage(playerb, "[8Ball] {cdcdcd}You have started a pool game at %s, playing with %s. You paid %s as the fee.", BusinessInfo[businessid][E_BUSINESS_NAME], ReturnName(PoolInfo[businessid][E_POOL_PLAYER1]), FormatMoney(Cents));
 
     new string[256], balltype1[16], balltype2[16];
 
@@ -429,7 +429,7 @@ CMD:poolexit(playerid, params[])
 					PoolInfo[businessid][E_POOL_STARTED] = false;
 					RestorePoolStick(i);
 					HideHeaderMessage(i);
-					SendServerMessage(i, "[8Ball] {DEDEDE}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+					SendServerMessage(i, "[8Ball] {cdcdcd}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
 				}
 			}
 		}

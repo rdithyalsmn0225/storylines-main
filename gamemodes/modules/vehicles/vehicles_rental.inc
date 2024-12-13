@@ -188,6 +188,6 @@ function:OnPlayerVehicleRental(playerid, id, modelid, cost, plates[], Float:x, F
 		}
 	}
 	
-	SendVehicleMessage(playerid, "[Vehicle] {DEDEDE}You successfully rent a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(cost));
+	SendVehicleMessage(playerid, "[Vehicle] {cdcdcd}You successfully rent a %s for $%s.", ReturnVehicleName(vehicleid), FormatMoney(cost));
 	return 1;
 }

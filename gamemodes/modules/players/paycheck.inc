@@ -34,10 +34,10 @@ CallPaycheck(playerid)
 	SendClientMessageEx(playerid, COLOR_WHITE, "SERVER TIME:[ %s ]", ReturnHour()); 
 	
 	SendClientMessage(playerid, COLOR_YELLOW, "LOS SANTOS PAYCHECK"); 
-	SendClientMessageEx(playerid, COLOR_WHITE, "{DEDEDE}INTEREST RATE: $%s (RATE: {33AA33}%.1f{DEDEDE})", FormatMoney(interest), floatdiv(float(rate), 10));
-	SendClientMessageEx(playerid, COLOR_WHITE, "{DEDEDE}SAVINGS INTEREST: $%s", FormatMoney(paycheck));
-	SendClientMessageEx(playerid, COLOR_WHITE, "{DEDEDE}TAX PAID: {FF6347}$%s{DEDEDE} ({FF6347}%i{DEDEDE} PERCENT)", FormatMoney(tax), gTax); 
-	SendClientMessageEx(playerid, COLOR_WHITE, "{DEDEDE}OLD BALANCE: {2986CC}$%s{DEDEDE} || NEW BALANCE: {2986CC}$%s{DEDEDE}", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK] + total));
+	SendClientMessageEx(playerid, COLOR_WHITE, "{cdcdcd}INTEREST RATE: $%s (RATE: {33AA33}%.1f{cdcdcd})", FormatMoney(interest), floatdiv(float(rate), 10));
+	SendClientMessageEx(playerid, COLOR_WHITE, "{cdcdcd}SAVINGS INTEREST: $%s", FormatMoney(paycheck));
+	SendClientMessageEx(playerid, COLOR_WHITE, "{cdcdcd}TAX PAID: {FF6347}$%s{cdcdcd} ({FF6347}%i{cdcdcd} PERCENT)", FormatMoney(tax), gTax); 
+	SendClientMessageEx(playerid, COLOR_WHITE, "{cdcdcd}OLD BALANCE: {2986CC}$%s{cdcdcd} || NEW BALANCE: {2986CC}$%s{cdcdcd}", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK] + total));
 
 	PlayerInfo[playerid][E_CHARACTER_PAYCHECK] = 0; 
 	PlayerInfo[playerid][E_CHARACTER_BANK]+= total; 
@@ -51,7 +51,7 @@ stock GivePaycheck(playerid, amount)
 {
 	PlayerInfo[playerid][E_CHARACTER_PAYCHECK] += amount; 
 	SaveCharacter(playerid); 
-	SendServerMessage(playerid, "[Paycheck] {DEDEDE}Your $%s has been added to paycheck.", FormatMoney(amount));
+	SendServerMessage(playerid, "[Paycheck] {cdcdcd}Your $%s has been added to paycheck.", FormatMoney(amount));
 	PlayerPlaySound(playerid, 5205, 0, 0, 0);
 	return 1;
 }

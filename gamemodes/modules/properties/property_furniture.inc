@@ -82,7 +82,7 @@ SetFurnitureMaterial(playerid, objectid, materialslot, modelid, txd[], texturena
 		);
 		mysql_pquery(ourConnection, gquery);
 	}
-	SendPropertyMessage(playerid, "[Property] {DEDEDE}You are added material texture for #%d index #%d set into {d7d292}%d %s %s{DEDEDE}.", objectid, materialslot, modelid, txd, texturename);
+	SendPropertyMessage(playerid, "[Property] {cdcdcd}You are added material texture for #%d index #%d set into {d7d292}%d %s %s{cdcdcd}.", objectid, materialslot, modelid, txd, texturename);
 }
 
 RemoveAllFurniture(propid)
@@ -176,7 +176,7 @@ function:Query_LoadFurniture(labels)
 			SetDynamicObjectMaterial(objectid, a, matmodels, mattxds, mattexture, 0);
 		}
 
-		if(labels)
+		if(labels == 1)
 		{
 			new string[128], name[128], Text3D:text3ds;
 			cache_get_value_name(i, "name", name, 128);
@@ -200,7 +200,7 @@ function:FurnitureSell(playerid)
 		cache_get_value_name(0, "name", name);
 		GiveMoney(playerid, price);
 
-		SendServerMessage(playerid, "[Furniture] {DEDEDE}You have sold %s and received a 75 percent refund of $%i.", name, price);
+		SendServerMessage(playerid, "[Furniture] {cdcdcd}You have sold %s and received a 75 percent refund of $%i.", name, price);
 		RemoveFurniture(PlayerInfo[playerid][E_CHARACTER_LISTITEM]);
 	}
 	return 1;
@@ -225,7 +225,7 @@ function:FurnitureClear(playerid)
 		RemoveAllFurniture(propid);
 
 		GiveMoney(playerid, price);
-		SendServerMessage(playerid, "[Furniture] {DEDEDE}You have sold a total of %i items and received $%i.", rows, price);
+		SendServerMessage(playerid, "[Furniture] {cdcdcd}You have sold a total of %i items and received $%i.", rows, price);
 	}
 	return 1;
 }
@@ -302,7 +302,7 @@ Dialog:FurniturePurchases(playerid, response, listitem, inputtext[])
 		PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], x + 2.0 * floatsin(-a, degrees), y + 2.0 * floatcos(-a, degrees), z + 1.0, 0.0, 0.0, ((19353 <= g_aFurnitureArray[i][E_FURNITUREVAR_MODEL] <= 19417) || (19426 <= g_aFurnitureArray[i][E_FURNITUREVAR_MODEL] <= 19465)) ? (a + 90.0) : (a), GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid));
 		PlayerInfo[playerid][E_CHARACTER_LISTITEM] = i;
 
-		SendServerMessage(playerid, "[Furniture] {DEDEDE}You are now previewing %s. This furniture item costs $%s to purchase.", g_aFurnitureArray[i][E_FURNITUREVAR_NAME], FormatMoney(Cents));
+		SendServerMessage(playerid, "[Furniture] {cdcdcd}You are now previewing %s. This furniture item costs $%s to purchase.", g_aFurnitureArray[i][E_FURNITUREVAR_NAME], FormatMoney(Cents));
 		SendTipMessage(playerid, "Use your cursor to control the editor interface. Click the save icon to save changes.");
 		EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
 	}

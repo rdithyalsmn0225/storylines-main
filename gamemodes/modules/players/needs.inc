@@ -19,7 +19,7 @@ function:OnPlayerNeedUpdate()
             new Float: health;
             GetPlayerHealth(i, health);
             SetPlayerHealthEx(i, health-2.00);
-            SendServerMessage(i, "[Hungry] {DEDEDE}You are hungry rightnow, immediately eat at the nearest restaurant or you will unconscius.");
+            SendServerMessage(i, "[Hungry] {cdcdcd}You are hungry rightnow, immediately eat at the nearest restaurant or you will unconscius.");
         }
         else
         {
@@ -40,7 +40,7 @@ function:OnPlayerNeedUpdate()
             new Float: health;
             GetPlayerHealth(i, health);
             SetPlayerHealthEx(i, health-2.00);
-            SendServerMessage(i, "[Thirsty] {DEDEDE}You are thirsty rightnow, immediately drink at the nearest restaurant or you will unconscius.");
+            SendServerMessage(i, "[Thirsty] {cdcdcd}You are thirsty rightnow, immediately drink at the nearest restaurant or you will unconscius.");
         }
         else
         {

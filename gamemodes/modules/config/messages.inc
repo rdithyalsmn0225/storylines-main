@@ -1,9 +1,9 @@
 //Client messages:
 #define SendUsageMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_ORANGE, "[Syntax]{DEDEDE} "%1) 
+	SendClientMessageEx(%0, COLOR_ORANGE, "[Syntax]{cdcdcd} "%1) 
 	
 #define SendErrorMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_RED, "[Error]{DEDEDE} "%1)
+	SendClientMessageEx(%0, COLOR_RED, "[Error]{cdcdcd} "%1)
 
 #define SendInfoMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_BLUE, "[INFO]{e6f6df} "%1) 
@@ -582,7 +582,7 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 		if(PlayerInfo[playerid][E_CHARACTER_PHONELINE] == 911)
 		{
 			format(string, sizeof(string), "says (phone): %s", text);
-			ProxDetectorEx(playerid, 10.0, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
+			ProxDetectorEx(playerid, 10.0, 0xcdcdcdFF, "", string, .annonated=true, .chat=true);
 
 			switch(Player911Type[playerid])
 			{
@@ -659,7 +659,7 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 							if (GetPlayerVehicleID(targetid) == GetPlayerVehicleID(playerid)) {
 
 								if (PlayerInfo[playerid][E_CHARACTER_PHONELINE] != INVALID_PLAYER_ID) {
-									format ( string, sizeof ( string ), "(Windows Closed) %s{DEDEDE} says (phone): %s", ReturnName(playerid, 0), text ) ;
+									format ( string, sizeof ( string ), "(Windows Closed) %s{cdcdcd} says (phone): %s", ReturnName(playerid, 0), text ) ;
 									SendClientMessageEx(phoneline, COLOR_YELLOW, "Caller says (Phone): %s", text);
 								}
 								else {
@@ -671,10 +671,10 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 										else format (string, sizeof (string), "(Windows Closed) %s says (to %s): %s",  ReturnName(playerid, 0), ReturnName(toid), text ) ;
 									}
 
-									else format (string, sizeof(string), "(Windows Closed) %s{DEDEDE} says: %s",  ReturnName(playerid, 0), text ) ;
+									else format (string, sizeof(string), "(Windows Closed) %s{cdcdcd} says: %s",  ReturnName(playerid, 0), text ) ;
 								}
 
-								SendClientMessageEx(targetid, 0xDEDEDEFF, string);
+								SendClientMessageEx(targetid, 0xcdcdcdFF, string);
 							}
 						}
 					}
@@ -684,19 +684,19 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 						{
 							if (toid != INVALID_PLAYER_ID) {
 								format(string, sizeof(string), "says (to %s): %s", ReturnMixedName(toid), text);
-								ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "(Windows Open)", string, .annonated=true, .chat=true);
+								ProxDetectorEx(playerid, 15.0, 0xcdcdcdFF, "(Windows Open)", string, .annonated=true, .chat=true);
 							} 
 							else 
 							{
 								format(string, sizeof(string), "says: %s", text);
-								ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "(Windows Open)", string, .annonated=true, .chat=true);
+								ProxDetectorEx(playerid, 15.0, 0xcdcdcdFF, "(Windows Open)", string, .annonated=true, .chat=true);
 							}
 						}
 
 						else 
 						{
 							format(string, sizeof(string), "says (phone): %s", text);
-							ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "(Windows Open)", string, .annonated=true, .chat=true);
+							ProxDetectorEx(playerid, 15.0, 0xcdcdcdFF, "(Windows Open)", string, .annonated=true, .chat=true);
 							
 							SendClientMessageEx(phoneline, COLOR_YELLOW, "Caller says (Phone): %s", text);
 						}
@@ -708,9 +708,9 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 				format(string, sizeof(string), "says (phone): %s", text);
 
 				if ( GetPlayerVirtualWorld(playerid) == 0) {
-					ProxDetectorEx(playerid, 15.0, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
+					ProxDetectorEx(playerid, 15.0, 0xcdcdcdFF, "", string, .annonated=true, .chat=true);
 				}
-				else ProxDetectorEx(playerid, 10.0, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
+				else ProxDetectorEx(playerid, 10.0, 0xcdcdcdFF, "", string, .annonated=true, .chat=true);
 
 				SendClientMessageEx(phoneline, COLOR_YELLOW, "Caller says (Phone): %s", text);
 			}
@@ -732,12 +732,12 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					if(toid != INVALID_PLAYER_ID) 
 					{
 						format(string, sizeof(string), "says (to %s): %s", ReturnMixedName(toid), text);
-						ProxDetectorEx(playerid, range, 0xDEDEDEFF, "(Windows Open)", string, .annonated=true, .chat=true);
+						ProxDetectorEx(playerid, range, 0xcdcdcdFF, "(Windows Open)", string, .annonated=true, .chat=true);
 					} 
 					else 
 					{
 						format(string, sizeof(string), "says: %s", text);
-						ProxDetectorEx(playerid, range, 0xDEDEDEFF, "(Windows Open)", string, .annonated=true, .chat=true);
+						ProxDetectorEx(playerid, range, 0xcdcdcdFF, "(Windows Open)", string, .annonated=true, .chat=true);
 						ChatAnimation(playerid, strlen(text));
 					}
 				}
@@ -746,12 +746,12 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 					if(toid != INVALID_PLAYER_ID) 
 					{
 						format(string, sizeof(string), "says (to %s): %s", ReturnMixedName(toid), text);
-						ProxDetectorEx(playerid, range, 0xDEDEDEFF, "(Windows Closed)", string, .annonated=true, .chat=true);
+						ProxDetectorEx(playerid, range, 0xcdcdcdFF, "(Windows Closed)", string, .annonated=true, .chat=true);
 					} 
 					else 
 					{
 						format(string, sizeof(string), "says: %s", text);
-						ProxDetectorEx(playerid, range, 0xDEDEDEFF, "(Windows Closed)", string, .annonated=true, .chat=true);
+						ProxDetectorEx(playerid, range, 0xcdcdcdFF, "(Windows Closed)", string, .annonated=true, .chat=true);
 						ChatAnimation(playerid, strlen(text));
 					}
 				}
@@ -762,12 +762,12 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 			if(toid != INVALID_PLAYER_ID) 
 			{
 				format(string, sizeof(string), "says (to %s): %s", ReturnMixedName(toid), text);
-				ProxDetectorEx(playerid, range, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
+				ProxDetectorEx(playerid, range, 0xcdcdcdFF, "", string, .annonated=true, .chat=true);
 			} 
 			else 
 			{
 				format(string, sizeof(string), "says: %s", text);
-				ProxDetectorEx(playerid, range, 0xDEDEDEFF, "", string, .annonated=true, .chat=true);
+				ProxDetectorEx(playerid, range, 0xcdcdcdFF, "", string, .annonated=true, .chat=true);
 				ChatAnimation(playerid, strlen(text));
 			}
 		}

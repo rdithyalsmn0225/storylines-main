@@ -81,6 +81,9 @@ stock SaveFactionRanks(id)
 stock SaveVehicle(vehicleid)
 {
 	new query[2048];
+
+	if(!VehicleInfo[vehicleid][E_VEHICLE_EXISTS])
+		return 0;
 	
 	mysql_format(ourConnection, query, sizeof(query), "UPDATE vehicles SET VehicleOwnerDBID = %i, VehicleColor1 = %i, VehicleColor2 = %i, VehiclePaintjob = %i, VehiclePlates = '%e', VehicleFakePlates = '%e', VehiclePlatesStatus = '%i', VehiclePlatesFake = '%i', VehicleLocked = %i, VehicleSirens = %i, VehicleFuel = %f, VehicleMiles = %i WHERE VehicleDBID = %i",
 		VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID], 

@@ -56,9 +56,148 @@ function:OnPlayerUpdateEx()
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true && AccountInfo[playerid][E_MASTERS_LOGGED] == true)
 		{
 			AFKCheck(playerid);
+			UpdateNameTagsTicks(playerid);
+
+			new string[128];
+
+			new Float:health;
+			GetPlayerHealth(playerid, health);
+			if(health < 10 && PlayerInfo[playerid][E_CHARACTER_SPAWNED])
+			{
+				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
+				{	
+					CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
+					SendInfoMessage(playerid, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
+				}
+			}
+
+			if(GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED && PlayerInfo[playerid][E_CHARACTER_INJURED])
+			{
+				format(string, sizeof(string), "(( Has been injured %d times, /damages %d for more information. ))", TotalPlayerDamages[playerid], playerid);
+				SetPlayerChatBubble(playerid, string, COLOR_ORANGE, 30.0, 2500); 
+				
+				if(IsPlayerInAnyVehicle(playerid))
+				{
+					ApplyAnimation(playerid, "ped", "CAR_dead_LHS", 4.1, 0, 0, 0, 1, 0, 1);
+				}
+				else
+				{
+					ApplyAnimation(playerid, "WUZI", "CS_Dead_Guy", 4.1, 0, 1, 1, 1, 0, 1);	
+				}	
+			}
+
+			else if(GetPlayerTeam(playerid) == PLAYER_STATE_DEAD && PlayerInfo[playerid][E_CHARACTER_DEATH])
+			{
+				SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_ORANGE, 30.0, 2500); 
+				if(IsPlayerInAnyVehicle(playerid))
+				{
+					ApplyAnimation(playerid, "ped", "CAR_dead_LHS", 4.1, 0, 0, 0, 1, 0, 1);
+				}
+				else
+				{
+					ApplyAnimation(playerid, "WUZI", "CS_Dead_Guy", 4.1, 0, 1, 1, 1, 0, 1);	
+				}	
+			}
+
+			if(IsPlayerInAnyVehicle(playerid) && IsPoliceVehicle(GetPlayerVehicleID(playerid)))
+			{
+				if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+				{
+					DetectVehicleInFront(playerid);
+				}
+			}
+			
+			new Float:rz;
+			new p_PreviousDirection[8];
+
+			strcat((p_PreviousDirection[0] = EOS, p_PreviousDirection), PlayerDirection[playerid]);
+
+			if(IsPlayerInAnyVehicle(playerid)) 
+			{
+				GetVehicleZAngle(GetPlayerVehicleID(playerid), rz);
+			}
+			else 
+			{
+				GetPlayerFacingAngle(playerid, rz);
+			}
+
+			if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "North I ~y~N";
+			else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "North East I ~y~NE";
+			else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "East I ~y~E";
+			else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "South East I ~y~SE";
+			else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "South I ~y~S";
+			else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "South West I ~y~SW";
+			else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "West I ~y~W";
+			else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "North West I ~y~NW";
+
+			PlayerTextDrawSetString(playerid, Street[0][playerid], PlayerDirection[playerid]);
+
+			new str1[180];
+			format(str1, sizeof(str1), "%s I %s I San Andreas", ReturnLocationStreet(playerid), ReturnLocation(playerid));
+			PlayerTextDrawSetString(playerid, Street[1][playerid], str1);
+			
 			if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false)
 	    	{
+				if(IsPlayerInAnyVehicle(playerid))
+				{
+					PlayerTextDrawShow(playerid, Street[0][playerid]);
+					PlayerTextDrawShow(playerid, Street[1][playerid]);
+					p_Direction[playerid] = true;
+				}
+				else
+				{
+					PlayerTextDrawHide(playerid, Street[0][playerid]);
+					PlayerTextDrawHide(playerid, Street[1][playerid]);
+					p_Direction[playerid] = false;
+				}
 				ShowPlayerNeeds(playerid);
+			}		
+
+			if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") 
+			|| Inventory_Count(playerid, "Foods Cargo") || Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo")
+			|| Inventory_Count(playerid, "Fish Cargo"))
+			{
+				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+				{
+					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CRATES;
+					RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+					SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.293999, 0.497999, -0.006000, -99.500007, 90.300033, 99.600013, 0.620999, 0.673000, 0.648999);
+				}
+			}
+			else if(Inventory_Count(playerid, "Woods"))
+			{
+				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+				{
+					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
+					RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+					SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 1, 0.000000, 0.465000, 0.000000, 0.000000, 89.699958, 0.000000, 0.348999, 0.340999, 0.444999);
+				}
+			}
+			else
+			{
+				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES || PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == WOODS)
+				{
+					RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+					RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+				}
+			}
+
+			if (IsPlayerInAnyVehicle(playerid))
+			{
+				new vehicleid = GetPlayerVehicleID(playerid);
+				new Float:velocity[3];
+				GetVehicleVelocity(vehicleid, velocity[0], velocity[1], velocity[2]);
+
+				new Float:speed = floatsqroot((velocity[0] * velocity[0]) + (velocity[1] * velocity[1]) + (velocity[2] * velocity[2])) * 100;
+
+				if (PlayerSpeedLimit[playerid] > 0 && speed > float(PlayerSpeedLimit[playerid])) 
+				{
+					SetVehicleVelocity(vehicleid, velocity[0] * 0.8, velocity[1] * 0.8, velocity[2] * 0.8); 
+				}
 			}
 			
 			//Anti-Money Hack
@@ -113,7 +252,7 @@ function:OnPlayerUpdateEx()
 					PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] = false; 
 					PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] = 0; 
 						
-					SendServerMessage(playerid, "[Jail] {DEDEDE}You served your admin jail time.");
+					SendServerMessage(playerid, "[Jail] {cdcdcd}You served your admin jail time.");
 						
 					new str[128];
 					format(str, sizeof(str), "%s was released from admin jail.", ReturnName(playerid));
@@ -136,7 +275,7 @@ function:OnPlayerUpdateEx()
 					PlayerInfo[playerid][E_CHARACTER_PRISONED] = false; 
 					PlayerInfo[playerid][E_CHARACTER_PRISON] = 0; 
 						
-					SendServerMessage(playerid, "[Prison] {DEDEDE}you have been released from prison.");
+					SendServerMessage(playerid, "[Prison] {cdcdcd}you have been released from prison.");
 						
 					SetPlayerVirtualWorldEx(playerid, 0); SetPlayerInteriorEx(playerid, 0);
 					SetPlayerPosEx(playerid, 1797.4276,-1578.8496,14.0764);
@@ -404,7 +543,7 @@ function:FunctionPaychecks()
 			if(PlayerInfo[i][E_CHARACTER_AFK] && PlayerInfo[i][E_CHARACTER_AFKTIME] > 900)
 			{
 				PlayerInfo[i][E_CHARACTER_PAYCHECKTIMER] = 0;
-				return SendServerMessage(i, "[Paycheck] {DEDEDE}You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
+				return SendServerMessage(i, "[Paycheck] {cdcdcd}You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
 			}
 			else
 			{
