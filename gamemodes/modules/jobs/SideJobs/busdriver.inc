@@ -77,7 +77,7 @@ CMD:viewroute(playerid, params[])
 	        {
                 format(str, sizeof(str), "%s%s\n", str, GetZoneName(BusStop_Index[a][0], BusStop_Index[a][1], BusStop_Index[a][2]));
             }
-            Dialog_Show(playerid, DIALOG_NONE, DIALOG_STYLE_LIST, "View Route:", str, "Close", "");
+            ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, "View Route:", str, "Close", "");
         }
     }
     return 1;

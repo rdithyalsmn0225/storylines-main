@@ -6,7 +6,7 @@ stock ShowPublicLocation(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t%.2f Meter\n", str, PublicName[i], GetPlayerDistanceFromPoint(playerid, PublicPoint[i][0], PublicPoint[i][1], PublicPoint[i][2]));
 	}
-	Dialog_ShowPages(playerid, GPSPUBLIC, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Public", str, "Select", "Close");
+	ShowPlayerDialog(playerid, DIALOG_GPS_PUBLIC, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Public", str, "Select", "Close");
 	return 1;
 }
 
@@ -25,7 +25,7 @@ stock ShowTreeLocation(playerid)
 			format(str, sizeof(str), "%s%d\t{33AA33}Available{ffffff}\t%.2f Meter\n", str, i, GetPlayerDistanceFromPoint(playerid, TreeInfo[i][E_TREE_POS][0], TreeInfo[i][E_TREE_POS][1], TreeInfo[i][E_TREE_POS][2]));
 		}
 	}
-	return Dialog_ShowPages(playerid, GPSTREE, DIALOG_STYLE_TABLIST_HEADERS, "Tree Location", str, "Find", "Close");
+	return ShowPlayerDialog(playerid, DIALOG_GPS_TREE, DIALOG_STYLE_TABLIST_HEADERS, "Tree Location", str, "Find", "Close");
 }
 
 stock ShowGarbageLocation(playerid)
@@ -36,7 +36,7 @@ stock ShowGarbageLocation(playerid)
 	{
 		format(str, sizeof(str), "%s%d\t{33AA33}Available{ffffff}\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, TrashInfo[i][E_TRASH_POS][0], TrashInfo[i][E_TRASH_POS][1], TrashInfo[i][E_TRASH_POS][2]));
 	}
-	return Dialog_ShowPages(playerid, GPSGARBAGE, DIALOG_STYLE_TABLIST_HEADERS, "Garbage Location", str, "Find", "Close");
+	return ShowPlayerDialog(playerid, DIALOG_GPS_GARBAGE, DIALOG_STYLE_TABLIST_HEADERS, "Garbage Location", str, "Find", "Close");
 }
 
 stock ShowENEXLocation(playerid)
@@ -47,7 +47,7 @@ stock ShowENEXLocation(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t%.2f Meter\n", str, ENEXName[i], GetPlayerDistanceFromPoint(playerid, ENEXPoint[i][0], ENEXPoint[i][1], ENEXPoint[i][2]));
 	}
-	Dialog_ShowPages(playerid, GPSENEX, DIALOG_STYLE_TABLIST_HEADERS, "GPS: ENEX", str, "Select", "Close");
+	ShowPlayerDialog(playerid, DIALOG_GPS_ENEX, DIALOG_STYLE_TABLIST_HEADERS, "GPS: ENEX", str, "Select", "Close");
 	return 1;
 }
 
@@ -59,7 +59,7 @@ stock ShowJobLocation(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t%.2f Meter\n", str, JobLocName[i], GetPlayerDistanceFromPoint(playerid, JobPoint[i][0], JobPoint[i][1], JobPoint[i][2]));
 	}
-	Dialog_ShowPages(playerid, GPSJOBS, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Jobs", str, "Select", "Close");
+	ShowPlayerDialog(playerid, DIALOG_GPS_JOBS, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Jobs", str, "Select", "Close");
 	return 1;
 }
 
@@ -71,7 +71,7 @@ stock ShowBusinessLocation(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t%.2f Meter\n", str, BusinessInfo[i][E_BUSINESS_NAME], GetPlayerDistanceFromPoint(playerid, BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[i][E_BUSINESS_ENTRANCEPOS][2]));
 	}
-	Dialog_ShowPages(playerid, GPSBIZ, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Business", str, "Select", "Close");
+	ShowPlayerDialog(playerid, DIALOG_GPS_BIZ, DIALOG_STYLE_TABLIST_HEADERS, "GPS: Business", str, "Select", "Close");
 	return 1;
 }
 
@@ -92,130 +92,10 @@ GPS_DisablePlayerRaceCheckPoint(playerid)
 	return DisablePlayerRaceCheckpoint(playerid);
 }
 
-// Dialog:
-Dialog:GPS(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		switch(listitem)
-		{
-			case 0: //Point Of Interest
-				Dialog_Show(playerid, GPSPOI, DIALOG_STYLE_LIST, "GPS: Point of Interest", "Public Locations\nJobs Locations\nBusiness Locations\nTree Locations", "Select", "Cancel");
-			case 1:
-				Dialog_Show(playerid, GPSPROP, DIALOG_STYLE_INPUT, "GPS: Properties", "Please enter the address of the properties below:", "Submit", "Cancel");
-			case 2: //ENEX
-				ShowENEXLocation(playerid);
-			case 3: //Disable CP
-				GPS_DisablePlayerRaceCheckPoint(playerid);
-		}
-	}
-	return 1;
-}
-
-Dialog:GPSPROP(playerid, response, listitem, inputtext[])
-{
-	if (response)
-	{
-		if (isnull(inputtext) || strlen(inputtext) > 32)
-			return Dialog_Show(playerid, GPSPROP, DIALOG_STYLE_INPUT, "GPS: Properties", "Please enter the address of the properties below:", "Submit", "Cancel");
-
-		for (new i = 1; i != MAX_PROPERTY; i ++)
-		{
-			if (PropertyInfo[i][E_PROPERTY_DBID] && !strcmp(PropertyInfo[i][E_PROPERTY_ADDRESS], inputtext, true))
-			{
-				GPS_SetPlayerRaceCheckPoint(playerid, 1, PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][2], 0.0, 0.0, 0.0);
-			}
-		}
-		Dialog_Show(playerid, GPSPROP, DIALOG_STYLE_INPUT, "GPS: Properties", "No results found for.\nPlease enter the address of the properties below:", "Submit", "Cancel");
-	}
-	return 1;
-}
-
-Dialog:GPSPOI(playerid, response, listitem, inputtext[])
-{
-	if (response)
-	{
-		switch (listitem)
-		{
-			case 0: //Public
-			{
-				ShowPublicLocation(playerid);
-			}
-			case 1: //Jobs
-			{
-				ShowJobLocation(playerid);
-			}  
-			case 2: //Business
-			{
-				ShowBusinessLocation(playerid);
-			} 
-			case 3: //Tree
-			{
-				ShowTreeLocation(playerid);
-			}
-		}
-	}
-	return 1;
-}
-
-Dialog:GPSPUBLIC(playerid, response, listitem, inputtext[])
-{
-	if (response)
-	{
-		GPS_SetPlayerRaceCheckPoint(playerid, 1, PublicPoint[listitem][0], PublicPoint[listitem][1], PublicPoint[listitem][2], 0.0, 0.0, 0.0);
-	}
-	return 1;
-}
-
-Dialog:GPSBIZ(playerid, response, listitem, inputtext[])
-{
-	if (response)
-	{
-		GPS_SetPlayerRaceCheckPoint(playerid, 1, BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][2], 0.0, 0.0, 0.0);
-	}
-	return 1;
-}
-
-Dialog:GPSGARBAGE(playerid, response, listitem, inputtext[])
-{
-	if (response)
-	{
-		GPS_SetPlayerRaceCheckPoint(playerid, 1, TrashInfo[listitem][E_TRASH_POS][0], TrashInfo[listitem][E_TRASH_POS][1], TrashInfo[listitem][E_TRASH_POS][2], 0.0, 0.0, 0.0);
-	}
-	return 1;
-}
-
-Dialog:GPSTREE(playerid, response, listitem, inputtext[])
-{
-	if (response)
-	{
-		GPS_SetPlayerRaceCheckPoint(playerid, 1, TreeInfo[listitem][E_TREE_POS][0], TreeInfo[listitem][E_TREE_POS][1], TreeInfo[listitem][E_TREE_POS][2], 0.0, 0.0, 0.0);
-	}
-	return 1;
-}
-
-Dialog:GPSENEX(playerid, response, listitem, inputtext[])
-{
-	if (response)
-	{
-		GPS_SetPlayerRaceCheckPoint(playerid, 1, ENEXPoint[listitem][0], ENEXPoint[listitem][1], ENEXPoint[listitem][2], 0.0, 0.0, 0.0);
-	}
-	return 1;
-}
-
-Dialog:GPSJOBS(playerid, response, listitem, inputtext[])
-{
-	if (response)
-	{
-		GPS_SetPlayerRaceCheckPoint(playerid, 1, JobPoint[listitem][0], JobPoint[listitem][1], JobPoint[listitem][2], 0.0, 0.0, 0.0);
-	}
-	return 1;
-}
-
 // CMD:
 CMD:map(playerid, params[]) return cmd_gps(playerid, params);
 CMD:gps(playerid, params[])
 {
-	Dialog_Show(playerid, GPS, DIALOG_STYLE_LIST, "GPS:", "Point of Interest\nBrowse All Properties\nBrowse All ENEX\n{cd6767}Disable Checkpoint", "Select", "Cancel");
+	ShowPlayerDialog(playerid, DIALOG_GPS, DIALOG_STYLE_LIST, "GPS:", "Point of Interest\nBrowse All Properties\nBrowse All ENEX\n{cd6767}Disable Checkpoint", "Select", "Cancel");
 	return 1;
 }

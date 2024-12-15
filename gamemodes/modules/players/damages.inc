@@ -344,7 +344,7 @@ stock ShowPlayerCondition(playerid, targetid)
 	format(str, sizeof(str), "%s{ffffff}Part : Left Leg - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
 	format(str, sizeof(str), "%s{ffffff}Part : Head - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
 
-	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, str2, str, "Close", "");
+	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, str2, str, "Close", "");
 	return 1;
 }
 

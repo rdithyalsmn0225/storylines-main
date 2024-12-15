@@ -27,12 +27,6 @@ InsertEmmetInit()
     return 1;
 }
 
-stock BuyGunFromEmmet(playerid)
-{
-    Dialog_Show(playerid, Emmets, DIALOG_STYLE_TABLIST, "Emmet Hardware:", "Emmet Colt\tGlock 17\nMagazine\t9mm clip", "Select", "Cancel");
-    return 1;
-}
-
 CMD:buymats(playerid, params[])
 {
 	if(!IsPlayerInRangeOfPoint(playerid, 3.0, -576.3427,-505.8364,25.5234))
@@ -41,7 +35,7 @@ CMD:buymats(playerid, params[])
     if(!ServerInfo[0][E_SERVER_FABRIC])
 		return SendErrorMessage(playerid, "Materials is out of stock.");
 
-	Dialog_Show(playerid, BuyMats, DIALOG_STYLE_INPUT, "Materials:", "Materials price: $5 / 1 gram of materials\nPlease input the amount of materials you want to buy:", "Enter", "Cancel");
+	ShowPlayerDialog(playerid, DIALOG_MATSSTORE, DIALOG_STYLE_INPUT, "Materials:", "Materials price: $5 / 1 gram of materials\nPlease input the amount of materials you want to buy:", "Enter", "Cancel");
 	return 1;
 }
 
@@ -65,7 +59,7 @@ CMD:creategun(playerid, params[])
     strcat(str, "Desert Eagle\tMaterials 100\t$3,000.00\n");
 	strcat(str, "Reguler Ammo (10x)\tMaterials 10\t$100.00\n");
 	strcat(str, "Surplus (10x)\tMaterials 10\t$250.00\n");
-	Dialog_Show(playerid, BuyGuns, DIALOG_STYLE_TABLIST_HEADERS, "Gunstore:", str, "Select", "Close");
+	ShowPlayerDialog(playerid, DIALOG_GUNSTORE, DIALOG_STYLE_TABLIST_HEADERS, "Gunstore:", str, "Select", "Close");
 	return 1;
 }
 
@@ -76,104 +70,7 @@ CMD:buygun(playerid, params[])
 
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, EmmetInfo[0][EMMET_POSX], EmmetInfo[0][EMMET_POSY], EmmetInfo[0][EMMET_POSZ]))
 	{
-		BuyGunFromEmmet(playerid);
+		ShowPlayerDialog(playerid, DIALOG_EMMETSTORE, DIALOG_STYLE_TABLIST, "Emmet Hardware:", "Emmet Colt\tGlock 17\nMagazine\t9mm clip", "Select", "Cancel");
 	}
 	return 1;
-}
-
-Dialog:BuyMats(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		new total = strval(inputtext) * 5;
-        new Cents = floatround(total * 100, floatround_round);
-
-		if (isnull(inputtext))
-			return Dialog_Show(playerid, BuyMats, DIALOG_STYLE_INPUT, "Materials:", "Materials price: $5 / 1 gram of materials\nPlease input the amount of materials you want to buy:", "Enter", "Cancel");
-	
-		if(total > PlayerInfo[playerid][E_CHARACTER_MONEY])
-			return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
-		
-
-		GiveMoney(playerid, Cents);
-		Inventory_Add(playerid, "Materials", 3014, strval(inputtext));
-	}
-	return 1;
-}
-
-Dialog:BuyGuns(playerid, response, listitem, inputtext[])
-{
-    if (response)
-    {
-        new str[256];
-        switch(listitem)
-        {
-            case 0:
-            {
-                new Cents = floatround(WEAPON_SLC * 100, floatround_round);
-                format(str, sizeof(str), "Are you sure you want to purchase a Colt 45 for {33AA33}$%s{ffffff}?", FormatMoney(Cents));
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_COLT45, 10, WEAPON_COLT, 1); 
-            }
-            case 1:
-            {
-                new Cents = floatround(WEAPON_SLC * 100, floatround_round);
-                format(str, sizeof(str), "Are you sure you want to purchase a Silenced Colt for {33AA33}$%s{ffffff}?", FormatMoney(Cents));
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_COLT45, 10, WEAPON_SLC, 1); 
-            }
-            case 2:
-            {
-                new Cents = floatround(WEAPON_UZIS * 100, floatround_round);
-                format(str, sizeof(str), "Are you sure you want to purchase a Uzi for {33AA33}$%s{ffffff}?", FormatMoney(Cents));
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_UZI, 10, WEAPON_UZIS, 1); 
-            }
-            case 3:
-            {
-                new Cents = floatround(WEAPON_DEAGLES * 100, floatround_round);
-                format(str, sizeof(str), "Are you sure you want to purchase a Deagle for {33AA33}$%s{ffffff}?", FormatMoney(Cents));
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_DEAGLE, 10, WEAPON_DEAGLES, 1); 
-            }
-            case 4:
-            {
-                new Cents = floatround(WEAPON_SHOTGUNS * 100, floatround_round);
-                format(str, sizeof(str), "Are you sure you want to purchase a Shotgun for {33AA33}$%s{ffffff}?", FormatMoney(Cents));
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_SHOTGUN, 10, WEAPON_DEAGLES, 1); 
-            }
-            case 5:
-            {
-                new Cents = floatround(A9MM * 100, floatround_round);
-                format(str, sizeof(str), "Are you sure you want to buy ammo for {33AA33}$%s{ffffff}?", FormatMoney(Cents)); 
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 0, 10, A9MM); 
-            }
-            case 6:
-            {
-                new Cents = floatround(A9X19MM * 100, floatround_round);
-                format(str, sizeof(str), "Are you sure you want to buy ammo for {33AA33}$%s{ffffff}?", FormatMoney(Cents)); 
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 1, 10, A9X19MM); 
-            }
-        }
-    }
-    return 1;
-}
-
-Dialog:Emmets(playerid, response, listitem, inputtext[])
-{
-    if (response)
-    {
-        switch(listitem)
-        {
-            case 0:
-            {
-                new str[256];
-                format(str, sizeof(str), "Are you sure you want to purchase a Emmet Pistol for {33AA33}$%s{ffffff}?", FormatMoney(WEAPON_SLC));
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_COLT45, 25, WEAPON_SLC, 1); 
-            }
-            case 1:
-            {
-                new str[256];
-                format(str, sizeof(str), "Are you sure you want to buy ammo for {33AA33}$%s{ffffff}?", FormatMoney(A9MM)); 
-                ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 0, 25, A9MM); 
-            }
-        }
-    }
-    return 1;
 }

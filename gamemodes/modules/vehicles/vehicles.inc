@@ -867,21 +867,6 @@ stock ResetDealershipVars(playerid)
 	return 1;
 }
 
-stock ShowDealerAppend(playerid)
-{
-	new
-		caption[60],
-		str[255]
-	;
-
-	format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
-	strcat(str, "Colors\n");
-	strcat(str, "{FFFF00}Purchase Vehicle\n"); 
-			
-	Dialog_Show(playerid, DealershipAppend, DIALOG_STYLE_LIST, caption, str, "Append", "<<"); 
-	return 1; 
-}
-
 stock HasNoEngine(vehicleid)
 {
 	switch(GetVehicleModel(vehicleid))

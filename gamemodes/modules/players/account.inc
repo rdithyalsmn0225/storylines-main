@@ -48,13 +48,13 @@ function:LogPlayerIn(playerid)
 		
 		new str[128];
 		format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
-		Dialog_Show(playerid, Login, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
+		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
 	}
 	else
 	{
 		for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }	
 		registerTime[playerid] = 1;	
-		Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
+		ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
 	}
 	return 1;
 }
@@ -70,7 +70,7 @@ function:OnPlayerRegister(playerid)
 	new str[128];
 	format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
 	SendInfoMessage(playerid, "You successfully registered as %s. You need to login to continue:", ReturnName(playerid)); 
-	return Dialog_Show(playerid, Login, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
+	return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 }
 
 function:LoggingIn(playerid)
@@ -89,7 +89,7 @@ function:LoggingIn(playerid)
 		
 		new str[128];
 		format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
-		return Dialog_Show(playerid, Login, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
+		return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
 	}
 	
 	new rows, fields, fetchChars[128];
@@ -424,7 +424,7 @@ function:Query_LoadCharacter(playerid)
 		
 	}
 	format(string, sizeof(string), "%s\t#%d\tLast Position\t{33AA33}PRIVATE{ffffff}", string, 8 + 1);
-	return Dialog_Show(playerid, Spawns, DIALOG_STYLE_TABLIST, "Spawn Option:", string, "Select", "Close");
+	return ShowPlayerDialog(playerid, DIALOG_SPAWNS, DIALOG_STYLE_TABLIST, "Spawn Option:", string, "Select", "Close");
 }
 
 stock ShowCharacterPreview(playerid)
@@ -557,273 +557,6 @@ stock ShowCharacterPreview(playerid)
 	format(str, sizeof(str), "%sEyes\t%s\n", str, eyes);
 	format(str, sizeof(str), "%sHeight\t%d cm\n", str, playerCharactersHeights[playerid]);
 	format(str, sizeof(str), "%sDescription\t%s\n", str, playerCharactersDescription[playerid]);
-	Dialog_Show(playerid, CharacterPreview, DIALOG_STYLE_TABLIST_HEADERS, "Character Appearance:", str, "Edit", "Finish");	
-	return 1;
-}
-
-// Dialog:
-Dialog:Login(playerid, response, listitem, inputtext[])
-{
-    if (!response)
-    {
-        SendErrorMessage(playerid, "You were kicked for not logging in."); 
-        return KickEx(playerid);
-    }
-    
-    new continueCheck[211]; 
-    
-    mysql_format(ourConnection, continueCheck, sizeof(continueCheck), "SELECT * FROM masters WHERE acc_name = '%e' AND acc_pass = sha1('%e') LIMIT 1", 
-        ReturnName(playerid, 1), inputtext);
-        
-    mysql_pquery(ourConnection, continueCheck, "LoggingIn", "i", playerid);
-    return 1;
-}
-
-Dialog:Spawns(playerid, response, listitem, inputtext[])
-{
-	if (!response)
-	{
-		SendErrorMessage(playerid, "You were kicked for not selection spawn."); 
-		return KickEx(playerid);
-	}
-
-	if(listitem == 9)
-	{
-		PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = SPAWN_POINT_LAST; 
-		LoadCharacter(playerid);
-	}
-	else
-	{
-		PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = listitem; 
-		LoadCharacter(playerid);
-	}
-	return 1;
-}
-
-Dialog:CharacterPreview(playerid, response, listitem, inputtext[])
-{
-	if(!response)
-	{
-		if (isnull(playerCharactersName[playerid]) || !playerCharactersSex[playerid] || !playerCharactersAge[playerid] ||
-		isnull(playerCharactersEthnicity[playerid]) || isnull(playerCharactersHair[playerid]) || isnull(playerCharactersEyes[playerid]) ||
-		!playerCharactersHeights[playerid] || isnull(playerCharactersDescription[playerid]))
-		{
-			ShowCharacterPreview(playerid);
-			SendErrorMessage(playerid, "You must complete the character attribute.");
-			return 1;
-		}
-		
-		PlayerInfo[playerid][E_CHARACTER_FACTION] = 0;
-		characterSelection[playerid] = true;
-		playerMakingCharacter[playerid] = false;
-		playerCharacterStep[playerid] = 0; 
-		PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0;
-
-		PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = playerCharactersSkins[playerid];
-		
-		ClearLines(playerid, 17); 
-						
-		SendInfoMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
-						
-		new query[512];
-
-		new fid; 
-				
-		fid = PlayerInfo[playerid][E_CHARACTER_FACTION];
-						
-		mysql_format(ourConnection, query, sizeof(query), "INSERT INTO characters (`master_dbid`, `char_name`, `char_masters`, `pAge`, `pEthnicity`, `pGender`, `pHair`, `pEyes`, `pHeight`, `pFaction`, `pLastSkin`, `create_date`, `create_ip`, `pPhone`, pSpawnPoint, pLastPosX, pLastPosY, pLastPosZ) \
-		VALUES(%i, '%e', '%e', '%d', '%e', '%d', '%e', '%e', '%d', '%d', '%d', '%e', '%e', %d, %d, %f, %f, %f)", AccountInfo[playerid][E_MASTERS_DBID], playerCharactersName[playerid], AccountInfo[playerid][E_MASTERS_ACCNAME], playerCharactersAge[playerid],
-		playerCharactersEthnicity[playerid], playerCharactersSex[playerid], playerCharactersHair[playerid], playerCharactersEyes[playerid], playerCharactersHeights[playerid], PlayerInfo[playerid][E_CHARACTER_FACTION], PlayerInfo[playerid][E_CHARACTER_LASTSKIN], ReturnDate(), ReturnIP(playerid), 94000+random(6999), PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT], FactionInfo[fid][E_FACTION_SPAWN][0], FactionInfo[fid][E_FACTION_SPAWN][1], FactionInfo[fid][E_FACTION_SPAWN][2]);				
-		mysql_pquery(ourConnection, query); 
-						
-		SetTimerEx("RefreshCharacters", 1000, false, "i", playerid);
-	}
-
-	if(response)
-	{
-		switch(listitem)
-		{
-			case 0: // Name:
-			{
-				Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
-			}
-			case 1: // Sex:
-			{
-				Dialog_Show(playerid, CharacterSex, DIALOG_STYLE_LIST, "Character Sex:", "Male\nFemale", "Edit", "Finish");	
-			}
-			case 2: // Age:
-			{
-				Dialog_Show(playerid, CharacterAge, DIALOG_STYLE_INPUT, "Character Age:", "Insert a age of your character.\n{33AA33}{33AA33}Info:{ffffff}{ffffff} Required in format cannot be less than 18 years old", "Confirm", "");	
-			}
-			case 3: // Ethnicity:
-			{
-				Dialog_Show(playerid, CharacterEthnicity, DIALOG_STYLE_LIST, "Character Ethnicity:", "White\nBlack\nLatino\nAsian", "Confirm", "");	
-			}
-			case 4: // Hair:
-			{
-				Dialog_Show(playerid, CharacterHair, DIALOG_STYLE_LIST, "Character Hair:", "Bald\nBlack\nBrown\nBlonde\nWhite\nGray\nRed", "Confirm", "");	
-			}
-			case 5: // Eyes:
-			{
-				Dialog_Show(playerid, CharacterEyes, DIALOG_STYLE_LIST, "Character Eyes:", "Amber\nBlack\nBrown\nBlue\nGray\nHazel", "Confirm", "");	
-			}
-			case 6: // Height:
-			{
-				Dialog_Show(playerid, CharacterHeight, DIALOG_STYLE_INPUT, "Character Age:", "Insert a height of your character.\n{33AA33}Info:{ffffff} Required in format cannot be less than 160 cm", "Confirm", "");	
-			}
-			case 7: //Description
-			{
-				Dialog_Show(playerid, CharacterDescription, DIALOG_STYLE_INPUT, "Character Description:", "Insert a description of your character.\n{33AA33}Info:{ffffff} Required for description your characters", "Confirm", "");	
-			}
-		}
-	}
-	return 1;
-}
-
-Dialog:CharacterName(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		if(strlen(inputtext) > MAX_PLAYER_NAME + 1 || strlen(inputtext) < 3)
-		{
-			Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
-			SendErrorMessage(playerid, "Your characters name must be at least 3 characters and no more than %i characters.", MAX_PLAYER_NAME);
-			return 1;
-		}
-		if(!IsValidRoleplayName(inputtext))
-		{
-			Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
-			SendErrorMessage(playerid, "Please follow the Firstname_Lastname format to make your character."); 
-			return 1;
-		}
-		
-		foreach (new i : Player)
-		{
-			if(!strcmp(inputtext, ReturnName(i, playerid)))
-			{
-				Dialog_Show(playerid, CharacterName, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
-				SendErrorMessage(playerid, "That character already exists. Please try again."); 
-				return 1;
-			}
-		}
-		
-		new
-			threadSearch[128]
-		;
-		
-		format(playerCharactersName[playerid], 128, "%s", inputtext); 
-		
-		mysql_format(ourConnection, threadSearch, sizeof(threadSearch), "SELECT char_dbid FROM characters WHERE char_name = '%e'", inputtext);
-		mysql_pquery(ourConnection, threadSearch, "Query_CreateCharacter", "i", playerid);
-	}
-	return 1;
-}
-
-Dialog:CharacterSex(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		switch(listitem)
-		{
-			case 0: //male
-			{
-				playerCharactersSex[playerid] = 1;
-				
-				new rand = random(sizeof(g_aMaleSkins));
-				playerCharactersSkins[playerid] = g_aMaleSkins[rand];
-				CreatePlayerActor(playerid, playerCharactersSkins[playerid]);
-				ShowCharacterPreview(playerid);
-			}
-			case 1: //female
-			{
-				new rand = random(sizeof(g_aFemaleSkins));
-				playerCharactersSkins[playerid] = g_aFemaleSkins[rand];
-				CreatePlayerActor(playerid, playerCharactersSkins[playerid]);
-				playerCharactersSex[playerid] = 2;
-				ShowCharacterPreview(playerid);
-			}
-		}
-	}
-	return 1;
-}
-
-Dialog:CharacterAge(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		if(strval(inputtext) > 60 || strval(inputtext) < 18 || isnull(inputtext))
-		{
-			Dialog_Show(playerid, CharacterAge, DIALOG_STYLE_INPUT, "Character Age:", "Insert a age of your character.\n{33AA33}Info:{ffffff} Required in format cannot be less than 18 years old", "Confirm", "");	
-			SendErrorMessage(playerid, "Your characters age must be at least 18 years old and no more than 60 years old.");
-			return 1;
-		}
-
-		playerCharactersAge[playerid] = strval(inputtext);
-		ShowCharacterPreview(playerid);
-	}
-	return 1;
-}
-
-Dialog:CharacterEthnicity(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		format(playerCharactersEthnicity[playerid], 128, "%s", inputtext); 
-		ShowCharacterPreview(playerid);
-	}
-	return 1;
-}
-
-Dialog:CharacterHair(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		format(playerCharactersHair[playerid], 20, "%s", inputtext); 
-		ShowCharacterPreview(playerid);
-	}
-	return 1;
-}
-
-Dialog:CharacterEyes(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		format(playerCharactersEyes[playerid], 20, "%s", inputtext); 
-		ShowCharacterPreview(playerid);
-	}
-	return 1;
-}
-
-Dialog:CharacterHeight(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		if(strval(inputtext) > 190 || strval(inputtext) < 160 || isnull(inputtext) || !IsNumeric(inputtext))
-		{
-			Dialog_Show(playerid, CharacterHeight, DIALOG_STYLE_INPUT, "Character Age:", "Insert a height of your character.\n{33AA33}Info:{ffffff} Required in format cannot be less than 160 cm", "Confirm", "");	
-			SendErrorMessage(playerid, "Your characters height must be at least 160 cm and no more than 180 cm.");
-			return 1;
-		}
-
-		playerCharactersHeights[playerid] = strval(inputtext); 
-		ShowCharacterPreview(playerid);
-	}
-	return 1;
-}
-
-Dialog:CharacterDescription(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		if(strlen(inputtext) > 32 || strlen(inputtext) < 12 || isnull(inputtext))
-		{
-			Dialog_Show(playerid, CharacterDescription, DIALOG_STYLE_INPUT, "Character Description:", "Insert a description of your character.\n{33AA33}Info:{ffffff} Required for description your characters", "Confirm", "");	
-			SendErrorMessage(playerid, "Your characters description must be at least 12 characters and no more than 32 characters.");
-			return 1;
-		}
-
-		format(playerCharactersDescription[playerid], 20, "%s", inputtext); 
-		ShowCharacterPreview(playerid);
-	}
+	ShowPlayerDialog(playerid, DIALOG_CHAR_PREVIEW, DIALOG_STYLE_TABLIST_HEADERS, "Character Appearance:", str, "Edit", "Finish");	
 	return 1;
 }

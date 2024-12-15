@@ -137,31 +137,7 @@ CMD:sellfish(playerid, params[])
 	new Cents = floatround(total * 100, floatround_round);
 
 	format(str, sizeof(str), "%sTotal - {33AA33}$%s{ffffff}\n", str, FormatMoney(Cents));
-	Dialog_Show(playerid, SellFish, DIALOG_STYLE_LIST, "Sell Fish:", str, "Sell", "Cancel");
-	return 1;
-}
-
-Dialog:SellFish(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		new total = 0;
-		if(Inventory_Count(playerid, "Cod") != 0 || Inventory_Count(playerid, "Carp") != 0 || Inventory_Count(playerid, "Salmon") != 0 || Inventory_Count(playerid, "Cat Fish") != 0 || Inventory_Count(playerid, "Herring") != 0)
-		{
-			total = floatround(COD_PRICE * Inventory_Count(playerid, "Cod"), floatround_round) + floatround(CARP_PRICE * Inventory_Count(playerid, "Carp"), floatround_round) + floatround(SALMON_PRICE * Inventory_Count(playerid, "Salmon"), floatround_round) + floatround(CATFISH_PRICE * Inventory_Count(playerid, "Cat Fish"), floatround_round) + floatround(HERRING_PRICE * Inventory_Count(playerid, "Herring"), floatround_round);
-			
-			Inventory_Set(playerid, "Cod", 19630, 0);
-			Inventory_Set(playerid, "Carp", 19630, 0);
-			Inventory_Set(playerid, "Salmon", 19630, 0);
-			Inventory_Set(playerid, "Cat Fish", 19630, 0);
-			Inventory_Set(playerid, "Herring", 19630, 0);
-		}
-
-		new Cents = floatround(total * 100, floatround_round);
-
-		GiveMoney(playerid, Cents);
-		SendJobsMessage(playerid, "[Fishing] {cdcdcd}You have sold all the fish and earn $%s.", FormatMoney(Cents));
-	}
+	ShowPlayerDialog(playerid, DIALOG_SELLFISH, DIALOG_STYLE_LIST, "Sell Fish:", str, "Sell", "Cancel");
 	return 1;
 }
 
@@ -174,18 +150,15 @@ CMD:buybait(playerid, params[])
 	if(sscanf(params, "d", amount))
 		return SendUsageMessage(playerid, "/buybait [amount] | $1/Bait");
 
-	if(amount < 1 || amount < 0)
+	if(amount < 1 || amount > 20)
 		return SendErrorMessage(playerid, "Invalid amount specified!");
+		
+	new Cents = floatround(amount * 0.10 * 100, floatround_round);
 
-	if(amount > PlayerInfo[playerid][E_CHARACTER_MONEY])
+	if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
 		return SendErrorMessage(playerid, "You don't have enough money! ($%s)", FormatMoney(amount));
 
-	if(amount > 100)
-		return SendErrorMessage(playerid, "Invalid bait amount!");
-	
-	new Cents = floatround(amount * 100, floatround_round);
-
-	GiveMoney(playerid, Cents);
+	GiveMoney(playerid, -Cents);
 	Inventory_Add(playerid, "Fish Bait", 19566, amount);
 	SendJobsMessage(playerid, "[Fishing] {cdcdcd}You have successfully purchase {d7d292}%d Fish bait{cdcdcd} for $%s", amount, FormatMoney(Cents));
 	return 1;

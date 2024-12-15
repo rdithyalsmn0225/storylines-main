@@ -245,210 +245,7 @@ stock OpenInventory(playerid)
 			format(str, sizeof(str), "%s[SLOT]: %s\t%d\n", str, string, amounts[i]);
 		}
 	}
-	Dialog_Show(playerid, Inventory, DIALOG_STYLE_TABLIST_HEADERS, "Inventory:", str, "Select", "Close");
-	return 1;
-}
-
-Dialog:Inventory(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		new
-			name[128], id = -1;
-
-		strunpack(name, InventoryInfo[playerid][listitem][E_INVENTORY_ITEM]);
-		PlayerInfo[playerid][E_CHARACTER_LISTITEM] = listitem;
-
-		if(InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] < 1)
-			return SendErrorMessage(playerid, "There is no item on selected slot!");
-
-		switch (PlayerInfo[playerid][E_CHARACTER_STORAGESELECT])
-		{
-			case 0:
-			{
-				format(name, sizeof(name), "%s (%d):", name, InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY]);
-				if (IsPlayerNearTrashcan(playerid) != -1) {
-					ShowPlayerDialog(playerid, DIALOG_INVACTION, DIALOG_STYLE_LIST, name, "Equip Item\nUnequip Item\nGive Item\nThrow Item", "Select", "Cancel");
-				}
-				else {
-				    ShowPlayerDialog(playerid, DIALOG_INVACTION, DIALOG_STYLE_LIST, name, "Equip Item\nUnequip Item\nGive Item\nDrop Item", "Select", "Cancel");
-				}
-			}
-			case 1:
-			{
-				if ((id = IsPlayerNearVehicle(playerid)) != -1 && !VehicleInfo[id][E_VEHICLE_LOCKED])
-				{
-					if(GetVehicleModel(id) == 459 || GetVehicleModel(id) == 482 || GetVehicleModel(id) == 440 || GetVehicleModel(id) == 413)
-					{
-						if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 3 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 3
-						|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 3 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 3
-						|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 3 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 3
-						|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 3)
-							return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
-
-						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
-						{
-
-							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
-							Inventory_Remove(playerid, name);
-
-							ShowVehicleStorage(playerid, id);
-						}
-						else
-						{
-							new str[128];
-							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
-							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
-						}
-					}
-					else if(GetVehicleModel(id) == 499 || GetVehicleModel(id) == 414)
-					{
-						if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 5 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 5
-						|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 5 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 5
-						|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 5 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 5
-						|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 5)
-							return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
-
-						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
-						{
-							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
-							Inventory_Remove(playerid, name);
-		
-							ShowVehicleStorage(playerid, id);
-						}
-						else
-						{
-							new str[128];
-							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
-							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
-						}
-					}
-					else if(GetVehicleModel(id) == 456)
-					{
-						if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 8 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 8
-						|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 8 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 8
-						|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 8 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 8
-						|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 8)
-							return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
-
-						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
-						{
-							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
-							Inventory_Remove(playerid, name);
-			
-							ShowVehicleStorage(playerid, id);
-						}
-						else
-						{
-							new str[128];
-							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
-							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
-						}
-					}
-					else if(GetVehicleModel(id) == 455)
-					{
-						if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 10 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 10
-						|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 10 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 10
-						|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 10 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 10
-						|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 10)
-							return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
-
-						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
-						{
-							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
-							Inventory_Remove(playerid, name);
-			
-							ShowVehicleStorage(playerid, id);
-						}
-						else
-						{
-							new str[128];
-							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
-							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
-						}
-					}
-					//Lumberjack
-					else if(GetVehicleModel(id) == 422 || GetVehicleModel(id) == 478 || GetVehicleModel(id) == 554 || GetVehicleModel(id) == 543)
-					{
-						if(!strcmp(name, "Woods") && VS_Count(id, "Woods") >= 3)
-							return SendErrorMessage(playerid, "You can't place woods into your vehicle trunk is full.");
-
-						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
-						{
-							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
-							Inventory_Remove(playerid, name);
-							VehicleObjectUpdates(id);
-							ShowVehicleStorage(playerid, id);
-						}
-						else
-						{
-							new str[128];
-							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
-							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
-						}
-					}
-					else
-					{
-						if (!strcmp(name, "Woods"))
-						{
-							if (GetVehicleModel(id) != 422 && GetVehicleModel(id) != 478 && GetVehicleModel(id) != 554 && GetVehicleModel(id) != 543)
-							{
-								return SendErrorMessage(playerid, "Woods can only be placed in specific vehicles.");
-							}
-						}
-						else if (!strcmp(name, "Fabric Cargo") && !strcmp(name, "Steel Cargo") && !strcmp(name, "Woods Cargo") && !strcmp(name, "Foods Cargo")
-						&& !strcmp(name, "Clothes Cargo") && !strcmp(name, "Appliances Cargo") && !strcmp(name, "Fish Cargo"))
-						{
-							if (GetVehicleModel(id) != 422 && GetVehicleModel(id) != 478 && GetVehicleModel(id) != 554 && GetVehicleModel(id) != 543 && 
-								GetVehicleModel(id) != 459 && GetVehicleModel(id) != 482 && GetVehicleModel(id) != 440 && GetVehicleModel(id) != 413 && 
-								GetVehicleModel(id) != 499 && GetVehicleModel(id) != 414 && GetVehicleModel(id) != 456 && GetVehicleModel(id) != 455)
-							{
-								SendErrorMessage(playerid, "Cargo can only be placed in specific vehicles.");
-							}
-						}
-
-						if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
-						{
-							VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
-							Inventory_Remove(playerid, name);
-							ShowVehicleStorage(playerid, id);
-						}
-						else 
-						{
-							new str[128];
-							format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
-							ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
-						}
-					}
-				}
-				PlayerInfo[playerid][E_CHARACTER_STORAGESELECT] = 0;
-			}
-			case 2:
-			{
-				if ((id = IsPlayerInProperty(playerid)) != -1 && (PropertyInfo[id][E_PROPERTY_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID]))
-				{
-					if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
-					{
-						Property_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
-						Inventory_Remove(playerid, name);
-
-						Property_ShowItems(playerid, id);
-					}
-					else 
-					{
-						new str[128];
-						format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
-						Dialog_Show(playerid, PropertyDeposit, DIALOG_STYLE_INPUT, "Property Safe Place:", str, "Store", "Back");
-					}
-				}
-				PlayerInfo[playerid][E_CHARACTER_STORAGESELECT] = 0;
-			}
-		}
-	}
-	else
-	{
-		cmd_cartrunk(playerid, "");
-	}
+	ShowPlayerDialog(playerid, DIALOG_INVENTORY, DIALOG_STYLE_TABLIST_HEADERS, "Inventory:", str, "Select", "Close");
 	return 1;
 }
 
@@ -625,7 +422,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	//Weapons Inventory
 	else if(!strcmp(name, "Beer Bottle"))
 	{
-		Dialog_Show(playerid, BeerBottle, DIALOG_STYLE_LIST, "Choose your beer use:", "Drink Beer\nMelee Bottle", "Select", "Cancel");
+		ShowPlayerDialog(playerid, DIALOG_BEERBOTTLE, DIALOG_STYLE_LIST, "Choose your beer use:", "Drink Beer\nMelee Bottle", "Select", "Cancel");
 	}
 	else if(!strcmp(name, "Marcos Knife"))
 	{
@@ -685,7 +482,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
-			Dialog_Show(playerid, WeaponDeagle, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
+			ShowPlayerDialog(playerid, DIALOG_WEAPONDEAGLE, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
@@ -695,7 +492,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
-			Dialog_Show(playerid, WeaponColt, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
+			ShowPlayerDialog(playerid, DIALOG_WEAPONCOLT, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
@@ -704,7 +501,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
-			Dialog_Show(playerid, WeaponSLC, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
+			ShowPlayerDialog(playerid, DIALOG_WEAPONSLC, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
@@ -714,7 +511,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
-			Dialog_Show(playerid, WeaponUzi, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
+			ShowPlayerDialog(playerid, DIALOG_WEAPONUZI, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
@@ -722,7 +519,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
-			Dialog_Show(playerid, WeaponShotgun, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
+			ShowPlayerDialog(playerid, DIALOG_WEAPONSHOTGUN, DIALOG_STYLE_TABLIST, "Choose your ammo type:", "Regular Ammo\tNo Buffs\nSurplus Ammo\t+10% Damages\nJHP Ammo\t+20% Damages\nRubber Ammo\t+5% Damages", "Select", "Cancel");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}

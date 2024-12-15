@@ -126,43 +126,6 @@ CMD:charge(playerid, params[])
 	forex(i, sizeof(PenalInfo)){
 		format(str, sizeof(str), "%s%s\n", str, PenalInfo[i][E_PENALCODES_TYPE]);
     }
-	Dialog_ShowPages(playerid, Charges, DIALOG_STYLE_TABLIST_HEADERS, "State Penal Code (Arrest Offesenses):", str, "Select", "Cancel");
+	ShowPlayerDialog(playerid, DIALOG_CHARGES, DIALOG_STYLE_TABLIST_HEADERS, "State Penal Code (Arrest Offesenses):", str, "Select", "Cancel");
     return 1;
-}
-
-Dialog:Charges(playerid, response, listitem, inputtext[]) 
-{
-	if(response)
-	{
-		new str[256];
-		new Cents = floatround(PenalInfo[listitem][E_PENALCODES_CHARGES] * 100, floatround_round);
-
-		PlayerInfo[playerid][E_CHARACTER_MDCCHARGE] = Cents;
-		PlayerInfo[playerid][E_CHARACTER_MDCTIME] = PenalInfo[listitem][E_PENALCODES_JAILTIME];
-		format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_NAME]);
-		format(PlayerInfo[playerid][E_CHARACTER_MDCDESC], 128, "%s", PenalInfo[listitem][E_PENALCODES_TYPE]);
-
-		format(str, sizeof(str), "Suspect: %s\nDescription: (%s) %.150s\nCharges: {33AA33}$%s{ffffff}\nJail Times: %d Month (Minutes)", PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_NAME], PenalInfo[listitem][E_PENALCODES_TYPE], PenalInfo[listitem][E_PENALCODES_NAME], FormatMoney(Cents), PenalInfo[listitem][E_PENALCODES_JAILTIME]);
-		Dialog_Show(playerid, ChargesSelect, DIALOG_STYLE_MSGBOX, "State Penal Code (Arrest Offesenses):", str, "Enter", "Cancel");
-	}
-	return 1;
-}
-
-Dialog:ChargesSelect(playerid, response, listitem, inputtext[]) 
-{
-	if(response)
-	{
-		SetPlayerInPrison(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
-		
-		ResetPlayerWeapons(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
-		SaveCharacter(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
-		RemovePlayerAttachedObject(playerid, 0);
-		PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_HANDCUFF] = false;
-		SetPlayerSpecialAction(PlayerInfo[playerid][E_CHARACTER_MDCSELECT], SPECIAL_ACTION_NONE);
-
-		GiveMoney(PlayerInfo[playerid][E_CHARACTER_MDCSELECT], -PlayerInfo[playerid][E_CHARACTER_MDCCHARGE]);
-
-		AddWanted(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], PlayerInfo[playerid][E_CHARACTER_MDCDESC]);
-	}
-	return 1;
 }

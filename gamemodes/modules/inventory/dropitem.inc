@@ -151,46 +151,6 @@ DropPlayerItem(playerid, itemid, quantity = 1, type = 0)
 		ResetVarInventory(playerid);
 	}
 
-	Dialog_Show(playerid, DropItems, DIALOG_STYLE_MSGBOX, "Dropped Items:", "Select your dropped items type 'Static' or 'Cursor'.", "Static", "Cursor");
-	return 1;
-}
-
-Dialog:DropItems(playerid, response, listitem, inputtext[])
-{
-	if(!response)
-	{
-		new
-			Float:x,
-			Float:y,
-			Float:z;
-
-		GetPlayerPos(playerid, x, y, z);
-
-		PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(PlayerInfo[playerid][E_CHARACTER_OBJECTID], x, y, z, 0.0, 0.0, 0.0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid)); 
-		EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]); 
-		PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 5;
-	}
-
-	new
-		Float:x,
-  		Float:y,
-    	Float:z,
-		Float:angle;
-
-	GetPlayerPos(playerid, x, y, z);
-	GetPlayerFacingAngle(playerid, angle);
-
-	DropItem(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY], x, y, z - 0.9, 0.0, 0.0, 0.0, GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE]);
-	Inventory_Remove(playerid, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY]);
-	ApplyAnimation(playerid, "GRENADE", "WEAPON_throwu", 4.1, 0, 0, 0, 0, 0, 1);
-
-	PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
-	PlayerInfo[playerid][E_CHARACTER_OBJECTID] = 0;
-	PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = 0;
-	PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY] = 0;
-	PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
-	format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
-	DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
-	SendInfoMessage(playerid, "You're moved dropped items."); 
+	ShowPlayerDialog(playerid, DIALOG_DROPITEMS, DIALOG_STYLE_MSGBOX, "Dropped Items:", "Select your dropped items type 'Static' or 'Cursor'.", "Static", "Cursor");
 	return 1;
 }

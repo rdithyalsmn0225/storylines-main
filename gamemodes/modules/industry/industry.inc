@@ -166,18 +166,7 @@ stock ShowFreight(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t{33AA33}%s{ffffff}\t%s\n", str, GetZoneName(FreightInfo[i][Startx], FreightInfo[i][Starty], FreightInfo[i][Startz]), FreightInfo[i][Cargo], GetZoneName(FreightInfo[i][Endx], FreightInfo[i][Endy], FreightInfo[i][Endz]));
 	}
-	Dialog_Show(playerid, FreightLoc, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
-	return 1;
-}
-
-Dialog:FreightLoc(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		PlayerTruckIndex[playerid] = listitem+1;
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has selected truck missions in %s, go to checkpoint to take the trailer.", GetZoneName(FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz]));
-		GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz], 0.0, 0.0, 0.0, GPS_TRUCKERS);
-	}
+	ShowPlayerDialog(playerid, DIALOG_FREIGHTLOC, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
 	return 1;
 }
 
@@ -189,16 +178,7 @@ stock ShowIndustry(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t{33AA33}%s{ffffff}\t%s\n", str, IndustryInfo[i][Name], IndustryInfo[i][Cargo], IndustryInfo[i][Type]);
 	}
-	Dialog_Show(playerid, IndustryLoc, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
-	return 1;
-}
-
-Dialog:IndustryLoc(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		GPS_SetPlayerRaceCheckPoint(playerid, 1, IndustryInfo[listitem][Posx], IndustryInfo[listitem][Posy], IndustryInfo[listitem][Posz], 0.0, 0.0, 0.0);
-	}
+	ShowPlayerDialog(playerid, DIALOG_INDUSTRYLOC, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
 	return 1;
 }
 

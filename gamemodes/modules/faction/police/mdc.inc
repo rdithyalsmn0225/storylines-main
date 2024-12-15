@@ -75,7 +75,7 @@ function:OnMDCPlate(playerid)
 		for(new i = 0; i < 5; i++) PlayerPlateSaver[playerid][i] = "";
 		format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, ""); 
 		
-		return Dialog_Show(playerid, MdcPlate, DIALOG_STYLE_INPUT, "View Plates:", "The plate you inputted was not found.\nPlease enter the vehicle plates:", "Submint", "Cancel"); 
+		return ShowPlayerDialog(playerid, DIALOG_MDC_PLATE, DIALOG_STYLE_INPUT, "View Plates:", "The plate you inputted was not found.\nPlease enter the vehicle plates:", "Submint", "Cancel"); 
 	}
 	
 	new rows, fields, str[128];
@@ -95,7 +95,7 @@ function:OnMDCPlate(playerid)
 		}
 	}
 	
-	Dialog_Show(playerid, MdcPlateList, DIALOG_STYLE_LIST, "View Plates", str, "Select", "<<"); 
+	ShowPlayerDialog(playerid, DIALOG_MDC_PLATELIST, DIALOG_STYLE_LIST, "View Plates", str, "Select", "<<"); 
 	return 1;
 }
 
@@ -152,101 +152,5 @@ CMD:mdc(playerid, params[])
 
 	SelectTextDraw(playerid, COLOR_YELLOW);
 	ShowPlayerMDC(playerid);
-	return 1;
-}
-
-Dialog:MdcName(playerid, response, listitem, inputtext[])
-{
-	if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
-		return 0;
-
-	if (response)
-	{
-		if(strlen(inputtext) < 3 || strlen(inputtext) > 32)
-			return Dialog_Show(playerid, MdcName, DIALOG_STYLE_INPUT, "Place Charges:", "Please enter the name of the player:", "Search", "Back"); 
-			
-		if(!ReturnDBIDFromName(inputtext))
-			return Dialog_Show(playerid, MdcName, DIALOG_STYLE_INPUT, "Place Charges:", "Invalid user specified.\nPlease enter the name of the player:", "Search", "Back"); 
-		
-		format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", inputtext); 
-
-		new str[128];
-		format(str, sizeof(str), "Please enter the description of the crime committed by %s:", ReturnName(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], playerid));
-		Dialog_Show(playerid, MdcPlace, DIALOG_STYLE_INPUT, "Given Charge:", str, "Search", "Back");
-	}
-	return 1;
-}
-
-Dialog:MdcPlace(playerid, response, listitem, inputtext[])
-{
-	if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
-		return 0;
-
-	if (response)
-	{
-		if (isnull(inputtext))
-		{
-			new str[128];
-			format(str, sizeof(str), "Please enter the name of the player:");
-			return Dialog_Show(playerid, MdcPlace, DIALOG_STYLE_INPUT, "Given Charge:", str, "Enter", "Back");
-		}
-			
-		AddWanted(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
-
-		SendPoliceMessage(COLOR_COP, "** HQ: %s has placed a charge on %s for \"%s\".", ReturnName(playerid, 0), PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
-	}
-	return 1;
-}
-
-Dialog:MdcPlate(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		new query[128];
-		if(strlen(inputtext) > 6 || strlen(inputtext) < 3)
-			return Dialog_Show(playerid, MdcPlate, DIALOG_STYLE_INPUT, "Plates Search:", "Please enter the vehicle plates:", "Search", "Back"); 
-		
-		format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", inputtext); 
-
-		mysql_format(ourConnection, query, sizeof(query), "SELECT VehiclePlates FROM vehicles WHERE VehiclePlates LIKE '%%%e%%' LIMIT 5", PlayerInfo[playerid][E_CHARACTER_MDCPLAYER]); 
-		mysql_pquery(ourConnection, query, "OnMDCPlate", "i", playerid); 
-	}
-	return 1;
-}
-
-Dialog:MdcPlateList(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		new query[220];
-		mysql_format(ourConnection, query, sizeof(query), "SELECT VehicleOwnerDBID, VehicleModel, VehicleImpounded FROM vehicles WHERE VehiclePlates = '%e'", PlayerPlateSaver[playerid][listitem]);
-		mysql_pquery(ourConnection, query, "OnPlateSelect", "ii", playerid, listitem); 
-	}
-	return 1;
-}
-
-Dialog:MdcView(playerid, response, listitem, inputtext[])
-{
-	if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
-		return 0;
-
-	if (response)
-	{
-		if (isnull(inputtext) || strlen(inputtext) > 24)
-			return Dialog_Show(playerid, MdcView, DIALOG_STYLE_INPUT, "Name Search:", "Please enter the name of the player:", "Search", "Back");
-
-		if (IsNumeric(inputtext) && IsPlayerConnected(strval(inputtext))) 
-		{
-			ViewCharges(playerid, ReturnName(strval(inputtext), playerid));
-		}
-		else if (!IsNumeric(inputtext)) 
-		{
-			ViewCharges(playerid, inputtext);
-		}
-		else 
-		{
-			Dialog_Show(playerid, MdcView, DIALOG_STYLE_INPUT, "Name Search:", "Invalid user specified.\nPlease enter the name of the player:", "Search", "Back");
-		}
-	}
 	return 1;
 }

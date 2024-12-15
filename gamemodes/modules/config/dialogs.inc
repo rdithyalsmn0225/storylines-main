@@ -103,6 +103,297 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO `masters` (`acc_name`, `acc_pass`, `register_date`, `register_ip`, `forum_name`) VALUES ('%e', sha1('%e'), '%e', '%e', '%e')", ReturnName(playerid, 1), inputtext, ReturnDate(), ReturnIP(playerid), ReturnName(playerid, 1));
     		mysql_pquery(ourConnection, insert, "OnPlayerRegister", "i", playerid);
 		}
+		case DIALOG_LOGIN:
+		{
+			if (!response)
+			{
+				SendErrorMessage(playerid, "You were kicked for not logging in."); 
+				return KickEx(playerid);
+			}
+			
+			new continueCheck[211]; 
+			
+			mysql_format(ourConnection, continueCheck, sizeof(continueCheck), "SELECT * FROM masters WHERE acc_name = '%e' AND acc_pass = sha1('%e') LIMIT 1", 
+				ReturnName(playerid, 1), inputtext);
+				
+			mysql_pquery(ourConnection, continueCheck, "LoggingIn", "i", playerid);
+		}
+		case DIALOG_SPAWNS:
+		{
+			if (!response)
+			{
+				SendErrorMessage(playerid, "You were kicked for not selection spawn."); 
+				return KickEx(playerid);
+			}
+
+			if(listitem == 9)
+			{
+				PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = SPAWN_POINT_LAST; 
+				LoadCharacter(playerid);
+			}
+			else
+			{
+				PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = listitem; 
+				LoadCharacter(playerid);
+			}
+		}
+		case DIALOG_CHAR_PREVIEW:
+		{
+			if(!response)
+			{
+				if (isnull(playerCharactersName[playerid]) || !playerCharactersSex[playerid] || !playerCharactersAge[playerid] ||
+				isnull(playerCharactersEthnicity[playerid]) || isnull(playerCharactersHair[playerid]) || isnull(playerCharactersEyes[playerid]) ||
+				!playerCharactersHeights[playerid] || isnull(playerCharactersDescription[playerid]))
+				{
+					ShowCharacterPreview(playerid);
+					SendErrorMessage(playerid, "You must complete the character attribute.");
+					return 1;
+				}
+				
+				PlayerInfo[playerid][E_CHARACTER_FACTION] = 0;
+				characterSelection[playerid] = true;
+				playerMakingCharacter[playerid] = false;
+				playerCharacterStep[playerid] = 0; 
+				PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0;
+
+				PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = playerCharactersSkins[playerid];
+				
+				ClearLines(playerid, 17); 
+								
+				SendInfoMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
+								
+				new query[512];
+
+				new fid; 
+						
+				fid = PlayerInfo[playerid][E_CHARACTER_FACTION];
+								
+				mysql_format(ourConnection, query, sizeof(query), "INSERT INTO characters (`master_dbid`, `char_name`, `char_masters`, `pAge`, `pEthnicity`, `pGender`, `pHair`, `pEyes`, `pHeight`, `pFaction`, `pLastSkin`, `create_date`, `create_ip`, `pPhone`, pSpawnPoint, pLastPosX, pLastPosY, pLastPosZ) \
+				VALUES(%i, '%e', '%e', '%d', '%e', '%d', '%e', '%e', '%d', '%d', '%d', '%e', '%e', %d, %d, %f, %f, %f)", AccountInfo[playerid][E_MASTERS_DBID], playerCharactersName[playerid], AccountInfo[playerid][E_MASTERS_ACCNAME], playerCharactersAge[playerid],
+				playerCharactersEthnicity[playerid], playerCharactersSex[playerid], playerCharactersHair[playerid], playerCharactersEyes[playerid], playerCharactersHeights[playerid], PlayerInfo[playerid][E_CHARACTER_FACTION], PlayerInfo[playerid][E_CHARACTER_LASTSKIN], ReturnDate(), ReturnIP(playerid), 94000+random(6999), PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT], FactionInfo[fid][E_FACTION_SPAWN][0], FactionInfo[fid][E_FACTION_SPAWN][1], FactionInfo[fid][E_FACTION_SPAWN][2]);				
+				mysql_pquery(ourConnection, query); 
+								
+				SetTimerEx("RefreshCharacters", 1000, false, "i", playerid);
+			}
+
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0: // Name:
+					{
+						ShowPlayerDialog(playerid, DIALOG_CHAR_NAME, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+					}
+					case 1: // Sex:
+					{
+						ShowPlayerDialog(playerid, DIALOG_CHAR_SEX, DIALOG_STYLE_LIST, "Character Sex:", "Male\nFemale", "Edit", "Finish");	
+					}
+					case 2: // Age:
+					{
+						ShowPlayerDialog(playerid, DIALOG_CHAR_AGE, DIALOG_STYLE_INPUT, "Character Age:", "Insert a age of your character.\n{33AA33}{33AA33}Info:{ffffff}{ffffff} Required in format cannot be less than 18 years old", "Confirm", "");	
+					}
+					case 3: // Ethnicity:
+					{
+						ShowPlayerDialog(playerid, DIALOG_CHAR_ETHNIC, DIALOG_STYLE_LIST, "Character Ethnicity:", "White\nBlack\nLatino\nAsian", "Confirm", "");	
+					}
+					case 4: // Hair:
+					{
+						ShowPlayerDialog(playerid, DIALOG_CHAR_HAIR, DIALOG_STYLE_LIST, "Character Hair:", "Bald\nBlack\nBrown\nBlonde\nWhite\nGray\nRed", "Confirm", "");	
+					}
+					case 5: // Eyes:
+					{
+						ShowPlayerDialog(playerid, DIALOG_CHAR_EYES, DIALOG_STYLE_LIST, "Character Eyes:", "Amber\nBlack\nBrown\nBlue\nGray\nHazel", "Confirm", "");	
+					}
+					case 6: // Height:
+					{
+						ShowPlayerDialog(playerid, DIALOG_CHAR_HEIGHT, DIALOG_STYLE_INPUT, "Character Age:", "Insert a height of your character.\n{33AA33}Info:{ffffff} Required in format cannot be less than 160 cm", "Confirm", "");	
+					}
+					case 7: //Description
+					{
+						ShowPlayerDialog(playerid, DIALOG_CHAR_DESC, DIALOG_STYLE_INPUT, "Character Description:", "Insert a description of your character.\n{33AA33}Info:{ffffff} Required for description your characters", "Confirm", "");	
+					}
+				}
+			}
+		}
+		case DIALOG_CHAR_NAME:
+		{
+			if(response)
+			{
+				if(strlen(inputtext) > MAX_PLAYER_NAME + 1 || strlen(inputtext) < 3)
+				{
+					ShowPlayerDialog(playerid, DIALOG_CHAR_NAME, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+					SendErrorMessage(playerid, "Your characters name must be at least 3 characters and no more than %i characters.", MAX_PLAYER_NAME);
+					return 1;
+				}
+				if(!IsValidRoleplayName(inputtext))
+				{
+					ShowPlayerDialog(playerid, DIALOG_CHAR_NAME, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+					SendErrorMessage(playerid, "Please follow the Firstname_Lastname format to make your character."); 
+					return 1;
+				}
+				
+				foreach (new i : Player)
+				{
+					if(!strcmp(inputtext, ReturnName(i, playerid)))
+					{
+						ShowPlayerDialog(playerid, DIALOG_CHAR_NAME, DIALOG_STYLE_INPUT, "Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+						SendErrorMessage(playerid, "That character already exists. Please try again."); 
+						return 1;
+					}
+				}
+				
+				new
+					threadSearch[128]
+				;
+				
+				format(playerCharactersName[playerid], 128, "%s", inputtext); 
+				
+				mysql_format(ourConnection, threadSearch, sizeof(threadSearch), "SELECT char_dbid FROM characters WHERE char_name = '%e'", inputtext);
+				mysql_pquery(ourConnection, threadSearch, "Query_CreateCharacter", "i", playerid);
+			}
+		}
+		case DIALOG_CHAR_SEX:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0: //male
+					{
+						playerCharactersSex[playerid] = 1;
+						
+						new rand = random(sizeof(g_aMaleSkins));
+						playerCharactersSkins[playerid] = g_aMaleSkins[rand];
+						CreatePlayerActor(playerid, playerCharactersSkins[playerid]);
+						ShowCharacterPreview(playerid);
+					}
+					case 1: //female
+					{
+						new rand = random(sizeof(g_aFemaleSkins));
+						playerCharactersSkins[playerid] = g_aFemaleSkins[rand];
+						CreatePlayerActor(playerid, playerCharactersSkins[playerid]);
+						playerCharactersSex[playerid] = 2;
+						ShowCharacterPreview(playerid);
+					}
+				}
+			}
+		}
+		case DIALOG_CHAR_AGE:
+		{
+			if(response)
+			{
+				if(strval(inputtext) > 60 || strval(inputtext) < 18 || isnull(inputtext))
+				{
+					ShowPlayerDialog(playerid, DIALOG_CHAR_AGE, DIALOG_STYLE_INPUT, "Character Age:", "Insert a age of your character.\n{33AA33}Info:{ffffff} Required in format cannot be less than 18 years old", "Confirm", "");	
+					SendErrorMessage(playerid, "Your characters age must be at least 18 years old and no more than 60 years old.");
+					return 1;
+				}
+
+				playerCharactersAge[playerid] = strval(inputtext);
+				ShowCharacterPreview(playerid);
+			}
+		}
+		case DIALOG_CHAR_ETHNIC:
+		{
+			if(response)
+			{
+				format(playerCharactersEthnicity[playerid], 128, "%s", inputtext); 
+				ShowCharacterPreview(playerid);
+			}
+		}
+		case DIALOG_CHAR_HAIR:
+		{
+			if(response)
+			{
+				format(playerCharactersHair[playerid], 20, "%s", inputtext); 
+				ShowCharacterPreview(playerid);
+			}
+		}
+		case DIALOG_CHAR_EYES:
+		{
+			if(response)
+			{
+				format(playerCharactersEyes[playerid], 20, "%s", inputtext); 
+				ShowCharacterPreview(playerid);
+			}
+		}
+		case DIALOG_CHAR_HEIGHT:
+		{
+			if(response)
+			{
+				if(strval(inputtext) > 190 || strval(inputtext) < 160 || isnull(inputtext) || !IsNumeric(inputtext))
+				{
+					ShowPlayerDialog(playerid, DIALOG_CHAR_HEIGHT, DIALOG_STYLE_INPUT, "Character Age:", "Insert a height of your character.\n{33AA33}Info:{ffffff} Required in format cannot be less than 160 cm", "Confirm", "");	
+					SendErrorMessage(playerid, "Your characters height must be at least 160 cm and no more than 180 cm.");
+					return 1;
+				}
+
+				playerCharactersHeights[playerid] = strval(inputtext); 
+				ShowCharacterPreview(playerid);
+			}
+		}
+		case DIALOG_CHAR_DESC:
+		{
+			if(response)
+			{
+				if(strlen(inputtext) > 32 || strlen(inputtext) < 12 || isnull(inputtext))
+				{
+					ShowPlayerDialog(playerid, DIALOG_CHAR_DESC, DIALOG_STYLE_INPUT, "Character Description:", "Insert a description of your character.\n{33AA33}Info:{ffffff} Required for description your characters", "Confirm", "");	
+					SendErrorMessage(playerid, "Your characters description must be at least 12 characters and no more than 32 characters.");
+					return 1;
+				}
+
+				format(playerCharactersDescription[playerid], 20, "%s", inputtext); 
+				ShowCharacterPreview(playerid);
+			}
+		}
+		case DIALOG_COMPENTATION:
+		{
+			if(response)
+			{
+				for (new i = 0; i < MAX_COMPENSATION; i++) if(CompetationInfo[i][E_COMPETATION_EXISTS])
+				{
+					if (strcmp(CompetationInfo[i][E_COMPETATION_CODE], inputtext, true) == 0)
+					{
+						if (gettime() > CompetationInfo[i][E_COMPETATION_EXPIRED])
+						{
+							new query[256];
+							mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_codes WHERE code = '%s'", CompetationInfo[i][E_COMPETATION_CODE]);
+							mysql_tquery(ourConnection, query);
+
+							mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_claims WHERE code = '%s'", CompetationInfo[i][E_COMPETATION_CODE]);
+							mysql_tquery(ourConnection, query);
+
+							CompetationInfo[i][E_COMPETATION_EXISTS] = false;
+							
+							return SendErrorMessage(playerid, "This compensation code has expired.");
+						}
+
+						if (CompetationInfo[i][E_COMPETATION_USED] >= CompetationInfo[i][E_COMPETATION_PLAYERS])
+						{
+							new query[256];
+							mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_codes WHERE code = '%s'", CompetationInfo[i][E_COMPETATION_CODE]);
+							mysql_tquery(ourConnection, query);
+
+							mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_claims WHERE code = '%s'", CompetationInfo[i][E_COMPETATION_CODE]);
+							mysql_tquery(ourConnection, query);
+
+							CompetationInfo[i][E_COMPETATION_EXISTS] = false;
+
+							return SendErrorMessage(playerid, "This compensation code has reached its limit.");
+						}
+
+						new query[256];
+						mysql_format(ourConnection, query, sizeof(query), "SELECT * FROM compensation_claims WHERE player_id = %d AND code = '%s'", PlayerInfo[playerid][E_CHARACTER_DBID], inputtext);
+						mysql_pquery(ourConnection, query, "CompensationCallback", "ii", playerid, i);
+					}
+				}
+				else
+				{
+					SendErrorMessage(playerid, "Invalid or not available compensation code at this time.");
+				}
+			}
+		}
 		case DIALOG_REPORT:
 		{
 			if (!response)
@@ -129,6 +420,527 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 			    SetPlayerInteriorEx(playerid, g_arrInteriorData[listitem][E_INT_ID]);
 			    SetPlayerPosEx(playerid, g_arrInteriorData[listitem][E_INT_X], g_arrInteriorData[listitem][E_INT_Y], g_arrInteriorData[listitem][E_INT_Z]);
+			}
+		}
+		case DIALOG_FACTIONLOCKER:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(!IsPlayerFaction(playerid))
+							return SendErrorMessage(playerid, "You aren't in any faction.");
+							
+						if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
+							return SendErrorMessage(playerid, "You can't use this command."); 
+
+						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+						{
+							if(!PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
+							{
+								SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid));
+								SendTipMessage(playerid, "You can use '/tazer' use an electrical current to temporarily incapacitate a person.");
+								SendTipMessage(playerid, "You can use '/tackle' The player you hit will have a message flashed to them indicating that a tackle has been attempted..");
+
+								SetPlayerHealthEx(playerid, 100);
+								SetPlayerArmourEx(playerid, 100);
+								
+								PlayerInfo[playerid][E_CHARACTER_POLICEDUTY] = true; 
+
+								SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_FACSKIN]); 
+							}
+							else
+							{
+								PlayerInfo[playerid][E_CHARACTER_POLICEDUTY] = false;
+			
+								ResetPlayerWeapons(playerid); 
+								
+								SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now Off Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid)); 
+								
+								SetPlayerArmourEx(playerid, 0);
+								SetPlayerHealthEx(playerid, 100); 
+								
+								SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]); 
+								
+								if(Inventory_Count(playerid, "Desert Eagle"))
+								{
+									Inventory_Remove(playerid, "Desert Eagle", 1);
+								}
+								Inventory_Remove(playerid, "Regular Ammo", 50);
+							}
+						}
+						else if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+						{
+							if(!PlayerInfo[playerid][E_CHARACTER_MEDICDUTY])
+							{
+								SendMedicMessage(COLOR_MEDIC, "** HQ: %s %s is now On Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid));
+								
+								SetPlayerHealthEx(playerid, 100);
+								SetPlayerArmourEx(playerid, 100);
+
+								PlayerInfo[playerid][E_CHARACTER_MEDICDUTY] = true; 
+
+								SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_FACSKIN]); 
+							}
+							else
+							{
+								PlayerInfo[playerid][E_CHARACTER_MEDICDUTY] = false;
+			
+								ResetPlayerWeapons(playerid); 
+								
+								SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now Off Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid)); 
+								
+								SetPlayerArmourEx(playerid, 0);
+								SetPlayerHealthEx(playerid, 100); 
+								
+								SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]); 
+								
+								if(Inventory_Count(playerid, "Bandage"))
+								{
+									Inventory_Set(playerid, "Bandage", 17738, 0);
+								}
+							}
+						}
+					}
+					case 1:
+					{
+						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+						{
+							if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
+							{
+								new str[512];
+								for(new i; i < sizeof(g_aLspdSkins); i++)
+								{
+									format(str, sizeof(str), "%s%d\n", str, g_aLspdSkins[i]);
+								}
+								ShowPlayerDialog(playerid, DIALOG_POLICEMALESKIN, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+							}
+							else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
+							{
+								new str[512];
+								for(new i; i < sizeof(g_aLspdFemSkins); i++)
+								{
+									format(str, sizeof(str), "%s%d\n", str, g_aLspdFemSkins[i]);
+								}
+								ShowPlayerDialog(playerid, DIALOG_POLICEFEMALESKIN, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+							}
+						}
+						
+						else if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+						{
+							if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
+							{
+								new str[512];
+								for(new i; i < sizeof(g_aLsmdSkins); i++)
+								{
+									format(str, sizeof(str), "%s%d\n", str, g_aLsmdSkins[i]);
+								}
+								ShowPlayerDialog(playerid, DIALOG_MEDICMALESKIN, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+							}
+							else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
+							{
+								new str[512];
+								for(new i; i < sizeof(g_aLsmdFemSkins); i++)
+								{
+									format(str, sizeof(str), "%s%d\n", str, g_aLsmdFemSkins[i]);
+								}
+								ShowPlayerDialog(playerid, DIALOG_MEDICFEMALESKIN, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+							}
+						}
+					}
+					case 2:
+					{
+						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+						{
+							if(!Inventory_Count(playerid, "Desert Eagle"))
+							{
+								Inventory_Set(playerid, "Desert Eagle", 348, 1);
+							}
+							Inventory_Set(playerid, "Regular Ammo", 2040, 50);
+						}
+						if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+						{
+							Inventory_Set(playerid, "Bandage", 17738, 10);
+						}
+					}
+					case 3:
+					{
+						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+						{
+							if(!Inventory_Count(playerid, "Shotgun"))
+							{
+								Inventory_Set(playerid, "Shotgun", 348, 1);
+							}
+							Inventory_Set(playerid, "Regular Ammo", 2040, 50);
+						}
+						if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+						{
+							Inventory_Set(playerid, "Extinguisher", 366, 1);
+						}
+					}
+					case 4:
+					{
+						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+						{
+							if(!Inventory_Count(playerid, "Regular Ammo"))
+							{
+								Inventory_Set(playerid, "Regular Ammo", 2040, 50);
+							}
+							else
+							{
+								Inventory_Set(playerid, "Regular Ammo", 2040, 0);
+							}
+						}
+						if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+						{
+							Inventory_Set(playerid, "Extinguisher", 366, 1);
+						}
+					}
+					case 5:
+					{
+						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+						{
+							if(!Inventory_Count(playerid, "Surplus Ammo"))
+							{
+								Inventory_Set(playerid, "Surplus Ammo", 2040, 50);
+							}
+							else
+							{
+								Inventory_Set(playerid, "Surplus Ammo", 2040, 0);
+							}
+						}
+						if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+						{
+							Inventory_Set(playerid, "Extinguisher", 366, 1);
+						}
+					}
+					case 6:
+					{
+						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+						{
+							if(!Inventory_Count(playerid, "JHP Ammo"))
+							{
+								Inventory_Set(playerid, "JHP Ammo", 2040, 50);
+							}
+							else
+							{
+								Inventory_Set(playerid, "JHP Ammo", 2040, 0);
+							}
+						}
+						if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+						{
+							Inventory_Set(playerid, "Extinguisher", 366, 1);
+						}
+					}
+					case 7:
+					{
+						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+						{
+							if(!Inventory_Count(playerid, "Rubber Ammo"))
+							{
+								Inventory_Set(playerid, "Rubber Ammo", 2040, 50);
+							}
+							else
+							{
+								Inventory_Set(playerid, "Rubber Ammo", 2040, 0);
+							}
+						}
+						if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
+						{
+							Inventory_Set(playerid, "Extinguisher", 366, 1);
+						}
+					}
+				}
+			}
+		}
+		case DIALOG_POLICEMALESKIN:
+		{
+			if(response)
+			{
+				SetPlayerSkin(playerid, g_aLspdSkins[listitem]);
+				PlayerInfo[playerid][E_CHARACTER_FACSKIN] = g_aLspdSkins[listitem];
+				SaveCharacter(playerid);
+			}
+		}
+		case DIALOG_POLICEFEMALESKIN:
+		{
+			if(response)
+			{
+				SetPlayerSkin(playerid, g_aLspdFemSkins[listitem]);
+				PlayerInfo[playerid][E_CHARACTER_FACSKIN] = g_aLspdFemSkins[listitem];
+				SaveCharacter(playerid);
+			}
+		}
+		case DIALOG_MEDICMALESKIN:
+		{
+			if(response)
+			{
+				SetPlayerSkin(playerid, g_aLsmdSkins[listitem]);
+				PlayerInfo[playerid][E_CHARACTER_FACSKIN] = g_aLsmdSkins[listitem];
+				SaveCharacter(playerid);
+			}
+		}
+		case DIALOG_MEDICFEMALESKIN:
+		{
+			if(response)
+			{
+				SetPlayerSkin(playerid, g_aLsmdFemSkins[listitem]);
+				PlayerInfo[playerid][E_CHARACTER_FACSKIN] = g_aLsmdFemSkins[listitem];
+				SaveCharacter(playerid);
+			}
+		}
+		case DIALOG_MEDICVEHICLES:
+		{
+			if (response)
+			{
+				new index = listitem + 27; // Menyesuaikan indeks agar sesuai dengan Medical (27-37)
+
+				if (FactionVehicle[index][E_FACVEHICLE_SPAWNED])
+					return SendErrorMessage(playerid, "This vehicle is already spawned and not available.");
+
+				new modelid = FactionVehicle[index][E_FACVEHICLE_MODEL];
+				new color1 = FactionVehicle[index][E_FACVEHICLE_COLOR1];
+				new color2 = FactionVehicle[index][E_FACVEHICLE_COLOR2];
+				new Float:x = FactionVehicle[index][E_FACVEHICLE_POSX];
+				new Float:y = FactionVehicle[index][E_FACVEHICLE_POSY];
+				new Float:z = FactionVehicle[index][E_FACVEHICLE_POSZ];
+				new Float:rot = FactionVehicle[index][E_FACVEHICLE_ROT];
+
+				FactionVehicle[index][E_FACVEHICLE_LASTUSED] = gettime();
+
+				FactionVehicle[index][E_FACVEHICLE_VEH] = AddStaticVehicleEx(modelid, x, y, z, rot, color1, color2, 1800, 1);
+				VehicleInfo[FactionVehicle[index][E_FACVEHICLE_VEH]][E_VEHICLE_HEALTH] = 2000.0;
+				VehicleInfo[FactionVehicle[index][E_FACVEHICLE_VEH]][E_VEHICLE_FUEL] = 100;
+				VehicleInfo[FactionVehicle[index][E_FACVEHICLE_VEH]][E_VEHICLE_MILES] = 0;
+
+				SetVehicleHealth(FactionVehicle[index][E_FACVEHICLE_VEH], VehicleInfo[FactionVehicle[index][E_FACVEHICLE_VEH]][E_VEHICLE_HEALTH]);
+				SetVehicleNumberPlate(FactionVehicle[index][E_FACVEHICLE_VEH], FactionVehicle[index][E_FACVEHICLE_PLATES]);
+
+				FactionVehicle[index][E_FACVEHICLE_SPAWNED] = true;
+
+				SendServerMessage(playerid, "[Faction] {cdcdcd} Faction Vehicle spawned successfully.");
+			}
+		}
+		case DIALOG_POLICEVEHICLES:
+		{
+			if(response)
+			{
+				if(FactionVehicle[listitem][E_FACVEHICLE_SPAWNED])
+					return SendErrorMessage(playerid, "This vehicle is already spawned and not available.");
+
+				new modelid = FactionVehicle[listitem][E_FACVEHICLE_MODEL];
+				new color1 = FactionVehicle[listitem][E_FACVEHICLE_COLOR1];
+				new color2 = FactionVehicle[listitem][E_FACVEHICLE_COLOR2];
+				new Float:x = FactionVehicle[listitem][E_FACVEHICLE_POSX];
+				new Float:y = FactionVehicle[listitem][E_FACVEHICLE_POSY];
+				new Float:z = FactionVehicle[listitem][E_FACVEHICLE_POSZ];
+				new Float:rot = FactionVehicle[listitem][E_FACVEHICLE_ROT];
+
+				FactionVehicle[listitem][E_FACVEHICLE_LASTUSED] = gettime();
+
+				FactionVehicle[listitem][E_FACVEHICLE_VEH] = AddStaticVehicleEx(modelid, x, y, z, rot, color1, color2, 1800, 1);
+				VehicleInfo[FactionVehicle[listitem][E_FACVEHICLE_VEH]][E_VEHICLE_HEALTH] = 2000.0;
+				VehicleInfo[FactionVehicle[listitem][E_FACVEHICLE_VEH]][E_VEHICLE_FUEL] = 100;
+				VehicleInfo[FactionVehicle[listitem][E_FACVEHICLE_VEH]][E_VEHICLE_MILES] = 0; 
+				SetVehicleHealth(FactionVehicle[listitem][E_FACVEHICLE_VEH], VehicleInfo[FactionVehicle[listitem][E_FACVEHICLE_VEH]][E_VEHICLE_HEALTH]);
+				SetVehicleNumberPlate(FactionVehicle[listitem][E_FACVEHICLE_VEH], FactionVehicle[FactionVehicle[listitem][E_FACVEHICLE_VEH]][E_FACVEHICLE_PLATES]);
+				FactionVehicle[listitem][E_FACVEHICLE_SPAWNED] = true;
+
+				SendServerMessage(playerid, "[Faction] {cdcdcd} Faction Vehicles spawned successfully.");
+			}
+		}
+		case DIALOG_TREATMENT:
+		{
+			if(response)
+			{
+				new targetid = PlayerInfo[playerid][E_CHARACTER_TARGETID];
+
+				if(!IsPlayerNearPlayer(playerid, targetid, 5.0) || targetid == INVALID_PLAYER_ID)
+					return SendErrorMessage(playerid, "You aren't near any player.");
+
+				if(listitem == 0)
+				{
+					ShowPlayerCondition(playerid, targetid);
+				}
+				if(listitem == 1)
+				{
+					if(!PlayerInfo[targetid][E_CHARACTER_INJURED])
+						return SendErrorMessage(playerid, "That player is not in injured condition!");
+
+					PlayerInfo[targetid][E_CHARACTER_INJURED] = 0;
+					SetPlayerTeam(targetid, PLAYER_STATE_ALIVE);
+					SetPlayerHealthEx(targetid, 100.0);
+
+					SendServerMessage(playerid, "[Treatment] {cdcdcd}You have been reviving %s.", ReturnName(targetid));
+					SendServerMessage(targetid, "[Treatment] {cdcdcd}You have been revived by %s.", ReturnName(playerid));
+				}
+				if(listitem == 2)
+				{
+					new Float:hp;
+					GetPlayerHealth(targetid, hp);
+					if(hp >= 100.0)
+						return SendErrorMessage(playerid, "That player already have Max Health!");
+
+					SetPlayerHealthEx(targetid, 100.0);
+					SendServerMessage(playerid, "[Treatment] {cdcdcd}You have healing %s.", ReturnName(targetid));
+					SendServerMessage(targetid, "[Treatment] {cdcdcd}You have been healed by %s.", ReturnName(playerid));
+				}
+				if(listitem == 3)
+				{
+					if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+						return SendErrorMessage(playerid, "You can't use this right now."); 
+
+					new Float:x, Float:y, Float:z;
+					GetPlayerPos(targetid, x, y, z);
+
+					TogglePlayerControllable(playerid, false);
+					TogglePlayerControllable(targetid, false);
+
+					PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading operate process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+					PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+					PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+					PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("Treatments", 5000, true, "ii", playerid, targetid);
+
+					SendServerMessage(playerid, "[Treatment] {cdcdcd}You need waiting for a minutes to operate %s.", ReturnName(targetid));
+				}
+			}
+		}
+		case DIALOG_MDC_NAME:
+		{
+			if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
+				return 0;
+
+			if (response)
+			{
+				if(strlen(inputtext) < 3 || strlen(inputtext) > 32)
+					return ShowPlayerDialog(playerid, DIALOG_MDC_NAME, DIALOG_STYLE_INPUT, "Place Charges:", "Please enter the name of the player:", "Search", "Back"); 
+					
+				if(!ReturnDBIDFromName(inputtext))
+					return ShowPlayerDialog(playerid, DIALOG_MDC_NAME, DIALOG_STYLE_INPUT, "Place Charges:", "Invalid user specified.\nPlease enter the name of the player:", "Search", "Back"); 
+				
+				format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", inputtext); 
+
+				new str[128];
+				format(str, sizeof(str), "Please enter the description of the crime committed by %s:", ReturnName(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], playerid));
+				ShowPlayerDialog(playerid, DIALOG_MDC_PLACE, DIALOG_STYLE_INPUT, "Given Charge:", str, "Search", "Back");
+			}
+		}
+		case DIALOG_MDC_PLACE:
+		{
+			if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
+				return 0;
+
+			if (response)
+			{
+				if (isnull(inputtext))
+				{
+					new str[128];
+					format(str, sizeof(str), "Please enter the name of the player:");
+					return ShowPlayerDialog(playerid, DIALOG_MDC_PLACE, DIALOG_STYLE_INPUT, "Given Charge:", str, "Enter", "Back");
+				}
+					
+				AddWanted(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
+
+				SendPoliceMessage(COLOR_COP, "** HQ: %s has placed a charge on %s for \"%s\".", ReturnName(playerid, 0), PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], inputtext);
+			}
+		}
+		case DIALOG_MDC_PLATE:
+		{
+			if(response)
+			{
+				new query[128];
+				if(strlen(inputtext) > 6 || strlen(inputtext) < 3)
+					return ShowPlayerDialog(playerid, DIALOG_MDC_PLATE, DIALOG_STYLE_INPUT, "Plates Search:", "Please enter the vehicle plates:", "Search", "Back"); 
+				
+				format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", inputtext); 
+
+				mysql_format(ourConnection, query, sizeof(query), "SELECT VehiclePlates FROM vehicles WHERE VehiclePlates LIKE '%%%e%%' LIMIT 5", PlayerInfo[playerid][E_CHARACTER_MDCPLAYER]); 
+				mysql_pquery(ourConnection, query, "OnMDCPlate", "i", playerid); 
+			}
+		}
+		case DIALOG_MDC_PLATELIST:
+		{
+			if(response)
+			{
+				new query[220];
+				mysql_format(ourConnection, query, sizeof(query), "SELECT VehicleOwnerDBID, VehicleModel, VehicleImpounded FROM vehicles WHERE VehiclePlates = '%e'", PlayerPlateSaver[playerid][listitem]);
+				mysql_pquery(ourConnection, query, "OnPlateSelect", "ii", playerid, listitem); 
+			}
+		}
+		case DIALOG_MDC_VIEW:
+		{
+			if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
+				return 0;
+
+			if (response)
+			{
+				if (isnull(inputtext) || strlen(inputtext) > 24)
+					return ShowPlayerDialog(playerid, DIALOG_MDC_VIEW, DIALOG_STYLE_INPUT, "Name Search:", "Please enter the name of the player:", "Search", "Back");
+
+				if (IsNumeric(inputtext) && IsPlayerConnected(strval(inputtext))) 
+				{
+					ViewCharges(playerid, ReturnName(strval(inputtext), playerid));
+				}
+				else if (!IsNumeric(inputtext)) 
+				{
+					ViewCharges(playerid, inputtext);
+				}
+				else 
+				{
+					ShowPlayerDialog(playerid, DIALOG_MDC_VIEW, DIALOG_STYLE_INPUT, "Name Search:", "Invalid user specified.\nPlease enter the name of the player:", "Search", "Back");
+				}
+			}
+		}
+		case DIALOG_CHARGES:
+		{
+			if(response)
+			{
+				new str[256];
+				new Cents = floatround(PenalInfo[listitem][E_PENALCODES_CHARGES] * 100, floatround_round);
+
+				PlayerInfo[playerid][E_CHARACTER_MDCCHARGE] = Cents;
+				PlayerInfo[playerid][E_CHARACTER_MDCTIME] = PenalInfo[listitem][E_PENALCODES_JAILTIME];
+				format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "%s", PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_NAME]);
+				format(PlayerInfo[playerid][E_CHARACTER_MDCDESC], 128, "%s", PenalInfo[listitem][E_PENALCODES_TYPE]);
+
+				format(str, sizeof(str), "Suspect: %s\nDescription: (%s) %.150s\nCharges: {33AA33}$%s{ffffff}\nJail Times: %d Month (Minutes)", PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_NAME], PenalInfo[listitem][E_PENALCODES_TYPE], PenalInfo[listitem][E_PENALCODES_NAME], FormatMoney(Cents), PenalInfo[listitem][E_PENALCODES_JAILTIME]);
+				ShowPlayerDialog(playerid, DIALOG_CHARGES_SELECT, DIALOG_STYLE_MSGBOX, "State Penal Code (Arrest Offesenses):", str, "Enter", "Cancel");
+			}
+		}
+		case DIALOG_CHARGES_SELECT:
+		{
+			if(response)
+			{
+				SetPlayerInPrison(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
+				
+				ResetPlayerWeapons(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
+				SaveCharacter(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
+				RemovePlayerAttachedObject(playerid, 0);
+				PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_HANDCUFF] = false;
+				SetPlayerSpecialAction(PlayerInfo[playerid][E_CHARACTER_MDCSELECT], SPECIAL_ACTION_NONE);
+
+				GiveMoney(PlayerInfo[playerid][E_CHARACTER_MDCSELECT], -PlayerInfo[playerid][E_CHARACTER_MDCCHARGE]);
+
+				AddWanted(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], PlayerInfo[playerid][E_CHARACTER_MDCDESC]);
+			}
+		}
+		case DIALOG_TICKETS:
+		{
+			if (response)
+			{
+				if (!TicketInfo[playerid][listitem][E_TICKET_EXISTS])
+					return SendErrorMessage(playerid, "There is no ticket in the selected slot.");
+
+				if (TicketInfo[playerid][listitem][E_TICKET_FEE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+					return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(TicketInfo[playerid][listitem][E_TICKET_FEE]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+
+				GiveMoney(playerid, -TicketInfo[playerid][listitem][E_TICKET_FEE]);
+
+				SendServerMessage(playerid, "[Tickets] {cdcdcd}You have paid off a $%s ticket for %s.", FormatMoney(TicketInfo[playerid][listitem][E_TICKET_FEE]), TicketInfo[playerid][listitem][E_TICKET_REASON]);
+				Ticket_Remove(playerid, listitem);
 			}
 		}
 		case DIALOG_CLOTHSHOW:
@@ -1326,6 +2138,107 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
+		case DIALOG_GPS:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0: //Point Of Interest
+						ShowPlayerDialog(playerid, DIALOG_GPS_POI, DIALOG_STYLE_LIST, "GPS: Point of Interest", "Public Locations\nJobs Locations\nBusiness Locations\nTree Locations", "Select", "Cancel");
+					case 1:
+						ShowPlayerDialog(playerid, DIALOG_GPS_PROP, DIALOG_STYLE_INPUT, "GPS: Properties", "Please enter the address of the properties below:", "Submit", "Cancel");
+					case 2: //ENEX
+						ShowENEXLocation(playerid);
+					case 3: //Disable CP
+						GPS_DisablePlayerRaceCheckPoint(playerid);
+				}
+			}
+		}
+		case DIALOG_GPS_PROP:
+		{
+			if (response)
+			{
+				if (isnull(inputtext) || strlen(inputtext) > 32)
+					return ShowPlayerDialog(playerid, DIALOG_GPS_PROP, DIALOG_STYLE_INPUT, "GPS: Properties", "Please enter the address of the properties below:", "Submit", "Cancel");
+
+				for (new i = 1; i != MAX_PROPERTY; i ++)
+				{
+					if (PropertyInfo[i][E_PROPERTY_DBID] && !strcmp(PropertyInfo[i][E_PROPERTY_ADDRESS], inputtext, true))
+					{
+						GPS_SetPlayerRaceCheckPoint(playerid, 1, PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[i][E_PROPERTY_ENTRANCEPOS][2], 0.0, 0.0, 0.0);
+					}
+				}
+				ShowPlayerDialog(playerid, DIALOG_GPS_PROP, DIALOG_STYLE_INPUT, "GPS: Properties", "No results found for.\nPlease enter the address of the properties below:", "Submit", "Cancel");
+			}
+		}
+		case DIALOG_GPS_POI:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: //Public
+					{
+						ShowPublicLocation(playerid);
+					}
+					case 1: //Jobs
+					{
+						ShowJobLocation(playerid);
+					}  
+					case 2: //Business
+					{
+						ShowBusinessLocation(playerid);
+					} 
+					case 3: //Tree
+					{
+						ShowTreeLocation(playerid);
+					}
+				}
+			}
+		}
+		case DIALOG_GPS_PUBLIC:
+		{
+			if (response)
+			{
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, PublicPoint[listitem][0], PublicPoint[listitem][1], PublicPoint[listitem][2], 0.0, 0.0, 0.0);
+			}
+		}
+		case DIALOG_GPS_BIZ:
+		{
+			if (response)
+			{
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][2], 0.0, 0.0, 0.0);
+			}
+		}
+		case DIALOG_GPS_GARBAGE:
+		{
+			if (response)
+			{
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, TrashInfo[listitem][E_TRASH_POS][0], TrashInfo[listitem][E_TRASH_POS][1], TrashInfo[listitem][E_TRASH_POS][2], 0.0, 0.0, 0.0);
+			}
+		}
+		case DIALOG_GPS_TREE:
+		{
+			if (response)
+			{
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, TreeInfo[listitem][E_TREE_POS][0], TreeInfo[listitem][E_TREE_POS][1], TreeInfo[listitem][E_TREE_POS][2], 0.0, 0.0, 0.0);
+			}
+		}
+		case DIALOG_GPS_ENEX:
+		{
+			if (response)
+			{
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, ENEXPoint[listitem][0], ENEXPoint[listitem][1], ENEXPoint[listitem][2], 0.0, 0.0, 0.0);
+			}
+		}
+		case DIALOG_GPS_JOBS:
+		{
+			if (response)
+			{
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, JobPoint[listitem][0], JobPoint[listitem][1], JobPoint[listitem][2], 0.0, 0.0, 0.0);
+			}
+		}
 		case DIALOG_CLERK:
 		{
 			if(response)
@@ -1362,6 +2275,245 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 				}
 			}
+		}
+		case DIALOG_INVENTORY:
+		{
+			if(response)
+			{
+				new
+					name[128], id = -1;
+
+				strunpack(name, InventoryInfo[playerid][listitem][E_INVENTORY_ITEM]);
+				PlayerInfo[playerid][E_CHARACTER_LISTITEM] = listitem;
+
+				if(InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] < 1)
+					return SendErrorMessage(playerid, "There is no item on selected slot!");
+
+				switch (PlayerInfo[playerid][E_CHARACTER_STORAGESELECT])
+				{
+					case 0:
+					{
+						format(name, sizeof(name), "%s (%d):", name, InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY]);
+						if (IsPlayerNearTrashcan(playerid) != -1) {
+							ShowPlayerDialog(playerid, DIALOG_INVACTION, DIALOG_STYLE_LIST, name, "Equip Item\nUnequip Item\nGive Item\nThrow Item", "Select", "Cancel");
+						}
+						else {
+							ShowPlayerDialog(playerid, DIALOG_INVACTION, DIALOG_STYLE_LIST, name, "Equip Item\nUnequip Item\nGive Item\nDrop Item", "Select", "Cancel");
+						}
+					}
+					case 1:
+					{
+						if ((id = IsPlayerNearVehicle(playerid)) != -1 && !VehicleInfo[id][E_VEHICLE_LOCKED])
+						{
+							if(GetVehicleModel(id) == 459 || GetVehicleModel(id) == 482 || GetVehicleModel(id) == 440 || GetVehicleModel(id) == 413)
+							{
+								if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 3 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 3
+								|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 3 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 3
+								|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 3 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 3
+								|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 3)
+									return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+
+								if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+								{
+
+									VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
+									Inventory_Remove(playerid, name);
+
+									ShowVehicleStorage(playerid, id);
+								}
+								else
+								{
+									new str[128];
+									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
+									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
+								}
+							}
+							else if(GetVehicleModel(id) == 499 || GetVehicleModel(id) == 414)
+							{
+								if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 5 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 5
+								|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 5 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 5
+								|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 5 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 5
+								|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 5)
+									return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+
+								if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+								{
+									VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
+									Inventory_Remove(playerid, name);
+				
+									ShowVehicleStorage(playerid, id);
+								}
+								else
+								{
+									new str[128];
+									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
+									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
+								}
+							}
+							else if(GetVehicleModel(id) == 456)
+							{
+								if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 8 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 8
+								|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 8 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 8
+								|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 8 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 8
+								|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 8)
+									return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+
+								if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+								{
+									VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
+									Inventory_Remove(playerid, name);
+					
+									ShowVehicleStorage(playerid, id);
+								}
+								else
+								{
+									new str[128];
+									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
+									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
+								}
+							}
+							else if(GetVehicleModel(id) == 455)
+							{
+								if(!strcmp(name, "Fabric Cargo") && VS_Count(id, "Fabric Cargo") >= 10 || !strcmp(name, "Steel Cargo") && VS_Count(id, "Steel Cargo") >= 10
+								|| !strcmp(name, "Woods Cargo") && VS_Count(id, "Woods Cargo") >= 10 || !strcmp(name, "Foods Cargo") && VS_Count(id, "Foods Cargo") >= 10
+								|| !strcmp(name, "Clothes Cargo") && VS_Count(id, "Clothes Cargo") >= 10 || !strcmp(name, "Appliances Cargo") && VS_Count(id, "Appliances Cargo") >= 10
+								|| !strcmp(name, "Fish Cargo") && VS_Count(id, "Fish Cargo") >= 10)
+									return SendErrorMessage(playerid, "You can't place cargo into your vehicle trunk is full.");
+
+								if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+								{
+									VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
+									Inventory_Remove(playerid, name);
+					
+									ShowVehicleStorage(playerid, id);
+								}
+								else
+								{
+									new str[128];
+									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
+									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
+								}
+							}
+							//Lumberjack
+							else if(GetVehicleModel(id) == 422 || GetVehicleModel(id) == 478 || GetVehicleModel(id) == 554 || GetVehicleModel(id) == 543)
+							{
+								if(!strcmp(name, "Woods") && VS_Count(id, "Woods") >= 3)
+									return SendErrorMessage(playerid, "You can't place woods into your vehicle trunk is full.");
+
+								if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+								{
+									VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
+									Inventory_Remove(playerid, name);
+									VehicleObjectUpdates(id);
+									ShowVehicleStorage(playerid, id);
+								}
+								else
+								{
+									new str[128];
+									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
+									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
+								}
+							}
+							else
+							{
+								if (!strcmp(name, "Woods"))
+								{
+									if (GetVehicleModel(id) != 422 && GetVehicleModel(id) != 478 && GetVehicleModel(id) != 554 && GetVehicleModel(id) != 543)
+									{
+										return SendErrorMessage(playerid, "Woods can only be placed in specific vehicles.");
+									}
+								}
+								else if (!strcmp(name, "Fabric Cargo") && !strcmp(name, "Steel Cargo") && !strcmp(name, "Woods Cargo") && !strcmp(name, "Foods Cargo")
+								&& !strcmp(name, "Clothes Cargo") && !strcmp(name, "Appliances Cargo") && !strcmp(name, "Fish Cargo"))
+								{
+									if (GetVehicleModel(id) != 422 && GetVehicleModel(id) != 478 && GetVehicleModel(id) != 554 && GetVehicleModel(id) != 543 && 
+										GetVehicleModel(id) != 459 && GetVehicleModel(id) != 482 && GetVehicleModel(id) != 440 && GetVehicleModel(id) != 413 && 
+										GetVehicleModel(id) != 499 && GetVehicleModel(id) != 414 && GetVehicleModel(id) != 456 && GetVehicleModel(id) != 455)
+									{
+										SendErrorMessage(playerid, "Cargo can only be placed in specific vehicles.");
+									}
+								}
+
+								if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+								{
+									VS_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
+									Inventory_Remove(playerid, name);
+									ShowVehicleStorage(playerid, id);
+								}
+								else 
+								{
+									new str[128];
+									format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
+									ShowPlayerDialog(playerid, DIALOG_VPLACE, DIALOG_STYLE_INPUT, "Vehicle Place:", str, "Store", "Back");
+								}
+							}
+						}
+						PlayerInfo[playerid][E_CHARACTER_STORAGESELECT] = 0;
+					}
+					case 2:
+					{
+						if ((id = IsPlayerInProperty(playerid)) != -1 && (PropertyInfo[id][E_PROPERTY_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID]))
+						{
+							if (InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY] == 1)
+							{
+								Property_AddItem(id, name, InventoryInfo[playerid][listitem][E_INVENTORY_MODEL], 1);
+								Inventory_Remove(playerid, name);
+
+								Property_ShowItems(playerid, id);
+							}
+							else 
+							{
+								new str[128];
+								format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", name, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
+								ShowPlayerDialog(playerid, DIALOG_PROPERTY_DEPOSIT, DIALOG_STYLE_INPUT, "Property Safe Place:", str, "Store", "Back");
+							}
+						}
+						PlayerInfo[playerid][E_CHARACTER_STORAGESELECT] = 0;
+					}
+				}
+			}
+			else
+			{
+				cmd_cartrunk(playerid, "");
+			}
+		}
+		case DIALOG_DROPITEMS:
+		{
+			if(!response)
+			{
+				new
+					Float:x,
+					Float:y,
+					Float:z;
+
+				GetPlayerPos(playerid, x, y, z);
+
+				PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(PlayerInfo[playerid][E_CHARACTER_OBJECTID], x, y, z, 0.0, 0.0, 0.0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid)); 
+				EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]); 
+				PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 5;
+			}
+
+			new
+				Float:x,
+				Float:y,
+				Float:z,
+				Float:angle;
+
+			GetPlayerPos(playerid, x, y, z);
+			GetPlayerFacingAngle(playerid, angle);
+
+			DropItem(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY], x, y, z - 0.9, 0.0, 0.0, 0.0, GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE]);
+			Inventory_Remove(playerid, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY]);
+			ApplyAnimation(playerid, "GRENADE", "WEAPON_throwu", 4.1, 0, 0, 0, 0, 0, 1);
+
+			PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
+			PlayerInfo[playerid][E_CHARACTER_OBJECTID] = 0;
+			PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = 0;
+			PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY] = 0;
+			PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
+			format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
+			DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
+			SendInfoMessage(playerid, "You're moved dropped items."); 
 		}
 		case DIALOG_VSTORAGE:
 		{
@@ -1733,7 +2885,2162 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else ShowVehicleStorage(playerid, carid);
 			}
 		}
+		case DIALOG_FURNITURE_PURCHASE:
+		{
+			if(response)
+			{
+				new string[1024], counter = 0;
 
+				for(new i = 0; i < sizeof(g_aFurnitureArray); i++)
+				{
+					if(!strcmp(g_aFurnitureArray[i][E_FURNITUREVAR_CATEGORY], g_aFurnitureCategories[listitem]))
+					{
+						format(string, sizeof(string), "%s%d\t~g~$%s~w~\n", string, g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], FormatMoney(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE]));
+						SubFurnitureHolderArr[playerid][counter] = i;
+						counter++;
+					}
+				}
+
+				ShowPlayerDialog(playerid, DIALOG_FURNITURE_CONFIRM, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", string, "Select", "Back");
+			}
+		}
+		case DIALOG_FURNITURE_CONFIRM:
+		{
+			if(response)
+			{
+				
+				new i = SubFurnitureHolderArr[playerid][listitem];
+				new Cents = floatround(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE] * 100, floatround_round);
+				if(PlayerInfo[playerid][E_CHARACTER_MONEY] < g_aFurnitureArray[i][E_FURNITUREVAR_PRICE])
+					return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+				
+				
+				new
+					Float:x,
+					Float:y,
+					Float:z,
+					Float:a;
+
+				GetPlayerPos(playerid, x, y, z);
+				GetPlayerFacingAngle(playerid, a);
+
+				PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 7;
+				PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], x + 2.0 * floatsin(-a, degrees), y + 2.0 * floatcos(-a, degrees), z + 1.0, 0.0, 0.0, ((19353 <= g_aFurnitureArray[i][E_FURNITUREVAR_MODEL] <= 19417) || (19426 <= g_aFurnitureArray[i][E_FURNITUREVAR_MODEL] <= 19465)) ? (a + 90.0) : (a), GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid));
+				PlayerInfo[playerid][E_CHARACTER_LISTITEM] = i;
+
+				SendServerMessage(playerid, "[Furniture] {cdcdcd}You are now previewing %s. This furniture item costs $%s to purchase.", g_aFurnitureArray[i][E_FURNITUREVAR_NAME], FormatMoney(Cents));
+				SendTipMessage(playerid, "Use your cursor to control the editor interface. Click the save icon to save changes.");
+				EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
+			}
+		}
+		case DIALOG_PROPERTY_ITEMS:
+		{
+			static
+				houseid = -1,
+				string[64];
+
+			if ((houseid = IsPlayerInProperty(playerid)) != -1 && (PropertyInfo[houseid][E_PROPERTY_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID]) || ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+			{
+				if (response)
+				{
+					if (PropertyStorage[houseid][listitem][E_PSTORAGE_EXISTS])
+					{
+						PlayerInfo[playerid][E_CHARACTER_STORAGEITEM] = listitem;
+
+						strunpack(string, PropertyStorage[houseid][listitem][E_PSTORAGE_NAME]);
+
+						format(string, sizeof(string), "%s (Quantity: %d)", string, PropertyStorage[houseid][listitem][E_PSTORAGE_QUANTITY]);
+						ShowPlayerDialog(playerid, DIALOG_PROPERTY_STORAGE, DIALOG_STYLE_LIST, string, "Take Item\nStore Item", "Select", "Back");
+					}
+					else 
+					{
+						OpenInventory(playerid);
+						PlayerInfo[playerid][E_CHARACTER_STORAGESELECT] = 2;
+					}
+				}
+			}
+		}
+		case DIALOG_PROPERTY_STORAGE:
+		{
+			static
+				houseid = -1,
+				itemid = -1,
+				string[32];
+
+			if ((houseid = IsPlayerInProperty(playerid)) != -1 && (PropertyInfo[houseid][E_PROPERTY_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID]) || ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+			{
+				itemid = PlayerInfo[playerid][E_CHARACTER_STORAGEITEM];
+
+				strunpack(string, PropertyStorage[houseid][itemid][E_PSTORAGE_NAME]);
+
+				if (response)
+				{
+					switch (listitem)
+					{
+						case 0:
+						{
+							if (PropertyStorage[houseid][itemid][E_PSTORAGE_QUANTITY] == 1)
+							{
+								new id = Inventory_Add(playerid, string, PropertyStorage[houseid][itemid][E_PSTORAGE_MODEL], 1);
+
+								if (id == -1)
+									return SendErrorMessage(playerid, "You don't have any inventory slots left.");
+
+								Property_RemoveItem(houseid, string);
+
+								Property_ShowItems(playerid, houseid);
+							}
+							else
+							{
+								new str[512];
+								format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to take for this item:", string, PropertyStorage[houseid][itemid][E_PSTORAGE_QUANTITY]);
+								ShowPlayerDialog(playerid, DIALOG_PROPERTY_TAKE, DIALOG_STYLE_INPUT, "Property Safe Take:", str, "Take", "Back");
+							}
+						}
+						case 1:
+						{
+							new id = Inventory_GetItemID(playerid, string);
+
+							if (id == -1) {
+								Property_ShowItems(playerid, houseid);
+
+								return SendErrorMessage(playerid, "You don't have anymore of this item to store!");
+							}
+							else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] == 1)
+							{
+								Property_AddItem(houseid, string, InventoryInfo[playerid][id][E_INVENTORY_MODEL]);
+								Inventory_Remove(playerid, string);
+
+								Property_ShowItems(playerid, houseid);
+							}
+							else if (InventoryInfo[playerid][id][E_INVENTORY_QUANTITY] > 1) {
+								PlayerInfo[playerid][E_CHARACTER_LISTITEM] = id;
+
+								new str[512];
+								format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", string, InventoryInfo[playerid][id][E_INVENTORY_QUANTITY]);
+								ShowPlayerDialog(playerid, DIALOG_PROPERTY_DEPOSIT, DIALOG_STYLE_INPUT, "Property Safe Place:", str, "Place", "Back");
+							}
+						}
+					}
+				}
+				else
+				{
+					Property_ShowItems(playerid, houseid);
+				}
+			}
+		}
+		case DIALOG_PROPERTY_DEPOSIT:
+		{
+			static
+				houseid = -1,
+				string[32];
+
+			if ((houseid = IsPlayerInProperty(playerid)) != -1 && (PropertyInfo[houseid][E_PROPERTY_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID]) || ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+			{
+				strunpack(string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_ITEM]);
+
+				if (response)
+				{
+					new amount = strval(inputtext);
+
+					if (amount < 1 || amount > InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY])
+					{
+						new str[512];
+						format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to store for this item:", string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_QUANTITY]);
+						return ShowPlayerDialog(playerid, DIALOG_PROPERTY_DEPOSIT, DIALOG_STYLE_INPUT, "Property Safe Place:", str, "Place", "Back");
+					}
+
+					Property_AddItem(houseid, string, InventoryInfo[playerid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_INVENTORY_MODEL], amount);
+					Inventory_Remove(playerid, string, amount);
+
+					Property_ShowItems(playerid, houseid);
+				}
+			}
+		}
+		case DIALOG_PROPERTY_TAKE:
+		{
+			static
+				houseid = -1,
+				string[32];
+
+			if ((houseid = IsPlayerInProperty(playerid)) != -1 && (PropertyInfo[houseid][E_PROPERTY_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID]) || ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
+			{
+				strunpack(string, PropertyStorage[houseid][PlayerInfo[playerid][E_CHARACTER_STORAGEITEM]][E_PSTORAGE_NAME]);
+
+				if (response)
+				{
+					new amount = strval(inputtext);
+
+					if (amount < 1 || amount > PropertyStorage[houseid][PlayerInfo[playerid][E_CHARACTER_STORAGEITEM]][E_PSTORAGE_QUANTITY])
+					{
+						new str[512];
+						format(str, sizeof(str), "Item: %s (Quantity: %d)\n\nPlease enter the quantity that you wish to take for this item:", string, PropertyStorage[houseid][PlayerInfo[playerid][E_CHARACTER_LISTITEM]][E_PSTORAGE_QUANTITY]);
+						return ShowPlayerDialog(playerid, DIALOG_PROPERTY_TAKE, DIALOG_STYLE_INPUT, "Property Safe Take:", str, "Take", "Back");
+					}
+
+					new id = Inventory_Add(playerid, string, PropertyStorage[houseid][PlayerInfo[playerid][E_CHARACTER_STORAGEITEM]][E_PSTORAGE_MODEL], amount);
+
+					if (id == -1)
+						return SendErrorMessage(playerid, "You don't have any inventory slots left.");
+
+					Property_RemoveItem(houseid, string, amount);
+					
+					Property_ShowItems(playerid, houseid);
+				}
+			}
+		}
+		case DIALOG_GENERALSTORE1:
+		{
+			if(response)
+			{
+				new businessid = IsPlayerInBusiness(playerid);
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(Inventory_Count(playerid, "Cellphone"))
+							return SendErrorMessage(playerid, "You already own a cellphone.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a cellphone.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a cellphone for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Cellphone", 18867, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 1:
+					{
+						if(Inventory_Count(playerid, "Radio"))
+							return SendErrorMessage(playerid, "You already own a radio.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a radio.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a radio for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Radio", 19942, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 2:
+					{
+						if(Inventory_Count(playerid, "Gascan") >= 5)
+							return SendErrorMessage(playerid, "You may only hold up to 5 gasoline cans.");
+							
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a gasoline.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a gasoline for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Gascan", 1650, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 3:
+					{
+						if(Inventory_Count(playerid, "Repair Kits"))
+							return SendErrorMessage(playerid, "You already own a repairkit.");
+							
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a repairkit.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a repairkit for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Repair Kits", 1650, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+				}
+			}
+		}
+		case DIALOG_GENERALSTORE2:
+		{
+			if(response)
+			{
+				new businessid = IsPlayerInBusiness(playerid);
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(Inventory_Count(playerid, "Spike Bat"))
+							return SendErrorMessage(playerid, "You already own a spikebat.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a spikebat.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a spikebat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Spike Bat", -2200, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 1:
+					{
+						if(Inventory_Count(playerid, "Cutscene Bat"))
+							return SendErrorMessage(playerid, "You already own a wooden.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a wooden.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a wooden for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Cutscene Bat", -2201, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 2:
+					{
+						if(Inventory_Count(playerid, "Baseball Bat"))
+							return SendErrorMessage(playerid, "You already own a nailbat.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a nailbat.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a nailbat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Baseball Bat", -2202, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+				}
+			}
+		}
+		case DIALOG_GENERALSTORE3:
+		{
+			if(response)
+			{
+				new businessid = IsPlayerInBusiness(playerid);
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(Inventory_Count(playerid, "Raw Meat"))
+							return SendErrorMessage(playerid, "You already own a raw meat.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a raw meat.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a raw meat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Raw Meat", 19582, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 1:
+					{
+						if(Inventory_Count(playerid, "Parsley") >= 5)
+							return SendErrorMessage(playerid, "You may only hold up to 5 parsley.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a parsley.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a parsley for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Parsley", 2244, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 2:
+					{
+						if(Inventory_Count(playerid, "Mint") >= 5)	
+							return SendErrorMessage(playerid, "You may only hold up to 5 mint.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a mint.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a mint for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Mint", 19570, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 3:
+					{
+						if(Inventory_Count(playerid, "Oregano") >= 5)
+							return SendErrorMessage(playerid, "You may only hold up to 5 oregano.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a oregano.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a oregano for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Oregano", 19570, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 4:
+					{
+						if(Inventory_Count(playerid, "Baking Soda") >= 5)	
+							return SendErrorMessage(playerid, "You may only hold up to 5 baking soda.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a baking soda.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a baking soda for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						
+						Inventory_Add(playerid, "Baking Soda", 19570, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+				}
+			}
+		}
+		case DIALOG_GENERALSTORE4:
+		{
+			if(response)
+			{
+				new businessid = IsPlayerInBusiness(playerid);
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(Inventory_Count(playerid, "Spraycan") >= 5)	
+							return SendErrorMessage(playerid, "You may only hold up to 5 spraycan.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a spraycan.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a spraycan for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 250; 
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Spraycan", 365, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 1:
+					{
+						if(Inventory_Count(playerid, "Marcos Knife") >= 1)		
+							return SendErrorMessage(playerid, "You may only hold up to 1 crowbar.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a crowbar.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a crowbar for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Marcos Knife", 18634, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+				}
+			}
+		}
+		case DIALOG_GENERALSTORE5:
+		{
+			if(response)
+			{
+				new businessid = IsPlayerInBusiness(playerid);
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(Inventory_Count(playerid, "Sprunk") >= 5)	
+							return SendErrorMessage(playerid, "You may only hold up to 5 sprunk.");
+					
+						if(2 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a sprunk.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a sprunk for $2.");
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 5; 
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Sprunk", 2601, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+				}
+			}
+		}
+		case DIALOG_BARSTORE:
+		{
+			if(response)
+			{
+				new businessid = IsPlayerInBusiness(playerid);
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(Inventory_Count(playerid, "Beer Bottle") >= 5)
+							return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a beer.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a budweiser beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						GiveMoney(playerid, BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
+						
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Beer Bottle", 1486, 1);
+					}
+					case 1:
+					{
+						if(Inventory_Count(playerid, "Beer Bottle") >= 5)
+							return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a beer.");
+
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a corona extra beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
+						
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Beer Bottle", 1486, 1);
+					}
+					case 2:
+					{
+						if(Inventory_Count(playerid, "Beer Bottle") >= 5)
+							return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a beer.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a peroni beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+						GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
+						
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Beer Bottle", 1486, 1);
+					}
+				}
+			}
+		}
+		case DIALOG_BARBERSTORE:
+		{
+			if(response)
+			{
+				if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+				{
+					ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
+					ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
+					SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
+					return SendErrorMessage(playerid, "You can't afford a clothes.");
+				}
+
+				if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
+				{
+					ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
+					ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
+					SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
+					return SendErrorMessage(playerid, "This business is out of stock");
+				}
+
+				if(GetPlayerFreeToySlot(playerid) == -1)
+				{
+					ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
+					ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
+					SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
+					return SendErrorMessage(playerid, "You already have full slot of Accessory!");
+				}
+
+				SetTimerEx("StartHairCut", 500, false, "ii", playerid, g_aHaircut[listitem]);
+			}
+			else
+			{
+				SetCameraBehindPlayer(playerid);
+				TogglePlayerControllable(playerid, true);
+			}
+		}
+		case DIALOG_BUYSKIN:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						SetPlayerPos(playerid, 217.5163,-98.4308,1005.2578);
+						SetPlayerFacingAngle(playerid, 94.6310);
+
+						SetPlayerCameraPos(playerid, 214.387527, -99.966537, 1005.545410);
+						SetPlayerCameraLookAt(playerid, 217.848388, -97.962821, 1005.458129, 1);
+
+						if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
+						{
+							new str[1024];
+							for(new i; i < sizeof(g_aMaleSkins); i++)
+							{
+								format(str, sizeof(str), "%s%d\n", str, g_aMaleSkins[i]);
+							}
+							ShowPlayerDialog(playerid, DIALOG_BUYSKINMALE, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+						}
+						else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
+						{
+							new str[1024];
+							for(new i; i < sizeof(g_aFemaleSkins); i++)
+							{
+								format(str, sizeof(str), "%s%d\n", str, g_aFemaleSkins[i]);
+							}
+							ShowPlayerDialog(playerid, DIALOG_BUYSKINFEMALE, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+						}
+					}
+					case 1:
+					{
+						SetPlayerPos(playerid, 217.5163,-98.4308,1005.2578);
+						SetPlayerFacingAngle(playerid, 94.6310);
+
+						SetPlayerCameraPos(playerid, 214.387527, -99.966537, 1005.545410);
+						SetPlayerCameraLookAt(playerid, 217.848388, -97.962821, 1005.458129, 1);
+						new str[1024];
+						for(new i; i < sizeof(g_aClothingCustom); i++)
+						{
+							format(str, sizeof(str), "%s%d\n", str, g_aClothingCustom[i]);
+						}
+						ShowPlayerDialog(playerid, DIALOG_BUYACCESSORIES, DIALOG_STYLE_PREVIEW_MODEL, "Choose your clothing:", str, "Select", "Close");
+					}
+				}
+			}
+		}
+		case DIALOG_BUYSKINMALE:
+		{
+			if(response)
+			{
+				new businessid = IsPlayerInBusiness(playerid);
+				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+				{
+					SetCameraBehindPlayer(playerid);
+					SendErrorMessage(playerid, "You can't afford a clothes.");
+					return 1;
+				}
+
+				if(BusinessInfo[businessid][E_BUSINESS_STOCK] < 1)
+				{
+					SetCameraBehindPlayer(playerid);
+					return SendErrorMessage(playerid, "This business is out of stock");
+				}
+
+				SetTimerEx("EnterFittingRoom", 1000, false, "ii", playerid, g_aMaleSkins[listitem]);
+			}
+			else
+			{
+				SetCameraBehindPlayer(playerid);
+				TogglePlayerControllable(playerid, true);
+			}
+		}
+		case DIALOG_BUYSKINFEMALE:
+		{
+			if(response)
+			{
+				new businessid = IsPlayerInBusiness(playerid);
+				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+				{
+					SetCameraBehindPlayer(playerid);
+					SendErrorMessage(playerid, "You can't afford a clothes.");
+					return 1;
+				}
+
+				if(BusinessInfo[businessid][E_BUSINESS_STOCK] < 1)
+				{
+					SetCameraBehindPlayer(playerid);
+					return SendErrorMessage(playerid, "This business is out of stock");
+				}
+
+				SetTimerEx("EnterFittingRoom", 1000, false, "ii", playerid, g_aFemaleSkins[listitem]);
+			}
+			else
+			{
+				SetCameraBehindPlayer(playerid);
+				TogglePlayerControllable(playerid, true);
+			}
+		}
+		case DIALOG_BUYACCESSORIES:
+		{
+			if(response)
+			{
+				new businessid = IsPlayerInBusiness(playerid);
+				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+				{
+					SetCameraBehindPlayer(playerid);
+					SendErrorMessage(playerid, "You can't afford a clothing.");
+					return 1;
+				}
+
+				if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
+				{
+					SetCameraBehindPlayer(playerid);
+					return SendErrorMessage(playerid, "This business is out of stock");
+				}
+				if(GetPlayerFreeToySlot(playerid) == -1)
+				{
+					SetCameraBehindPlayer(playerid);
+					return SendErrorMessage(playerid, "You already have full slot of accessories!");
+				}
+
+				GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]);
+				ApplyAnimation(playerid, "CLOTHES", "CLO_Buy", 4.0, 0, 0, 0, 0, 0);
+				SetCameraBehindPlayer(playerid);
+				BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
+				ShowPlayerDialog(playerid, DIALOG_BUYCLOTHING, DIALOG_STYLE_LIST, "Bone Selection:", "Spine\nHead\nLeft upper arm\nRight upper arm\nLeft hand\nRight hand\nLeft thigh\nRight thigh\nLeft foot\nRight foot\nRight calf\nLeft calf\nLeft forearm\nRight forearm\nLeft shoulder\nRight shoulder\nNeck\nJaw", "Choose", "Cancel");
+				PlayerInfo[playerid][E_CHARACTER_TEMPMODEL] = g_aClothingCustom[listitem];
+			}
+			else
+			{
+				SetCameraBehindPlayer(playerid);
+				TogglePlayerControllable(playerid, true);
+			}
+		}
+		case DIALOG_WEAPONCOLT:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(!Inventory_Count(playerid, "Regular Ammo"))
+							return SendErrorMessage(playerid, "You don't have normal magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 22, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NORMAL;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = PISTOL;
+					}
+					case 1:
+					{
+						if(!Inventory_Count(playerid, "Surplus Ammo"))
+							return SendErrorMessage(playerid, "You don't have surplus magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 22, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_SURPLUS;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = PISTOL;
+					}
+					case 2:
+					{
+						if(!Inventory_Count(playerid, "JHP Ammo"))
+							return SendErrorMessage(playerid, "You don't have jhp magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 22, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_JHP;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = PISTOL;
+					}
+					case 3:
+					{
+						if(!Inventory_Count(playerid, "Rubber Ammo"))
+							return SendErrorMessage(playerid, "You don't have rubber magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 22, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_RUBBER;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = PISTOL;
+					}
+				}
+			}
+		}
+		case DIALOG_BEERBOTTLE:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+						{
+							if(!Inventory_Count(playerid, "Beer Bottle"))
+								return SendErrorMessage(playerid, "You don't have any beer in inventory.");
+
+							if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DRINK_BEER)
+								return SendErrorMessage(playerid, "You are already drinking a beer.");
+
+							Inventory_Remove(playerid, "Beer Bottle", 1);
+
+							SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DRINK_BEER);
+
+							SendTipMessage(playerid, "Press 'LMB' to drink beer.");
+						}
+						else SendErrorMessage(playerid, "You must store your items in inventory first.");
+					}
+					case 1:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+						{
+							GivePlayerWeapon(playerid, 4, 999999);
+							PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+							PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = KNIFE;
+						}
+						else SendErrorMessage(playerid, "You must store your items in inventory first.");
+					}
+				}
+			}
+		}
+		case DIALOG_WEAPONSLC:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(!Inventory_Count(playerid, "Regular Ammo"))
+							return SendErrorMessage(playerid, "You don't have normal magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 23, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NORMAL;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SLC;
+					}
+					case 1:
+					{
+						if(!Inventory_Count(playerid, "Surplus Ammo"))
+							return SendErrorMessage(playerid, "You don't have surplus magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 23, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_SURPLUS;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SLC;
+					}
+					case 2:
+					{
+						if(!Inventory_Count(playerid, "JHP Ammo"))
+							return SendErrorMessage(playerid, "You don't have jhp magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 23, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_JHP;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SLC;
+					}
+					case 3:
+					{
+						if(!Inventory_Count(playerid, "Rubber Ammo"))
+							return SendErrorMessage(playerid, "You don't have rubber magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 23, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_RUBBER;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SLC;
+					}
+				}
+			}
+		}
+		case DIALOG_WEAPONDEAGLE:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(!Inventory_Count(playerid, "Regular Ammo"))
+							return SendErrorMessage(playerid, "You don't have normal magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 24, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NORMAL;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = DEAGLE;
+					}
+					case 1:
+					{
+						if(!Inventory_Count(playerid, "Surplus Ammo"))
+							return SendErrorMessage(playerid, "You don't have surplus magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 22, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_SURPLUS;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = DEAGLE;
+					}
+					case 2:
+					{
+						if(!Inventory_Count(playerid, "JHP Ammo"))
+							return SendErrorMessage(playerid, "You don't have jhp magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 22, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_JHP;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = DEAGLE;
+					}
+					case 3:
+					{
+						if(!Inventory_Count(playerid, "Rubber Ammo"))
+							return SendErrorMessage(playerid, "You don't have rubber magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 22, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_RUBBER;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = DEAGLE;
+					}
+				}
+			}
+		}
+		case DIALOG_WEAPONUZI:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(!Inventory_Count(playerid, "Regular Ammo"))
+							return SendErrorMessage(playerid, "You don't have normal magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 27, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NORMAL;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;
+					}
+					case 1:
+					{
+						if(!Inventory_Count(playerid, "Surplus Ammo"))
+							return SendErrorMessage(playerid, "You don't have surplus magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 27, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_SURPLUS;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;
+					}
+					case 2:
+					{
+						if(!Inventory_Count(playerid, "JHP Ammo"))
+							return SendErrorMessage(playerid, "You don't have jhp magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 27, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_JHP;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;
+					}
+					case 3:
+					{
+						if(!Inventory_Count(playerid, "Rubber Ammo"))
+							return SendErrorMessage(playerid, "You don't have rubber magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 27, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_RUBBER;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;
+					}
+				}
+			}
+		}
+		case DIALOG_WEAPONSHOTGUN:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(!Inventory_Count(playerid, "Regular Ammo"))
+							return SendErrorMessage(playerid, "You don't have normal magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 25, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NORMAL;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SHOTGUN;
+					}
+					case 1:
+					{
+						if(!Inventory_Count(playerid, "Surplus Ammo"))
+							return SendErrorMessage(playerid, "You don't have surplus magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 25, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_SURPLUS;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SHOTGUN;
+					}
+					case 2:
+					{
+						if(!Inventory_Count(playerid, "JHP Ammo"))
+							return SendErrorMessage(playerid, "You don't have jhp magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 25, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_JHP;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SHOTGUN;
+					}
+					case 3:
+					{
+						if(!Inventory_Count(playerid, "Rubber Ammo"))
+							return SendErrorMessage(playerid, "You don't have rubber magazine in your inventory");
+
+						GivePlayerWeapon(playerid, 25, 999999);
+						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_RUBBER;
+						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SHOTGUN;
+					}
+				}
+			}
+		}
+		case DIALOG_DRUGSTORE:
+		{
+			if(response)
+			{
+				new str[256];
+				switch(listitem)
+				{
+					case 0:
+					{
+						new Cents = floatround(PMARIJUANA * 100, floatround_round);
+						format(str, sizeof(str), "Are you sure you want to buy this drugs for {33AA33}$%s{ffffff}?", FormatMoney(Cents)); 
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 0, 25, PMARIJUANA); 
+					}
+					case 1:
+					{
+						new Cents = floatround(PCOCAINE * 100, floatround_round);
+						format(str, sizeof(str), "Are you sure you want to buy this drugs for {33AA33}$%s{ffffff}?", FormatMoney(Cents)); 
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 1, 20, PCOCAINE); 
+					}
+					case 2:
+					{
+						new Cents = floatround(PHEROIN * 100, floatround_round);
+						format(str, sizeof(str), "Are you sure you want to buy this drugs for {33AA33}$%s{ffffff}?", FormatMoney(Cents)); 
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 2, 20, PHEROIN); 
+					}
+				}
+			}
+		}
+		case DIALOG_MATSSTORE:
+		{
+			if(response)
+			{
+				new total = strval(inputtext) * 5;
+				new Cents = floatround(total * 100, floatround_round);
+
+				if (isnull(inputtext))
+					return ShowPlayerDialog(playerid, DIALOG_MATSSTORE, DIALOG_STYLE_INPUT, "Materials:", "Materials price: $5 / 1 gram of materials\nPlease input the amount of materials you want to buy:", "Enter", "Cancel");
+			
+				if(total > PlayerInfo[playerid][E_CHARACTER_MONEY])
+					return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+				
+
+				GiveMoney(playerid, Cents);
+				Inventory_Add(playerid, "Materials", 3014, strval(inputtext));
+			}
+		}
+		case DIALOG_GUNSTORE:
+		{
+			if (response)
+			{
+				new str[256];
+				switch(listitem)
+				{
+					case 0:
+					{
+						new Cents = floatround(WEAPON_SLC * 100, floatround_round);
+						format(str, sizeof(str), "Are you sure you want to purchase a Colt 45 for {33AA33}$%s{ffffff}?", FormatMoney(Cents));
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_COLT45, 10, WEAPON_COLT, 1); 
+					}
+					case 1:
+					{
+						new Cents = floatround(WEAPON_SLC * 100, floatround_round);
+						format(str, sizeof(str), "Are you sure you want to purchase a Silenced Colt for {33AA33}$%s{ffffff}?", FormatMoney(Cents));
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_COLT45, 10, WEAPON_SLC, 1); 
+					}
+					case 2:
+					{
+						new Cents = floatround(WEAPON_UZIS * 100, floatround_round);
+						format(str, sizeof(str), "Are you sure you want to purchase a Uzi for {33AA33}$%s{ffffff}?", FormatMoney(Cents));
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_UZI, 10, WEAPON_UZIS, 1); 
+					}
+					case 3:
+					{
+						new Cents = floatround(WEAPON_DEAGLES * 100, floatround_round);
+						format(str, sizeof(str), "Are you sure you want to purchase a Deagle for {33AA33}$%s{ffffff}?", FormatMoney(Cents));
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_DEAGLE, 10, WEAPON_DEAGLES, 1); 
+					}
+					case 4:
+					{
+						new Cents = floatround(WEAPON_SHOTGUNS * 100, floatround_round);
+						format(str, sizeof(str), "Are you sure you want to purchase a Shotgun for {33AA33}$%s{ffffff}?", FormatMoney(Cents));
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_SHOTGUN, 10, WEAPON_DEAGLES, 1); 
+					}
+					case 5:
+					{
+						new Cents = floatround(A9MM * 100, floatround_round);
+						format(str, sizeof(str), "Are you sure you want to buy ammo for {33AA33}$%s{ffffff}?", FormatMoney(Cents)); 
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 0, 10, A9MM); 
+					}
+					case 6:
+					{
+						new Cents = floatround(A9X19MM * 100, floatround_round);
+						format(str, sizeof(str), "Are you sure you want to buy ammo for {33AA33}$%s{ffffff}?", FormatMoney(Cents)); 
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 1, 10, A9X19MM); 
+					}
+				}
+			}
+		}
+		case DIALOG_EMMETSTORE:
+		{
+			if (response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						new str[256];
+						format(str, sizeof(str), "Are you sure you want to purchase a Emmet Pistol for {33AA33}$%s{ffffff}?", FormatMoney(WEAPON_SLC));
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateWeapon", WEAPON_COLT45, 25, WEAPON_SLC, 1); 
+					}
+					case 1:
+					{
+						new str[256];
+						format(str, sizeof(str), "Are you sure you want to buy ammo for {33AA33}$%s{ffffff}?", FormatMoney(A9MM)); 
+						ConfirmDialog(playerid, "Confirmation", str, "OnPlayerCreateAmmo", 0, 25, A9MM); 
+					}
+				}
+			}
+		}
+		case DIALOG_FREIGHTLOC:
+		{
+			if(response)
+			{
+				PlayerTruckIndex[playerid] = listitem+1;
+				SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has selected truck missions in %s, go to checkpoint to take the trailer.", GetZoneName(FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz]));
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz], 0.0, 0.0, 0.0, GPS_TRUCKERS);
+			}
+		}
+		case DIALOG_INDUSTRYLOC:
+		{
+			if(response)
+			{
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, IndustryInfo[listitem][Posx], IndustryInfo[listitem][Posy], IndustryInfo[listitem][Posz], 0.0, 0.0, 0.0);
+			}
+		}
+		case DIALOG_INDUSTRY:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						new str[256];
+						strcat(str, "Welcome to los santos economy!\n\nThe ship & warehouses is currently restocked product every 30 minute(s).\n\nYou can buy cargo products if stock is still available on the ship or warehouses.");
+						ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Information:", str, "Confirm", "");
+					}
+					case 1:
+					{
+						if(GetVehicleModel(GetPlayerVehicleID(playerid)) != 515 && GetVehicleModel(GetPlayerVehicleID(playerid)) != 514 && GetVehicleModel(GetPlayerVehicleID(playerid)) != 403)
+							return SendErrorMessage(playerid, "You aren't in heavy truck.");
+
+						if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < 5)
+							return SendErrorMessage(playerid, "Your level (5) is minimum to access this jobs."); 
+
+						if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+							return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
+
+						ShowFreight(playerid);
+					}
+					case 2:
+					{
+						ShowIndustry(playerid);
+					}
+					case 3:
+					{
+						ShowShipments(playerid);
+					}
+				}
+			}
+		}
+		case DIALOG_SELLFISH:
+		{
+			if(response)
+			{
+				new total = 0;
+				if(Inventory_Count(playerid, "Cod") != 0 || Inventory_Count(playerid, "Carp") != 0 || Inventory_Count(playerid, "Salmon") != 0 || Inventory_Count(playerid, "Cat Fish") != 0 || Inventory_Count(playerid, "Herring") != 0)
+				{
+					total = floatround(COD_PRICE * Inventory_Count(playerid, "Cod"), floatround_round) + floatround(CARP_PRICE * Inventory_Count(playerid, "Carp"), floatround_round) + floatround(SALMON_PRICE * Inventory_Count(playerid, "Salmon"), floatround_round) + floatround(CATFISH_PRICE * Inventory_Count(playerid, "Cat Fish"), floatround_round) + floatround(HERRING_PRICE * Inventory_Count(playerid, "Herring"), floatround_round);
+					
+					Inventory_Set(playerid, "Cod", 19630, 0);
+					Inventory_Set(playerid, "Carp", 19630, 0);
+					Inventory_Set(playerid, "Salmon", 19630, 0);
+					Inventory_Set(playerid, "Cat Fish", 19630, 0);
+					Inventory_Set(playerid, "Herring", 19630, 0);
+				}
+
+				new Cents = floatround(total * 100, floatround_round);
+
+				GiveMoney(playerid, Cents);
+				SendJobsMessage(playerid, "[Fishing] {cdcdcd}You have sold all the fish and earn $%s.", FormatMoney(Cents));
+			}
+		}
+		case DIALOG_MECHMENU:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != REPAIR_KITS)
+							return SendErrorMessage(playerid, "You must hold the repair kits in your hands.");
+
+						if(!Inventory_Count(playerid, "Repair Kits"))
+							return SendErrorMessage(playerid, "You don't have any repair kits in your inventory."); 
+
+						new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+						GetVehicleHood(vehicleid, vx, vy, vz);  
+						GetVehiclePos(vehicleid, vx, vy, vz);
+
+						if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+							return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+						if(IsPlayerInAnyVehicle(playerid))
+							return SendErrorMessage(playerid, "You can't be in a vehicle.");
+									
+						if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+							return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+						if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+							return SendErrorMessage(playerid, "You can't use this right now"); 
+
+						new Float:x, Float:y, Float:z;
+						GetPlayerPos(playerid, x, y, z);
+						TogglePlayerControllable(playerid, false);
+						ApplyAnimation(playerid, "BD_FIRE", "wash_up", 4.1, 1, 0, 0, 0, 0, 1);
+
+						PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+						PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+						PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+						PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairengine", 3125, true, "ii", playerid, vehicleid);
+					}
+					case 1:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != REPAIR_KITS)
+							return SendErrorMessage(playerid, "You must hold the repair kits in your hands.");
+
+						if(!Inventory_Count(playerid, "Repair Kits"))
+							return SendErrorMessage(playerid, "You don't have any repair kits in your inventory."); 
+
+						new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+						GetVehiclePos(vehicleid, vx, vy, vz);
+
+						if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+							return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+						if(IsPlayerInAnyVehicle(playerid))
+							return SendErrorMessage(playerid, "You can't be in a vehicle.");
+									
+						if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+							return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+						if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+							return SendErrorMessage(playerid, "You can't use this right now"); 
+
+						new Float:x, Float:y, Float:z;
+						GetPlayerPos(playerid, x, y, z);
+						TogglePlayerControllable(playerid, false);
+						ApplyAnimation(playerid, "TATTOOS", "TAT_Che_Pose_T", 4.1, 1, 0, 0, 0, 0, 1);
+
+						PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+						PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+						PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+						PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairbody", 3750, true, "ii", playerid, vehicleid);
+					}
+					case 2:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != REPAIR_KITS)
+							return SendErrorMessage(playerid, "You must hold the repair kits in your hands.");
+
+						if(!Inventory_Count(playerid, "Repair Kits"))
+							return SendErrorMessage(playerid, "You don't have any repair kits in your inventory."); 
+
+						new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+						GetVehiclePos(vehicleid, vx, vy, vz);
+
+						if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+							return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+						if(IsPlayerInAnyVehicle(playerid))
+							return SendErrorMessage(playerid, "You can't be in a vehicle.");
+									
+						if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+							return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+						if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+							return SendErrorMessage(playerid, "You can't use this right now"); 
+
+						new Float:x, Float:y, Float:z;
+						GetPlayerPos(playerid, x, y, z);
+						TogglePlayerControllable(playerid, false);
+						ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 1, 0, 0, 0, 0, 1);
+
+						PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+						PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+						PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+						PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairtire", 2500, true, "ii", playerid, vehicleid);
+					}
+					case 3:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+							return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+						if(!Inventory_Count(playerid, "Spraycan"))
+							return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+						new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+						GetVehiclePos(vehicleid, vx, vy, vz);
+
+						if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+							return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+						if(IsPlayerInAnyVehicle(playerid))
+							return SendErrorMessage(playerid, "You can't be in a vehicle.");
+									
+						if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+							return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+						if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+							return SendErrorMessage(playerid, "You can't use this right now"); 
+
+						new colors[3200];
+						for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+						{
+							format(colors, sizeof colors, "%s{%06x}%03d%s", colors, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+						}
+
+						format(colors, sizeof(colors), "%s\n\n{ffffff}Enter the Color ID below: (Ex: 255)", colors);
+						ShowPlayerDialog(playerid, DIALOG_MECHSPRAY1, DIALOG_STYLE_INPUT, "Select Color:", colors, "Enter", "Close");
+					}
+					case 4:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+							return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+						if(!Inventory_Count(playerid, "Spraycan"))
+							return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+						new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+						GetVehiclePos(vehicleid, vx, vy, vz);
+
+						if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+							return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+						if(IsPlayerInAnyVehicle(playerid))
+							return SendErrorMessage(playerid, "You can't be in a vehicle.");
+									
+						if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+							return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+						if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+							return SendErrorMessage(playerid, "You can't use this right now"); 
+
+						new colors[3200];
+						for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+						{
+							format(colors, sizeof colors, "%s{%06x}%03d%s", colors, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+						}
+
+						format(colors, sizeof(colors), "%s\n\n{ffffff}Enter the Color ID below: (Ex: 255)", colors);
+						ShowPlayerDialog(playerid, DIALOG_MECHSPRAY2, DIALOG_STYLE_INPUT, "Select Color:", colors, "Enter", "Close");
+					}
+					case 5:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+							return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+						if(Inventory_Count(playerid, "Spraycan") < 2)
+							return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+						new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+						GetVehiclePos(vehicleid, vx, vy, vz);
+
+						if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+							return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+						if(IsPlayerInAnyVehicle(playerid))
+							return SendErrorMessage(playerid, "You can't be in a vehicle.");
+									
+						if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+							return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+						if(!IsSuitablePaintjobCar(vehicleid)) 
+							return SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
+
+						if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+							return SendErrorMessage(playerid, "You can't use this right now"); 
+
+						new Float:x, Float:y, Float:z;
+						GetPlayerPos(playerid, x, y, z);
+						TogglePlayerControllable(playerid, false);
+						ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
+
+						PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+						PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+						PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+						PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob1", 5000, true, "ii", playerid, vehicleid);
+					}
+					case 6:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+							return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+						if(Inventory_Count(playerid, "Spraycan") < 2)
+							return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+						new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+						GetVehiclePos(vehicleid, vx, vy, vz);
+
+						if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+							return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+						if(IsPlayerInAnyVehicle(playerid))
+							return SendErrorMessage(playerid, "You can't be in a vehicle.");
+									
+						if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+							return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+						if(!IsSuitablePaintjobCar(vehicleid)) 
+							return SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
+
+						if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+							return SendErrorMessage(playerid, "You can't use this right now"); 
+
+						new Float:x, Float:y, Float:z;
+						GetPlayerPos(playerid, x, y, z);
+						TogglePlayerControllable(playerid, false);
+						ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
+
+						PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+						PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+						PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+						PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob2", 5000, true, "ii", playerid, vehicleid);
+					}
+					case 7:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+							return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+						if(Inventory_Count(playerid, "Spraycan") < 2)
+							return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+						new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+						GetVehiclePos(vehicleid, vx, vy, vz);
+
+						if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+							return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+						if(IsPlayerInAnyVehicle(playerid))
+							return SendErrorMessage(playerid, "You can't be in a vehicle.");
+									
+						if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+							return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+						if(!IsSuitablePaintjobCar(vehicleid)) 
+							return SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
+
+						if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+							return SendErrorMessage(playerid, "You can't use this right now"); 
+
+						new Float:x, Float:y, Float:z;
+						GetPlayerPos(playerid, x, y, z);
+						TogglePlayerControllable(playerid, false);
+						ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
+
+						PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+						PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+						PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+						PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob3", 5000, true, "ii", playerid, vehicleid);
+					}
+					case 8:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+							return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+						if(Inventory_Count(playerid, "Spraycan") < 1)
+							return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+						new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+						GetVehiclePos(vehicleid, vx, vy, vz);
+
+						if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+							return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+						if(IsPlayerInAnyVehicle(playerid))
+							return SendErrorMessage(playerid, "You can't be in a vehicle.");
+									
+						if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+							return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+						if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+							return SendErrorMessage(playerid, "You can't use this right now"); 
+
+						new Float:x, Float:y, Float:z;
+						GetPlayerPos(playerid, x, y, z);
+						TogglePlayerControllable(playerid, false);
+						ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 1, 0, 0, 0, 0, 1);
+
+						PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint plates process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+						PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+						PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+						PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintplates", 2500, true, "ii", playerid, vehicleid);
+					}
+				}
+			}
+		}
+		case DIALOG_MECHSPRAY1:
+		{
+			if(response)
+			{
+				if (strval(inputtext) < 0 || strval(inputtext) > g_MaxVehicleColors || isnull(inputtext))
+					return SendErrorMessage(playerid, "Invalid Color ID.");
+					
+				new vehicleid = IsPlayerNearVehicle(playerid);
+
+				if(IsPlayerInAnyVehicle(playerid))
+					return SendErrorMessage(playerid, "You can't be in a vehicle.");
+						
+				if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+					return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+				new Float:x, Float:y, Float:z;
+				GetPlayerPos(playerid, x, y, z);
+				TogglePlayerControllable(playerid, false);
+				ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 0);
+
+				PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+				PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+				PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+				PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintexterior", 4375, true, "iii", playerid, vehicleid, strval(inputtext));
+
+				PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+			}
+		}
+		case DIALOG_MECHSPRAY2:
+		{
+			if(response)
+			{
+				if (strval(inputtext) < 0 || strval(inputtext) > g_MaxVehicleColors || isnull(inputtext))
+					return SendErrorMessage(playerid, "Invalid Color ID.");
+					
+				new vehicleid = IsPlayerNearVehicle(playerid);
+
+				if(IsPlayerInAnyVehicle(playerid))
+					return SendErrorMessage(playerid, "You can't be in a vehicle.");
+						
+				if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+					return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+				new Float:x, Float:y, Float:z;
+				GetPlayerPos(playerid, x, y, z);
+				TogglePlayerControllable(playerid, false);
+				ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 0);
+
+				PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+				PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+				PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+				PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintinterior", 4375, true, "iii", playerid, vehicleid, strval(inputtext));
+
+				PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+			}
+		}
+		case DIALOG_ACCEPTTAXI:
+		{
+			if (response)
+			{
+				new targetid = strval(inputtext);
+
+				if (!IsPlayerConnected(targetid))
+					return SendErrorMessage(playerid, "The specified player has disconnected.");
+
+				if (!PlayerInfo[targetid][E_CHARACTER_TAXICALLED])
+					return SendErrorMessage(playerid, "That player's call was accepted by another taxi driver.");
+
+				if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+					return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
+
+				static
+					Float:x,
+					Float:y,
+					Float:z;
+
+				GetPlayerPos(targetid, x, y, z);
+
+				PlayerInfo[targetid][E_CHARACTER_TAXICALLED] = 0;
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, x, y, z, 0.0, 0.0, 0.0);
+
+				SendJobsMessage(playerid, "[Taxi] {cdcdcd}You have accepted {d7d292}%s's{cdcdcd} taxi call.", ReturnName(targetid));
+				SendJobsMessage(targetid, "[Taxi] {cdcdcd}%s has accepted your taxi call and is on their way.", ReturnName(playerid, targetid));
+			}
+		}
+		case DIALOG_SPRAYFONT:
+		{
+			if(response)
+			{
+				if (isnull(inputtext) || !FilterInputFont(inputtext) || strlen(inputtext) < 5)
+					return ShowPlayerDialog(playerid, DIALOG_SPRAYFONT, DIALOG_STYLE_INPUT, "Spraytags Fonts:", "Your spraytags will replace the spraytags with custom font.\nThe font you input will only be visible to visual players that only have that font\n{33AA33}Info:{ffffff} Required for spraying font your spraytags", "Input", "Cancel");
+
+				format(PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], 512, inputtext);
+
+				new str[256];
+				strcat(str, "{2C6B2F}Green\n");
+				strcat(str, "{9EC9A0}Light Green\n");
+				strcat(str, "{6D9D6F}Dark Green\n");
+				strcat(str, "{6C1D8A}Purple\n");
+				strcat(str, "{9B4F8F}Light Purple\n");
+				strcat(str, "{8A2C7C}Medium Purple\n");
+				strcat(str, "{AC09C7}Dark Purple\n");
+				strcat(str, "{7BEDff}Cyan\n");
+				strcat(str, "{FFDF7B}Yellow\n");
+				strcat(str, "{D7A542}Orange\n");
+				strcat(str, "{FF0000}Red\n");
+				strcat(str, "{0055FF}Blue\n");
+				
+				ShowPlayerDialog(playerid, DIALOG_SPRAYCOLOR, DIALOG_STYLE_LIST, "Spraytags Colors:", str, "Select", "Cancel");
+			}
+		}
+		case DIALOG_SPRAYCOLOR:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						new iColor = HexToInt("0xFF2C6B2F");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+					case 1:
+					{
+						new iColor = HexToInt("0xFF9EC9A0");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+					case 2:
+					{
+						new iColor = HexToInt("0xFF6D9D6F");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+					case 3:
+					{
+						new iColor = HexToInt("0xFF6C1D8A");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+					case 4:
+					{
+						new iColor = HexToInt("0xFF9B4F8F");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+					case 5:
+					{
+						new iColor = HexToInt("0xFF8A2C7C");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+					case 6:
+					{
+						new iColor = HexToInt("0xFFAC09C7");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+					case 7:
+					{
+						new iColor = HexToInt("0xFF7BEDff");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+					case 8:
+					{
+						new iColor = HexToInt("0xFFFFDF7B");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+					case 9:
+					{
+						new iColor = HexToInt("0xFFD7A542");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+					case 10:
+					{
+						new iColor = HexToInt("0xFFFF0000");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+					case 11:
+					{
+						new iColor = HexToInt("0xFF0055FF");
+						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+					}
+				}
+			}
+		}
+		case DIALOG_SPRAYTEXT:
+		{
+			if (response) 
+			{
+				if (isnull(inputtext) || strlen(inputtext) < 5 || strlen(inputtext) > 32)
+					return ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and * = / ? !\nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+
+				new formattedText[512];
+				format(formattedText, sizeof(formattedText), "%s", inputtext);
+
+				for (new i = 0; i < strlen(formattedText); i++)
+				{
+					if (formattedText[i] == '|')
+					{
+						formattedText[i] = '\n'; 
+					}
+				}
+
+				format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 128, formattedText);
+
+				new Float:x, Float:y, Float:z; 
+				GetPlayerPos(playerid, x, y, z); 
+
+				
+				PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(19482, x, y, z, 0.0, 0.0, 0.0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid)); 
+				SetDynamicObjectMaterialText(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT], 0, formattedText, OBJECT_MATERIAL_SIZE_512x256, PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], 40, 1, PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR], 0, OBJECT_MATERIAL_TEXT_ALIGN_CENTER);
+				
+				EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]); 
+				PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 1;
+			}
+		}
+		case DIALOG_DEALERSHIP:
+		{
+			if(response)
+			{
+				SubDealershipHolder[playerid] = SubDealershipHolderArr[playerid][listitem]; 
+				
+				new
+					i,
+					str[128],
+					caption[60]; 
+					
+				i = SubDealershipHolder[playerid];
+				
+				new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
+
+				if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+					return SendErrorMessage(playerid, "You need $%s to buy this. (Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY])); 
+					
+				DealershipTotalCost[playerid] = Cents;
+				
+				format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[i][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+				strcat(str, "Colors\n");
+				strcat(str, "{FFFF00}Purchase Vehicle\n"); 
+				
+				TogglePlayerControllable(playerid, false); 
+				
+				DealershipPlayerCar[playerid] = CreateVehicle(g_aDealershipData[i][E_DEALERSHIP_MODELID], g_aDealershipData[i][E_DEALERSHIP_SPAWNX], g_aDealershipData[i][E_DEALERSHIP_SPAWNY], g_aDealershipData[i][E_DEALERSHIP_SPAWNZ], g_aDealershipData[i][E_DEALERSHIP_SPAWNA], 0, 0, -1);
+				PlayerPutIntoVehicle(playerid, DealershipPlayerCar[playerid], 0); 
+				
+				ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_APPEND, DIALOG_STYLE_LIST, caption, str, "Append", "<<");
+			}
+		}
+		case DIALOG_DEALERSHIP_APPEND:
+		{
+			new
+				caption[60],
+				str[400]; 
+			
+			format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+			
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0: //Colors
+					{
+						new 
+							dstr[128];
+					
+						format(dstr, sizeof(dstr), "Color 1 ({%06x}%d{FFFFFF})\n", VehicleColoursTableRGBA[DealershipCarColors[playerid][0]] >>> 8, DealershipCarColors[playerid][0]);
+						strcat(str, dstr);
+						
+						format(dstr, sizeof(dstr), "Color 2 ({%06x}%d{FFFFFF})\n", VehicleColoursTableRGBA[DealershipCarColors[playerid][1]] >>> 8, DealershipCarColors[playerid][1]);
+						strcat(str, dstr);
+						
+						ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_MENU, DIALOG_STYLE_LIST, caption, str, "Select", "<<"); 
+					}
+					case 1: //Purchase
+					{
+						new dstr[128], vehicleid = GetPlayerVehicleID(playerid);
+						
+						format(dstr, sizeof(dstr), "Models:\t%s\n", ReturnVehicleName(vehicleid));
+						strcat(str, dstr);
+						format(dstr, sizeof(dstr), "Price:\t{FFFFFF}{33AA33}$%s{ffffff}\n", FormatMoney(g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_PRICE]));
+						strcat(str, dstr);
+						format(dstr, sizeof(dstr), "Max Speed:\t{FFFFFF}%.1f\n", GetVehicleTopSpeed(DealershipPlayerCar[playerid])); 
+						strcat(str, dstr); 
+						ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_CONFIRM, DIALOG_STYLE_MSGBOX, caption, str, "Edit", "Checkout"); 
+						return 1;
+					}
+				}
+			}
+			else ConfirmDialog(playerid, "Confirmation", "Are you sure you want to exit?", "OnPlayerExitDealership"); 
+		}
+		case DIALOG_DEALERSHIP_MENU:
+		{
+			new
+				str[128],
+				caption[60]
+			; 
+			
+			format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles first color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][0]] >>> 8, DealershipCarColors[playerid][0]); 
+						ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR1, DIALOG_STYLE_INPUT, caption, str, "Select", "<<");  
+					}
+					case 1:
+					{
+						format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles second color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][1]] >>> 8, DealershipCarColors[playerid][1]); 
+						ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR2, DIALOG_STYLE_INPUT, caption, str, "Select", "<<"); 
+					}
+				}
+			}
+			else return ShowDealerAppend(playerid);
+		}
+		case DIALOG_DEALERSHIP_COLOR1:
+		{
+			new
+				caption[60],
+				str[128],
+				color1
+			;
+			
+			format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+			
+			if(response)
+			{
+				if(!IsNumeric(inputtext))
+				{
+					format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles first color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][0]] >>> 8, DealershipCarColors[playerid][0]); 
+					return ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR1, DIALOG_STYLE_INPUT, caption, str, "Select", "<<");  
+				}
+			
+				color1 = strval(inputtext);
+				
+				if(color1 > 255 || color1 < 0)
+				{
+					format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles first color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][0]] >>> 8, DealershipCarColors[playerid][0]); 
+					return ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR1, DIALOG_STYLE_INPUT, caption, str, "Select", "<<");  
+				}
+				
+				ChangeVehicleColor(DealershipPlayerCar[playerid], color1, DealershipCarColors[playerid][1]); 
+				
+				DealershipCarColors[playerid][0] = color1;
+				return ShowDealerAppend(playerid); 
+			}
+			else
+			{
+				new 
+					dstr[128]
+				;
+					
+				format(dstr, sizeof(dstr), "{FFFFFF}Color 1 ({%06x}%d{FFFFFF})\n", VehicleColoursTableRGBA[DealershipCarColors[playerid][0]] >>> 8, DealershipCarColors[playerid][0]);
+				strcat(str, dstr);
+						
+				format(dstr, sizeof(dstr), "{FFFFFF}Color 2 ({%06x}%d{FFFFFF})\n", VehicleColoursTableRGBA[DealershipCarColors[playerid][1]] >>> 8, DealershipCarColors[playerid][1]);
+				strcat(str, dstr);
+						
+				ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_MENU, DIALOG_STYLE_LIST, caption, str, "Select", "<<"); 
+			}
+		}
+		case DIALOG_DEALERSHIP_COLOR2:
+		{
+			new
+				caption[60],
+				str[128],
+				color2
+			;
+			
+			format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
+			
+			if(response)
+			{
+				if(!IsNumeric(inputtext))
+				{
+					format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles second color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][1]] >>> 8, DealershipCarColors[playerid][1]); 
+					return ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR2, DIALOG_STYLE_INPUT, caption, str, "Select", "<<");  
+				}
+			
+				color2 = strval(inputtext);
+				
+				if(color2 > 255 || color2 < 0)
+				{
+					format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles second color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][1]] >>> 8, DealershipCarColors[playerid][1]); 
+					return ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR2, DIALOG_STYLE_INPUT, caption, str, "Select", "<<");  
+				}
+				
+				ChangeVehicleColor(DealershipPlayerCar[playerid], DealershipCarColors[playerid][0], color2); 
+				
+				DealershipCarColors[playerid][1] = color2;
+				return ShowDealerAppend(playerid); 
+			}
+			else
+			{
+				new 
+					dstr[128]
+				;
+					
+				format(dstr, sizeof(dstr), "{FFFFFF}Color 1 ({%06x}%d{FFFFFF})\n", VehicleColoursTableRGBA[DealershipCarColors[playerid][0]] >>> 8, DealershipCarColors[playerid][0]);
+				strcat(str, dstr);
+						
+				format(dstr, sizeof(dstr), "{FFFFFF}Color 2 ({%06x}%d{FFFFFF})\n", VehicleColoursTableRGBA[DealershipCarColors[playerid][1]] >>> 8, DealershipCarColors[playerid][1]);
+				strcat(str, dstr);
+						
+				ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_MENU, DIALOG_STYLE_LIST, caption, str, "Select", "<<"); 
+			}
+		}
+		case DIALOG_DEALERSHIP_CONFIRM:
+		{
+			if(response)
+			{
+				return ShowDealerAppend(playerid);
+			}
+			else
+			{
+				if(DealershipTotalCost[playerid] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+				{
+					SendErrorMessage(playerid, "You can't afford the total price. (Price: $%s, Total:$%s)", FormatMoney(DealershipTotalCost[playerid]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+					
+					DestroyVehicle(DealershipPlayerCar[playerid]);
+					TogglePlayerControllable(playerid, true);
+					return ResetDealershipVars(playerid);
+				}
+				
+				new
+					idx, 
+					plates[32],
+					randset[3],
+					insert[256],
+					Float:x,
+					Float:y,
+					Float:z,
+					Float:a;
+				
+				for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
+				{
+					if(!PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
+					{
+						idx = i;
+						break;
+					}
+				}
+				
+				GetVehiclePos(DealershipPlayerCar[playerid], x, y, z);
+				GetVehicleZAngle(DealershipPlayerCar[playerid], a);
+				
+				randset[0] = random(sizeof(possible_vehicle_plates)); 
+				randset[1] = random(sizeof(possible_vehicle_plates)); 
+				randset[2] = random(sizeof(possible_vehicle_plates)); 
+				
+				format(plates, 32, "%d%s%s%s%d%d%d", random(9), possible_vehicle_plates[randset[0]], possible_vehicle_plates[randset[1]], possible_vehicle_plates[randset[2]], random(9), random(9)); 
+				GiveMoney(playerid, -DealershipTotalCost[playerid]);
+				
+				ShowPlayerPlates(playerid, plates); 
+				
+				mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO vehicles (VehicleOwnerDBID, VehicleModel, VehicleParkPosX, VehicleParkPosY, VehicleParkPosZ, VehicleParkPosA) VALUES(%i, %i, %f, %f, %f, %f)",
+					PlayerInfo[playerid][E_CHARACTER_DBID], g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODELID], x, y, z, a); 
+					
+				mysql_pquery(ourConnection, insert, "OnPlayerVehiclePurchase", "iisffff", playerid, idx, plates, x, y, z, a);
+				
+				PlayerPurchasingVehicle[playerid] = true; 
+				TogglePlayerControllable(playerid, true);
+			}
+		}
+		case DIALOG_MODSHOP:
+		{
+			switch(listitem)
+			{
+				case 0: 
+				{
+					if (!response) {
+						return TogglePlayerControllable(playerid, true);
+					}
+
+					if (!IsPlayerInAnyVehicle(playerid)) {
+						return SendErrorMessage(playerid, "You aren't in any vehicle.");
+					}
+
+					new modname[50][32], v = GetPlayerVehicleID(playerid), mods[50], count = 0;
+					new modlist[1024]; 
+
+					for(new m = 1000; m < 1193; m++)
+					{
+						if(IsVehicleUpgradeCompatible(VehicleInfo[v][E_VEHICLE_MODEL], m) && IsActualVehicleMod(m))
+						{
+							mods[count] = m;
+							format(modname[count], 32, "%s", GetVehicleModName(m));
+							
+							if(count == 0)
+								format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
+							else
+								format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
+							
+							SubVehicleComponentArr[playerid][count] = m; 
+							count++;
+						}
+					}
+
+					if(count == 0) return SendErrorMessage(playerid, "This vehicle does not support any bodywork modifications.");
+					
+					ShowPlayerDialog(playerid, DIALOG_PAYNSPRAY, DIALOG_STYLE_PREVIEW_MODEL, "ModShop:", modlist, "Select", "Close");
+
+					TogglePlayerControllable(playerid, true); 
+					PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false; 
+				}
+			}
+		}
+		case DIALOG_PAYNSPRAY:
+		{
+			if(response)
+			{
+				new vehicleid = GetPlayerVehicleID(playerid), 
+					str[64],
+					modelid = SubVehicleComponentArr[playerid][listitem];
+				
+				format(str, sizeof(str), "Hope you like new mods!!");
+				ShowBoxMessage(playerid, str, 5);
+				VehicleInfo[vehicleid][E_VEHICLE_MODS][GetVehicleComponentType(modelid)] = modelid;
+				SaveVehicle(vehicleid);
+				AddVehicleComponent(vehicleid, modelid);
+				new Cents = floatround(GetVehicleComponentPrice(modelid) * 100, floatround_round);
+
+				GiveMoney(playerid, -Cents);
+				PauseAC(playerid);
+				PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
+			}
+		}
+		case DIALOG_RENTALCARS:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						new Cents = floatround(50 * 100, floatround_round);
+
+						if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford the total price. (Price: $%s, Total:$%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+
+						new
+							idx, 
+							plates[32],
+							randset[3],
+							insert[256],
+							Float:x,
+							Float:y,
+							Float:z,
+							Float:a;
+						
+						for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
+						{
+							if(!PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
+							{
+								idx = i;
+								break;
+							}
+						}
+
+						GetPlayerPos(playerid, x, y, z);
+						GetPlayerFacingAngle(playerid, a);
+
+						randset[0] = random(sizeof(possible_vehicle_plates)); 
+						randset[1] = random(sizeof(possible_vehicle_plates)); 
+						randset[2] = random(sizeof(possible_vehicle_plates)); 
+						
+						format(plates, 32, "%d%s%s%s%d%d%d", random(9), possible_vehicle_plates[randset[0]], possible_vehicle_plates[randset[1]], possible_vehicle_plates[randset[2]], random(9), random(9)); 
+
+						GiveMoney(playerid, -Cents);
+						
+						ShowPlayerPlates(playerid, plates); 
+						
+						mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO vehicles (VehicleOwnerDBID, VehicleModel, VehicleParkPosX, VehicleParkPosY, VehicleParkPosZ, VehicleParkPosA, VehicleRental, VehicleRentalTimer) VALUES(%i, %i, %f, %f, %f, %f, %i, %i)",
+							PlayerInfo[playerid][E_CHARACTER_DBID], 462, x, y, z, a, 1, 60); 
+							
+						mysql_pquery(ourConnection, insert, "OnPlayerVehicleRental", "iiiisffff", playerid, idx, 462, Cents, plates, x, y, z, a);
+					}
+					case 1:
+					{
+						new Cents = floatround(120 * 100, floatround_round);
+
+						if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford the total price. (Price: $%s, Total:$%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+
+						new
+							idx, 
+							plates[32],
+							randset[3],
+							insert[256],
+							Float:x,
+							Float:y,
+							Float:z,
+							Float:a;
+						
+						for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
+						{
+							if(!PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
+							{
+								idx = i;
+								break;
+							}
+						}
+
+						GetPlayerPos(playerid, x, y, z);
+						GetPlayerFacingAngle(playerid, a);
+
+						randset[0] = random(sizeof(possible_vehicle_plates)); 
+						randset[1] = random(sizeof(possible_vehicle_plates)); 
+						randset[2] = random(sizeof(possible_vehicle_plates)); 
+						
+						format(plates, 32, "%d%s%s%s%d%d%d", random(9), possible_vehicle_plates[randset[0]], possible_vehicle_plates[randset[1]], possible_vehicle_plates[randset[2]], random(9), random(9)); 
+						
+						GiveMoney(playerid, -Cents);
+						
+						ShowPlayerPlates(playerid, plates); 
+						
+						mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO vehicles (VehicleOwnerDBID, VehicleModel, VehicleParkPosX, VehicleParkPosY, VehicleParkPosZ, VehicleParkPosA, VehicleRental, VehicleRentalTimer) VALUES(%i, %i, %f, %f, %f, %f, %i, %i)",
+							PlayerInfo[playerid][E_CHARACTER_DBID], 405, x, y, z, a, 1, 60); 
+							
+						mysql_pquery(ourConnection, insert, "OnPlayerVehicleRental", "iiiisffff", playerid, idx, 462, Cents, plates, x, y, z, a);
+					}
+				}
+			}
+		}
 	}
 	PlayerPlaySound(playerid, 1054, 0.0, 0.0, 0.0);
 	return 0;

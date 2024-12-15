@@ -1,16 +1,3 @@
-#define MAX_COMPENSATION (1)
-enum E_COMPETATION_DATA
-{
-    E_COMPETATION_DBID,
-    E_COMPETATION_CODE[32],
-    E_COMPETATION_PLAYERS,
-    E_COMPETATION_EXPIRED,
-    E_COMPETATION_MONEY,
-    E_COMPETATION_USED,
-    bool:E_COMPETATION_EXISTS
-};
-new CompetationInfo[MAX_COMPENSATION][E_COMPETATION_DATA];
-
 function:Query_LoadCompensation()
 {
     new
@@ -131,55 +118,10 @@ CMD:clearcode(playerid, params[])
 
 CMD:claim(playerid, params[])
 {
-    Dialog_Show(playerid, Compensation, DIALOG_STYLE_INPUT, "Claim Compensation:", "Enter your compensation code:", "Submit", "Cancel");
+    ShowPlayerDialog(playerid, DIALOG_COMPENTATION, DIALOG_STYLE_INPUT, "Claim Compensation:", "Enter your compensation code:", "Submit", "Cancel");
     return 1;
 }
 
-Dialog:Compensation(playerid, response, listitem, inputtext[])
-{
-    for (new i = 0; i < MAX_COMPENSATION; i++) if(CompetationInfo[i][E_COMPETATION_EXISTS])
-    {
-        if (strcmp(CompetationInfo[i][E_COMPETATION_CODE], inputtext, true) == 0)
-        {
-            if (gettime() > CompetationInfo[i][E_COMPETATION_EXPIRED])
-            {
-                new query[256];
-                mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_codes WHERE code = '%s'", CompetationInfo[i][E_COMPETATION_CODE]);
-                mysql_tquery(ourConnection, query);
-
-                mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_claims WHERE code = '%s'", CompetationInfo[i][E_COMPETATION_CODE]);
-                mysql_tquery(ourConnection, query);
-
-                CompetationInfo[i][E_COMPETATION_EXISTS] = false;
-                
-                return SendErrorMessage(playerid, "This compensation code has expired.");
-            }
-
-            if (CompetationInfo[i][E_COMPETATION_USED] >= CompetationInfo[i][E_COMPETATION_PLAYERS])
-            {
-                new query[256];
-                mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_codes WHERE code = '%s'", CompetationInfo[i][E_COMPETATION_CODE]);
-                mysql_tquery(ourConnection, query);
-
-                mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_claims WHERE code = '%s'", CompetationInfo[i][E_COMPETATION_CODE]);
-                mysql_tquery(ourConnection, query);
-
-                CompetationInfo[i][E_COMPETATION_EXISTS] = false;
-
-                return SendErrorMessage(playerid, "This compensation code has reached its limit.");
-            }
-
-            new query[256];
-            mysql_format(ourConnection, query, sizeof(query), "SELECT * FROM compensation_claims WHERE player_id = %d AND code = '%s'", PlayerInfo[playerid][E_CHARACTER_DBID], inputtext);
-            mysql_pquery(ourConnection, query, "CompensationCallback", "ii", playerid, i);
-        }
-    }
-    else
-    {
-        SendErrorMessage(playerid, "Invalid or not available compensation code at this time.");
-    }
-    return 1;
-}
 function:CompensationCallback(playerid, codeid)
 {
     new rows, fields; 

@@ -19,15 +19,13 @@
 #include <crashdetect>
 #include <streamer>
 #include <progress2>
-#include <easyDialog>
-#include <PreviewModelDialog>
 #include <timerfix>
 #include <zcmd>
 #include <sscanf2>
 #include <physics>
-#include <PawnPlus>
 #include <Pawn.RakNet>
 #include <compat>
+#include <PreviewModelDialog2>
 
 //Database establisher:
 new MySQL:ourConnection; 
@@ -3690,7 +3688,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
 			return 0;
 
-		Dialog_Show(playerid, MdcName, DIALOG_STYLE_INPUT, "Place Charges:", "Please enter the name of the player:", "Search", "Back");
+		ShowPlayerDialog(playerid, DIALOG_MDC_NAME, DIALOG_STYLE_INPUT, "Place Charges:", "Please enter the name of the player:", "Search", "Back");
         return 1;
     }
 	if (playertextid == MDC[10][playerid])
@@ -3698,7 +3696,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
 			return 0;
 
-		Dialog_Show(playerid, MdcView, DIALOG_STYLE_INPUT, "View Charges:", "Please enter the name of the player:", "Search", "Back");
+		ShowPlayerDialog(playerid, DIALOG_MDC_VIEW, DIALOG_STYLE_INPUT, "View Charges:", "Please enter the name of the player:", "Search", "Back");
         return 1;
     }
 	if (playertextid == MDC[11][playerid])
@@ -3706,7 +3704,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
 			return 0;
 
-		Dialog_Show(playerid, MdcPlate, DIALOG_STYLE_INPUT, "View Plates:", "Please enter the vehicle plates:", "Search", "Back"); 
+		ShowPlayerDialog(playerid, DIALOG_MDC_PLATE, DIALOG_STYLE_INPUT, "View Plates:", "Please enter the vehicle plates:", "Search", "Back"); 
         return 1;
     }
 	if (playertextid == MDC[12][playerid])
@@ -4561,9 +4559,13 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 		}
 	}
-	if ((newkeys & KEY_FIRE) && (newkeys & KEY_LOOK_BEHIND) && (IsPlayerInAnyVehicle(playerid)))
+	if ((newkeys & KEY_YES) && (IsPlayerInAnyVehicle(playerid)))
 	{
 		cmd_engine(playerid, "");
+	}
+	if ((newkeys & KEY_LOOK_BEHIND) && (IsPlayerInAnyVehicle(playerid)))
+	{
+		cmd_carlock(playerid, "");
 	}
 	if(newkeys == KEY_FIRE)
 	{
@@ -4602,11 +4604,11 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 		cmd_enter(playerid, "");
 	}
-	if (newkeys & KEY_YES)
+	if ((newkeys & KEY_NO) && !IsPlayerInAnyVehicle(playerid))
 	{
 		cmd_inventory(playerid, "");
 	}
-	else if (newkeys & KEY_NO && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
+	else if (newkeys & KEY_WALK && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
 	{
 		if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DUCK)
 		{
@@ -5248,7 +5250,7 @@ function:Query_CreateCharacter(playerid)
 {
 	if(cache_num_rows())
 	{
-		Dialog_Show(playerid, CharacterName, DIALOG_STYLE_MSGBOX, "Character Name:", "Insert a full name of your character.\nInfo: Required in format of Firstname_Lastname", "Confirm", "");	
+		ShowPlayerDialog(playerid, DIALOG_CHAR_NAME, DIALOG_STYLE_MSGBOX, "Character Name:", "Insert a full name of your character.\nInfo: Required in format of Firstname_Lastname", "Confirm", "");	
 		SendErrorMessage(playerid, "That character already exists. Please try again."); 
 		return 1; 
 	}

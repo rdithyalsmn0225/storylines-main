@@ -367,46 +367,8 @@ CMD:tpda(playerid, params[])
     if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TRUCKER)
         return SendErrorMessage(playerid, "You aren't truckers.");
 
-    Dialog_Show(playerid, Industry, DIALOG_STYLE_LIST, "Truck PDA:", "Show Oceandocks Information\nShow Freight Industry\nShow Cargo Industry\nShow Business Request Shipments", "Select", "Cancel");
+    ShowPlayerDialog(playerid, DIALOG_INDUSTRY, DIALOG_STYLE_LIST, "Truck PDA:", "Show Oceandocks Information\nShow Freight Industry\nShow Cargo Industry\nShow Business Request Shipments", "Select", "Cancel");
     return 1;
-}
-
-Dialog:Industry(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		switch(listitem)
-		{
-			case 0:
-			{
-				new str[256];
-				strcat(str, "Welcome to los santos economy!\n\nThe ship & warehouses is currently restocked product every 30 minute(s).\n\nYou can buy cargo products if stock is still available on the ship or warehouses.");
-				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Information:", str, "Confirm", "");
-			}
-			case 1:
-			{
-				if(GetVehicleModel(GetPlayerVehicleID(playerid)) != 515 && GetVehicleModel(GetPlayerVehicleID(playerid)) != 514 && GetVehicleModel(GetPlayerVehicleID(playerid)) != 403)
-					return SendErrorMessage(playerid, "You aren't in heavy truck.");
-
-				if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < 5)
-					return SendErrorMessage(playerid, "Your level (5) is minimum to access this jobs."); 
-
-				if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
-					return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
-
-				ShowFreight(playerid);
-			}
-			case 2:
-			{
-				ShowIndustry(playerid);
-			}
-			case 3:
-			{
-				ShowShipments(playerid);
-			}
-		}
-	}
-	return 1;
 }
 
 stock AttachVehicleFreight(playerid, vehicleid)

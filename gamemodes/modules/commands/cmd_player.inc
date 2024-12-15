@@ -442,47 +442,9 @@ CMD:haircut(playerid, params[])
 		{
 			format(str, sizeof(str), "%s%d\n", str, g_aHaircut[i]);
 		}
-		Dialog_Show(playerid, Haircuts, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+		ShowPlayerDialog(playerid, DIALOG_BARBERSTORE, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business.");
-	return 1;
-}
-
-Dialog:Haircuts(playerid, response, listitem, inputtext[])
-{
-	if(response)
-	{
-		if(250 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-		{
-			ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
-			ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
-			SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
-			return SendErrorMessage(playerid, "You can't afford a clothes.");
-		}
-
-		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
-		{
-			ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
-			ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
-			SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
-			return SendErrorMessage(playerid, "This business is out of stock");
-		}
-
-		if(GetPlayerFreeToySlot(playerid) == -1)
-		{
-			ApplyDynamicActorAnimation(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR], "HAIRCUTS", "BRB_Cut_Out", 4.1, 0, 0, 0, 0, 0);
-			ApplyAnimation(playerid, "HAIRCUTS", "BRB_Sit_Out", 4.1, 0, 0, 0, 0, 0, 0);
-			SetTimerEx("ExitHairCut", 1000, false, "i", playerid);
-			return SendErrorMessage(playerid, "You already have full slot of Accessory!");
-		}
-
-		SetTimerEx("StartHairCut", 500, false, "ii", playerid, g_aHaircut[listitem]);
-	}
-	else
-	{
-		SetCameraBehindPlayer(playerid);
-		TogglePlayerControllable(playerid, true);
-	}
 	return 1;
 }
 

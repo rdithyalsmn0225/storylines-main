@@ -1,5 +1,5 @@
 //Database
-#define MYSQL_HOST
+//#define MYSQL_HOST
 //#define DEBUG_MODE
 
 #if defined MYSQL_HOST
@@ -71,6 +71,7 @@
 #define MAX_CARDS       			(5)
 #define MAX_FIRES                   (100)
 #define MAX_FACTION_VEHICLES 		(38)
+#define MAX_COMPENSATION 			(1)
 
 LoadCustomModels()
 {
