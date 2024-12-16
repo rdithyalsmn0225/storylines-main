@@ -156,11 +156,27 @@ CMD:buybait(playerid, params[])
 	new Cents = floatround(amount * 0.10 * 100, floatround_round);
 
 	if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
-		return SendErrorMessage(playerid, "You don't have enough money! ($%s)", FormatMoney(amount));
+		return SendErrorMessage(playerid, "You don't have enough money! ($%s)", FormatMoney(Cents));
 
 	GiveMoney(playerid, -Cents);
 	Inventory_Add(playerid, "Fish Bait", 19566, amount);
-	SendJobsMessage(playerid, "[Fishing] {cdcdcd}You have successfully purchase {d7d292}%d Fish bait{cdcdcd} for $%s", amount, FormatMoney(Cents));
+	SendJobsMessage(playerid, "[Fishing] {cdcdcd}You have successfully purchase %d Fish bait for $%s", amount, FormatMoney(Cents));
+	return 1;
+}
+
+CMD:buyrod(playerid, params[])
+{
+	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 2610.7708,-2441.7927,13.6310))
+		return SendErrorMessage(playerid, "You aren't inside the Fish factory.");
+
+	new Cents = floatround(30 * 100, floatround_round);
+
+	if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+		return SendErrorMessage(playerid, "You don't have enough money! ($%s)", FormatMoney(Cents));
+
+	GiveMoney(playerid, -Cents);
+	Inventory_Add(playerid, "Fishing Rod", 18632, 1);
+	SendJobsMessage(playerid, "[Fishing] {cdcdcd}You have successfully purchase Fishing Rod for $%s", FormatMoney(Cents));
 	return 1;
 }
 

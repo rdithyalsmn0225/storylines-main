@@ -1428,7 +1428,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /joinjob, /quitjob, /jobduty, ");
 						SendClientMessage(playerid, COLOR_ORANGE, "Docksworker Commands: /loadcargo, /storecargo");
 						SendClientMessage(playerid, COLOR_ORANGE, "Garbageman Commands: /collectgarbage, /dumpgarbage");
-						SendClientMessage(playerid, COLOR_ORANGE, "Fishing Commands: /fish, /sellfish, /buybait");
+						SendClientMessage(playerid, COLOR_ORANGE, "Fishing Commands: /fish, /sellfish, /buybait, /buyrod");
 						SendClientMessage(playerid, COLOR_ORANGE, "Press 'ALT' collect garbage");
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRUCKER)
 						{
@@ -4489,7 +4489,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				PlayerInfo[targetid][E_CHARACTER_TAXICALLED] = 0;
 				GPS_SetPlayerRaceCheckPoint(playerid, 1, x, y, z, 0.0, 0.0, 0.0);
 
-				SendJobsMessage(playerid, "[Taxi] {cdcdcd}You have accepted {d7d292}%s's{cdcdcd} taxi call.", ReturnName(targetid));
+				SendJobsMessage(playerid, "[Taxi] {cdcdcd}You have accepted %s's taxi call.", ReturnName(targetid));
 				SendJobsMessage(targetid, "[Taxi] {cdcdcd}%s has accepted your taxi call and is on their way.", ReturnName(playerid, targetid));
 			}
 		}

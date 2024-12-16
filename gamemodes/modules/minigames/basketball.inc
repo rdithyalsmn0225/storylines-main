@@ -249,7 +249,7 @@ CMD:court(playerid, params[])
 		{
 			PlayerInfo[playerid][E_CHARACTER_COURT] = IsPlayerNearCourt(playerid, 1);
 			PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 1;
-			SendServerMessage(playerid, "[Basketball] {cdcdcd}You've joined the basketball as blue team.");
+			SendClientMessageEx(playerid, COLOR_PINK, "[Basketball] You've joined the basketball as blue team.");
 
 			new str[256];
 			format(str, sizeof(str), "To play, press 'RETURN' near a basketball or have someone pass it.~n~~n~To steal and shoot, press 'LMB'. To block, use 'SHIFT'.");
@@ -259,7 +259,7 @@ CMD:court(playerid, params[])
 		{
 			PlayerInfo[playerid][E_CHARACTER_COURT] = IsPlayerNearCourt(playerid, 2);
 			PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 2;
-			SendServerMessage(playerid, "[Basketball] {cdcdcd}You've joined the basketball as red team.");
+			SendClientMessageEx(playerid, COLOR_PINK, "[Basketball] You've joined the basketball as red team.");
 
 			new str[256];
 			format(str, sizeof(str), "To play, press 'RETURN' near a basketball or have someone pass it.~n~~n~To steal and shoot, press 'LMB'. To block, use 'SHIFT'.");
@@ -273,7 +273,7 @@ CMD:court(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
 		CourtInfo[cid][E_BALLER] = 999;
 		CourtInfo[cid][E_BALL_SHOOT] = 0;
-		SendServerMessage(playerid, "[Basketball] {cdcdcd}You've leave the game.");
+		SendClientMessageEx(playerid, COLOR_PINK, "[Basketball] You've leave the game.");
 
 		HideHeaderMessage(playerid);
 	}

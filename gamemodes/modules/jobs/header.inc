@@ -153,7 +153,7 @@ function:OnPlayerJobsUpdate()
             if(PlayerInfo[i][E_CHARACTER_JOBSCD] < 0)
             {
                 PlayerInfo[i][E_CHARACTER_JOBSCD] = 0;
-                SendServerMessage(i, "[Jobs] {cdcdcd}You can start {d7d292}Main Jobs{cdcdcd} rightnow.");
+                SendServerMessage(i, "[Jobs] {cdcdcd}You can start Main Jobs rightnow.");
             }
         }
 
@@ -163,7 +163,7 @@ function:OnPlayerJobsUpdate()
             if(PlayerInfo[i][E_CHARACTER_SWEEPERCD] < 0)
             {
                 PlayerInfo[i][E_CHARACTER_SWEEPERCD] = 0;
-                SendServerMessage(i, "[Jobs] {cdcdcd}You can start {d7d292}Street Cleaner{cdcdcd} SideJobs rightnow.");
+                SendServerMessage(i, "[Jobs] {cdcdcd}You can start Street Cleaner SideJobs rightnow.");
             }
         }
 
@@ -173,7 +173,7 @@ function:OnPlayerJobsUpdate()
             if(PlayerInfo[i][E_CHARACTER_GARBAGECD] < 0)
             {
                 PlayerInfo[i][E_CHARACTER_GARBAGECD] = 0;
-                SendServerMessage(i, "[Jobs] {cdcdcd}You can start {d7d292}Garbageman{cdcdcd} SideJobs rightnow.");
+                SendServerMessage(i, "[Jobs] {cdcdcd}You can start Garbageman SideJobs rightnow.");
             }
         }
 
@@ -183,7 +183,7 @@ function:OnPlayerJobsUpdate()
             if(PlayerInfo[i][E_CHARACTER_BUSDRIVERCD] < 0)
             {
                 PlayerInfo[i][E_CHARACTER_BUSDRIVERCD] = 0;
-                SendServerMessage(i, "[Jobs] {cdcdcd}You can start {d7d292}Bus Driver{cdcdcd} SideJobs rightnow.");
+                SendServerMessage(i, "[Jobs] {cdcdcd}You can start Bus Driver SideJobs rightnow.");
             }
         }
         if(PlayerInfo[i][E_CHARACTER_DOCKWORKERCD])
@@ -192,7 +192,7 @@ function:OnPlayerJobsUpdate()
             if(PlayerInfo[i][E_CHARACTER_DOCKWORKERCD] < 0)
             {
                 PlayerInfo[i][E_CHARACTER_DOCKWORKERCD] = 0;
-                SendServerMessage(i, "[Jobs] {cdcdcd}You can start {d7d292}Bus Driver{cdcdcd} SideJobs rightnow.");
+                SendServerMessage(i, "[Jobs] {cdcdcd}You can start Bus Driver SideJobs rightnow.");
             }
         }
     }

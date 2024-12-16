@@ -17,13 +17,13 @@
 #include <a_mysql>
 #include <a_http>
 #include <crashdetect>
+#include <Pawn.RakNet>
 #include <streamer>
 #include <progress2>
 #include <timerfix>
 #include <zcmd>
 #include <sscanf2>
 #include <physics>
-#include <Pawn.RakNet>
 #include <compat>
 #include <PreviewModelDialog2>
 
@@ -436,7 +436,7 @@ public OnPlayerDisconnect(playerid, reason)
 					PoolInfo[businessid][E_POOL_STARTED] = false;
 					RestorePoolStick(i);
 					HideHeaderMessage(i);
-					SendServerMessage(i, "[8Ball] {cdcdcd}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+					SendClientMessageEx(i, COLOR_PINK, "[8Ball] %s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
 				}
 			}
 		}
@@ -3143,8 +3143,6 @@ public OnPlayerSpawn(playerid)
 		printf("Callback OnPlayerSpawn called for player %s (ID: %i)", ReturnName(playerid), playerid); 
 	#endif
 
-	Streamer_Update(playerid);
-
 	LastSpawn[playerid] = gettime();
 	
 	if(PlayerInfo[playerid][E_CHARACTER_INJURED] == 1)
@@ -3181,7 +3179,7 @@ public OnPlayerSpawn(playerid)
 		SetPlayerPosEx(playerid, -10.5146,2337.2961,24.3034);
 		SetPlayerInteriorEx(playerid, 0); SetPlayerVirtualWorldEx(playerid, 1338);
 		
-		SendServerMessage(playerid, "[Jail] {cdcdcd}You're currently admin jailed. You have {d7d292}%i{cdcdcd} minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
+		SendServerMessage(playerid, "[Jail] {cdcdcd}You're currently admin jailed. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
 	}
 	else if(PlayerInfo[playerid][E_CHARACTER_PRISONED] == true)
 	{
@@ -3189,7 +3187,7 @@ public OnPlayerSpawn(playerid)
 		
 		SetPlayerInPrison(playerid);
 		
-		SendServerMessage(playerid, "[Prison] {cdcdcd}You're currently prison. You have {d7d292}%i{cdcdcd} minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
+		SendServerMessage(playerid, "[Prison] {cdcdcd}You're currently prison. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
 	}
 	else
 	{
@@ -3261,8 +3259,6 @@ public OnPlayerUpdate(playerid)
 		SetPlayerHealth(playerid, 100.0);
 		TogglePlayerControllable(playerid, false);
 	}
-
-	
 
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	{
@@ -3590,7 +3586,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 
 		if (blackjackPlayerScore[playerid] > 21)
 		{
-			SendServerMessage(playerid, "[Blackjack] {cdcdcd}You lost! Your cards exceeded 21 (Bust).");
+			SendClientMessageEx(playerid, COLOR_PINK, "[Blackjack] You lost! Your cards exceeded 21 (Bust).");
 			ResetBlackjack(playerid);
 			return 1;
 		}
@@ -3614,15 +3610,15 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		if (BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE] > 21 || blackjackPlayerScore[playerid] > BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE])
 		{
 			GiveMoney(playerid, blackjackPlayerBet[playerid] * 2);
-			SendServerMessage(playerid, "[Blackjack] {cdcdcd}You won and earn your bet x2 for $%s.", FormatMoney(blackjackPlayerBet[playerid] * 2));
+			SendClientMessageEx(playerid, COLOR_PINK, "[Blackjack] You won and earn your bet x2 for $%s.", FormatMoney(blackjackPlayerBet[playerid] * 2));
 		}
 		else if (blackjackPlayerScore[playerid] == BusinessInfo[businessid][E_BUSINESS_DEALER_SCORE])
 		{
-			SendServerMessage(playerid, "[Blackjack] {cdcdcd}It's draw! There are no winners (Push).");
+			SendClientMessageEx(playerid, COLOR_PINK, "[Blackjack] It's draw! There are no winners (Push).");
 		}
 		else
 		{
-			SendServerMessage(playerid, "[Blackjack] {cdcdcd}You lost! Dealer has a higher score (Bust).");
+			SendClientMessageEx(playerid, COLOR_PINK, "[Blackjack] You lost! Dealer has a higher score (Bust).");
 		}
 
 		ResetBlackjack(playerid);
@@ -4248,27 +4244,27 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					case 1:	
 					{
 						Inventory_Add(playerid, "Cod", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a {d7d292}12.5.kg{cdcdcd} of Cod.");
+						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a 12.5.kg of Cod.");
 					}
 					case 2:	
 					{
 						Inventory_Add(playerid, "Carp", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a {d7d292}10.5.kg{cdcdcd} of Carp.");
+						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a 10.5.kg of Carp.");
 					}
 					case 3:	
 					{
 						Inventory_Add(playerid, "Salmon", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a {d7d292}8.5 lbs{cdcdcd} of Salmon.");
+						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a 8.5 lbs of Salmon.");
 					}
 					case 4:	
 					{
 						Inventory_Add(playerid, "Cat Fish", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a {d7d292}15.5 lbs{cdcdcd} of Cat fish.");
+						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a 15.5 lbs of Cat fish.");
 					}
 					case 5:	
 					{
 						Inventory_Add(playerid, "Herring", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a {d7d292}1.5 lbs{cdcdcd} of Herring.");
+						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a 1.5 lbs of Herring.");
 					}
 				}
 			}
@@ -4742,7 +4738,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 
 	    SendJobsMessage(driverid, "[Taxi] {cdcdcd}%s has entered your taxi as a passenger.", ReturnName(playerid, driverid));
-		SendJobsMessage(playerid, "[Taxi] {cdcdcd}You have entered {d7d292}%s's{cdcdcd} taxi.", ReturnName(driverid, playerid));
+		SendJobsMessage(playerid, "[Taxi] {cdcdcd}You have entered %s's taxi.", ReturnName(driverid, playerid));
 	}
  	if (oldstate == PLAYER_STATE_PASSENGER && PlayerInfo[playerid][E_CHARACTER_TAXITIMER] != 0 && PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
 	{

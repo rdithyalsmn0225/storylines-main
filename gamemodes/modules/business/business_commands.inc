@@ -94,7 +94,7 @@ CMD:bizproduct(playerid, params[])
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][1] = Cents;
 			SaveBusiness(id);
-			SendPropertyMessage(playerid, "[Business] {cdcdcd}You has set your business product {d7d292}#1{cdcdcd} to $%s.", FormatMoney(Cents));
+			SendPropertyMessage(playerid, "[Business] {cdcdcd}You has set your business product #1 to $%s.", FormatMoney(Cents));
 		}
 		case 2:
 		{
@@ -103,7 +103,7 @@ CMD:bizproduct(playerid, params[])
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][2] = Cents;
 			SaveBusiness(id);
-			SendPropertyMessage(playerid, "[Business] {cdcdcd}You has set your business product {d7d292}#2{cdcdcd} to $%s.", FormatMoney(Cents));
+			SendPropertyMessage(playerid, "[Business] {cdcdcd}You has set your business product #2 to $%s.", FormatMoney(Cents));
 		}
 		case 3:
 		{
@@ -112,7 +112,7 @@ CMD:bizproduct(playerid, params[])
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][3] = Cents;
 			SaveBusiness(id);
-			SendPropertyMessage(playerid, "[Business] {cdcdcd}You has set your business product {d7d292}#3{cdcdcd} to $%s.", FormatMoney(Cents));
+			SendPropertyMessage(playerid, "[Business] {cdcdcd}You has set your business product #3 to $%s.", FormatMoney(Cents));
 		}
 	}
 	return 1;
