@@ -10,7 +10,7 @@
                                                 |_|  
 
   #Thanks to Radeetz for making this script.
-  #Special thanks to GTA-Chronicles / SP-RP / SOLS for credits the Environment.
+  #Special thanks to Allah SWT.
 ================================================================================================== */
 
 #include <a_samp>
