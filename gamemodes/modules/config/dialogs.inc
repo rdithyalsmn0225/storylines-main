@@ -3814,7 +3814,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(!Inventory_Count(playerid, "Regular Ammo"))
 							return SendErrorMessage(playerid, "You don't have normal magazine in your inventory");
 
-						GivePlayerWeapon(playerid, 27, 999999);
+						GivePlayerWeapon(playerid, 28, 999999);
 						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
 						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NORMAL;
 						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;
@@ -3824,7 +3824,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(!Inventory_Count(playerid, "Surplus Ammo"))
 							return SendErrorMessage(playerid, "You don't have surplus magazine in your inventory");
 
-						GivePlayerWeapon(playerid, 27, 999999);
+						GivePlayerWeapon(playerid, 28, 999999);
 						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
 						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_SURPLUS;
 						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;
@@ -3834,7 +3834,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(!Inventory_Count(playerid, "JHP Ammo"))
 							return SendErrorMessage(playerid, "You don't have jhp magazine in your inventory");
 
-						GivePlayerWeapon(playerid, 27, 999999);
+						GivePlayerWeapon(playerid, 28, 999999);
 						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
 						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_JHP;
 						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;
@@ -3844,7 +3844,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(!Inventory_Count(playerid, "Rubber Ammo"))
 							return SendErrorMessage(playerid, "You don't have rubber magazine in your inventory");
 
-						GivePlayerWeapon(playerid, 27, 999999);
+						GivePlayerWeapon(playerid, 28, 999999);
 						PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
 						PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_RUBBER;
 						PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = UZI;

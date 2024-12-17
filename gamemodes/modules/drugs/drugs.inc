@@ -84,7 +84,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			if(price > PlayerInfo[playerid][E_CHARACTER_MONEY])
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
-			GiveMoney(playerid, Cents);
+			GiveMoney(playerid, -Cents);
 			Inventory_Add(playerid, "Marijuana", -2501, amount);
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
@@ -98,7 +98,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 		
 			
-			GiveMoney(playerid, Cents);
+			GiveMoney(playerid, -Cents);
 			Inventory_Add(playerid, "Cocaine", -2502, amount);
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
@@ -109,7 +109,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 		{
 			
 			
-			GiveMoney(playerid, Cents);
+			GiveMoney(playerid, -Cents);
 			Inventory_Add(playerid, "Heroin", -2500, amount);
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
