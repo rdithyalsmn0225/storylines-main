@@ -3933,17 +3933,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if(response)
 			{
-				new total = strval(inputtext) * 5;
+				new total = strval(inputtext) * 10;
 				new Cents = floatround(total * 100, floatround_round);
 
 				if (isnull(inputtext))
-					return ShowPlayerDialog(playerid, DIALOG_MATSSTORE, DIALOG_STYLE_INPUT, "Materials:", "Materials price: $5 / 1 gram of materials\nPlease input the amount of materials you want to buy:", "Enter", "Cancel");
+					return ShowPlayerDialog(playerid, DIALOG_MATSSTORE, DIALOG_STYLE_INPUT, "Materials:", "Materials price: $0.10 / 1 gram of materials\nPlease input the amount of materials you want to buy:", "Enter", "Cancel");
 			
 				if(total > PlayerInfo[playerid][E_CHARACTER_MONEY])
 					return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 				
 
-				GiveMoney(playerid, Cents);
+				GiveMoney(playerid, -Cents);
 				Inventory_Add(playerid, "Materials", 3014, strval(inputtext));
 			}
 		}
