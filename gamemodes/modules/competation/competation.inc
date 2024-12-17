@@ -27,25 +27,6 @@ function:Query_LoadCompensation()
     return 1;
 }
 
-function:CleanupExpiredCodes()
-{
-    for (new i = 0; i < MAX_COMPENSATION; i++)
-    {
-        if (gettime() > CompetationInfo[i][E_COMPETATION_EXPIRED] || CompetationInfo[i][E_COMPETATION_USED] >= CompetationInfo[i][E_COMPETATION_PLAYERS])
-        {
-            new query[256];
-            mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_codes WHERE code = '%s'", CompetationInfo[i][E_COMPETATION_CODE]);
-            mysql_tquery(ourConnection, query);
-
-            mysql_format(ourConnection, query, sizeof(query), "DELETE FROM compensation_claims WHERE code = '%s'", CompetationInfo[i][E_COMPETATION_CODE]);
-            mysql_tquery(ourConnection, query);
-
-            CompetationInfo[i][E_COMPETATION_CODE] = false;
-        }
-    }
-    return 1;
-}
-
 CMD:createcode(playerid, params[])
 {
     if(IsPlayerAdmins(playerid) < ADMINS_OWNER)

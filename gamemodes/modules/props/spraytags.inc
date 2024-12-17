@@ -1,22 +1,25 @@
 //Spraytags
-stock Spraytags_Delete(spid)
+stock Spraytags_Delete(playerid, spid)
 {
 	if (spid != -1 && SpraytagsInfo[spid][E_SPRAYTAGS_EXISTS])
 	{
-	    new
-	        string[64];
-
-		format(string, sizeof(string), "DELETE FROM `spray_tags` WHERE `id` = '%d'", SpraytagsInfo[spid][E_SPRAYTAGS_DBID]);
-		mysql_pquery(ourConnection, string);
-
-        for(new i = 0; i < 32; i++)
+        if(SpraytagsInfo[spid][E_SPRAYTAGS_OWNER] == PlayerInfo[playerid][E_CHARACTER_DBID])
         {
-            if (IsValidDynamicObject(SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT]))
-	            DestroyDynamicObject(SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT]);
-        }
+            new
+                string[64];
 
-	    SpraytagsInfo[spid][E_SPRAYTAGS_EXISTS] = false;
-	    SpraytagsInfo[spid][E_SPRAYTAGS_DBID] = 0;
+            format(string, sizeof(string), "DELETE FROM `spray_tags` WHERE `id` = '%d'", SpraytagsInfo[spid][E_SPRAYTAGS_DBID]);
+            mysql_pquery(ourConnection, string);
+
+            for(new i = 0; i < 32; i++)
+            {
+                if (IsValidDynamicObject(SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT]))
+                    DestroyDynamicObject(SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT]);
+            }
+
+            SpraytagsInfo[spid][E_SPRAYTAGS_EXISTS] = false;
+            SpraytagsInfo[spid][E_SPRAYTAGS_DBID] = 0;
+        }
 	}
 	return 1;
 }
@@ -162,15 +165,8 @@ CMD:spray(playerid, params[])
     {
         if(SpraytagsInfo[i][E_SPRAYTAGS_OWNER] == PlayerInfo[playerid][E_CHARACTER_DBID])
         {
-            if(IsPlayerNearSprayTags(playerid))
-            {
-                Spraytags_Delete(i);
-            }
-            else
-            {
-                GPS_SetPlayerRaceCheckPoint(playerid, 1, SpraytagsInfo[i][E_SPRAYTAGS_POS][0], SpraytagsInfo[i][E_SPRAYTAGS_POS][1], SpraytagsInfo[i][E_SPRAYTAGS_POS][2], 0.0, 0.0, 0.0);
-                SendErrorMessage(playerid, "You can't make spraytags because your spraytags already spawned."); 
-            }
+            GPS_SetPlayerRaceCheckPoint(playerid, 1, SpraytagsInfo[i][E_SPRAYTAGS_POS][0], SpraytagsInfo[i][E_SPRAYTAGS_POS][1], SpraytagsInfo[i][E_SPRAYTAGS_POS][2], 0.0, 0.0, 0.0);
+            SendErrorMessage(playerid, "You can't make spraytags because your spraytags already spawned."); 
             return 1;
         }
     }
@@ -180,22 +176,27 @@ CMD:spray(playerid, params[])
 
     if(!Inventory_Count(playerid, "Spraycan"))
         return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
-        
+
+    
+    
     ShowPlayerDialog(playerid, DIALOG_SPRAYFONT, DIALOG_STYLE_INPUT, "Spraytags:", "The font you input will only be visible to visual players that only have that font Ex: Arial\n{33AA33}Info:{ffffff} Required for spraying font your spraytags", "Input", "Cancel");
-	return 1;
+    return 1;
 }
 
 function:OnSprayTagsUpdate()
 {
-    for(new i; i < MAX_SPRAYTAGS; i++)
+    foreach(new ii : Player)
     {
-        if(SpraytagsInfo[i][E_SPRAYTAGS_TIMER] && SpraytagsInfo[i][E_SPRAYTAGS_EXISTS])
+        for(new i; i < MAX_SPRAYTAGS; i++) if(SpraytagsInfo[i][E_SPRAYTAGS_EXISTS])
         {
-            SpraytagsInfo[i][E_SPRAYTAGS_TIMER]--;
-        }
-        else
-        {
-            Spraytags_Delete(i);
+            if(SpraytagsInfo[i][E_SPRAYTAGS_TIMER])
+            {
+                SpraytagsInfo[i][E_SPRAYTAGS_TIMER]--;
+            }
+            else
+            {
+                Spraytags_Delete(ii, i);
+            }
         }
     }
 }

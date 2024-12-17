@@ -70,7 +70,7 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
     {
         if(pickupid == GeneralStorePickup[i])
         {
-            format(str, sizeof(str), "~p~General Store~n~~w~Press '~y~N~w~' to grab an items."); 
+            format(str, sizeof(str), "~p~General Store~n~~w~Press '~y~ALT~w~' to grab an items."); 
 			ShowBoxMessage(playerid, str, 5); 	
             return 1;	
         }
