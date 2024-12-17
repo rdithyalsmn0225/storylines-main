@@ -1461,7 +1461,7 @@ CMD:enter(playerid, params[])
 		{
 			if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] > 0)
 			{
-				SaveCharacter(playerid);
+				return SendErrorMessage(playerid, "You still have items that have not been paid.");
 			}
 		
 			SetPlayerPosEx(playerid, BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[b_id][E_BUSINESS_ENTRANCEPOS][2]);
