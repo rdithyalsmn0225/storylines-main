@@ -1,4 +1,4 @@
-void:SetClock(hour, minute, second)
+SetClock(hour, minute, second)
 {
     new timestr[256];
     new weekday_str[10], month[12], date[6];

@@ -161,7 +161,7 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
 
     if(pickupid == FishFactoryPickup)
     {
-        format(str, sizeof(str), "~p~Fish Factory~n~~w~Type '~y~/buybait~w~' to buy fish bait~n~~w~Type '~y~/sellfish~w~' to sell fish."); 
+        format(str, sizeof(str), "~p~Fish Factory~n~~w~Type '~y~/buybait~w~' to buy fish bait~n~Type '~y~/buyrod~w~' to buy fishing rod~n~~w~Type '~y~/sellfish~w~' to sell fish."); 
         ShowBoxMessage(playerid, str, 5); 
         return 1;	
     }

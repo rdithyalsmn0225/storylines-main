@@ -531,7 +531,9 @@ stock ShowCharacterStats(playerid, playerb)
 		vehicle_key[20],
 		duplicate_key[20],
 		business_key[20] = "None",
-		gender[20];
+		gender[20],
+		str[1024],
+		str1[128];
 	
 	if(!PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED])
 		vehicle_key = "None";
@@ -554,28 +556,30 @@ stock ShowCharacterStats(playerid, playerb)
 			format(business_key, 20, "%d", BusinessInfo[i][E_BUSINESS_DBID]); 
 	}
 	
-	SendClientMessageEx(playerb, COLOR_DARKGREEN, "|______________________________ (%d) %s Statistics ______________________________|", playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
-	SendClientMessageEx(playerb, COLOR_WHITE, "[ACCOUNT]:{ffffff} [Masters: %s] - [Account: %s] - [Date: %s]", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());	
-	SendClientMessageEx(playerb, COLOR_GREY, "[PLAYERS]:{ffffff} [Health: %0.1f/%0.1f] - [Armour: %0.1f/100]", PlayerInfo[playerid][E_CHARACTER_HEALTH], PlayerInfo[playerid][E_CHARACTER_MAXHEALTH], PlayerInfo[playerid][E_CHARACTER_ARMOUR]);	
-	SendClientMessageEx(playerb, COLOR_WHITE, "[SESSION]:{ffffff} [Gender: %s] [Level: %d] [EXP: %d/10] [Time played: %d hours]", gender, PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
-	SendClientMessageEx(playerb, COLOR_GREY, "[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
-	SendClientMessageEx(playerb, COLOR_WHITE, "[JOBS]:{ffffff} [Jobs: %s] [Skills: %s]", ReturnJobName(PlayerInfo[playerid][E_CHARACTER_JOBS]), ReturnJobSkill(playerid, PlayerInfo[playerid][E_CHARACTER_JOBS]));
-	SendClientMessageEx(playerb, COLOR_GREY, "[KEYS]:{ffffff} VehicleKey:[%s] DuplicateKey:[%s] BusinessKey:[%s]", vehicle_key, duplicate_key, business_key);	
+	format(str1, sizeof(str1), "(%d) %s Statistics", playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
+	format(str, sizeof(str), "%s{ffffff}[ACCOUNT]:{ffffff} [Masters: %s] - [Account: %s] - [Date: %s]\n", str, ReturnName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());	
+	format(str, sizeof(str), "%s{AFAFAF}[PLAYERS]:{ffffff} [Health: %0.1f/%0.1f] - [Armour: %0.1f/100]\n", str, PlayerInfo[playerid][E_CHARACTER_HEALTH], PlayerInfo[playerid][E_CHARACTER_MAXHEALTH], PlayerInfo[playerid][E_CHARACTER_ARMOUR]);	
+	format(str, sizeof(str), "%s{ffffff}[SESSION]:{ffffff} [Gender: %s] [Level: %d] [EXP: %d/10] [Time played: %d hours]\n", str, gender, PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
+	format(str, sizeof(str), "%s{AFAFAF}[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]\n", str, FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
+	format(str, sizeof(str), "%s{ffffff}[JOBS]:{ffffff} [Jobs: %s] [Skills: %s]\n", str, ReturnJobName(PlayerInfo[playerid][E_CHARACTER_JOBS]), ReturnJobSkill(playerid, PlayerInfo[playerid][E_CHARACTER_JOBS]));
+	format(str, sizeof(str), "%s{AFAFAF}[KEYS]:{ffffff} VehicleKey:[%s] DuplicateKey:[%s] BusinessKey:[%s]\n", str, vehicle_key, duplicate_key, business_key);	
 	if(PlayerInfo[playerb][E_CHARACTER_FACTION])
 	{
-		SendClientMessageEx(playerb, COLOR_WHITE, "[FACTION]:{ffffff} [Faction: %s] [Rank: %s]", ReturnFactionName(playerid), IsPlayerFactionRank(playerid));
+		format(str, sizeof(str), "%s{ffffff}[FACTION]:{ffffff} [Faction: %s] [Rank: %s]\n", str, ReturnFactionName(playerid), IsPlayerFactionRank(playerid));
 	}
 	
 	if(PlayerInfo[playerb][E_CHARACTER_ADMINDUTY])
 	{
-		SendClientMessageEx(playerb, COLOR_GREY, "[FOR ADMIN]: DBID:[%d] Master:[%s (%d)] Interior:[%d] Local:[%d]", PlayerInfo[playerid][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID], GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid));
+		format(str, sizeof(str), "%s{AFAFAF}[FOR ADMIN]: DBID:[%d] Master:[%s (%d)] Interior:[%d] Local:[%d]\n", str, PlayerInfo[playerid][E_CHARACTER_DBID], AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID], GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid));
 		
-		SendClientMessageEx(playerb, COLOR_WHITE, "[CONNECTION]: IP:[%s] Last Online:[%s] Duration:[%d Minutes]", ReturnIP(playerid), ReturnLastOnline(playerid), PlayerInfo[playerid][E_CHARACTER_LASTONLINE]);
+		format(str, sizeof(str), "%s{ffffff}[CONNECTION]: IP:[%s] Last Online:[%s] Duration:[%d Minutes]\n", str, ReturnIP(playerid), ReturnLastOnline(playerid), PlayerInfo[playerid][E_CHARACTER_LASTONLINE]);
 		
-		SendClientMessageEx(playerb, COLOR_GREY, "[MISC]: InsideProperty:[%i] InsideBusiness:[%i]", IsPlayerInProperty(playerid), IsPlayerInBusiness(playerid)); 
+		format(str, sizeof(str), "%s{AFAFAF}[MISC]: InsideProperty:[%i] InsideBusiness:[%i]\n", str, IsPlayerInProperty(playerid), IsPlayerInBusiness(playerid)); 
 	}
-	SendTipMessage(playerb, "To see your inventory type '/inventory' or press 'N'.");
-	SendTipMessage(playerb, "To see your vehicles type '/mycars'.");
+	format(str, sizeof(str), "%s{E7EAB5}To see your inventory type '/inventory' or press 'N'\n", str);
+	format(str, sizeof(str), "%s{E7EAB5}To see your vehicles type '/mycars'", str);
+
+	ShowPlayerDialog(playerb, DIALOG_STATS, DIALOG_STYLE_MSGBOX, str1, str, "Settings", "Close");
 	return 1;
 }
 

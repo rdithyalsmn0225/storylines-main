@@ -674,7 +674,7 @@ enum E_SERVERSTOCK_DATA
 	E_SERVER_APPLIANCES,
 	E_SERVER_MATERIALS,
 	E_SERVER_DRUGS,
-	Text3D:E_SERVER_3DTEXT[10]
+	Text3D:E_SERVER_3DTEXT[7]
 }
 
 enum E_DEALERSHIP_DATA
@@ -2375,7 +2375,7 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Salmon", 19630, 0},
 	{"Cat Fish", 19630, 0},
 	{"Herring", 19630, 0},
-	{"Fishing rod", 18632, 0},
+	{"Fishing Rod", 18632, 0},
 	{"Fish Bait", 19566, 0},
 	{"Pissh Pack", 19572, 0},
 	{"Raw Meat", 19582, 0},

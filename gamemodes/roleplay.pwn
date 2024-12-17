@@ -15,7 +15,7 @@
 
 #include <a_samp>
 #include <a_mysql>
-#include <a_http>
+#include <PreviewModelDialog2>
 #include <crashdetect>
 #include <Pawn.RakNet>
 #include <streamer>
@@ -25,7 +25,7 @@
 #include <sscanf2>
 #include <physics>
 #include <compat>
-#include <PreviewModelDialog2>
+
 
 //Database establisher:
 new MySQL:ourConnection; 
@@ -200,30 +200,20 @@ public OnGameModeInit()
 	DisableInteriorEnterExits();
 	
 	// Insert:
-	//InsertASGH();
-	InsertPrison();
 	InsertObjects();
-	//InsertASGHMaps();
 	InsertModshops();
-	//InsertSAFDMaps();
 	InsertBlackjack();
-	InsertEmmetInit();
 	InsertJobsPoint();
 	InsertAntiCheat();
-	InsertEmmetMaps();
 	InsertAdvertise();
-	//InsertPrisonCell();
 	InsertDealership();
 	InsertStaticArea();
 	Insert3DTextLabel();
 	InsertAcidGunLabs();
-	//InsertProjectProp();
-	//InsertAlhambraMaps();
+	InsertProjectProp();
 	InsertSidejobsMaps();
 	InsertDocksWorkers();
-	InsertDonatorStars();
 	InsertFactionLocker();
-	InsertSelectionMaps();
 	InsertDynamicPickup();
 	InsertCharacterScene();
 	InsertStaticVehicles();
@@ -756,12 +746,14 @@ public OnPlayerRequestSpawn(playerid)
 
 public OnVehicleDeath(vehicleid, killerid)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnVehicleDeath called for Vehicle ID: %i (%s) (Health: %.2f) destroyed by %s", vehicleid, ReturnVehicleName(vehicleid), vehicle_health, ReturnName(killerid, killerid)); 
+	#endif
+
 	new Float: vehicle_health;
 	GetVehicleHealth(vehicleid, vehicle_health); 
 	TotalledCheck(vehicleid);
 
-	printf("[DEBUG] Vehicle ID: %i (%s) (Health: %.2f) destroyed by %s", vehicleid, ReturnVehicleName(vehicleid), vehicle_health, ReturnName(killerid, killerid)); 
-		
 	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_DBID] == VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID])
 	{
 		SendClientMessageEx(i, COLOR_RED, "Your %s was destroyed.", ReturnVehicleName(vehicleid)); 
@@ -858,6 +850,10 @@ public OnPlayerDeath(playerid, killerid, reason)
 
 public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerTakeDamage called for player %s (ID: %i) issuerid %s (ID: %i) weaponid %i", ReturnName(playerid), playerid, ReturnName(issuerid), issuerid, weaponid); 
+	#endif
+
 	switch(weaponid)
 	{
 		case 0:
@@ -1994,6 +1990,10 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 
 public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY, Float:fZ)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerWeaponShot called for player %s (ID: %i) hitid %s (ID: %i) weaponid %i", ReturnName(playerid), playerid, ReturnName(hitid), hitid, weaponid); 
+	#endif
+
 	if(hittype != BULLET_HIT_TYPE_NONE) // Bullet Crashing uses just this hittype
     {
         if(!(-1000.0 <= fX <= 1000.0) || !(-1000.0 <= fY <= 1000.0) || !(-1000.0 <= fZ <= 1000.0) )
@@ -2190,6 +2190,10 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 
 public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerGiveDamage called for player %s (ID: %i) issuerid %s (ID: %i) weaponid %i", ReturnName(playerid), playerid, ReturnName(damageid), damageid, weaponid); 
+	#endif
+
 	switch(weaponid)
 	{
 		case 0:
@@ -3239,6 +3243,10 @@ public OnPlayerSpawn(playerid)
 
 public OnPlayerText(playerid, text[])
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerText called for player %s (ID: %i) says : %s", ReturnName(playerid), playerid, text); 
+	#endif
+
 	SendPlayerChatText(playerid, text);
 
 	PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
@@ -3249,6 +3257,10 @@ public OnPlayerText(playerid, text[])
 
 public OnPlayerUpdate(playerid)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerUpdate called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+	#endif
+
 	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
 	{
 		PauseAC(playerid);
@@ -3382,6 +3394,10 @@ public OnPlayerUpdate(playerid)
 
 public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerClickPlayerTextDraw called for player %s (ID: %i) TextDraw : %d", ReturnName(playerid), playerid, playertextid); 
+	#endif
+
 	// CHARACTER SELECTIONS:
 	if (playertextid == SelectFactionClick[0][playerid]) //PREV
 	{
@@ -3903,6 +3919,10 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 
 public OnPlayerCommandReceived(playerid, cmdtext[])
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerCommandReceived called for player %s (ID: %i) CommandReceived : %s", ReturnName(playerid), playerid, cmdtext); 
+	#endif
+
 	if(AccountInfo[playerid][E_MASTERS_LOGGED] == true)
 	{
 		if(AntiSpam[playerid]-gettime() > 0)
@@ -3928,6 +3948,10 @@ public OnPlayerCommandReceived(playerid, cmdtext[])
 
 public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerCommandPerformed called for player %s (ID: %i) CommandsPerformed : %s", ReturnName(playerid), playerid, cmdtext); 
+	#endif
+
 	if(!success)
 	{
 		if(strlen(cmdtext) > 50)
@@ -3952,6 +3976,10 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerKeyStateChange called for player %s (ID: %i) Newkeys : %d | OldKeys : %d", ReturnName(playerid), playerid, newkeys, oldkeys); 
+	#endif
+
 	new businessid = IsPlayerInBusiness(playerid);
 
 	if(newkeys & KEY_CROUCH && IsPlayerInAnyVehicle(playerid))
@@ -4692,6 +4720,10 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 public OnPlayerStateChange(playerid, newstate, oldstate)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerStateChange called for player %s (ID: %i) newstate %d oldstate %d", ReturnName(playerid), playerid, newstate, oldstate); 
+	#endif
+
 	new vehicleid = GetPlayerVehicleID(playerid);
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
@@ -4789,6 +4821,10 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 
 public OnPlayerExitVehicle(playerid, vehicleid)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnPlayerExitVehicle called for player %s (ID: %i) vehicle %s (ID: %i)", ReturnName(playerid), playerid, ReturnVehicleName(vehicleid), vehicleid); 
+	#endif
+
 	if (PlayerInfo[playerid][E_CHARACTER_TAXIDUTY])
 	{
         foreach (new i : Player) if (PlayerInfo[i][E_CHARACTER_TAXIPLAYER] == playerid && IsPlayerInVehicle(i, GetPlayerVehicleID(playerid))) {
@@ -4915,7 +4951,6 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					SetPlayerAttachedObject(playerid, ATTACH_HAND2, 18729, 6, 0.0460, 1.6179, 0.1640, 92.2999, 0.0000, -78.4000, 1.0000, 1.0000, 1.0000, 0xFFFFFFFF, 0xFFFFFFFF); //spraycan	
 				}
 			}
-			
 			case 2:
 			{
 				if(response == EDIT_RESPONSE_CANCEL)
@@ -5194,10 +5229,12 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 
 public OnVehicleSpawn(vehicleid)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnVehicleSpawn called for vehicles %s (ID: %i)", ReturnVehicleName(vehicleid), vehicleid); 
+	#endif
+
 	if(HasNoEngine(vehicleid))
 		ToggleVehicleEngine(vehicleid, true);
-		
-	printf("[DEBUG] Vehicle ID %i was respawned.", vehicleid);
 	return 1;
 }
 
@@ -5391,8 +5428,13 @@ function:SaveCharacter(playerid)
 	return 1;
 }
 
+
 public OnIncomingRPC(playerid, rpcid, BitStream:bs)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnIncomingRPC called for player %s (ID: %i) rpcid : %d BitStream : %d", ReturnName(playerid), playerid, rpcid, bs); 
+	#endif
+
     if (rpcid == 136)
     {
         new currentTime = GetTickCount();
@@ -5430,6 +5472,10 @@ public OnIncomingRPC(playerid, rpcid, BitStream:bs)
 
 public OnDynamicObjectMoved(objectid)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnDynamicObjectMoved called for object (ID: %i)", objectid); 
+	#endif
+
 	// Basketball:
 	foreach(new pid : Player)
 	{
@@ -5671,6 +5717,10 @@ public OnVehicleSirenStateChange(playerid, vehicleid, newstate)
 
 public OnVehicleMod(playerid, vehicleid, componentid)
 {
+	#if defined DEBUG_MODE
+		printf("Callback OnVehicleMod called for player %s (ID: %i) vehicleid %s (ID: %i) componentid %i", ReturnName(playerid), playerid, ReturnVehicleName(vehicleid), vehicleid, componentid); 
+	#endif
+
 	new str1[128];
 	new vehicleide = GetVehicleModel(vehicleid);
     new modok = islegalcarmod(vehicleide, componentid);

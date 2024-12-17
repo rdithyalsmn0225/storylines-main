@@ -15,13 +15,6 @@ stock IndustryRefresh(id)
 {
     new str[312], str1[312], str2[312], str3[312], str4[312], str5[312], str6[312];
 
-	for(new i; i < 6; i++)
-	{
-		if(IsValidDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][i]))
-    		DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][i]);
-	}
-	
-
     format(str, sizeof(str), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price: {33AA33}{33AA33}$%s{ffffff}{ffffff} / unit", IndustryInfo[0][Cargo], ServerInfo[id][E_SERVER_FABRIC], FormatMoney(floatround(IndustryInfo[0][Price] * 100, floatround_round)));
     
 	format(str1, sizeof(str1), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {33AA33}$%s{ffffff} / unit", IndustryInfo[1][Cargo], ServerInfo[id][E_SERVER_STEEL], FormatMoney(floatround(IndustryInfo[1][Price] * 100, floatround_round)));
@@ -36,14 +29,19 @@ stock IndustryRefresh(id)
 
 	format(str6, sizeof(str6), "[%s]\n{ffffff}Available stock: %d / 100\nCargo Price {33AA33}$%s{ffffff} / unit", IndustryInfo[6][Cargo], ServerInfo[id][E_SERVER_APPLIANCES], FormatMoney(floatround(IndustryInfo[6][Price] * 100, floatround_round)));
 
+	for(new i; i < 7; i++)
+	{
+		if(IsValidDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][i]))
+    		DestroyDynamic3DTextLabel(ServerInfo[id][E_SERVER_3DTEXT][i]);
 
-	ServerInfo[id][E_SERVER_3DTEXT][0] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz], 5.0);
-	ServerInfo[id][E_SERVER_3DTEXT][1] = CreateDynamic3DTextLabel(str1, COLOR_3DTEXT, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz], 5.0);  
-	ServerInfo[id][E_SERVER_3DTEXT][2] = CreateDynamic3DTextLabel(str2, COLOR_3DTEXT, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz], 5.0);
-	ServerInfo[id][E_SERVER_3DTEXT][3] = CreateDynamic3DTextLabel(str3, COLOR_3DTEXT, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz], 5.0);  
-	ServerInfo[id][E_SERVER_3DTEXT][4] = CreateDynamic3DTextLabel(str4, COLOR_3DTEXT, IndustryInfo[4][Posx], IndustryInfo[4][Posy], IndustryInfo[4][Posz], 5.0);  
-	ServerInfo[id][E_SERVER_3DTEXT][5] = CreateDynamic3DTextLabel(str5, COLOR_3DTEXT, IndustryInfo[5][Posx], IndustryInfo[5][Posy], IndustryInfo[5][Posz], 5.0);     
-	ServerInfo[id][E_SERVER_3DTEXT][6] = CreateDynamic3DTextLabel(str6, COLOR_3DTEXT, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz], 5.0);   
+		ServerInfo[id][E_SERVER_3DTEXT][0] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, IndustryInfo[0][Posx], IndustryInfo[0][Posy], IndustryInfo[0][Posz], 5.0);
+		ServerInfo[id][E_SERVER_3DTEXT][1] = CreateDynamic3DTextLabel(str1, COLOR_3DTEXT, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz], 5.0);  
+		ServerInfo[id][E_SERVER_3DTEXT][2] = CreateDynamic3DTextLabel(str2, COLOR_3DTEXT, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz], 5.0);
+		ServerInfo[id][E_SERVER_3DTEXT][3] = CreateDynamic3DTextLabel(str3, COLOR_3DTEXT, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz], 5.0);  
+		ServerInfo[id][E_SERVER_3DTEXT][4] = CreateDynamic3DTextLabel(str4, COLOR_3DTEXT, IndustryInfo[4][Posx], IndustryInfo[4][Posy], IndustryInfo[4][Posz], 5.0);  
+		ServerInfo[id][E_SERVER_3DTEXT][5] = CreateDynamic3DTextLabel(str5, COLOR_3DTEXT, IndustryInfo[5][Posx], IndustryInfo[5][Posy], IndustryInfo[5][Posz], 5.0);     
+		ServerInfo[id][E_SERVER_3DTEXT][6] = CreateDynamic3DTextLabel(str6, COLOR_3DTEXT, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz], 5.0);   
+	}
 	return 1;
 }
 

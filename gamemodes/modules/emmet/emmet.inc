@@ -1,5 +1,3 @@
-new Emmet[8];
-
 enum E_EMMET_DATA
 {
     EMMET_SKIN,
@@ -14,18 +12,6 @@ new const EmmetInfo[][E_EMMET_DATA] =
 {
     {6, "[Emmet's Hardware]\n{ffffff}Available Commands: /buygun", 2442.4590,-1969.1083,13.5469,180.6462}
 };
-
-InsertEmmetInit()
-{
-    for(new i = 0; i < sizeof(EmmetInfo); i++)
-    {
-        Emmet[i] = CreateDynamicActor(EmmetInfo[i][EMMET_SKIN], EmmetInfo[i][EMMET_POSX], EmmetInfo[i][EMMET_POSY], EmmetInfo[i][EMMET_POSZ], EmmetInfo[i][EMMET_POSA]);
-        CreateDynamic3DTextLabel(EmmetInfo[i][EMMET_TEXT], COLOR_3DTEXT, EmmetInfo[i][EMMET_POSX], EmmetInfo[i][EMMET_POSY], EmmetInfo[i][EMMET_POSZ], 3.0);
-		SetDynamicActorVirtualWorld(Emmet[i], 0);
-		ApplyDynamicActorAnimation(Emmet[i], "MISC", "IDLE_CHAT_02", 4.0999, 1, 0, 0, 0, 0);
-	}
-    return 1;
-}
 
 CMD:buymats(playerid, params[])
 {

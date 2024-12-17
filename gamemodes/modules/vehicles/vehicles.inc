@@ -682,7 +682,7 @@ function:Query_ShowVehicleList(playerid, idx)
 	return 1;
 }
 
-function:Float:GetVehicleSpeed(vehicleid)
+GetVehicleSpeed(vehicleid)
 {
 	new
 	    Float:x,
@@ -696,7 +696,8 @@ function:Float:GetVehicleSpeed(vehicleid)
 
 	return 0.0;
 }
-function:Float:GetVehicleTopSpeed(vehicleid)
+
+GetVehicleTopSpeed(vehicleid)
 {
     new model = GetVehicleModel(vehicleid);
  

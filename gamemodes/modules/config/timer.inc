@@ -149,22 +149,21 @@ function:OnPlayerUpdateEx()
 				ShowPlayerNeeds(playerid);
 			}		
 
-			if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") 
-			|| Inventory_Count(playerid, "Foods Cargo") || Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo")
-			|| Inventory_Count(playerid, "Fish Cargo"))
+			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 			{
-				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+				if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") 
+				|| Inventory_Count(playerid, "Foods Cargo") || Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo")
+				|| Inventory_Count(playerid, "Fish Cargo"))
 				{
 					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CRATES;
 					RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 					SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.293999, 0.497999, -0.006000, -99.500007, 90.300033, 99.600013, 0.620999, 0.673000, 0.648999);
+					
 				}
-			}
-			else if(Inventory_Count(playerid, "Woods"))
-			{
-				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+				else if(Inventory_Count(playerid, "Woods"))
 				{
+					
 					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
 					RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);

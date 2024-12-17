@@ -1416,6 +1416,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /mycars, /engine, /carlock, /carkey, /carsell, /carpark, /cartrunk, /carhood");
 						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /carlights, /carwindow, /carfind, /carradio, /carscrap, /carwhisper, /carb");
 						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /refill, /limitspeed");
+						SendTipMessage(playerid, "Press 'Y' to turn on engine");
+						SendTipMessage(playerid, "Press '2' to unlock/lock vehicles");
 					}
 					case 6:
 					{
@@ -1429,7 +1431,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendClientMessage(playerid, COLOR_ORANGE, "Docksworker Commands: /loadcargo, /storecargo");
 						SendClientMessage(playerid, COLOR_ORANGE, "Garbageman Commands: /collectgarbage, /dumpgarbage");
 						SendClientMessage(playerid, COLOR_ORANGE, "Fishing Commands: /fish, /sellfish, /buybait, /buyrod");
-						SendClientMessage(playerid, COLOR_ORANGE, "Press 'ALT' collect garbage");
+						SendTipMessage(playerid, "Press 'ALT' collect garbage");
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRUCKER)
 						{
 							SendClientMessage(playerid, COLOR_ORANGE, "Truckers Commands: /tpda, /buycargo, /sellcargo");
@@ -1464,6 +1466,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendTipMessage(playerid, "Press LMB (punch) into actor/npc to start extortions business.");
 					}
 			    }
+			}
+		}
+		case DIALOG_STATS:
+		{
+			if(response)
+			{
+				cmd_settings(playerid, "");
 			}
 		}
 		case DIALOG_SETTINGS:

@@ -299,7 +299,6 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 				format(str, sizeof(str), "Phone Config #%d", PlayerInfo[playerid][E_CHARACTER_PHONE]);
 				ShowPlayerDialog(playerid, DIALOG_PHONE, DIALOG_STYLE_LIST, str, "Dial Number\nSend Text Message\nMy Contacts\nSettings\nTurn on/off", "Select", "Close");
 			}
-			SelectTextDraw(playerid, COLOR_YELLOW);
 			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CELLPHONE;
 			SetPlayerAttachedObject(playerid, ATTACH_HAND, 18868, 6, 0.093000, 0.000000, 0.005000, 96.799995, -178.100006, 7.199999, 1.000000, 1.000000, 1.000000);
 		}
@@ -338,7 +337,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	{
 		IsPlayerUsingDrugs(playerid, 5);
 	}
-    else if (!strcmp(name, "Fishing rod", true)) 
+    else if (!strcmp(name, "Fishing Rod", true)) 
 	{
         if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{

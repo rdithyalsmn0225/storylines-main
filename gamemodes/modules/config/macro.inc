@@ -15,7 +15,7 @@
 #endif
 
 #define SERVER_NAME "Storylines Roleplay | Idlestreet Los Santos"
-#define SCRIPT_REV "IDLS v1.0.2 Rev"
+#define SCRIPT_REV "IDLS v1.0.3 Revision"
 #define PLAYER_MOTD "Please read the rules first!"
 
 #define PRESSED(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
@@ -28,8 +28,7 @@
 
 #define function:%0(%1) forward %0(%1); public %0(%1)
 
-#pragma warning disable 239, 214, 213, 208
-#pragma unused ReturnName
+#pragma warning disable 239, 214, 213
 
 // BODYPART:
 #define BODY_PART_CHEST	(3)

@@ -51,7 +51,7 @@ CMD:settings(playerid, params[])
 	format(str, sizeof(str), "%sPrivate Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPMS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sTips Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGTIPS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	format(str, sizeof(str), "%sPhone Style\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPHONE] == false) ? ("{33AA33}Modern{ffffff}") : ("{FF6347}Old School{ffffff}"));
+	format(str, sizeof(str), "%sPhone Style\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPHONE] == false) ? ("{33AA33}Old School{ffffff}") : ("{FF6347}Modern{ffffff}"));
 	//format(str, sizeof(str), "%sDraw Distance\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{33AA33}LOW{ffffff}") : ("{FF6347}HIGH{ffffff}"));
 	ShowPlayerDialog(playerid, DIALOG_SETTINGS, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
 	return 1;

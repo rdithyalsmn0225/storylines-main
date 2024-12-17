@@ -188,7 +188,7 @@ CMD:fish(playerid, params[])
 	if(Inventory_Count(playerid, "Fish Bait") < 1)
 	    return SendErrorMessage(playerid, "You don't have fish bait");
 
-	if(Inventory_Count(playerid, "Fishing rod") < 1)
+	if(Inventory_Count(playerid, "Fishing Rod") < 1)
 	    return SendErrorMessage(playerid, "You don't have fishing rod");
 	    
 	if(PlayerInfo[playerid][E_CHARACTER_FISHING])
