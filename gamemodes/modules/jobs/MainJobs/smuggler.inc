@@ -154,7 +154,7 @@ CMD:storepacket(playerid, params[])
 
         PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
     } 
-    if(IsPlayerInRangeOfPoint(playerid, 3.0, -576.3427,-505.8364,25.5234))
+    else if(IsPlayerInRangeOfPoint(playerid, 3.0, -576.3427,-505.8364,25.5234))
     {
         if(PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] == false) return SendErrorMessage(playerid, "You are not carrying your packet.");
 	
@@ -175,7 +175,7 @@ CMD:storepacket(playerid, params[])
 
         PlayerInfo[playerid][E_CHARACTER_TAKEPACKET] = false;
     }
-	
+	else SendErrorMessage(playerid, "You aren't near storepacket point at materials / drugs point.");
 	return 1;
 }
 

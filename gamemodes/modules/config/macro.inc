@@ -27,6 +27,7 @@
 #endif
 
 #define function:%0(%1) forward %0(%1); public %0(%1)
+#define	RGBAtoARGB(%0) (%0 >>> 8 | %0 << 24)
 
 #pragma warning disable 239, 214, 213
 

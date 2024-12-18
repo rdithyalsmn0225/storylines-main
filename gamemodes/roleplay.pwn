@@ -4005,7 +4005,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 			SendNearbyMessage(playerid, 30.0, COLOR_PURPLE, "* %s has picked up a Packet.", ReturnName(playerid));
 
-			SendTipMessage(playerid, "You've picked up packet, Type '/deliverypacket' to materials / drugs point.");
+			SendTipMessage(playerid, "You've picked up packet, Type '/storepacket' to materials / drugs point.");
 			ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 1);
 			packetpos[0] = 0.0;
 			packetpos[1] = 0.0;

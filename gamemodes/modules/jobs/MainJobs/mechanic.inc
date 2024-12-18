@@ -220,6 +220,7 @@ function:repaintexterior(playerid, vehicleid, modelid)
         case 7: text = "Loading repaint process\n(( ||||||| ))";
         case 8:
         {
+            PauseAC(playerid);
 		    TogglePlayerControllable(playerid, true);
             PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
@@ -233,7 +234,7 @@ function:repaintexterior(playerid, vehicleid, modelid)
             VehicleInfo[vehicleid][E_VEHICLE_COLOR1] = modelid;
             VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = color;
             SaveVehicle(vehicleid);
-            PauseAC(playerid);
+            
 			PlayerPlaySound(playerid,1133,0.0,0.0,0.0);
 			SaveVehicle(vehicleid);
 
@@ -266,6 +267,7 @@ function:repaintinterior(playerid, vehicleid, modelid)
         case 7: text = "Loading repaint process\n(( ||||||| ))";
         case 8:
         {
+            PauseAC(playerid);
 		    TogglePlayerControllable(playerid, true);
             PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
@@ -279,7 +281,7 @@ function:repaintinterior(playerid, vehicleid, modelid)
             VehicleInfo[vehicleid][E_VEHICLE_COLOR1] = color;
             VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = modelid;
             SaveVehicle(vehicleid);
-            PauseAC(playerid);
+            
 
             SetPlayerNeeds(playerid, -0.8, -0.5);
 
@@ -310,6 +312,7 @@ function:repaintpaintjob1(playerid, vehicleid)
         case 7: text = "Loading repaint process\n(( ||||||| ))";
         case 8:
         {
+            PauseAC(playerid);
 		    TogglePlayerControllable(playerid, true);
             PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
@@ -352,6 +355,7 @@ function:repaintpaintjob2(playerid, vehicleid)
         case 7: text = "Loading repaint process\n(( ||||||| ))";
         case 8:
         {
+            PauseAC(playerid);
 		    TogglePlayerControllable(playerid, true);
             PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
@@ -394,6 +398,7 @@ function:repaintpaintjob3(playerid, vehicleid)
         case 7: text = "Loading repaint process\n(( ||||||| ))";
         case 8:
         {
+            PauseAC(playerid);
 		    TogglePlayerControllable(playerid, true);
             PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
@@ -436,6 +441,7 @@ function:repaintplates(playerid, vehicleid)
         case 7: text = "Loading repaint plates process\n(( ||||||| ))";
         case 8:
         {
+            PauseAC(playerid);
 		    TogglePlayerControllable(playerid, true);
             PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 

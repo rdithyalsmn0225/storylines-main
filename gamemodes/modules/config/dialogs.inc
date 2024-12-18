@@ -4510,103 +4510,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					return ShowPlayerDialog(playerid, DIALOG_SPRAYFONT, DIALOG_STYLE_INPUT, "Spraytags Fonts:", "Your spraytags will replace the spraytags with custom font.\nThe font you input will only be visible to visual players that only have that font\n{33AA33}Info:{ffffff} Required for spraying font your spraytags", "Input", "Cancel");
 
 				format(PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], 512, inputtext);
-
-				new str[256];
-				strcat(str, "{2C6B2F}Green\n");
-				strcat(str, "{9EC9A0}Light Green\n");
-				strcat(str, "{6D9D6F}Dark Green\n");
-				strcat(str, "{6C1D8A}Purple\n");
-				strcat(str, "{9B4F8F}Light Purple\n");
-				strcat(str, "{8A2C7C}Medium Purple\n");
-				strcat(str, "{AC09C7}Dark Purple\n");
-				strcat(str, "{7BEDff}Cyan\n");
-				strcat(str, "{FFDF7B}Yellow\n");
-				strcat(str, "{D7A542}Orange\n");
-				strcat(str, "{FF0000}Red\n");
-				strcat(str, "{0055FF}Blue\n");
 				
-				ShowPlayerDialog(playerid, DIALOG_SPRAYCOLOR, DIALOG_STYLE_LIST, "Spraytags Colors:", str, "Select", "Cancel");
+				new colors[3200];
+				for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+				{
+					format(colors, sizeof colors, "%s{%06x}%03d%s", colors, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+				}
+
+				format(colors, sizeof(colors), "%s\n\n{ffffff}Enter the Color ID below: (Ex: 255)", colors);
+				ShowPlayerDialog(playerid, DIALOG_SPRAYCOLOR, DIALOG_STYLE_INPUT, "Spraytags Colors:", colors, "Enter", "Close");
 			}
 		}
 		case DIALOG_SPRAYCOLOR:
 		{
 			if(response)
 			{
-				switch(listitem)
-				{
-					case 0:
-					{
-						new iColor = HexToInt("0xFF2C6B2F");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-					case 1:
-					{
-						new iColor = HexToInt("0xFF9EC9A0");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-					case 2:
-					{
-						new iColor = HexToInt("0xFF6D9D6F");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-					case 3:
-					{
-						new iColor = HexToInt("0xFF6C1D8A");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-					case 4:
-					{
-						new iColor = HexToInt("0xFF9B4F8F");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-					case 5:
-					{
-						new iColor = HexToInt("0xFF8A2C7C");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-					case 6:
-					{
-						new iColor = HexToInt("0xFFAC09C7");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-					case 7:
-					{
-						new iColor = HexToInt("0xFF7BEDff");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-					case 8:
-					{
-						new iColor = HexToInt("0xFFFFDF7B");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-					case 9:
-					{
-						new iColor = HexToInt("0xFFD7A542");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-					case 10:
-					{
-						new iColor = HexToInt("0xFFFF0000");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-					case 11:
-					{
-						new iColor = HexToInt("0xFF0055FF");
-						PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
-						ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
-					}
-				}
+				if (isnull(inputtext) || strval(inputtext) < 0 || strlen(inputtext) > g_MaxVehicleColors)
+					return SendErrorMessage(playerid, "Invalid Color ID");
+
+				new fontcolor = g_VehicleColors[strval(inputtext)];
+				new iColor = RGBAtoARGB(fontcolor);
+				PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+				ShowPlayerDialog(playerid, DIALOG_SPRAYTEXT, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
 			}
 		}
 		case DIALOG_SPRAYTEXT:

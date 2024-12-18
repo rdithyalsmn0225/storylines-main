@@ -1,25 +1,20 @@
 //Spraytags
-stock Spraytags_Delete(playerid, spid)
+stock Spraytags_Delete(spid)
 {
 	if (spid != -1 && SpraytagsInfo[spid][E_SPRAYTAGS_EXISTS])
 	{
-        if(SpraytagsInfo[spid][E_SPRAYTAGS_OWNER] == PlayerInfo[playerid][E_CHARACTER_DBID])
-        {
-            new
-                string[64];
+        new
+            string[64];
 
-            format(string, sizeof(string), "DELETE FROM `spray_tags` WHERE `id` = '%d'", SpraytagsInfo[spid][E_SPRAYTAGS_DBID]);
-            mysql_pquery(ourConnection, string);
+        format(string, sizeof(string), "DELETE FROM `spray_tags` WHERE `id` = '%d'", SpraytagsInfo[spid][E_SPRAYTAGS_DBID]);
+        mysql_pquery(ourConnection, string);
 
-            for(new i = 0; i < 32; i++)
-            {
-                if (IsValidDynamicObject(SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT]))
-                    DestroyDynamicObject(SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT]);
-            }
-
-            SpraytagsInfo[spid][E_SPRAYTAGS_EXISTS] = false;
-            SpraytagsInfo[spid][E_SPRAYTAGS_DBID] = 0;
-        }
+        if (IsValidDynamicObject(SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT]))
+            DestroyDynamicObject(SpraytagsInfo[spid][E_SPRAYTAGS_OBJECT]);
+    
+        SpraytagsInfo[spid][E_SPRAYTAGS_EXISTS] = false;
+        SpraytagsInfo[spid][E_SPRAYTAGS_DBID] = 0;
+        SpraytagsInfo[spid][E_SPRAYTAGS_OWNER] = 0;
 	}
 	return 1;
 }
@@ -185,18 +180,15 @@ CMD:spray(playerid, params[])
 
 function:OnSprayTagsUpdate()
 {
-    foreach(new ii : Player)
+    for(new i; i < MAX_SPRAYTAGS; i++) if(SpraytagsInfo[i][E_SPRAYTAGS_EXISTS])
     {
-        for(new i; i < MAX_SPRAYTAGS; i++) if(SpraytagsInfo[i][E_SPRAYTAGS_EXISTS])
+        if(SpraytagsInfo[i][E_SPRAYTAGS_TIMER])
         {
-            if(SpraytagsInfo[i][E_SPRAYTAGS_TIMER])
-            {
-                SpraytagsInfo[i][E_SPRAYTAGS_TIMER]--;
-            }
-            else
-            {
-                Spraytags_Delete(ii, i);
-            }
+            SpraytagsInfo[i][E_SPRAYTAGS_TIMER]--;
+        }
+        else
+        {
+            Spraytags_Delete(i);
         }
     }
 }

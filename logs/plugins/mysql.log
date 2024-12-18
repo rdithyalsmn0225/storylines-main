@@ -31,3 +31,11 @@
 [13:52:46] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179)
 [13:55:57] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179)
 [14:00:04] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179)
+[09:51:59] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179)
+[09:52:01] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[09:52:03] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[09:52:05] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[09:52:27] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179)
+[09:56:09] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179)
+[09:59:34] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179)
+[10:07:09] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:179)
