@@ -6,12 +6,14 @@ InsertDealership()
     DealershipPickup[2] =  CreateDynamicPickup(1239, 1, 1629.6158,-1903.5123,13.5530, -1, -1, -1, 5.0); //4door
     DealershipPickup[3] = CreateDynamicPickup(1239, 1, 2684.1277,-2515.6733,13.1552, -1, -1, -1, 5.0); //Vans
 	DealershipPickup[4] = CreateDynamicPickup(1239, 1, 666.1486,-1419.0734,14.0272, -1, -1, -1, 5.0); //Taxi
+	DealershipPickup[5] = CreateDynamicPickup(1239, 1, 2639.1436,-2470.5903,3.0000, -1, -1, -1, 5.0); //Boat
 
 	CreateDynamic3DTextLabel("[Bikes Dealership]", COLOR_3DTEXT, 684.6581,-1570.5861,14.2422, 5.0);
 	CreateDynamic3DTextLabel("[Two Door Dealership]", COLOR_3DTEXT, 2132.0190,-1149.9902,24.2088, 5.0);
 	CreateDynamic3DTextLabel("[Four Door Dealership]", COLOR_3DTEXT, 1629.6158,-1903.5123,13.5530, 5.0);
 	CreateDynamic3DTextLabel("[Industry Dealership]", COLOR_3DTEXT, 2684.1277,-2515.6733,13.1552, 5.0);
 	CreateDynamic3DTextLabel("[Taxi Dealership]", COLOR_3DTEXT, 666.1486,-1419.0734,14.0272, 5.0);
+	CreateDynamic3DTextLabel("[Boat Dealership]", COLOR_3DTEXT, 2639.1436,-2470.5903,3.0000, 5.0);
 }
 
 
@@ -153,6 +155,26 @@ CMD:dealership(playerid, params[])
 				counter++; 
 			}
 		}		
+		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+	}
+	else if(IsPlayerInRangeOfPoint(playerid, 3.0, 666.1486,-1419.0734,14.0272))
+	{		
+		new larstr[1024],
+			counter = 0;
+
+        CatDealershipHolder[playerid] = DEALERSHIP_CATEGORY_BOAT; 
+
+		for(new i = 0; i < sizeof(g_aDealershipData); i++)
+	    {
+			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
+			if(DEALERSHIP_CATEGORY_BOAT == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
+			{
+				format(larstr, sizeof(larstr), "%s%d\t~g~$%s~w~\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+						
+				SubDealershipHolderArr[playerid][counter] = i; 
+				counter++; 
+			}
+		}
 		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
     return 1;

@@ -225,6 +225,13 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
         return 1;	
     }
 
+    if(pickupid == DealershipPickup[5])
+    {
+        format(str, sizeof(str), "~p~Boat Dealership~n~~w~Type '~y~/dealership~w~' to see dealership menu."); 
+        ShowBoxMessage(playerid, str, 5); 
+        return 1;	
+    }
+
     if(pickupid == PrisonPickup)
     {
         format(str, sizeof(str), "~p~Los Santos Correctional Facility~n~~w~Type '~y~/charge~w~' to put player into prison~n~~w~Type '~y~/opencell or /closecell~w~' to open/close cell."); 
