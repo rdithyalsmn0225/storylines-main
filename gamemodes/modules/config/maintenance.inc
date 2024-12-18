@@ -15,10 +15,9 @@ CMD:maintenance(playerid, params[])
         return SendErrorMessage(playerid, "Server can't be restart less than 5 minutes or longer than 30 minutes");
 
     SystemUpdate = time;
-    format(string, sizeof(string), "%s", STimeConvert(SystemUpdate));
-    TextDrawShowForAll(UpdateIn[0]);
-    TextDrawSetString(UpdateIn[1], string);
-    TextDrawShowForAll(UpdateIn[1]);
+    format(string, sizeof(string), "Server will restart in %s", STimeConvert(SystemUpdate));
+    TextDrawSetString(UpdateIn, string);
+    TextDrawShowForAll(UpdateIn);
     SystemTimer = SetTimer("MaintenanceTimer", 1000, true);
 
     if(SystemUpdate)
@@ -43,9 +42,9 @@ function:MaintenanceTimer() {
 	if(--SystemUpdate <= 0) KillTimer(SystemTimer), Maintenance();
 	if(SystemUpdate == 15) GameTextForAll("~n~~n~~n~~n~~w~Please ~r~log out ~w~now to ensure ~y~account data ~w~has been ~g~saved~w~!", 5000, 3);
 	if(SystemUpdate < 0) SystemUpdate = 0;
-	format(string, sizeof(string), "%s", STimeConvert(SystemUpdate));
-	TextDrawSetString(UpdateIn[1], string);
-	TextDrawShowForAll(UpdateIn[1]);
+	format(string, sizeof(string), "Server will restart in %s", STimeConvert(SystemUpdate));
+	TextDrawSetString(UpdateIn, string);
+	TextDrawShowForAll(UpdateIn);
 	return 1;
 }
 

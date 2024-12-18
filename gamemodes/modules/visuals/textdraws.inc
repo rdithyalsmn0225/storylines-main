@@ -49,34 +49,26 @@ new PlayerText:gui_spec_label[MAX_PLAYERS][5];
 new PlayerBar:HeaderBar[MAX_PLAYERS];
 new PlayerBar:speedobar[MAX_PLAYERS];
 
-new Text:UpdateIn[2];
+new Text:UpdateIn;
 
 //Textdraws
 
 stock CreateTextdraws(playerid)
 {
 
-	UpdateIn[0] = TextDrawCreate(465, 431.007720, "Server_update_in:");
-	TextDrawLetterSize(UpdateIn[0], 0.424666, 1.612444);
-	TextDrawAlignment(UpdateIn[0], 1);
-	TextDrawColor(UpdateIn[0], -1);
-	TextDrawSetShadow(UpdateIn[0], 0);
-	TextDrawSetOutline(UpdateIn[0], 1);
-	TextDrawBackgroundColor(UpdateIn[0], 255);
-	TextDrawFont(UpdateIn[0], 1);
-	TextDrawSetProportional(UpdateIn[0], 1);
-	TextDrawSetShadow(UpdateIn[0], 0);
-
-	UpdateIn[1] = TextDrawCreate(595.0, 431.007720, "00:00");
-	TextDrawLetterSize(UpdateIn[1], 0.424666, 1.612444);
-	TextDrawAlignment(UpdateIn[1], 1);
-	TextDrawColor(UpdateIn[1], -1);
-	TextDrawSetShadow(UpdateIn[1], 0);
-	TextDrawSetOutline(UpdateIn[1], 1);
-	TextDrawBackgroundColor(UpdateIn[1], 255);
-	TextDrawFont(UpdateIn[1], 1);
-	TextDrawSetProportional(UpdateIn[1], 1);
-	TextDrawSetShadow(UpdateIn[1], 0);
+	UpdateIn = TextDrawCreate(636.000000, 3.000000, "Maintenance");
+	TextDrawFont(UpdateIn, 1);
+	TextDrawLetterSize(UpdateIn, 0.212491, 1.199998);
+	TextDrawTextSize(UpdateIn, 400.000000, 93.500000);
+	TextDrawSetOutline(UpdateIn, 1);
+	TextDrawSetShadow(UpdateIn, 0);
+	TextDrawAlignment(UpdateIn, 3);
+	TextDrawColor(UpdateIn, -1);
+	TextDrawBackgroundColor(UpdateIn, 255);
+	TextDrawBoxColor(UpdateIn, 50);
+	TextDrawUseBox(UpdateIn, 0);
+	TextDrawSetProportional(UpdateIn, 1);
+	TextDrawSetSelectable(UpdateIn, 0);
 
 	servername[playerid] = CreatePlayerTextDraw(playerid, 320.000000, 436.000000, "GTA Storylines - ~y~"SCRIPT_REV"");
 	PlayerTextDrawFont(playerid, servername[playerid], 1);
