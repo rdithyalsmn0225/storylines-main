@@ -108,6 +108,7 @@ function:Query_LoadSpraytags()
         cache_get_value_name(i, "font", SpraytagsInfo[i][E_SPRAYTAGS_FONT], 128);
         cache_get_value_name_int(i, "color", SpraytagsInfo[i][E_SPRAYTAGS_COLOR]);
 		cache_get_value_name_int(i, "owner", SpraytagsInfo[i][E_SPRAYTAGS_OWNER]);
+        cache_get_value_name_int(i, "timer", SpraytagsInfo[i][E_SPRAYTAGS_TIMER]);
 
 		Spraytags_Refresh(i);
 	}

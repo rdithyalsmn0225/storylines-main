@@ -348,7 +348,7 @@ stock Spraytags_Save(spid)
 	new
 	    query[1024];
 
-	format(query, sizeof(query), "UPDATE `spray_tags` SET `posx` = '%.4f', `posy` = '%.4f', `posz` = '%.4f', `posrx` = '%.4f', `posry` = '%.4f', `posrz` = '%.4f', `interior` = '%d', `vw` = '%d', `models` = '%d', `Type` = '%d', `Text` = '%s', `Font` = '%s', `color` = '%d', `owner` = '%d'  WHERE `id` = '%d'",
+	format(query, sizeof(query), "UPDATE `spray_tags` SET `posx` = '%.4f', `posy` = '%.4f', `posz` = '%.4f', `posrx` = '%.4f', `posry` = '%.4f', `posrz` = '%.4f', `interior` = '%d', `vw` = '%d', `models` = '%d', `Type` = '%d', `Text` = '%s', `Font` = '%s', `color` = '%d', `owner` = '%d' `timer` = '%d' WHERE `id` = '%d'",
 	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][0],
 	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][1],
 	    SpraytagsInfo[spid][E_SPRAYTAGS_POS][2],
@@ -363,6 +363,7 @@ stock Spraytags_Save(spid)
         SpraytagsInfo[spid][E_SPRAYTAGS_FONT],
         SpraytagsInfo[spid][E_SPRAYTAGS_COLOR],
 	    SpraytagsInfo[spid][E_SPRAYTAGS_OWNER],
+		SpraytagsInfo[spid][E_SPRAYTAGS_TIMER],
 	    SpraytagsInfo[spid][E_SPRAYTAGS_DBID]
 	);
 	return mysql_pquery(ourConnection, query);
