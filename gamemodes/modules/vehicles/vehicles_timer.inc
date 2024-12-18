@@ -96,7 +96,6 @@ function:OnVehicleUpdate()
 
 		new panels, doors, lights, tires;
 		GetVehicleDamageStatus(i, panels, doors, lights, tires);
-		UpdateVehicleDamageStatus(i, panels, doors, lights, tires);
 		VehicleInfo[i][E_VEHICLE_BODY] = panels;
 		VehicleInfo[i][E_VEHICLE_TIRE] = tires;
 
@@ -105,11 +104,8 @@ function:OnVehicleUpdate()
 		VehicleInfo[i][E_VEHICLE_POS][2] = z;
 		VehicleInfo[i][E_VEHICLE_POS][3] = a;
 		VehicleInfo[i][E_VEHICLE_HEALTH] = vehicle_health;
-
-		if(VehicleInfo[i][E_VEHICLE_EXISTS])
-		{
-			SaveVehicle(i);
-		}
+		SaveVehicle(i);
+		
 		TotalledCheck(i);
 	}
 	return 1;

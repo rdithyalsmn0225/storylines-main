@@ -229,7 +229,7 @@ public OnGameModeInit()
 	SetTimer("OnPlayerMinutesUpdate", 60000, true);
 	SetTimer("OnPlayerWeaponUpdate", 1000, true);
 	SetTimer("OnSprayTagsUpdate", 60000, true);
-	SetTimer("OnAntiCheatUpdate", 500, true);
+	SetTimer("OnAntiCheatUpdate", 50, true);
 	SetTimer("OnIndustryUpdate", 1800000, true);
 	SetTimer("OnTreeUpdate", 60000, true);
 	SetTimer("OnPlayerTaxiUpdate", 1000, true);
@@ -3388,6 +3388,12 @@ public OnPlayerUpdate(playerid)
 		}
 	}
 
+	//Anti-Money Hack
+	if(GetPlayerMoney(playerid) > PlayerInfo[playerid][E_CHARACTER_MONEY])
+	{
+		ResetPlayerMoney(playerid);
+		GivePlayerMoney(playerid, PlayerInfo[playerid][E_CHARACTER_MONEY]);
+	}
 	return 1;
 }
 
@@ -5427,48 +5433,6 @@ function:SaveCharacter(playerid)
 	return 1;
 }
 
-
-public OnIncomingRPC(playerid, rpcid, BitStream:bs)
-{
-	#if defined DEBUG_MODE
-		printf("Callback OnIncomingRPC called for player %s (ID: %i) rpcid : %d BitStream : %d", ReturnName(playerid), playerid, rpcid, bs); 
-	#endif
-
-    if (rpcid == 136)
-    {
-        new currentTime = GetTickCount();
-
-        if (player_rpc_count[playerid] == 0)
-        {
-            player_rpc_count[playerid] = 1;
-            player_rpc_last_time[playerid] = currentTime;
-        }
-        else
-        {
-            if (currentTime - player_rpc_last_time[playerid] <= 3000)
-            {
-                player_rpc_count[playerid]++;
-                if (player_rpc_count[playerid] >= 5)
-                {
-                    new gstr[128];
-                    format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Rem.cs]", ReturnName(playerid));
-                    SendClientMessage(playerid, COLOR_YELLOW, gstr);
-
-                    player_rpc_count[playerid] = 0;
-                    player_rpc_last_time[playerid] = 0;
-                }
-            }
-            else
-            {
-
-                player_rpc_count[playerid] = 1;
-                player_rpc_last_time[playerid] = currentTime;
-            }
-        }
-    }
-    return 1;
-}
-
 public OnDynamicObjectMoved(objectid)
 {
 	#if defined DEBUG_MODE
@@ -5714,19 +5678,3 @@ public OnVehicleSirenStateChange(playerid, vehicleid, newstate)
 	return 1;
 }
 
-public OnVehicleMod(playerid, vehicleid, componentid)
-{
-	#if defined DEBUG_MODE
-		printf("Callback OnVehicleMod called for player %s (ID: %i) vehicleid %s (ID: %i) componentid %i", ReturnName(playerid), playerid, ReturnVehicleName(vehicleid), vehicleid, componentid); 
-	#endif
-
-	new str1[128];
-	new vehicleide = GetVehicleModel(vehicleid);
-    new modok = islegalcarmod(vehicleide, componentid);
-    if (!modok && ACPauseTimer[playerid] == 0 && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true) {
-        format(str1, sizeof(str1), "%s has been detected for using program hack [Vehicle Mod Hack]", ReturnName(playerid)); 
-		SendAdminMessage(1, str1);
-        return 0; 
-    }
-	return 1;
-}

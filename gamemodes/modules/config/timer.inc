@@ -194,13 +194,6 @@ function:OnPlayerUpdateEx()
 					SetVehicleVelocity(vehicleid, velocity[0] * 0.8, velocity[1] * 0.8, velocity[2] * 0.8); 
 				}
 			}
-			
-			//Anti-Money Hack
-			if(GetPlayerMoney(playerid) > PlayerInfo[playerid][E_CHARACTER_MONEY])
-			{
-				ResetPlayerMoney(playerid);
-				GivePlayerMoney(playerid, PlayerInfo[playerid][E_CHARACTER_MONEY]);
-			}
 
 			if(characterPickTime[playerid] > 0)
 			{

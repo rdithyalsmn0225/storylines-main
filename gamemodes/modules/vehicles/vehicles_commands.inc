@@ -536,7 +536,7 @@ CMD:engine(playerid, params[])
 	if(VehicleInfo[vehicleid][E_VEHICLE_IMPOUND])
 		return SendErrorMessage(playerid, "Your vehicle is impounded.");
 
-	if(IsPlayerAdmin(playerid) < ADMINS_HELPERS)
+	if(IsPlayerAdmins(playerid) < ADMINS_HELPERS)
 	{
 		if(VehicleInfo[vehicleid][E_VEHICLE_TYPE] == VEHICLE_TYPE_PLAYER)
 		{
