@@ -1464,7 +1464,8 @@ new Float:PublicPoint[][] =
 	{684.6581,-1570.5861,14.2422}, //Dealership
 	{2132.0190,-1149.9902,24.2088}, //Dealership
 	{1629.6158,-1903.5123,13.5530}, //Dealership
-	{2684.1277,-2515.6733,13.1552} //Dealership
+	{2684.1277,-2515.6733,13.1552}, //Dealership
+	{2639.1436,-2470.5903,3.0000} //Dealership
 };
 
 new Float: ENEXPoint[][] = 
@@ -2445,7 +2446,8 @@ new const PublicName[][128] =
 	"Dealership: Bikes",
 	"Dealership: Compact Cars",
 	"Dealership: Luxury Cars",
-	"Dealership: Industrial"
+	"Dealership: Industrial",
+	"Dealership: Boat"
 };
 
 new const JobLocName[][62] =

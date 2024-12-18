@@ -2084,6 +2084,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 				PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
 			}
 		}
+		else SetPlayerArmedWeapon(playerid, 0);
 	}
 
 	if(PlayerInfo[playerid][E_CHARACTER_POLICEGUN] && weaponid == 23)
