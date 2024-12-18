@@ -4589,6 +4589,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				strcat(str, "Colors\n");
 				strcat(str, "{FFFF00}Purchase Vehicle\n"); 
 				
+				PauseAC(playerid);
 				TogglePlayerControllable(playerid, false); 
 				
 				DealershipPlayerCar[playerid] = CreateVehicle(g_aDealershipData[i][E_DEALERSHIP_MODELID], g_aDealershipData[i][E_DEALERSHIP_SPAWNX], g_aDealershipData[i][E_DEALERSHIP_SPAWNY], g_aDealershipData[i][E_DEALERSHIP_SPAWNZ], g_aDealershipData[i][E_DEALERSHIP_SPAWNA], 0, 0, -1);
@@ -4642,9 +4643,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		case DIALOG_DEALERSHIP_MENU:
 		{
 			new
-				str[128],
-				caption[60]
-			; 
+				caption[60],
+				str[3200];
 			
 			format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 
@@ -4654,12 +4654,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0:
 					{
-						format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles first color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][0]] >>> 8, DealershipCarColors[playerid][0]); 
+						
+						for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+						{
+							format(str, sizeof str, "%s{%06x}%03d%s", str, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+						}
 						ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR1, DIALOG_STYLE_INPUT, caption, str, "Select", "<<");  
 					}
 					case 1:
 					{
-						format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles second color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][1]] >>> 8, DealershipCarColors[playerid][1]); 
+						for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+						{
+							format(str, sizeof str, "%s{%06x}%03d%s", str, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+						}
 						ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR2, DIALOG_STYLE_INPUT, caption, str, "Select", "<<"); 
 					}
 				}
@@ -4670,9 +4677,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			new
 				caption[60],
-				str[128],
-				color1
-			;
+				str[3200],
+				color1;
 			
 			format(caption, 60, "%s - {33AA33}%s:", g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODEL], FormatMoney(DealershipTotalCost[playerid])); 
 			
@@ -4680,7 +4686,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				if(!IsNumeric(inputtext))
 				{
-					format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles first color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][0]] >>> 8, DealershipCarColors[playerid][0]); 
+					for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+					{
+						format(str, sizeof str, "%s{%06x}%03d%s", str, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+					}
 					return ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR1, DIALOG_STYLE_INPUT, caption, str, "Select", "<<");  
 				}
 			
@@ -4688,10 +4697,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				
 				if(color1 > 255 || color1 < 0)
 				{
-					format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles first color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][0]] >>> 8, DealershipCarColors[playerid][0]); 
+					for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+					{
+						format(str, sizeof str, "%s{%06x}%03d%s", str, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+					}
 					return ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR1, DIALOG_STYLE_INPUT, caption, str, "Select", "<<");  
 				}
 				
+				PauseAC(playerid);
 				ChangeVehicleColor(DealershipPlayerCar[playerid], color1, DealershipCarColors[playerid][1]); 
 				
 				DealershipCarColors[playerid][0] = color1;
@@ -4716,7 +4729,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			new
 				caption[60],
-				str[128],
+				str[3200],
 				color2
 			;
 			
@@ -4726,7 +4739,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				if(!IsNumeric(inputtext))
 				{
-					format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles second color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][1]] >>> 8, DealershipCarColors[playerid][1]); 
+					for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+					{
+						format(str, sizeof str, "%s{%06x}%03d%s", str, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+					}
 					return ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR2, DIALOG_STYLE_INPUT, caption, str, "Select", "<<");  
 				}
 			
@@ -4734,10 +4750,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				
 				if(color2 > 255 || color2 < 0)
 				{
-					format(str, sizeof(str), "{FFFFFF}You're selecting your vehicles second color. ({%06x}%d{FFFFFF})\n Please select a Color ID. (0-255)", VehicleColoursTableRGBA[DealershipCarColors[playerid][1]] >>> 8, DealershipCarColors[playerid][1]); 
+					for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+					{
+						format(str, sizeof str, "%s{%06x}%03d%s", str, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+					}
 					return ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_COLOR2, DIALOG_STYLE_INPUT, caption, str, "Select", "<<");  
 				}
 				
+				PauseAC(playerid);
 				ChangeVehicleColor(DealershipPlayerCar[playerid], DealershipCarColors[playerid][0], color2); 
 				
 				DealershipCarColors[playerid][1] = color2;
@@ -4794,6 +4814,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 				}
 				
+				PauseAC(playerid);
 				GetVehiclePos(DealershipPlayerCar[playerid], x, y, z);
 				GetVehicleZAngle(DealershipPlayerCar[playerid], a);
 				

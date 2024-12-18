@@ -225,6 +225,9 @@ function:ResetPlayer(playerid)
 	ResetPlayerJump(playerid);
 	ResetTeleportAC(playerid);
 
+	ResetDealershipVars(playerid);
+	DestroyVehicle(DealershipPlayerCar[playerid]);
+
 	HeaderBar[playerid] = INVALID_PLAYER_BAR_ID;
 	speedobar[playerid] = INVALID_PLAYER_BAR_ID;
 	
