@@ -19,7 +19,7 @@ function:Query_LoadCompensation()
 		cache_get_value_name_int(i, "expired", CompetationInfo[i][E_COMPETATION_EXPIRED]);
         cache_get_value_name_int(i, "money", CompetationInfo[i][E_COMPETATION_MONEY]);
         cache_get_value_name_int(i, "players_used", CompetationInfo[i][E_COMPETATION_USED]);
-        CompetationInfo[i][E_COMPETATION_CODE] = true;
+        CompetationInfo[i][E_COMPETATION_EXISTS] = true;
         total++;
 	}	
 
