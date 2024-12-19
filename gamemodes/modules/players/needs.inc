@@ -49,7 +49,12 @@ function:OnPlayerNeedUpdate()
 
         if(PlayerInfo[i][E_CHARACTER_TOGHUD] == false && PlayerInfo[i][E_CHARACTER_SPAWNED] == true)
 	    {
-            ShowPlayerNeeds(i);
+            SetPlayerProgressBarValue(i, HEBAR[0][i], PlayerInfo[i][E_CHARACTER_HUNGRY]);
+            SetPlayerProgressBarValue(i, HEBAR[1][i], PlayerInfo[i][E_CHARACTER_THIRSTY]);
+            SetPlayerProgressBarColour(i, HEBAR[0][i], ConvertHBEColor(PlayerInfo[i][E_CHARACTER_HUNGRY]));
+            SetPlayerProgressBarColour(i, HEBAR[1][i], ConvertHBEColor(PlayerInfo[i][E_CHARACTER_THIRSTY]));
+            ShowPlayerProgressBar(i, HEBAR[0][i]);
+            ShowPlayerProgressBar(i, HEBAR[1][i]);
         }
         SaveCharacter(i); SaveCharacterPos(i);
     }
@@ -83,22 +88,26 @@ SetPlayerNeeds(playerid, Float:hungry, Float:thirsty)
 
 ShowPlayerNeeds(playerid)
 {
-    for(new i; i < 2; i++)
+    for(new i; i < 4; i++)
     {
         SetPlayerProgressBarValue(playerid, HEBAR[0][playerid], PlayerInfo[playerid][E_CHARACTER_HUNGRY]);
         SetPlayerProgressBarValue(playerid, HEBAR[1][playerid], PlayerInfo[playerid][E_CHARACTER_THIRSTY]);
+        SetPlayerProgressBarColour(playerid, HEBAR[0][playerid], ConvertHBEColor(PlayerInfo[playerid][E_CHARACTER_HUNGRY]));
+        SetPlayerProgressBarColour(playerid, HEBAR[1][playerid], ConvertHBEColor(PlayerInfo[playerid][E_CHARACTER_THIRSTY]));
         PlayerTextDrawShow(playerid, HE[i][playerid]);
-        ShowPlayerProgressBar(playerid, HEBAR[i][playerid]);
+        ShowPlayerProgressBar(playerid, HEBAR[0][playerid]);
+        ShowPlayerProgressBar(playerid, HEBAR[1][playerid]);
     }
     return 1;
 }
 
 HidePlayerNeeds(playerid)
 {
-    for(new i; i < 2; i++)
+    for(new i; i < 4; i++)
     {
         PlayerTextDrawHide(playerid, HE[i][playerid]);
-        HidePlayerProgressBar(playerid, HEBAR[i][playerid]);
+        HidePlayerProgressBar(playerid, HEBAR[0][playerid]);
+        HidePlayerProgressBar(playerid, HEBAR[1][playerid]);
     }
     return 1;
 }

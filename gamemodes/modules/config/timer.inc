@@ -116,19 +116,19 @@ function:OnPlayerUpdateEx()
 			{
 				GetVehicleZAngle(GetPlayerVehicleID(playerid), rz);
 
-				if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "North I ~y~N";
-				else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "North East I ~y~NE";
-				else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "East I ~y~E";
-				else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "South East I ~y~SE";
-				else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "South I ~y~S";
-				else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "South West I ~y~SW";
-				else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "West I ~y~W";
-				else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "North West I ~y~NW";
+				if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "North~n~~y~N";
+				else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "North East~n~~y~NE";
+				else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "East~n~~y~E";
+				else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "South East~n~~y~SE";
+				else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "South~n~~y~S";
+				else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "South West~n~~y~SW";
+				else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "West~n~~y~W";
+				else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "North West~n~~y~NW";
 
 				PlayerTextDrawSetString(playerid, Street[0][playerid], PlayerDirection[playerid]);
 
 				new str1[180];
-				format(str1, sizeof(str1), "%s I %s I San Andreas", ReturnLocationStreet(playerid), ReturnLocation(playerid));
+				format(str1, sizeof(str1), "%s~n~%s~n~San Andreas", ReturnLocationStreet(playerid), ReturnLocation(playerid));
 				PlayerTextDrawSetString(playerid, Street[1][playerid], str1);
 			}
 			
@@ -146,7 +146,13 @@ function:OnPlayerUpdateEx()
 					PlayerTextDrawHide(playerid, Street[1][playerid]);
 					p_Direction[playerid] = false;
 				}
-				ShowPlayerNeeds(playerid);
+
+				SetPlayerProgressBarValue(playerid, HEBAR[0][playerid], PlayerInfo[playerid][E_CHARACTER_HUNGRY]);
+				SetPlayerProgressBarValue(playerid, HEBAR[1][playerid], PlayerInfo[playerid][E_CHARACTER_THIRSTY]);
+				SetPlayerProgressBarColour(playerid, HEBAR[0][playerid], ConvertHBEColor(PlayerInfo[playerid][E_CHARACTER_HUNGRY]));
+				SetPlayerProgressBarColour(playerid, HEBAR[1][playerid], ConvertHBEColor(PlayerInfo[playerid][E_CHARACTER_THIRSTY]));
+				ShowPlayerProgressBar(playerid, HEBAR[0][playerid]);
+				ShowPlayerProgressBar(playerid, HEBAR[1][playerid]);
 			}		
 
 			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
@@ -308,24 +314,30 @@ function:OnPlayerUpdateEx()
 
 			if(IsPlayerInAnyVehicle(playerid) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER && IsEngineVehicle(vehicleid))
 			{
-				new str[128], stra[128], stru[128];
-				format(str, sizeof(str), "%.0f", fSpeed);
+				new str[128], stra[128], stru[128], stre[128];
+				format(str, sizeof(str), "%.0f Mph", fSpeed);
 
 				new siren = GetVehicleParamsSirenState(vehicleid);
 
+				if(vhealth <= 350.0) vhealth = 0.0;
+				else if(vhealth > 1000.0) vhealth = 1000.0;
+
 				if(siren == 1)
 				{
-					format(stru, sizeof(stru), "on");
+					format(stru, sizeof(stru), "Siren : ~g~on");
 				}
 				else
 				{
-					format(stru, sizeof(stru), "off");
+					format(stru, sizeof(stru), "Siren : ~r~off");
 				}
 
-				format(stra, sizeof(stra), "%d", VehicleInfo[vehicleid][E_VEHICLE_MILES]);
+				format(stra, sizeof(stra), "Miles : %d", VehicleInfo[vehicleid][E_VEHICLE_MILES]);
+
+				format(stre, sizeof(stre), "%s", ReturnVehicleName(vehicleid));
+
 				if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	    		{
-					ShowVehicleSpeedometer(playerid, "mph", "fuel", "miles", "siren", str, stra, stru, VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
+					ShowVehicleSpeedometer(playerid, str, stru, stra, stre, VehicleInfo[vehicleid][E_VEHICLE_FUEL], vhealth);
 				}
 
 				for (new i = 0; i != MAX_BARRICADES; i ++) if (BarricadeInfo[i][E_CADE_EXISTS] && BarricadeInfo[i][E_CADE_TYPE] == 1 && IsPlayerInRangeOfPoint(playerid, 3.0, BarricadeInfo[i][E_CADE_POS][0], BarricadeInfo[i][E_CADE_POS][1], BarricadeInfo[i][E_CADE_POS][2]))

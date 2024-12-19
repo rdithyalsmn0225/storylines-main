@@ -1870,7 +1870,7 @@ CMD:setcar(playerid, params[])
 		format(str, sizeof(str), "%s set vehicle ID %i's fuel to %i. (Previously %i)", ReturnMixedName(playerid), vehicleid, value2, VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
 		SendAdminMessage(3, str);
 		
-		VehicleInfo[vehicleid][E_VEHICLE_FUEL] = value;
+		VehicleInfo[vehicleid][E_VEHICLE_FUEL] = value2;
 		SaveVehicle(vehicleid);
 	}
 	return 1;

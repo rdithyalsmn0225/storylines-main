@@ -1735,21 +1735,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							SendServerMessage(playerid, "[Settings] {cdcdcd}switched your phonestyle to modern.");
 						}
 					}
-					/*case 8:
+					case 8:
 					{
-						if(PlayerInfo[playerid][E_CHARACTER_TOGDD])
+						if(PlayerInfo[playerid][E_CHARACTER_TOGALPR])
 						{
-							PlayerInfo[playerid][E_CHARACTER_TOGDD] = false;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Draw Distance has been set to Low.");
-							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 500, playerid);
+							PlayerInfo[playerid][E_CHARACTER_TOGALPR] = false;
+							SendServerMessage(playerid, "[Settings] {cdcdcd}ALPR interface has been Enable.");
 						}
 						else
 						{
-							PlayerInfo[playerid][E_CHARACTER_TOGDD] = true;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Draw Distance has been set to High.");
-							Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 1000, playerid);
+							PlayerInfo[playerid][E_CHARACTER_TOGALPR] = true;
+							SendServerMessage(playerid, "[Settings] {cdcdcd}ALPR interface has been Disable.");
 						}
-					}*/
+					}
 				}
 			}
 		}

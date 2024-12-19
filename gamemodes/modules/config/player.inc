@@ -229,8 +229,8 @@ function:ResetPlayer(playerid)
 	DestroyVehicle(DealershipPlayerCar[playerid]);
 
 	HeaderBar[playerid] = INVALID_PLAYER_BAR_ID;
-	speedobar[playerid] = INVALID_PLAYER_BAR_ID;
-	
+	fuelbar[playerid] = INVALID_PLAYER_BAR_ID;
+	dmgbar[playerid] = INVALID_PLAYER_BAR_ID;
 	//Master accounts:
 	AccountInfo[playerid][E_MASTERS_LOGGED] = false; 
 	
@@ -1043,6 +1043,33 @@ stock ConvertHBEColor(Float:value)
     else if(value >= 10 && value < 30.0)
         color = 0xfb3508FF;
     else if(value >= 0 && value < 10.0)
+        color = 0xFF0000FF;
+    else 
+        color = COLOR_WHITE;
+
+    return color;
+}
+
+stock ConvertVehicleColor(Float:value) 
+{
+    new color;
+    if(value >= 90 && value <= 1000.0)
+        color = 0x15a014FF;
+    else if(value >= 80 && value < 900.0)
+        color = 0x1b9913FF;
+    else if(value >= 70 && value < 800.0)
+        color = 0x1a7f08FF;
+    else if(value >= 60 && value < 700.0)
+        color = 0x326305FF;
+    else if(value >= 50 && value < 600.0)
+        color = 0x375d04FF;
+    else if(value >= 40 && value < 500.0)
+        color = 0x603304FF;
+    else if(value >= 30 && value < 400.0)
+        color = 0xd72800FF;
+    else if(value >= 10 && value < 300.0)
+        color = 0xfb3508FF;
+    else if(value >= 0 && value < 100.0)
         color = 0xFF0000FF;
     else 
         color = COLOR_WHITE;

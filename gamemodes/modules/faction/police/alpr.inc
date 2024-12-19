@@ -19,50 +19,43 @@ stock DetectVehicleInFront(playerid)
         new Float:vX, Float:vY, Float:vZ;
         GetVehiclePos(i, vX, vY, vZ);
 
-        if(IsPlayerInAnyVehicle(playerid))
+        if(IsPlayerInAnyVehicle(playerid) && PlayerInfo[playerid][E_CHARACTER_TOGALPR])
         {
             if (GetDistanceBetweenPoints(frontX, frontY, z, vX, vY, vZ) <= ALPR_RANGE)
             {
-                new str3[128];
+                new str3[128]; new str2[128]; new str[128];
                 format(str3, sizeof(str3), "Model : %s", ReturnVehicleName(i));
                 PlayerTextDrawSetString(playerid, ALPR[1][playerid], str3);
 
-                new str[128];
+                
                 format(str, sizeof(str), "Plates : %s", VehicleInfo[i][E_VEHICLE_PLATES]);
                 PlayerTextDrawSetString(playerid, ALPR[2][playerid], str);
 
                 if(!VehicleInfo[i][E_VEHICLE_PLATESSTATUS])
                 {
-                    new str2[128];
+                    
                     format(str2, sizeof(str2), "R.O : Unregistered");
                     PlayerTextDrawSetString(playerid, ALPR[3][playerid], str2);
                 }
                 else
                 {
-                    new str2[128];
                     format(str2, sizeof(str2), "R.O : Registered");
                     PlayerTextDrawSetString(playerid, ALPR[3][playerid], str2);
                 }
-                for(new b = 0; b < 4; b++)
-                {
-                    PlayerTextDrawShow(playerid, ALPR[b][playerid]);
-                }
+                
+                new str4[256];
+                format(str4, sizeof(str4), "%s~n~%s~n~%s", str, str2, str3);
+                ShowBoxMessage(playerid, str4, 5, 1);
                 return 1;
             }
             else
             {
-                for(new a = 0; a < 4; a++)
-                {
-                    PlayerTextDrawHide(playerid, ALPR[a][playerid]);
-                }
+                HideBoxMessage(playerid);
             }
         }
         else
         {
-            for(new a = 0; a < 5; a++)
-            {
-                PlayerTextDrawHide(playerid, ALPR[a][playerid]);
-            }
+            HideBoxMessage(playerid);
         }
     }
     return 0;
