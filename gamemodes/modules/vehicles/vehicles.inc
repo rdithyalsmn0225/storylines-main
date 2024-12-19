@@ -546,7 +546,7 @@ function:Query_LoadPrivateVehicle(playerid)
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = true;
 	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid; 
 	
-	SendVehicleMessage(playerid, "[Vehicle] {cdcdcd}%s has been spawned at its parking place.", ReturnVehicleName(vehicleid));
+	SendVehicleMessage(playerid, "[Vehicle] {cdcdcd}%s has been spawned at its parking place (Vehicle ID %d).", ReturnVehicleName(vehicleid), vehicleid);
 	if(VehicleInfo[vehicleid][E_VEHICLE_IMPOUND]) SendClientMessage(playerid, COLOR_RED, "Your vehicle is impounded.");
 	GPS_SetPlayerRaceCheckPoint(playerid, 1, VehicleInfo[vehicleid][E_VEHICLE_POS][0], VehicleInfo[vehicleid][E_VEHICLE_POS][1], VehicleInfo[vehicleid][E_VEHICLE_POS][2], 0.0, 0.0, 0.0);
 	return 1;
