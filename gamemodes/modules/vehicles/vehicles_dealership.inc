@@ -38,15 +38,20 @@ CMD:dealership(playerid, params[])
 	if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED])
 		return SendErrorMessage(playerid, "You have a vehicle spawned."); 
 
+	new maxVehicles = AccountInfo[playerid][E_MASTERS_VIP] ? 4 : 2;
+
 	for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
 	{
 		if(!PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
 		{
-			idx = i;
-			break;
+			if(i <= maxVehicles)
+			{
+				idx = i;
+				break;
+			}
 		}
 	}
-				
+
 	if(!idx)
 	{
 		SendErrorMessage(playerid, "You own the maximum amount of vehicles."); 

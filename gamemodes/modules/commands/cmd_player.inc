@@ -19,7 +19,7 @@ CMD:credits(playerid, params[])
 CMD:help(playerid, params[])
 {
 	new str[256];
-	format(str, sizeof(str), "General Commands\nRoleplay Commands\nProperty Commands\nBusiness Commands\nFaction Commands\nVehicle Commands\nMinigames Commands\nJobs Commands\nCrime Professions Commands");
+	format(str, sizeof(str), "{ffffff}General Commands\n{AFAFAF}Roleplay Commands\n{ffffff}Property Commands\n{AFAFAF}Business Commands\n{ffffff}Faction Commands\n{AFAFAF}Vehicle Commands\n{ffffff}Minigames Commands\n{AFAFAF}Jobs Commands\n{ffffff}Crime Professions Commands\n{AFAFAF}Donatur Commands");
 	ShowPlayerDialog(playerid, DIALOG_HELP, DIALOG_STYLE_LIST, "Commands:", str, "Select", "Close");
 	return 1; 
 }
@@ -1790,9 +1790,6 @@ CMD:shout(playerid, params[])
 	new string[256];
 	format(string, sizeof(string), "shouts: %s", text);
 	ProxDetectorEx(playerid, range, 0xFCE7AEFF, "", string, .annonated=true); 
-
-	format(string, sizeof (string), "%s shouts: %s", ReturnName(playerid), text ) ;
-	//SendMoleMessage(playerid, string);
 	return 1;
 }
 CMD:l(playerid, params[]) return cmd_low(playerid, params);
@@ -1836,7 +1833,6 @@ CMD:low(playerid, params[])
 	}
 
 	ChatAnimation(playerid, strlen(text));
-	//SendMoleMessage(playerid, string);
 	return 1;
 }
 
@@ -2020,7 +2016,6 @@ CMD:carwhisper(playerid, params[]) {
 		}
 	}
 
-	//SendMoleMessage(playerid, string);
 	ProxDetectorEx(playerid, 7.5, COLOR_EMOTE, "", "mutters something inside the vehicle.");
 	return 1;
 }

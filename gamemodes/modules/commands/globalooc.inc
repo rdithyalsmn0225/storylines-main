@@ -44,7 +44,7 @@ CMD:ooc(playerid, params[]) {
 
 	foreach(new targetid: Player) 
 	{
-		format(string, sizeof(string), "(( [GLOBAL] (%d) %s{AAC4E5}: %s ))",  playerid, ReturnName(playerid), text);
+		format(string, sizeof(string), "(( [GLOBAL]  [%s] %s (%d){AAC4E5}: %s ))", ReturnVIPLevel(playerid), ReturnName(playerid), playerid, text);
 		SendClientMessage(targetid, COLOR_OOC, string);
 	}
 	return 1;

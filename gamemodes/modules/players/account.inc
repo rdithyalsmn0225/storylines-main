@@ -102,6 +102,9 @@ function:LoggingIn(playerid)
 	cache_get_value_name(0, "forum_name", AccountInfo[playerid][E_MASTERS_FORUMNAME], 60);
 	cache_get_value_name_int(0, "acc_admin", AccountInfo[playerid][E_MASTERS_ADMINS]); 
 	cache_get_value_name_int(0, "secret_word", AccountInfo[playerid][E_MASTERS_CODE]);
+	cache_get_value_name_int(0, "vip", AccountInfo[playerid][E_MASTERS_VIP]); 
+	cache_get_value_name_int(0, "vip_time", AccountInfo[playerid][E_MASTERS_VIPTIMER]); 
+	cache_get_value_name_int(0, "street_credits", AccountInfo[playerid][E_MASTERS_STREETCREDITS]); 
 	cache_get_value_name(0, "active_ip", ActiveIP);
 	
 	format(AccountInfo[playerid][E_MASTERS_ACCNAME], 32, "%s", ReturnName(playerid, 1));
@@ -238,7 +241,7 @@ stock LoadCharacter(playerid)
 
 	for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
 	SendClientMessageEx(playerid, COLOR_WHITE, "Hey {9CC8E9}%s{ffffff}, Welcome back to {4cb989}GTA Storylines{ffffff}.", AccountInfo[playerid][E_MASTERS_ACCNAME]);
-	SendClientMessageEx(playerid, COLOR_WHITE, "You are logged in as a {b7b94c}%s{ffffff}, playing as {9CC8E9}%s{ffffff}!", ReturnFactionName(playerid), ReturnName(playerid));
+	SendClientMessageEx(playerid, COLOR_WHITE, "You are logged in as a {b7b94c}%s{ffffff}, playing as {9CC8E9}%s{ffffff}!", ReturnVIPLevel(playerid), ReturnName(playerid));
 	SendClientMessageEx(playerid, COLOR_WHITE, "[Player MOTD]: {4cb989}%s", PLAYER_MOTD);
 	SendClientMessage(playerid, -1, " ");
 	SendClientMessage(playerid, COLOR_WHITE, "Visit us and register on our discord at {4ca5b9}discord.gg/storylines{ffffff} to stay updated.");
@@ -399,6 +402,7 @@ function:Query_LoadCharacter(playerid)
 	{
 		PlayerInfo[playerid][E_CHARACTER_MASKID] = 200000+random(199991);
 	}
+	
 	new query[256];
 	mysql_format(ourConnection, query, sizeof(query), "SELECT * FROM `inventory` WHERE `ID` = '%d'", PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query, "LoadPlayerItems", "d", playerid);

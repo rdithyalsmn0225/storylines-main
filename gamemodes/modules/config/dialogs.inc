@@ -347,6 +347,140 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowCharacterPreview(playerid);
 			}
 		}
+		case DIALOG_STREETSHOP:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(50 > AccountInfo[playerid][E_MASTERS_STREETCREDITS])
+							return SendErrorMessage(playerid, "You can't afford a this items");
+
+						ShowPlayerDialog(playerid, DIALOG_CHANGEPHONE, DIALOG_STYLE_INPUT, "Change Phone Number:", "Insert a new phone number below.\n{33AA33}Info:{ffffff} Required in format of number only Ex: 911922", "Select", "Close");
+					}
+					case 1:
+					{
+						if(70 > AccountInfo[playerid][E_MASTERS_STREETCREDITS])
+							return SendErrorMessage(playerid, "You can't afford a items");
+						
+						ShowPlayerDialog(playerid, DIALOG_CHANGEMASKID, DIALOG_STYLE_INPUT, "Change Mask ID:", "Insert a new mask id below.\n{33AA33}Info:{ffffff} Required in format of number only Ex: 911922", "Select", "Close");
+					}
+					case 2:
+					{
+						if(150 > AccountInfo[playerid][E_MASTERS_STREETCREDITS])
+							return SendErrorMessage(playerid, "You can't afford a items");
+
+						ShowPlayerDialog(playerid, DIALOG_CHANGENAME, DIALOG_STYLE_INPUT, "Change Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of number only Ex: 911922", "Select", "Close");
+					}
+					case 3:
+					{
+						if(80 > AccountInfo[playerid][E_MASTERS_STREETCREDITS])
+							return SendErrorMessage(playerid, "You can't afford a items");
+
+						AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 80;
+						AccountInfo[playerid][E_MASTERS_VIP] = 1;
+						AccountInfo[playerid][E_MASTERS_VIPTIMER] = gettime() + (7 * 86400);
+						SendInfoMessage(playerid, "You has purchase supreme vip level 7 days for 50 street credits.");
+					}
+					case 4:
+					{
+						if(120 > AccountInfo[playerid][E_MASTERS_STREETCREDITS])
+							return SendErrorMessage(playerid, "You can't afford a items");
+
+						AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 120;
+						AccountInfo[playerid][E_MASTERS_VIP] = 2;
+						AccountInfo[playerid][E_MASTERS_VIPTIMER] = gettime() + (7 * 86400);
+						SendInfoMessage(playerid, "You has purchase legend vip level 7 days for 120 street credits.");
+					}
+					case 5:
+					{
+						if(150 > AccountInfo[playerid][E_MASTERS_STREETCREDITS])
+							return SendErrorMessage(playerid, "You can't afford a items");
+
+						AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 150;
+						AccountInfo[playerid][E_MASTERS_VIP] = 3;
+						AccountInfo[playerid][E_MASTERS_VIPTIMER] = gettime() + (7 * 86400);
+						SendInfoMessage(playerid, "You has purchase ultimate vip level 7 days for 150 street credits.");
+					}
+				}
+			}
+		}
+		case DIALOG_CHANGEPHONE:
+		{
+			if(response)
+			{
+				if(isnull(inputtext) || strlen(inputtext) < 1 || strlen(inputtext) > 8)
+					return ShowPlayerDialog(playerid, DIALOG_CHANGEPHONE, DIALOG_STYLE_INPUT, "Change Phone Number:", "Insert a new phone number below.\n{33AA33}Info:{ffffff} Required in format of number only Ex: 911922", "Select", "Close");
+
+				for(new i = 0; i < strlen(inputtext); i++)
+				{
+					if(inputtext[i] < '0' || inputtext[i] > '9')
+						return SendErrorMessage(playerid, "Input must contain numbers only.");
+				}
+
+				AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 50;
+				PlayerInfo[playerid][E_CHARACTER_PHONE] = strval(inputtext);
+				SendInfoMessage(playerid, "You has change phone number to %d for 50 street credits.", strval(inputtext));
+
+			}
+		}
+		case DIALOG_CHANGEMASKID:
+		{
+			if(response)
+			{
+				if(isnull(inputtext) || strlen(inputtext) < 1 || strlen(inputtext) > 8)
+					return ShowPlayerDialog(playerid, DIALOG_CHANGEMASKID, DIALOG_STYLE_INPUT, "Change Mask ID:", "Insert a new mask id below.\n{33AA33}Info:{ffffff} Required in format of number only Ex: 911922", "Select", "Close");
+
+				for(new i = 0; i < strlen(inputtext); i++)
+				{
+					if(inputtext[i] < '0' || inputtext[i] > '9')
+						return SendErrorMessage(playerid, "Input must contain numbers only.");
+				}
+
+				PlayerInfo[playerid][E_CHARACTER_MASKID] = strval(inputtext);
+				AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 70;
+				SendInfoMessage(playerid, "You has change mask id to %d for 70 street credits.", strval(inputtext));
+
+			}
+		}
+		case DIALOG_CHANGENAME:
+		{
+			if(response)
+			{
+				if(strlen(inputtext) > MAX_PLAYER_NAME + 1 || strlen(inputtext) < 3)
+				{
+					ShowPlayerDialog(playerid, DIALOG_CHANGENAME, DIALOG_STYLE_INPUT, "Change Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+					SendErrorMessage(playerid, "Your characters name must be at least 3 characters and no more than %i characters.", MAX_PLAYER_NAME);
+					return 1;
+				}
+				if(!IsValidRoleplayName(inputtext))
+				{
+					ShowPlayerDialog(playerid, DIALOG_CHANGENAME, DIALOG_STYLE_INPUT, "Change Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+					SendErrorMessage(playerid, "Please follow the Firstname_Lastname format to make your character."); 
+					return 1;
+				}
+				
+				foreach (new i : Player)
+				{
+					if(!strcmp(inputtext, ReturnName(i, playerid)))
+					{
+						ShowPlayerDialog(playerid, DIALOG_CHANGENAME, DIALOG_STYLE_INPUT, "Change Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "");	
+						SendErrorMessage(playerid, "That character already exists. Please try again."); 
+						return 1;
+					}
+				}
+				
+				new
+					threadSearch[128];
+				
+				format(playerCharactersName[playerid], 128, "%s", inputtext); 
+				
+				mysql_format(ourConnection, threadSearch, sizeof(threadSearch), "SELECT char_dbid FROM characters WHERE char_name = '%e'", inputtext);
+				mysql_pquery(ourConnection, threadSearch, "Query_ChangeCharacter", "i", playerid);
+			}
+		}
 		case DIALOG_COMPENTATION:
 		{
 			if(response)
@@ -1464,6 +1598,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendClientMessage(playerid, COLOR_ORANGE, "Crime Commands: /extort, /extortions, /drugsdeal, /buydrugs, /buymats, /creategun, /production");
 						SendTipMessage(playerid, "Hold aim into actor/npc to start robbery business.");
 						SendTipMessage(playerid, "Press LMB (punch) into actor/npc to start extortions business.");
+					}
+					case 9:
+					{
+						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Donatur Commands __________|");
+						SendClientMessage(playerid, COLOR_ORANGE, "Donatur Commands: /streetshop");
 					}
 			    }
 			}

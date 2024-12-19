@@ -328,19 +328,17 @@ stock IsPlayerInBusiness(playerid)
 
 stock CountPlayerBusiness(playerid)
 {
-	new
-		count = 0
-	;
-	
-	for(new i = 1; i < MAX_BUSINESS; i++)
-	{
-		if(!BusinessInfo[i][E_BUSINESS_DBID])
-			continue;
-			
-		if(BusinessInfo[i][E_BUSINESS_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID])
-			count++;
-	}
-	return count;
+    new count = 0;
+    
+    for(new i = 1; i < MAX_BUSINESS; i++)
+    {
+        if(!BusinessInfo[i][E_BUSINESS_DBID])
+            continue;
+            
+        if(BusinessInfo[i][E_BUSINESS_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID])
+            count++;
+    }
+    return count;
 }
 
 stock SendBusinessType(playerid, id)

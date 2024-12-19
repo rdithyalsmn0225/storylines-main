@@ -94,6 +94,7 @@ stock ReturnFactionTypeEx(factionid)
 	else if(factionid == FACTION_TYPE_MEDICAL) format(factionName, sizeof(factionName), "Medical");
 	return factionName;
 }
+
 stock ReturnFactionAbbrev(factionid)
 {		
 	 new facAbbrev[90];
@@ -108,6 +109,16 @@ stock ReturnFactionType(playerid)
 		return 0;
 	
 	return FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE];
+}
+
+stock ReturnVIPLevel(playerid)
+{
+	new vipname[90];
+	if(AccountInfo[playerid][E_MASTERS_VIP] == 0) format(vipname, sizeof(vipname), "Regular Player");
+	else if(AccountInfo[playerid][E_MASTERS_VIP] == 1) format(vipname, sizeof(vipname), "Supreme Player");
+	else if(AccountInfo[playerid][E_MASTERS_VIP] == 2) format(vipname, sizeof(vipname), "Legend Player");
+	else if(AccountInfo[playerid][E_MASTERS_VIP] == 3) format(vipname, sizeof(vipname), "Ultimate Player");
+	return vipname;
 }
 
 stock ReturnDate()

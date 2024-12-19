@@ -163,8 +163,10 @@ CMD:buyproperty(playerid, params[])
 		if(PropertyInfo[id][E_PROPERTY_PRICE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 			return SendErrorMessage(playerid, "You can't afford to buy this property.");
 			
-		if(CountPlayerProperties(playerid) > 3)
-			return SendErrorMessage(playerid, "You already own 3 properties."); 
+		new maxProperties = AccountInfo[playerid][E_MASTERS_VIP] ? 2 : 1;
+
+		if(CountPlayerProperties(playerid) >= maxProperties)
+			return SendErrorMessage(playerid, "You can't own more than %d properti(es).", maxProperties);
 			
 		GiveMoney(playerid, -PropertyInfo[id][E_PROPERTY_PRICE]); 	
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);

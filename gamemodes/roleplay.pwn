@@ -143,6 +143,7 @@ main ()  {}
 #include "modules\players\gps.inc"
 #include "modules\players\accessories.inc"
 #include "modules\players\afk.inc"
+#include "modules\players\vip.inc"
 //COMPENSATION
 #include "modules\competation\competation.inc"
 // INDUSTRIAL MODULES
@@ -222,6 +223,7 @@ public OnGameModeInit()
 	// Global timers:
 	SetTimerEx("RandomFire", 5400000, true, "i", 1);
 	SetTimer("OnPlayerUpdateEx", 1000, true); 
+	SetTimer("OnPlayerVIPUpdate", 1000, true); 
 	SetTimer("FunctionPaychecks", 60000, true);
 	SetTimer("OnVehicleFuelUpdate", 60000, true);
 	SetTimer("OnVehicleUpdate", 1000, true);
@@ -5300,6 +5302,27 @@ function:Query_CreateCharacter(playerid)
 	return 1;
 }
 
+function:Query_ChangeCharacter(playerid)
+{
+	if(cache_num_rows())
+	{
+		ShowPlayerDialog(playerid, DIALOG_CHANGENAME, DIALOG_STYLE_INPUT, "Change Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "Close");	
+		SendErrorMessage(playerid, "That character already exists. Please try again."); 
+		return 1; 
+	}
+	else
+	{
+		new query[256];
+		mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET char_name = '%s' WHERE char_dbid = %d", playerCharactersName[playerid], PlayerInfo[playerid][E_CHARACTER_DBID]);
+		mysql_tquery(ourConnection, query);
+
+		SetPlayerName(playerid, playerCharactersName[playerid]);
+		AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 150;
+		SendInfoMessage(playerid, "You has change character name to %s for 150 street credits.", playerCharactersName[playerid]);
+	}
+	return 1;
+}
+
 function:SaveCharacterPos(playerid)
 {
 	new thread[1024]; 
@@ -5339,9 +5362,12 @@ function:SaveCharacter(playerid)
 	if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING || !PlayerInfo[playerid][E_CHARACTER_SPAWNED])
 		return 0;
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE masters SET forum_name = '%e', acc_admin = '%i', active_ip = '%e' WHERE acc_dbid = %i",	
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE masters SET forum_name = '%e', acc_admin = '%i', active_ip = '%e', vip = '%d', vip_time = '%d', street_credits = '%d' WHERE acc_dbid = %i",	
 		AccountInfo[playerid][E_MASTERS_FORUMNAME],
 		AccountInfo[playerid][E_MASTERS_ADMINS],
+		AccountInfo[playerid][E_MASTERS_VIP],
+		AccountInfo[playerid][E_MASTERS_VIPTIMER],
+		AccountInfo[playerid][E_MASTERS_STREETCREDITS],
 		PlayerInfo[playerid][E_CHARACTER_ACTIVEIP],
 		AccountInfo[playerid][E_MASTERS_DBID]);
 	mysql_pquery(ourConnection, query);

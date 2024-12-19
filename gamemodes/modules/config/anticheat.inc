@@ -520,8 +520,8 @@ function:OnAntiCheatUpdate()
 				{
 					if(!ArmourOnAntiCheatUpdate(playerid))
 					{
-						new Float:currentarmor, gstr[128];
-						GetPlayerArmour(playerid, currentarmor);
+						new gstr[128];
+
                         SetPlayerArmour(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 						format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Armour Hack]", ReturnMixedName(playerid));
                         SendClientMessage(playerid, COLOR_YELLOW, gstr);

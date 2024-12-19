@@ -1624,7 +1624,7 @@ CMD:setstats(playerid, params[])
 	{
 		SendUsageMessage(playerid, "/setstats [playerid OR name] [stat code] [value]"); 
 		SendTipMessage(playerid, "1. Faction Rank, 2. Radio, 3. Bank Money, 4. Level,");
-		SendTipMessage(playerid, "5. Paycheck, 6. Jobs, 7. Hoodrats");
+		SendTipMessage(playerid, "5. Paycheck, 6. Jobs, 7. Hoodrats, 8. StreetCredits");
 		return 1;
 	}
 	
@@ -1717,6 +1717,16 @@ CMD:setstats(playerid, params[])
 			
 			PlayerInfo[playerb][E_CHARACTER_FACTION] = 0;
 			PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = 0; 
+		}
+		case 8:
+		{
+			if(value == -1)
+				return SendUsageMessage(playerid, "/setstats [playerid OR name] 7 [value required]");
+				
+			format(str, sizeof(str), "%s set %s's streetcredits: %i (Previously %d)", ReturnMixedName(playerid), ReturnName(playerb), value, ReturnFactionName(playerid));
+			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str);
+			
+			AccountInfo[playerb][E_MASTERS_STREETCREDITS] = value;
 		}
 	}
 	return 1;

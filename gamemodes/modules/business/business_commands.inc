@@ -7,8 +7,10 @@ CMD:buybiz(playerid, params[])
 	
 	if((id = IsPlayerNearBusiness(playerid)) != 0)
 	{
-		if(CountPlayerBusiness(playerid) == 1)
-			return SendErrorMessage(playerid, "You can't own more than 1 business."); 
+		new maxBusinesses = AccountInfo[playerid][E_MASTERS_VIP] ? 2 : 1;
+
+		if(CountPlayerBusiness(playerid) >= maxBusinesses)
+			return SendErrorMessage(playerid, "You can't own more than %d business(es).", maxBusinesses);
 			
 		if(BusinessInfo[id][E_BUSINESS_OWNERDBID])
 			return SendErrorMessage(playerid, "This business isn't for sale."); 

@@ -205,8 +205,7 @@ stock IsPlayerNearProperty(playerid)
 stock CountPlayerProperties(playerid)
 {
 	new
-		count = 0
-	;
+		count = 0;
 
 	for(new i = 1; i < MAX_PROPERTY; i++)
 	{
