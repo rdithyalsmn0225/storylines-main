@@ -1773,7 +1773,7 @@ CreateVehicleTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, VehicleSelection[18][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, VehicleSelection[18][playerid], 1);
 
-	fuelbar[playerid] = CreatePlayerProgressBar(playerid, 577.000000, 418.000000, 49.000000, 4.000000, 9109759, 1000.0, 0);
+	fuelbar[playerid] = CreatePlayerProgressBar(playerid, 577.000000, 418.000000, 49.000000, 4.000000, 9109759, 100.0, 0);
 	
 	dmgbar[playerid] = CreatePlayerProgressBar(playerid, 577.000000, 404.000000, 49.000000, 4.000000, 9109759, 1000.0, 0);
 }

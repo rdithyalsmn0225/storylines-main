@@ -4766,7 +4766,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						
 						format(dstr, sizeof(dstr), "Models:\t%s\n", ReturnVehicleName(vehicleid));
 						strcat(str, dstr);
-						format(dstr, sizeof(dstr), "Price:\t{FFFFFF}{33AA33}$%s{ffffff}\n", FormatMoney(g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_PRICE]));
+						format(dstr, sizeof(dstr), "Price:\t{FFFFFF}{33AA33}$%s{ffffff}\n", FormatMoney(floatround(g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_PRICE] * 100, floatround_round)));
 						strcat(str, dstr);
 						format(dstr, sizeof(dstr), "Max Speed:\t{FFFFFF}%.1f\n", GetVehicleTopSpeed(DealershipPlayerCar[playerid])); 
 						strcat(str, dstr); 

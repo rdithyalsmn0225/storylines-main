@@ -532,8 +532,8 @@ stock ShowCharacterStats(playerid, playerb)
 		duplicate_key[20],
 		business_key[20] = "None",
 		gender[20],
-		str[1024],
-		str1[128];
+		str[2040],
+		str1[256];
 	
 	if(!PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED])
 		vehicle_key = "None";
