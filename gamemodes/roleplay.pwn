@@ -3445,6 +3445,70 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			}
 		}
 	}
+	// Refuel:
+	if (playertextid == fuel[15][playerid])
+    {
+		new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+		GetVehiclePos(vehicleid, vx, vy, vz);
+		GetVehicleModelInfo(GetVehicleModel(vehicleid), VEHICLE_MODEL_INFO_PETROLCAP, vx, vy, vz); 
+
+		if(playerRefillingVehicle[playerid])
+			return SendErrorMessage(playerid, "You cannot use this right now");
+
+		SendInfoMessage(playerid, "You're starting to refill the vehicle...");
+		SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
+			
+		VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_3DTEXT, vx, vy, vz, 25.0, 0, 1);
+		Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
+
+		VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 1;
+			
+		playerRefillingVehicle[playerid] = true; 
+		TogglePlayerControllable(playerid, false);
+		playerRefillTimer[playerid] = SetTimerEx("OnGasStationRefill", 2000, true, "iiiffff", playerid, vehicleid, 3000, 100.0, vx, vy, vz);
+	}
+	if (playertextid == fuel[16][playerid])
+    {
+		new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+		GetVehiclePos(vehicleid, vx, vy, vz);
+		GetVehicleModelInfo(GetVehicleModel(vehicleid), VEHICLE_MODEL_INFO_PETROLCAP, vx, vy, vz); 
+
+		if(playerRefillingVehicle[playerid])
+			return SendErrorMessage(playerid, "You cannot use this right now");
+
+		SendInfoMessage(playerid, "You're starting to refill the vehicle.");
+		SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
+			
+		VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_3DTEXT, vx, vy, vz, 25.0, 0, 1);
+		Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
+
+		VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 1;
+			
+		playerRefillingVehicle[playerid] = true; 
+		TogglePlayerControllable(playerid, false);
+		playerRefillTimer[playerid] = SetTimerEx("OnGasStationRefill", 2000, true, "iiiffff", playerid, vehicleid, 1500, 50.0, vx, vy, vz);
+	}
+	if (playertextid == fuel[17][playerid])
+    {
+		new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+		GetVehiclePos(vehicleid, vx, vy, vz);
+		GetVehicleModelInfo(GetVehicleModel(vehicleid), VEHICLE_MODEL_INFO_PETROLCAP, vx, vy, vz); 
+
+		if(playerRefillingVehicle[playerid])
+			return SendErrorMessage(playerid, "You cannot use this right now");
+
+		SendInfoMessage(playerid, "You're starting to refill the vehicle.");
+		SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
+			
+		VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_3DTEXT, vx, vy, vz, 25.0, 0, 1);
+		Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
+
+		VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 1;
+			
+		playerRefillingVehicle[playerid] = true; 
+		TogglePlayerControllable(playerid, false);
+		playerRefillTimer[playerid] = SetTimerEx("OnGasStationRefill", 2000, true, "iiiffff", playerid, vehicleid, 1000, 25.0, vx, vy, vz);
+	}
 	// Tutorial:
 	if (playertextid == tutorialclick[playerid])
     {

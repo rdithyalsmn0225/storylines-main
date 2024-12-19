@@ -1867,7 +1867,7 @@ CMD:setcar(playerid, params[])
 		if(value2 > 100.0 || value2 < 0.0)
 			return SendErrorMessage(playerid, "You specified an invalid color. (0-255)");
 			
-		format(str, sizeof(str), "%s set vehicle ID %i's fuel to %i. (Previously %i)", ReturnMixedName(playerid), vehicleid, value2, VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
+		format(str, sizeof(str), "%s set vehicle ID %f's fuel to %f. (Previously %f)", ReturnMixedName(playerid), vehicleid, value2, VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
 		SendAdminMessage(3, str);
 		
 		VehicleInfo[vehicleid][E_VEHICLE_FUEL] = value2;

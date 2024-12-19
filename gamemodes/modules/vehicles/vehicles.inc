@@ -298,22 +298,11 @@ function:OnGascanRefill(playerid, vehicleid, x, y, z)
 	return 1;
 }
 
-function:OnGasStationRefill(playerid, vehicleid, x, y, z)
+function:OnGasStationRefill(playerid, vehicleid, price, Float:fuels, x, y, z)
 {
 	new 
 		text[128];
 	
-	if(!IsPlayerInRangeOfPoint(playerid, 2.0, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]))
-	{
-		SendErrorMessage(playerid, "You moved and stopped refilling the vehicle."); 
-		
-		KillTimer(playerRefillTimer[playerid]);
-		playerRefillingVehicle[playerid] = false; 
-		
-		Delete3DTextLabel(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY]); 
-		VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 0; 
-		return 1;
-	}
 	VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] ++;
 	
 	switch(VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT])
@@ -332,8 +321,14 @@ function:OnGasStationRefill(playerid, vehicleid, x, y, z)
 			Delete3DTextLabel(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY]); 
 			VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 0; 
 			
-			VehicleInfo[vehicleid][E_VEHICLE_FUEL] += 50.0;
-			GiveMoney(playerid, -50);
+			VehicleInfo[vehicleid][E_VEHICLE_FUEL] += fuels;
+			GiveMoney(playerid, -price);
+
+			for(new i; i < 23; i++)
+			{
+				PlayerTextDrawHide(playerid, fuel[i][playerid]);
+			}
+			TogglePlayerControllable(playerid, true);
 			
 			SendVehicleMessage(playerid, "[Vehicle] {cdcdcd}You refilled the %s to 50 percent fuel for $50.00.", ReturnVehicleName(vehicleid)); 
 			return 1;

@@ -713,19 +713,15 @@ CMD:refuel(playerid, params[])
 	if(!IsPlayerInRangeOfPoint(playerid, 3.0, vx, vy, vz) && !IsPlayerNearGasStation(playerid))
 		return SendErrorMessage(playerid, "You aren't near the vehicles gas cap or gas station.");
 			
-	if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] > 50)
+	if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] > 90)
 		return SendErrorMessage(playerid, "This vehicle doesn't need fuel."); 
 			
-	SendInfoMessage(playerid, "You're starting to refill the vehicle.");
-	SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
-		
-	VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_3DTEXT, vx, vy, vz, 25.0, 0, 1);
-	Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
-
-	VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 1;
-		
-	playerRefillingVehicle[playerid] = true; 
-	playerRefillTimer[playerid] = SetTimerEx("OnGasStationRefill", 2000, true, "iifff", playerid, vehicleid, vx, vy, vz);
+	for(new i; i < 23; i++)
+	{
+		PlayerTextDrawShow(playerid, fuel[i][playerid]);
+	}
+	TogglePlayerControllable(playerid, false);
+	SelectTextDraw(playerid, COLOR_YELLOW);
 	return 1;
 }
 
