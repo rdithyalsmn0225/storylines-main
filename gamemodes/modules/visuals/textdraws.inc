@@ -1,6 +1,7 @@
 //Textdraws
 new Text:Times;
 new PlayerText:servername[MAX_PLAYERS];
+new PlayerText:servername2[MAX_PLAYERS];
 new PlayerText:LoginScreen[4][MAX_PLAYERS];
 new PlayerText:HeaderTD[2][MAX_PLAYERS];
 new PlayerText:Street[2][MAX_PLAYERS];
@@ -33,7 +34,6 @@ new PlayerText:ALPR[4][MAX_PLAYERS];
 new PlayerText:FoodOrder[10][MAX_PLAYERS];
 
 new PlayerText:WeaponType[MAX_PLAYERS];
-new PlayerText:WeaponAmmo[MAX_PLAYERS];
 new PlayerText:barinfotd[4][MAX_PLAYERS];
 new PlayerText:GameBar[3][MAX_PLAYERS];
 
@@ -56,13 +56,13 @@ new Text:UpdateIn;
 stock CreateTextdraws(playerid)
 {
 
-	UpdateIn = TextDrawCreate(636.000000, 3.000000, "Maintenance");
+	UpdateIn = TextDrawCreate(321.000000, 436.000000, "Maintenance");
 	TextDrawFont(UpdateIn, 1);
 	TextDrawLetterSize(UpdateIn, 0.212491, 1.199998);
-	TextDrawTextSize(UpdateIn, 400.000000, 93.500000);
+	TextDrawTextSize(UpdateIn, 400.000000, 259.000000);
 	TextDrawSetOutline(UpdateIn, 1);
 	TextDrawSetShadow(UpdateIn, 0);
-	TextDrawAlignment(UpdateIn, 3);
+	TextDrawAlignment(UpdateIn, 2);
 	TextDrawColor(UpdateIn, -1);
 	TextDrawBackgroundColor(UpdateIn, 255);
 	TextDrawBoxColor(UpdateIn, 50);
@@ -70,9 +70,10 @@ stock CreateTextdraws(playerid)
 	TextDrawSetProportional(UpdateIn, 1);
 	TextDrawSetSelectable(UpdateIn, 0);
 
-	servername[playerid] = CreatePlayerTextDraw(playerid, 320.000000, 436.000000, "GTA Storylines - ~y~"SCRIPT_REV"");
-	PlayerTextDrawFont(playerid, servername[playerid], 1);
-	PlayerTextDrawLetterSize(playerid, servername[playerid], 0.179159, 0.849995);
+
+	servername[playerid] = CreatePlayerTextDraw(playerid, 614.000000, 2.000000, "GTA");
+	PlayerTextDrawFont(playerid, servername[playerid], 3);
+	PlayerTextDrawLetterSize(playerid, servername[playerid], 0.499992, 2.099994);
 	PlayerTextDrawTextSize(playerid, servername[playerid], 502.500000, 306.500000);
 	PlayerTextDrawSetOutline(playerid, servername[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, servername[playerid], 0);
@@ -83,6 +84,20 @@ stock CreateTextdraws(playerid)
 	PlayerTextDrawUseBox(playerid, servername[playerid], 0);
 	PlayerTextDrawSetProportional(playerid, servername[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, servername[playerid], 0);
+
+	servername2[playerid] = CreatePlayerTextDraw(playerid, 612.000000, 12.000000, "Storylines");
+	PlayerTextDrawFont(playerid, servername2[playerid], 0);
+	PlayerTextDrawLetterSize(playerid, servername2[playerid], 0.379158, 1.849994);
+	PlayerTextDrawTextSize(playerid, servername2[playerid], 502.500000, 306.500000);
+	PlayerTextDrawSetOutline(playerid, servername2[playerid], 1);
+	PlayerTextDrawSetShadow(playerid, servername2[playerid], 0);
+	PlayerTextDrawAlignment(playerid, servername2[playerid], 2);
+	PlayerTextDrawColor(playerid, servername2[playerid], 1097458175);
+	PlayerTextDrawBackgroundColor(playerid, servername2[playerid], 255);
+	PlayerTextDrawBoxColor(playerid, servername2[playerid], 50);
+	PlayerTextDrawUseBox(playerid, servername2[playerid], 0);
+	PlayerTextDrawSetProportional(playerid, servername2[playerid], 1);
+	PlayerTextDrawSetSelectable(playerid, servername2[playerid], 0);
 
 	Fades[playerid] = CreatePlayerTextDraw(playerid, -20.000000, 0.000000, "_");
 	PlayerTextDrawUseBox(playerid, Fades[playerid], 1);
@@ -152,7 +167,7 @@ stock CreateTextdraws(playerid)
 
 CreateHETextDraws(playerid)
 {
-	HE[1][playerid] = CreatePlayerTextDraw(playerid, 586.000000, 435.000000, "_");
+	HE[1][playerid] = CreatePlayerTextDraw(playerid, 574.000000, 435.000000, "_");
 	PlayerTextDrawFont(playerid, HE[1][playerid], 2);
 	PlayerTextDrawLetterSize(playerid, HE[1][playerid], 0.145833, 1.149999);
 	PlayerTextDrawTextSize(playerid, HE[1][playerid], 638.000000, 17.000000);
@@ -757,33 +772,19 @@ CreateHUDTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, Street[1][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, Street[1][playerid], 0);
 
-	WeaponType[playerid] = CreatePlayerTextDraw(playerid, 520.000000, 65.000000, "Desert Eagle");
-	PlayerTextDrawFont(playerid, WeaponType[playerid], 3);
-	PlayerTextDrawLetterSize(playerid, WeaponType[playerid], 0.183327, 1.249993);
-	PlayerTextDrawTextSize(playerid, WeaponType[playerid], 400.000000, 80.500000);
+	WeaponType[playerid] = CreatePlayerTextDraw(playerid, 499.000000, 111.000000, "Desert Eagle - 100 Regular");
+	PlayerTextDrawFont(playerid, WeaponType[playerid], 1);
+	PlayerTextDrawLetterSize(playerid, WeaponType[playerid], 0.170825, 0.899993);
+	PlayerTextDrawTextSize(playerid, WeaponType[playerid], 606.000000, 47.500000);
 	PlayerTextDrawSetOutline(playerid, WeaponType[playerid], 1);
 	PlayerTextDrawSetShadow(playerid, WeaponType[playerid], 0);
-	PlayerTextDrawAlignment(playerid, WeaponType[playerid], 2);
-	PlayerTextDrawColor(playerid, WeaponType[playerid], -1379670017);
+	PlayerTextDrawAlignment(playerid, WeaponType[playerid], 1);
+	PlayerTextDrawColor(playerid, WeaponType[playerid], -1);
 	PlayerTextDrawBackgroundColor(playerid, WeaponType[playerid], 255);
-	PlayerTextDrawBoxColor(playerid, WeaponType[playerid], 50);
-	PlayerTextDrawUseBox(playerid, WeaponType[playerid], 0);
+	PlayerTextDrawBoxColor(playerid, WeaponType[playerid], 230);
+	PlayerTextDrawUseBox(playerid, WeaponType[playerid], 1);
 	PlayerTextDrawSetProportional(playerid, WeaponType[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, WeaponType[playerid], 0);
-
-	WeaponAmmo[playerid] = CreatePlayerTextDraw(playerid, 520.000000, 58.000000, "100 Regular");
-	PlayerTextDrawFont(playerid, WeaponAmmo[playerid], 3);
-	PlayerTextDrawLetterSize(playerid, WeaponAmmo[playerid], 0.204159, 0.999993);
-	PlayerTextDrawTextSize(playerid, WeaponAmmo[playerid], 400.000000, 47.000000);
-	PlayerTextDrawSetOutline(playerid, WeaponAmmo[playerid], 1);
-	PlayerTextDrawSetShadow(playerid, WeaponAmmo[playerid], 0);
-	PlayerTextDrawAlignment(playerid, WeaponAmmo[playerid], 2);
-	PlayerTextDrawColor(playerid, WeaponAmmo[playerid], -1379670017);
-	PlayerTextDrawBackgroundColor(playerid, WeaponAmmo[playerid], 255);
-	PlayerTextDrawBoxColor(playerid, WeaponAmmo[playerid], 50);
-	PlayerTextDrawUseBox(playerid, WeaponAmmo[playerid], 0);
-	PlayerTextDrawSetProportional(playerid, WeaponAmmo[playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, WeaponAmmo[playerid], 0);
 }
 
 CreateBarInfoTextDraws(playerid)

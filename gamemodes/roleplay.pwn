@@ -2024,15 +2024,14 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			if(Inventory_Count(playerid, "Regular Ammo"))
 			{
 				Inventory_Remove(playerid, "Regular Ammo", 1);
-				format(tstr, sizeof(tstr), "%d Regular", Inventory_Count(playerid, "Regular Ammo"));
-				PlayerTextDrawSetString(playerid, WeaponAmmo[playerid], tstr);
-				PlayerTextDrawShow(playerid, WeaponAmmo[playerid]);
+				format(tstr, sizeof(tstr), "%s - %d Regular", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "Regular Ammo"));
+				PlayerTextDrawSetString(playerid, WeaponType[playerid], tstr);
+				PlayerTextDrawShow(playerid, WeaponType[playerid]);
 			}
 			else
 			{
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
 				ResetPlayerWeapons(playerid);
-				PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
 			}
 		}
 		if(PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_SURPLUS)
@@ -2041,15 +2040,14 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			if(Inventory_Count(playerid, "Surplus Ammo"))
 			{
 				Inventory_Remove(playerid, "Surplus Ammo", 1);
-				format(tstr, sizeof(tstr), "%d Surplus", Inventory_Count(playerid, "Surplus Ammo"));
-				PlayerTextDrawSetString(playerid, WeaponAmmo[playerid], tstr);
-				PlayerTextDrawShow(playerid, WeaponAmmo[playerid]);
+				format(tstr, sizeof(tstr), "%s - %d Surplus", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "Surplus Ammo"));
+				PlayerTextDrawSetString(playerid, WeaponType[playerid], tstr);
+				PlayerTextDrawShow(playerid, WeaponType[playerid]);
 			}
 			else
 			{
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
 				ResetPlayerWeapons(playerid);
-				PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
 			}
 		}
 		if(PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_JHP)
@@ -2058,15 +2056,14 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			if(Inventory_Count(playerid, "JHP Ammo"))
 			{
 				Inventory_Remove(playerid, "JHP Ammo", 1);
-				format(tstr, sizeof(tstr), "%d JHP", Inventory_Count(playerid, "JHP Ammo"));
-				PlayerTextDrawSetString(playerid, WeaponAmmo[playerid], tstr);
-				PlayerTextDrawShow(playerid, WeaponAmmo[playerid]);
+				format(tstr, sizeof(tstr), "%s - %d Jacket Hollow Point", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "JHP Ammo"));
+				PlayerTextDrawSetString(playerid, WeaponType[playerid], tstr);
+				PlayerTextDrawShow(playerid, WeaponType[playerid]);
 			}
 			else
 			{
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
 				ResetPlayerWeapons(playerid);
-				PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
 			}
 		}
 		if(PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] == AMMO_TYPE_RUBBER)
@@ -2075,15 +2072,14 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			if(Inventory_Count(playerid, "Rubber Ammo"))
 			{
 				Inventory_Remove(playerid, "Rubber Ammo", 1);
-				format(tstr, sizeof(tstr), "%d Rubber", Inventory_Count(playerid, "Rubber Ammo"));
-				PlayerTextDrawSetString(playerid, WeaponAmmo[playerid], tstr);
-				PlayerTextDrawShow(playerid, WeaponAmmo[playerid]);
+				format(tstr, sizeof(tstr), "%s - %d Rubber", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "JHP Ammo"));
+				PlayerTextDrawSetString(playerid, WeaponType[playerid], tstr);
+				PlayerTextDrawShow(playerid, WeaponType[playerid]);
 			}
 			else
 			{
 				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
 				ResetPlayerWeapons(playerid);
-				PlayerTextDrawHide(playerid, WeaponAmmo[playerid]);
 			}
 		}
 	}
@@ -3235,9 +3231,10 @@ public OnPlayerSpawn(playerid)
 		ShowTutorial(playerid);
 	}
 
-	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 100);
+	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 300);
 	Streamer_Update(playerid, STREAMER_TYPE_OBJECT);
 	PlayerTextDrawShow(playerid, servername[playerid]);
+	PlayerTextDrawShow(playerid, servername2[playerid]);
 	ShowMoneyFormat(playerid);
 	return 1;
 }

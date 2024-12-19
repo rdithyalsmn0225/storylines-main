@@ -1626,6 +1626,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							ShowPlayerNeeds(playerid);
 							PlayerTextDrawShow(playerid, servername[playerid]);
+							PlayerTextDrawShow(playerid, servername2[playerid]);
 							ShowMoneyFormat(playerid);
 							TextDrawShowForPlayer(playerid, Times);
 							PlayerInfo[playerid][E_CHARACTER_TOGHUD] = false;
@@ -1636,6 +1637,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							HideClock(playerid);
 							HidePlayerNeeds(playerid);
 							PlayerTextDrawHide(playerid, servername[playerid]);
+							PlayerTextDrawHide(playerid, servername2[playerid]);
 							PlayerTextDrawHide(playerid, Street[0][playerid]);
 							PlayerTextDrawHide(playerid, Street[1][playerid]);
 							HideVehicleSpeedometer(playerid);
