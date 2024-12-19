@@ -5365,10 +5365,10 @@ function:SaveCharacter(playerid)
 	mysql_format(ourConnection, query, sizeof(query), "UPDATE masters SET forum_name = '%e', acc_admin = '%i', active_ip = '%e', vip = '%d', vip_time = '%d', street_credits = '%d' WHERE acc_dbid = %i",	
 		AccountInfo[playerid][E_MASTERS_FORUMNAME],
 		AccountInfo[playerid][E_MASTERS_ADMINS],
+		PlayerInfo[playerid][E_CHARACTER_ACTIVEIP],
 		AccountInfo[playerid][E_MASTERS_VIP],
 		AccountInfo[playerid][E_MASTERS_VIPTIMER],
 		AccountInfo[playerid][E_MASTERS_STREETCREDITS],
-		PlayerInfo[playerid][E_CHARACTER_ACTIVEIP],
 		AccountInfo[playerid][E_MASTERS_DBID]);
 	mysql_pquery(ourConnection, query);
 	

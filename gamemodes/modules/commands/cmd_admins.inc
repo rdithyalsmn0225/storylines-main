@@ -1723,7 +1723,7 @@ CMD:setstats(playerid, params[])
 			if(value == -1)
 				return SendUsageMessage(playerid, "/setstats [playerid OR name] 7 [value required]");
 				
-			format(str, sizeof(str), "%s set %s's streetcredits: %i (Previously %d)", ReturnMixedName(playerid), ReturnName(playerb), value, ReturnFactionName(playerid));
+			format(str, sizeof(str), "%s set %s's streetcredits: %i (Previously %d)", ReturnMixedName(playerid), ReturnName(playerb), value, AccountInfo[playerb][E_MASTERS_STREETCREDITS]);
 			SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 			
 			AccountInfo[playerb][E_MASTERS_STREETCREDITS] = value;
