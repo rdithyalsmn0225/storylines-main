@@ -161,11 +161,13 @@ ResetVarInventory(playerid)
 	PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
 	PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 0;
 	PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NONE;
-	RemovePlayerAttachedObject(playerid, 9);
-	RemovePlayerAttachedObject(playerid, 8);
+	RemovePlayerAttachedObject(ATTACH_HAND, 9);
+	RemovePlayerAttachedObject(ATTACH_HAND2, 8);
 	RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+	RemovePlayerAttachedObject(playerid, ATTACH_WEAPONS);
+	RemovePlayerAttachedObject(playerid, ATTACH_WEAPONS2);
 	ResetPlayerWeapons(playerid);
-	HidePlayerPhone(playerid);
+	
 	CancelSelectTextDraw(playerid);
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 	SendInfoMessage(playerid, "You has unequip your items in your hand.");

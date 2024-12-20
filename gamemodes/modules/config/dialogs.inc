@@ -2675,32 +2675,39 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				GetPlayerPos(playerid, x, y, z);
 
-				PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(PlayerInfo[playerid][E_CHARACTER_OBJECTID], x, y, z, 0.0, 0.0, 0.0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid)); 
+				PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(PlayerInfo[playerid][E_CHARACTER_OBJECTID], x+2, y, z, 0.0, 0.0, 0.0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid)); 
 				EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]); 
 				PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 5;
 			}
+			else
+			{
+				new
+					Float:x,
+					Float:y,
+					Float:z,
+					Float:angle;
 
-			new
-				Float:x,
-				Float:y,
-				Float:z,
-				Float:angle;
+				GetPlayerPos(playerid, x, y, z);
+				GetPlayerFacingAngle(playerid, angle);
 
-			GetPlayerPos(playerid, x, y, z);
-			GetPlayerFacingAngle(playerid, angle);
+				DropItem(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY], x, y, z - 0.9, 0.0, 0.0, 0.0, GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE]);
+				Inventory_Remove(playerid, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY]);
+				ApplyAnimation(playerid, "GRENADE", "WEAPON_throwu", 4.1, 0, 0, 0, 0, 0, 1);
 
-			DropItem(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY], x, y, z - 0.9, 0.0, 0.0, 0.0, GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE]);
-			Inventory_Remove(playerid, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY]);
-			ApplyAnimation(playerid, "GRENADE", "WEAPON_throwu", 4.1, 0, 0, 0, 0, 0, 1);
+				PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
+				PlayerInfo[playerid][E_CHARACTER_OBJECTID] = 0;
+				PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = 0;
+				PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY] = 0;
+				PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
+				format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
+				DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
+				SendInfoMessage(playerid, "You're moved dropped items."); 
 
-			PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
-			PlayerInfo[playerid][E_CHARACTER_OBJECTID] = 0;
-			PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = 0;
-			PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY] = 0;
-			PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
-			format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
-			DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
-			SendInfoMessage(playerid, "You're moved dropped items."); 
+				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+				{
+					ResetVarInventory(playerid);
+				}
+			}
 		}
 		case DIALOG_VSTORAGE:
 		{
@@ -3539,7 +3546,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(Inventory_Count(playerid, "Sprunk") >= 5)	
 							return SendErrorMessage(playerid, "You may only hold up to 5 sprunk.");
 					
-						if(2 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+						if(200 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a sprunk.");
 					
 						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a sprunk for $2.");
@@ -3547,6 +3554,22 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 200; 
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Sprunk", 2601, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 1:
+					{
+						if(Inventory_Count(playerid, "Pisswasher") >= 5)	
+							return SendErrorMessage(playerid, "You may only hold up to 5 sprunk.");
+					
+						if(500 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a sprunk.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a sprunk for $2.");
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 500; 
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Pisswasher", 1484, 1);
 
 						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 					}
@@ -3593,6 +3616,54 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 					}
+					case 2:
+					{
+						if(Inventory_Count(playerid, "Hammer"))
+							return SendErrorMessage(playerid, "You already own a Hammer.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a Hammer.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Hammer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Hammer", 18635, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 3:
+					{
+						if(Inventory_Count(playerid, "Wrench"))
+							return SendErrorMessage(playerid, "You already own a Wrench.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a Wrench.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Wrench for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Wrench", 18633, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 4:
+					{
+						if(Inventory_Count(playerid, "Broom"))
+							return SendErrorMessage(playerid, "You already own a Broom.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a Broom.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Broom for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Broom", 19622, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
 				}
 			}
 		}
@@ -3632,46 +3703,46 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0:
 					{
-						if(Inventory_Count(playerid, "Beer Bottle") >= 5)
-							return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
+						if(Inventory_Count(playerid, "Pisswasher") >= 5)
+							return SendErrorMessage(playerid, "You may only hold up to 5 Pisswasher.");
 					
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-							return SendErrorMessage(playerid, "You can't afford a beer.");
+							return SendErrorMessage(playerid, "You can't afford a Pisswasher.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a budweiser beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 						GiveMoney(playerid, BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-						Inventory_Add(playerid, "Beer Bottle", 1486, 1);
+						Inventory_Add(playerid, "Pisswasher", 1486, 1);
 					}
 					case 1:
 					{
-						if(Inventory_Count(playerid, "Beer Bottle") >= 5)
-							return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
+						if(Inventory_Count(playerid, "Pisswasher") >= 5)
+							return SendErrorMessage(playerid, "You may only hold up to 5 Pisswasher.");
 					
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-							return SendErrorMessage(playerid, "You can't afford a beer.");
+							return SendErrorMessage(playerid, "You can't afford a Pisswasher.");
 
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a corona extra beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 						GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-						Inventory_Add(playerid, "Beer Bottle", 1486, 1);
+						Inventory_Add(playerid, "Pisswasher", 1486, 1);
 					}
 					case 2:
 					{
-						if(Inventory_Count(playerid, "Beer Bottle") >= 5)
-							return SendErrorMessage(playerid, "You may only hold up to 5 beer.");
+						if(Inventory_Count(playerid, "Pisswasher") >= 5)
+							return SendErrorMessage(playerid, "You may only hold up to 5 Pisswasher.");
 					
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-							return SendErrorMessage(playerid, "You can't afford a beer.");
+							return SendErrorMessage(playerid, "You can't afford a Pisswasher.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a peroni beer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 						GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-						Inventory_Add(playerid, "Beer Bottle", 1486, 1);
+						Inventory_Add(playerid, "Pisswasher", 1486, 1);
 					}
 				}
 			}
@@ -3909,13 +3980,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 						{
-							if(!Inventory_Count(playerid, "Beer Bottle"))
+							if(!Inventory_Count(playerid, "Pisswasher"))
 								return SendErrorMessage(playerid, "You don't have any beer in inventory.");
 
 							if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DRINK_BEER)
 								return SendErrorMessage(playerid, "You are already drinking a beer.");
 
-							Inventory_Remove(playerid, "Beer Bottle", 1);
+							Inventory_Remove(playerid, "Pisswasher", 1);
 
 							SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DRINK_BEER);
 

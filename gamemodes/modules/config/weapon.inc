@@ -40,13 +40,19 @@ stock GetWeaponType(playerid, weaponid)
 	}
 	else if(GetPlayerWeapon(weaponid) == 4)
  	{ 
- 		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Beer Bottle");
+ 		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Pisswasher");
  		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)format(astring, sizeof(astring), "Marcos Knife");
  		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)format(astring, sizeof(astring), "Knife");
 	}
 	else if(GetPlayerWeapon(weaponid) == 1)
  	{ 
  		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Glove");
+	}
+	else if(GetPlayerWeapon(weaponid) == 11)
+ 	{ 
+ 		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Hammer");
+		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Wrench");
+		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Broom");
 	}
 	else ReturnWeaponName(weaponid);
 	return astring;
@@ -73,10 +79,13 @@ stock RemovePlayerWeapon(playerid, weaponid)
 ResetPlayerWeaponEx(playerid)
 {
 	Inventory_Set(playerid, "Extinguisher", 366, 0);
-	Inventory_Set(playerid, "Beer Bottle", 2040, 0);
+	Inventory_Set(playerid, "Pisswasher", 2040, 0);
 	Inventory_Set(playerid, "Marcos Knife", 2040, 0);
 	Inventory_Set(playerid, "Knife", 2040, 0);
 	Inventory_Set(playerid, "Glove", 19556, 0);
+	Inventory_Set(playerid, "Hammer", 18635, 0);
+	Inventory_Set(playerid, "Wrench", 18633, 0);
+	Inventory_Set(playerid, "Broom", 19622, 0);
 	Inventory_Set(playerid, "Spike Bat", 2040, 0);
 	Inventory_Set(playerid, "Cutscene Bat", 2040, 0);
 	Inventory_Set(playerid, "Baseball Bat", 2040, 0);

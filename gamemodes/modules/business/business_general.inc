@@ -67,10 +67,10 @@ stock ShowGeneralList(playerid, type)
 			if(IsPlayerInBusiness(playerid))
 			{	
 				format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-				ShowPlayerDialog(playerid, DIALOG_GENERALSTORE5, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nSprunk\t$2", "Select", "Cancel"); 
+				ShowPlayerDialog(playerid, DIALOG_GENERALSTORE5, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nSprunk\t$2.00\nPisswasher\t$5.00", "Select", "Cancel"); 
 			}
 		}
-		case 6: //Sprunk
+		case 6: //Knife
 		{
 			if(IsPlayerInBusiness(playerid))
 			{	
@@ -78,17 +78,20 @@ stock ShowGeneralList(playerid, type)
 				format(str2, sizeof(str2), "Product\tPrice\n");
 				format(str2, sizeof(str2), "%sKnife\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 				format(str2, sizeof(str2), "%sMarcos Knife\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+				format(str2, sizeof(str2), "%sHammer\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+				format(str2, sizeof(str2), "%sWrench\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+				format(str2, sizeof(str2), "%sBroom\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 				ShowPlayerDialog(playerid, DIALOG_GENERALSTORE6, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel"); 
 			}
 		}
-		case 7: //Sprunk
+		case 7: //Glove
 		{
 			if(IsPlayerInBusiness(playerid))
 			{	
 				format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 				format(str2, sizeof(str2), "Product\tPrice\n");
 				format(str2, sizeof(str2), "%sGlove\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
-				ShowPlayerDialog(playerid, DIALOG_GENERALSTORE6, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel"); 
+				ShowPlayerDialog(playerid, DIALOG_GENERALSTORE7, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel"); 
 			}
 		}
 	}

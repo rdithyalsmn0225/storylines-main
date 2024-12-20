@@ -5,9 +5,9 @@ stock ShowBusinessShop(playerid, businessid)
 	{
 		format(str, sizeof(str), "%s:", BusinessInfo[businessid][E_BUSINESS_NAME]);
 		format(str2, sizeof(str2), "Product\tPrice\n");
-		format(str2, sizeof(str2), "%sBudWeiser (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
-		format(str2, sizeof(str2), "%sCorona Extra (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
-		format(str2, sizeof(str2), "%sPeroni (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+		format(str2, sizeof(str2), "%sPisswasher (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+		format(str2, sizeof(str2), "%sPisswasher Extra (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+		format(str2, sizeof(str2), "%sPisswasher Large (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 		ShowPlayerDialog(playerid, DIALOG_BARSTORE, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_CLOTHES)
@@ -22,9 +22,9 @@ stock ShowBusinessShop(playerid, businessid)
 	{
 		format(str, sizeof(str), "%s:", BusinessInfo[businessid][E_BUSINESS_NAME]);
 		format(str2, sizeof(str2), "Product\tPrice\n");
-		format(str2, sizeof(str2), "%sBudWeiser (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
-		format(str2, sizeof(str2), "%sCorona Extra (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
-		format(str2, sizeof(str2), "%sPeroni (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+		format(str2, sizeof(str2), "%sPisswasher (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+		format(str2, sizeof(str2), "%sPisswasher Extra (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+		format(str2, sizeof(str2), "%sPisswasher Large (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 		ShowPlayerDialog(playerid, DIALOG_BARSTORE, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_DINNER)

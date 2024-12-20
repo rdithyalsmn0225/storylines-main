@@ -909,6 +909,21 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				amount = 5.0;
 			}
 		}
+		case 11:
+		{
+			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 1)
+			{
+				amount = 5.0;
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 2)
+			{
+				amount = 5.5;
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 3)
+			{
+				amount = 6.0;
+			}
+		}
 		//Colt
 		case 22:
 		{
@@ -2267,6 +2282,22 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 				amount = 5.0;
 			}
 		}
+		//DILDO AOWKKWKWKWK
+		case 11:
+		{
+			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)
+			{
+				amount = 5.0;
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)
+			{
+				amount = 5.5;
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)
+			{
+				amount = 6.0;
+			}
+		}
 		//Colt
 		case 22:
 		{
@@ -3304,6 +3335,34 @@ public OnPlayerUpdate(playerid)
 
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	{
+		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+		{
+			if(Inventory_Count(playerid, "Fabric Cargo") > 0 || Inventory_Count(playerid, "Steel Cargo") > 0 || Inventory_Count(playerid, "Woods Cargo") > 0 
+			|| Inventory_Count(playerid, "Foods Cargo") > 0 || Inventory_Count(playerid, "Clothes Cargo") > 0 || Inventory_Count(playerid, "Appliances Cargo") > 0
+			|| Inventory_Count(playerid, "Fish Cargo") > 0)
+			{
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CRATES;
+				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.293999, 0.497999, -0.006000, -99.500007, 90.300033, 99.600013, 0.620999, 0.673000, 0.648999);
+				
+			}
+			else if(Inventory_Count(playerid, "Woods") > 0)
+			{
+				
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
+				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 1, 0.000000, 0.465000, 0.000000, 0.000000, 89.699958, 0.000000, 0.348999, 0.340999, 0.444999);
+			}
+			else
+			{
+				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES || PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == WOODS)
+				{
+					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
+					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+					RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+				}
+			}
+		}
 		if(PlayerJump[playerid][JumpPressed])
 		{
 			if (gettime() - PlayerJump[playerid][JumpPressed] >= 5)
@@ -4185,7 +4244,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					new Float:playerX, Float:playerY, Float:playerZ;
 					GetPlayerPos(i, playerX, playerY, playerZ);
 
-					if (GetDistanceBetweenPoints3D(aimX, aimY, aimZ, playerX, playerY, playerZ) <= 5.0)
+					if (GetDistanceBetweenPoints(aimX, aimY, aimZ, playerX, playerY, playerZ) <= 5.0)
 					{
 						nearbyPlayers++;
 					}
@@ -4823,7 +4882,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
 		if(!VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_ENGINE] && IsEngineVehicle(vehicleid)){
-			ShowBoxMessage(playerid, "The engine of this vehicle is off.~n~Use /engine to turn it on or /hotwire to hotwire it.", 2, 1);
+			SendVehicleMessage(playerid, "To switch the ignition use /engine or /hotwire to steal it");
 	   	}
 
 	   	if (ReturnVehicleHealth(vehicleid) <= 350){
@@ -5172,6 +5231,11 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
 					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
 					SendInfoMessage(playerid, "You're moved dropped items."); 
+
+					if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+					{
+						ResetVarInventory(playerid);
+					}
 					return 1;
 				}
 			}
@@ -5760,7 +5824,7 @@ public OnPlayerGiveDamageDynamicActor(playerid, actorid, Float:amount, weaponid,
 	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR] == actorid  && PlayerInfo[playerid][E_CHARACTER_EXTORTION] == true)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] < 100.0)
-			PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] += 5.0;
+			PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] += 2.5;
 
 		else if(PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] > 100.0)
 			PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] = 100.0;
@@ -5791,4 +5855,3 @@ public OnVehicleSirenStateChange(playerid, vehicleid, newstate)
 	}
 	return 1;
 }
-

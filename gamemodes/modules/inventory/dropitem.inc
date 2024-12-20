@@ -85,7 +85,7 @@ function:Query_LoadDropped()
 DropItem(item[], player[], model, quantity, Float:x, Float:y, Float:z, Float:rx, Float:ry, Float:rz, interior, world, type = 0)
 {
 	new
-	    query[128];
+	    query[512];
 
 	for (new i = 0; i != MAX_DROPPED_ITEMS; i ++) if (!DroppedInfo[i][E_DROPPED_MODEL])
 	{
@@ -145,11 +145,6 @@ DropPlayerItem(playerid, itemid, quantity = 1, type = 0)
 	PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY] = quantity;
 	PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = type;
 	format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, string);
-
-	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
-	{
-		ResetVarInventory(playerid);
-	}
 
 	ShowPlayerDialog(playerid, DIALOG_DROPITEMS, DIALOG_STYLE_MSGBOX, "Dropped Items:", "Select your dropped items type 'Static' or 'Cursor'.", "Static", "Cursor");
 	return 1;

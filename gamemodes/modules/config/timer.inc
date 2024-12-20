@@ -155,35 +155,6 @@ function:OnPlayerUpdateEx()
 				ShowPlayerProgressBar(playerid, HEBAR[1][playerid]);
 			}		
 
-			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
-			{
-				if(Inventory_Count(playerid, "Fabric Cargo") || Inventory_Count(playerid, "Steel Cargo") || Inventory_Count(playerid, "Woods Cargo") 
-				|| Inventory_Count(playerid, "Foods Cargo") || Inventory_Count(playerid, "Clothes Cargo") || Inventory_Count(playerid, "Appliances Cargo")
-				|| Inventory_Count(playerid, "Fish Cargo"))
-				{
-					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CRATES;
-					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-					SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.293999, 0.497999, -0.006000, -99.500007, 90.300033, 99.600013, 0.620999, 0.673000, 0.648999);
-					
-				}
-				else if(Inventory_Count(playerid, "Woods"))
-				{
-					
-					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
-					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-					SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 1, 0.000000, 0.465000, 0.000000, 0.000000, 89.699958, 0.000000, 0.348999, 0.340999, 0.444999);
-				}
-			}
-			else
-			{
-				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES || PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == WOODS)
-				{
-					RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
-				}
-			}
-
 			if (IsPlayerInAnyVehicle(playerid))
 			{
 				new vehicleid = GetPlayerVehicleID(playerid);
@@ -372,7 +343,7 @@ function:OnPlayerWeaponUpdate()
 					if(Inventory_Count(i, "Regular Ammo"))
 					{
 
-						format(astring, sizeof(astring), "Weapons -%s - %d Regular", ReturnWeaponName(GetPlayerWeapon(i)), Inventory_Count(i, "Regular Ammo"));
+						format(astring, sizeof(astring), "Weapons - %s - %d Regular", ReturnWeaponName(GetPlayerWeapon(i)), Inventory_Count(i, "Regular Ammo"));
 						PlayerTextDrawSetString(i, WeaponType[i], astring);
 						PlayerTextDrawShow(i, WeaponType[i]);
 					}
@@ -389,7 +360,7 @@ function:OnPlayerWeaponUpdate()
 					if(Inventory_Count(i, "Surplus Ammo"))
 					{
 
-						format(astring, sizeof(astring), "Weapons -%s - %d Surplus", ReturnWeaponName(GetPlayerWeapon(i)), Inventory_Count(i, "Surplus Ammo"));
+						format(astring, sizeof(astring), "Weapons - %s - %d Surplus", ReturnWeaponName(GetPlayerWeapon(i)), Inventory_Count(i, "Surplus Ammo"));
 						PlayerTextDrawSetString(i, WeaponType[i], astring);
 						PlayerTextDrawShow(i, WeaponType[i]);
 					}
@@ -406,7 +377,7 @@ function:OnPlayerWeaponUpdate()
 					if(Inventory_Count(i, "JHP Ammo"))
 					{
 
-						format(astring, sizeof(astring), "Weapons -%s - %d Jacket Hollow Point", ReturnWeaponName(GetPlayerWeapon(i)), Inventory_Count(i, "JHP Ammo"));
+						format(astring, sizeof(astring), "Weapons - %s - %d Jacket Hollow Point", ReturnWeaponName(GetPlayerWeapon(i)), Inventory_Count(i, "JHP Ammo"));
 						PlayerTextDrawSetString(i, WeaponType[i], astring);
 						PlayerTextDrawShow(i, WeaponType[i]);
 					}
@@ -423,7 +394,7 @@ function:OnPlayerWeaponUpdate()
 					if(Inventory_Count(i, "Rubber Ammo"))
 					{
 
-						format(astring, sizeof(astring), "Weapons -%s - %d Rubber", ReturnWeaponName(GetPlayerWeapon(i)), Inventory_Count(i, "Rubber Ammo"));
+						format(astring, sizeof(astring), "Weapons - %s - %d Rubber", ReturnWeaponName(GetPlayerWeapon(i)), Inventory_Count(i, "Rubber Ammo"));
 						PlayerTextDrawSetString(i, WeaponType[i], astring);
 						PlayerTextDrawShow(i, WeaponType[i]);
 					}
@@ -437,7 +408,7 @@ function:OnPlayerWeaponUpdate()
 				}
 				else if(PlayerInfo[i][E_CHARACTER_POLICEAMMO])
 				{
-					format(astring, sizeof(astring), "Weapons -%s - Tazer", ReturnWeaponName(GetPlayerWeapon(i)));
+					format(astring, sizeof(astring), "Weapons - %s - Tazer", ReturnWeaponName(GetPlayerWeapon(i)));
 					PlayerTextDrawSetString(i, WeaponType[i], astring);
 					PlayerTextDrawShow(i, WeaponType[i]);
 				}
@@ -452,17 +423,17 @@ function:OnPlayerWeaponUpdate()
 			{
 				if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
 				{
-					format(astring, sizeof(astring), "Weapons -Spike_Bat");
+					format(astring, sizeof(astring), "Weapons - Spike_Bat");
 					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 2045, 6, 0.048000, 0.021999, 0.218000, 94.899993, 0.000000, 0.000000, 1.557000, 1.229001, 1.445999);
 				}
 				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)
 				{
-					format(astring, sizeof(astring), "Weapons -Cutscene_Bat");
+					format(astring, sizeof(astring), "Weapons - Cutscene_Bat");
 					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 19914, 6, 0.067000, 0.040999, -0.120000, 0.000000, -89.700027, -4.099999, 1.060000, 1.350001, 1.193000);
 				}
 				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)
 				{
-					format(astring, sizeof(astring), "Weapons -Baseball_Bat");
+					format(astring, sizeof(astring), "Weapons - Baseball_Bat");
 				}
 				PlayerTextDrawSetString(i, WeaponType[i], astring);
 				PlayerTextDrawShow(i, WeaponType[i]);
@@ -471,17 +442,17 @@ function:OnPlayerWeaponUpdate()
 			{
 				if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
 				{
-					format(astring, sizeof(astring), "Weapons -Beer Bottle");
+					format(astring, sizeof(astring), "Weapons - Beer Bottle");
 					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 1484, 6, 0.164000, -0.026000, 0.051999, 11.900003, -156.600097, 0.000000, 1.353998, 1.580001, 1.470999);
 				}
 				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)
 				{
-					format(astring, sizeof(astring), "Weapons -Marcos_Knife");
+					format(astring, sizeof(astring), "Weapons - Marcos_Knife");
 					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 19583, 6, 0.089000, 0.039000, 0.000000, -89.199966, 176.400009, 3.699986, 1.000000, 1.000000, 1.526998);
 				}
 				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)
 				{
-					format(astring, sizeof(astring), "Weapons -Knife");
+					format(astring, sizeof(astring), "Weapons - Knife");
 					RemovePlayerAttachedObject(i, 7);
 				}
 				PlayerTextDrawSetString(i, WeaponType[i], astring);
@@ -491,16 +462,37 @@ function:OnPlayerWeaponUpdate()
 			{
 				if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
 				{
-					format(astring, sizeof(astring), "Weapons -Glove");
+					format(astring, sizeof(astring), "Weapons - Glove");
 					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 19556, 6, 0.000000, -0.004000, 0.000000, -14.500018, -103.900199, -18.500011, 0.874999, 1.501999, 1.643999);
 					SetPlayerAttachedObject(i, ATTACH_WEAPONS2, 19555, 5, 0.027000, 0.010999, -0.009999, 65.199920, -69.500038, -98.999908, 1.201999, 1.312999, 1.600999);
 				}
 				PlayerTextDrawSetString(i, WeaponType[i], astring);
 				PlayerTextDrawShow(i, WeaponType[i]);
 			}
+			else if(GetPlayerWeapon(i) == 11) 
+			{
+				if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 1)
+				{
+					format(astring, sizeof(astring), "Weapons - Hammer");
+					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 18635, 6, -0.051999, -0.032999, -0.003999, 0.000000, 4.299999, 0.000000, 1.745000, 1.808000, 1.000000);
+				}
+				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 2)
+				{
+					format(astring, sizeof(astring), "Weapons - Wrench");
+					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 18633, 6, 0.082000, 0.028999, 0.000000, 93.500076, -82.800064, 3.700004, 2.883999, 0.853999, 1.561998);
+				}
+				else if (PlayerInfo[i][E_CHARACTER_WEAPONTYPE] == 3)
+				{
+					format(astring, sizeof(astring), "Weapons - Broom");
+					SetPlayerAttachedObject(i, ATTACH_WEAPONS, 19622, 6, 0.076999, 0.032000, 0.029000, 178.999984, 6.899997, 0.000000, 1.763000, 1.664000, 0.796000);
+				}
+				PlayerTextDrawSetString(i, WeaponType[i], astring);
+				PlayerTextDrawShow(i, WeaponType[i]);
+			}
 			else
 			{
-				RemovePlayerAttachedObject(i, 7);
+				RemovePlayerAttachedObject(i, ATTACH_WEAPONS);
+				RemovePlayerAttachedObject(i, ATTACH_WEAPONS2);
 				PlayerTextDrawHide(i, WeaponType[i]);
 			}
 		}

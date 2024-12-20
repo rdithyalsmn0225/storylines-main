@@ -419,7 +419,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
 	//Weapons Inventory
-	else if(!strcmp(name, "Beer Bottle"))
+	else if(!strcmp(name, "Pisswasher"))
 	{
 		ShowPlayerDialog(playerid, DIALOG_BEERBOTTLE, DIALOG_STYLE_LIST, "Choose your beer use:", "Drink Beer\nMelee Bottle", "Select", "Cancel");
 	}
@@ -452,6 +452,38 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 			GivePlayerWeapon(playerid, 1, 999999);
 			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
 			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = GLOVE;
+		}
+		else SendErrorMessage(playerid, "You must store your items in inventory first.");
+	}
+
+	//Dildoh AOKWKWKWKWK
+	else if(!strcmp(name, "Hammer"))
+	{
+		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+		{
+			GivePlayerWeapon(playerid, 11, 999999);
+			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = DILDO;
+		}
+		else SendErrorMessage(playerid, "You must store your items in inventory first.");
+	}
+	else if(!strcmp(name, "Wrench"))
+	{
+		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+		{
+			GivePlayerWeapon(playerid, 11, 999999);
+			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 2;
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = DILDO;
+		}
+		else SendErrorMessage(playerid, "You must store your items in inventory first.");
+	}
+	else if(!strcmp(name, "Broom"))
+	{
+		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+		{
+			GivePlayerWeapon(playerid, 11, 999999);
+			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 3;
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = DILDO;
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
