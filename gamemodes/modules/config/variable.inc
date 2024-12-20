@@ -591,6 +591,31 @@ enum E_BUSINESS_DATA
 	Text3D:E_BUSINESS_LOADINGDISPLAY
 };
 
+enum E_BUSINESS_POINT_DATA
+{
+    E_BUSINESS_POINT_NAME[32],
+    Float:E_BUSINESS_POINT_POS[3]
+};
+
+new BusinessPoint[][E_BUSINESS_POINT_DATA] = {
+    {"Shell Tools", {-48.4748, -1.1597, 203.2633}},
+	{"Shell Tools", {1286.6982, 1605.2413, 455.2505}},
+    {"Shell Electronic", {-51.4530, 5.4811, 203.2633}},
+	{"Shell Electronic", {1283.9905, 1600.2156, 455.2505}},
+    {"Shell Foods", {-48.1108, 5.5907, 203.2633}},
+	{"Shell Foods", {1284.1024, 1604.1702, 455.2505}},
+	{"Shell Bat", {-53.7646, 5.2118, 203.2633}},
+    {"Shell Bat", {1290.6864, 1567.9963, 455.2505}},
+	{"Shell Knife", {1290.5894, 1573.6760, 455.2505}},
+    {"Shell Glove", {1288.7515, 1567.2489, 455.2505}},
+	{"Beer Freezer", {1286.8212, 1598.4575, 455.2505}},
+	{"Beer Freezer", {-53.7980, 2.8393, 203.2633}},
+    {"Beer Freezer", {1288.3250, 1573.7805, 455.2505}},
+    {"Beer Freezer", {1285.7510, 1573.6372, 455.2505}},
+    {"Beer Freezer", {1290.7311, 1548.2421, 455.2505}},
+    {"Beer Freezer", {1290.7311, 1546.3092, 455.2505}},
+    {"Beer Freezer", {1290.7311, 1544.2593, 455.2505}}
+};
 // POOL:
 enum E_POOLTABLE_DATA
 {
@@ -1066,7 +1091,7 @@ new FactionLockerPickup[3],
 	BusStopPickup[34],
 	HairCutPickup,
 	TicketPickup,
-	GeneralStorePickup[5];
+	GeneralStorePickup[sizeof(BusinessPoint)];
 
 new g_aLspdSkins[] = {
 	300, 301, 302, 310, 311, 20260, 20261, 20262, 20263, 20264, 20265,
@@ -2388,10 +2413,11 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Bandage", 17738, 0},
 	{"BBQ", 19882, 0},
 	{"Beer Bottle", 1484, 0},
-	{"Marcos Knife", -2211, 0},
+	{"Marcos Knife", 19583, 0},
+	{"Glove", 19556, 0},
 	{"Knife", 335, 0},
 	{"Spike Bat", 2045, 0},
-	{"Cutscene Bat", -2201, 0},
+	{"Cutscene Bat", 19914, 0},
 	{"Baseball Bat", 336, 0},
 	{"Colt 45", 346, 0},
 	{"Silenced Colt", 347, 0},
@@ -2782,7 +2808,10 @@ new const g_arrInteriorData[][e_InteriorData] =
     {"LS Atrium", 18, 1710.433715, -1669.379272, 20.225049},
 	{"Acid Labs", 11, 1439.5847,1564.1349,108.3770},
 	{"Gunstore", 11, 1470.6479,1563.5452,108.3770},
-	{"General Store", 11, -46.2424,2.1855,203.2633}
+	{"Retail Store", 11, -46.2424,2.1855,203.2633},
+	{"Grocery Store", 11, 1290.6384,1598.7158,455.2505},
+	{"Sport Store", 11, 1283.6887,1573.9661,455.2505},
+	{"Liquor Store", 11, 1290.1534,1550.3622,455.2505}
 };
 
 new Bone_Name[][] = {

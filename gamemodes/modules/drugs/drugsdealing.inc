@@ -8,27 +8,31 @@
 
 stock IsPlayerNearDrugsDealing(playerid)
 {
-	if(IsPlayerInRangeOfPoint(playerid, 3.0, DrugsDealerPos[playerid][0], DrugsDealerPos[playerid][1], DrugsDealerPos[playerid][2]))	
-		return 1;
-	return 1;
+	return IsPlayerInRangeOfPoint(playerid, 3.0, DrugsDealerPos[playerid][0], DrugsDealerPos[playerid][1], DrugsDealerPos[playerid][2]);
 }
 
 CMD:drugsdeal(playerid, params[])
 {
 	new str[156];
-	if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
-		return SendErrorMessage(playerid, "You are not apart a gang members");
+	/*if(!PlayerInfo[playerid][E_CHARACTER_FACTION] && ReturnFactionType(playerid) != FACTION_TYPE_ILLEGAL)
+		return SendErrorMessage(playerid, "You are not apart a gang members");*/
 
 	if(DrugsDealerExists[playerid] == 0)
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_FACTION] == 7 || PlayerInfo[playerid][E_CHARACTER_FACTION] == 8)
+		if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
 			ShowPlayerDialog(playerid, DIALOG_DRUGSDEALTYPE1, DIALOG_STYLE_TABLIST_HEADERS, "Choose type of drugs to deal", "Drugs\tCost\nCrack, Marijuana\t(Cost Influenced)\nHeroin\t(No Cost Influenced)", "Select", "Cancel");
 		else
 			ShowPlayerDialog(playerid, DIALOG_DRUGSDEALTYPE2, DIALOG_STYLE_TABLIST_HEADERS, "Choose type of drugs to deal", "Drugs\tCost\nCrack, Marijuana\t(Cost Influenced)\nPCP\t(No Cost Influenced)", "Select", "Cancel");
 	}
 	else if(DrugsDealerExists[playerid] == 1)
 	{
-		if(IsPlayerNearDrugsDealing(playerid))
+		if(IsValidDynamicActor(DrugsDealerActor[playerid]))
+		{	
+			SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}The customers already spawned.");
+			GPS_SetPlayerRaceCheckPoint(playerid, 1, DrugsDealerPos[playerid][0], DrugsDealerPos[playerid][1], DrugsDealerPos[playerid][2], 0.0, 0.0, 0.0);
+		}
+		
+		else if(IsPlayerNearDrugsDealing(playerid))
 		{
 			if(DrugsDealerType[playerid] == 1)
 			{
@@ -58,7 +62,6 @@ CMD:drugsdeal(playerid, params[])
 				ShowPlayerDialog(playerid, DIALOG_DRUGSDEAL, DIALOG_STYLE_MSGBOX, "Drugs Dealing:", str, "Confirm", "Reject");
 				SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 			}
-			GPS_SetPlayerRaceCheckPoint(playerid, 1, DrugsDealerPos[playerid][0], DrugsDealerPos[playerid][1], DrugsDealerPos[playerid][2], 0.0, 0.0, 0.0);
 		}
 		else return SendErrorMessage(playerid, "You aren't near drugs customers.");
 	}
@@ -102,6 +105,8 @@ function:DrugsDealingRun(playerid, type)
 		{
 			if(IsValidDynamicActor(DrugsDealerActor[playerid]))
 				DestroyDynamicActor(DrugsDealerActor[playerid]);
+
+			SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}The customers leave the area.");
 		}
 	}
 	return 1;

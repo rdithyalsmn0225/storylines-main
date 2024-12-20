@@ -7,22 +7,4 @@
 
 //Selection Faction
 #define SELECT_HOODRATS		(0)
-#define SELECT_POLICE		(1)
-#define SELECT_MEDIC		(2)
-#define SELECT_GSF			(3)
-#define SELECT_KTB			(4)
-#define SELECT_RHB			(5)
-#define SELECT_SBF			(6)
-#define SELECT_ELSV			(7)
-#define SELECT_VLA			(8)
-#define SELECT_FYB			(9)
-#define SELECT_TDF			(10)
 #define SELECT_TDB			(11)
-
-#define SELECT_ITEMS1   (0)
-#define SELECT_ITEMS2   (1)
-#define SELECT_ITEMS3   (2)
-#define SELECT_ITEMS4   (3)
-#define SELECT_ITEMS5   (4)
-#define SELECT_ITEMS6   (5)
-#define SELECT_ITEMS7   (6)

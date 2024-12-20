@@ -15,3 +15,15 @@
 [13:00:18] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180)
 [13:08:07] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180)
 [13:13:13] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180)
+[10:02:13] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog2.inc:862 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[10:02:15] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[10:02:17] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[10:02:19] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[10:02:21] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[10:02:49] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog2.inc:862 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[10:05:35] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog2.inc:862 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[10:07:29] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog2.inc:862 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[10:10:05] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog2.inc:862 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[12:43:25] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog2.inc:862 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[15:41:53] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog2.inc:862 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)
+[15:44:28] [WARNING] mysql_connect: no password specified (F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:180 -> F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog2.inc:862 -> F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1152)

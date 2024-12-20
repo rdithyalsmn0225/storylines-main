@@ -15,15 +15,15 @@
 
 #include <a_samp>
 #include <a_mysql>
-#include <PreviewModelDialog2>
 #include <crashdetect>
-#include <Pawn.RakNet>
 #include <streamer>
 #include <progress2>
 #include <timerfix>
 #include <zcmd>
 #include <sscanf2>
 #include <physics>
+#include <Pawn.RakNet>
+#include <PreviewModelDialog2>
 #include <compat>
 
 
@@ -4696,11 +4696,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 		cmd_enter(playerid, "");
 	}
-	if ((newkeys & KEY_NO) && !IsPlayerInAnyVehicle(playerid))
-	{
-		cmd_inventory(playerid, "");
-	}
-	else if (newkeys & KEY_WALK && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
+	else if (newkeys & KEY_NO && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
 	{
 		if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DUCK)
 		{
@@ -4737,11 +4733,25 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		}
 		else
 		{
-			if(IsPlayerNearCashiers(playerid)) //Payclerk Pawnshop
+			if(!BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME])
+			{
+				for(new ii; ii < sizeof(BusinessPoint); ii++)
+				if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[ii][E_BUSINESS_POINT_POS][0], BusinessPoint[ii][E_BUSINESS_POINT_POS][1], BusinessPoint[ii][E_BUSINESS_POINT_POS][2]))
+				{
+					new string[128];
+					format(string, sizeof(string), "Inventory\n%s", BusinessPoint[ii][E_BUSINESS_POINT_NAME]);
+					ShowPlayerDialog(playerid, DIALOG_SHOP, DIALOG_STYLE_LIST, "Choose an option:", string, "Select", "Close");
+				}
+			}
+			if(!IsPlayerNearCashiers(playerid))
+			{
+				cmd_inventory(playerid, "");
+			}
+			else if(IsPlayerNearCashiers(playerid)) //Payclerk Pawnshop
 			{
 				if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
 				{
-					ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Pay to clerk\nTake Cash", "Select", "Close");
+					ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
 				}
 				else
 				{
@@ -4756,29 +4766,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					PlayerInfo[playerid][E_CHARACTER_PURCHASE] = 0;
 
 					Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-				}
-			}
-			if(!BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME])
-			{
-				if(IsPlayerInRangeOfPoint(playerid, 2.0, -48.1108,5.5907,203.2633))
-				{
-					ShowGeneralList(playerid, 1);
-				}
-				else if(IsPlayerInRangeOfPoint(playerid, 2.0, -51.4530,5.4811,203.2633))
-				{
-					ShowGeneralList(playerid, 2);
-				}
-				else if(IsPlayerInRangeOfPoint(playerid, 2.0, -53.7646,5.2118,203.2633))
-				{
-					ShowGeneralList(playerid, 3);
-				}
-				else if(IsPlayerInRangeOfPoint(playerid, 2.0, -48.4748,-1.1597,203.2633))
-				{
-					ShowGeneralList(playerid, 4);
-				}
-				else if(IsPlayerInRangeOfPoint(playerid, 2.0, -53.7980,2.8393,203.2633))
-				{
-					ShowGeneralList(playerid, 5);
 				}
 			}
 		}

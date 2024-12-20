@@ -214,7 +214,7 @@ stock ShowInventory(playerid, targetid)
 				count++;
 				amounts[i] = InventoryInfo[targetid][i][E_INVENTORY_QUANTITY];
 				strunpack(string, InventoryInfo[targetid][i][E_INVENTORY_ITEM]);
-				format(str, sizeof(str), "%s[SLOT]: %s\t%d\n", str, string, amounts[i]);
+				format(str, sizeof(str), "%s[SLOT]:\t%s\t%d\n", str, string, amounts[i]);
 			}
 		}
 	}
@@ -242,7 +242,7 @@ stock OpenInventory(playerid)
 		{
 			amounts[i] = InventoryInfo[playerid][i][E_INVENTORY_QUANTITY];
 			strunpack(string, InventoryInfo[playerid][i][E_INVENTORY_ITEM]);
-			format(str, sizeof(str), "%s[SLOT]: %s\t%d\n", str, string, amounts[i]);
+			format(str, sizeof(str), "%s[SLOT]:\t%s\t%d\n", str, string, amounts[i]);
 		}
 	}
 	ShowPlayerDialog(playerid, DIALOG_INVENTORY, DIALOG_STYLE_TABLIST_HEADERS, "Inventory:", str, "Select", "Close");

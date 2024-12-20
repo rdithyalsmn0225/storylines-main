@@ -503,10 +503,11 @@ CMD:carhood(playerid, params[])
 CMD:mv(playerid, params[]) return cmd_mycars(playerid, params);
 CMD:mycars(playerid, params[])
 {
-    if(CountPlayerVehicles(playerid) == 0)
+    if(!CountPlayerVehicles(playerid))
 		return SendErrorMessage(playerid, "You don't own any vehicles.");
 			
-	return ShowVehicleList(playerid); 
+	ShowVehicleList(playerid); 
+	return 1;
 }
 
 CMD:carradio(playerid, params[])

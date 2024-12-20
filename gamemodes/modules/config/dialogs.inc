@@ -1800,11 +1800,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 0: //Crack, Marijuana
 					{
 						new type = randomEx(1,2);
-						if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
-							return SendErrorMessage(playerid, "You are not apart a gang members");
-
-						if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_ILLEGAL)
-							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
 						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
@@ -1812,11 +1807,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 1: //Heroin
 					{
 						new type = 3;
-						if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
-							return SendErrorMessage(playerid, "You are not apart a gang members");
 
-						if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_ILLEGAL)
-							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
 						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
@@ -1836,24 +1827,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 0: //Crack, Marijuana
 					{
 						new type = randomEx(1,2);
-						if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
-							return SendErrorMessage(playerid, "You are not apart a gang members");
-
-						if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_ILLEGAL)
-							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
-
+						
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
 						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 					case 1: //PCP
 					{
 						new type = 4;
-						if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
-							return SendErrorMessage(playerid, "You are not apart a gang members");
-
-						if(FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_TYPE] != FACTION_TYPE_ILLEGAL)
-							return SendErrorMessage(playerid, "You can't buy because you are not apart in a gang."); 
-
+						
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
 						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
@@ -2387,6 +2368,60 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				GPS_SetPlayerRaceCheckPoint(playerid, 1, JobPoint[listitem][0], JobPoint[listitem][1], JobPoint[listitem][2], 0.0, 0.0, 0.0);
 			}
 		}
+		case DIALOG_SHOP:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+						cmd_inventory(playerid, "");
+					}
+					case 1:
+					{
+						if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[0][E_BUSINESS_POINT_POS][0], BusinessPoint[0][E_BUSINESS_POINT_POS][1], BusinessPoint[0][E_BUSINESS_POINT_POS][2]) \
+						|| IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[1][E_BUSINESS_POINT_POS][0], BusinessPoint[1][E_BUSINESS_POINT_POS][1], BusinessPoint[1][E_BUSINESS_POINT_POS][2])) //spraycan
+						{
+							ShowGeneralList(playerid, 1);
+						}
+						else if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[2][E_BUSINESS_POINT_POS][0], BusinessPoint[2][E_BUSINESS_POINT_POS][1], BusinessPoint[2][E_BUSINESS_POINT_POS][2]) \
+						|| IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[3][E_BUSINESS_POINT_POS][0], BusinessPoint[3][E_BUSINESS_POINT_POS][1], BusinessPoint[3][E_BUSINESS_POINT_POS][2])) //cellphone
+						{
+							ShowGeneralList(playerid, 2);
+						}
+						else if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[6][E_BUSINESS_POINT_POS][0], BusinessPoint[6][E_BUSINESS_POINT_POS][1], BusinessPoint[6][E_BUSINESS_POINT_POS][2]) \
+						|| IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[7][E_BUSINESS_POINT_POS][0], BusinessPoint[7][E_BUSINESS_POINT_POS][1], BusinessPoint[7][E_BUSINESS_POINT_POS][2])) //baseball
+						{
+							ShowGeneralList(playerid, 3);
+						}
+						else if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[4][E_BUSINESS_POINT_POS][0], BusinessPoint[4][E_BUSINESS_POINT_POS][1], BusinessPoint[4][E_BUSINESS_POINT_POS][2]) \
+						|| IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[5][E_BUSINESS_POINT_POS][0], BusinessPoint[5][E_BUSINESS_POINT_POS][1], BusinessPoint[5][E_BUSINESS_POINT_POS][2])) // raw meat
+						{
+							ShowGeneralList(playerid, 4);
+						}
+						else if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[10][E_BUSINESS_POINT_POS][0], BusinessPoint[10][E_BUSINESS_POINT_POS][1], BusinessPoint[10][E_BUSINESS_POINT_POS][2]) \
+						|| IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[11][E_BUSINESS_POINT_POS][0], BusinessPoint[11][E_BUSINESS_POINT_POS][1], BusinessPoint[11][E_BUSINESS_POINT_POS][2]) \
+						|| IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[12][E_BUSINESS_POINT_POS][0], BusinessPoint[12][E_BUSINESS_POINT_POS][1], BusinessPoint[12][E_BUSINESS_POINT_POS][2]) \
+						|| IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[13][E_BUSINESS_POINT_POS][0], BusinessPoint[13][E_BUSINESS_POINT_POS][1], BusinessPoint[13][E_BUSINESS_POINT_POS][2]) \ 
+						|| IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[14][E_BUSINESS_POINT_POS][0], BusinessPoint[14][E_BUSINESS_POINT_POS][1], BusinessPoint[14][E_BUSINESS_POINT_POS][2]) \
+						|| IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[15][E_BUSINESS_POINT_POS][0], BusinessPoint[15][E_BUSINESS_POINT_POS][1], BusinessPoint[15][E_BUSINESS_POINT_POS][2]) \
+						|| IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[16][E_BUSINESS_POINT_POS][0], BusinessPoint[16][E_BUSINESS_POINT_POS][1], BusinessPoint[16][E_BUSINESS_POINT_POS][2])) //sprunk
+						{
+							ShowGeneralList(playerid, 5);
+						}
+						else if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[8][E_BUSINESS_POINT_POS][0], BusinessPoint[8][E_BUSINESS_POINT_POS][1], BusinessPoint[8][E_BUSINESS_POINT_POS][2])) //Knife
+						{
+							ShowGeneralList(playerid, 6);
+						}
+						else if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[9][E_BUSINESS_POINT_POS][0], BusinessPoint[9][E_BUSINESS_POINT_POS][1], BusinessPoint[9][E_BUSINESS_POINT_POS][2])) //Glove
+						{
+							ShowGeneralList(playerid, 7);
+						}
+					}
+				}
+			}
+		}
 		case DIALOG_CLERK:
 		{
 			if(response)
@@ -2394,6 +2429,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				switch(listitem)
 				{
 					case 0:
+					{
+						cmd_inventory(playerid, "");
+					}
+					case 1:
 					{
 						if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] == 0)
 							return SendErrorMessage(playerid, "You don't have a bill to pay to the clerk.");
@@ -2407,7 +2446,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 					}
-					case 1:
+					case 2:
 					{
 						if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] == true && BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] >= 500)
 						{
@@ -3276,38 +3315,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 					}
-					case 2:
-					{
-						if(Inventory_Count(playerid, "Gascan") >= 5)
-							return SendErrorMessage(playerid, "You may only hold up to 5 gasoline cans.");
-							
-						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-							return SendErrorMessage(playerid, "You can't afford a gasoline.");
-					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a gasoline for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
-
-						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
-						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-						Inventory_Add(playerid, "Gascan", 1650, 1);
-
-						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
-					}
-					case 3:
-					{
-						if(Inventory_Count(playerid, "Repair Kits"))
-							return SendErrorMessage(playerid, "You already own a repairkit.");
-							
-						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-							return SendErrorMessage(playerid, "You can't afford a repairkit.");
-					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a repairkit for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
-
-						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
-						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-						Inventory_Add(playerid, "Repair Kits", 1650, 1);
-
-						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
-					}
 				}
 			}
 		}
@@ -3331,7 +3338,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-						Inventory_Add(playerid, "Spike Bat", -2200, 1);
+						Inventory_Add(playerid, "Spike Bat", 2045, 1);
 
 						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 					}
@@ -3347,7 +3354,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-						Inventory_Add(playerid, "Cutscene Bat", -2201, 1);
+						Inventory_Add(playerid, "Cutscene Bat", 19914, 1);
 
 						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 					}
@@ -3363,7 +3370,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-						Inventory_Add(playerid, "Baseball Bat", -2202, 1);
+						Inventory_Add(playerid, "Baseball Bat", 336, 1);
 
 						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 					}
@@ -3480,7 +3487,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 
-						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 250; 
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Spraycan", 365, 1);
 
@@ -3488,17 +3494,33 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1:
 					{
-						if(Inventory_Count(playerid, "Marcos Knife") >= 1)		
-							return SendErrorMessage(playerid, "You may only hold up to 1 crowbar.");
+						if(Inventory_Count(playerid, "Gascan") >= 5)
+							return SendErrorMessage(playerid, "You may only hold up to 5 gasoline cans.");
+							
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a gasoline.");
 					
-						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-							return SendErrorMessage(playerid, "You can't afford a crowbar.");
-					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a crowbar for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a gasoline for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-						Inventory_Add(playerid, "Marcos Knife", 18634, 1);
+						Inventory_Add(playerid, "Gascan", 1650, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 2:
+					{
+						if(Inventory_Count(playerid, "Repair Kits"))
+							return SendErrorMessage(playerid, "You already own a repairkit.");
+							
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a repairkit.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a repairkit for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Repair Kits", 1650, 1);
 
 						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 					}
@@ -3522,9 +3544,79 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					
 						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a sprunk for $2.");
 
-						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 5; 
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 200; 
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Sprunk", 2601, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+				}
+			}
+		}
+		case DIALOG_GENERALSTORE6:
+		{
+			if(response)
+			{
+				new businessid = IsPlayerInBusiness(playerid);
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(Inventory_Count(playerid, "Knife"))
+							return SendErrorMessage(playerid, "You already own a Knife.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a Knife.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Knife for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Knife", 335, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 1:
+					{
+						if(Inventory_Count(playerid, "Marcos Knife"))
+							return SendErrorMessage(playerid, "You already own a Marcos Knife.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a Marcos Knife.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Marcos Knife for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Marcos Knife", 19583, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+				}
+			}
+		}
+		case DIALOG_GENERALSTORE7:
+		{
+			if(response)
+			{
+				new businessid = IsPlayerInBusiness(playerid);
+				switch(listitem)
+				{
+					case 0:
+					{
+						if(Inventory_Count(playerid, "Glove"))
+							return SendErrorMessage(playerid, "You already own a Glove.");
+					
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a Glove.");
+					
+						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Glove for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Glove", 19556, 1);
 
 						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 					}

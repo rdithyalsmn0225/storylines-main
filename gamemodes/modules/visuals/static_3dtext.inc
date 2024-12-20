@@ -16,11 +16,11 @@ InsertDynamicPickup()
 	FishFactoryPickup = CreateDynamicPickup(1239, 1, 2610.7708,-2441.7927,13.6310, -1, -1, -1, 5.0);
 	SAPDPickup = CreateDynamicPickup(1239, 1, 1568.7626,-1695.0494,5.8906, -1, -1, -1, 5.0);
 	SAMDPickup = CreateDynamicPickup(1239, 1, 1124.1577,-1324.4509,13.6212, -1, -1, -1, 5.0);
-	GeneralStorePickup[0] = CreateDynamicPickup(1274, 1, -48.4748,-1.1597,203.2633, -1, -1, -1, 5.0);
-	GeneralStorePickup[1] = CreateDynamicPickup(1274, 1, -53.7980,2.8393,203.2633, -1, -1, -1, 5.0);
-	GeneralStorePickup[2] = CreateDynamicPickup(1274, 1, -51.4530,5.4811,203.2633, -1, -1, -1, 5.0);
-	GeneralStorePickup[3] = CreateDynamicPickup(1274, 1, -48.1108,5.5907,203.2633, -1, -1, -1, 5.0);
-	GeneralStorePickup[4] = CreateDynamicPickup(1274, 1, -53.7646,5.2118,203.2633, -1, -1, -1, 5.0);
+
+	for (new i = 0; i < sizeof(BusinessPoint); i++)
+    {
+		GeneralStorePickup[i] = CreateDynamicPickup(1274, 1, BusinessPoint[i][E_BUSINESS_POINT_POS][0], BusinessPoint[i][E_BUSINESS_POINT_POS][1], BusinessPoint[i][E_BUSINESS_POINT_POS][2], -1, -1, -1, 5.0);
+	}
 
 	for(new i; i < sizeof(BusStop_Index); i++)
 	{
