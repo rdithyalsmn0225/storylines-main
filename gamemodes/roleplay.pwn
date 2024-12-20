@@ -4765,16 +4765,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		}
 		else
 		{
-			if(!BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME])
-			{
-				for(new ii; ii < sizeof(BusinessPoint); ii++)
-				if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[ii][E_BUSINESS_POINT_POS][0], BusinessPoint[ii][E_BUSINESS_POINT_POS][1], BusinessPoint[ii][E_BUSINESS_POINT_POS][2]))
-				{
-					new string[128];
-					format(string, sizeof(string), "Inventory\n%s", BusinessPoint[ii][E_BUSINESS_POINT_NAME]);
-					ShowPlayerDialog(playerid, DIALOG_SHOP, DIALOG_STYLE_LIST, "Choose an option:", string, "Select", "Close");
-				}
-			}
 			if(!IsPlayerNearCashiers(playerid))
 			{
 				cmd_inventory(playerid, "");
@@ -4798,6 +4788,22 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					PlayerInfo[playerid][E_CHARACTER_PURCHASE] = 0;
 
 					Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
+				}
+			}
+			if(!BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME])
+			{
+				for(new ii; ii < sizeof(BusinessPoint); ii++)
+				{
+					if(IsPlayerInRangeOfPoint(playerid, 2.0, BusinessPoint[ii][E_BUSINESS_POINT_POS][0], BusinessPoint[ii][E_BUSINESS_POINT_POS][1], BusinessPoint[ii][E_BUSINESS_POINT_POS][2]))
+					{
+						new string[128];
+						format(string, sizeof(string), "Inventory\n%s", BusinessPoint[ii][E_BUSINESS_POINT_NAME]);
+						ShowPlayerDialog(playerid, DIALOG_SHOP, DIALOG_STYLE_LIST, "Choose an option:", string, "Select", "Close");
+					}
+					else
+					{
+						cmd_inventory(playerid, "");
+					}
 				}
 			}
 		}

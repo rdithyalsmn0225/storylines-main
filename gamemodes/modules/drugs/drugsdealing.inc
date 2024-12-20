@@ -14,9 +14,7 @@ stock IsPlayerNearDrugsDealing(playerid)
 CMD:drugsdeal(playerid, params[])
 {
 	new str[156];
-	/*if(!PlayerInfo[playerid][E_CHARACTER_FACTION] && ReturnFactionType(playerid) != FACTION_TYPE_ILLEGAL)
-		return SendErrorMessage(playerid, "You are not apart a gang members");*/
-
+	
 	if(DrugsDealerExists[playerid] == 0)
 	{
 		if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
