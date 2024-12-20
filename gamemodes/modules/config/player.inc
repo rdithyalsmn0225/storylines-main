@@ -212,6 +212,11 @@ function:ResetPlayer(playerid)
 			ReportInfo[i][E_REPORT_BY] = INVALID_PLAYER_ID;
 		}
 	}
+
+	for(new i = 1; i < MAX_PLAYER_VEHICLES; i++) { 
+		PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i] = 0; 
+	}
+
 	for(new i; i < 2; i++)
 	{
 		HEBAR[i][playerid] = INVALID_PLAYER_BAR_ID;
@@ -560,7 +565,7 @@ stock ShowCharacterStats(playerid, playerb)
 	
 	format(str1, sizeof(str1), "(%d) %s Statistics", playerid, AccountInfo[playerid][E_MASTERS_ACCNAME]);
 	format(str, sizeof(str), "%s{ffffff}[ACCOUNT]:{ffffff} [Masters: %s] - [Account: %s] - [Date: %s]\n", str, ReturnName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], ReturnDate());
-	format(str, sizeof(str), "%s{ffffff}[PREMIUM]:{ffffff} [VIP: %s] - [Time: %s]\n", str, ReturnVIPLevel(playerid), AccountInfo[playerid][E_MASTERS_VIPTIMER]);		
+	format(str, sizeof(str), "%s{ffffff}[PREMIUM]:{ffffff} [VIP: %s] - [Time: %d]\n", str, ReturnVIPLevel(playerid), AccountInfo[playerid][E_MASTERS_VIPTIMER]);		
 	format(str, sizeof(str), "%s{AFAFAF}[PLAYERS]:{ffffff} [Health: %0.1f/%0.1f] - [Armour: %0.1f/100]\n", str, PlayerInfo[playerid][E_CHARACTER_HEALTH], PlayerInfo[playerid][E_CHARACTER_MAXHEALTH], PlayerInfo[playerid][E_CHARACTER_ARMOUR]);	
 	format(str, sizeof(str), "%s{ffffff}[SESSION]:{ffffff} [Gender: %s] [Level: %d] [EXP: %d/10] [Time played: %d hours]\n", str, gender, PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
 	format(str, sizeof(str), "%s{AFAFAF}[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]\n", str, FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));

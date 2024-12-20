@@ -32,9 +32,9 @@ CMD:createcode(playerid, params[])
     if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
         return 0;
 
-    new code[32], players, days, moneyc;
-    if (sscanf(params, "s[32]iii", code, players, days, moneyc))
-        return SendUsageMessage(playerid, "/createcode [code] [max players] [days] [money]");
+    new code[32], players, days, moneyc, streetcredits;
+    if (sscanf(params, "s[32]iiii", code, players, days, moneyc, streetcredits))
+        return SendUsageMessage(playerid, "/createcode [code] [max players] [days] [money] [streetcredits]");
 
     new expired = gettime() + (days * 86400);
     new Cents = floatround(moneyc * 100, floatround_round);
