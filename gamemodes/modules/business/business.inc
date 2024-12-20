@@ -45,6 +45,47 @@ stock ShowBusinessShop(playerid, businessid)
 		}
 		SelectTextDraw(playerid, COLOR_YELLOW);
 	}
+	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_GENERAL)
+	{
+		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
+		{
+			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+		}
+		else
+		{
+			if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] == 0)
+				return SendErrorMessage(playerid, "You don't have a bill to pay to the clerk.");
+
+			if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			{
+				return SendErrorMessage(playerid, "You can't afford a bills.");
+			}
+
+			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk", "Select", "Close");
+
+			Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
+		}
+	}
+	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_HAIRCUT)
+	{
+		SetPlayerPos(playerid, 414.4374,-19.8381,1001.8047);
+		SetPlayerFacingAngle(playerid, 88.7491);
+
+		new str5[512];
+		for(new i; i < sizeof(g_aHaircut); i++)
+		{
+			format(str5, sizeof(str5), "%s%d\n", str5, g_aHaircut[i]);
+		}
+		ShowPlayerDialog(playerid, DIALOG_BARBERSTORE, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str5, "Select", "Close");
+	}
+	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK)
+	{
+		cmd_bank(playerid, "");
+	}
+	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_GYM)
+	{
+		ShowFightStyleMenu(playerid);
+	}
 	return 1;
 }
 
@@ -81,15 +122,15 @@ stock BusinessRefresh(businessid)
 	{
 		case BUSINESS_TYPE_BANK:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/bank' to see bank menu.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Press 'N' to pay items to clerk.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		case BUSINESS_TYPE_DINNER:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/menu' to see food & drink menu.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Press 'N' to pay items to clerk.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		case BUSINESS_TYPE_BAR:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/buybeer' to see menu.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Press 'N' to pay items to clerk.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
 		case BUSINESS_TYPE_ACID:
@@ -109,22 +150,22 @@ stock BusinessRefresh(businessid)
 		    
 		case BUSINESS_TYPE_CLOTHES:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/clothes' to see list clothing.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Press 'N' to pay items to clerk.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_HAIRCUT:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/haircut' to see list style haircut.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Press 'N' to pay items to clerk.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		   
 		case BUSINESS_TYPE_RENT:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: Press 'N' to pay items to clerk.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Press 'N' to pay items to clerk.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 		    
 		case BUSINESS_TYPE_CLUB:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/buybeer' to see menu.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Press 'N' to pay items to clerk.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 			
 		case BUSINESS_TYPE_AMMUNATION:
@@ -139,13 +180,28 @@ stock BusinessRefresh(businessid)
 			
 		case BUSINESS_TYPE_GYM:
 		{
-			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Available commands: '/fightstyle' to learn fightstyles.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
+			BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D] = CreateDynamic3DTextLabel("[Cashiers]\n{ffffff}Press 'N' to pay items to clerk.", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2], 2.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR]);
 		}
 	}
 	
 	BusinessInfo[businessid][E_BUSINESS_ACTOR] = CreateDynamicActor(BusinessActor[BusinessInfo[businessid][E_BUSINESS_TYPE]][E_BACTOR_SKIN], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][0], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][1], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][2], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][3], false);
 	SetDynamicActorFacingAngle(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_ACTORPOS][3]);
 	SetDynamicActorVirtualWorld(BusinessInfo[businessid][E_BUSINESS_ACTOR], BusinessInfo[businessid][E_BUSINESS_INTERIORPOSWORLD]);
+
+	if(BusinessInfo[businessid][E_BUSINESS_ROBBERYTIME] > 0)
+	{
+		ClearDynamicActorAnimations(BusinessInfo[businessid][E_BUSINESS_ACTOR]);
+		ApplyDynamicActorAnimation(BusinessInfo[businessid][E_BUSINESS_ACTOR], "PED", "DUCK_cower", 4.1, 0, 0, 0, 1, 0);
+	}
+	else
+	{
+		ClearDynamicActorAnimations(BusinessInfo[businessid][E_BUSINESS_ACTOR]);
+		ApplyDynamicActorAnimation(BusinessInfo[businessid][E_BUSINESS_ACTOR], "SHOP", "SHP_Serve_Idle", 4.1, 0, 0, 0, 1, 0);
+		foreach(new playerid : Player)
+		{
+			PlayerPlaySound(playerid, 0, 0, 0, 0);
+		}
+	}
 
 	if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_RENT)
 		BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1239, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 5.0);
@@ -356,31 +412,31 @@ stock SendBusinessType(playerid, id)
 		{
 			format(str, sizeof(str), "Welcome to %s.\nThis is a bank you can withdraw, deposit, or see balance your money in bank.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
-			SendClientMessage(playerid, COLOR_ORANGE, "Available commands: /bank.");
+			SendClientMessage(playerid, COLOR_ORANGE, "Press N to access bank menu.");
 		}
 		case BUSINESS_TYPE_GENERAL:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nThis is a general store you can buy anything.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
-			SendClientMessage(playerid, COLOR_ORANGE, "Available commands: Press N to purchase items.");
+			SendClientMessage(playerid, COLOR_ORANGE, "Press N to purchase items.");
 		}
 		case BUSINESS_TYPE_CLUB:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nThis is a club you can buy anything beer.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
-			SendClientMessage(playerid, COLOR_ORANGE, "Available commands: /buybeer.");
+			SendClientMessage(playerid, COLOR_ORANGE, "Press N to purchase items.");
 		}
 		case BUSINESS_TYPE_DINNER:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nThis is a restaurant you can buy anything food or drink if you hungry and thirsty.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
-			SendClientMessage(playerid, COLOR_ORANGE, "Available commands: /menu.");
+			SendClientMessage(playerid, COLOR_ORANGE, "Press N to purchase items.");
 		}
 		case BUSINESS_TYPE_BAR:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nThis is a bar you can buy anything beer.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
-			SendClientMessage(playerid, COLOR_ORANGE, "Available commands: /buybeer.");
+			SendClientMessage(playerid, COLOR_ORANGE, "Press N to purchase items.");
 		}
 		case BUSINESS_TYPE_ACID:
 		{
@@ -393,13 +449,13 @@ stock SendBusinessType(playerid, id)
 		{
 			format(str, sizeof(str), "Welcome to %s.\nThis is a clothes store you can buy anything clothing or skins.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
-			SendClientMessage(playerid, COLOR_ORANGE, "Available commands: /clothes.");
+			SendClientMessage(playerid, COLOR_ORANGE, "Press N to purchase items.");
 		}
 		case BUSINESS_TYPE_HAIRCUT:
 		{
 			format(str, sizeof(str), "Welcome to %s.\nThis is a haircuts you can buy anything wigs or cuts your stylish hair.", BusinessInfo[id][E_BUSINESS_NAME]);
 			SendClientMessage(playerid, COLOR_ORANGE, str);
-			SendClientMessage(playerid, COLOR_ORANGE, "Available commands: /haircut.");
+			SendClientMessage(playerid, COLOR_ORANGE, "Press N to purchase items.");
 		}
 		case BUSINESS_TYPE_RENT:
 		{

@@ -4027,7 +4027,7 @@ public OnPlayerCommandReceived(playerid, cmdtext[])
 	{
 		if(AntiSpam[playerid]-gettime() > 0)
 	    {
-	        SendErrorMessage(playerid, "DON'T SPAM FOO!.");
+	        SendErrorMessage(playerid, "CALM DOWN FOO. STOP SPAMMING!.");
 	        return 0;
 	    }
 	    AntiSpam[playerid] = gettime() + 1;
@@ -4174,20 +4174,43 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	{
 		if(GetPlayerWeapon(playerid) >= 22 && GetPlayerWeapon(playerid) <= 33)
 		{
+			new Float:aimX, Float:aimY, Float:aimZ;
+			GetPlayerPos(playerid, aimX, aimY, aimZ);
+
+			new nearbyPlayers = 0;
+			for (new i = 0; i < MAX_PLAYERS; i++)
+			{
+				if (IsPlayerConnected(i) && i != playerid && GetPlayerState(i) == PLAYER_STATE_ONFOOT)
+				{
+					new Float:playerX, Float:playerY, Float:playerZ;
+					GetPlayerPos(i, playerX, playerY, playerZ);
+
+					if (GetDistanceBetweenPoints3D(aimX, aimY, aimZ, playerX, playerY, playerZ) <= 5.0)
+					{
+						nearbyPlayers++;
+					}
+				}
+			}
+
+        	if (nearbyPlayers < 3)
+            	return SendErrorMessage(playerid, "You need at least 3 players nearby to start a robbery.");
+
+
 			new id = IsPlayerInBusiness(playerid);
 			if(IsPlayerInBusiness(playerid))
 			{
-				if(PlayerInfo[playerid][E_CHARACTER_ROBBERYCD] == 0)
-				{	
-					if(PlayerInfo[playerid][E_CHARACTER_HASROBBIZ] == true)
-						return SendErrorMessage(playerid, "You already robbery at this time.");
+				if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
+					return SendErrorMessage(playerid, "This Business has recently robbery.");
 
-					if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
-						return SendErrorMessage(playerid, "This Business has been robbery.");
+				if(PlayerInfo[playerid][E_CHARACTER_HASROBBIZ] == true)
+					return SendErrorMessage(playerid, "You already robbery at this time.");
 
-					CallLocalFunction("OnPlayerStartRobbery", "dd", playerid, BusinessInfo[id][E_BUSINESS_ACTOR]);
-					SetTimerEx("RunActorAnimationSequence", 1000, false, "iii", playerid, BusinessInfo[id][E_BUSINESS_ACTOR], 0);
-				}
+				if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
+					return SendErrorMessage(playerid, "This Business has been robbery.");
+
+				CallLocalFunction("OnPlayerStartRobbery", "dd", playerid, BusinessInfo[id][E_BUSINESS_ACTOR]);
+				SetTimerEx("RunActorAnimationSequence", 1000, false, "iii", playerid, BusinessInfo[id][E_BUSINESS_ACTOR], 0);
+				
 			}
 		}
 	}
@@ -4765,31 +4788,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		}
 		else
 		{
-			if(!IsPlayerNearCashiers(playerid))
-			{
-				cmd_inventory(playerid, "");
-			}
-			else if(IsPlayerNearCashiers(playerid)) //Payclerk Pawnshop
-			{
-				if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
-				{
-					ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
-				}
-				else
-				{
-					if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] == 0)
-						return SendErrorMessage(playerid, "You don't have a bill to pay to the clerk.");
-
-					if(PlayerInfo[playerid][E_CHARACTER_PURCHASE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-					{
-						return SendErrorMessage(playerid, "You can't afford a bills.");
-					}
-					GiveMoney(playerid, -PlayerInfo[playerid][E_CHARACTER_PURCHASE]);
-					PlayerInfo[playerid][E_CHARACTER_PURCHASE] = 0;
-
-					Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-				}
-			}
 			if(!BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME])
 			{
 				for(new ii; ii < sizeof(BusinessPoint); ii++)
@@ -4798,13 +4796,17 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					{
 						new string[128];
 						format(string, sizeof(string), "Inventory\n%s", BusinessPoint[ii][E_BUSINESS_POINT_NAME]);
-						ShowPlayerDialog(playerid, DIALOG_SHOP, DIALOG_STYLE_LIST, "Choose an option:", string, "Select", "Close");
-					}
-					else
-					{
-						cmd_inventory(playerid, "");
+						return ShowPlayerDialog(playerid, DIALOG_SHOP, DIALOG_STYLE_LIST, "Choose an option:", string, "Select", "Close");
 					}
 				}
+			}
+			if(IsPlayerNearCashiers(playerid)) //Payclerk
+			{
+				return ShowBusinessShop(playerid, IsPlayerInBusiness(playerid));
+			}
+			else
+			{
+				return cmd_inventory(playerid, "");
 			}
 		}
 	}
@@ -5758,7 +5760,7 @@ public OnPlayerGiveDamageDynamicActor(playerid, actorid, Float:amount, weaponid,
 	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ACTOR] == actorid  && PlayerInfo[playerid][E_CHARACTER_EXTORTION] == true)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] < 100.0)
-			PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] += 10.0;
+			PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] += 5.0;
 
 		else if(PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] > 100.0)
 			PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] = 100.0;

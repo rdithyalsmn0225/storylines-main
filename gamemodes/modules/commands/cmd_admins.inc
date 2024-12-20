@@ -1957,12 +1957,13 @@ CMD:setcarparams(playerid, params[])
 
 //Level 4 Admin commands:
 
+CMD:gotoint(playerid, params[]) return cmd_gotomark(playerid, params);
 CMD:gotomark(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
 		return 0;		
     new
-        str[1536];
+        str[2024];
 
 	str[0] = '\0';
 

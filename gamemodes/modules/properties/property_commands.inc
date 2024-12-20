@@ -306,7 +306,7 @@ CMD:property(playerid, params[])
 	if(sscanf(params, "s[90]S()[90]S()[60]", str, bstr, cstr))
 	{
 		SendUsageMessage(playerid, "/property [types]");
-		SendTipMessage(playerid, "info, cashbox, safe, furniture"); 
+		SendTipMessage(playerid, "info, cashbox, place, take, safe, furniture"); 
 		return 1;
 	}
 	

@@ -1105,7 +1105,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						if(!toyToggle[playerid][toySelect[playerid]])
 						{
-							ShowBoxMessage(playerid, "Accessory attached", 5);
+							ShowBoxMessage(playerid, "Accessories attached", 5);
 
 							SetPlayerAttachedObject(playerid,
 							toySelect[playerid],
@@ -1126,7 +1126,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						else
 						{
 							RemovePlayerAttachedObject(playerid, toySelect[playerid]);
-							ShowBoxMessage(playerid, "Accessory deattached", 5);
+							ShowBoxMessage(playerid, "Accessories dettached", 5);
 
 							toyToggle[playerid][toySelect[playerid]] = false;
 						}
@@ -1149,7 +1149,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							RemovePlayerAttachedObject(playerid, toySelect[playerid]);
 						}
 						pToys[playerid][toySelect[playerid]][E_TOY_MODEL] = 0;
-						ShowBoxMessage(playerid, "Accessory removed!", 5);
+						ShowBoxMessage(playerid, "Accessories delete!", 5);
 						SavePlayerToys(playerid);
 					}
 				}
@@ -2450,7 +2450,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] == true && BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] >= 500)
 						{
-							new rand = random(200);
+							new rand = random(100);
 							new Cents = floatround(rand * 100, floatround_round);
 
 							GiveMoney(playerid, Cents);

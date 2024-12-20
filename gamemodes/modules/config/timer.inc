@@ -162,7 +162,6 @@ function:OnPlayerUpdateEx()
 				|| Inventory_Count(playerid, "Fish Cargo"))
 				{
 					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CRATES;
-					RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 					SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.293999, 0.497999, -0.006000, -99.500007, 90.300033, 99.600013, 0.620999, 0.673000, 0.648999);
 					
@@ -171,7 +170,6 @@ function:OnPlayerUpdateEx()
 				{
 					
 					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
-					RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 					SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 1, 0.000000, 0.465000, 0.000000, 0.000000, 89.699958, 0.000000, 0.348999, 0.340999, 0.444999);
 				}
@@ -181,7 +179,6 @@ function:OnPlayerUpdateEx()
 				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES || PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == WOODS)
 				{
 					RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-					RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
 				}
@@ -551,12 +548,12 @@ function:OnPlayerMinutesUpdate()
 		{
 			BusinessInfo[id][E_BUSINESS_ROBBERYTIME]--;
 			ClearDynamicActorAnimations(BusinessInfo[id][E_BUSINESS_ACTOR]);
-			ApplyDynamicActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "PED", "DUCK_cower", 4.1, 0, 0, 0, 1, 1);
+			ApplyDynamicActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "PED", "DUCK_cower", 4.1, 0, 0, 0, 1, 0);
 		}
 		else
 		{
 			ClearDynamicActorAnimations(BusinessInfo[id][E_BUSINESS_ACTOR]);
-			ApplyDynamicActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "FOOD", "SHP_Tray_Pose", 4.1, 0, 0, 0, 1, 0);
+			ApplyDynamicActorAnimation(BusinessInfo[id][E_BUSINESS_ACTOR], "SHOP", "SHP_Serve_Idle", 4.1, 0, 0, 0, 1, 0);
 			BusinessInfo[id][E_BUSINESS_ROBBERYTIME] = 0;
 			foreach(new playerid : Player)
 			{

@@ -325,7 +325,7 @@ CMD:id(playerid, params[])
 			{
 				if(strfind(ReturnName(b, playerid), params, true) != -1)
 				{
-					SendClientMessageEx(playerid, COLOR_GREY, "(ID: %i) %s | Level: %i", b, ReturnName(b), PlayerInfo[b][E_CHARACTER_LEVEL]); 
+					SendClientMessageEx(playerid, COLOR_GREY, "(ID: %i) %s | Level: %i | Packetloss: %.2f | Ping: %i", b, ReturnName(b), PlayerInfo[b][E_CHARACTER_LEVEL], NetStats_PacketLossPercent(b), GetPlayerPing(b)); 
 				}
 				else return SendClientMessage(playerid, COLOR_RED, "Player not found."); 
 			}
@@ -382,103 +382,6 @@ CMD:id(playerid, params[])
 		}
 	}
 	return 1; 
-}
-
-CMD:buybeer(playerid, params[])
-{
-	new
-		id = IsPlayerInBusiness(playerid);
-
-	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
-		return SendErrorMessage(playerid, "This Business has been robbery.");
-
-	if(IsPlayerNearCashiers(playerid))
-	{	
-		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLUB && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BAR)
-			return SendErrorMessage(playerid, "You aren't in a club or bar."); 
-		ShowBusinessShop(playerid, id);
-	}
-	else
-	{
-		return SendErrorMessage(playerid, "You aren't in a business."); 
-	} 
-	return 1;
-}
-
-CMD:menu(playerid, params[])
-{
-    new
-		id = IsPlayerInBusiness(playerid);
-
-	if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
-		return SendErrorMessage(playerid, "This Business has been robbery.");
-
-	if(IsPlayerNearCashiers(playerid))
-	{	
-		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_DINNER)
-			return SendErrorMessage(playerid, "You aren't in a restaurant.");
-			
-		ShowBusinessShop(playerid, id);
-	}
-	else
-	{
-		return SendErrorMessage(playerid, "You aren't in a business."); 
-	} 
-	return 1;
-}
-
-CMD:haircut(playerid, params[])
-{
-	if(IsPlayerNearCashiers(playerid))
-	{
-		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_TYPE] != BUSINESS_TYPE_HAIRCUT)
-			return SendErrorMessage(playerid, "You aren't in a haircut.");
-
-		SetPlayerPos(playerid, 414.4374,-19.8381,1001.8047);
-		SetPlayerFacingAngle(playerid, 88.7491);
-
-		new str[512];
-		for(new i; i < sizeof(g_aHaircut); i++)
-		{
-			format(str, sizeof(str), "%s%d\n", str, g_aHaircut[i]);
-		}
-		ShowPlayerDialog(playerid, DIALOG_BARBERSTORE, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
-	}
-	else return SendErrorMessage(playerid, "You aren't in a business.");
-	return 1;
-}
-
-CMD:clothes(playerid, params[])
-{
-	new 
-	    id = IsPlayerInBusiness(playerid);
-	
-	if(BusinessInfo[id][E_BUSINESS_ROBBERYTIME] > 0)
-		return SendErrorMessage(playerid, "This Business has been robbery.");
-
-	if(!IsPlayerNearCashiers(playerid))
-		return SendErrorMessage(playerid, "You aren't near cashiers.");
-		
-	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLOTHES)
-		return SendErrorMessage(playerid, "You aren't in a clothes.");
-
-    ShowBusinessShop(playerid, id);
-	return 1;
-}
-
-CMD:fightstyle(playerid, params[])
-{
-	new 
-	    id = IsPlayerInBusiness(playerid);
-
-	if(!IsPlayerNearCashiers(playerid))
-		return SendErrorMessage(playerid, "You aren't in a business.");
-
-	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GYM)
-		return SendErrorMessage(playerid, "You aren't in a gym.");
-
-    ShowFightStyleMenu(playerid);
-	return 1;
 }
 
 CMD:radiochannel(playerid, params[])

@@ -672,14 +672,14 @@ CreateHotwireTextDraws(playerid)
 
 CreateNotificationTextDraws(playerid)
 {
-	Footers[playerid] = CreatePlayerTextDraw(playerid, 321.000000, 376.000000, "~b~Ganton Binco~n~~y~This business is for sell~n~~w~Press 'ENTER' to enter business");
+	Footers[playerid] = CreatePlayerTextDraw(playerid, 321.000000, 384.000000, "Press 'RETURN' to enter~n~~w~Memphis street Liquor store~n~Memphis Street, Playa Del Seville");
 	PlayerTextDrawFont(playerid, Footers[playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Footers[playerid], 0.191659, 0.999993);
+	PlayerTextDrawLetterSize(playerid, Footers[playerid], 0.329158, 1.049993);
 	PlayerTextDrawTextSize(playerid, Footers[playerid], 502.500000, 306.500000);
-	PlayerTextDrawSetOutline(playerid, Footers[playerid], 1);
-	PlayerTextDrawSetShadow(playerid, Footers[playerid], 0);
+	PlayerTextDrawSetOutline(playerid, Footers[playerid], 0);
+	PlayerTextDrawSetShadow(playerid, Footers[playerid], 1);
 	PlayerTextDrawAlignment(playerid, Footers[playerid], 2);
-	PlayerTextDrawColor(playerid, Footers[playerid], -1);
+	PlayerTextDrawColor(playerid, Footers[playerid], -65281);
 	PlayerTextDrawBackgroundColor(playerid, Footers[playerid], 255);
 	PlayerTextDrawBoxColor(playerid, Footers[playerid], 50);
 	PlayerTextDrawUseBox(playerid, Footers[playerid], 0);
@@ -747,7 +747,7 @@ CreateHUDTextDraws(playerid)
 {
 	Street[0][playerid] = CreatePlayerTextDraw(playerid, 156.000000, 344.000000, "~w~South North~n~~y~SN");
 	PlayerTextDrawFont(playerid, Street[0][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Street[0][playerid], 0.212491, 1.199998);
+	PlayerTextDrawLetterSize(playerid, Street[0][playerid], 0.270824, 1.099998);
 	PlayerTextDrawTextSize(playerid, Street[0][playerid], 400.000000, 93.500000);
 	PlayerTextDrawSetOutline(playerid, Street[0][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, Street[0][playerid], 0);
@@ -761,7 +761,7 @@ CreateHUDTextDraws(playerid)
 
 	Street[1][playerid] = CreatePlayerTextDraw(playerid, 156.000000, 369.000000, "St. Nicholas Avenue~n~Los Santos International~n~San Andreas");
 	PlayerTextDrawFont(playerid, Street[1][playerid], 1);
-	PlayerTextDrawLetterSize(playerid, Street[1][playerid], 0.162488, 1.149992);
+	PlayerTextDrawLetterSize(playerid, Street[1][playerid], 0.204153, 1.099991);
 	PlayerTextDrawTextSize(playerid, Street[1][playerid], 3940.500000, 266.500000);
 	PlayerTextDrawSetOutline(playerid, Street[1][playerid], 1);
 	PlayerTextDrawSetShadow(playerid, Street[1][playerid], 0);
@@ -2583,7 +2583,6 @@ stock ShowBoxMessage(playerid, string[], time, type=0)
 		}
 	}
 	SetTimerEx("HideBoxMessage", validtime, false, "d", playerid);
-	PlayerPlaySound(playerid, 1054, 0.0, 0.0, 0.0);
 	return 1;
 }
 function:HideBoxMessage(playerid)

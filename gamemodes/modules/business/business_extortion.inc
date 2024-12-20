@@ -199,6 +199,8 @@ CMD:extort(playerid, params[])
 				case 4: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xcdcdcdFF, "Cashiers says: Please don't take my money! I need to feed my children!");
 			}
 
+			SendStreetMessage("Street's News: business at %s %s has been extortions.", GetZoneName(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ENTRANCEPOS][2]), BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
+
 			new str[133];
 			format(str, sizeof(str), "You have started the extorting in %s.~n~~n~Hit the store clerk to break them. When the extortion bar is full use /extort again.", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 			ShowHeaderMessage(playerid, "Extortion", str);
@@ -213,7 +215,7 @@ CMD:extort(playerid, params[])
 
 			PlayerInfo[playerid][E_CHARACTER_EXTORTIONID] = 0;
 			PlayerInfo[playerid][E_CHARACTER_EXTORTION] = false;
-			BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] = 5;
+			BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] = 10;
 			BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = true;
 			PlayerInfo[playerid][E_CHARACTER_ROBBERYCD] = 10;
 			BusinessRefresh(IsPlayerInBusiness(playerid));

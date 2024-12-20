@@ -2,8 +2,6 @@
 
 function:OnPlayerStartRobbery(playerid, actorid)
 {
-	PlayerInfo[playerid][E_CHARACTER_ROBBERYCD] = 10;
-
 	PlayerInfo[playerid][E_CHARACTER_ROBBERYACTOR] = actorid;
 	PlayerInfo[playerid][E_CHARACTER_HASROBBIZ] = true;
 
@@ -19,7 +17,7 @@ function:OnPlayerStartRobbery(playerid, actorid)
 		case 3: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xcdcdcdFF, "Cashiers says: You makin' a big mistake.. Just take the cash and don't shoot!");
 		case 4: ProxDetectorXYZ ( x, y, z, interior, world, 10.0, 0xcdcdcdFF, "Cashiers says: Please don't take my money! I need to feed my children!");
 	}
-	SendStreetMessage("Street's News: business at %s has been robbed.", GetZoneName(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ENTRANCEPOS][2]));
+	SendStreetMessage("Street's News: business at %s %s has been robbed.", GetZoneName(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ENTRANCEPOS][2]), BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	return 1;
 }
 
@@ -39,13 +37,12 @@ function:OnPlayerFinishRobbery(playerid, actorid, type)
 		{
 			SendPropertyMessage(playerid, "[Business] {cdcdcd}You have successfully robbed the business for take the cash from cashiers!");
 
-			BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] = 5;
 			BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = true;
-			PlayerInfo[playerid][E_CHARACTER_ROBBERYCD] = 10;
 			BusinessRefresh(IsPlayerInBusiness(playerid));
+			BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] = 10;
+			PlayerInfo[playerid][E_CHARACTER_ROBBERYCD] = 10;
 			SaveBusiness(IsPlayerInBusiness(playerid));
 			SaveCharacter(playerid);
-
 			Relations_Remove(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME], 80);
 		}
 	}
@@ -61,19 +58,19 @@ function:RunActorAnimationSequence(playerid, actorid, animation_pattern)
 			ClearDynamicActorAnimations(actorid);
 			ApplyDynamicActorAnimation(actorid, "SHOP", "SHP_Serve_Loop", 4.1, 0, 0, 0, 1, 0);
 
-			SetTimerEx("RunActorAnimationSequence", 2500, false, "iii", playerid, actorid, 1);
+			SetTimerEx("RunActorAnimationSequence", 10000, false, "iii", playerid, actorid, 1);
 		}
 		case 1: 
 		{
 			ClearDynamicActorAnimations(actorid);
-			ApplyDynamicActorAnimation(actorid, "SHOP", "SHP_Rob_GiveCash", 4.1, 0, 1, 1, 1, 0);
+			ApplyDynamicActorAnimation(actorid, "SHOP", "SHP_Rob_GiveCash", 4.1, 0, 0, 0, 1, 0);
 
-			SetTimerEx("RunActorAnimationSequence", 1000, false, "iii", playerid, actorid, 2);
+			SetTimerEx("RunActorAnimationSequence", 20000, false, "iii", playerid, actorid, 2);
 		}
 		case 2: 
 		{
 			ClearDynamicActorAnimations(actorid);
-			ApplyDynamicActorAnimation(actorid, "PED", "DUCK_cower", 4.1, 1, 1, 1, 1, 1);
+			ApplyDynamicActorAnimation(actorid, "PED", "DUCK_cower", 4.1, 0, 0, 0, 1, 0);
 
 			SetTimerEx("RunActorAnimationSequence", 10000, false, "iii", playerid, actorid, 3);
 
@@ -82,7 +79,7 @@ function:RunActorAnimationSequence(playerid, actorid, animation_pattern)
 		case 3: 
 		{
 			ClearDynamicActorAnimations(actorid);
-			ApplyDynamicActorAnimation(actorid, "FOOD", "SHP_Tray_Pose", 4.1, 1, 1, 1, 1, 0);
+			ApplyDynamicActorAnimation(actorid, "PED", "DUCK_cower", 4.1, 0, 0, 0, 1, 0);
 		}
 	}
 	return 1;
