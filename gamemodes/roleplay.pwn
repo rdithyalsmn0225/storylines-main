@@ -893,6 +893,22 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				amount = 5.0;
 			}
 		}
+		//Glove
+		case 1:
+		{
+			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 1)
+			{
+				amount = 4.0;
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 2)
+			{
+				amount = 4.0;
+			}
+			if (PlayerInfo[issuerid][E_CHARACTER_WEAPONTYPE] == 3)
+			{
+				amount = 5.0;
+			}
+		}
 		//Colt
 		case 22:
 		{
@@ -2229,6 +2245,22 @@ public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)
 			{
 				amount = 6.0;
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)
+			{
+				amount = 5.0;
+			}
+		}
+		//Glove
+		case 1:
+		{
+			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)
+			{
+				amount = 4.0;
+			}
+			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)
+			{
+				amount = 4.0;
 			}
 			if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)
 			{
@@ -5379,7 +5411,7 @@ function:SaveCharacterPos(playerid)
 
 	GetPlayerPos(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
 	PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR] = GetPlayerInterior(playerid);
-	PlayerInfo[playerid][E_CHARACTER_LASTWORLD] = GetPlayerInterior(playerid);
+	PlayerInfo[playerid][E_CHARACTER_LASTWORLD] = GetPlayerVirtualWorld(playerid);
 	GetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	GetPlayerArmour(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 

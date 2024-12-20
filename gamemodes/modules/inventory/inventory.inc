@@ -444,6 +444,18 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
 
+	//Glove
+	else if(!strcmp(name, "Glove"))
+	{
+		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+		{
+			GivePlayerWeapon(playerid, 1, 999999);
+			PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 1;
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = GLOVE;
+		}
+		else SendErrorMessage(playerid, "You must store your items in inventory first.");
+	}
+
 	//Bat
 	else if(!strcmp(name, "Spike Bat"))
 	{

@@ -489,8 +489,8 @@ CMD:celebrate(playerid, params[])
    	if(!IsAnimationPermitted(playerid))
 	    return SendErrorMessage(playerid, "You cannot use this command right now.");
 
-	SetPlayerAttachedObject(playerid, ATTACH_ANIMS, -2503, 6, 0.051001, 0.037000, -0.000999, -3.499976, 63.500053, -3.400005, 1.000000, 1.000000, 1.258999 ) ;
-	SetPlayerAttachedObject(playerid, ATTACH_ANIMS2, 18706, 6, -1.334998, -0.005000, -0.679999, -3.499975, 63.500053, -3.400005, 1.000000, 1.000000, 1.258998 ) ;
+	SetPlayerAttachedObject(playerid, ATTACH_HAND, -2503, 6, 0.051001, 0.037000, -0.000999, -3.499976, 63.500053, -3.400005, 1.000000, 1.000000, 1.258999 ) ;
+	SetPlayerAttachedObject(playerid, ATTACH_HAND2, 18706, 6, -1.334998, -0.005000, -0.679999, -3.499975, 63.500053, -3.400005, 1.000000, 1.000000, 1.258998 ) ;
 
    	ApplyAnimationEx(playerid, "BUDDY", "buddy_reload", 4.1, 1, 0, 0, 0, 0);
    	return 1;
@@ -1082,8 +1082,8 @@ CMD:stopanim(playerid, params[])
     PlayerInfo[playerid][E_CHARACTER_LOOPANIM] = 0;
 
    	ClearAnimations(playerid, 1);
-	RemovePlayerAttachedObject(playerid, ATTACH_ANIMS);
-	RemovePlayerAttachedObject(playerid, ATTACH_ANIMS2);
+	RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+	RemovePlayerAttachedObject(playerid, ATTACH_HAND2);
 
 	ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
     return 1;

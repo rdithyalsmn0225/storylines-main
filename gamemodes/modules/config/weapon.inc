@@ -44,6 +44,10 @@ stock GetWeaponType(playerid, weaponid)
  		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 2)format(astring, sizeof(astring), "Marcos Knife");
  		else if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 3)format(astring, sizeof(astring), "Knife");
 	}
+	else if(GetPlayerWeapon(weaponid) == 1)
+ 	{ 
+ 		if (PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] == 1)format(astring, sizeof(astring), "Glove");
+	}
 	else ReturnWeaponName(weaponid);
 	return astring;
 }
@@ -72,6 +76,7 @@ ResetPlayerWeaponEx(playerid)
 	Inventory_Set(playerid, "Beer Bottle", 2040, 0);
 	Inventory_Set(playerid, "Marcos Knife", 2040, 0);
 	Inventory_Set(playerid, "Knife", 2040, 0);
+	Inventory_Set(playerid, "Glove", 19556, 0);
 	Inventory_Set(playerid, "Spike Bat", 2040, 0);
 	Inventory_Set(playerid, "Cutscene Bat", 2040, 0);
 	Inventory_Set(playerid, "Baseball Bat", 2040, 0);

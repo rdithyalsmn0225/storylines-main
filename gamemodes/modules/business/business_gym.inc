@@ -22,8 +22,8 @@ function:PlayerGYMTimers(playerid, type)
             PlayerPlaySound(playerid, 0, 0.0, 0.0, 0.0);
             TogglePlayerControllable(playerid, true);
             BusinessInfo[businessid][E_BUSINESS_TREADMILL] = false;
-            RemovePlayerAttachedObject(playerid, ATTACH_ANIMS);
-            RemovePlayerAttachedObject(playerid, ATTACH_ANIMS2);
+            RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+            RemovePlayerAttachedObject(playerid, ATTACH_HAND2);
             PlayerPlaySound(playerid, 0, 0.0, 0.0, 0.0);
         }
     }
@@ -56,8 +56,8 @@ function:PlayerGYMTimers(playerid, type)
             ClearAnimations(playerid, 1);
             PlayerPlaySound(playerid, 0, 0.0, 0.0, 0.0);
             TogglePlayerControllable(playerid, true);
-            RemovePlayerAttachedObject(playerid, ATTACH_ANIMS);
-            RemovePlayerAttachedObject(playerid, ATTACH_ANIMS2);
+            RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+            RemovePlayerAttachedObject(playerid, ATTACH_HAND2);
             PlayerPlaySound(playerid, 0, 0.0, 0.0, 0.0);
         }
     }
@@ -72,8 +72,8 @@ stock IsPlayerUsingMachine(playerid, type)
         {
             ApplyAnimation(playerid, "freeweights", "gym_free_down", 4.1, 0, 0, 0, 1, 0, 1 );
 
-            SetPlayerAttachedObject(playerid, ATTACH_ANIMS, -2505, 6);
-			SetPlayerAttachedObject(playerid, ATTACH_ANIMS2, -2506, 5);
+            SetPlayerAttachedObject(playerid, ATTACH_HAND, -2505, 6);
+			SetPlayerAttachedObject(playerid, ATTACH_HAND2, -2506, 5);
 
             PlayerGymMachine[playerid] = GYM_DUMBELLS;
             PlayerPointGym[playerid] = 10.0;
@@ -323,8 +323,8 @@ stock IsPlayerExitMachine(playerid)
         BusinessInfo[businessid][E_BUSINESS_BENCH] = false;
     }
 
-    RemovePlayerAttachedObject(playerid, ATTACH_ANIMS);
-    RemovePlayerAttachedObject(playerid, ATTACH_ANIMS2);
+    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+    RemovePlayerAttachedObject(playerid, ATTACH_HAND2);
     ClearAnimations(playerid, 0);
     SetCameraBehindPlayer(playerid);
     PlayerPlaySound(playerid, 0, 0.0, 0.0, 0.0);
