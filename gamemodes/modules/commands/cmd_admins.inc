@@ -1821,7 +1821,7 @@ CMD:setcar(playerid, params[])
 		format(str, sizeof(str), "%s set vehicle ID %i's color2 to %i. (Previously %i)", ReturnName(playerid), vehicleid, value, VehicleInfo[vehicleid][E_VEHICLE_COLOR2]);
 		SendAdminMessage(3, str);
 		
-		SendTipMessage(playerid, "The vehicle needs to be respawned to take affect.");
+		SendVehicleMessage(playerid, "[VEHICLE] The vehicle needs to be respawned to take affect.");
 		
 		VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = value;
 		SaveVehicle(vehicleid);
@@ -1837,7 +1837,7 @@ CMD:setcar(playerid, params[])
 		format(str, sizeof(str), "%s set vehicle ID %i's paintjob to %i. (Previously %i)", ReturnMixedName(playerid), vehicleid, value, VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB]);
 		SendAdminMessage(3, str);
 		
-		SendTipMessage(playerid, "The vehicle needs to be respawned to take affect.");
+		SendVehicleMessage(playerid, "[VEHICLE] The vehicle needs to be respawned to take affect.");
 		
 		VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = value;
 		SaveVehicle(vehicleid);

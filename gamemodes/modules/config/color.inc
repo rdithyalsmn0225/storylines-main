@@ -13,7 +13,7 @@
 #define COLOR_3DTEXT        (0xB2E244FF)
 #define COLOR_INFO          (0x7f0c0cAA)
 #define COLOR_INVENTORY     (0xE7EAB5FF)
-#define COLOR_TIP           (0x72d2a8FF)
+#define COLOR_TIP           (0xffeaaeFF)
 #define COLOR_FACTION       (0x99A5D7FF)
 #define COLOR_GAMES         (0xb6b9e1FF)
 #define COLOR_HEADER		(0x90D7F0FF)

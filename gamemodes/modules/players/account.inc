@@ -218,8 +218,8 @@ stock LoadCharacter(playerid)
 		SetPlayerTeam(playerid, PLAYER_STATE_ALIVE);
 	}
 
-	SetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
-	SetPlayerArmour(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
+	SetPlayerHealthEx(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
+	SetPlayerArmourEx(playerid, PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 
 	PauseAC(playerid);
 
@@ -257,7 +257,7 @@ stock LoadCharacter(playerid)
 	
 	SetCameraBehindPlayer(playerid);
 	SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]);
-	SetPlayerPosEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
+	//SetPlayerPosEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]);
 	SetPlayerInteriorEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTINTERIOR]); SetPlayerVirtualWorldEx(playerid, PlayerInfo[playerid][E_CHARACTER_LASTWORLD]);
 	if(PlayerInfo[playerid][E_CHARACTER_OFFJAILED])
 	{
@@ -299,7 +299,7 @@ stock LoadCharacter(playerid)
 	PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ]; 
 	PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = PlayerInfo[playerid][E_CHARACTER_INSIDEENT];
 
-	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 100);
+	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 300);
 	Streamer_Update(playerid, STREAMER_TYPE_OBJECT);
 	
 	SetSpawnInfo(playerid, 0, PlayerInfo[playerid][E_CHARACTER_LASTSKIN], PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2], 0, 0, 0, 0, 0, 0, 0);

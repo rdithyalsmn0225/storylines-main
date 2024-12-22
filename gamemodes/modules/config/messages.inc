@@ -3,13 +3,13 @@
 	SendClientMessageEx(%0, COLOR_ORANGE, "[SYNTAX] "%1) 
 	
 #define SendErrorMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_SAMP, ""%1)
+	SendClientMessageEx(%0, COLOR_RED, "[ERROR] "%1)
 
 #define SendInfoMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_BLUE, ""%1) 
 
 #define SendTipMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_TIP, "[TIP] {c3ecdc}"%1) 
+	SendClientMessageEx(%0, COLOR_TIP, "[TIP] {ffffff}"%1) 
 
 #define SendInventoryMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_INVENTORY, "[INVENTORY] {F5F6DF}"%1) 
@@ -33,7 +33,7 @@
 	SendClientMessageToAllEx(COLOR_GREY, "Debug: "%0)
 
 #define SendStreetMessage(%0)	\
-	SendClientMessageToAllEx(COLOR_DARKGREEN, "[Word on the Streetz]: "%0)
+	SendClientMessageToAllEx(COLOR_SAMP, "[Word on the Streetz]: {ffffff}"%0)
 
 #define forex(%0,%1) for(new %0 = 0; %0 < %1; %0++)	
 

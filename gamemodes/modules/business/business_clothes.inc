@@ -20,7 +20,7 @@ function:SetPlayerSkinAndExit(playerid, skinid)
     MoveDynamicObject(fittingRoomDoor, 216.760360, -97.310455, 1005.337768, 0.01, 0.0, 0.0, 360.0); //tutup
     ApplyAnimation(playerid, "CLOTHES", "CLO_Pose_In_O", 4.0, 0, 0, 0, 0, 0);
     
-    SendPropertyMessage(playerid, "[Business] You bought clothes and wear it."); 
+    SendPropertyMessage(playerid, "[BUSINESS] You bought clothes and wear it."); 
 	SetPlayerSkin(playerid, skinid);
 	PlayerInfo[playerid][E_CHARACTER_LASTSKIN] = skinid;
 

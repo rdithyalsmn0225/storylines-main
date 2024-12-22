@@ -230,7 +230,7 @@ public OnGameModeInit()
 	SetTimer("OnPlayerMinutesUpdate", 60000, true);
 	SetTimer("OnPlayerWeaponUpdate", 1000, true);
 	SetTimer("OnSprayTagsUpdate", 60000, true);
-	SetTimer("OnAntiCheatUpdate", 50, true);
+	SetTimer("OnAntiCheatUpdate", 1000, true);
 	SetTimer("OnIndustryUpdate", 1800000, true);
 	SetTimer("OnTreeUpdate", 60000, true);
 	SetTimer("OnPlayerTaxiUpdate", 1000, true);
@@ -277,7 +277,7 @@ public OnGameModeInit()
 public OnGameModeExit()
 {
 	#if defined DEBUG_MODE
-		printf("Callback OnGameModeExit called for player %s (ID: %i)", ReturnName(playerid), playerid); 
+		printf("Callback OnGameModeExit called"); 
 	#endif
 
 	foreach (new i : Player)
@@ -747,12 +747,14 @@ public OnPlayerRequestSpawn(playerid)
 
 public OnVehicleDeath(vehicleid, killerid)
 {
+	new Float: vehicle_health;
+	GetVehicleHealth(vehicleid, vehicle_health); 
+
+
 	#if defined DEBUG_MODE
 		printf("Callback OnVehicleDeath called for Vehicle ID: %i (%s) (Health: %.2f) destroyed by %s", vehicleid, ReturnVehicleName(vehicleid), vehicle_health, ReturnName(killerid, killerid)); 
 	#endif
 
-	new Float: vehicle_health;
-	GetVehicleHealth(vehicleid, vehicle_health); 
 	TotalledCheck(vehicleid);
 
 	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_DBID] == VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID])
@@ -790,24 +792,30 @@ public OnPlayerDeath(playerid, killerid, reason)
 	
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && (gettime() - LastSpawn[playerid]) < 15 && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 	{
+		SaveCharacterPos(playerid);
 		SendClientMessage(playerid, COLOR_RED, "Died at spawn.[Just logged in]");
 		CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
+		return 0;
 	}
 	
 	if(reason == 51)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
+			SaveCharacterPos(playerid);
 			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
 			SendServerMessage(playerid, "You has been killed by Exploded at %s.", ReturnLocationStreet(playerid));
+			return 0;
 		}
 	}
 	if(reason == 50)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
+			SaveCharacterPos(playerid);
 			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
 			SendServerMessage(playerid, "You has been killed by Helicopter Bladed at %s.", ReturnLocationStreet(playerid));
+			return 0;
 		}
 	}
 	if(reason == 53)
@@ -819,24 +827,28 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SetPlayerPosEx(playerid, 2032.9578,-1416.1289,16.9922);
 			SetPlayerInterior(playerid, 0);
 			SetPlayerVirtualWorld(playerid, 0);
-			RespawnPlayer(playerid);
 			SendServerMessage(playerid, "You has been killed by Drowning at %s.", ReturnLocationStreet(playerid));
+			return 0;
 		}	
 	}
 	if(reason == 54)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
+			SaveCharacterPos(playerid);
 			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
 			SendServerMessage(playerid, "You has been killed by Splat at %s.", ReturnLocationStreet(playerid));
+			return 0;
 		}	
 	}
 	if(reason == 255)
 	{
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{
+			SaveCharacterPos(playerid);
 			CallLocalFunction("OnPlayerWounded", "dud", playerid, playerid, 0);
 			SendServerMessage(playerid, "You has been killed by Suicide at %s.", ReturnLocationStreet(playerid));
+			return 0;
 		}
 	}
 
@@ -1968,8 +1980,8 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		PlayerInfo[playerid][E_CHARACTER_LASTDAMAGE] = gettime();
 		GetPlayerHealth(playerid, health); 
 		
-		if(GetPlayerTeam(playerid) != PLAYER_STATE_ALIVE && PlayerInfo[playerid][E_CHARACTER_DEATHFIX])
-			SetPlayerHealthEx(playerid, health); 
+		if(GetPlayerTeam(playerid) != PLAYER_STATE_ALIVE)
+			return 0;
 		
 		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
 		{
@@ -2001,13 +2013,8 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		}
 		
 		if(GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED)
-		{
-			if(!PlayerInfo[playerid][E_CHARACTER_DEATHFIX])
-			{				
-				CallLocalFunction("OnPlayerDead", "dddd", playerid, issuerid, weaponid, 1);
-				return 0;
-			}
-			
+		{		
+			CallLocalFunction("OnPlayerDead", "dddd", playerid, issuerid, weaponid, 1);
 			return 0;
 		}
 		
@@ -2037,7 +2044,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 
 	if(hittype == BULLET_HIT_TYPE_PLAYER) //Death system; 
 	{	
-		if(GetPlayerTeam(hitid) == PLAYER_STATE_WOUNDED && !PlayerInfo[hitid][E_CHARACTER_DEATHFIX])
+		if(GetPlayerTeam(hitid) == PLAYER_STATE_WOUNDED)
 		{	
 			CallLocalFunction("OnPlayerDead", "ddd", hitid, playerid, weaponid);
 			return 0;
@@ -2219,7 +2226,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 public OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid, bodypart)
 {
 	#if defined DEBUG_MODE
-		printf("Callback OnPlayerGiveDamage called for player %s (ID: %i) issuerid %s (ID: %i) weaponid %i", ReturnName(playerid), playerid, ReturnName(damageid), damageid, weaponid); 
+		printf("Callback OnPlayerGiveDamage called for player %s (ID: %i) issuerid %s (ID: %i) weaponid %i", ReturnName(playerid), playerid, ReturnName(damagedid), damagedid, weaponid); 
 	#endif
 
 	switch(weaponid)
@@ -3329,7 +3336,7 @@ public OnPlayerUpdate(playerid)
 
 	if(!PlayerInfo[playerid][E_CHARACTER_SPAWNED])
 	{
-		SetPlayerHealth(playerid, 100.0);
+		SetPlayerHealthEx(playerid, 100.0);
 		TogglePlayerControllable(playerid, false);
 	}
 
@@ -3342,8 +3349,7 @@ public OnPlayerUpdate(playerid)
 			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
 			SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.293999, 0.497999, -0.006000, -99.500007, 90.300033, 99.600013, 0.620999, 0.673000, 0.648999);
 			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CRATES;
-			
-			
+
 		}
 		else if(Inventory_Count(playerid, "Woods") > 0)
 		{
@@ -3721,7 +3727,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
                 }
                 else
                 {
-                    SendVehicleMessage(playerid, "[HOTWIRE]  Hotwire failed.");
+                    SendVehicleMessage(playerid, "[HOTWIRE] Hotwire failed.");
                 }
                 HotwireFirstClick[playerid] = -1;
             }
@@ -3904,7 +3910,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendPropertyMessage(playerid, "[Business] You bought buster meals and eat it");
+		SendPropertyMessage(playerid, "[BUSINESS] You bought buster meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
 
 		new Float:health;
@@ -3929,7 +3935,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendPropertyMessage(playerid, "[Business] You bought duoble d-luxe meals and eat it");
+		SendPropertyMessage(playerid, "[BUSINESS] You bought duoble d-luxe meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
 
 		new Float:health;
@@ -3954,7 +3960,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendPropertyMessage(playerid, "[Business] You bought duoble d-luxe meals and eat it");
+		SendPropertyMessage(playerid, "[BUSINESS] You bought duoble d-luxe meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
 
 		new Float:health;
@@ -4110,7 +4116,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 	{
 		if(strlen(cmdtext) > 50)
 		{
-			SendClientMessage(playerid, COLOR_SAMP, "The command you entered doesn't exist. Use /help to see a list of available commands."); 
+			SendClientMessage(playerid, COLOR_RED, "[ERROR] The command you entered doesn't exist. Use /help to see a list of available commands."); 
 			PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][1] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][2] = 0.0;
@@ -4121,7 +4127,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 			PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][1] = 0.0;
     		PlayerInfo[playerid][E_CHARACTER_AFKPOS][2] = 0.0;
-			SendClientMessageEx(playerid, COLOR_SAMP, "The command you entered \"%s\" doesn't exist. Use /help to see a list of available commands.", cmdtext);
+			SendClientMessageEx(playerid, COLOR_RED, "[ERROR] The command you entered \"%s\" doesn't exist. Use /help to see a list of available commands.", cmdtext);
 		}
 	}
 	return 1;
@@ -4876,11 +4882,11 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	if(newstate == PLAYER_STATE_DRIVER)
 	{
 		if(!VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_ENGINE] && IsEngineVehicle(vehicleid)){
-			SendVehicleMessage(playerid, "To switch the ignition use /engine or /hotwire to steal it");
+			SendVehicleMessage(playerid, "[VEHICLE] To switch the ignition use /engine or /hotwire to steal it");
 	   	}
 
 	   	if (ReturnVehicleHealth(vehicleid) <= 350){
-			SendTipMessage(playerid, "This vehicle is totalled and needs repairing call mechanic or buy repairkits in pawnshop.");
+			SendVehicleMessage(playerid, "[VEHICLE] This vehicle is totalled and needs repairing call mechanic or buy repairkits in pawnshop.");
 		}
 	
 		if(!PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE])
@@ -4890,10 +4896,10 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			SendClientMessage(playerid, COLOR_VEHICLE, "This vehicle is owned by you.");
 			
 		for(new i = 0; i < sizeof DMV_Vehicles; i++) if(GetPlayerVehicleID(playerid) == DMV_Vehicles[i])
-			SendTipMessage(playerid, "This vehicle is part of departement of motor vehicles. in order to start it '/licenseexam'.");
+			SendVehicleMessage(playerid, "[VEHICLE] This vehicle is part of departement of motor vehicles. in order to start it '/licenseexam'.");
 
 		if((JOBS_Vehicles[7] <= vehicleid <= JOBS_Vehicles[11]))
-			SendTipMessage(playerid, "This vehicle is part of dockworker job. in order to start it '/jobduty'.");
+			SendVehicleMessage(playerid, "[VEHICLE] This vehicle is part of dockworker job. in order to start it '/jobduty'.");
 
 		if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && IsPoliceVehicle(vehicleid))
 		{
@@ -5295,7 +5301,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 
 						mysql_pquery(ourConnection, "SELECT * FROM furniture WHERE id = LAST_INSERT_ID()", "Query_LoadFurniture", "i", PropertyInfo[houseid][E_PROPERTY_LABELS]);
 
-						SendTipMessage(playerid, "Type '/prop furniture labels' to refresh the objects.");
+						SendPropertyMessage(playerid, "[FURNITURE] Type '/prop furniture labels' to refresh the objects.");
 						ReloadAllFurniture(houseid);
 					}
 

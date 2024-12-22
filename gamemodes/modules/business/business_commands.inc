@@ -81,7 +81,7 @@ CMD:bizproduct(playerid, params[])
 	if(sscanf(params, "if", type, value))
 	{
 		SendUsageMessage(playerid, "/bizproduct [types] [price]");
-		SendTipMessage(playerid, "1.product #1, 2.product #2, 3.product #3, 4.product #4"); 
+		SendTipMessage(playerid, "1. product #1, 2. product #2, 3. product #3, 4. product #4"); 
 		return 1;
 	}
 	
@@ -96,7 +96,7 @@ CMD:bizproduct(playerid, params[])
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][1] = Cents;
 			SaveBusiness(id);
-			SendPropertyMessage(playerid, "[Business] You has set your business product #1 to $%s.", FormatMoney(Cents));
+			SendPropertyMessage(playerid, "[BUSINESS] You has set your business product #1 to $%s.", FormatMoney(Cents));
 		}
 		case 2:
 		{
@@ -105,7 +105,7 @@ CMD:bizproduct(playerid, params[])
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][2] = Cents;
 			SaveBusiness(id);
-			SendPropertyMessage(playerid, "[Business] You has set your business product #2 to $%s.", FormatMoney(Cents));
+			SendPropertyMessage(playerid, "[BUSINESS] You has set your business product #2 to $%s.", FormatMoney(Cents));
 		}
 		case 3:
 		{
@@ -114,7 +114,7 @@ CMD:bizproduct(playerid, params[])
 
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][3] = Cents;
 			SaveBusiness(id);
-			SendPropertyMessage(playerid, "[Business] You has set your business product #3 to $%s.", FormatMoney(Cents));
+			SendPropertyMessage(playerid, "[BUSINESS] You has set your business product #3 to $%s.", FormatMoney(Cents));
 		}
 	}
 	return 1;

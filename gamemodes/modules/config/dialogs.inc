@@ -1191,7 +1191,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 5);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 5;
-						SendPropertyMessage(playerid, "[Business] You learn a fightstyle boxing for $150.00.");
+						SendPropertyMessage(playerid, "[BUSINESS] You learn a fightstyle boxing for $150.00.");
 						new Cents = floatround(150 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -1201,7 +1201,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 7);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 7;
-						SendPropertyMessage(playerid, "[Business] You learn a fightstyle KneeHead for $200.00.");
+						SendPropertyMessage(playerid, "[BUSINESS] You learn a fightstyle KneeHead for $200.00.");
 						new Cents = floatround(200 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -1211,7 +1211,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 15);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 15;
-						SendPropertyMessage(playerid, "[Business] You learn a fightstyle GrabKick for $300.00.");
+						SendPropertyMessage(playerid, "[BUSINESS] You learn a fightstyle GrabKick for $300.00.");
 						new Cents = floatround(300 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -1221,7 +1221,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 4);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 4;
-						SendPropertyMessage(playerid, "[Business] You reset a fightstyle for $100.00.");
+						SendPropertyMessage(playerid, "[BUSINESS] You reset a fightstyle for $100.00.");
 						new Cents = floatround(100 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -1238,7 +1238,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(2 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a sprunk.");
 					
-						SendPropertyMessage(playerid, "[Business] You bought a sprunk for $2.");
+						SendPropertyMessage(playerid, "[BUSINESS] You bought a sprunk for $2.");
 
 						new Cents = floatround(2 * 100, floatround_round);
 						BusinessInfo[businessid][E_BUSINESS_CASH] += Cents;
@@ -2458,7 +2458,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] -= rand;
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = false;
 							BusinessRefresh(IsPlayerInBusiness(playerid));
-							SendPropertyMessage(playerid, "[Business] You've got money $%s from take cash money on cashiers.", FormatMoney(Cents));
+							SendPropertyMessage(playerid, "[BUSINESS] You've got money $%s from take cash money on cashiers.", FormatMoney(Cents));
 						}
 					}
 				}
@@ -3710,7 +3710,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Pisswasher.");
 					
-						SendPropertyMessage(playerid, "[Business] You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendPropertyMessage(playerid, "[BUSINESS] You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 						GiveMoney(playerid, BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3725,7 +3725,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't afford a Pisswasher.");
 
 					
-						SendPropertyMessage(playerid, "[Business] You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendPropertyMessage(playerid, "[BUSINESS] You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 						GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3739,7 +3739,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Pisswasher.");
 					
-						SendPropertyMessage(playerid, "[Business] You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+						SendPropertyMessage(playerid, "[BUSINESS] You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 						GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;

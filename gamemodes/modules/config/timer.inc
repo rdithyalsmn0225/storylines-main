@@ -73,6 +73,7 @@ function:OnPlayerUpdateEx()
 
 			if(GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED && PlayerInfo[playerid][E_CHARACTER_INJURED])
 			{
+				SetPlayerHealthEx(playerid, 100);
 				format(string, sizeof(string), "(( Has been injured %d times, /damages %d for more information. ))", TotalPlayerDamages[playerid], playerid);
 				SetPlayerChatBubble(playerid, string, COLOR_ORANGE, 30.0, 2500); 
 				
@@ -88,6 +89,7 @@ function:OnPlayerUpdateEx()
 
 			else if(GetPlayerTeam(playerid) == PLAYER_STATE_DEAD && PlayerInfo[playerid][E_CHARACTER_DEATH])
 			{
+				SetPlayerHealthEx(playerid, 100);
 				SetPlayerChatBubble(playerid, "(( THIS PLAYER IS DEAD ))", COLOR_ORANGE, 30.0, 2500); 
 				if(IsPlayerInAnyVehicle(playerid))
 				{
@@ -241,15 +243,6 @@ function:OnPlayerUpdateEx()
 						
 					SetPlayerVirtualWorldEx(playerid, 0); SetPlayerInteriorEx(playerid, 0);
 					SetPlayerPosEx(playerid, 1797.4276,-1578.8496,14.0764);
-				}
-			}
-				
-			if(PlayerInfo[playerid][E_CHARACTER_DEATHFIX])
-			{
-				PlayerInfo[playerid][E_CHARACTER_DEATHFIX]++;
-				if(PlayerInfo[playerid][E_CHARACTER_DEATHFIX] == 5)
-				{
-					PlayerInfo[playerid][E_CHARACTER_DEATHFIX] = 0;
 				}
 			}
 				

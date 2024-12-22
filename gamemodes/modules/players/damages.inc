@@ -1,10 +1,7 @@
 //Function
 function:OnPlayerWounded(playerid, killerid, reason)
 {
-	new
-		str[128];
-	
-	PlayerInfo[playerid][E_CHARACTER_DEATHFIX] = 1; 
+	new str[128];
 	
 	format(str, sizeof(str), "%s has been brutally wounded by %s. (%s)", ReturnName(playerid), ReturnName(killerid, killerid), ReturnWeaponName(reason)); 
 	SendAdminMessageEx(COLOR_RED, 1, str); 
@@ -81,7 +78,6 @@ function:OnPlayerWounded(playerid, killerid, reason)
 	
 	PauseAC(playerid);
 	SetPlayerPosEx(playerid, x, y, z);
-	SetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	SendServerMessage(playerid, "You have been brutally wounded. If you aren't saved, you will die.");
 	SendTipMessage(playerid, "To accept death, type: /acceptdeath."); 
 
@@ -176,7 +172,6 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 
 	PauseAC(playerid);
 	SetPlayerPosEx(playerid, x, y, z);
-	SetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 	ResetPlayerWeaponEx(playerid);
 	return 1;
