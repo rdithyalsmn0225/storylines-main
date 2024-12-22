@@ -18,7 +18,7 @@
 #include <crashdetect>
 #include <streamer>
 #include <sscanf2>
-#include <zcmd>
+#include <izcmd>
 #include <progress2>
 #include <timerfix>
 #include <physics>
@@ -4803,10 +4803,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		if(PlayerInfo[playerid][E_CHARACTER_LOOPANIM])
 		{
 			cmd_stopanim(playerid, "");
-		}
-		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
-		{
-			ResetVarInventory(playerid);
 		}
 
 		cmd_enter(playerid, "");
