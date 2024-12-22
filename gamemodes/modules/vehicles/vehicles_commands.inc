@@ -49,7 +49,7 @@ CMD:carsell(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SELLVOFFER] = vehicleid;
 
 	SendTipMessage(userid, "%s has offered sell their vehicle %s for $%s, type /approve vehicle to approve.", ReturnName(playerid), ReturnVehicleModelName(vehicleid), FormatMoney(Cents));
-	SendVehicleMessage(playerid, "[Vehicle] {cdcdcd}You have offered sell your %s for $%s.", ReturnName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(Cents));
+	SendVehicleMessage(playerid, "[Vehicle] You have offered sell your %s for $%s.", ReturnName(userid, playerid), ReturnVehicleModelName(vehicleid), FormatMoney(Cents));
 	return 1;
 }
 
@@ -96,9 +96,9 @@ CMD:carkey(playerid, params[])
 		return SendErrorMessage(playerid, "You aren't near that player."); 
 			
 	SendNearbyMessage(playerid, 20.0, COLOR_EMOTE, "* %s gives %s a key to their vehicle.", ReturnName(playerid), ReturnName(playerb));
-	SendVehicleMessage(playerb, "[Vehicle] {cdcdcd}%s gave you a key their vehicle.", ReturnName(playerid));
+	SendVehicleMessage(playerb, "[Vehicle] %s gave you a key their vehicle.", ReturnName(playerid));
 		
-	SendVehicleMessage(playerid, "[Vehicle] {cdcdcd}You gave %s a duplicatekey.", ReturnName(playerb));
+	SendVehicleMessage(playerid, "[Vehicle] You gave %s a duplicatekey.", ReturnName(playerb));
 		
 	PlayerInfo[playerb][E_CHARACTER_DUPLICATEKEY] = vehicleid;
     return 1;
@@ -119,7 +119,7 @@ CMD:cardespawn(playerid, params[])
 		
 	if(!IsPlayerInRangeOfPoint(playerid, 5.0, VehicleInfo[vehicleid][E_VEHICLE_POS][0], VehicleInfo[vehicleid][E_VEHICLE_POS][1], VehicleInfo[vehicleid][E_VEHICLE_POS][2]))
 	{
-		SendVehicleMessage(playerid, "[Vehicle] {cdcdcd}You have to be at your vehicle's parking place.");
+		SendVehicleMessage(playerid, "[Vehicle] You have to be at your vehicle's parking place.");
 		SendTipMessage(playerid, "Follow the marker to your parking.");
 		
 		GPS_SetPlayerRaceCheckPoint(playerid, 1, VehicleInfo[vehicleid][E_VEHICLE_POS][0], VehicleInfo[vehicleid][E_VEHICLE_POS][1], VehicleInfo[vehicleid][E_VEHICLE_POS][2], 0.0, 0.0, 0.0);
@@ -146,7 +146,7 @@ CMD:cardespawn(playerid, params[])
 	ResetVehicleVars(vehicleid);
 	DestroyVehicle(vehicleid); 
 		
-	SendVehicleMessage(playerid, "[Vehicle] {cdcdcd}You parked your %s.", ReturnVehicleName(vehicleid));
+	SendVehicleMessage(playerid, "[Vehicle] You parked your %s.", ReturnVehicleName(vehicleid));
     return 1;
 }
 
@@ -682,8 +682,8 @@ CMD:gascan(playerid, params[])
 	if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] > 50)
 		return SendErrorMessage(playerid, "This vehicle doesn't need fuel."); 
 			
-	SendInfoMessage(playerid, "You're starting to refill the vehicle.");
-	SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
+	SendServerMessage(playerid, "You're starting to refill the vehicle.");
+	SendServerMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
 		
 	VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_3DTEXT, vx, vy, vz, 25.0, 0, 1);
 	Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
@@ -739,6 +739,6 @@ CMD:limitspeed(playerid, params[])
 
 	PlayerSpeedLimit[playerid] = limit;
 
-	SendVehicleMessage(playerid, "[Vehicle] {cdcdcd}You has set your vehicle speedlimit to %d/MPH.", limit);
+	SendVehicleMessage(playerid, "[Vehicle] You has set your vehicle speedlimit to %d/MPH.", limit);
 	return 1;
 }

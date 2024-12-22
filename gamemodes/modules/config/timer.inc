@@ -37,7 +37,7 @@ function:OnPlayerUpdateEx()
 						
 				if(loginTime[playerid] >= 300)
 				{
-					SendInfoMessage(playerid, "You were kicked for not logging in."); 
+					SendServerMessage(playerid, "You were kicked for not logging in."); 
 					KickEx(playerid); 
 				}
 			}
@@ -48,7 +48,7 @@ function:OnPlayerUpdateEx()
 						
 				if(registerTime[playerid] >= 300)
 				{
-					SendInfoMessage(playerid, "You were kicked for not registering.");
+					SendServerMessage(playerid, "You were kicked for not registering.");
 					KickEx(playerid); 
 				}
 			}
@@ -64,10 +64,10 @@ function:OnPlayerUpdateEx()
 			GetPlayerHealth(playerid, health);
 			if(health < 10 && PlayerInfo[playerid][E_CHARACTER_SPAWNED])
 			{
-				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
+				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerTeam(playerid) != PLAYER_STATE_DEAD && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 				{	
 					CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
-					SendInfoMessage(playerid, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
+					SendServerMessage(playerid, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
 				}
 			}
 
@@ -175,7 +175,7 @@ function:OnPlayerUpdateEx()
 					
 				if(characterPickTime[playerid] >= 300)
 				{
-					SendInfoMessage(playerid, "You were kicked for not selecting a character.");
+					SendServerMessage(playerid, "You were kicked for not selecting a character.");
 					KickEx(playerid);
 				}
 			}
@@ -214,7 +214,7 @@ function:OnPlayerUpdateEx()
 					PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] = false; 
 					PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] = 0; 
 						
-					SendServerMessage(playerid, "[Jail] {cdcdcd}You served your admin jail time.");
+					SendInfoMessage(playerid, "[JAIL] You served your admin jail time.");
 						
 					new str[128];
 					format(str, sizeof(str), "%s was released from admin jail.", ReturnName(playerid));
@@ -237,7 +237,7 @@ function:OnPlayerUpdateEx()
 					PlayerInfo[playerid][E_CHARACTER_PRISONED] = false; 
 					PlayerInfo[playerid][E_CHARACTER_PRISON] = 0; 
 						
-					SendServerMessage(playerid, "[Prison] {cdcdcd}you have been released from prison.");
+					SendInfoMessage(playerid, "[PRISON] you have been released from prison.");
 						
 					SetPlayerVirtualWorldEx(playerid, 0); SetPlayerInteriorEx(playerid, 0);
 					SetPlayerPosEx(playerid, 1797.4276,-1578.8496,14.0764);
@@ -509,7 +509,7 @@ function:FunctionPaychecks()
 			if(PlayerInfo[i][E_CHARACTER_AFK] && PlayerInfo[i][E_CHARACTER_AFKTIME] > 900)
 			{
 				PlayerInfo[i][E_CHARACTER_PAYCHECKTIMER] = 0;
-				return SendServerMessage(i, "[Paycheck] {cdcdcd}You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
+				return SendInfoMessage(i, "[Paycheck] You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
 			}
 			else
 			{

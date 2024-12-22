@@ -11,7 +11,7 @@ stock CollectGarbage(playerid, trashid)
     Trashcan_Refresh(trashid);
 
     ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 0, 0, 0, 0, 0, 0);
-    SendJobsMessage(playerid, "[Garbageman] {cdcdcd}You've picked up rubbish, current garbage bag %d x rubbish.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]);
+    SendJobsMessage(playerid, "[Garbageman] You've picked up rubbish, current garbage bag %d x rubbish.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE]);
     SendTipMessage(playerid, "You can empty your garbage bag in HQ by type '/dumpgarbage'");
     return 1;
 }
@@ -48,7 +48,7 @@ CMD:dumpgarbage(playerid, params[])
             new Cents = floatround(total * 100, floatround_round);
 
 	        GiveMoney(playerid, Cents);
-            SendJobsMessage(playerid, "[Garbageman] {cdcdcd}You've empty your garbage bag, current garbage bag %d x rubbish and earn $%s.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE], FormatMoney(Cents));
+            SendJobsMessage(playerid, "[Garbageman] You've empty your garbage bag, current garbage bag %d x rubbish and earn $%s.", PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE], FormatMoney(Cents));
             PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN_VALUE] = 0;
             PlayerInfo[playerid][E_CHARACTER_GARBAGECD] = 10;
         }

@@ -221,7 +221,7 @@ CMD:creategate(playerid, params[])
 	if (id == -1)
 	    return SendErrorMessage(playerid, "You can't make anymore gates.");
 
-	SendInfoMessage(playerid, "You created gates ID #%i. To configure, use \"/editgate\"", id);
+	SendServerMessage(playerid, "You created gates ID #%i. To configure, use \"/editgate\"", id);
 	return 1;
 }
 
@@ -240,7 +240,7 @@ CMD:destroygate(playerid, params[])
 	    return SendErrorMessage(playerid, "You have specified an invalid gate ID.");
 
 	Gates_Delete(id);
-	SendInfoMessage(playerid, "You have destroyed gates ID #%d.", id);
+	SendServerMessage(playerid, "You have destroyed gates ID #%d.", id);
 	return 1;
 }
 
@@ -275,7 +275,7 @@ CMD:editgate(playerid, params[])
 
 		Gates_Save(id);
         Gates_Refresh(id);
-        SendInfoMessage(playerid, "You changed gates #%i's modelid to %i.", id, model);
+        SendServerMessage(playerid, "You changed gates #%i's modelid to %i.", id, model);
 		return 1;
 	}
     else if (!strcmp(type, "pos", true))
@@ -285,7 +285,7 @@ CMD:editgate(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 9;
 		PlayerInfo[playerid][E_CHARACTER_OBJECTID] = id;
 
-		SendInfoMessage(playerid, "You are now adjusting the position of gate ID: %d.", id);
+		SendServerMessage(playerid, "You are now adjusting the position of gate ID: %d.", id);
 		return 1;
 	}
 	else if (!strcmp(type, "move", true))
@@ -295,7 +295,7 @@ CMD:editgate(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 10;
 		PlayerInfo[playerid][E_CHARACTER_OBJECTID] = id;
 
-		SendInfoMessage(playerid, "You are now adjusting the moving position of gate ID: %d.", id);
+		SendServerMessage(playerid, "You are now adjusting the moving position of gate ID: %d.", id);
 		return 1;
 	}
 	else if (!strcmp(type, "faction", true))
@@ -315,7 +315,7 @@ CMD:editgate(playerid, params[])
         GateInfo[id][E_GATE_FACTION] = factionid;
 		Gates_Save(id);
 
-		SendInfoMessage(playerid, "You are now adjusting the faction %s of gate ID: %d.", ReturnFactionTypeEx(factionid), id);
+		SendServerMessage(playerid, "You are now adjusting the faction %s of gate ID: %d.", ReturnFactionTypeEx(factionid), id);
 		return 1;
 	}
 	return 1;

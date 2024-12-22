@@ -146,7 +146,7 @@ CMD:createtree(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 4;
     PlayerInfo[playerid][E_CHARACTER_OBJECTID] = id;
 	EditDynamicObject(playerid, TreeInfo[id][E_TREE_OBJECT]);
-	SendInfoMessage(playerid, "You created tree ID #%i. To configure, use \"/destroytree\"", id);
+	SendServerMessage(playerid, "You created tree ID #%i. To configure, use \"/destroytree\"", id);
 	return 1;
 }
 
@@ -163,6 +163,6 @@ CMD:destroytree(playerid, params[])
 		return SendErrorMessage(playerid, "You specified an invalid tree ID.");
 
 	Tree_Delete(id);
-	SendInfoMessage(playerid, "You have destroyed tree ID #%d", id);
+	SendServerMessage(playerid, "You have destroyed tree ID #%d", id);
 	return 1;	
 }

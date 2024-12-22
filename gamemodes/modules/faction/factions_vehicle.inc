@@ -78,7 +78,7 @@ CMD:despawn(playerid, params[])
                         FactionVehicle[i][E_FACVEHICLE_SPAWNED] = false;
                         FactionVehicle[i][E_FACVEHICLE_VEH] = INVALID_VEHICLE_ID;
 
-                        SendServerMessage(playerid, "[Faction] {cdcdcd}Faction Vehicle despawned successfully.");
+                        SendInfoMessage(playerid, "[FACTION] Faction Vehicle despawned successfully.");
                         return 1;
                     }
                     else

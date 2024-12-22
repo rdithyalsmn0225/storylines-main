@@ -38,7 +38,7 @@ stock LeaveTaxi(playerid, driverid)
 	    GiveMoney(playerid, -PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
    		GiveMoney(driverid, PlayerInfo[playerid][E_CHARACTER_TAXIFARE]);
 
-        SendJobsMessage(driverid, "[Taxi] {cdcdcd}%s has exit your taxi and paid $%s.", ReturnName(playerid, driverid), FormatMoney(PlayerInfo[playerid][E_CHARACTER_TAXIFARE]));
+        SendJobsMessage(driverid, "[Taxi] %s has exit your taxi and paid $%s.", ReturnName(playerid, driverid), FormatMoney(PlayerInfo[playerid][E_CHARACTER_TAXIFARE]));
 		SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "** %s has paid $%s to the taxi driver.", ReturnName(playerid, driverid), FormatMoney(PlayerInfo[playerid][E_CHARACTER_TAXIFARE]));
 
 	    PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 0;
@@ -96,7 +96,7 @@ CMD:setfare(playerid, params[])
 	new Cents = floatround(value * 100, floatround_round);
 
     PlayerInfo[playerid][E_CHARACTER_DRIVERFARE] = Cents;
-	SendJobsMessage(playerid, "[Taxi] {cdcdcd}You has set your taxi fare to $%s.", FormatMoney(Cents));
+	SendJobsMessage(playerid, "[Taxi] You has set your taxi fare to $%s.", FormatMoney(Cents));
 	return 1;
 }
 

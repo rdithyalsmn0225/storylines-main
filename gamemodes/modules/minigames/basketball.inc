@@ -100,7 +100,7 @@ function:OnCourtCreate(playerid, cid, Float:posx, Float:posy, Float:posz)
     CourtInfo[cid][E_RED_BALL][2] = 0.0;
 
 	Court_Refresh(cid);
-	SendInfoMessage(playerid, "You created court ID #%i. To configure, use \"/editcourt\". ", cid); 
+	SendServerMessage(playerid, "You created court ID #%i. To configure, use \"/editcourt\". ", cid); 
 	return 1;
 }
 
@@ -290,7 +290,7 @@ CMD:resetcourt(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_COURTTEAM] = 0;
 		
 		Court_Refresh(PlayerInfo[playerid][E_CHARACTER_COURT]);
-		SendInfoMessage(playerid, "You've reset the basketball court.");
+		SendServerMessage(playerid, "You've reset the basketball court.");
 	}
 	return 1;
 }
@@ -361,7 +361,7 @@ CMD:editcourt(playerid, params[])
 
 		Court_Save(id);
 		Court_Refresh(id);
-		SendInfoMessage(playerid, "You're set position blue team in %f, %f, %f.", pos[0], pos[1], pos[2]);
+		SendServerMessage(playerid, "You're set position blue team in %f, %f, %f.", pos[0], pos[1], pos[2]);
 	}
 	else if(!strcmp(indx, "redpos"))
 	{
@@ -374,7 +374,7 @@ CMD:editcourt(playerid, params[])
 
 		Court_Save(id);
 		Court_Refresh(id);
-		SendInfoMessage(playerid, "You're set position red team in %f, %f, %f.", pos[0], pos[1], pos[2]);
+		SendServerMessage(playerid, "You're set position red team in %f, %f, %f.", pos[0], pos[1], pos[2]);
 	}
 	else if(!strcmp(indx, "bluering"))
 	{

@@ -280,7 +280,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = PORTABLE_RADIO;
 			SetPlayerAttachedObject(playerid, ATTACH_HAND, 330, 6, 0.000000, -0.015000, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000, 1.000000, 1.000000);
 
-			SendTipMessage(playerid, "Type /(r)adio /setchannel /setslot to using Radio.");
+			SendInventoryMessage(playerid, "Type /(r)adio /setchannel /setslot to using Radio.");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
@@ -309,12 +309,12 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		if(PlayerInfo[playerid][E_CHARACTER_MASKON])
 		{
 			PlayerInfo[playerid][E_CHARACTER_MASKON] = false;
-			SendServerMessage(playerid, "[Mask] {cdcdcd}Mask has been Disable.");
+			SendInfoMessage(playerid, "[MASK] Mask has been Disable.");
 		}
 		else
 		{
 			PlayerInfo[playerid][E_CHARACTER_MASKON] = true;
-			SendServerMessage(playerid, "[Mask] {cdcdcd}Mask has been Enable.");
+			SendInfoMessage(playerid, "[MASK] Mask has been Enable.");
 		}
 	}
 	else if(!strcmp(name, "Marijuana"))
@@ -344,7 +344,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = FISHING_ROD;
 			SetPlayerAttachedObject(playerid, ATTACH_HAND, 18632,6,0.079376,0.037070,0.007706,181.482910,0.000000,0.000000,1.000000,1.000000,1.000000, 0xFFFFFFFF, 0xFFFFFFFF);
 
-			SendTipMessage(playerid, "Type /fish to start fishing nearest water or santa maria fishing area.");
+			SendInventoryMessage(playerid, "Type /fish to start fishing nearest water or santa maria fishing area.");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
     }
@@ -365,7 +365,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 
 			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DRINK_SPRUNK);
 
-			SendTipMessage(playerid, "Press 'LMB' to drink sprunk.");
+			SendInventoryMessage(playerid, "Press 'LMB' to drink sprunk.");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
@@ -375,7 +375,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		{
 			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SPRAYCAN;
 			SetPlayerAttachedObject(playerid, ATTACH_HAND, 365, 6, 0.0000, 0.0000, 0.0360, 0.0000, 0.0000, 0.0000, 1.0000, 1.0000, 1.0000, 0xFFFFFFFF, 0xFFFFFFFF);
-			SendTipMessage(playerid, "Type /spray to start spraying tags.");
+			SendInventoryMessage(playerid, "Type /spray to start spraying tags.");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
@@ -385,7 +385,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		{
 			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CHAINSAW;
 			SetPlayerAttachedObject(playerid, ATTACH_HAND, 341, 6, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 1.000000, 1.000000, 0.759999, 0xFFFFFFFF, 0xFFFFFFFF);
-			SendTipMessage(playerid, "Press 'ALT' to cut the trees & take the timber.");
+			SendInventoryMessage(playerid, "Press 'ALT' to cut the trees & take the timber.");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}
@@ -395,7 +395,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 		{
 			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = FIRE_EXTINGUISHER;
 			GivePlayerWeapon(playerid, 42, 999999);
-			SendTipMessage(playerid, "Press 'LMB' to extinguiher the fire.");
+			SendInventoryMessage(playerid, "Press 'LMB' to extinguiher the fire.");
 		}
 		else SendErrorMessage(playerid, "You must store your items in inventory first.");
 	}

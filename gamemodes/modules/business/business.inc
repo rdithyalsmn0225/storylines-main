@@ -254,7 +254,7 @@ function:OnBusinessInteriorChange(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_INTERIORPOSINTERIOR] = interior;
 
 		BusinessRefresh(businessid);
-		SendInfoMessage(playerid, "You changed Business #%i's interior.", businessid);
+		SendServerMessage(playerid, "You changed Business #%i's interior.", businessid);
 		SaveBusiness(businessid); 
 	}
 	else return SendErrorMessage(playerid, "You cancelled.");
@@ -273,7 +273,7 @@ function:OnBusinessEntranceChange(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2] = z;
 
 		BusinessRefresh(businessid);
-		SendInfoMessage(playerid, "You changed Business #%i's entrance.", businessid);
+		SendServerMessage(playerid, "You changed Business #%i's entrance.", businessid);
 		SaveBusiness(businessid); 
 	}
 	else return SendErrorMessage(playerid, "You cancelled.");
@@ -292,7 +292,7 @@ function:OnBusinessGasStationChange(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_FUELPOS][2] = z;
 
 		BusinessRefresh(businessid);
-		SendInfoMessage(playerid, "You changed Business #%i's gas station.", businessid);
+		SendServerMessage(playerid, "You changed Business #%i's gas station.", businessid);
 		SaveBusiness(businessid); 
 	}
 	else return SendErrorMessage(playerid, "You cancelled.");
@@ -313,7 +313,7 @@ function:OnBusinessActorChange(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_ACTORPOS][3] = a;
 
 		BusinessRefresh(businessid);
-		SendInfoMessage(playerid, "You changed Business #%i's actor.", businessid);
+		SendServerMessage(playerid, "You changed Business #%i's actor.", businessid);
 		SaveBusiness(businessid); 
 	}
 	else return SendErrorMessage(playerid, "You cancelled.");
@@ -329,7 +329,7 @@ function:OnBusinessPointChange(playerid, response, businessid, Float:x, Float:y,
 		BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINT][2] = z;
 		
 		BusinessRefresh(businessid);
-		SendInfoMessage(playerid, "You changed Business #%i's point.", businessid);
+		SendServerMessage(playerid, "You changed Business #%i's point.", businessid);
 		SaveBusiness(businessid); 
 	}
 	else return SendErrorMessage(playerid, "You cancelled.");
@@ -486,7 +486,7 @@ function:OnSellBusiness(playerid, response, businessid)
 		BusinessInfo[businessid][E_BUSINESS_OWNERDBID] = 0; 
 		
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
-		SendInfoMessage(playerid, "You sold your business and earned $%s.", FormatMoney(totalPay)); 
+		SendServerMessage(playerid, "You sold your business and earned $%s.", FormatMoney(totalPay)); 
 		
 		SaveBusiness(businessid); SaveCharacter(playerid); 
 	}
@@ -498,7 +498,7 @@ function:OnPlayerExitDealership(playerid, response)
 {
 	if(response)
 	{
-		SendInfoMessage(playerid, "You exited out the dealership.");
+		SendServerMessage(playerid, "You exited out the dealership.");
 		
 		ResetVehicleVars(DealershipPlayerCar[playerid]); 
 		DestroyVehicle(DealershipPlayerCar[playerid]); 
@@ -527,7 +527,7 @@ function:Query_InsertBusiness(playerid, newid, type)
 	BusinessInfo[newid][E_BUSINESS_INTERIORPOSWORLD] = world;  
 
 	BusinessRefresh(newid);
-	SendInfoMessage(playerid, "You created business ID #%i. To configure, use \"/editbusiness\". ", newid); 
+	SendServerMessage(playerid, "You created business ID #%i. To configure, use \"/editbusiness\". ", newid); 
 	return 1;
 }
 

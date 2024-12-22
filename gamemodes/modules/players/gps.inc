@@ -79,7 +79,7 @@ GPS_SetPlayerRaceCheckPoint(playerid, type, Float:x, Float:y, Float:z, Float:nex
 {
 	if(gps == GPS_NONE)
 	{
-		ShowBoxMessage(playerid, "Go to checkpoint on your maps.", 5);
+		SendClientMessageEx(playerid, COLOR_SAMP, "[GPS LOCATION] %s has been marked on your map. remove your checkpoint /rcp", GetStreetName(x, y));
 	}
 	
 	PlayerCheckpoint[playerid] = gps;

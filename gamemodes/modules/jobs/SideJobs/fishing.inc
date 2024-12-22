@@ -94,7 +94,7 @@ function:FishingTimer(playerid, type)
 					ClearAnimations(playerid);
 					TogglePlayerControllable(playerid, true);
 					ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
-					SendJobsMessage(playerid, "[Fishing] {cdcdcd}You fish swarm away in your hook.");
+					SendJobsMessage(playerid, "[Fishing] You fish swarm away in your hook.");
 				}
 			}
 		}
@@ -160,7 +160,7 @@ CMD:buybait(playerid, params[])
 
 	GiveMoney(playerid, -Cents);
 	Inventory_Add(playerid, "Fish Bait", 19566, amount);
-	SendJobsMessage(playerid, "[Fishing] {cdcdcd}You have successfully purchase %d Fish bait for $%s", amount, FormatMoney(Cents));
+	SendJobsMessage(playerid, "[Fishing] You have successfully purchase %d Fish bait for $%s", amount, FormatMoney(Cents));
 	return 1;
 }
 
@@ -176,7 +176,7 @@ CMD:buyrod(playerid, params[])
 
 	GiveMoney(playerid, -Cents);
 	Inventory_Add(playerid, "Fishing Rod", 18632, 1);
-	SendJobsMessage(playerid, "[Fishing] {cdcdcd}You have successfully purchase Fishing Rod for $%s", FormatMoney(Cents));
+	SendJobsMessage(playerid, "[Fishing] You have successfully purchase Fishing Rod for $%s", FormatMoney(Cents));
 	return 1;
 }
 
@@ -212,6 +212,6 @@ CMD:fish(playerid, params[])
 	SetTimerEx("FishingTimer", 15000, false, "ii", playerid, 1);
 	TogglePlayerControllable(playerid, false);
 	ApplyAnimation(playerid,"SWORD","sword_block",50.0 ,0,1,0,1,1);
-	SendJobsMessage(playerid, "[Fishing] {cdcdcd}You start fishing, please wait for the moment...");
+	SendJobsMessage(playerid, "[Fishing] You start fishing, please wait for the moment...");
 	return 1;
 }

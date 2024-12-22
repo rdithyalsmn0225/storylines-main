@@ -27,7 +27,7 @@ CMD:buycargo(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_FABRIC, 1);
 
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has purchase cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has purchase cargo for $%s.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[1][Posx], IndustryInfo[1][Posy], IndustryInfo[1][Posz]))
@@ -50,7 +50,7 @@ CMD:buycargo(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_STEEL, 1);
 
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has purchase cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has purchase cargo for $%s.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz])) //woods
@@ -73,7 +73,7 @@ CMD:buycargo(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_WOODS, 1);
 
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has purchase cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has purchase cargo for $%s.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	} 
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[3][Posx], IndustryInfo[3][Posy], IndustryInfo[3][Posz])) //woods
@@ -96,7 +96,7 @@ CMD:buycargo(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_FISH, 1);
 
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has purchase cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has purchase cargo for $%s.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	} 
 
@@ -121,7 +121,7 @@ CMD:buycargo(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_FOODS, 1);
 
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has purchase cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has purchase cargo for $%s.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[5][Posx], IndustryInfo[5][Posy], IndustryInfo[5][Posz]))
@@ -144,7 +144,7 @@ CMD:buycargo(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_CLOTHES, 1);
 
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has purchase cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has purchase cargo for $%s.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
@@ -167,7 +167,7 @@ CMD:buycargo(playerid, params[])
 
 		ServerData_Minus(INDUSTRY_APPLIANCES, 1);
 
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has purchase cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has purchase cargo for $%s.", FormatMoney(Cents));
 		SendTipMessage(playerid, "You can place cargo by type /cartrunk and sell into industries or business by type /tpda.");
 	}
 	return 1;
@@ -202,7 +202,7 @@ CMD:sellcargo(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_FISH, 1);
 		
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has sell cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has sell cargo for $%s.", FormatMoney(Cents));
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[5][Posx], IndustryInfo[5][Posy], IndustryInfo[5][Posz]))
 	{
@@ -223,7 +223,7 @@ CMD:sellcargo(playerid, params[])
 
 		ServerData_Plus(INDUSTRY_CLOTHES, 1);
 		
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has sell cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has sell cargo for $%s.", FormatMoney(Cents));
 	}
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[6][Posx], IndustryInfo[6][Posy], IndustryInfo[6][Posz]))
 	{
@@ -241,7 +241,7 @@ CMD:sellcargo(playerid, params[])
 
 			ServerData_Plus(INDUSTRY_APPLIANCES, 1);
 			
-			SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has sell cargo for $%s.", FormatMoney(Cents));
+			SendJobsMessage(playerid, "[Trucker] You has sell cargo for $%s.", FormatMoney(Cents));
 		}
 		else if(Inventory_Count(playerid, "Woods Cargo"))
 		{
@@ -259,7 +259,7 @@ CMD:sellcargo(playerid, params[])
 
 			ServerData_Plus(INDUSTRY_APPLIANCES, 1);
 			
-			SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has sell cargo for $%s.", FormatMoney(Cents));
+			SendJobsMessage(playerid, "[Trucker] You has sell cargo for $%s.", FormatMoney(Cents));
 		}
 		else SendErrorMessage(playerid, "You are not carrying your cargo.");
 	}
@@ -295,7 +295,7 @@ CMD:sellcargo(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_STOCK]++;
 			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
 		}
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has sell cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has sell cargo for $%s.", FormatMoney(Cents));
 	}
 	if((id = IsPlayerNearBusiness(playerid)) != 0)
 	{
@@ -325,7 +325,7 @@ CMD:sellcargo(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_STOCK]++;
 			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
 		}
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has sell cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has sell cargo for $%s.", FormatMoney(Cents));
 	}
 	if((id = IsPlayerNearBusiness(playerid)) != 0)
 	{
@@ -357,7 +357,7 @@ CMD:sellcargo(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_STOCK]++;
 			BusinessInfo[id][E_BUSINESS_CASH] -= 10;
 		}
-		SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has sell cargo for $%s.", FormatMoney(Cents));
+		SendJobsMessage(playerid, "[Trucker] You has sell cargo for $%s.", FormatMoney(Cents));
 	}
 	return 1;
 }
@@ -382,28 +382,28 @@ stock AttachVehicleFreight(playerid, vehicleid)
 		{
 			PlayerTruckAttach[playerid] = CreateVehicle(591, x, y, z, 0.0, 1, -1, -1, 0);
 			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
-			SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[0][Endx], FreightInfo[0][Endy], FreightInfo[0][Endz]));
+			SendJobsMessage(playerid, "[Trucker] You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[0][Endx], FreightInfo[0][Endy], FreightInfo[0][Endz]));
 			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[0][Endx], FreightInfo[0][Endy], FreightInfo[0][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
 		}
 		case 2: // Steel
 		{
 			PlayerTruckAttach[playerid] = CreateVehicle(450, x, y, z, 0.0, 1, -1, -1, 0);
 			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
-			SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[1][Endx], FreightInfo[1][Endy], FreightInfo[1][Endz]));
+			SendJobsMessage(playerid, "[Trucker] You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[1][Endx], FreightInfo[1][Endy], FreightInfo[1][Endz]));
 			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[1][Endx], FreightInfo[1][Endy], FreightInfo[1][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
 		}
 		case 3: // Wood
 		{
 			PlayerTruckAttach[playerid] = CreateVehicle(450, x, y, z, 0.0, 1, -1, -1, 0);
 			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
-			SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[2][Endx], FreightInfo[2][Endy], FreightInfo[2][Endz]));
+			SendJobsMessage(playerid, "[Trucker] You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[2][Endx], FreightInfo[2][Endy], FreightInfo[2][Endz]));
 			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[2][Endx], FreightInfo[2][Endy], FreightInfo[2][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
 		}
 		case 4: // Fish
 		{
 			PlayerTruckAttach[playerid] = CreateVehicle(591, x, y, z, 0.0, 1, -1, -1, 0);
 			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
-			SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[3][Endx], FreightInfo[3][Endy], FreightInfo[3][Endz]));
+			SendJobsMessage(playerid, "[Trucker] You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[3][Endx], FreightInfo[3][Endy], FreightInfo[3][Endz]));
 			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[3][Endx], FreightInfo[3][Endy], FreightInfo[3][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
 		}
 		case 5: // Sprunk
@@ -420,7 +420,7 @@ stock AttachVehicleFreight(playerid, vehicleid)
 			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], 1.340, 0.933, 1.048, 2.500, 0.000, 0.000);
 
 			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
-			SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[4][Endx], FreightInfo[4][Endy], FreightInfo[4][Endz]));
+			SendJobsMessage(playerid, "[Trucker] You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[4][Endx], FreightInfo[4][Endy], FreightInfo[4][Endz]));
 			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[4][Endx], FreightInfo[4][Endy], FreightInfo[4][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
 		}
 		case 6: // Cocacola
@@ -437,7 +437,7 @@ stock AttachVehicleFreight(playerid, vehicleid)
 			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], 1.339, 0.889, 1.160, 0.000, 0.000, 0.000);
 
 			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
-			SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[5][Endx], FreightInfo[5][Endy], FreightInfo[5][Endz]));
+			SendJobsMessage(playerid, "[Trucker] You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[5][Endx], FreightInfo[5][Endy], FreightInfo[5][Endz]));
 			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[5][Endx], FreightInfo[5][Endy], FreightInfo[5][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
 		}
 		case 7: // Big Goods
@@ -486,7 +486,7 @@ stock AttachVehicleFreight(playerid, vehicleid)
 			AttachDynamicObjectToVehicle(PlayerTruckObject[playerid], PlayerTruckAttach[playerid], -1.330, 2.690, 1.560, 0.000, 0.000, 180.000);
 
 			SetTimerEx("AttachVehicleFreightEx", 1500, false, "ddd", playerid, PlayerTruckAttach[playerid], vehicleid);
-			SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[6][Endx], FreightInfo[6][Endy], FreightInfo[6][Endz]));
+			SendJobsMessage(playerid, "[Trucker] You has attached trailer into your truck, go to checkpoint to deliver the trailer at %s.", GetZoneName(FreightInfo[6][Endx], FreightInfo[6][Endy], FreightInfo[6][Endz]));
 			GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[6][Endx], FreightInfo[6][Endy], FreightInfo[6][Endz], 0.0, 0.0, 0.0, GPS_TRUCKERSFINISH);
 		}
 	}
@@ -508,7 +508,7 @@ DettachVehicleFreight(playerid, vehicleid)
 	SetPlayerNeeds(playerid, -5.0, -10.0);
 
 	GivePaycheck(playerid, Cents);
-	SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has deliver trailer into destination and earn into your paycheck $%s.", FormatMoney(Cents));
+	SendJobsMessage(playerid, "[Trucker] You has deliver trailer into destination and earn into your paycheck $%s.", FormatMoney(Cents));
 	GPS_DisablePlayerRaceCheckPoint(playerid);
 	return 1;
 }

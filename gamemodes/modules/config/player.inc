@@ -27,7 +27,7 @@ function:SetPlayerCamera(playerid)
 
 function:OnOfflineAjail(playerid, jailing[], reason[], length)
 {
-	SendServerMessage(playerid, "[Jail] {cdcdcd}%s was successfully admin jailed.", jailing); 
+	SendInfoMessage(playerid, "[JAIL] %s was successfully admin jailed.", jailing); 
 	
 	new
 		logQuery[256]
@@ -40,7 +40,7 @@ function:OnOfflineAjail(playerid, jailing[], reason[], length)
 
 function:OnOfflineBan(playerid, banning[], dbid, masterdbid, reason[], date[])
 {
-	SendServerMessage(playerid, "[Banned] {cdcdcd}%s was successfully banned.", banning);
+	SendInfoMessage(playerid, "[BANNED] %s was successfully banned.", banning);
 	
 	new
 		logQuery[256]
@@ -109,8 +109,8 @@ public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 		if(PlayerInfo[playerb][E_CHARACTER_TAXIDUTY])
 		{
 			GPS_SetPlayerRaceCheckPoint(playerb, 1, fX, fY, fZ, 0.0, 0.0, 0.0);
-			SendJobsMessage(playerid, "[Taxi] {cdcdcd}You has marked destination in driver map!");
-			SendJobsMessage(playerb, "[Taxi] {cdcdcd}Passanger has marked the destination in your map!");
+			SendJobsMessage(playerid, "[Taxi] You has marked destination in driver map!");
+			SendJobsMessage(playerb, "[Taxi] Passanger has marked the destination in your map!");
 		}
 	}
     return 1;
@@ -148,7 +148,7 @@ function:OnAjailRecord(playerid)
 		
 		cache_get_value_name_int(i, "Time", Time); 
 		
-		SendServerMessage(playerid, "[Jail] {cdcdcd}[%s] %s was admin jailed by %s for %d minutes, Reason: %d", Date, JailedName, JailedBy, Time, Reason);
+		SendInfoMessage(playerid, "[JAIL] [%s] %s was admin jailed by %s for %d minutes, Reason: %d", Date, JailedName, JailedBy, Time, Reason);
 	}
 		
 	return 1;
@@ -161,8 +161,8 @@ ResetVarInventory(playerid)
 	PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
 	PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 0;
 	PlayerInfo[playerid][E_CHARACTER_AMMOTYPE] = AMMO_TYPE_NONE;
-	RemovePlayerAttachedObject(ATTACH_HAND, 9);
-	RemovePlayerAttachedObject(ATTACH_HAND2, 8);
+	RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+	RemovePlayerAttachedObject(playerid, ATTACH_HAND2);
 	RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
 	RemovePlayerAttachedObject(playerid, ATTACH_WEAPONS);
 	RemovePlayerAttachedObject(playerid, ATTACH_WEAPONS2);
@@ -170,7 +170,6 @@ ResetVarInventory(playerid)
 	
 	CancelSelectTextDraw(playerid);
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-	SendInfoMessage(playerid, "You has unequip your items in your hand.");
 	return 1;
 }
 function:ResetPlayer(playerid)

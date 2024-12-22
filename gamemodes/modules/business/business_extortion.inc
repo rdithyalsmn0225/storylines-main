@@ -84,7 +84,7 @@ stock Relations_Add(playerid, name[])
 
 	    if (rid != -1)
 	    {
-            SendServerMessage(playerid, "[Extort] {cdcdcd}You've got relations with %s.", name);
+            SendCrimeMessage(playerid, "[EXTORT] You've got relations with %s to see your relations /extortions.", name);
 
 	        RelationsInfo[playerid][rid][E_RELATIONS_EXISTS] = true;
             RelationsInfo[playerid][rid][E_RELATIONS_POINTS] = 100;
@@ -126,7 +126,8 @@ stock Relations_Remove(playerid, name[], value)
 	    	{
 				RelationsInfo[playerid][rid][E_RELATIONS_POINTS] = 0;
 			}
-            SendServerMessage(playerid, "[Extort] {cdcdcd}You've lost %d relations with %s.", value, name);
+
+            SendCrimeMessage(playerid, "[EXTORT] You've lost %d relations with %s.", value, name);
 
 			format(query, sizeof(query), "UPDATE relations SET RelationsPoints = %i WHERE RelationsID = %i AND ID = %i",
                 RelationsInfo[playerid][rid][E_RELATIONS_POINTS],

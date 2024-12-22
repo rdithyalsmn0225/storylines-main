@@ -22,7 +22,7 @@ stock RequestPoliceBackup(playerid)
     }
 
     BackupFlare[playerid] = CreateDynamicObject(1225, BackupPosX, BackupPosY, BackupPosZ + 1.0, 0.0, 0.0, 0.0, -1, -1, -1, 300.0);
-    SendServerMessage(playerid, "[Backup] {cdcdcd}Backup requested!.");
+    SendInfoMessage(playerid, "[FACTION] Backup requested!.");
 
     SetTimerEx("ClearBackup", 600000, false, "i", playerid);
     return 1;
@@ -45,6 +45,6 @@ function:ClearBackup(playerid)
         BackupFlare[playerid] = INVALID_OBJECT_ID;
     }
 
-    SendServerMessage(playerid, "[Backup] {cdcdcd}Backup has been cleared.");
+    SendInfoMessage(playerid, "[FACTION] Backup has been cleared.");
     return 1;
 }

@@ -373,19 +373,6 @@ new const g_arrZoneData[][e_ZoneData] =
 	{!"Whetstone",                    {-2997.40, -2892.90, -242.90, -1213.90, -1115.50, 900.00}}
 };
 
-stock GetZoneName(Float:fX, Float:fY, Float:fZ)
-{
-    new
-        name[32] = "San Andreas";
-
-    for (new i = 0; i != sizeof(g_arrZoneData); i ++) if((fX >= g_arrZoneData[i][e_ZoneArea][0] && fX <= g_arrZoneData[i][e_ZoneArea][3]) && (fY >= g_arrZoneData[i][e_ZoneArea][1] && fY <= g_arrZoneData[i][e_ZoneArea][4]) && (fZ >= g_arrZoneData[i][e_ZoneArea][2] && fZ <= g_arrZoneData[i][e_ZoneArea][5])) {
-        strunpack(name, g_arrZoneData[i][e_ZoneName]);
-
-        break;
-    }
-    return name;
-}
-
 enum E_STREET_INFO
 {
     STREET_NAME[28],
@@ -709,6 +696,32 @@ stock GetPlayerStreet(playerid, zone[], len = sizeof zone)
 		}
 	}
 	return format(zone, len, "Unknown");
+}
+
+stock GetStreetName(Float:fX, Float:fY)
+{
+    new
+        name[32] = "San Andreas";
+
+    for (new i = 0; i != sizeof(g_arrZoneData); i ++) if((fX >= Streets[i][STREET_MINX] && fX <= Streets[i][STREET_MAXX]) && (fY >= Streets[i][STREET_MINY] && fY <= Streets[i][STREET_MAXY])) {
+        strunpack(name, g_arrZoneData[i][e_ZoneName]);
+
+        break;
+    }
+    return name;
+}
+
+stock GetZoneName(Float:fX, Float:fY, Float:fZ)
+{
+    new
+        name[32] = "San Andreas";
+
+    for (new i = 0; i != sizeof(g_arrZoneData); i ++) if((fX >= g_arrZoneData[i][e_ZoneArea][0] && fX <= g_arrZoneData[i][e_ZoneArea][3]) && (fY >= g_arrZoneData[i][e_ZoneArea][1] && fY <= g_arrZoneData[i][e_ZoneArea][4]) && (fZ >= g_arrZoneData[i][e_ZoneArea][2] && fZ <= g_arrZoneData[i][e_ZoneArea][5])) {
+        strunpack(name, g_arrZoneData[i][e_ZoneName]);
+
+        break;
+    }
+    return name;
 }
 
 ReturnLocation(playerid)

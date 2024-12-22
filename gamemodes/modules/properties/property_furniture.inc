@@ -82,7 +82,7 @@ SetFurnitureMaterial(playerid, objectid, materialslot, modelid, txd[], texturena
 		);
 		mysql_pquery(ourConnection, gquery);
 	}
-	SendPropertyMessage(playerid, "[Property] {cdcdcd}You are added material texture for #%d index #%d set into %d %s %s.", objectid, materialslot, modelid, txd, texturename);
+	SendPropertyMessage(playerid, "[Property] You are added material texture for #%d index #%d set into %d %s %s.", objectid, materialslot, modelid, txd, texturename);
 }
 
 RemoveAllFurniture(propid)
@@ -200,7 +200,7 @@ function:FurnitureSell(playerid)
 		cache_get_value_name(0, "name", name);
 		GiveMoney(playerid, price);
 
-		SendServerMessage(playerid, "[Furniture] {cdcdcd}You have sold %s and received a 75 percent refund of $%i.", name, price);
+		SendPropertyMessage(playerid, "[FURNITURE] You have sold %s and received a 75 percent refund of $%i.", name, price);
 		RemoveFurniture(PlayerInfo[playerid][E_CHARACTER_LISTITEM]);
 	}
 	return 1;
@@ -225,7 +225,7 @@ function:FurnitureClear(playerid)
 		RemoveAllFurniture(propid);
 
 		GiveMoney(playerid, price);
-		SendServerMessage(playerid, "[Furniture] {cdcdcd}You have sold a total of %i items and received $%i.", rows, price);
+		SendPropertyMessage(playerid, "[FURNITURE] You have sold a total of %i items and received $%i.", rows, price);
 	}
 	return 1;
 }

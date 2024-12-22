@@ -6,13 +6,13 @@ CMD:maintenance(playerid, params[])
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
 		return SendUnauthMessage(playerid);
 		
-	new time, str[128], string[16];
+	new time, str[128], string[32];
 	
 	if(sscanf(params, "d", time))
 		return SendUsageMessage(playerid, "/maintenance [time]");
 
     if(time < 60 || time > 21600)
-        return SendErrorMessage(playerid, "Server can't be restart less than 5 minutes or longer than 30 minutes");
+        return SendErrorMessage(playerid, "Server can't be restart less than 60 seconds or longer than 21600 seconds");
 
     SystemUpdate = time;
     format(string, sizeof(string), "Server will restart in %s", STimeConvert(SystemUpdate));
@@ -38,7 +38,7 @@ CMD:maintenance(playerid, params[])
 }
 
 function:MaintenanceTimer() {
-	new string[6];
+	new string[32];
 	if(--SystemUpdate <= 0) KillTimer(SystemTimer), Maintenance();
 	if(SystemUpdate == 15) GameTextForAll("~n~~n~~n~~n~~w~Please ~r~log out ~w~now to ensure ~y~account data ~w~has been ~g~saved~w~!", 5000, 3);
 	if(SystemUpdate < 0) SystemUpdate = 0;

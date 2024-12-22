@@ -17,15 +17,14 @@
 #include <a_mysql>
 #include <crashdetect>
 #include <streamer>
+#include <sscanf2>
+#include <zcmd>
 #include <progress2>
 #include <timerfix>
-#include <zcmd>
-#include <sscanf2>
 #include <physics>
 #include <Pawn.RakNet>
 #include <PreviewModelDialog2>
 #include <compat>
-
 
 //Database establisher:
 new MySQL:ourConnection; 
@@ -351,6 +350,7 @@ public OnPlayerConnect(playerid)
 	LastEnteredVehicle[playerid] = INVALID_VEHICLE_ID;
 
 	EnablePlayerCameraTarget(playerid, true);
+	TogglePlayerControllable(playerid, false);
 
 	if(PlayerInfo[playerid][E_CHARACTER_INJURED] == 1)
 	{
@@ -507,7 +507,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 				new Cents = floatround(100 * 100, floatround_round);
 				StopDriverstest(playerid);
 				GiveMoney(playerid, -Cents);
-				SendServerMessage(playerid, "[Dmv] {cdcdcd}Congratulations %s, you've passed your test.", ReturnName(playerid)); 
+				SendInfoMessage(playerid, "[DMV] Congratulations %s, you've passed your test.", ReturnName(playerid)); 
 				
 				PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE] = 1;
 				SaveCharacter(playerid);
@@ -590,7 +590,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
     			GiveMoney(playerid, Cents);
 
 				ShowBoxMessage(playerid, "~r~Street Cleaner job ended.", 5); 
-				SendJobsMessage(playerid, "[Street Cleaner] {cdcdcd}You've cleaned the street, current cleaned rubbish %d x rubbish and earn $%s.", PlayerSweeperIndex[playerid], FormatMoney(Cents));
+				SendJobsMessage(playerid, "[Street Cleaner] You've cleaned the street, current cleaned rubbish %d x rubbish and earn $%s.", PlayerSweeperIndex[playerid], FormatMoney(Cents));
 
 				PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
 				PlayerSweeperIndex[playerid] = 0;
@@ -605,7 +605,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 		if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] == true && PlayerCheckpoint[playerid] == GPS_BUSDRIVER)
 		{
-			SendJobsMessage(playerid, "[Bus Driver] {cdcdcd}Wait at this stop for a few seconds, The marker will disappear when ready.");
+			SendJobsMessage(playerid, "[Bus Driver] Wait at this stop for a few seconds, The marker will disappear when ready.");
 
 			new Float:x, Float:y, Float:z;
             GetPlayerPos(playerid, x, y, z);
@@ -799,7 +799,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
-			SendInfoMessage(playerid, "You has been killed by Exploded at %s.", ReturnLocationStreet(playerid));
+			SendServerMessage(playerid, "You has been killed by Exploded at %s.", ReturnLocationStreet(playerid));
 		}
 	}
 	if(reason == 50)
@@ -807,7 +807,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
-			SendInfoMessage(playerid, "You has been killed by Helicopter Bladed at %s.", ReturnLocationStreet(playerid));
+			SendServerMessage(playerid, "You has been killed by Helicopter Bladed at %s.", ReturnLocationStreet(playerid));
 		}
 	}
 	if(reason == 53)
@@ -820,7 +820,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			SetPlayerInterior(playerid, 0);
 			SetPlayerVirtualWorld(playerid, 0);
 			RespawnPlayer(playerid);
-			SendInfoMessage(playerid, "You has been killed by Drowning at %s.", ReturnLocationStreet(playerid));
+			SendServerMessage(playerid, "You has been killed by Drowning at %s.", ReturnLocationStreet(playerid));
 		}	
 	}
 	if(reason == 54)
@@ -828,7 +828,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{	
 			CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
-			SendInfoMessage(playerid, "You has been killed by Splat at %s.", ReturnLocationStreet(playerid));
+			SendServerMessage(playerid, "You has been killed by Splat at %s.", ReturnLocationStreet(playerid));
 		}	
 	}
 	if(reason == 255)
@@ -836,7 +836,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] && GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		{
 			CallLocalFunction("OnPlayerWounded", "dud", playerid, playerid, 0);
-			SendInfoMessage(playerid, "You has been killed by Suicide at %s.", ReturnLocationStreet(playerid));
+			SendServerMessage(playerid, "You has been killed by Suicide at %s.", ReturnLocationStreet(playerid));
 		}
 	}
 
@@ -1835,7 +1835,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 200);
 		SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 300);
 
-		SendInfoMessage(playerid, "Low health, shooting skills at medium.");
+		SendServerMessage(playerid, "Low health, shooting skills at medium.");
 	}
 	if(healths <= 10)
 	{
@@ -1851,7 +1851,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 		SetPlayerSkillLevel(playerid, WEAPONSKILL_M4, 100);
 		SetPlayerSkillLevel(playerid, WEAPONSKILL_SNIPERRIFLE, 100);
 
-		SendInfoMessage(playerid, "Critical low health, shooting skills at minimum.");
+		SendServerMessage(playerid, "Critical low health, shooting skills at minimum.");
 	}
 
 	if(GetPlayerWeapon(issuerid) > 21 && GetPlayerWeapon(issuerid) < 35)
@@ -1984,8 +1984,8 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
 				{	
 					CallLocalFunction("OnPlayerWounded", "dud", playerid, issuerid, weaponid);
-					SendInfoMessage(issuerid, "You have been killed %s at %s.", ReturnName(playerid), ReturnLocationStreet(playerid));
-					SendInfoMessage(playerid, "You has been killed by %s at %s.", ReturnName(issuerid), ReturnLocationStreet(playerid));
+					SendServerMessage(issuerid, "You have been killed %s at %s.", ReturnName(playerid), ReturnLocationStreet(playerid));
+					SendServerMessage(playerid, "You has been killed by %s at %s.", ReturnName(issuerid), ReturnLocationStreet(playerid));
 					return 0;
 				}
 			}
@@ -2131,7 +2131,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 		{
 			if(!IsPlayerNearPlayer(playerid, hitid, 15.0))
 			{
-				SendInfoMessage(playerid, "You aren't close enough to hit %s with your taser.", ReturnName(hitid, hitid));
+				SendServerMessage(playerid, "You aren't close enough to hit %s with your taser.", ReturnName(hitid, hitid));
 				return 0;
 			}
 			
@@ -2141,8 +2141,8 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's taser.", ReturnName(hitid, hitid), ReturnName(playerid)); 
 			GameTextForPlayer(hitid, "~b~You Are Tasered", 2500, 3);
 			
-			SendInfoMessage(hitid, "You were just hit by a taser. 10,000 volts go through your body.");
-			SendInfoMessage(playerid, "You hit %s with your taser!", ReturnName(hitid, hitid)); 
+			SendServerMessage(hitid, "You were just hit by a taser. 10,000 volts go through your body.");
+			SendServerMessage(playerid, "You hit %s with your taser!", ReturnName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
 			SetTimerEx("OnPlayerTasered", 1200, false, "i", hitid); 
@@ -2155,7 +2155,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 		{
 			if(!IsPlayerNearPlayer(playerid, hitid, 15.0))
 			{
-				SendInfoMessage(playerid, "You aren't close enough to hit %s with your rubber gun.", ReturnName(hitid, hitid));
+				SendServerMessage(playerid, "You aren't close enough to hit %s with your rubber gun.", ReturnName(hitid, hitid));
 				return 0;
 			}
 			
@@ -2163,8 +2163,8 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			
 			SendNearbyMessage(hitid, 20.0, COLOR_EMOTE, "* %s falls on the ground after being hit by %s's rubber gun.", ReturnName(hitid, hitid), ReturnName(playerid)); 
 			
-			SendInfoMessage(hitid, "You were just hit by a rubber gun. rubber bullet go through your body.");
-			SendInfoMessage(playerid, "You hit %s with your taser!", ReturnName(hitid, hitid)); 
+			SendServerMessage(hitid, "You were just hit by a rubber gun. rubber bullet go through your body.");
+			SendServerMessage(playerid, "You hit %s with your taser!", ReturnName(hitid, hitid)); 
 			
 			ClearAnimations(playerid, 1);
 			SetTimerEx("OnPlayerRubber", 1200, false, "i", hitid); 
@@ -3243,7 +3243,7 @@ public OnPlayerSpawn(playerid)
 		SetPlayerPosEx(playerid, -10.5146,2337.2961,24.3034);
 		SetPlayerInteriorEx(playerid, 0); SetPlayerVirtualWorldEx(playerid, 1338);
 		
-		SendServerMessage(playerid, "[Jail] {cdcdcd}You're currently admin jailed. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
+		SendInfoMessage(playerid, "[JAIL] You're currently admin jailed. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
 	}
 	else if(PlayerInfo[playerid][E_CHARACTER_PRISONED] == true)
 	{
@@ -3251,7 +3251,7 @@ public OnPlayerSpawn(playerid)
 		
 		SetPlayerInPrison(playerid);
 		
-		SendServerMessage(playerid, "[Prison] {cdcdcd}You're currently prison. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
+		SendInfoMessage(playerid, "[PRISON] You're currently prison. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
 	}
 	else
 	{
@@ -3335,32 +3335,30 @@ public OnPlayerUpdate(playerid)
 
 	if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	{
-		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+		if(Inventory_Count(playerid, "Fabric Cargo") > 0 || Inventory_Count(playerid, "Steel Cargo") > 0 || Inventory_Count(playerid, "Woods Cargo") > 0 
+		|| Inventory_Count(playerid, "Foods Cargo") > 0 || Inventory_Count(playerid, "Clothes Cargo") > 0 || Inventory_Count(playerid, "Appliances Cargo") > 0
+		|| Inventory_Count(playerid, "Fish Cargo") > 0)
 		{
-			if(Inventory_Count(playerid, "Fabric Cargo") > 0 || Inventory_Count(playerid, "Steel Cargo") > 0 || Inventory_Count(playerid, "Woods Cargo") > 0 
-			|| Inventory_Count(playerid, "Foods Cargo") > 0 || Inventory_Count(playerid, "Clothes Cargo") > 0 || Inventory_Count(playerid, "Appliances Cargo") > 0
-			|| Inventory_Count(playerid, "Fish Cargo") > 0)
+			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+			SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.293999, 0.497999, -0.006000, -99.500007, 90.300033, 99.600013, 0.620999, 0.673000, 0.648999);
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CRATES;
+			
+			
+		}
+		else if(Inventory_Count(playerid, "Woods") > 0)
+		{
+			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
+			SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 1, 0.000000, 0.465000, 0.000000, 0.000000, 89.699958, 0.000000, 0.348999, 0.340999, 0.444999);
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
+		}
+		else
+		{
+			if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES || PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == WOODS)
 			{
-				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = CRATES;
-				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 2912, 1, -0.293999, 0.497999, -0.006000, -99.500007, 90.300033, 99.600013, 0.620999, 0.673000, 0.648999);
+				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
+				RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
+				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
 				
-			}
-			else if(Inventory_Count(playerid, "Woods") > 0)
-			{
-				
-				PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = WOODS;
-				SetPlayerSpecialAction(playerid, SPECIAL_ACTION_CARRY);
-				SetPlayerAttachedObject(playerid, ATTACH_CARGO, 1463, 1, 0.000000, 0.465000, 0.000000, 0.000000, 89.699958, 0.000000, 0.348999, 0.340999, 0.444999);
-			}
-			else
-			{
-				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == CRATES || PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == WOODS)
-				{
-					PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = INVENTORY_NONE;
-					SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
-					RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-				}
 			}
 		}
 		if(PlayerJump[playerid][JumpPressed])
@@ -3461,7 +3459,7 @@ public OnPlayerUpdate(playerid)
 		    {
 		        if(ReturnFactionType(i) == FACTION_TYPE_MEDICAL && IsPlayerInRangeOfPoint(playerid, 20.0, x, y, z))
 		        {
-		            SendServerMessage(i, "[Fire] {cdcdcd}Well done! You helped put out the fire and received $%s on your paycheck.", FormatMoney(Cents));
+		            SendInfoMessage(i, "[FIRE] Well done! You helped put out the fire and received $%s on your paycheck.", FormatMoney(Cents));
 		            GivePaycheck(i, Cents);
 		        }
 			}
@@ -3546,8 +3544,8 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		if(playerRefillingVehicle[playerid])
 			return SendErrorMessage(playerid, "You cannot use this right now");
 
-		SendInfoMessage(playerid, "You're starting to refill the vehicle...");
-		SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
+		SendServerMessage(playerid, "You're starting to refill the vehicle...");
+		SendServerMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
 			
 		VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_3DTEXT, vx, vy, vz, 25.0, 0, 1);
 		Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
@@ -3567,8 +3565,8 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		if(playerRefillingVehicle[playerid])
 			return SendErrorMessage(playerid, "You cannot use this right now");
 
-		SendInfoMessage(playerid, "You're starting to refill the vehicle.");
-		SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
+		SendServerMessage(playerid, "You're starting to refill the vehicle.");
+		SendServerMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
 			
 		VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_3DTEXT, vx, vy, vz, 25.0, 0, 1);
 		Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
@@ -3588,8 +3586,8 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		if(playerRefillingVehicle[playerid])
 			return SendErrorMessage(playerid, "You cannot use this right now");
 
-		SendInfoMessage(playerid, "You're starting to refill the vehicle.");
-		SendInfoMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
+		SendServerMessage(playerid, "You're starting to refill the vehicle.");
+		SendServerMessage(playerid, "If you, or the vehicle moves then this process will be interrupted."); 
 			
 		VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY] = Create3DTextLabel("Loading refilling fuel process\n(( |------ ))", COLOR_3DTEXT, vx, vy, vz, 25.0, 0, 1);
 		Attach3DTextLabelToVehicle(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], vehicleid, -0.0, -0.0, -0.0); 
@@ -3723,7 +3721,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
                 }
                 else
                 {
-                    SendServerMessage(playerid, "[Hotwire]{cdcdcd} Hotwire failed.");
+                    SendVehicleMessage(playerid, "[HOTWIRE]  Hotwire failed.");
                 }
                 HotwireFirstClick[playerid] = -1;
             }
@@ -3906,7 +3904,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought buster meals and eat it");
+		SendPropertyMessage(playerid, "[Business] You bought buster meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
 
 		new Float:health;
@@ -3931,7 +3929,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought duoble d-luxe meals and eat it");
+		SendPropertyMessage(playerid, "[Business] You bought duoble d-luxe meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
 
 		new Float:health;
@@ -3956,7 +3954,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 
-		SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought duoble d-luxe meals and eat it");
+		SendPropertyMessage(playerid, "[Business] You bought duoble d-luxe meals and eat it");
 		GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
 
 		new Float:health;
@@ -4089,6 +4087,7 @@ public OnPlayerCommandReceived(playerid, cmdtext[])
 	        SendErrorMessage(playerid, "CALM DOWN FOO. STOP SPAMMING!.");
 	        return 0;
 	    }
+		
 	    AntiSpam[playerid] = gettime() + 1;
 
 	    PlayerInfo[playerid][E_CHARACTER_AFKPOS][0] = 0.0;
@@ -4107,10 +4106,6 @@ public OnPlayerCommandReceived(playerid, cmdtext[])
 
 public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 {
-	#if defined DEBUG_MODE
-		printf("Callback OnPlayerCommandPerformed called for player %s (ID: %i) CommandsPerformed : %s", ReturnName(playerid), playerid, cmdtext); 
-	#endif
-
 	if(!success)
 	{
 		if(strlen(cmdtext) > 50)
@@ -4454,27 +4449,27 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					case 1:	
 					{
 						Inventory_Add(playerid, "Cod", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a 12.5.kg of Cod.");
+						SendJobsMessage(playerid, "[Fishing] You caught a 12.5.kg of Cod.");
 					}
 					case 2:	
 					{
 						Inventory_Add(playerid, "Carp", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a 10.5.kg of Carp.");
+						SendJobsMessage(playerid, "[Fishing] You caught a 10.5.kg of Carp.");
 					}
 					case 3:	
 					{
 						Inventory_Add(playerid, "Salmon", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a 8.5 lbs of Salmon.");
+						SendJobsMessage(playerid, "[Fishing] You caught a 8.5 lbs of Salmon.");
 					}
 					case 4:	
 					{
 						Inventory_Add(playerid, "Cat Fish", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a 15.5 lbs of Cat fish.");
+						SendJobsMessage(playerid, "[Fishing] You caught a 15.5 lbs of Cat fish.");
 					}
 					case 5:	
 					{
 						Inventory_Add(playerid, "Herring", 19630, 1); 
-						SendJobsMessage(playerid, "[Fishing] {cdcdcd}You caught a 1.5 lbs of Herring.");
+						SendJobsMessage(playerid, "[Fishing] You caught a 1.5 lbs of Herring.");
 					}
 				}
 			}
@@ -4836,8 +4831,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				{
 					if (PickupItem(playerid, id))
 					{
-						format(string, sizeof(string), "%s added to inventory!", DroppedInfo[id][E_DROPPED_ITEM]);
-						ShowBoxMessage(playerid, string, 5);
+						SendInventoryMessage(playerid, "%s added to inventory!", DroppedInfo[id][E_DROPPED_ITEM]);
 					}
 					else
 						SendErrorMessage(playerid, "You don't have any slot in your inventory.");
@@ -4923,8 +4917,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	    PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	    PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = driverid;
 
-	    SendJobsMessage(driverid, "[Taxi] {cdcdcd}%s has entered your taxi as a passenger.", ReturnName(playerid, driverid));
-		SendJobsMessage(playerid, "[Taxi] {cdcdcd}You have entered %s's taxi.", ReturnName(driverid, playerid));
+	    SendJobsMessage(driverid, "[Taxi] %s has entered your taxi as a passenger.", ReturnName(playerid, driverid));
+		SendJobsMessage(playerid, "[Taxi] You have entered %s's taxi.", ReturnName(driverid, playerid));
 	}
  	if (oldstate == PLAYER_STATE_PASSENGER && PlayerInfo[playerid][E_CHARACTER_TAXITIMER] != 0 && PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] != INVALID_PLAYER_ID)
 	{
@@ -4986,7 +4980,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	    }
 	    
         PlayerInfo[playerid][E_CHARACTER_TAXIDUTY] = false;
-        SendJobsMessage(playerid, "[taxi] {cdcdcd}You are no longer on taxi duty!");
+        SendJobsMessage(playerid, "[taxi] You are no longer on taxi duty!");
 	}
 
     if(PlayerInfo[playerid][E_CHARACTER_DOCKSWORK])
@@ -5134,7 +5128,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
 					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
 
-					SendInfoMessage(playerid, "You're set shooting ball red team."); 
+					SendServerMessage(playerid, "You're set shooting ball red team."); 
 					return 1;
 				}
 			}
@@ -5165,7 +5159,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
 
 					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
-					SendInfoMessage(playerid, "You're set shooting ball blue team."); 
+					SendServerMessage(playerid, "You're set shooting ball blue team."); 
 					return 1;
 				}
 			}
@@ -5197,7 +5191,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 
 					Tree_Save(PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
 					Tree_Refresh(PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
-					SendInfoMessage(playerid, "You're created tree ID #%d", PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
+					SendServerMessage(playerid, "You're created tree ID #%d", PlayerInfo[playerid][E_CHARACTER_OBJECTID]);
 					return 1;
 				}
 			}
@@ -5230,7 +5224,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
 					format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
 					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
-					SendInfoMessage(playerid, "You're moved dropped items."); 
+					SendServerMessage(playerid, "You're moved dropped items."); 
 
 					if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 					{
@@ -5265,7 +5259,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
 
 					DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
-					SendInfoMessage(playerid, "You're moved business point."); 
+					SendServerMessage(playerid, "You're moved business point."); 
 				}
 			}
 			case 7:
@@ -5344,7 +5338,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					Gates_Save(id);
 					Gates_Refresh(id);
 					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
-					SendInfoMessage(playerid, "You have edited the position of gate ID: #%d.", id);
+					SendServerMessage(playerid, "You have edited the position of gate ID: #%d.", id);
 				}
 				if(response == EDIT_RESPONSE_CANCEL)
 				{
@@ -5369,7 +5363,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 					Gates_Save(id);
 					Gates_Refresh(id);
 					PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0; 
-					SendInfoMessage(playerid, "You have edited the moving of gate ID: #%d.", id);
+					SendServerMessage(playerid, "You have edited the moving of gate ID: #%d.", id);
 				}
 				if(response == EDIT_RESPONSE_CANCEL)
 				{
@@ -5402,7 +5396,7 @@ function:RefreshCharacters(playerid)
 	if (!IsPlayerConnected(playerid))
 	    return 0;
 
-	SendInfoMessage(playerid, "Your character list has been refreshed."); 
+	SendServerMessage(playerid, "Your character list has been refreshed."); 
 	
 	new 
 		fetchChars[128];
@@ -5469,7 +5463,7 @@ function:Query_ChangeCharacter(playerid)
 
 		SetPlayerName(playerid, playerCharactersName[playerid]);
 		AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 150;
-		SendInfoMessage(playerid, "You has change character name to %s for 150 street credits.", playerCharactersName[playerid]);
+		SendServerMessage(playerid, "You has change character name to %s for 150 street credits.", playerCharactersName[playerid]);
 	}
 	return 1;
 }

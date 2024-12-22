@@ -90,8 +90,8 @@ CMD:ticket(playerid, params[])
 	new id = Ticket_Add(userid, Cents, reason);
 
 	if (id != -1) {
-	    SendServerMessage(playerid, "[Tickets] {cdcdcd}You have written %s a ticket for $%s, reason: %s", ReturnName(userid, 0), FormatMoney(Cents), reason);
-	    SendServerMessage(userid, "[Tickets] {cdcdcd}%s has written you a ticket for $%s, reason: %s", ReturnName(playerid, 0), FormatMoney(Cents), reason);
+	    SendInfoMessage(playerid, "[TICKET] You have written %s a ticket for $%s, reason: %s", ReturnName(userid, 0), FormatMoney(Cents), reason);
+	    SendInfoMessage(userid, "[TICKET] %s has written you a ticket for $%s, reason: %s", ReturnName(playerid, 0), FormatMoney(Cents), reason);
 
 	    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "** %s has written up a ticket for%s.", ReturnName(playerid, 0), ReturnName(userid, 0));
 	}

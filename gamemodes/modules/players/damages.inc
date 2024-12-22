@@ -61,7 +61,7 @@ function:OnPlayerWounded(playerid, killerid, reason)
 					PoolInfo[businessid][E_POOL_STARTED] = false;
 					RestorePoolStick(i);
 					HideHeaderMessage(i);
-					SendClientMessageEx(i, COLOR_PINK, "[8Ball] {cdcdcd}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+					SendClientMessageEx(i, COLOR_PINK, "[8Ball] %s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
 				}
 			}
 		}
@@ -79,8 +79,10 @@ function:OnPlayerWounded(playerid, killerid, reason)
 		}
 	}
 	
+	PauseAC(playerid);
 	SetPlayerPosEx(playerid, x, y, z);
-	SendInfoMessage(playerid, "You have been brutally wounded. If you aren't saved, you will die.");
+	SetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
+	SendServerMessage(playerid, "You have been brutally wounded. If you aren't saved, you will die.");
 	SendTipMessage(playerid, "To accept death, type: /acceptdeath."); 
 
 	RemovePlayerAttachedObject(playerid, ATTACH_HAND);
@@ -97,7 +99,6 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 		SendAdminMessageEx(COLOR_RED, 1, str); 
 	}
 
-	ShowBoxMessage(playerid, "~r~Died...", 5);
 	SetPlayerTeam(playerid, PLAYER_STATE_DEAD); 
 
 	PlayerInfo[playerid][E_CHARACTER_RESPAWNTIME] = gettime(); 
@@ -143,7 +144,7 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 					PoolInfo[businessid][E_POOL_STARTED] = false;
 					RestorePoolStick(i);
 					HideHeaderMessage(i);
-					SendClientMessageEx(i, COLOR_PINK, "[8Ball] {cdcdcd}%s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
+					SendClientMessageEx(i, COLOR_PINK, "[8Ball] %s has ended pool at %s.", BusinessInfo[businessid][E_BUSINESS_NAME]);
 				}
 			}
 		}
@@ -172,7 +173,10 @@ function:OnPlayerDead(playerid, killerid, reason, executed)
 			SendClientMessage(p, COLOR_DARKGREEN, "[Word on the Streetz] Smuggler packet has been spawned '/findpacket' to track packet");
 		}
 	}
+
+	PauseAC(playerid);
 	SetPlayerPosEx(playerid, x, y, z);
+	SetPlayerHealth(playerid, PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 	ResetPlayerWeaponEx(playerid);
 	return 1;

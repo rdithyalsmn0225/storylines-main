@@ -71,7 +71,7 @@ CMD:editproperty(playerid, params[])
 		PropertyInfo[id][E_PROPERTY_FACTION] = factionid;
 		SaveProperty(factionid);
 		
-		SendInfoMessage(playerid, "You set Property #%i's faction to #%i.", id, factionid);
+		SendServerMessage(playerid, "You set Property #%i's faction to #%i.", id, factionid);
 	}
 	else if(!strcmp(indx, "type"))
 	{
@@ -96,7 +96,7 @@ CMD:editproperty(playerid, params[])
 		Property_RemoveAllItems(id);
 		RemoveAllFurniture(id);
 		
-		SendInfoMessage(playerid, "You set Property #%i's type to %s.", id, typeName);	
+		SendServerMessage(playerid, "You set Property #%i's type to %s.", id, typeName);	
 	}
 	else if(!strcmp(indx, "price"))
 	{
@@ -113,7 +113,7 @@ CMD:editproperty(playerid, params[])
 		PropertyInfo[id][E_PROPERTY_PRICE] = Cents;
 		SaveProperty(id);
 		
-		SendInfoMessage(playerid, "You set Property #%i's market price to %i.", id, price);
+		SendServerMessage(playerid, "You set Property #%i's market price to %i.", id, price);
 	}
 	else if(!strcmp(indx, "level"))
 	{
@@ -128,7 +128,7 @@ CMD:editproperty(playerid, params[])
 		PropertyInfo[id][E_PROPERTY_LEVEL] = level;
 		SaveProperty(id);
 		
-		SendInfoMessage(playerid, "You set Property #%i's level to #%i.", id, level);
+		SendServerMessage(playerid, "You set Property #%i's level to #%i.", id, level);
 	}
 	else return SendErrorMessage(playerid, "Invalid Paramater.");	
 	return 1;
@@ -210,7 +210,7 @@ CMD:giveproperty(playerid, params[])
 		PlayerInfo[userid][E_CHARACTER_PROPOFFERID] = id;
 
 		SendTipMessage(userid, "%s has offered to give their property, type /approve property to approve.", ReturnName(playerid));
-		SendInfoMessage(playerid, "You have offered to give %s your property.", ReturnName(userid));
+		SendServerMessage(playerid, "You have offered to give %s your property.", ReturnName(userid));
 	}
 	else return SendErrorMessage(playerid, "You aren't near a property.");
 	return 1;
@@ -351,7 +351,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, -Cents);
 			PropertyInfo[id][E_PROPERTY_CASH]+= amount; 
 			
-			SendPropertyMessage(playerid, "[Property] {cdcdcd}You added $%s to your cashbox.", amount); 
+			SendPropertyMessage(playerid, "[Property] You added $%s to your cashbox.", amount); 
 			SaveProperty(id);
 		}
 		else if(!strcmp(pick, "take"))
@@ -367,7 +367,7 @@ CMD:property(playerid, params[])
 			GiveMoney(playerid, Cents);
 			PropertyInfo[id][E_PROPERTY_CASH]-= amount;
 			
-			SendPropertyMessage(playerid, "[Property] {cdcdcd}You took {33AA33}$%s{ffffff} from your cashbox.", amount); 
+			SendPropertyMessage(playerid, "[Property] You took {33AA33}$%s{ffffff} from your cashbox.", amount); 
 			SaveProperty(id); 
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 
@@ -471,13 +471,13 @@ CMD:property(playerid, params[])
 			{
 				PropertyInfo[id][E_PROPERTY_LABELS] = 1;
 				ReloadAllFurniture(id);
-				SendServerMessage(playerid, "[Furniture] {cdcdcd}You will now see labels appear above all of your furniture.");
+				SendPropertyMessage(playerid, "[FURNITURE] You will now see labels appear above all of your furniture.");
 			}
 			else
 			{
 				PropertyInfo[id][E_PROPERTY_LABELS] = 0;
 				ReloadAllFurniture(id);
-				SendServerMessage(playerid, "[Furniture] {cdcdcd}You will no longer see any labels appear above your furniture.");
+				SendPropertyMessage(playerid, "[FURNITURE] You will no longer see any labels appear above your furniture.");
 			}
 		}
 		else return SendErrorMessage(playerid, "Invalid Paramater."); 

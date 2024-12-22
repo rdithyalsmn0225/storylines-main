@@ -94,7 +94,7 @@ function:OnPropertyCreate(playerid, newid, type)
 	PropertyInfo[newid][E_PROPERTY_INTERIORWORLD] = world;
 
 	OnPropertyFurnitureStatic(newid, type);
-	SendInfoMessage(playerid, "You created property ID #%i. To configure, use \"/editproperty\". ", newid); 
+	SendServerMessage(playerid, "You created property ID #%i. To configure, use \"/editproperty\". ", newid); 
 	return 1;
 }
 
@@ -112,7 +112,7 @@ function:OnSellProperty(playerid, response, propertyid)
 		PropertyInfo[propertyid][E_PROPERTY_OWNERDBID] = 0; 
 		
 		PlayerPlaySound(playerid, 1052, 0.0, 0.0, 0.0);
-		SendInfoMessage(playerid, "You sold your property and earned $%s.", FormatMoney(totalPay)); 
+		SendServerMessage(playerid, "You sold your property and earned $%s.", FormatMoney(totalPay)); 
 		
 		SaveProperty(propertyid); SaveCharacter(playerid); 
 	}
@@ -141,7 +141,7 @@ function:OnEntranceChange(playerid, response, property)
 		PropertyInfo[property][E_PROPERTY_3DTEXT] = CreateDynamic3DTextLabel(PropertyInfo[property][E_PROPERTY_ADDRESS], COLOR_3DTEXT, PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][0], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][1], PropertyInfo[property][E_PROPERTY_ENTRANCEPOS][2], 5.0);
 		SaveProperty(property);
 		ReloadAllFurniture(property);
-		SendInfoMessage(playerid, "You set Property #%i's entrance.", property);
+		SendServerMessage(playerid, "You set Property #%i's entrance.", property);
 	}
 	return 1;
 }
@@ -163,11 +163,11 @@ function:OnInteriorChange(playerid, response, property)
 			SetPlayerPosEx(i, PropertyInfo[property][E_PROPERTY_INTERIORPOS][0], PropertyInfo[property][E_PROPERTY_INTERIORPOS][1], PropertyInfo[property][E_PROPERTY_INTERIORPOS][2]);
 			SetPlayerInteriorEx(i, GetPlayerInterior(playerid)); SetPlayerVirtualWorldEx(i, world); 
 			
-			SendInfoMessage(i, "The property you were in was amended."); 
+			SendServerMessage(i, "The property you were in was amended."); 
 		}
 		
 		SaveProperty(property);
-		SendInfoMessage(playerid, "You set Property #%i's interior.", property);
+		SendServerMessage(playerid, "You set Property #%i's interior.", property);
 	}
 	return 1;
 }

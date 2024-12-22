@@ -69,15 +69,6 @@ CMD:dice(playerid, params[])
     return true;
 }
 
-CMD:fix(playerid, params[])
-{
-	if(PlayerInfo[playerid][E_CHARACTER_TOGMENU] == false)
-	{
-		TogglePlayerControllable(playerid, true);
-	}
-	return 1;
-}
-
 CMD:stats(playerid, params[])
 {
 	new playerb;
@@ -102,7 +93,7 @@ CMD:stats(playerid, params[])
 			ShowCharacterStats(playerb, playerid); 
 		}
 	}
-	else return ShowCharacterStats(playerid, playerid);
+	else ShowCharacterStats(playerid, playerid);
 	return 1;
 }
 
@@ -139,7 +130,7 @@ CMD:admins(playerid, params[])
 	}
 	else
 	{
-		return SendInfoMessage(playerid, "There are no administrators online.");
+		return SendServerMessage(playerid, "There are no administrators online.");
 	}
 
 	return 1;
@@ -234,8 +225,8 @@ CMD:pay(playerid, params[])
     PlayerPlaySound(playerb, 1052, 0.0, 0.0, 0.0);
     playerLastpay[playerid] = gettime(); 
     
-    SendServerMessage(playerid, "[Pay] {cdcdcd}You have sent $%s to %s.", FormatMoney(Cents), ReturnName(playerb)); 
-    SendServerMessage(playerb, "[Pay] {cdcdcd}You have received $%s from %s.", FormatMoney(Cents), ReturnName(playerid)); 
+    SendInfoMessage(playerid, "[PAY] You have sent $%s to %s.", FormatMoney(Cents), ReturnName(playerb)); 
+    SendInfoMessage(playerb, "[PAY] You have received $%s from %s.", FormatMoney(Cents), ReturnName(playerid)); 
     
     if ((PlayerInfo[playerid][E_CHARACTER_LEVEL] <= 3 && PlayerInfo[playerb][E_CHARACTER_LEVEL] <= 3) || Cents >= 5000) 
     {
@@ -263,7 +254,7 @@ CMD:charity(playerid, params[])
     GiveMoney(playerid, -Cents);
 
 	SaveCharacter(playerid);
-	SendServerMessage(playerid, "[Charity] {cdcdcd}You've charity {33AA33}%s{cdcdcd} for this server.", FormatMoney(Cents));
+	SendInfoMessage(playerid, "[CHARITY] You've charity {33AA33}%s{cdcdcd} for this server.", FormatMoney(Cents));
 	return 1;
 }
 
@@ -444,7 +435,7 @@ CMD:setchannel(playerid, params[])
 
 	PlayerInfo[playerid][E_CHARACTER_RADIO][slot] = channel;
 	
-	SendInfoMessage(playerid, "You're now listening to channel %d under slot %d.", channel, slot);
+	SendServerMessage(playerid, "You're now listening to channel %d under slot %d.", channel, slot);
 	SaveCharacter(playerid); 
 	return 1;
 }
@@ -466,7 +457,7 @@ CMD:setslot(playerid, params[])
 		
 	PlayerInfo[playerid][E_CHARACTER_MAINSLOT] = slot;
 		
-	SendInfoMessage(playerid, "Your local radio slot is now %d.", slot); 
+	SendServerMessage(playerid, "Your local radio slot is now %d.", slot); 
 	SaveCharacter(playerid);
 	return 1;
 }
@@ -722,7 +713,7 @@ CMD:setspawn(playerid, params[])
 				return SendErrorMessage(playerid, "This is already your spawn point."); 
 				
 			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 0; 
-			SendInfoMessage(playerid, "You will now spawn at the hoodrats position."); 
+			SendServerMessage(playerid, "You will now spawn at the hoodrats position."); 
 			SaveCharacter(playerid);
 		}
 		case 2:
@@ -731,7 +722,7 @@ CMD:setspawn(playerid, params[])
 				return SendErrorMessage(playerid, "This is already your spawn point."); 
 				
 			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 1; 
-			SendInfoMessage(playerid, "You will now spawn at the last position."); 
+			SendServerMessage(playerid, "You will now spawn at the last position."); 
 			SaveCharacter(playerid);
 		}
 		case 3:
@@ -743,7 +734,7 @@ CMD:setspawn(playerid, params[])
 				return SendErrorMessage(playerid, "You aren't in any faction.");
 				
 			PlayerInfo[playerid][E_CHARACTER_SPAWNPOINT] = 2;
-			SendInfoMessage(playerid, "You will now spawn at your faction."); 
+			SendServerMessage(playerid, "You will now spawn at your faction."); 
 			SaveCharacter(playerid);
 		}
 	}
@@ -777,7 +768,7 @@ CMD:deposit(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_BANK]+= Cents;
 	GiveMoney(playerid, -Cents);
 	
-	SendInfoMessage(playerid, "You have deposited $%s into Your account, Total:$%s.", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	SendServerMessage(playerid, "You have deposited $%s into Your account, Total:$%s.", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	return 1; 
 }
 
@@ -807,7 +798,7 @@ CMD:withdraw(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_BANK]-= Cents;    
 	GiveMoney(playerid, Cents);
 
-	SendInfoMessage(playerid, "You have withdrawn $%s from Your account, Total:$%s", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
+	SendServerMessage(playerid, "You have withdrawn $%s from Your account, Total:$%s", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]));
 	return 1;
 }
 
@@ -824,7 +815,7 @@ CMD:bank(playerid, params[])
 		
 	SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Bank Commands __________|");
 	SendClientMessage(playerid, COLOR_ORANGE, "/balance, /withdraw, /deposit");
-	SendInfoMessage(playerid, "You have $%s in your bank and $%s in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
+	SendServerMessage(playerid, "You have $%s in your bank and $%s in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
 	return 1;
 }
 
@@ -839,7 +830,7 @@ CMD:balance(playerid, params[])
 	if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK && !IsPlayerNearCashiers(playerid))
 		return SendErrorMessage(playerid, "You aren't in bank."); 
 	
-	SendInfoMessage(playerid, "You have $%s in your bank and $%s in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
+	SendServerMessage(playerid, "You have $%s in your bank and $%s in your paycheck. (%s)", FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]), ReturnDate());	
 	return 1;
 }
 
@@ -2115,7 +2106,7 @@ CMD:approve(playerid, params[])
 			return SendErrorMessage(playerid, "You're already in a faction.");
 		
 		SendClientMessageEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED], COLOR_FACTION, "%s accepted your faction invitation.", ReturnName(playerid));
-		SendInfoMessage(playerid, "You joined the %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]));
+		SendServerMessage(playerid, "You joined the %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]));
 		
 		PlayerInfo[playerid][E_CHARACTER_FACTION] = PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE]; 
 		PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] = 1; 
@@ -2194,8 +2185,8 @@ CMD:approve(playerid, params[])
 			    ApplyAnimation(targetid, "GANGS", "prtial_hndshk_biz_01", 4.0, 0, 0, 0, 0, 0, 1);
 			}
 	    }
-	    SendInfoMessage(playerid, "You've accepted %s handshake.", ReturnName(targetid));
-	    SendInfoMessage(targetid, "%s accepted your handshake.", ReturnName(playerid));
+	    SendServerMessage(playerid, "You've accepted %s handshake.", ReturnName(targetid));
+	    SendServerMessage(targetid, "%s accepted your handshake.", ReturnName(playerid));
 	}
 	if (!strcmp(params, "vehicle", true) && PlayerInfo[playerid][E_CHARACTER_SELLOFFER] != INVALID_PLAYER_ID)
 	{
@@ -2236,8 +2227,8 @@ CMD:approve(playerid, params[])
 
 		SaveVehicle(vehicleid); SaveCharacter(playerid); SaveCharacter(userid);
 
-		SendInfoMessage(playerid, "You've accepted %s offered selling vehicle.", ReturnName(userid));
-	    SendInfoMessage(userid, "%s accepted offered selling your vehicle.", ReturnName(playerid));
+		SendServerMessage(playerid, "You've accepted %s offered selling vehicle.", ReturnName(userid));
+	    SendServerMessage(userid, "%s accepted offered selling your vehicle.", ReturnName(playerid));
 	}
 	if (!strcmp(params, "business", true) && PlayerInfo[playerid][E_CHARACTER_BIZOFFER] != INVALID_PLAYER_ID)
 	{
@@ -2253,8 +2244,8 @@ CMD:approve(playerid, params[])
 
 		SaveBusiness(id); SaveCharacter(playerid); SaveCharacter(userid);
 
-		SendInfoMessage(playerid, "You've accepted %s offered given business.", ReturnName(userid));
-	    SendInfoMessage(userid, "%s accepted offered given your business.", ReturnName(playerid));
+		SendServerMessage(playerid, "You've accepted %s offered given business.", ReturnName(userid));
+	    SendServerMessage(userid, "%s accepted offered given your business.", ReturnName(playerid));
 	}
 	if (!strcmp(params, "property", true) && PlayerInfo[playerid][E_CHARACTER_PROPOFFER] != INVALID_PLAYER_ID)
 	{
@@ -2270,8 +2261,8 @@ CMD:approve(playerid, params[])
 
 		SaveProperty(id); SaveCharacter(playerid); SaveCharacter(userid);
 
-		SendInfoMessage(playerid, "You've accepted %s offered given property.", ReturnName(userid));
-	    SendInfoMessage(userid, "%s accepted offered given your property.", ReturnName(playerid));
+		SendServerMessage(playerid, "You've accepted %s offered given property.", ReturnName(userid));
+	    SendServerMessage(userid, "%s accepted offered given your property.", ReturnName(playerid));
 	}
 	return 1;
 }
@@ -2292,8 +2283,8 @@ CMD:deny(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE] = 0;
 		PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED] = INVALID_PLAYER_ID;
 
-		SendInfoMessage(playerid, "You've denied %s faction invite.", ReturnName(targetid));
-	    SendInfoMessage(targetid, "%s denied your faction invite.", ReturnName(playerid));
+		SendServerMessage(playerid, "You've denied %s faction invite.", ReturnName(targetid));
+	    SendServerMessage(targetid, "%s denied your faction invite.", ReturnName(playerid));
 
 	}
 	if (!strcmp(params, "frisk", true) && PlayerInfo[playerid][E_CHARACTER_FRISKOFFER] != INVALID_PLAYER_ID)
@@ -2302,8 +2293,8 @@ CMD:deny(playerid, params[])
 
 		PlayerInfo[playerid][E_CHARACTER_FRISKOFFER] = INVALID_PLAYER_ID;
 
-		SendInfoMessage(playerid, "You've denied %s frisk.", ReturnName(targetid));
-	    SendInfoMessage(targetid, "%s denied your frisk.", ReturnName(playerid));
+		SendServerMessage(playerid, "You've denied %s frisk.", ReturnName(targetid));
+	    SendServerMessage(targetid, "%s denied your frisk.", ReturnName(playerid));
 		
 	}
 	if (!strcmp(params, "handshake", true) && PlayerInfo[playerid][E_CHARACTER_SHAKEOFFER] != INVALID_PLAYER_ID)
@@ -2313,8 +2304,8 @@ CMD:deny(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_SHAKEOFFER] = INVALID_PLAYER_ID;
 		PlayerInfo[playerid][E_CHARACTER_SHAKETYPE] = 0;
 
-	    SendInfoMessage(playerid, "You've denied %s handshake.", ReturnName(targetid));
-	    SendInfoMessage(targetid, "%s denied your handshake.", ReturnName(playerid));
+	    SendServerMessage(playerid, "You've denied %s handshake.", ReturnName(targetid));
+	    SendServerMessage(targetid, "%s denied your handshake.", ReturnName(playerid));
 	}
 	if (!strcmp(params, "vehicle", true) && PlayerInfo[playerid][E_CHARACTER_SELLOFFER] != INVALID_PLAYER_ID)
 	{
@@ -2324,8 +2315,8 @@ CMD:deny(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_SELLVOFFER] = 0;
 		PlayerInfo[playerid][E_CHARACTER_SELLOFFER] = INVALID_PLAYER_ID;
 
-		SendInfoMessage(playerid, "You've denied %s offered selling vehicle.", ReturnName(targetid));
-	    SendInfoMessage(targetid, "%s denied offered selling your vehicle.", ReturnName(playerid));
+		SendServerMessage(playerid, "You've denied %s offered selling vehicle.", ReturnName(targetid));
+	    SendServerMessage(targetid, "%s denied offered selling your vehicle.", ReturnName(playerid));
 	}
 	if (!strcmp(params, "business", true) && PlayerInfo[playerid][E_CHARACTER_BIZOFFER] != INVALID_PLAYER_ID)
 	{
@@ -2334,8 +2325,8 @@ CMD:deny(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_BIZOFFERID] = 0;
 		PlayerInfo[playerid][E_CHARACTER_BIZOFFER] = INVALID_PLAYER_ID;
 
-		SendInfoMessage(playerid, "You've denied %s offered given business.", ReturnName(targetid));
-	    SendInfoMessage(targetid, "%s denied offered given your business.", ReturnName(playerid));
+		SendServerMessage(playerid, "You've denied %s offered given business.", ReturnName(targetid));
+	    SendServerMessage(targetid, "%s denied offered given your business.", ReturnName(playerid));
 	}
 	if (!strcmp(params, "property", true) && PlayerInfo[playerid][E_CHARACTER_PROPOFFER] != INVALID_PLAYER_ID)
 	{
@@ -2344,8 +2335,8 @@ CMD:deny(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_PROPOFFERID] = 0;
 		PlayerInfo[playerid][E_CHARACTER_PROPOFFER] = INVALID_PLAYER_ID;
 
-		SendInfoMessage(playerid, "You've denied %s offered given property.", ReturnName(targetid));
-	    SendInfoMessage(targetid, "%s denied offered given your property.", ReturnName(playerid));
+		SendServerMessage(playerid, "You've denied %s offered given property.", ReturnName(targetid));
+	    SendServerMessage(targetid, "%s denied offered given your property.", ReturnName(playerid));
 	}
 	return 1;
 }
@@ -2372,7 +2363,7 @@ CMD:handshake(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_SHAKETYPE] = type;
 
 	SendTipMessage(userid, "%s has offered to shake your hand, type /approve handshake to approve.", ReturnName(playerid));
-	SendInfoMessage(playerid, "You have offered to shake %s hand.", ReturnName(userid));
+	SendServerMessage(playerid, "You have offered to shake %s hand.", ReturnName(userid));
 	return 1;
 }
 
@@ -2393,7 +2384,7 @@ CMD:frisk(playerid, params[])
 	PlayerInfo[userid][E_CHARACTER_FRISKOFFER] = playerid;
 
 	SendTipMessage(userid, "%s has offered to frisk you, type /approve frisk to approve.", ReturnName(playerid));
-	SendInfoMessage(playerid, "You have offered to frisk %s.", ReturnName(userid, playerid));
+	SendServerMessage(playerid, "You have offered to frisk %s.", ReturnName(userid, playerid));
 	return 1;
 }
 
@@ -2409,11 +2400,11 @@ CMD:afk(playerid, params[])
 
 	if(PlayerInfo[targetid][E_CHARACTER_AFK])
 	{
-	    SendServerMessage(playerid, "[Afk] {cdcdcd}%s has been marked as Away from keyboard for %i minutes.", ReturnName(targetid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
+	    SendInfoMessage(playerid, "[AFK] %s has been marked as Away from keyboard for %i minutes.", ReturnName(targetid), PlayerInfo[targetid][E_CHARACTER_AFKTIME] / 60);
 	}
 	else
 	{
-	    SendServerMessage(playerid, "[Afk] {cdcdcd}%s is currently not marked as Away from keyboard.", ReturnName(targetid));
+	    SendInfoMessage(playerid, "[AFK] %s is currently not marked as Away from keyboard.", ReturnName(targetid));
 	}
 
 	return 1;

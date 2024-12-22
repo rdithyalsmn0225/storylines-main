@@ -8,7 +8,7 @@ function:OnPlayerVIPUpdate()
             {
                 AccountInfo[ii][E_MASTERS_VIPTIMER] = 0;
                 AccountInfo[ii][E_MASTERS_VIP] = 0;
-                SendInfoMessage(ii, "Sorry, your VIP player level has expired! now you are a regular player!");
+                SendServerMessage(ii, "Sorry, your VIP player level has expired! now you are a regular player!");
             }
         }
     }
@@ -40,7 +40,7 @@ CMD:setvip(playerid, params[])
 	if(dayz == 0)
 	{
 		AccountInfo[otherid][E_MASTERS_VIPTIMER] = 0;
-		SendInfoMessage(otherid, "%s has set your VIP level %s permanent!", ReturnMixedName(playerid), playerid, ReturnVIPLevel(otherid));
+		SendServerMessage(otherid, "%s has set your VIP level %s permanent!", ReturnMixedName(playerid), playerid, ReturnVIPLevel(otherid));
 
         format(str, sizeof(str), "%s gave vip to %s permanent", ReturnMixedName(playerid), ReturnMixedName(otherid));
         SendAdminMessage(3, str);
@@ -48,7 +48,7 @@ CMD:setvip(playerid, params[])
 	else
 	{
 		AccountInfo[otherid][E_MASTERS_VIPTIMER] = gettime() + (dayz * 86400);
-		SendInfoMessage(otherid, "%s(%d) has set your VIP level %s for %d days!", ReturnMixedName(playerid), ReturnVIPLevel(otherid), dayz);
+		SendServerMessage(otherid, "%s(%d) has set your VIP level %s for %d days!", ReturnMixedName(playerid), ReturnVIPLevel(otherid), dayz);
 
         format(str, sizeof(str), "%s gave vip to %s for %d days", ReturnMixedName(playerid), ReturnMixedName(otherid), dayz);
         SendAdminMessage(3, str);

@@ -38,7 +38,7 @@ function:OnEntranceCreate(playerid, newid, icon)
 {	
 	EntranceInfo[newid][E_ENTRANCE_DBID] = cache_insert_id(); 
     EntranceInfo[newid][E_ENTRANCE_ICON] = icon;
-	SendInfoMessage(playerid, "You created entrance ID #%i. To configure, use \"/editentrance\". ", newid); 
+	SendServerMessage(playerid, "You created entrance ID #%i. To configure, use \"/editentrance\". ", newid); 
 	return 1;
 }
 
@@ -54,7 +54,7 @@ function:OnENTEntranceChange(playerid, response, newid)
 		EntranceInfo[newid][E_ENTRANCE_PICKUP] = CreateDynamicPickup(19130, 1, EntranceInfo[newid][E_ENTRANCE_POS][0], EntranceInfo[newid][E_ENTRANCE_POS][1], EntranceInfo[newid][E_ENTRANCE_POS][2], 0, 0, -1, 5.0);
         
 		SaveEntrance(newid);
-		SendInfoMessage(playerid, "You set entrance #%i's entrance.", newid);
+		SendServerMessage(playerid, "You set entrance #%i's entrance.", newid);
 	}
 	return 1;
 }
@@ -76,11 +76,11 @@ function:OnENTInteriorChange(playerid, response, newid)
 			SetPlayerPosEx(i, EntranceInfo[newid][E_ENTRANCE_INT][0], EntranceInfo[newid][E_ENTRANCE_INT][1], EntranceInfo[newid][E_ENTRANCE_INT][2]);
 			SetPlayerInteriorEx(i, GetPlayerInterior(playerid)); SetPlayerVirtualWorldEx(i, world); 
 			
-			SendInfoMessage(i, "The entrance you were in was amended."); 
+			SendServerMessage(i, "The entrance you were in was amended."); 
 		}
 		
 		SaveEntrance(newid);
-		SendInfoMessage(playerid, "You set entrance #%i's interior.", newid);
+		SendServerMessage(playerid, "You set entrance #%i's interior.", newid);
 	}
 	return 1;
 }
@@ -186,7 +186,7 @@ CMD:editentrance(playerid, params[])
 		EntranceInfo[id][E_ENTRANCE_MAPICON] = icon;
 		SaveProperty(id);
 		
-		SendInfoMessage(playerid, "You set entrance #%i's icon to %s.", id, icon);	
+		SendServerMessage(playerid, "You set entrance #%i's icon to %s.", id, icon);	
 	}
 	else return SendErrorMessage(playerid, "Invalid Paramater.");	
 	return 1;

@@ -30,7 +30,7 @@ CMD:createfaction(playerid, params[])
 		return SendErrorMessage(playerid, "The server has met the maximum amount of factions."); 
 	}
 
-	SendInfoMessage(playerid, "Creating the faction..."); 	
+	SendServerMessage(playerid, "Creating the faction..."); 	
 	
 	format(FactionInfo[idx][E_FACTION_NAME], 128, "%s", varName);
 	format(FactionInfo[idx][E_FACTION_ABBREV], 32, "%s", varAbbrev); 
@@ -65,7 +65,7 @@ CMD:editfaction(playerid, params[])
 		if(sscanf(secString, "d", type))
 		{
 			SendUsageMessage(playerid, "/editfaction factionid type [type id]");
-			SendInfoMessage(playerid, "1. Illegal, 2. Police, 3. Medical"); 
+			SendServerMessage(playerid, "1. Illegal, 2. Police, 3. Medical"); 
 			return 1;
 		}
 		
@@ -81,7 +81,7 @@ CMD:editfaction(playerid, params[])
 		if(type == 2) typeName = "Police";
 		if(type == 3) typeName = "Medical";
 		
-		SendInfoMessage(playerid, "You set faction #%d type to %s.", factionid, typeName);
+		SendServerMessage(playerid, "You set faction #%d type to %s.", factionid, typeName);
 		SaveFaction(factionid);
 	}
 	else if(!strcmp(oneString, "color"))
@@ -96,7 +96,7 @@ CMD:editfaction(playerid, params[])
 		}
 		
 		FactionInfo[factionid][E_FACTION_COLORHEX] = hexcolor;
-		SendInfoMessage(playerid, "You set faction #%d chat color to \"%x\". ", factionid, hexcolor);
+		SendServerMessage(playerid, "You set faction #%d chat color to \"%x\". ", factionid, hexcolor);
 		
 		SaveFaction(factionid);
 	}
@@ -112,7 +112,7 @@ CMD:editfaction(playerid, params[])
 		
 		else FactionInfo[factionid][E_FACTION_SPAWNWORLD] = GetPlayerVirtualWorld(playerid);
 		
-		SendInfoMessage(playerid, "You changed faction #%d spawn point.", factionid); 
+		SendServerMessage(playerid, "You changed faction #%d spawn point.", factionid); 
 
 		if(IsValidDynamicPickup(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]))
 			DestroyDynamicPickup(FactionInfo[factionid][E_FACTION_SPAWNPICKUP]); 
@@ -164,7 +164,7 @@ CMD:setpfaction(playerid, params[])
 	format(str, sizeof(str), "%s set %s's faction to %d.", ReturnName(playerid), ReturnName(playerb), factionid);
 	SendAdminMessage(4, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	
-	SendInfoMessage(playerb, "You were set to faction %d by Admin %s.", factionid, ReturnName(playerid));
+	SendServerMessage(playerb, "You were set to faction %d by Admin %s.", factionid, ReturnName(playerid));
 	
 	return 1;
 }

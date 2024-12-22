@@ -10,13 +10,13 @@ CMD:tackle(playerid, params[])
 	{
 	    TackleMode[playerid] = false;
 
-	    SendServerMessage(playerid, "[Tackle] {cdcdcd}Tackling mode has been disabled.");
+	    SendInfoMessage(playerid, "[TACKLE] Tackling mode has been disabled.");
 	    return 1;
 	}
 
 	TackleMode[playerid] = true;
 
-	SendServerMessage(playerid, "[Tackle] {cdcdcd}Tackling mode has been enabled.");
+	SendInfoMessage(playerid, "[TACKLE] Tackling mode has been enabled.");
 
 	SendTipMessage(playerid, "If you punch someone, a tackle attempt will be registered.");
 	SendTipMessage(playerid, "The player you hit will have a message flashed to them indicating that a tackle has been attempted.");

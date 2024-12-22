@@ -30,10 +30,10 @@ function:CheckBanList(playerid)
 		cache_get_value_name(0, "Date", banDate, 90);
 		cache_get_value_name(0, "BannedBy", banner, 32);
 	
-		SendServerMessage(playerid, "[Banned] {cdcdcd}Your IP %s is banned from our servers.", ReturnIP(playerid));
-		SendServerMessage(playerid, "[Banned] {cdcdcd}Your account %s is banned from our server.", ReturnName(playerid));
-		SendServerMessage(playerid, "[Banned] {cdcdcd}You were banned on %s by %s.", banDate, banner); 
-		SendServerMessage(playerid, "[Banned] {cdcdcd}You may appeal your ban on our forums."); 
+		SendInfoMessage(playerid, "[BANNED] Your IP %s is banned from our servers.", ReturnIP(playerid));
+		SendInfoMessage(playerid, "[BANNED] Your account %s is banned from our server.", ReturnName(playerid));
+		SendInfoMessage(playerid, "[BANNED] You were banned on %s by %s.", banDate, banner); 
+		SendInfoMessage(playerid, "[BANNED] You may appeal your ban on our forums."); 
 		return KickEx(playerid);
 	}
 	return 1;
@@ -69,7 +69,7 @@ function:OnPlayerRegister(playerid)
 	
 	new str[128];
 	format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
-	SendInfoMessage(playerid, "You successfully registered as %s. You need to login to continue:", ReturnName(playerid)); 
+	SendServerMessage(playerid, "You successfully registered as %s. You need to login to continue:", ReturnName(playerid)); 
 	return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 }
 
@@ -143,8 +143,8 @@ function:Query_CheckBannedAccount(playerid)
 		cache_get_value_name(0, "Date", banDate, 90);
 		cache_get_value_name(0, "BannedBy", banner, 32);
 	
-		SendServerMessage(playerid, "[Banned] {cdcdcd}Your account %s is banned from our server.", ReturnName(playerid));
-		SendServerMessage(playerid, "[Banned] {cdcdcd}You were banned on %s by %s.", banDate, banner); 
+		SendInfoMessage(playerid, "[Banned] Your account %s is banned from our server.", ReturnName(playerid));
+		SendInfoMessage(playerid, "[Banned] You were banned on %s by %s.", banDate, banner); 
 		return KickEx(playerid);
 	}
 	return 1;
@@ -161,7 +161,7 @@ function:DB_ListCharacters(playerid)
 
 	if(!rows)
 	{
-		SendInfoMessage(playerid, "You don't have any existing characters.");
+		SendServerMessage(playerid, "You don't have any existing characters.");
 		
 		PlayerTextDrawSetString(playerid, SelectFactionName[playerid], "Hoodrats");
 		PlayerTextDrawSetString(playerid, SelectFactionLocation[playerid], "Empty_Characters");
@@ -252,7 +252,7 @@ stock LoadCharacter(playerid)
 			PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = false; 
 			
 		else
-			SendInfoMessage(playerid, "Your vehicle is still spawned.");
+			SendServerMessage(playerid, "Your vehicle is still spawned.");
 	}
 	
 	SetCameraBehindPlayer(playerid);

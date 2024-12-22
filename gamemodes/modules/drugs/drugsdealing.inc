@@ -26,7 +26,7 @@ CMD:drugsdeal(playerid, params[])
 	{
 		if(IsValidDynamicActor(DrugsDealerActor[playerid]))
 		{	
-			SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}The customers already spawned.");
+			SendInfoMessage(playerid, "[DRUGS DEALER] The customers already spawned.");
 			GPS_SetPlayerRaceCheckPoint(playerid, 1, DrugsDealerPos[playerid][0], DrugsDealerPos[playerid][1], DrugsDealerPos[playerid][2], 0.0, 0.0, 0.0);
 		}
 		
@@ -104,7 +104,7 @@ function:DrugsDealingRun(playerid, type)
 			if(IsValidDynamicActor(DrugsDealerActor[playerid]))
 				DestroyDynamicActor(DrugsDealerActor[playerid]);
 
-			SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}The customers leave the area.");
+			SendInfoMessage(playerid, "[DRUGS DEALER] The customers leave the area.");
 		}
 	}
 	return 1;

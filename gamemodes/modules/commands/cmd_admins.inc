@@ -91,7 +91,7 @@ CMD:forumname(playerid, params[])
 		return SendErrorMessage(playerid, "Your forum name needs to be shorter.");
 	
 	format(AccountInfo[playerid][E_MASTERS_FORUMNAME], 60, "%s", params);
-	SendInfoMessage(playerid, "Your forum name was changed to: %s.", params);  
+	SendServerMessage(playerid, "Your forum name was changed to: %s.", params);  
 	
 	SaveCharacter(playerid);
 	return 1;
@@ -134,7 +134,7 @@ CMD:goto(playerid, params[])
 	PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] = PlayerInfo[playerb][E_CHARACTER_INSIDEBIZ]; 
 	PlayerInfo[playerid][E_CHARACTER_INSIDEENT] = PlayerInfo[playerb][E_CHARACTER_INSIDEENT];
 
-	SendInfoMessage(playerb, "%s was teleported to you.", ReturnName(playerid));
+	SendServerMessage(playerb, "%s was teleported to you.", ReturnName(playerid));
 	return 1;
 }
 
@@ -178,7 +178,7 @@ CMD:gethere(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_INSIDEBIZ] = PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ]; 
 	PlayerInfo[playerb][E_CHARACTER_INSIDEENT] = PlayerInfo[playerid][E_CHARACTER_INSIDEENT];
 
-	SendInfoMessage(playerb, "You has teleported to %s.", ReturnName(playerid));
+	SendServerMessage(playerb, "You has teleported to %s.", ReturnName(playerid));
 	return 1;
 }
 
@@ -198,7 +198,7 @@ CMD:showmain(playerid, params[])
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 		return SendErrorMessage(playerid, "The player you specified hasn't logged in yet.");
 	
-	SendInfoMessage(playerid, "%s Master account is %s (DBID: %i).", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID]);	
+	SendServerMessage(playerid, "%s Master account is %s (DBID: %i).", ReturnName(playerid), AccountInfo[playerid][E_MASTERS_ACCNAME], AccountInfo[playerid][E_MASTERS_DBID]);	
 	return 1;
 }
 
@@ -229,7 +229,7 @@ CMD:kick(playerid, params[])
 	
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 	{
-		SendInfoMessage(playerid, "The player (%s) you kicked was not logged in.", ReturnName(playerb));
+		SendServerMessage(playerid, "The player (%s) you kicked was not logged in.", ReturnName(playerb));
 	}
 	
 	mysql_format(ourConnection, insertLog, sizeof(insertLog), "INSERT INTO kick_logs (`KickedDBID`, `KickedName`, `Reason`, `KickedBy`, `Date`) VALUES(%i, '%e', '%e', '%e', '%e')",
@@ -275,7 +275,7 @@ CMD:oban(playerid, params[])
 	{
 		if(!strcmp(ReturnName(i, i), playerb))
 		{
-			SendInfoMessage(playerid, "%s is connected to the server. (ID: %i)", playerb, i);
+			SendServerMessage(playerid, "%s is connected to the server. (ID: %i)", playerb, i);
 			return 1;
 		}
 	}
@@ -323,8 +323,8 @@ CMD:ban(playerid, params[])
 	
 	if(AccountInfo[playerb][E_MASTERS_LOGGED] == false)
 	{
-		SendInfoMessage(playerid, "The player (%s) you selected isn't logged in.", ReturnName(playerb));
-		SendInfoMessage(playerid, "Kick them OR use adminsys for further details.");
+		SendServerMessage(playerid, "The player (%s) you selected isn't logged in.", ReturnName(playerb));
+		SendServerMessage(playerid, "Kick them OR use adminsys for further details.");
 		return 1;
 	}
 	
@@ -388,7 +388,7 @@ CMD:oajail(playerid, params[])
 	{
 		if(!strcmp(ReturnName(i, i), playerb))
 		{
-			SendInfoMessage(playerid, "%s is connected to the server. (ID: %i)", playerb, i);
+			SendServerMessage(playerid, "%s is connected to the server. (ID: %i)", playerb, i);
 			return 1;
 		}
 	}
@@ -600,7 +600,7 @@ CMD:sethp(playerid, params[])
 		if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE)
 		{	
 			CallLocalFunction("OnPlayerWounded", "dud", playerb, playerb, 255);
-			SendInfoMessage(playerb, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
+			SendServerMessage(playerb, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
 		}
 	}
 	else
@@ -702,8 +702,8 @@ CMD:slap(playerid, params[])
 	SetPlayerPosEx(playerb, PlayerInfo[playerb][E_CHARACTER_LASTPOS][0], PlayerInfo[playerb][E_CHARACTER_LASTPOS][1], PlayerInfo[playerb][E_CHARACTER_LASTPOS][2] + 5); 
 	PlayNearbySound(playerb, 1130); //Slap sound;
 	
-	SendInfoMessage(playerid, "%s slapped %s", ReturnMixedName(playerid), ReturnName(playerb));
-	if(playerb != playerid) SendInfoMessage(playerb, "%s slapped %s", ReturnMixedName(playerid), ReturnName(playerb));
+	SendServerMessage(playerid, "%s slapped %s", ReturnMixedName(playerid), ReturnName(playerb));
+	if(playerb != playerid) SendServerMessage(playerb, "%s slapped %s", ReturnMixedName(playerid), ReturnName(playerb));
 
 	PauseAC(playerb);
 	return 1;
@@ -854,7 +854,7 @@ CMD:spec(playerid, params[])
 	PlayerSpectatePlayer(playerid, playerb);
 		
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = playerb; 
-	SendInfoMessage(playerid, "You're now spectating %s. To stop, use '/specoff'.", ReturnName(playerb));
+	SendServerMessage(playerid, "You're now spectating %s. To stop, use '/specoff'.", ReturnName(playerb));
 	return 1;
 }
 
@@ -866,7 +866,7 @@ CMD:specoff(playerid, params[])
 	if (GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
 		return SendErrorMessage(playerid, "You aren't spectating anyone."); 
 		
-	SendInfoMessage(playerid, "You stopped spectating %s.", ReturnName(PlayerInfo[playerid][E_CHARACTER_SPECTATE], playerid));
+	SendServerMessage(playerid, "You stopped spectating %s.", ReturnName(PlayerInfo[playerid][E_CHARACTER_SPECTATE], playerid));
 	
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = INVALID_PLAYER_ID;
 	TogglePlayerSpectating(playerid, false); 
@@ -1029,7 +1029,7 @@ CMD:getcar(playerid, params[])
 			
 		if(GetPlayerVehicleID(i) == vehicleid)
 		{
-			SendInfoMessage(i, "The vehicle you were in (%i) was teleported.", vehicleid); 
+			SendServerMessage(i, "The vehicle you were in (%i) was teleported.", vehicleid); 
 		}
 	}
 	return 1;
@@ -1186,7 +1186,7 @@ CMD:setinventory(playerid, params[])
 	{
         Inventory_Set(userid, g_aInventoryItems[i][E_INVENTORY_ITEM], g_aInventoryItems[i][E_INVENTORY_MODEL], amount, g_aInventoryItems[i][E_INVENTORY_TYPE]);
 
-		return SendInfoMessage(playerid, "You have set %s %s to %d.", ReturnName(userid), item, amount);
+		return SendServerMessage(playerid, "You have set %s %s to %d.", ReturnName(userid), item, amount);
 	}
 	SendErrorMessage(playerid, "Invalid item name (use /itemlist for a list).");
 	return 1;
@@ -1220,7 +1220,7 @@ CMD:gotoentrance(playerid, params[])
 		
 	SetPlayerPosEx(playerid, EntranceInfo[id][E_ENTRANCE_POS][0], EntranceInfo[id][E_ENTRANCE_POS][1], EntranceInfo[id][E_ENTRANCE_POS][2]);
 	
-	SendInfoMessage(playerid, "You teleported to entrance #%i.", id);
+	SendServerMessage(playerid, "You teleported to entrance #%i.", id);
 
 	SetPlayerVirtualWorldEx(playerid, 0);
 	SetPlayerInteriorEx(playerid, 0); 
@@ -1250,7 +1250,7 @@ CMD:gotoproperty(playerid, params[])
 	SetPlayerVirtualWorldEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEWORLD]);
 	SetPlayerInteriorEx(playerid, PropertyInfo[id][E_PROPERTY_ENTRANCEINTERIOR]);
 	
-	SendInfoMessage(playerid, "You teleported to Property #%i.", id);
+	SendServerMessage(playerid, "You teleported to Property #%i.", id);
 	
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1273,7 +1273,7 @@ CMD:gotobusiness(playerid, params[])
 		return SendErrorMessage(playerid, "The business you specified doesn't exist.");
 		
 	SetPlayerPosEx(playerid, BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[id][E_BUSINESS_ENTRANCEPOS][2]); 
-	SendInfoMessage(playerid, "You teleported to business #%i.", id); 
+	SendServerMessage(playerid, "You teleported to business #%i.", id); 
 	
 	SetPlayerVirtualWorldEx(playerid, 0);
 	SetPlayerInteriorEx(playerid, 0); 
@@ -1303,7 +1303,7 @@ CMD:gotofaction(playerid, params[])
 	SetPlayerVirtualWorldEx(playerid, FactionInfo[id][E_FACTION_SPAWNWORLD]);
 	SetPlayerInteriorEx(playerid, FactionInfo[id][E_FACTION_SPAWNINT]); 
 	
-	SendInfoMessage(playerid, "You teleported to %s spawn point.", ReturnFactionNameEx(id)); 
+	SendServerMessage(playerid, "You teleported to %s spawn point.", ReturnFactionNameEx(id)); 
 
 	if(PlayerInfo[playerid][E_CHARACTER_INSIDEPROP] || PlayerInfo[playerid][E_CHARACTER_INSIDEBIZ] || PlayerInfo[playerid][E_CHARACTER_INSIDEENT])
 	{
@@ -1752,7 +1752,7 @@ CMD:givemoney(playerid, params[])
 
     GiveMoney(playerb, Cents);
 
-    SendInfoMessage(playerb, "You received $%s from Admin %s.", FormatMoney(Cents), ReturnName(playerid));
+    SendServerMessage(playerb, "You received $%s from Admin %s.", FormatMoney(Cents), ReturnName(playerid));
 
     format(str, sizeof(str), "%s gave %s to %s", ReturnMixedName(playerid), FormatMoney(Cents), ReturnName(playerb));
     SendAdminMessage(3, str); SendClientMessage(playerb, COLOR_YELLOW, str);
@@ -2002,7 +2002,7 @@ CMD:setpadmin(playerid, params[])
 	format(str, sizeof(str), "%s set %s's admin to %d.", ReturnMixedName(playerid), ReturnName(playerb), adminid);
 	SendAdminMessage(4, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	
-	SendInfoMessage(playerb, "You were set to admin %s by Admin %s.", adminid, ReturnMixedName(playerid));
+	SendServerMessage(playerb, "You were set to admin %s by Admin %s.", adminid, ReturnMixedName(playerid));
 	
 	return 1;
 }

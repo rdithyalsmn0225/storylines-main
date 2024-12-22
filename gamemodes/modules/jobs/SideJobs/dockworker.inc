@@ -74,7 +74,7 @@ function:DockWorkers(playerid, type)
                     KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
                     DestroyDynamicObject(CrateObject[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]]);
-                    SendJobsMessage(playerid, "[Dockworker] {cdcdcd}Next task: fetch some %s from the %s and store it in the next warehouse.", Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_DESCRIPTION], Dockworker_Store[PlayerDockworkerCollect[playerid]][E_DOCKWORK_DESCRIPTION]);
+                    SendJobsMessage(playerid, "[Dockworker] Next task: fetch some %s from the %s and store it in the next warehouse.", Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_DESCRIPTION], Dockworker_Store[PlayerDockworkerCollect[playerid]][E_DOCKWORK_DESCRIPTION]);
                     
                     new rand = randomEx(8, 10);
                     new Cents = floatround(rand * 100, floatround_round);

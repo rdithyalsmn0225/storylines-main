@@ -71,7 +71,7 @@ CMD:finvite(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_FACTIONINVITED] = playerid;
 	
 	SendTipMessage(playerb, "%s has invited you to join the %s, type /approve faction to join.", ReturnName(playerid), ReturnFactionName(playerid));
-	SendInfoMessage(playerid, "You invited %s to join the %s.", ReturnName(playerb), ReturnFactionName(playerid));
+	SendServerMessage(playerid, "You invited %s to join the %s.", ReturnName(playerb), ReturnFactionName(playerid));
 	return 1;
 }
 
@@ -97,8 +97,8 @@ CMD:funinvite(playerid, params[])
 	if(PlayerInfo[playerb][E_CHARACTER_FACTION] != PlayerInfo[playerid][E_CHARACTER_FACTION])
 		return SendErrorMessage(playerid, "The player you specified IS not in your faction.");
 	
-	SendInfoMessage(playerid, "You were uninvited from the %s by %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTION]), ReturnName(playerid));
-	SendInfoMessage(playerid, "You uninvited %s!", ReturnName(playerb));
+	SendServerMessage(playerid, "You were uninvited from the %s by %s!", ReturnFactionNameEx(PlayerInfo[playerid][E_CHARACTER_FACTION]), ReturnName(playerid));
+	SendServerMessage(playerid, "You uninvited %s!", ReturnName(playerb));
 	
 	PlayerInfo[playerb][E_CHARACTER_FACTION] = 0;
 	PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = 0;
@@ -197,8 +197,8 @@ CMD:frank(playerid, params[])
 	if(PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] > 4)
 		return SendErrorMessage(playerid, "You can't alter 4 rank.", ReturnName(playerb)); 
 		
-	SendInfoMessage(playerb, "Your rank has been upgraded from %s to %s by %s!", FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank], ReturnName(playerid)); 
-	SendInfoMessage(playerid, "You upgraded %s rank from %s to %s!", ReturnName(playerb), FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank]);
+	SendServerMessage(playerb, "Your rank has been upgraded from %s to %s by %s!", FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank], ReturnName(playerid)); 
+	SendServerMessage(playerid, "You upgraded %s rank from %s to %s!", ReturnName(playerb), FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][PlayerInfo[playerb][E_CHARACTER_FACTIONRANK]], FactionRanks[PlayerInfo[playerb][E_CHARACTER_FACTION]][rank]);
 		
 	PlayerInfo[playerb][E_CHARACTER_FACTIONRANK] = rank; 
 	SaveCharacter(playerb);
@@ -290,8 +290,8 @@ CMD:handcuff(playerid, params[])
 	
 	PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = true;
 	
-	SendInfoMessage(playerb, "You were handcuffed by %s.", ReturnName(playerid)); 
-	SendInfoMessage(playerid, "You handcuffed %s.", ReturnName(playerb));
+	SendServerMessage(playerb, "You were handcuffed by %s.", ReturnName(playerid)); 
+	SendServerMessage(playerid, "You handcuffed %s.", ReturnName(playerb));
 	return 1;
 }
 
@@ -324,7 +324,7 @@ CMD:unhandcuff(playerid, params[])
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE); 
 	
 	PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = false;
-	SendInfoMessage(playerid, "You unhandcuffed %s.", ReturnName(playerb));
+	SendServerMessage(playerid, "You unhandcuffed %s.", ReturnName(playerb));
 	return 1;
 }
 
@@ -479,7 +479,7 @@ CMD:tracenumber(playerid, params[])
 	new Float:x, Float:y, Float:z;
     GetPlayerPos(targetid, x, y, z);
 
-    SendServerMessage(playerid, "[Trace] {cdcdcd}Phone number %s belongs to %s located at %s, %s.", targetNumber, ReturnName(playerid, 0), ReturnLocationStreet(playerid), ReturnLocation(playerid));
+    SendInfoMessage(playerid, "[TRACE] Phone number %s belongs to %s located at %s, %s.", targetNumber, ReturnName(playerid, 0), ReturnLocationStreet(playerid), ReturnLocation(playerid));
 	return 1;
 }
 
@@ -779,10 +779,10 @@ CMD:impound(playerid, params[])
 	GetPlayerPos(playerid, VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][0], VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][1], VehicleInfo[vehicleid][E_VEHICLE_IMPOUNDPOS][2]); 
 	VehicleInfo[vehicleid][E_VEHICLE_IMPOUND] = true; 
 	
-	SendInfoMessage(playerid, "You impounded %s's %s", ReturnDBIDName(VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID]), ReturnVehicleName(vehicleid)); 
+	SendServerMessage(playerid, "You impounded %s's %s", ReturnDBIDName(VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID]), ReturnVehicleName(vehicleid)); 
 	
 	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_DBID] == VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID])
-		SendInfoMessage(i, "Your %s was impounded by %s", ReturnVehicleName(vehicleid), ReturnName(playerid)); 
+		SendServerMessage(i, "Your %s was impounded by %s", ReturnVehicleName(vehicleid), ReturnName(playerid)); 
 
 	return 1;
 }
@@ -836,8 +836,8 @@ function:Treatments(playerid, targetid)
 				PlayerInfo[targetid][E_CHARACTER_WOUND][i] = 100;
 			}
 			
-			SendServerMessage(playerid, "[Treatment] {cdcdcd}You have operating %s.", ReturnName(targetid));
-			SendServerMessage(targetid, "[Treatment] {cdcdcd}You have been operated by %s.", ReturnName(playerid));
+			SendInfoMessage(playerid, "[TREATMENT] You have operating %s.", ReturnName(targetid));
+			SendInfoMessage(targetid, "[TREATMENT] You have been operated by %s.", ReturnName(playerid));
 		}
 	}
 	Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
@@ -881,8 +881,8 @@ CMD:loadinjured(playerid, params[])
         PlayerPutIntoVehicle(otherid, i, seatid);
     
         TogglePlayerControllable(otherid, false);
-        SetPlayerHealth(otherid, 100.0);
-        SendInfoMessage(otherid, "You're injured now you're on ambulance.");
+        SetPlayerHealthEx(otherid, 100.0);
+        SendServerMessage(otherid, "You're injured now you're on ambulance.");
         return 1;
     }
     else SendErrorMessage(playerid, "You must be in an ambulance.");
@@ -919,8 +919,8 @@ CMD:dropinjured(playerid, params[])
 
         GiveMoney(playerid, -Cents);
 
-        SendInfoMessage(playerid, "You have delivered %s to the hospital.", ReturnName(otherid, playerid));
-        SendInfoMessage(otherid, "You have recovered at the nearest hospital by officer %s.", ReturnName(playerid));
+        SendServerMessage(playerid, "You have delivered %s to the hospital.", ReturnName(otherid, playerid));
+        SendServerMessage(otherid, "You have recovered at the nearest hospital by officer %s.", ReturnName(playerid));
     }
     else SendErrorMessage(playerid, "You must be near a hospital deliver location.");
     return 1;

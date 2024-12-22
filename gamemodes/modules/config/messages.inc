@@ -1,21 +1,24 @@
 //Client messages:
 #define SendUsageMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_ORANGE, "[Syntax]{cdcdcd} "%1) 
+	SendClientMessageEx(%0, COLOR_ORANGE, "[SYNTAX] "%1) 
 	
 #define SendErrorMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_RED, "[Error]{cdcdcd} "%1)
+	SendClientMessageEx(%0, COLOR_SAMP, ""%1)
 
 #define SendInfoMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_BLUE, "[INFO]{e6f6df} "%1) 
+	SendClientMessageEx(%0, COLOR_BLUE, ""%1) 
 
 #define SendTipMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_TIP, "[TIP]{F5F6DF} "%1) 
+	SendClientMessageEx(%0, COLOR_TIP, "[TIP] {c3ecdc}"%1) 
+
+#define SendInventoryMessage(%0,%1) \
+	SendClientMessageEx(%0, COLOR_INVENTORY, "[INVENTORY] {F5F6DF}"%1) 
 
 #define SendServerMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_INFO, ""%1) 
+	SendClientMessageEx(%0, COLOR_INFO, "[SERVER] {ffffff}"%1) 
 
 #define SendJobsMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_HINT, ""%1) 
+	SendClientMessageEx(%0, COLOR_JOBS, ""%1) 
 
 #define SendPropertyMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_PROPERTY, ""%1) 
@@ -23,8 +26,8 @@
 #define SendVehicleMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_VEHICLE, ""%1) 
 
-#define SendEmmetMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_EMMET, ""%1) 
+#define SendCrimeMessage(%0,%1) \
+	SendClientMessageEx(%0, COLOR_CRIME, ""%1) 
 
 #define SendDebugMessage(%0)	\
 	SendClientMessageToAllEx(COLOR_GREY, "Debug: "%0)

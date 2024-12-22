@@ -160,7 +160,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				
 				ClearLines(playerid, 17); 
 								
-				SendInfoMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
+				SendServerMessage(playerid, "You successfully created a new character. Please wait while your list is rebuilt.");
 								
 				new query[512];
 
@@ -382,7 +382,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 80;
 						AccountInfo[playerid][E_MASTERS_VIP] = 1;
 						AccountInfo[playerid][E_MASTERS_VIPTIMER] = gettime() + (7 * 86400);
-						SendInfoMessage(playerid, "You has purchase supreme vip level 7 days for 50 street credits.");
+						SendServerMessage(playerid, "You has purchase supreme vip level 7 days for 50 street credits.");
 					}
 					case 4:
 					{
@@ -392,7 +392,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 120;
 						AccountInfo[playerid][E_MASTERS_VIP] = 2;
 						AccountInfo[playerid][E_MASTERS_VIPTIMER] = gettime() + (7 * 86400);
-						SendInfoMessage(playerid, "You has purchase legend vip level 7 days for 120 street credits.");
+						SendServerMessage(playerid, "You has purchase legend vip level 7 days for 120 street credits.");
 					}
 					case 5:
 					{
@@ -402,7 +402,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 150;
 						AccountInfo[playerid][E_MASTERS_VIP] = 3;
 						AccountInfo[playerid][E_MASTERS_VIPTIMER] = gettime() + (7 * 86400);
-						SendInfoMessage(playerid, "You has purchase ultimate vip level 7 days for 150 street credits.");
+						SendServerMessage(playerid, "You has purchase ultimate vip level 7 days for 150 street credits.");
 					}
 				}
 			}
@@ -422,7 +422,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 50;
 				PlayerInfo[playerid][E_CHARACTER_PHONE] = strval(inputtext);
-				SendInfoMessage(playerid, "You has change phone number to %d for 50 street credits.", strval(inputtext));
+				SendServerMessage(playerid, "You has change phone number to %d for 50 street credits.", strval(inputtext));
 
 			}
 		}
@@ -441,7 +441,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				PlayerInfo[playerid][E_CHARACTER_MASKID] = strval(inputtext);
 				AccountInfo[playerid][E_MASTERS_STREETCREDITS] -= 70;
-				SendInfoMessage(playerid, "You has change mask id to %d for 70 street credits.", strval(inputtext));
+				SendServerMessage(playerid, "You has change mask id to %d for 70 street credits.", strval(inputtext));
 
 			}
 		}
@@ -854,7 +854,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				FactionVehicle[index][E_FACVEHICLE_SPAWNED] = true;
 
-				SendServerMessage(playerid, "[Faction] {cdcdcd} Faction Vehicle spawned successfully.");
+				SendInfoMessage(playerid, "[FACTION]  Faction Vehicle spawned successfully.");
 			}
 		}
 		case DIALOG_POLICEVEHICLES:
@@ -882,7 +882,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SetVehicleNumberPlate(FactionVehicle[listitem][E_FACVEHICLE_VEH], FactionVehicle[FactionVehicle[listitem][E_FACVEHICLE_VEH]][E_FACVEHICLE_PLATES]);
 				FactionVehicle[listitem][E_FACVEHICLE_SPAWNED] = true;
 
-				SendServerMessage(playerid, "[Faction] {cdcdcd} Faction Vehicles spawned successfully.");
+				SendInfoMessage(playerid, "[FACTION]  Faction Vehicles spawned successfully.");
 			}
 		}
 		case DIALOG_TREATMENT:
@@ -907,8 +907,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					SetPlayerTeam(targetid, PLAYER_STATE_ALIVE);
 					SetPlayerHealthEx(targetid, 100.0);
 
-					SendServerMessage(playerid, "[Treatment] {cdcdcd}You have been reviving %s.", ReturnName(targetid));
-					SendServerMessage(targetid, "[Treatment] {cdcdcd}You have been revived by %s.", ReturnName(playerid));
+					SendInfoMessage(playerid, "[TREATMENT] You have been reviving %s.", ReturnName(targetid));
+					SendInfoMessage(targetid, "[TREATMENT] You have been revived by %s.", ReturnName(playerid));
 				}
 				if(listitem == 2)
 				{
@@ -918,8 +918,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						return SendErrorMessage(playerid, "That player already have Max Health!");
 
 					SetPlayerHealthEx(targetid, 100.0);
-					SendServerMessage(playerid, "[Treatment] {cdcdcd}You have healing %s.", ReturnName(targetid));
-					SendServerMessage(targetid, "[Treatment] {cdcdcd}You have been healed by %s.", ReturnName(playerid));
+					SendInfoMessage(playerid, "[TREATMENT] You have healing %s.", ReturnName(targetid));
+					SendInfoMessage(targetid, "[TREATMENT] You have been healed by %s.", ReturnName(playerid));
 				}
 				if(listitem == 3)
 				{
@@ -938,7 +938,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
 					PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("Treatments", 5000, true, "ii", playerid, targetid);
 
-					SendServerMessage(playerid, "[Treatment] {cdcdcd}You need waiting for a minutes to operate %s.", ReturnName(targetid));
+					SendInfoMessage(playerid, "[TREATMENT] You need waiting for a minutes to operate %s.", ReturnName(targetid));
 				}
 			}
 		}
@@ -1073,7 +1073,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				GiveMoney(playerid, -TicketInfo[playerid][listitem][E_TICKET_FEE]);
 
-				SendServerMessage(playerid, "[Tickets] {cdcdcd}You have paid off a $%s ticket for %s.", FormatMoney(TicketInfo[playerid][listitem][E_TICKET_FEE]), TicketInfo[playerid][listitem][E_TICKET_REASON]);
+				SendInfoMessage(playerid, "[TICKET] You have paid off a $%s ticket for %s.", FormatMoney(TicketInfo[playerid][listitem][E_TICKET_FEE]), TicketInfo[playerid][listitem][E_TICKET_REASON]);
 				Ticket_Remove(playerid, listitem);
 			}
 		}
@@ -1177,7 +1177,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						pToys[playerid][toySelect[playerid]][E_TOY_SX],
 						pToys[playerid][toySelect[playerid]][E_TOY_SY],
 						pToys[playerid][toySelect[playerid]][E_TOY_SZ]);
-				SendServerMessage(playerid, "[Clothing] {cdcdcd}Accessories bone position now is %s", Bone_Name[listitem + 1]);
+				SendInfoMessage(playerid, "[CLOTHING] Accessories bone position now is %s", Bone_Name[listitem + 1]);
 			}
 		}
 		case DIALOG_GYM:
@@ -1191,7 +1191,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 5);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 5;
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You learn a fightstyle boxing for $150.00.");
+						SendPropertyMessage(playerid, "[Business] You learn a fightstyle boxing for $150.00.");
 						new Cents = floatround(150 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -1201,7 +1201,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 7);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 7;
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You learn a fightstyle KneeHead for $200.00.");
+						SendPropertyMessage(playerid, "[Business] You learn a fightstyle KneeHead for $200.00.");
 						new Cents = floatround(200 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -1211,7 +1211,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 15);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 15;
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You learn a fightstyle GrabKick for $300.00.");
+						SendPropertyMessage(playerid, "[Business] You learn a fightstyle GrabKick for $300.00.");
 						new Cents = floatround(300 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -1221,7 +1221,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SetPlayerFightingStyle(playerid, 4);
 						PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE] = 4;
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You reset a fightstyle for $100.00.");
+						SendPropertyMessage(playerid, "[Business] You reset a fightstyle for $100.00.");
 						new Cents = floatround(100 * 100, floatround_round);
 
     					GiveMoney(playerid, -Cents);
@@ -1238,7 +1238,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(2 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a sprunk.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a sprunk for $2.");
+						SendPropertyMessage(playerid, "[Business] You bought a sprunk for $2.");
 
 						new Cents = floatround(2 * 100, floatround_round);
 						BusinessInfo[businessid][E_BUSINESS_CASH] += Cents;
@@ -1307,6 +1307,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 1:
 					{
 						ResetVarInventory(playerid);
+						SendInventoryMessage(playerid, "You have stored items in your inventory.");
 					}
 			        case 2:
 			        {
@@ -1399,7 +1400,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						return SendErrorMessage(playerid, "That player doesn't have anymore inventory slots.");
 
 				    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnName(playerid, 0), string, ReturnName(userid, 0));
-				    SendInfoMessage(userid, "%s has given you %s (added to inventory).", ReturnName(playerid, 0), string);
+				    SendServerMessage(userid, "%s has given you %s (added to inventory).", ReturnName(playerid, 0), string);
 
 					Inventory_Remove(playerid, string);
 		  		}
@@ -1464,7 +1465,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					return SendErrorMessage(playerid, "That player doesn't have anymore inventory slots.");
 
 			    SendNearbyMessage(playerid, 30.0, COLOR_EMOTE, "* %s takes out a \"%s\" and gives it to %s.", ReturnName(playerid, 0), string, ReturnName(userid, 0));
-			    SendInfoMessage(userid, "%s has given you %s (added to inventory).", ReturnName(playerid, 0), string);
+			    SendServerMessage(userid, "%s has given you %s (added to inventory).", ReturnName(playerid, 0), string);
 
 				Inventory_Remove(playerid, string, strval(inputtext));
 			}
@@ -1630,7 +1631,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							ShowMoneyFormat(playerid);
 							TextDrawShowForPlayer(playerid, Times);
 							PlayerInfo[playerid][E_CHARACTER_TOGHUD] = false;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}HUD TextDraws has been Enable.");
+							SendInfoMessage(playerid, "[SETTINGS] HUD TextDraws has been Enable.");
 						}
 						else
 						{
@@ -1643,7 +1644,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							HideVehicleSpeedometer(playerid);
 							HideMoneyFormat(playerid);
 							PlayerInfo[playerid][E_CHARACTER_TOGHUD] = true;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}HUD TextDraws has been Disable.");
+							SendInfoMessage(playerid, "[SETTINGS] HUD TextDraws has been Disable.");
 						}
 					}
 					case 1:
@@ -1651,12 +1652,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGJOIN])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGJOIN] = false;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Joined Logs has been Enable.");
+							SendInfoMessage(playerid, "[SETTINGS] Joined Logs has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGJOIN] = true;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Joined Logs has been Disable.");
+							SendInfoMessage(playerid, "[SETTINGS] Joined Logs has been Disable.");
 						}
 					}
 					case 2:
@@ -1664,12 +1665,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGADMIN])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGADMIN] = false;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Admin Messages has been Enable.");
+							SendInfoMessage(playerid, "[SETTINGS] Admin Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGADMIN] = true;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Admin Messages has been Disable.");
+							SendInfoMessage(playerid, "[SETTINGS] Admin Messages has been Disable.");
 						}
 					}
 					case 3:
@@ -1677,12 +1678,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGFMS])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGFMS] = false;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Faction Messages has been Enable.");
+							SendInfoMessage(playerid, "[SETTINGS] Faction Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGFMS] = true;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Faction Messages has been Disable.");
+							SendInfoMessage(playerid, "[SETTINGS] Faction Messages has been Disable.");
 						}
 					}
 					case 4:
@@ -1690,12 +1691,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGPMS])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGPMS] = false;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Private Messages has been Enable.");
+							SendInfoMessage(playerid, "[SETTINGS] Private Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGPMS] = true;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Private Messages has been Disable.");
+							SendInfoMessage(playerid, "[SETTINGS] Private Messages has been Disable.");
 						}
 					}
 					case 5:
@@ -1703,12 +1704,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGDMS])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDMS] = false;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Damages Messages has been Enable.");
+							SendInfoMessage(playerid, "[SETTINGS] Damages Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGDMS] = true;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Damages Messages has been Disable.");
+							SendInfoMessage(playerid, "[SETTINGS] Damages Messages has been Disable.");
 						}
 					}
 					case 6:
@@ -1716,12 +1717,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGTIPS])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGTIPS] = false;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Tips Messages has been Enable.");
+							SendInfoMessage(playerid, "[SETTINGS] Tips Messages has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGTIPS] = true;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}Tips Messages has been Disable.");
+							SendInfoMessage(playerid, "[SETTINGS] Tips Messages has been Disable.");
 						}
 					}
 					case 7:
@@ -1729,12 +1730,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGPHONE])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGPHONE] = false;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}switched your phonestyle to old school.");
+							SendInfoMessage(playerid, "[SETTINGS] switched your phonestyle to old school.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGPHONE] = true;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}switched your phonestyle to modern.");
+							SendInfoMessage(playerid, "[SETTINGS] switched your phonestyle to modern.");
 						}
 					}
 					case 8:
@@ -1742,12 +1743,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_TOGALPR])
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGALPR] = false;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}ALPR interface has been Enable.");
+							SendInfoMessage(playerid, "[SETTINGS] ALPR interface has been Enable.");
 						}
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGALPR] = true;
-							SendServerMessage(playerid, "[Settings] {cdcdcd}ALPR interface has been Disable.");
+							SendInfoMessage(playerid, "[SETTINGS] ALPR interface has been Disable.");
 						}
 					}
 				}
@@ -1802,7 +1803,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new type = randomEx(1,2);
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendInfoMessage(playerid, "[DRUGS DEALER] You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 					case 1: //Heroin
 					{
@@ -1810,7 +1811,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendInfoMessage(playerid, "[DRUGS DEALER] You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 				}
 			}
@@ -1829,14 +1830,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new type = randomEx(1,2);
 						
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendInfoMessage(playerid, "[DRUGS DEALER] You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 					case 1: //PCP
 					{
 						new type = 4;
 						
 						SetTimerEx("DrugsDealing", 15000, false, "iiffff", playerid, type, x, y, z ,a);
-						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
+						SendInfoMessage(playerid, "[DRUGS DEALER] You've opened drugs corner at %s, it will run for 15 minutes.", ReturnLocationStreet(playerid));
 					}
 				}
 			}	
@@ -1862,7 +1863,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 						
-						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've received $%s from selling crack.", FormatMoney(Cents));
+						SendInfoMessage(playerid, "[DRUGS DEALER] You've received $%s from selling crack.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1884,7 +1885,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 
-						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've received $%s from selling marijuana.", FormatMoney(Cents));
+						SendInfoMessage(playerid, "[DRUGS DEALER] You've received $%s from selling marijuana.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1906,7 +1907,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 						
-						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've received $%s from selling heroin.", FormatMoney(Cents));
+						SendInfoMessage(playerid, "[DRUGS DEALER] You've received $%s from selling heroin.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -1928,7 +1929,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						GiveMoney(playerid, Cents);
 
-						SendServerMessage(playerid, "[Drugs Dealer] {cdcdcd}You've received $%s from selling pcp.", FormatMoney(Cents));
+						SendInfoMessage(playerid, "[DRUGS DEALER] You've received $%s from selling pcp.", FormatMoney(Cents));
 
 						//SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 						ApplyDynamicActorAnimation(DrugsDealerActor[playerid], "DEALER", "DRUGS_BUY", 4.1, 0, 0, 0, 0, 0);
@@ -2229,7 +2230,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						format(string, sizeof(string), "INSERT INTO `contacts` (`ID`, `E_CONTACT_NAME`, `E_CONTACT_NUMBER`) VALUES('%d', '%s', '%d')", PlayerInfo[playerid][E_CHARACTER_DBID], name, ContactInfo[playerid][i][E_CONTACT_NUMBER]);
 						mysql_pquery(ourConnection, string, "OnContactAdd", "dd", playerid, i);
 
-						SendServerMessage(playerid, "[Contact] {cdcdcd}You have added %s to your contacts.", name);
+						SendInfoMessage(playerid, "[PHONE] You have added %s to your contacts.", name);
 						return 1;
 					}
 				}
@@ -2256,7 +2257,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						format(string, sizeof(string), "DELETE FROM `contacts` WHERE `ID` = '%d' AND `E_CONTACT_DBID` = '%d'", PlayerInfo[playerid][E_CHARACTER_DBID], ContactInfo[playerid][id][E_CONTACT_DBID]);
 						mysql_pquery(ourConnection, string);
 
-						SendServerMessage(playerid, "[Contact] {cdcdcd}You have deleted %s from your contacts.", ContactInfo[playerid][id][E_CONTACT_NAME]);
+						SendInfoMessage(playerid, "[PHONE] You have deleted %s from your contacts.", ContactInfo[playerid][id][E_CONTACT_NAME]);
 
 						ContactInfo[playerid][id][E_CONTACT_EXISTS] = false;
 						ContactInfo[playerid][id][E_CONTACT_NUMBER] = 0;
@@ -2457,7 +2458,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] -= rand;
 							BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] = false;
 							BusinessRefresh(IsPlayerInBusiness(playerid));
-							SendPropertyMessage(playerid, "[Business] {cdcdcd}You've got money $%s from take cash money on cashiers.", FormatMoney(Cents));
+							SendPropertyMessage(playerid, "[Business] You've got money $%s from take cash money on cashiers.", FormatMoney(Cents));
 						}
 					}
 				}
@@ -2701,7 +2702,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
 				format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, "");
 				DestroyDynamicObject(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
-				SendInfoMessage(playerid, "You're moved dropped items."); 
+				SendServerMessage(playerid, "You're moved dropped items."); 
 
 				if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
 				{
@@ -3122,7 +3123,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], x + 2.0 * floatsin(-a, degrees), y + 2.0 * floatcos(-a, degrees), z + 1.0, 0.0, 0.0, ((19353 <= g_aFurnitureArray[i][E_FURNITUREVAR_MODEL] <= 19417) || (19426 <= g_aFurnitureArray[i][E_FURNITUREVAR_MODEL] <= 19465)) ? (a + 90.0) : (a), GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid));
 				PlayerInfo[playerid][E_CHARACTER_LISTITEM] = i;
 
-				SendServerMessage(playerid, "[Furniture] {cdcdcd}You are now previewing %s. This furniture item costs $%s to purchase.", g_aFurnitureArray[i][E_FURNITUREVAR_NAME], FormatMoney(Cents));
+				SendPropertyMessage(playerid, "[FURNITURE] You are now previewing %s. This furniture item costs $%s to purchase.", g_aFurnitureArray[i][E_FURNITUREVAR_NAME], FormatMoney(Cents));
 				SendTipMessage(playerid, "Use your cursor to control the editor interface. Click the save icon to save changes.");
 				EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
 			}
@@ -3298,7 +3299,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a cellphone.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a cellphone for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendInventoryMessage(playerid, "You bought a cellphone for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3314,7 +3315,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a radio.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a radio for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendInventoryMessage(playerid, "You bought a radio for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3340,7 +3341,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a spikebat.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a spikebat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendInventoryMessage(playerid, "You bought a spikebat for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 
@@ -3357,7 +3358,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a wooden.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a wooden for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendInventoryMessage(playerid, "You bought a wooden for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3373,7 +3374,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a nailbat.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a nailbat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+						SendInventoryMessage(playerid, "You bought a nailbat for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3399,7 +3400,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a raw meat.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a raw meat for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendInventoryMessage(playerid, "You bought a raw meat for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3415,7 +3416,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a parsley.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a parsley for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendInventoryMessage(playerid, "You bought a parsley for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3431,7 +3432,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a mint.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a mint for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+						SendInventoryMessage(playerid, "You bought a mint for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3447,7 +3448,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a oregano.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a oregano for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendInventoryMessage(playerid, "You bought a oregano for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3463,7 +3464,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a baking soda.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a baking soda for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendInventoryMessage(playerid, "You bought a baking soda for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3490,7 +3491,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a spraycan.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a spraycan for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendInventoryMessage(playerid, "You bought a spraycan for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 
@@ -3507,7 +3508,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a gasoline.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a gasoline for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendInventoryMessage(playerid, "You bought a gasoline for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3523,7 +3524,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a repairkit.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a repairkit for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+						SendInventoryMessage(playerid, "You bought a repairkit for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3549,7 +3550,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(200 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a sprunk.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a sprunk for $2.");
+						SendInventoryMessage(playerid, "You bought a sprunk for $2.");
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 200; 
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3565,7 +3566,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(500 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a sprunk.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a sprunk for $2.");
+						SendInventoryMessage(playerid, "You bought a sprunk for $2.");
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 500; 
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3591,7 +3592,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Knife.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Knife for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendInventoryMessage(playerid, "You bought a Knife for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 
@@ -3608,7 +3609,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Marcos Knife.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Marcos Knife for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendInventoryMessage(playerid, "You bought a Marcos Knife for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3624,7 +3625,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Hammer.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Hammer for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+						SendInventoryMessage(playerid, "You bought a Hammer for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3640,7 +3641,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Wrench.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Wrench for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendInventoryMessage(playerid, "You bought a Wrench for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3656,7 +3657,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Broom.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Broom for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendInventoryMessage(playerid, "You bought a Broom for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3682,7 +3683,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Glove.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Glove for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendInventoryMessage(playerid, "You bought a Glove for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
 						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 
@@ -3709,7 +3710,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Pisswasher.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendPropertyMessage(playerid, "[Business] You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 						GiveMoney(playerid, BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3724,7 +3725,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							return SendErrorMessage(playerid, "You can't afford a Pisswasher.");
 
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendPropertyMessage(playerid, "[Business] You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 						GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3738,7 +3739,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Pisswasher.");
 					
-						SendPropertyMessage(playerid, "[Business] {cdcdcd}You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+						SendPropertyMessage(playerid, "[Business] You bought a Pisswasher for $%s.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 						GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3990,7 +3991,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 							SetPlayerSpecialAction(playerid, SPECIAL_ACTION_DRINK_BEER);
 
-							SendTipMessage(playerid, "Press 'LMB' to drink beer.");
+							SendInventoryMessage(playerid, "Press 'LMB' to drink beer.");
 						}
 						else SendErrorMessage(playerid, "You must store your items in inventory first.");
 					}
@@ -4327,7 +4328,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(response)
 			{
 				PlayerTruckIndex[playerid] = listitem+1;
-				SendJobsMessage(playerid, "[Trucker] {cdcdcd}You has selected truck missions in %s, go to checkpoint to take the trailer.", GetZoneName(FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz]));
+				SendJobsMessage(playerid, "[Trucker] You has selected truck missions in %s, go to checkpoint to take the trailer.", GetZoneName(FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz]));
 				GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz], 0.0, 0.0, 0.0, GPS_TRUCKERS);
 			}
 		}
@@ -4393,7 +4394,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new Cents = floatround(total * 100, floatround_round);
 
 				GiveMoney(playerid, Cents);
-				SendJobsMessage(playerid, "[Fishing] {cdcdcd}You have sold all the fish and earn $%s.", FormatMoney(Cents));
+				SendJobsMessage(playerid, "[Fishing] You have sold all the fish and earn $%s.", FormatMoney(Cents));
 			}
 		}
 		case DIALOG_MECHMENU:
@@ -4800,8 +4801,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				PlayerInfo[targetid][E_CHARACTER_TAXICALLED] = 0;
 				GPS_SetPlayerRaceCheckPoint(playerid, 1, x, y, z, 0.0, 0.0, 0.0);
 
-				SendJobsMessage(playerid, "[Taxi] {cdcdcd}You have accepted %s's taxi call.", ReturnName(targetid));
-				SendJobsMessage(targetid, "[Taxi] {cdcdcd}%s has accepted your taxi call and is on their way.", ReturnName(playerid, targetid));
+				SendJobsMessage(playerid, "[Taxi] You have accepted %s's taxi call.", ReturnName(targetid));
+				SendJobsMessage(targetid, "[Taxi] %s has accepted your taxi call and is on their way.", ReturnName(playerid, targetid));
 			}
 		}
 		case DIALOG_SPRAYFONT:
