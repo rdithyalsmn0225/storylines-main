@@ -53,7 +53,7 @@ function:OnPlayerUpdateEx()
 				}
 			}
 		}
-		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true && AccountInfo[playerid][E_MASTERS_LOGGED] == true)
+		if(PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 		{
 			AFKCheck(playerid);
 			UpdateNameTagsTicks(playerid);
@@ -216,12 +216,12 @@ function:OnPlayerUpdateEx()
 				}
 			}
 
-			if (PlayerInfo[playerid][E_CHARACTER_PRISONED] == true)
+			if (PlayerInfo[playerid][E_CHARACTER_PRISONED] == true && PlayerInfo[playerid][E_CHARACTER_PRISON])
 			{
 				PlayerInfo[playerid][E_CHARACTER_PRISON]--; 
 				new str[64];
 				format(str, sizeof(str), "~w~%d Prison Time", PlayerInfo[playerid][E_CHARACTER_PRISON]);
-				GameTextForPlayer(playerid, str, 100, 1);
+				ShowHeaderMessage(playerid, "Prison", str, 1);
 				
 				if(PlayerInfo[playerid][E_CHARACTER_PRISON] < 1)
 				{
@@ -232,6 +232,7 @@ function:OnPlayerUpdateEx()
 						
 					SetPlayerVirtualWorldEx(playerid, 0); SetPlayerInteriorEx(playerid, 0);
 					SetPlayerPosEx(playerid, 1797.4276,-1578.8496,14.0764);
+					HideHeaderMessage(playerid);
 				}
 			}
 				

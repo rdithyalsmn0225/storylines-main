@@ -2206,7 +2206,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			if(Inventory_Count(playerid, "Regular Ammo"))
 			{
 				Inventory_Remove(playerid, "Regular Ammo", 1);
-				format(tstr, sizeof(tstr), "%s - %d Regular", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "Regular Ammo"));
+				format(tstr, sizeof(tstr), "Weapons - %s - %d Regular", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "Regular Ammo"));
 				PlayerTextDrawSetString(playerid, WeaponType[playerid], tstr);
 				PlayerTextDrawShow(playerid, WeaponType[playerid]);
 			}
@@ -2222,7 +2222,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			if(Inventory_Count(playerid, "Surplus Ammo"))
 			{
 				Inventory_Remove(playerid, "Surplus Ammo", 1);
-				format(tstr, sizeof(tstr), "%s - %d Surplus", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "Surplus Ammo"));
+				format(tstr, sizeof(tstr), "Weapons - %s - %d Surplus", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "Surplus Ammo"));
 				PlayerTextDrawSetString(playerid, WeaponType[playerid], tstr);
 				PlayerTextDrawShow(playerid, WeaponType[playerid]);
 			}
@@ -2238,7 +2238,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			if(Inventory_Count(playerid, "JHP Ammo"))
 			{
 				Inventory_Remove(playerid, "JHP Ammo", 1);
-				format(tstr, sizeof(tstr), "%s - %d Jacket Hollow Point", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "JHP Ammo"));
+				format(tstr, sizeof(tstr), "Weapons - %s - %d Jacket Hollow Point", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "JHP Ammo"));
 				PlayerTextDrawSetString(playerid, WeaponType[playerid], tstr);
 				PlayerTextDrawShow(playerid, WeaponType[playerid]);
 			}
@@ -2254,7 +2254,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 			if(Inventory_Count(playerid, "Rubber Ammo"))
 			{
 				Inventory_Remove(playerid, "Rubber Ammo", 1);
-				format(tstr, sizeof(tstr), "%s - %d Rubber", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "JHP Ammo"));
+				format(tstr, sizeof(tstr), "Weapons - %s - %d Rubber", ReturnWeaponName(GetPlayerWeapon(playerid)), Inventory_Count(playerid, "JHP Ammo"));
 				PlayerTextDrawSetString(playerid, WeaponType[playerid], tstr);
 				PlayerTextDrawShow(playerid, WeaponType[playerid]);
 			}
@@ -5865,7 +5865,7 @@ function:SaveCharacter(playerid)
 		PlayerInfo[playerid][E_CHARACTER_WEAPLICENSE],
 		PlayerInfo[playerid][E_CHARACTER_DRIVELICENSE],
 		PlayerInfo[playerid][E_CHARACTER_TRUCKERLICENSE],
-		PlayerInfo[playerid][E_CHARACTER_PRISON],
+		PlayerInfo[playerid][E_CHARACTER_PRISONED],
 		PlayerInfo[playerid][E_CHARACTER_PRISON],
 		PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE],
 		PlayerInfo[playerid][E_CHARACTER_DBID]);

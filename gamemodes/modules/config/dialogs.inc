@@ -1045,15 +1045,16 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if(response)
 			{
-				SetPlayerInPrison(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
+				new playerb = PlayerInfo[playerid][E_CHARACTER_MDCSELECT];
+				SetPlayerInPrison(playerb);
 				
-				ResetPlayerWeapons(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
-				SaveCharacter(PlayerInfo[playerid][E_CHARACTER_MDCSELECT]);
-				RemovePlayerAttachedObject(playerid, 0);
-				PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_HANDCUFF] = false;
-				SetPlayerSpecialAction(PlayerInfo[playerid][E_CHARACTER_MDCSELECT], SPECIAL_ACTION_NONE);
+				ResetPlayerWeapons(playerb);
+				SaveCharacter(playerb);
+				RemovePlayerAttachedObject(playerb, 0);
+				PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = false;
+				SetPlayerSpecialAction(playerb, SPECIAL_ACTION_NONE);
 
-				GiveMoney(PlayerInfo[playerid][E_CHARACTER_MDCSELECT], -PlayerInfo[playerid][E_CHARACTER_MDCCHARGE]);
+				GiveMoney(playerb, -PlayerInfo[playerid][E_CHARACTER_MDCCHARGE]);
 
 				AddWanted(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], PlayerInfo[playerid][E_CHARACTER_MDCDESC]);
 			}

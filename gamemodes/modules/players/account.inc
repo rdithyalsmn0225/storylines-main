@@ -270,12 +270,29 @@ stock LoadCharacter(playerid)
 		
 		ClearAnimations(playerid);
 		
-		SetPlayerPosEx(playerid, 264.4271,78.0998,1001.0391);
-		SetPlayerInteriorEx(playerid, 0); SetPlayerVirtualWorldEx(playerid, 999);
+		SetPlayerPosEx(playerid, -10.5146,2337.2961,24.3034);
+		SetPlayerInteriorEx(playerid, 0); SetPlayerVirtualWorldEx(playerid, 1338);
 		
 		PlayerInfo[playerid][E_CHARACTER_OFFJAILED] = false; 
 		PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] = true; 
 		SaveCharacter(playerid);
+	}
+	else if(PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] == true)
+	{
+		ClearAnimations(playerid); 
+		
+		SetPlayerPosEx(playerid, -10.5146,2337.2961,24.3034);
+		SetPlayerInteriorEx(playerid, 0); SetPlayerVirtualWorldEx(playerid, 1338);
+		
+		SendInfoMessage(playerid, "[JAIL] You're currently admin jailed. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] / 60);
+	}
+	else if(PlayerInfo[playerid][E_CHARACTER_PRISONED] == true)
+	{
+		ClearAnimations(playerid); 
+		
+		SetPlayerInPrison(playerid);
+		
+		SendInfoMessage(playerid, "[PRISON] You're currently prison. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
 	}
 	
 	SetPlayerFightingStyle(playerid, PlayerInfo[playerid][E_CHARACTER_FIGHTSTYLE]);
