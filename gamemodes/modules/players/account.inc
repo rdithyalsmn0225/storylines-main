@@ -240,11 +240,11 @@ stock LoadCharacter(playerid)
 	}
 
 	for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
-	SendClientMessageEx(playerid, COLOR_WHITE, "Hey {9CC8E9}%s{ffffff}, Welcome back to {4cb989}GTA Storylines{ffffff}.", AccountInfo[playerid][E_MASTERS_ACCNAME]);
-	SendClientMessageEx(playerid, COLOR_WHITE, "You are logged in as a {b7b94c}%s{ffffff}, playing as {9CC8E9}%s{ffffff}!", ReturnVIPLevel(playerid), ReturnName(playerid));
-	SendClientMessageEx(playerid, COLOR_WHITE, "[Player MOTD]: {4cb989}%s", PLAYER_MOTD);
+	SendClientMessageEx(playerid, COLOR_WHITE, "Hey {5CB4E3}%s{ffffff}, Welcome back to {297183}GTA Storylines{ffffff}.", AccountInfo[playerid][E_MASTERS_ACCNAME]);
+	SendClientMessageEx(playerid, COLOR_WHITE, "You are logged in as a {EEC650}%s{ffffff}, playing as {5CB4E3}%s{ffffff}!", ReturnVIPLevel(playerid), ReturnName(playerid));
+	SendClientMessageEx(playerid, COLOR_WHITE, "[Player MOTD]: {297183}%s", PLAYER_MOTD);
 	SendClientMessage(playerid, -1, " ");
-	SendClientMessage(playerid, COLOR_WHITE, "Visit us and register on our discord at {4ca5b9}discord.gg/storylines{ffffff} to stay updated.");
+	SendClientMessage(playerid, COLOR_WHITE, "Visit us and register on our discord at {EEC650}discord.gg/storylines{ffffff} to stay updated.");
 
 	if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] == true)
 	{
