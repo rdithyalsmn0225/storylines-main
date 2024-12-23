@@ -221,6 +221,8 @@ public OnGameModeInit()
 	InsertStaticVehicles();
 	InsertVendingMachines();
 
+	BlockGarages(true, GARAGE_TYPE_ALL);
+
 	// Global timers:
 	SetTimerEx("RandomFire", 5400000, true, "i", 1);
 	SetTimer("OnPlayerUpdateEx", 1000, true); 
