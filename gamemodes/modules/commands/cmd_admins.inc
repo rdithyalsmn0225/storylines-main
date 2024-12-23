@@ -608,7 +608,7 @@ CMD:sethp(playerid, params[])
 		SetPlayerHealthEx(playerb, health);
 	}
 
-	format(str, sizeof(str), "%s set %s's health to %d.", ReturnMixedName(playerid), ReturnName(playerb), health);
+	format(str, sizeof(str), "%s set %s's health to %f.", ReturnMixedName(playerid), ReturnName(playerb), health);
 	SendAdminMessage(1, str); SendClientMessage(playerb, COLOR_YELLOW, str);
 	return 1;
 }
@@ -653,8 +653,6 @@ CMD:ar(playerid, params[])
 	
 	ReportInfo[reportid][E_REPORT_EXISTS] = false;
 	ReportInfo[reportid][E_REPORT_BY] = INVALID_PLAYER_ID; 
-	
-	//You can include a message to the reporter if you would like;
 	return 1; 
 }
 

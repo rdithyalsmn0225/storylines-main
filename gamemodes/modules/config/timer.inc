@@ -59,18 +59,7 @@ function:OnPlayerUpdateEx()
 			UpdateNameTagsTicks(playerid);
 
 			new string[128];
-
-			new Float:health;
-			GetPlayerHealth(playerid, health);
-			if(health < 10 && PlayerInfo[playerid][E_CHARACTER_SPAWNED])
-			{
-				if(GetPlayerTeam(playerid) == PLAYER_STATE_ALIVE && GetPlayerTeam(playerid) != PLAYER_STATE_DEAD && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
-				{	
-					CallLocalFunction("OnPlayerWounded", "ddd", playerid, playerid, 0);
-					SendServerMessage(playerid, "You has been killed by heart attack at %s.", ReturnLocationStreet(playerid));
-				}
-			}
-
+			
 			if(GetPlayerTeam(playerid) == PLAYER_STATE_WOUNDED && PlayerInfo[playerid][E_CHARACTER_INJURED])
 			{
 				SetPlayerHealthEx(playerid, 100);

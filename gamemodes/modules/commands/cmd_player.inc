@@ -173,8 +173,8 @@ CMD:helpup(playerid, params[])
 	if (playerb == playerid)
 	    return SendErrorMessage(playerid, "You cannot revive yourself.");
 		
-	if(GetPlayerTeam(playerb) == PLAYER_STATE_ALIVE)
-		return SendErrorMessage(playerid, "That player isn't dead or brutally wounded.");
+	if(GetPlayerTeam(playerb) == PLAYER_STATE_ALIVE || GetPlayerTeam(playerb) == PLAYER_STATE_DEAD)
+		return SendErrorMessage(playerid, "That player isn't brutally wounded.");
 	
 	SetPlayerTeam(playerb, PLAYER_STATE_ALIVE); 
 	SetPlayerHealthEx(playerb, 100); 
