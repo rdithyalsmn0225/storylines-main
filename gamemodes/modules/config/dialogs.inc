@@ -570,6 +570,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(ReturnFactionType(playerid) != FACTION_TYPE_POLICE && ReturnFactionType(playerid) != FACTION_TYPE_MEDICAL)
 							return SendErrorMessage(playerid, "You can't use this command."); 
 
+						if(!PlayerInfo[playerid][E_CHARACTER_FACSKIN])
+							return SendErrorMessage(playerid, "You don't have faction skin.");
+
 						if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
 						{
 							if(!PlayerInfo[playerid][E_CHARACTER_POLICEDUTY])
@@ -3456,12 +3459,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(Inventory_Count(playerid, "Baking Soda") >= 5)	
 							return SendErrorMessage(playerid, "You may only hold up to 5 baking soda.");
 					
-						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][5] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a baking soda.");
 					
-						SendInventoryMessage(playerid, "You bought a baking soda for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendInventoryMessage(playerid, "You bought a baking soda for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][5]));
 
-						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][5];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
 						
 						Inventory_Add(playerid, "Baking Soda", 19570, 1);
@@ -3649,12 +3652,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(Inventory_Count(playerid, "Wrench"))
 							return SendErrorMessage(playerid, "You already own a Wrench.");
 					
-						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][4] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Wrench.");
 					
-						SendInventoryMessage(playerid, "You bought a Wrench for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendInventoryMessage(playerid, "You bought a Wrench for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][4]));
 
-						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][4];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Wrench", 18633, 1);
 
@@ -3665,12 +3668,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(Inventory_Count(playerid, "Broom"))
 							return SendErrorMessage(playerid, "You already own a Broom.");
 					
-						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][5] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a Broom.");
 					
-						SendInventoryMessage(playerid, "You bought a Broom for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendInventoryMessage(playerid, "You bought a Broom for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][5]));
 
-						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][5];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Broom", 19622, 1);
 

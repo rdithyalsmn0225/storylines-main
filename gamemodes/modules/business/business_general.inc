@@ -59,7 +59,7 @@ stock ShowGeneralList(playerid, type)
 				format(str2, sizeof(str2), "%sParsley\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 				format(str2, sizeof(str2), "%sMint\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 				format(str2, sizeof(str2), "%sOregano\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][4]));
-				format(str2, sizeof(str2), "%sBaking Soda\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+				format(str2, sizeof(str2), "%sBaking Soda\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][5]));
 				ShowPlayerDialog(playerid, DIALOG_GENERALSTORE3, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel"); 
 			}
 		}
@@ -80,8 +80,8 @@ stock ShowGeneralList(playerid, type)
 				format(str2, sizeof(str2), "%sKnife\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 				format(str2, sizeof(str2), "%sMarcos Knife\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 				format(str2, sizeof(str2), "%sHammer\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
-				format(str2, sizeof(str2), "%sWrench\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
-				format(str2, sizeof(str2), "%sBroom\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+				format(str2, sizeof(str2), "%sWrench\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][4]));
+				format(str2, sizeof(str2), "%sBroom\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][5]));
 				ShowPlayerDialog(playerid, DIALOG_GENERALSTORE6, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel"); 
 			}
 		}

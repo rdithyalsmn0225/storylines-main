@@ -261,7 +261,7 @@ stock SaveBusiness(id)
 		BusinessInfo[id][E_BUSINESS_DBID]);
 	mysql_pquery(ourConnection, query);
 
-	for(new i = 1; i < 4; i++)
+	for(new i = 1; i < 7; i++)
 	{
 		mysql_format(ourConnection, query, sizeof(query), "UPDATE businesses SET BusinessProducts%d = %d WHERE BusinessDBID = %i",
 			i,

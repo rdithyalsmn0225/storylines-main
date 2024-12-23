@@ -81,7 +81,7 @@ CMD:bizproduct(playerid, params[])
 	if(sscanf(params, "if", type, value))
 	{
 		SendUsageMessage(playerid, "/bizproduct [types] [price]");
-		SendTipMessage(playerid, "1. product #1, 2. product #2, 3. product #3, 4. product #4"); 
+		SendTipMessage(playerid, "Choose your set product type prices #1 - #6"); 
 		return 1;
 	}
 	
@@ -115,6 +115,33 @@ CMD:bizproduct(playerid, params[])
 			BusinessInfo[id][E_BUSINESS_PRODUCTS][3] = Cents;
 			SaveBusiness(id);
 			SendPropertyMessage(playerid, "[BUSINESS] You has set your business product #3 to $%s.", FormatMoney(Cents));
+		}
+		case 4:
+		{
+			if (value < 1.00 || value > 100.00)
+        		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
+
+			BusinessInfo[id][E_BUSINESS_PRODUCTS][4] = Cents;
+			SaveBusiness(id);
+			SendPropertyMessage(playerid, "[BUSINESS] You has set your business product #4 to $%s.", FormatMoney(Cents));
+		}
+		case 5:
+		{
+			if (value < 1.00 || value > 100.00)
+        		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
+
+			BusinessInfo[id][E_BUSINESS_PRODUCTS][5] = Cents;
+			SaveBusiness(id);
+			SendPropertyMessage(playerid, "[BUSINESS] You has set your business product #5 to $%s.", FormatMoney(Cents));
+		}
+		case 6:
+		{
+			if (value < 1.00 || value > 100.00)
+        		return SendErrorMessage(playerid, "Your business product cannot be less than $1.00 or more than $10.00");
+
+			BusinessInfo[id][E_BUSINESS_PRODUCTS][6] = Cents;
+			SaveBusiness(id);
+			SendPropertyMessage(playerid, "[BUSINESS] You has set your business product #6 to $%s.", FormatMoney(Cents));
 		}
 	}
 	return 1;

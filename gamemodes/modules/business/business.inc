@@ -591,7 +591,7 @@ function:Query_LoadBusinesses()
 
 		cache_get_value_name_int(i, "BusinessAmount", BusinessInfo[i+1][E_BUSINESS_AMOUNT]);
 
-		for(new a = 1; a < 4; a++)
+		for(new a = 1; a < 7; a++)
 		{
 			new str[32];
 			format(str, sizeof(str), "BusinessProducts%d", a);
