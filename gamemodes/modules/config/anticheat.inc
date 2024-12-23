@@ -580,12 +580,15 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 			{
 				if(ACPauseTimer[playerid] == 0 && AC_VGOD == true)
 				{
+                    if(VehicleInfo[vehicleid][E_VEHICLE_ADMIN])
+                        return 0;
+                        
 					format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Vehicle God Hack]", ReturnMixedName(playerid));
                     SendClientMessage(playerid, COLOR_YELLOW, gstr);
 					KickEx(playerid);
 
 					new str1[128];
-					format(str1, sizeof(str1), "%s has been detected for using program hack [Vehicle Repair Hack]", ReturnMixedName(playerid)); 
+					format(str1, sizeof(str1), "%s has been detected for using program hack [Vehicle God Hack]", ReturnMixedName(playerid)); 
 					SendAdminMessage(1, str1);
 				}
 			}
