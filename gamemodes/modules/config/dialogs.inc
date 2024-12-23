@@ -3728,6 +3728,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						GiveMoney(playerid, BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						BusinessInfo[businessid][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 						Inventory_Add(playerid, "Pisswasher", 1486, 1);
 					}
 					case 1:
@@ -3743,6 +3744,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						BusinessInfo[businessid][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 						Inventory_Add(playerid, "Pisswasher", 1486, 1);
 					}
 					case 2:
@@ -3757,6 +3759,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]); 
 						
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						BusinessInfo[businessid][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
 						Inventory_Add(playerid, "Pisswasher", 1486, 1);
 					}
 				}
@@ -3927,6 +3930,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ApplyAnimation(playerid, "CLOTHES", "CLO_Buy", 4.0, 0, 0, 0, 0, 0);
 				SetCameraBehindPlayer(playerid);
 				BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
+				BusinessInfo[businessid][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 				ShowPlayerDialog(playerid, DIALOG_BUYCLOTHING, DIALOG_STYLE_LIST, "Bone Selection:", "Spine\nHead\nLeft upper arm\nRight upper arm\nLeft hand\nRight hand\nLeft thigh\nRight thigh\nLeft foot\nRight foot\nRight calf\nLeft calf\nLeft forearm\nRight forearm\nLeft shoulder\nRight shoulder\nNeck\nJaw", "Choose", "Cancel");
 				PlayerInfo[playerid][E_CHARACTER_TEMPMODEL] = g_aClothingCustom[listitem];
 			}

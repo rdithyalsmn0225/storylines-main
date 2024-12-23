@@ -4054,6 +4054,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			return 1;
 		}
 	}
+
 	//Stand BlackJack
 	if (playertextid == blackjack[14][playerid])
     {
@@ -4096,6 +4097,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		ShowPlayerDialog(playerid, DIALOG_DIALNUMBER, DIALOG_STYLE_INPUT, "Dial Number:", "Please enter the number that you wish to dial below:", "Submit", "Cancel");
         return 1;
     }
+
 	// Send Text
 	if (playertextid == Phone[4][playerid])
     {
@@ -4113,6 +4115,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         ShowContacts(playerid);
         return 1;
     }
+
 	if (playertextid == Phone[6][playerid])
     {
         if(PlayerInfo[playerid][E_CHARACTER_PHONEOFF])
@@ -4202,6 +4205,13 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		SetPlayerHealthEx(playerid, health+10.0);
 		SetPlayerNeeds(playerid, 10.0, 5.0);
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
+		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+		ApplyAnimation(playerid, "FOOD", "EAT_Burger", 4.1, 0, 0, 0, 0, 0, 1);
+
+		if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] > 100 || PlayerInfo[playerid][E_CHARACTER_HUNGRY] > 100)
+		{
+			ApplyAnimation(playerid, "FOOD", "EAT_Vomit_P", 4.1, 0, 0, 0, 0, 0, 1);
+		}
 
 		for(new i; i < 10; i++)
 		{
@@ -4227,6 +4237,13 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		SetPlayerHealthEx(playerid, health+15.0);
 		SetPlayerNeeds(playerid, 15.0, 10.0);
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
+		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
+		ApplyAnimation(playerid, "FOOD", "EAT_Chicken", 4.1, 0, 0, 0, 0, 0, 1);
+
+		if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] > 100 || PlayerInfo[playerid][E_CHARACTER_HUNGRY] > 100)
+		{
+			ApplyAnimation(playerid, "FOOD", "EAT_Vomit_P", 4.1, 0, 0, 0, 0, 0, 1);
+		}
 
 		for(new i; i < 10; i++)
 		{
@@ -4252,6 +4269,13 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		SetPlayerHealthEx(playerid, health+20.0);
 		SetPlayerNeeds(playerid, 20.0, 15.0);
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
+		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
+		ApplyAnimation(playerid, "FOOD", "EAT_Pizza", 4.1, 0, 0, 0, 0, 0, 1);
+
+		if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] > 100 || PlayerInfo[playerid][E_CHARACTER_HUNGRY] > 100)
+		{
+			ApplyAnimation(playerid, "FOOD", "EAT_Vomit_P", 4.1, 0, 0, 0, 0, 0, 1);
+		}
 
 		for(new i; i < 10; i++)
 		{
