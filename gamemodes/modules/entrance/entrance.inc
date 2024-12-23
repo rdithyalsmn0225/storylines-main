@@ -25,7 +25,7 @@ function:Query_LoadEntrance()
         cache_get_value_name_int(i, "icon", EntranceInfo[i+1][E_ENTRANCE_ICON]);
 		cache_get_value_name_int(i, "garage", EntranceInfo[i+1][E_ENTRANCE_GARAGE]);
 	
-		EntranceInfo[i+1][E_ENTRANCE_PICKUP] = CreateDynamicPickup(19130, 1, EntranceInfo[i+1][E_ENTRANCE_POS][0], EntranceInfo[i+1][E_ENTRANCE_POS][1], EntranceInfo[i+1][E_ENTRANCE_POS][2], 0, 0, -1, 5.0);
+		EntranceInfo[i+1][E_ENTRANCE_PICKUP] = CreateDynamicPickup(19198, 1, EntranceInfo[i+1][E_ENTRANCE_POS][0], EntranceInfo[i+1][E_ENTRANCE_POS][1], EntranceInfo[i+1][E_ENTRANCE_POS][2], 0, 0, -1, 5.0);
         
 		countEntrance++; 
 	}

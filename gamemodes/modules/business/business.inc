@@ -248,7 +248,7 @@ stock BusinessRefresh(businessid)
 	if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_RENT)
 		BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1239, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 5.0);
 	else
-		BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1272, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 5.0);
+		BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(19198, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 5.0);
 	
 	new text[128];
 	format(text, sizeof(text), "%s\nFee: {ffffff}$%s", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(BusinessInfo[businessid][E_BUSINESS_FEE]));

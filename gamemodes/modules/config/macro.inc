@@ -72,6 +72,7 @@
 #define MAX_FIRES                   (100)
 #define MAX_FACTION_VEHICLES 		(38)
 #define MAX_COMPENSATION 			(1)
+#define MAX_EVENT					(1)
 
 LoadCustomModels()
 {
