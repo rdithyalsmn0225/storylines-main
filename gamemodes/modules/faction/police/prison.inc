@@ -98,8 +98,7 @@ CMD:closecell(playerid, params[])
 
 CMD:charge(playerid, params[])
 {
-	new
-	    userid;
+	new userid;
 
     if(!PlayerInfo[playerid][E_CHARACTER_FACTION])
 		return SendErrorMessage(playerid, "You aren't in any faction.");
@@ -116,8 +115,8 @@ CMD:charge(playerid, params[])
 	if (!PlayerInfo[userid][E_CHARACTER_HANDCUFF])
 	    return SendErrorMessage(playerid, "The player must be cuffed before an arrest is made.");
 
-	if (!IsPlayerInRangeOfPoint(playerid, 4.0, 1256.9117,890.3147,1161.0986))
-	    return SendErrorMessage(playerid, "You aren't in los santos correctional facility.");
+	if (!IsPlayerInRangeOfPoint(playerid, 4.0, 257.1583,84.5984,1002.4453))
+	    return SendErrorMessage(playerid, "You aren't in los santos police departement.");
 
 	PlayerInfo[playerid][E_CHARACTER_MDCSELECT] = userid;
 

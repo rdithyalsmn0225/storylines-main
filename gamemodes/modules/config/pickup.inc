@@ -234,7 +234,7 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
 
     if(pickupid == PrisonPickup)
     {
-        format(str, sizeof(str), "Los Santos Correctional Facility~n~~w~Type '/charge' to put player into prison~n~~w~Type '/opencell or /closecell' to open/close cell."); 
+        format(str, sizeof(str), "Los Santos Police Departement~n~~w~Type '/charge' to put player into prison~n~~w~Type '/opencell or /closecell' to open/close cell."); 
         ShowBoxMessage(playerid, str, 5); 
         return 1;	
     }

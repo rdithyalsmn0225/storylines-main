@@ -9,7 +9,7 @@ InsertDynamicPickup()
 	ChainsawPickup = CreateDynamicPickup(1239, 1, -1448.7738,-1530.5585,101.7578, -1, -1, -1, 5.0);
 	DropInjuredPickup = CreateDynamicPickup(1240, 1, 2035.0732,-1414.0488,16.9922, -1, -1, -1, 5.0);
 	VehicleScrapPickup = CreateDynamicPickup(1254, 1, 2412.9312,-1425.4226,23.9835, -1, -1, -1, 5.0);
-	PrisonPickup = CreateDynamicPickup(1247, 1, 1256.9117,890.3147,1161.0986, -1, -1, -1, 5.0);
+	PrisonPickup = CreateDynamicPickup(1247, 1, 257.1583,84.5984,1002.4453, -1, -1, -1, 5.0);
 	HairCutPickup = CreateDynamicPickup(2752, 1, 2064.5574,-1794.9839,13.4599, -1, -1, -1, 5.0);
 	TicketPickup = CreateDynamicPickup(1239, 1, 249.1299,67.8123,1003.6406, -1, -1, -1, 5.0);
 	LotteryPickup = CreateDynamicPickup(1239, 1, 1098.1724,-1495.9231,15.7969, -1, -1, -1, 5.0);

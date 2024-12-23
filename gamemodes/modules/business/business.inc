@@ -3,32 +3,59 @@ stock ShowBusinessShop(playerid, businessid)
 	new str[128], str2[128], str3[128], str4[128];
 	if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_BAR)
 	{
+		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
+		{
+			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			return 1;
+		}
+
 		format(str, sizeof(str), "%s:", BusinessInfo[businessid][E_BUSINESS_NAME]);
 		format(str2, sizeof(str2), "Product\tPrice\n");
 		format(str2, sizeof(str2), "%sPisswasher (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 		format(str2, sizeof(str2), "%sPisswasher Extra (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 		format(str2, sizeof(str2), "%sPisswasher Large (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 		ShowPlayerDialog(playerid, DIALOG_BARSTORE, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
+		Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_CLOTHES)
 	{
+		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
+		{
+			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			return 1;
+		}
+
 		format(str, sizeof(str), "%s:", BusinessInfo[businessid][E_BUSINESS_NAME]);
 		format(str2, sizeof(str2), "Product\tPrice\n");
 		format(str2, sizeof(str2), "%sClassic Clothes\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 		format(str2, sizeof(str2), "%sAccessories\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 		ShowPlayerDialog(playerid, DIALOG_BUYSKIN, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
+		Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_CLUB)
 	{
+		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
+		{
+			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			return 1;
+		}
+
 		format(str, sizeof(str), "%s:", BusinessInfo[businessid][E_BUSINESS_NAME]);
 		format(str2, sizeof(str2), "Product\tPrice\n");
 		format(str2, sizeof(str2), "%sPisswasher (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 		format(str2, sizeof(str2), "%sPisswasher Extra (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 		format(str2, sizeof(str2), "%sPisswasher Large (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 		ShowPlayerDialog(playerid, DIALOG_BARSTORE, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
+		Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_DINNER)
 	{
+		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
+		{
+			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			return 1;
+		}
+
 		format(str, sizeof(str), "%s:", BusinessInfo[businessid][E_BUSINESS_NAME]);
 		PlayerTextDrawSetString(playerid, FoodOrder[1][playerid], str);
 
@@ -44,6 +71,7 @@ stock ShowBusinessShop(playerid, businessid)
 			PlayerTextDrawShow(playerid, FoodOrder[i][playerid]);
 		}
 		SelectTextDraw(playerid, COLOR_YELLOW);
+		Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_GENERAL)
 	{
@@ -68,6 +96,12 @@ stock ShowBusinessShop(playerid, businessid)
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_HAIRCUT)
 	{
+		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
+		{
+			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			return 1;
+		}
+
 		SetPlayerPos(playerid, 414.4374,-19.8381,1001.8047);
 		SetPlayerFacingAngle(playerid, 88.7491);
 
@@ -77,6 +111,7 @@ stock ShowBusinessShop(playerid, businessid)
 			format(str5, sizeof(str5), "%s%d\n", str5, g_aHaircut[i]);
 		}
 		ShowPlayerDialog(playerid, DIALOG_BARBERSTORE, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str5, "Select", "Close");
+		Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK)
 	{
@@ -84,7 +119,14 @@ stock ShowBusinessShop(playerid, businessid)
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_GYM)
 	{
+		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
+		{
+			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			return 1;
+		}
+
 		ShowFightStyleMenu(playerid);
+		Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	}
 	return 1;
 }
@@ -209,7 +251,7 @@ stock BusinessRefresh(businessid)
 		BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1272, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 5.0);
 	
 	new text[128];
-	format(text, sizeof(text), "%s\nFee: $%d", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(BusinessInfo[businessid][E_BUSINESS_FEE]));
+	format(text, sizeof(text), "%s\nFee: {ffffff}$%s", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(BusinessInfo[businessid][E_BUSINESS_FEE]));
 	BusinessInfo[businessid][E_BUSINESS_3DTEXT] = CreateDynamic3DTextLabel(text, COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 5.0);
 	BusinessInfo[businessid][E_BUSINESS_FUEL3DTEXT] = CreateDynamic3DTextLabel("[Gas Station]\n{ffffff}Available Commands: '/refuel' to refill vehicles fuel", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_FUELPOS][0], BusinessInfo[businessid][E_BUSINESS_FUELPOS][1], BusinessInfo[businessid][E_BUSINESS_FUELPOS][2], 5.0);
 	

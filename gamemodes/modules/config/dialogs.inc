@@ -1512,7 +1512,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 2:
 					{
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Property Commands __________|");
-						SendClientMessage(playerid, COLOR_ORANGE, "Property Commands: /buyproperty, /lock, /property, /giveproperty, /sellproperty");
+						SendClientMessage(playerid, COLOR_ORANGE, "Property Commands: /buyproperty, /lock, /furniture, /giveproperty, /sellproperty");
 						SendClientMessage(playerid, COLOR_ORANGE, "Property Commands: /ringbell, /knock");
 					}
 					case 3:

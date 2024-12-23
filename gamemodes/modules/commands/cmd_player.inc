@@ -19,7 +19,7 @@ CMD:credits(playerid, params[])
 CMD:help(playerid, params[])
 {
 	new str[1264];
-	format(str, sizeof(str), "{ffffff}General Commands\n{AFAFAF}Roleplay Commands\n{ffffff}Property Commands\n{AFAFAF}Business Commands\n{ffffff}Faction Commands\n{AFAFAF}Vehicle Commands\n{ffffff}Minigames Commands\n{AFAFAF}Jobs Commands\n{ffffff}Crime Professions Commands\n{AFAFAF}Donatur Commands");
+	format(str, sizeof(str), "General Commands\nRoleplay Commands\nProperty Commands\nBusiness Commands\nFaction Commands\nVehicle Commands\nMinigames Commands\nJobs Commands\nCrime Professions Commands\nDonatur Commands");
 	ShowPlayerDialog(playerid, DIALOG_HELP, DIALOG_STYLE_LIST, "Commands:", str, "Select", "Close");
 	return 1; 
 }
