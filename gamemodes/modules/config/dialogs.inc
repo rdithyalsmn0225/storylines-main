@@ -597,12 +597,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								SetPlayerHealthEx(playerid, 100); 
 								
 								SetPlayerSkin(playerid, PlayerInfo[playerid][E_CHARACTER_LASTSKIN]); 
-								
-								if(Inventory_Count(playerid, "Desert Eagle"))
-								{
-									Inventory_Remove(playerid, "Desert Eagle", 1);
-								}
-								Inventory_Remove(playerid, "Regular Ammo", 50);
 							}
 						}
 						else if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
@@ -1748,6 +1742,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						else
 						{
 							PlayerInfo[playerid][E_CHARACTER_TOGALPR] = true;
+							HideHeaderMessage(playerid);
 							SendInfoMessage(playerid, "[SETTINGS] ALPR interface has been Disable.");
 						}
 					}
@@ -3445,12 +3440,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(Inventory_Count(playerid, "Oregano") >= 5)
 							return SendErrorMessage(playerid, "You may only hold up to 5 oregano.");
 					
-						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][4] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a oregano.");
 					
-						SendInventoryMessage(playerid, "You bought a oregano for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+						SendInventoryMessage(playerid, "You bought a oregano for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][4]));
 
-						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][4];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Oregano", 19570, 1);
 
@@ -3461,12 +3456,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(Inventory_Count(playerid, "Baking Soda") >= 5)	
 							return SendErrorMessage(playerid, "You may only hold up to 5 baking soda.");
 					
-						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a baking soda.");
 					
-						SendInventoryMessage(playerid, "You bought a baking soda for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+						SendInventoryMessage(playerid, "You bought a baking soda for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 
-						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
 						
 						Inventory_Add(playerid, "Baking Soda", 19570, 1);
@@ -3521,14 +3516,30 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(Inventory_Count(playerid, "Repair Kits"))
 							return SendErrorMessage(playerid, "You already own a repairkit.");
 							
-						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][4] > PlayerInfo[playerid][E_CHARACTER_MONEY])
 							return SendErrorMessage(playerid, "You can't afford a repairkit.");
 					
 						SendInventoryMessage(playerid, "You bought a repairkit for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 
-						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][4];
 						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
 						Inventory_Add(playerid, "Repair Kits", 1650, 1);
+
+						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+					}
+					case 3:
+					{
+						if(Inventory_Count(playerid, "Screwdriver"))
+							return SendErrorMessage(playerid, "You already own a Screwdriver.");
+							
+						if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+							return SendErrorMessage(playerid, "You can't afford a Screwdriver.");
+					
+						SendInventoryMessage(playerid, "You bought a Screwdriver for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
+
+						PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
+						BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+						Inventory_Add(playerid, "Screwdriver", 18644, 1);
 
 						ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 					}

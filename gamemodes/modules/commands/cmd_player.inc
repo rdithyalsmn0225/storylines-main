@@ -52,7 +52,7 @@ CMD:settings(playerid, params[])
 	format(str, sizeof(str), "%sDamages Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDMS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sTips Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGTIPS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sPhone Style\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPHONE] == false) ? ("{33AA33}Old School{ffffff}") : ("{FF6347}Modern{ffffff}"));
-	format(str, sizeof(str), "%sALPR Interface\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGDD] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
+	format(str, sizeof(str), "%sALPR Interface\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGALPR] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	ShowPlayerDialog(playerid, DIALOG_SETTINGS, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
 	return 1;
 }
@@ -1276,18 +1276,18 @@ CMD:enter(playerid, params[])
 			return SendErrorMessage(playerid, "You can't leave while editing an object.");
 
 		if(BusinessInfo[b_id][E_BUSINESS_LOCKED])
-			return GameTextForPlayer(playerid, "~r~Locked", 3000, 3); 
+			return ShowBoxMessage(playerid, "~r~Locked", 3); 
 			
 		if(BusinessInfo[b_id][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV || BusinessInfo[b_id][E_BUSINESS_TYPE] == BUSINESS_TYPE_RENT)
-			return GameTextForPlayer(playerid, "~r~Closed", 3000, 3); 
+			return ShowBoxMessage(playerid, "~r~Closed", 3); 
 			
-		if(BusinessInfo[b_id][E_BUSINESS_ENTRANCEFEE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-			return GameTextForPlayer(playerid, "~r~You can't afford this.", 3000, 1); 
+		if(BusinessInfo[b_id][E_BUSINESS_FEE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			return ShowBoxMessage(playerid, "~r~You can't afford this.", 3); 
 			
 		if(PlayerInfo[playerid][E_CHARACTER_DBID] != BusinessInfo[b_id][E_BUSINESS_OWNERDBID] && BusinessInfo[b_id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BANK)
 		{
-			GiveMoney(playerid, -BusinessInfo[b_id][E_BUSINESS_ENTRANCEFEE]); 
-			BusinessInfo[b_id][E_BUSINESS_CASH]+= BusinessInfo[b_id][E_BUSINESS_ENTRANCEFEE]; 
+			GiveMoney(playerid, -BusinessInfo[b_id][E_BUSINESS_FEE]); 
+			BusinessInfo[b_id][E_BUSINESS_CASH]+= BusinessInfo[b_id][E_BUSINESS_FEE]; 
 		}
 
 		if(PlayerEnterTimer[playerid])

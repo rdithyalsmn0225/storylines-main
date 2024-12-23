@@ -224,7 +224,7 @@ stock SaveBusiness(id)
 		BusinessInfo[id][E_BUSINESS_NAME],
 		BusinessInfo[id][E_BUSINESS_TYPE],
 		BusinessInfo[id][E_BUSINESS_LOCKED], 
-		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE],
+		BusinessInfo[id][E_BUSINESS_FEE],
 		BusinessInfo[id][E_BUSINESS_LEVEL],
 		BusinessInfo[id][E_BUSINESS_CASH],
 		BusinessInfo[id][E_BUSINESS_STOCK],

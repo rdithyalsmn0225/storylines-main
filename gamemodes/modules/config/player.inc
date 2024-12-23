@@ -326,7 +326,9 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_EXTORTION] = false;
 	PlayerInfo[playerid][E_CHARACTER_EXTORTIONID] = 0;
 	PlayerInfo[playerid][E_CHARACTER_EXTORTIONPOINT] = 0;
+
 	PlayerInfo[playerid][E_CHARACTER_TOGPHONE] = true;
+	PlayerInfo[playerid][E_CHARACTER_TOGALPR] = true;
 
 	pCBugging[playerid] = false;
 	KillTimer(ptmCBugFreezeOver[playerid]);

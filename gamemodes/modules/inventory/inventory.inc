@@ -337,6 +337,17 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	{
 		IsPlayerUsingDrugs(playerid, 5);
 	}
+	else if (!strcmp(name, "Screwdriver", true)) 
+	{
+        if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
+		{
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = SCREWDRIVER;
+			SetPlayerAttachedObject(playerid, ATTACH_HAND, 18644,6,0.093000, 0.000000, 0.005000, 96.799995, -178.100006, 7.199999, 1.000000, 1.000000, 1.000000);
+
+			SendInventoryMessage(playerid, "Type /hotwire to start hotwiring vehicles.");
+		}
+		else SendErrorMessage(playerid, "You must store your items in inventory first.");
+    }
     else if (!strcmp(name, "Fishing Rod", true)) 
 	{
         if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
@@ -393,7 +404,7 @@ function:OnPlayerUseItem(playerid, itemid, name[])
 	{
        	if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == INVENTORY_NONE)
 		{
-			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = FIRE_EXTINGUISHER;
+			PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] = FEXTINGUISHER;
 			GivePlayerWeapon(playerid, 42, 999999);
 			SendInventoryMessage(playerid, "Press 'LMB' to extinguiher the fire.");
 		}

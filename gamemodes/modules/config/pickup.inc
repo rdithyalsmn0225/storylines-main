@@ -11,17 +11,17 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
 			if(!BusinessInfo[i][E_BUSINESS_OWNERDBID])
 			{
 				if(BusinessInfo[i][E_BUSINESS_TYPE] == BUSINESS_TYPE_DMV)
-					format(str, sizeof(str), "enter the vehicle to start drivetest~n~~w~%s.", BusinessInfo[i][E_BUSINESS_NAME], BusinessInfo[i][E_BUSINESS_ENTRANCEFEE]); 
+					format(str, sizeof(str), "enter the vehicle to start drivetest~n~~w~%s.", BusinessInfo[i][E_BUSINESS_NAME], BusinessInfo[i][E_BUSINESS_FEE]); 
 				else if(BusinessInfo[i][E_BUSINESS_TYPE] == BUSINESS_TYPE_HAIRCUT || BusinessInfo[i][E_BUSINESS_TYPE] == BUSINESS_TYPE_GUNSTORE || BusinessInfo[i][E_BUSINESS_TYPE] == BUSINESS_TYPE_ACID)
-					format(str, sizeof(str), "Press 'RETURN' to enter~n~~w~%s~n~~w~Owned By: NPC~n~~w~Entrance Fee: $%s.", BusinessInfo[i][E_BUSINESS_NAME], BusinessInfo[i][E_BUSINESS_ENTRANCEFEE]); 
+					format(str, sizeof(str), "Press 'RETURN' to enter~n~~w~%s~n~~w~Owned By: NPC~n~~w~Entrance Fee: $%s.", BusinessInfo[i][E_BUSINESS_NAME], BusinessInfo[i][E_BUSINESS_FEE]); 
 				else if(BusinessInfo[i][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK)
-					format(str, sizeof(str), "Press 'RETURN' to enter~n~~w~%s~n~~w~Owned By: Goverments~n~~w~Entrance Fee: $%s.", BusinessInfo[i][E_BUSINESS_NAME], BusinessInfo[i][E_BUSINESS_ENTRANCEFEE]); 
+					format(str, sizeof(str), "Press 'RETURN' to enter~n~~w~%s~n~~w~Owned By: Goverments~n~~w~Entrance Fee: $%s.", BusinessInfo[i][E_BUSINESS_NAME], BusinessInfo[i][E_BUSINESS_FEE]); 
 				else if(BusinessInfo[i][E_BUSINESS_TYPE] == BUSINESS_TYPE_RENT)
 					format(str, sizeof(str), "Press 'RETURN' to enter~n~~w~%s~n~~w~Owned By: Goverments~n~~w~Type '/rentcars' to rent vehicle.", BusinessInfo[i][E_BUSINESS_NAME]); 
 						
 				else format(str, sizeof(str), "Press 'RETURN' to enter~n~~w~%s~n~~w~This business is for sale price: $%s.", BusinessInfo[i][E_BUSINESS_NAME], FormatMoney(BusinessInfo[i][E_BUSINESS_PRICE]), BusinessInfo[i][E_BUSINESS_LEVEL]); 
 			}
-			else format(str, sizeof(str), "Press 'RETURN' to enter~n~~w~%s~n~~w~Owned By: %s~n~~w~Entrance Fee: $%s.", BusinessInfo[i][E_BUSINESS_NAME], ReturnDBIDName(BusinessInfo[i][E_BUSINESS_OWNERDBID]), FormatMoney(BusinessInfo[i][E_BUSINESS_ENTRANCEFEE])); 
+			else format(str, sizeof(str), "Press 'RETURN' to enter~n~~w~%s~n~~w~Owned By: %s~n~~w~Entrance Fee: $%s.", BusinessInfo[i][E_BUSINESS_NAME], ReturnDBIDName(BusinessInfo[i][E_BUSINESS_OWNERDBID]), FormatMoney(BusinessInfo[i][E_BUSINESS_FEE])); 
 			
 			ShowBoxMessage(playerid, str, 5);
             return 1;	 	

@@ -19,7 +19,7 @@ stock DetectVehicleInFront(playerid)
         new Float:vX, Float:vY, Float:vZ;
         GetVehiclePos(i, vX, vY, vZ);
 
-        if(IsPlayerInAnyVehicle(playerid) && PlayerInfo[playerid][E_CHARACTER_TOGALPR])
+        if(IsPlayerInAnyVehicle(playerid) && !PlayerInfo[playerid][E_CHARACTER_TOGALPR])
         {
             if (GetDistanceBetweenPoints(frontX, frontY, z, vX, vY, vZ) <= ALPR_RANGE)
             {
@@ -45,17 +45,17 @@ stock DetectVehicleInFront(playerid)
                 
                 new str4[256];
                 format(str4, sizeof(str4), "%s~n~%s~n~%s", str, str2, str3);
-                ShowBoxMessage(playerid, str4, 5, 1);
+                ShowHeaderMessage(playerid, "Alpr", str4, 1);
                 return 1;
             }
             else
             {
-                HideBoxMessage(playerid);
+                HideHeaderMessage(playerid);
             }
         }
         else
         {
-            HideBoxMessage(playerid);
+            HideHeaderMessage(playerid);
         }
     }
     return 0;

@@ -3406,7 +3406,7 @@ public OnPlayerUpdate(playerid)
 	{
 		new Float:x, Float:y, Float:z, Float:vx, Float:vy, Float:vz, Float:cx, Float:cy, Float:cz;
 
-		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == FIRE_EXTINGUISHER && GetPlayerWeapon(playerid) == 42 && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
+		if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] == FEXTINGUISHER && GetPlayerWeapon(playerid) == 42 && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
 		{
 		    for(new i = 0; i < MAX_FIRES; i ++)
 		    {

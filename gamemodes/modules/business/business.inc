@@ -109,11 +109,11 @@ stock BusinessRefresh(businessid)
 	if(IsValidDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D]))
 		DestroyDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOINTTEXT3D]);
 
-	if(IsValidDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_FUELTEXT3D]))
-		DestroyDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_FUELTEXT3D]);
+	if(IsValidDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_FUEL3DTEXT]))
+		DestroyDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_FUEL3DTEXT]);
 
-	if(IsValidDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_ENTRANCETEXT3D]))
-		DestroyDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_ENTRANCETEXT3D]);
+	if(IsValidDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_3DTEXT]))
+		DestroyDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_3DTEXT]);
 
 	if(IsValidDynamicActor(BusinessInfo[businessid][E_BUSINESS_ACTOR]))
 		DestroyDynamicActor(BusinessInfo[businessid][E_BUSINESS_ACTOR]);
@@ -208,8 +208,10 @@ stock BusinessRefresh(businessid)
 	else
 		BusinessInfo[businessid][E_BUSINESS_PICKUP] = CreateDynamicPickup(1272, 1, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 0, 0, -1, 5.0);
 	
-	BusinessInfo[businessid][E_BUSINESS_ENTRANCETEXT3D] = CreateDynamic3DTextLabel(BusinessInfo[businessid][E_BUSINESS_NAME], COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 5.0);
-	BusinessInfo[businessid][E_BUSINESS_FUELTEXT3D] = CreateDynamic3DTextLabel("[Gas Station]\n{ffffff}Available Commands: '/refuel' to refill vehicles fuel", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_FUELPOS][0], BusinessInfo[businessid][E_BUSINESS_FUELPOS][1], BusinessInfo[businessid][E_BUSINESS_FUELPOS][2], 5.0);
+	new text[128];
+	format(text, sizeof(text), "%s\nFee: $%d", BusinessInfo[businessid][E_BUSINESS_NAME], FormatMoney(BusinessInfo[businessid][E_BUSINESS_FEE]));
+	BusinessInfo[businessid][E_BUSINESS_3DTEXT] = CreateDynamic3DTextLabel(text, COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[businessid][E_BUSINESS_ENTRANCEPOS][2], 5.0);
+	BusinessInfo[businessid][E_BUSINESS_FUEL3DTEXT] = CreateDynamic3DTextLabel("[Gas Station]\n{ffffff}Available Commands: '/refuel' to refill vehicles fuel", COLOR_3DTEXT, BusinessInfo[businessid][E_BUSINESS_FUELPOS][0], BusinessInfo[businessid][E_BUSINESS_FUELPOS][1], BusinessInfo[businessid][E_BUSINESS_FUELPOS][2], 5.0);
 	
 	if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_GYM)
 	{
@@ -575,7 +577,7 @@ function:Query_LoadBusinesses()
 		cache_get_value_name_int(i, "BusinessType", BusinessInfo[i+1][E_BUSINESS_TYPE]);
 		
 		cache_get_value_bool(i, "BusinessLocked", BusinessInfo[i+1][E_BUSINESS_LOCKED]); 
-		cache_get_value_name_int(i, "BusinessEntranceFee", BusinessInfo[i+1][E_BUSINESS_ENTRANCEFEE]); 
+		cache_get_value_name_int(i, "BusinessEntranceFee", BusinessInfo[i+1][E_BUSINESS_FEE]); 
 		
 		cache_get_value_name_int(i, "BusinessMapIcon", BusinessInfo[i+1][E_BUSINESS_MAPICONTYPE]); 
 		cache_get_value_name_int(i, "BusinessLevel", BusinessInfo[i+1][E_BUSINESS_LEVEL]); 

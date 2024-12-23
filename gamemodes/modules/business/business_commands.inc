@@ -58,7 +58,7 @@ CMD:bizinfo(playerid, params[])
 		SendClientMessageEx(playerid, COLOR_ORANGE, "*** %s ***", BusinessInfo[id][E_BUSINESS_NAME]); 
 		SendClientMessageEx(playerid, COLOR_ORANGE, "Owner:[%s] Level:[%d] Value:[$%s] Type:[%d] Locked:[%s] ID:[%d]", ReturnName(playerid), BusinessInfo[id][E_BUSINESS_LEVEL], FormatMoney(BusinessInfo[id][E_BUSINESS_PRICE]),
 			BusinessInfo[id][E_BUSINESS_TYPE], (BusinessInfo[id][E_BUSINESS_LOCKED] != true) ? ("No") : ("Yes"), BusinessInfo[id][E_BUSINESS_DBID]); 
-		SendClientMessageEx(playerid, COLOR_ORANGE, "Cashbox:[$%s] Entrance fee:[$%s] Products:[%d / %d]", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]), FormatMoney(BusinessInfo[id][E_BUSINESS_ENTRANCEFEE]), BusinessInfo[id][E_BUSINESS_STOCK], MAX_BUSINESS_PRODUCTS);		
+		SendClientMessageEx(playerid, COLOR_ORANGE, "Cashbox:[$%s] Entrance fee:[$%s] Products:[%d / %d]", FormatMoney(BusinessInfo[id][E_BUSINESS_CASH]), FormatMoney(BusinessInfo[id][E_BUSINESS_FEE]), BusinessInfo[id][E_BUSINESS_STOCK], MAX_BUSINESS_PRODUCTS);		
 	}
 	else return SendErrorMessage(playerid, "You aren't in a business.");
 
@@ -142,7 +142,7 @@ CMD:bizfee(playerid, params[])
 			
 		new Cents = floatround(amount * 100, floatround_round);
 
-		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = Cents;
+		BusinessInfo[id][E_BUSINESS_FEE] = Cents;
 		SendServerMessage(playerid, "You set your businesses entrance fee to $%s.", FormatMoney(Cents));
 		SaveBusiness(id);
 	}
@@ -423,7 +423,7 @@ CMD:editbusiness(playerid, params[])
 		if(fee > 1500)
 			return SendErrorMessage(playerid, "The entrance fee can't be above 1500.");
 			
-		BusinessInfo[id][E_BUSINESS_ENTRANCEFEE] = fee;
+		BusinessInfo[id][E_BUSINESS_FEE] = fee;
 		
 		SendServerMessage(playerid, "You set business #%i's entrance fee to %i.", id, fee);
 		BusinessRefresh(id);

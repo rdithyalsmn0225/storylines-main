@@ -83,6 +83,9 @@ CMD:hotwire(playerid, params[])
     if(VehicleInfo[vehicleid][E_VEHICLE_ENGINE])
         return SendErrorMessage(playerid, "This vehicles already engine on");
         
+    if(!Inventory_Count(playerid, "Screwdriver") && PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SCREWDRIVER)
+        return SendErrorMessage(playerid, "You must hold screwdriver in your hand.");
+
     StartHotwire(playerid);
     return 1;
 }
