@@ -201,6 +201,7 @@ public OnGameModeInit()
 	DisableInteriorEnterExits();
 	
 	// Insert:
+	InsertPolice();
 	InsertObjects();
 	InsertModshops();
 	InsertBlackjack();

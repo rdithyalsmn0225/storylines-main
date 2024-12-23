@@ -65,16 +65,13 @@ function:OnENTInteriorChange(playerid, response, newid)
 	{
 		GetPlayerPos(playerid, EntranceInfo[newid][E_ENTRANCE_INT][0], EntranceInfo[newid][E_ENTRANCE_INT][1], EntranceInfo[newid][E_ENTRANCE_INT][2]);
 		
-		new
-			world = random(40000)+playerid+2;
-		
 		EntranceInfo[newid][E_ENTRANCE_INTERIOR] = GetPlayerInterior(playerid);
-		EntranceInfo[newid][E_ENTRANCE_WORLD] = world;
+		EntranceInfo[newid][E_ENTRANCE_WORLD] = GetPlayerVirtualWorld(playerid);
 		
 		foreach(new i : Player) if(IsPlayerInEntrance(i) == newid)
 		{
 			SetPlayerPosEx(i, EntranceInfo[newid][E_ENTRANCE_INT][0], EntranceInfo[newid][E_ENTRANCE_INT][1], EntranceInfo[newid][E_ENTRANCE_INT][2]);
-			SetPlayerInteriorEx(i, GetPlayerInterior(playerid)); SetPlayerVirtualWorldEx(i, world); 
+			SetPlayerInteriorEx(i, GetPlayerInterior(playerid)); SetPlayerVirtualWorldEx(i, GetPlayerVirtualWorld(playerid)); 
 			
 			SendServerMessage(i, "The entrance you were in was amended."); 
 		}

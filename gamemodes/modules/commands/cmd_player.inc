@@ -1218,6 +1218,7 @@ CMD:time(playerid, params[])
 	else
 		format(string, sizeof(string), "~g~|~w~%02d:%02d~g~|", hour, minute);
 		
+	SendInfoMessage(playerid, "[PRISON] You're currently prison. You have %i minutes left.", PlayerInfo[playerid][E_CHARACTER_PRISON] / 60);
 	GameTextForPlayer(playerid, string, 2000, 1);
 	return 1;
 }

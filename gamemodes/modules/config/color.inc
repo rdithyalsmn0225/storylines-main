@@ -5,7 +5,7 @@
 #define COLOR_DARKGREEN 	(0x33AA33FF)
 #define COLOR_YELLOW 		(0xFFFF00FF)
 #define COLOR_BROWN         (0x776858FF)
-#define COLOR_BLUE          (0x74b4e4FF)
+#define COLOR_BLUE          (0x78c5ffFF)
 #define COLOR_LBLUE         (0x2986ccFF)
 
 #define COLOR_CREDITS       (0xf8b56eFF)
