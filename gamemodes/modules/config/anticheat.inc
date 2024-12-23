@@ -594,6 +594,7 @@ public OnVehicleDamageStatusUpdate(vehicleid, playerid)
 			}
         }
     }
+    return 1;
 }
 
 public OnVehicleMod(playerid, vehicleid, componentid)
