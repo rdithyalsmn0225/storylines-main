@@ -18,6 +18,7 @@ function:Query_LoadCompensation()
 		cache_get_value_name_int(i, "max_players", CompetationInfo[i][E_COMPETATION_PLAYERS]);
 		cache_get_value_name_int(i, "expired", CompetationInfo[i][E_COMPETATION_EXPIRED]);
         cache_get_value_name_int(i, "money", CompetationInfo[i][E_COMPETATION_MONEY]);
+        cache_get_value_name_int(i, "street_credits", CompetationInfo[i][E_COMPENTATION_STREETCREDITS]);
         cache_get_value_name_int(i, "players_used", CompetationInfo[i][E_COMPETATION_USED]);
         CompetationInfo[i][E_COMPETATION_EXISTS] = true;
         total++;
@@ -59,12 +60,13 @@ CMD:createcode(playerid, params[])
     CompetationInfo[freeSlot][E_COMPETATION_PLAYERS] = players;
     CompetationInfo[freeSlot][E_COMPETATION_EXPIRED] = expired;
     CompetationInfo[freeSlot][E_COMPETATION_MONEY] = Cents;
+    CompetationInfo[freeSlot][E_COMPENTATION_STREETCREDITS] = streetcredits;
     CompetationInfo[freeSlot][E_COMPETATION_USED] = 0;
     CompetationInfo[freeSlot][E_COMPETATION_EXISTS] = true;
     
     
     new query[256];
-    mysql_format(ourConnection, query, sizeof(query), "INSERT INTO compensation_codes (code, max_players, expired, money, players_used) VALUES ('%s', %d, %d, %d, 0)", code, players, expired, Cents);
+    mysql_format(ourConnection, query, sizeof(query), "INSERT INTO compensation_codes (code, max_players, expired, money, street_credits, players_used) VALUES ('%s', %d, %d, %d, %d, 0)", code, players, expired, Cents, streetcredits);
     mysql_tquery(ourConnection, query);
 
     SendInfoMessage(playerid, "[COMPENSATION] Compensation code created successfully!");

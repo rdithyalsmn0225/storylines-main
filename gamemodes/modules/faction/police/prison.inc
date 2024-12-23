@@ -2,11 +2,12 @@ stock SetPlayerInPrison(playerid)
 {
 	PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_PRISON] = true;
 	PlayerInfo[PlayerInfo[playerid][E_CHARACTER_MDCSELECT]][E_CHARACTER_PRISON] = PlayerInfo[playerid][E_CHARACTER_MDCTIME] * 60;
+    
+    SetPlayerPosEx(playerid, 263.9276,77.7387,1001.0391);
 	SaveCharacter(playerid);
 	ResetPlayerWeaponEx(playerid);
 	return 1;
 }
-
 
 CreatePrisonCell(objectid)
 {
