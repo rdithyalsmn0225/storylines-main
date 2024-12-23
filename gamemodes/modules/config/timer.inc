@@ -298,7 +298,25 @@ function:OnPlayerUpdateEx()
 
 				if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	    		{
-					ShowVehicleSpeedometer(playerid, str, stru, stra, stre, VehicleInfo[vehicleid][E_VEHICLE_FUEL], vhealth);
+					PlayerTextDrawSetString(playerid, speedo[0][playerid], str);
+					PlayerTextDrawShow(playerid, speedo[0][playerid]);
+					PlayerTextDrawSetString(playerid, speedo[2][playerid], stra);
+					PlayerTextDrawShow(playerid, speedo[2][playerid]);
+					PlayerTextDrawSetString(playerid, speedo[3][playerid], stre);
+					PlayerTextDrawShow(playerid, speedo[3][playerid]);
+
+					if(IsPoliceVehicle(GetPlayerVehicleID(playerid)))
+					{
+						PlayerTextDrawSetString(playerid, speedo[1][playerid], stru);
+						PlayerTextDrawShow(playerid, speedo[1][playerid]);
+					}
+
+					SetPlayerProgressBarValue(playerid, fuelbar[playerid], VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
+					SetPlayerProgressBarColour(playerid, fuelbar[playerid], ConvertHBEColor(VehicleInfo[vehicleid][E_VEHICLE_FUEL]));
+					SetPlayerProgressBarValue(playerid, dmgbar[playerid], vhealth);
+					SetPlayerProgressBarColour(playerid, dmgbar[playerid], ConvertVehicleColor(vhealth));
+					ShowPlayerProgressBar(playerid, fuelbar[playerid]);
+					ShowPlayerProgressBar(playerid, dmgbar[playerid]);
 				}
 
 				for (new i = 0; i != MAX_BARRICADES; i ++) if (BarricadeInfo[i][E_CADE_EXISTS] && BarricadeInfo[i][E_CADE_TYPE] == 1 && IsPlayerInRangeOfPoint(playerid, 3.0, BarricadeInfo[i][E_CADE_POS][0], BarricadeInfo[i][E_CADE_POS][1], BarricadeInfo[i][E_CADE_POS][2]))

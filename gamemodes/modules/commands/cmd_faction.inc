@@ -427,9 +427,17 @@ CMD:department(playerid, params[])
 			
 		factionid = PlayerInfo[i][E_CHARACTER_FACTION];
 			
-		if(FactionInfo[factionid][E_FACTION_TYPE] == FACTION_TYPE_POLICE || FactionInfo[factionid][E_FACTION_TYPE] == FACTION_TYPE_MEDICAL)
+		if(ReturnFactionType(i) == FACTION_TYPE_POLICE || ReturnFactionType(i) == FACTION_TYPE_MEDICAL)
 		{
-			SendClientMessageEx(playerid, COLOR_DEPT, "** [%s] %s %s: %s", FactionInfo[factionid][E_FACTION_ABBREV], IsPlayerFactionRank(i), ReturnName(playerid), params); 
+			if(strlen(params) > 66)
+		    {
+				SendClientMessageEx(i, COLOR_DEPT, "** [%s] %s %s: %s", FactionInfo[factionid][E_FACTION_ABBREV], IsPlayerFactionRank(i), ReturnName(playerid), params); 
+				SendClientMessageEx(i, COLOR_DEPT, "%s **", params[66]);
+			}
+			else
+			{
+				SendClientMessageEx(i, COLOR_DEPT, "** [%s] %s %s: %s", FactionInfo[factionid][E_FACTION_ABBREV], IsPlayerFactionRank(i), ReturnName(playerid), params); 
+			}
 		}
 	}
 	

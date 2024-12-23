@@ -2621,12 +2621,8 @@ function:HideHeaderMessage(playerid)
 	return 1;
 }
 
-stock ShowVehicleSpeedometer(playerid, hud1[], hud2[], hud3[], hud4[], Float:hud8, Float:hud9)
+stock ShowVehicleSpeedometer(playerid)
 {
-	PlayerTextDrawSetString(playerid, speedo[0][playerid], hud1);
-	PlayerTextDrawSetString(playerid, speedo[2][playerid], hud3);
-	PlayerTextDrawSetString(playerid, speedo[3][playerid], hud4);
-
 	PlayerTextDrawShow(playerid, speedo[0][playerid]);
 	PlayerTextDrawShow(playerid, speedo[2][playerid]);
 	PlayerTextDrawShow(playerid, speedo[3][playerid]);
@@ -2634,20 +2630,8 @@ stock ShowVehicleSpeedometer(playerid, hud1[], hud2[], hud3[], hud4[], Float:hud
 	PlayerTextDrawShow(playerid, speedo[5][playerid]);
 	PlayerTextDrawShow(playerid, speedo[6][playerid]);
 
-
-	SetPlayerProgressBarValue(playerid, fuelbar[playerid], hud8);
-	SetPlayerProgressBarColour(playerid, fuelbar[playerid], ConvertHBEColor(hud8));
-	SetPlayerProgressBarValue(playerid, dmgbar[playerid], hud9);
-	SetPlayerProgressBarColour(playerid, dmgbar[playerid], ConvertVehicleColor(hud9));
-
 	ShowPlayerProgressBar(playerid, fuelbar[playerid]);
 	ShowPlayerProgressBar(playerid, dmgbar[playerid]);
-	
-	if(IsPoliceVehicle(GetPlayerVehicleID(playerid)))
-	{
-		PlayerTextDrawSetString(playerid, speedo[1][playerid], hud2);
-		PlayerTextDrawShow(playerid, speedo[1][playerid]);
-	}
 	return 1;
 }
 

@@ -23,6 +23,7 @@
 #include <timerfix>
 #include <physics>
 #include <Pawn.RakNet>
+#include <garageblock>
 #include <PreviewModelDialog2>
 #include <compat>
 
@@ -4909,6 +4910,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			SendErrorMessage(playerid, "You aren't apart of medical departement.");
 			return 1;
 		}
+
+		ShowVehicleSpeedometer(playerid);
 	}
 
 	if (newstate == PLAYER_STATE_PASSENGER && IsPlayerInsideTaxi(playerid))

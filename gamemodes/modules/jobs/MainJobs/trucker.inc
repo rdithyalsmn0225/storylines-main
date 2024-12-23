@@ -188,13 +188,13 @@ CMD:sellcargo(playerid, params[])
 		if(!Inventory_Count(playerid, "Fish Cargo"))
 			return SendErrorMessage(playerid, "You are not carrying your cargo.");
 
-		if(!ServerInfo[0][E_SERVER_FISH] >= 100)
+		if(ServerInfo[0][E_SERVER_FISH] > 100)
 			return SendErrorMessage(playerid, "This cargo storage is full of stock.");
 
 		Inventory_Remove(playerid, "Fish Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		new Cents = floatround(IndustryInfo[3][Price] * 2 * 100, floatround_round);
+		new Cents = floatround(IndustryInfo[3][Price] * 3 * 100, floatround_round);
 
 		SetPlayerNeeds(playerid, -0.3, -0.2);
 
@@ -209,13 +209,13 @@ CMD:sellcargo(playerid, params[])
 		if(!Inventory_Count(playerid, "Fabric Cargo"))
 			return SendErrorMessage(playerid, "You are not carrying your cargo.");
 
-		if(!ServerInfo[0][E_SERVER_CLOTHES] >= 100)
+		if(ServerInfo[0][E_SERVER_CLOTHES] >= 100)
 			return SendErrorMessage(playerid, "This cargo storage is full of stock.");
 
 		Inventory_Remove(playerid, "Fabric Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		new Cents = floatround(IndustryInfo[0][Price] * 2 * 100, floatround_round);
+		new Cents = floatround(IndustryInfo[0][Price] * 3 * 100, floatround_round);
 
 		SetPlayerNeeds(playerid, -0.3, -0.2);
 
@@ -229,13 +229,13 @@ CMD:sellcargo(playerid, params[])
 	{
 		if(Inventory_Count(playerid, "Steel Cargo"))
 		{
-			if(!ServerInfo[0][E_SERVER_APPLIANCES] >= 100)
+			if(ServerInfo[0][E_SERVER_APPLIANCES] >= 100)
 				return SendErrorMessage(playerid, "This cargo storage is full of stock.");
 
 			Inventory_Remove(playerid, "Steel Cargo", 1);
 			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 			RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-			new Cents = floatround(IndustryInfo[1][Price] * 2 * 100, floatround_round);
+			new Cents = floatround(IndustryInfo[1][Price] * 3 * 100, floatround_round);
 
 			GiveMoney(playerid, Cents);
 
@@ -245,13 +245,13 @@ CMD:sellcargo(playerid, params[])
 		}
 		else if(Inventory_Count(playerid, "Woods Cargo"))
 		{
-			if(!ServerInfo[0][E_SERVER_APPLIANCES] >= 100)
+			if(ServerInfo[0][E_SERVER_APPLIANCES] >= 100)
 				return SendErrorMessage(playerid, "This cargo storage is full of stock.");
 
 			Inventory_Remove(playerid, "Woods Cargo", 1);
 			SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 			RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-			new Cents = floatround(IndustryInfo[2][Price] * 2 * 100, floatround_round);
+			new Cents = floatround(IndustryInfo[2][Price] * 3 * 100, floatround_round);
 
 			SetPlayerNeeds(playerid, -0.3, -0.2);
 
@@ -279,7 +279,7 @@ CMD:sellcargo(playerid, params[])
 		Inventory_Remove(playerid, "Appliances Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		new Cents = floatround(IndustryInfo[6][Price] * 2 * 100, floatround_round);
+		new Cents = floatround(IndustryInfo[6][Price] * 3 * 100, floatround_round);
 
 		SetPlayerNeeds(playerid, -0.3, -0.2);
 
@@ -341,7 +341,7 @@ CMD:sellcargo(playerid, params[])
 		Inventory_Remove(playerid, "Foods Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		new Cents = floatround(IndustryInfo[4][Price] * 2 * 100, floatround_round);
+		new Cents = floatround(IndustryInfo[4][Price] * 3 * 100, floatround_round);
 
 		SetPlayerNeeds(playerid, -0.3, -0.2);
 

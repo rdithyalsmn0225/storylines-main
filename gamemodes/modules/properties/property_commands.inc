@@ -46,8 +46,7 @@ CMD:editproperty(playerid, params[])
 	if(sscanf(params, "is[60]S()[60]", id, indx, specifier))
 	{
 		SendUsageMessage(playerid, "/editproperty [property id] [configuration]");
-		SendTipMessage(playerid, "Entrance, Faction,");
-		SendTipMessage(playerid, "Type, Price, Level.");
+		SendTipMessage(playerid, "Entrance, Faction, Type, Price, Level");
 		return 1; 
 	}
 	
@@ -113,7 +112,7 @@ CMD:editproperty(playerid, params[])
 		PropertyInfo[id][E_PROPERTY_PRICE] = Cents;
 		SaveProperty(id);
 		
-		SendServerMessage(playerid, "You set Property #%i's market price to %i.", id, price);
+		SendServerMessage(playerid, "You set Property #%i's market price to $%i.", id, Cents);
 	}
 	else if(!strcmp(indx, "level"))
 	{

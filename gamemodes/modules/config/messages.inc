@@ -1,6 +1,6 @@
 //Client messages:
 #define SendUsageMessage(%0,%1) \
-	SendClientMessageEx(%0, COLOR_ORANGE, "[SYNTAX] "%1) 
+	SendClientMessageEx(%0, COLOR_INFO, "[SYNTAX] {ffffff}"%1) 
 	
 #define SendErrorMessage(%0,%1) \
 	SendClientMessageEx(%0, COLOR_RED, "[ERROR] "%1)
@@ -769,9 +769,18 @@ SendPlayerChatText(playerid, text[], toid=INVALID_PLAYER_ID)
 			} 
 			else 
 			{
-				format(string, sizeof(string), "says: %s", text);
-				ProxDetectorEx(playerid, range, 0xcdcdcdFF, "", string, .annonated=true, .chat=true);
-				ChatAnimation(playerid, strlen(text));
+				if(PlayerInfo[playerid][E_CHARACTER_ADMINDUTY])
+				{
+					format(string, sizeof(string), "says: %s", text);
+					ProxDetectorEx(playerid, range, 0xcdcdcdFF, "(Admin Duty)", string, .annonated=true, .chat=true);
+					ChatAnimation(playerid, strlen(text));
+				}
+				else
+				{
+					format(string, sizeof(string), "says: %s", text);
+					ProxDetectorEx(playerid, range, 0xcdcdcdFF, "", string, .annonated=true, .chat=true);
+					ChatAnimation(playerid, strlen(text));
+				}
 			}
 		}
 		
