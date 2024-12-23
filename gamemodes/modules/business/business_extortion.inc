@@ -174,6 +174,9 @@ CMD:extort(playerid, params[])
 	{
 		if(!PlayerInfo[playerid][E_CHARACTER_EXTORTION] && BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] > 500 && BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH] == false)
 		{
+			if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK)
+				return SendErrorMessage(playerid, "You can't extort business bank.");
+
 			if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
 				return SendErrorMessage(playerid, "This Business has recently robbery.");
 

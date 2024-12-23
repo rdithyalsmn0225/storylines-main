@@ -4540,14 +4540,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			new id = IsPlayerInBusiness(playerid);
 			if(IsPlayerInBusiness(playerid))
 			{
-				if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
+				if(BusinessInfo[id][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK)
+					return SendErrorMessage(playerid, "You can't robbery business bank.");
+
+				if(BusinessInfo[id][E_BUSINESS_ROBBERYTIME] > 0)
 					return SendErrorMessage(playerid, "This Business has recently robbery.");
 
 				if(PlayerInfo[playerid][E_CHARACTER_HASROBBIZ] == true)
 					return SendErrorMessage(playerid, "You already robbery at this time.");
-
-				if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYTIME] > 0)
-					return SendErrorMessage(playerid, "This Business has been robbery.");
 
 				CallLocalFunction("OnPlayerStartRobbery", "dd", playerid, BusinessInfo[id][E_BUSINESS_ACTOR]);
 				SetTimerEx("RunActorAnimationSequence", 1000, false, "iii", playerid, BusinessInfo[id][E_BUSINESS_ACTOR], 0);
