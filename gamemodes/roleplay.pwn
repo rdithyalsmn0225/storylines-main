@@ -20,6 +20,7 @@
 #include <crashdetect>
 #include <streamer>
 #include <sscanf2>
+#include <PreviewModelDialog>
 #include <izcmd>
 #include <progress2>
 #include <timerfix>
@@ -28,7 +29,6 @@
 #include <Pawn.RakNet>
 #include <garageblock>
 #include <eSelection>
-#include <PreviewModelDialog>
 #include <compat>
 
 //Database establisher:

@@ -502,6 +502,7 @@ CMD:rprison(playerid, params[])
 	PlayerInfo[playerb][E_CHARACTER_PRISONED] = false;
 	PlayerInfo[playerb][E_CHARACTER_PRISON] = 0;
 	
+	HideHeaderMessage(playerid);
 	SaveCharacter(playerb);
 	SendClientMessageToAllEx(COLOR_RED, "AdmCmd: %s has been released from prison by %s.", ReturnName(playerb), ReturnMixedName(playerid));
 	return 1;
