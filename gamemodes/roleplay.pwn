@@ -13,6 +13,8 @@
   #Special thanks to Allah SWT.
 ================================================================================================== */
 
+#define PP_SYNTAX
+
 #include <a_samp>
 #include <a_mysql>
 #include <crashdetect>
@@ -22,9 +24,11 @@
 #include <progress2>
 #include <timerfix>
 #include <physics>
+#include <PawnPlus>
 #include <Pawn.RakNet>
 #include <garageblock>
-#include <PreviewModelDialog2>
+#include <eSelection>
+#include <PreviewModelDialog>
 #include <compat>
 
 //Database establisher:
@@ -47,11 +51,11 @@ main ()  {}
 #include "modules\visuals\textdraws.inc"
 #include "modules\visuals\gamebar.inc"
 // CONFIG MODULES
-#include "modules\config\modelselections.inc"
 #include "modules\config\types.inc"
 #include "modules\config\pickup.inc"
 #include "modules\config\messages.inc"
 #include "modules\config\economy.inc"
+#include "modules\config\modelselections.inc"
 #include "modules\config\dialogs.inc"
 #include "modules\config\savemysql.inc"
 #include "modules\config\return.inc"

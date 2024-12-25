@@ -641,21 +641,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
 							{
-								new str[512];
-								for(new i; i < sizeof(g_aLspdSkins); i++)
-								{
-									format(str, sizeof(str), "%s%d\n", str, g_aLspdSkins[i]);
-								}
-								ShowPlayerDialog(playerid, DIALOG_POLICEMALESKIN, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+								ShowSelectionModel(playerid, SELECT_POLICEMALESKIN);
 							}
 							else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 							{
-								new str[512];
-								for(new i; i < sizeof(g_aLspdFemSkins); i++)
-								{
-									format(str, sizeof(str), "%s%d\n", str, g_aLspdFemSkins[i]);
-								}
-								ShowPlayerDialog(playerid, DIALOG_POLICEFEMALESKIN, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+								ShowSelectionModel(playerid, SELECT_POLICEFEMALESKIN);
 							}
 						}
 						
@@ -663,21 +653,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
 							{
-								new str[512];
-								for(new i; i < sizeof(g_aLsmdSkins); i++)
-								{
-									format(str, sizeof(str), "%s%d\n", str, g_aLsmdSkins[i]);
-								}
-								ShowPlayerDialog(playerid, DIALOG_MEDICMALESKIN, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+								ShowSelectionModel(playerid, SELECT_MEDICMALESKIN);
 							}
 							else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 							{
-								new str[512];
-								for(new i; i < sizeof(g_aLsmdFemSkins); i++)
-								{
-									format(str, sizeof(str), "%s%d\n", str, g_aLsmdFemSkins[i]);
-								}
-								ShowPlayerDialog(playerid, DIALOG_MEDICFEMALESKIN, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+								ShowSelectionModel(playerid, SELECT_MEDICFEMALESKIN);
 							}
 						}
 					}
@@ -784,15 +764,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						}
 					}
 				}
-			}
-		}
-		case DIALOG_POLICEMALESKIN:
-		{
-			if(response)
-			{
-				SetPlayerSkin(playerid, g_aLspdSkins[listitem]);
-				PlayerInfo[playerid][E_CHARACTER_FACSKIN] = g_aLspdSkins[listitem];
-				SaveCharacter(playerid);
 			}
 		}
 		case DIALOG_POLICEFEMALESKIN:
@@ -3818,127 +3789,18 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 						if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1)
 						{
-							new str[1024];
-							for(new i; i < sizeof(g_aMaleSkins); i++)
-							{
-								format(str, sizeof(str), "%s%d\n", str, g_aMaleSkins[i]);
-							}
-							ShowPlayerDialog(playerid, DIALOG_BUYSKINMALE, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+							ShowSelectionModel(playerid, SELECT_MALESKIN);
 						}
 						else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2)
 						{
-							new str[1024];
-							for(new i; i < sizeof(g_aFemaleSkins); i++)
-							{
-								format(str, sizeof(str), "%s%d\n", str, g_aFemaleSkins[i]);
-							}
-							ShowPlayerDialog(playerid, DIALOG_BUYSKINFEMALE, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str, "Select", "Close");
+							ShowSelectionModel(playerid, SELECT_FEMALESKIN);
 						}
 					}
 					case 1:
 					{
-						SetPlayerPos(playerid, 217.5163,-98.4308,1005.2578);
-						SetPlayerFacingAngle(playerid, 94.6310);
-
-						SetPlayerCameraPos(playerid, 214.387527, -99.966537, 1005.545410);
-						SetPlayerCameraLookAt(playerid, 217.848388, -97.962821, 1005.458129, 1);
-						new str[1024];
-						for(new i; i < sizeof(g_aClothingCustom); i++)
-						{
-							format(str, sizeof(str), "%s%d\n", str, g_aClothingCustom[i]);
-						}
-						ShowPlayerDialog(playerid, DIALOG_BUYACCESSORIES, DIALOG_STYLE_PREVIEW_MODEL, "Choose your clothing:", str, "Select", "Close");
+						ShowSelectionModel(playerid, SELECT_ACCESSORIES);
 					}
 				}
-			}
-		}
-		case DIALOG_BUYSKINMALE:
-		{
-			if(response)
-			{
-				new businessid = IsPlayerInBusiness(playerid);
-				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-				{
-					SetCameraBehindPlayer(playerid);
-					SendErrorMessage(playerid, "You can't afford a clothes.");
-					return 1;
-				}
-
-				if(BusinessInfo[businessid][E_BUSINESS_STOCK] < 1)
-				{
-					SetCameraBehindPlayer(playerid);
-					return SendErrorMessage(playerid, "This business is out of stock");
-				}
-
-				SetTimerEx("EnterFittingRoom", 1000, false, "ii", playerid, g_aMaleSkins[listitem]);
-			}
-			else
-			{
-				SetCameraBehindPlayer(playerid);
-				TogglePlayerControllable(playerid, true);
-			}
-		}
-		case DIALOG_BUYSKINFEMALE:
-		{
-			if(response)
-			{
-				new businessid = IsPlayerInBusiness(playerid);
-				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-				{
-					SetCameraBehindPlayer(playerid);
-					SendErrorMessage(playerid, "You can't afford a clothes.");
-					return 1;
-				}
-
-				if(BusinessInfo[businessid][E_BUSINESS_STOCK] < 1)
-				{
-					SetCameraBehindPlayer(playerid);
-					return SendErrorMessage(playerid, "This business is out of stock");
-				}
-
-				SetTimerEx("EnterFittingRoom", 1000, false, "ii", playerid, g_aFemaleSkins[listitem]);
-			}
-			else
-			{
-				SetCameraBehindPlayer(playerid);
-				TogglePlayerControllable(playerid, true);
-			}
-		}
-		case DIALOG_BUYACCESSORIES:
-		{
-			if(response)
-			{
-				new businessid = IsPlayerInBusiness(playerid);
-				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2] > PlayerInfo[playerid][E_CHARACTER_MONEY])
-				{
-					SetCameraBehindPlayer(playerid);
-					SendErrorMessage(playerid, "You can't afford a clothing.");
-					return 1;
-				}
-
-				if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK] < 1)
-				{
-					SetCameraBehindPlayer(playerid);
-					return SendErrorMessage(playerid, "This business is out of stock");
-				}
-				if(GetPlayerFreeToySlot(playerid) == -1)
-				{
-					SetCameraBehindPlayer(playerid);
-					return SendErrorMessage(playerid, "You already have full slot of accessories!");
-				}
-
-				GiveMoney(playerid, -BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]);
-				ApplyAnimation(playerid, "CLOTHES", "CLO_Buy", 4.0, 0, 0, 0, 0, 0);
-				SetCameraBehindPlayer(playerid);
-				BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
-				BusinessInfo[businessid][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
-				ShowPlayerDialog(playerid, DIALOG_BUYCLOTHING, DIALOG_STYLE_LIST, "Bone Selection:", "Spine\nHead\nLeft upper arm\nRight upper arm\nLeft hand\nRight hand\nLeft thigh\nRight thigh\nLeft foot\nRight foot\nRight calf\nLeft calf\nLeft forearm\nRight forearm\nLeft shoulder\nRight shoulder\nNeck\nJaw", "Choose", "Cancel");
-				PlayerInfo[playerid][E_CHARACTER_TEMPMODEL] = g_aClothingCustom[listitem];
-			}
-			else
-			{
-				SetCameraBehindPlayer(playerid);
-				TogglePlayerControllable(playerid, true);
 			}
 		}
 		case DIALOG_WEAPONCOLT:
