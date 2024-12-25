@@ -64,7 +64,7 @@ CMD:ticket(playerid, params[])
 {
 	new
 	    userid,
-	    price,
+	    Float:price,
 	    reason[64];
 
 	if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE)
@@ -79,11 +79,11 @@ CMD:ticket(playerid, params[])
 	if (userid == INVALID_PLAYER_ID || !IsPlayerNearPlayer(playerid, userid, 5.0))
 	    return SendErrorMessage(playerid, "That player is disconnected or not near you.");
 
-	if (userid == playerid)
-	    return SendErrorMessage(playerid, "You can't write a ticket to yourself.");
+	//if (userid == playerid)
+	//    return SendErrorMessage(playerid, "You can't write a ticket to yourself.");
 
 	if (price < 1.00 || price > 200.00)
-	    return SendErrorMessage(playerid, "The price can't be below $1.00 or above $1.000.00.");
+	    return SendErrorMessage(playerid, "The price can't be below $1.00 or above $200.00.");
 
 	new Cents = floatround(price * 100, floatround_round);
 
