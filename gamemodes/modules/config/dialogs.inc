@@ -1520,7 +1520,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /mycars, /engine, /carlock, /carkey, /carsell, /cardespawn, /cartrunk, /carhood");
 						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /carlights, /carwindow, /carfind, /carradio, /carscrap, /carwhisper, /carb");
 						SendClientMessage(playerid, COLOR_ORANGE, "Vehicle Commands: /refill, /limitspeed");
-						SendTipMessage(playerid, "Press 'Y' to turn on engine");
+						SendTipMessage(playerid, "Press 'ALT' to turn on engine");
 						SendTipMessage(playerid, "Press '2' to unlock/lock vehicles");
 					}
 					case 6:

@@ -5078,7 +5078,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 		}
 	}
-	if ((newkeys & KEY_YES) && (IsPlayerInAnyVehicle(playerid)))
+	if ((newkeys & KEY_WALK) && (IsPlayerInAnyVehicle(playerid)))
 	{
 		cmd_engine(playerid, "");
 	}

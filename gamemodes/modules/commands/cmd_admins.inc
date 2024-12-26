@@ -11,7 +11,7 @@ CMD:ahelp(playerid, params[])
 		SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Staff Commands __________|");
 		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /aduty, /forumname, /goto, /gethere, /bring, /a (achat), /showmain, /kick, /(o)ajail,"); 
 		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /rjail, /rprison, /setint, /setvw, /skin, /sethp, /setar, /reports, /ar (accept), /dr (disregard),"); 
-		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /slap, /mute, /freeze, /unfreeze, /spec, /specoff, /stats (id), /gotols, /respawncar, /respawnstatic,"); 
+		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /slap, /freeze, /unfreeze, /spec, /specoff, /stats (id), /gotols, /respawncar, /respawnstatic,"); 
 		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /gotocar, /maskid, /getcar, /aooc, /revive.");
 	}
 	
