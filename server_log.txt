@@ -50254,3 +50254,789 @@ Console input: exit
 [11:07:37] =       Made by BigETI =
 [11:07:37] = Unloaded!            =
 [11:07:37] ========================
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[11:12:08] filterscripts = ""  (string)
+[11:12:08] 
+[11:12:08] Server Plugins
+[11:12:08] --------------
+[11:12:08]  Loading plugin: crashdetect
+[11:12:08]   CrashDetect plugin 4.22-1-gcd608b6
+[11:12:08]   Loaded.
+[11:12:08]  Loading plugin: mysql
+[11:12:08]  >> plugin.mysql: R41-4 successfully loaded.
+[11:12:08]   Loaded.
+[11:12:08]  Loading plugin: sscanf
+[11:12:08] 
+
+[11:12:08]  ===============================
+
+[11:12:08]       sscanf plugin loaded.     
+
+[11:12:08]          Version:  2.8.2        
+
+[11:12:08]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:12:08]  ===============================
+
+[11:12:08]   Loaded.
+[11:12:08]  Loading plugin: streamer
+[11:12:08] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[11:12:08]   Loaded.
+[11:12:08]  Loading plugin: timerfix
+[11:12:08]   >> TimerFix v1.4 successfully loaded.
+[11:12:08]   Loaded.
+[11:12:08]  Loading plugin: PawnPlus
+[11:12:08]  PawnPlus v1.5 loaded
+[11:12:08]  Created by IS4
+[11:12:08]   Loaded.
+[11:12:08]  Loading plugin: pawn-memory
+[11:12:08] ========================
+[11:12:08] = Memory access plugin =
+[11:12:08] =       Made by BigETI =
+[11:12:08] = Loaded!              =
+[11:12:08] ========================
+[11:12:08]   Loaded.
+[11:12:08]  Loading plugin: pawnraknet
+[11:12:08] [Pawn.RakNet] plugin v1.6.0 loading...
+[11:12:08] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[11:12:08]   Loaded.
+[11:12:08]  Loaded 8 plugins.
+
+[11:12:08] 
+[11:12:08] Filterscripts
+[11:12:08] ---------------
+[11:12:08]   Loaded 0 filterscripts.
+
+[11:12:08] [DATABASE]: Connection established to 'storylines'...
+[11:12:08] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[11:12:08] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[11:12:08] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[11:12:08] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[11:12:08] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[11:12:08] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[11:12:08] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[11:12:08] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[11:12:08] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[11:12:08] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[11:12:08] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[11:12:08] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[11:12:08] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[11:12:08] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[11:12:08] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[11:12:08] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[11:12:08] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[11:12:08] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[11:12:08] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[11:12:08] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[11:12:08] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[11:12:08] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[11:12:08] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[11:12:08] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[11:12:08] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[11:12:08] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[11:12:08] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[11:12:08] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[11:12:08] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[11:12:08] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[11:12:08] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[11:12:08] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[11:12:08] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[11:12:08] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[11:12:08] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[11:12:08] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[11:12:08] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[11:12:08] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[11:12:08] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[11:12:08] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[11:12:08] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[11:12:08] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[11:12:08] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[11:12:08] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[11:12:08] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[11:12:08] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[11:12:08] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[11:12:08] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[11:12:08] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[11:12:08] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[11:12:08] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[11:12:08] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[11:12:08] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[11:12:08] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[11:12:08] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[11:12:08] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[11:12:08] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[11:12:08] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[11:12:08] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[11:12:08] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[11:12:08] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[11:12:08] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[11:12:08] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[11:12:08] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[11:12:08] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[11:12:08] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[11:12:08] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[11:12:08] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:12:08] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[11:12:08] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:12:08] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[11:12:08] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:12:08] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[11:12:08] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[11:12:08] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[11:12:08] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:12:08] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[11:12:08] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:12:08] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[11:12:08] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:12:08] [debug] Long callback execution detected (hang or performance issue)
+[11:12:08] [debug] AMX backtrace:
+[11:12:08] [debug] #0 000381b0 in InsertObjects () at modules\visuals\enviroment.inc:52
+[11:12:08] [debug] #1 00254e0c in public MS_OnGameModeInit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:210
+[11:12:08] [debug] #2 00035764 in public PawnRakNet_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\eSelection.inc:461
+[11:12:08] [debug] #3 000304ac in public PHY_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1153
+[11:12:08] [debug] #4 native CallLocalFunction () in samp-server.exe
+[11:12:08] [debug] #5 00021f20 in public Itter_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\physics.inc:193
+[11:12:08] [debug] #6 native CallLocalFunction () in samp-server.exe
+[11:12:08] [debug] #7 000210d0 in public PDialog_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:637
+[11:12:08] [debug] #8 000131c8 in public SSCANF_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:836
+[11:12:08] [debug] #9 00000c84 in public OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:211
+[11:12:08] Number of vehicle models: 1
+[11:12:08] [SERVER]: 2 factions were loaded from "storylines" database...
+[11:12:08] [SERVER]: 11 businesses were loaded from "storylines" database...
+[11:12:08] [SERVER]: 2 properties were loaded from "storylines" database...
+[11:12:08] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[11:12:08] *** Streamer Plugin: Streamer_SetFloatData: Invalid ID specified.
+[11:12:08] [SERVER]: 1 trashcan were loaded from "storylines" database...
+[11:12:08] [debug] Long callback execution detected (hang or performance issue)
+[11:12:08] [debug] AMX backtrace:
+[11:12:08] [debug] #0 001556a4 in public Query_LoadFurniture (labels=0) at modules\properties\property_furniture.inc:160
+[11:12:08] [SERVER]: 17 tree were loaded from "storylines" database...
+[11:12:08] [SERVER]: 6 gates were loaded from "storylines" database...
+[11:12:08] [SERVER]: 4 court were loaded from "storylines" database...
+[11:12:08] [SERVER]: 4 entrance were loaded from "storylines" database...
+[11:12:08] [SERVER]: No compensation were loaded from "storylines" database...
+[11:12:08] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:12:08] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:12:17] [connection] incoming connection: 127.0.0.1:54379 id: 0
+[11:12:17] [join] Radeetz has joined the server (0:127.0.0.1)
+[11:12:26] [SERVER]: Ethan Pattersons contacts were loaded from "storylines" database...
+[11:12:26] [SERVER]: Ethan Pattersons ticket were loaded from "storylines" database...
+[11:12:26] [SERVER]: Ethan Pattersons relations were loaded from "storylines" database...
+[11:12:26] [SERVER]: Ethan Pattersons inventory were loaded from "storylines" database...
+[11:12:34] Player [Ethan Pattersons] sent command: /door
+[11:12:40] Player [Ethan Pattersons] sent command: /door
+[11:12:41] Player [Ethan Pattersons] sent command: /door
+[11:13:27] Player [Ethan Pattersons] sent command: /street
+[11:13:30] Player [Ethan Pattersons] sent command: /streets
+[11:14:04] Player [Ethan Pattersons] sent command: /spawncar 560 1 1
+[11:14:44] [debug] Long callback execution detected (hang or performance issue)
+[11:14:44] [debug] AMX backtrace:
+[11:14:44] [debug] #0 00114fec in public OnPlayerUpdateEx () at modules\config\timer.inc:69
+[11:14:45] [debug] Long callback execution detected (hang or performance issue)
+[11:14:45] [debug] AMX backtrace:
+[11:14:45] [debug] #0 00018a58 in Float:pb_percent (Float:x=589.00000, Float:widthorheight=50.00000, Float:max=100.00000, Float:value=97.31000, direction=0) at F:\Radit Files\Storylines-main\pawno\include\progress2.inc:122
+[11:14:45] [debug] #1 00020930 in SetPlayerProgressBarValue (playerid=0, PlayerBar:barid=1, Float:value=97.31000) at F:\Radit Files\Storylines-main\pawno\include\progress2.inc:570
+[11:14:45] [debug] #2 00116444 in public OnPlayerUpdateEx () at modules\config\timer.inc:143
+[11:14:55] Player [Ethan Pattersons] sent command: /revive 0
+[11:15:08] [part] Ethan_Pattersons has left the server (0:1)
+Console input: exit
+[11:15:10] --- Server Shutting Down.
+[11:15:10] [debug] Long callback execution detected (hang or performance issue)
+[11:15:10] [debug] AMX backtrace:
+[11:15:10] [debug] #0 000f9a10 in SaveBusiness (id=5) at modules\config\savemysql.inc:266
+[11:15:10] [debug] #1 000f68e8 in SaveBusinesses () at modules\config\savemysql.inc:32
+[11:15:10] [debug] #2 00255e7c in public PDialog_OnGameModeExit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:306
+[11:15:10] [debug] #3 000131fc in public OnGameModeExit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:855
+[11:15:10] plugin.mysql: Unloading plugin...
+[11:15:10] plugin.mysql: Plugin unloaded.
+[11:15:10] 
+
+[11:15:10]  ===============================
+
+[11:15:10]      sscanf plugin unloaded.    
+
+[11:15:10]  ===============================
+
+[11:15:10] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[11:15:10] [plugin.timerfix] Plugsin successfully unloaded!
+[11:15:10]  PawnPlus v1.5 unloaded
+[11:15:10] ========================
+[11:15:10] = Memory access plugin =
+[11:15:10] =       Made by BigETI =
+[11:15:10] = Unloaded!            =
+[11:15:10] ========================
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[18:37:15] filterscripts = ""  (string)
+[18:37:15] 
+[18:37:15] Server Plugins
+[18:37:15] --------------
+[18:37:15]  Loading plugin: crashdetect
+[18:37:15]   CrashDetect plugin 4.22-1-gcd608b6
+[18:37:15]   Loaded.
+[18:37:15]  Loading plugin: mysql
+[18:37:15]  >> plugin.mysql: R41-4 successfully loaded.
+[18:37:15]   Loaded.
+[18:37:15]  Loading plugin: sscanf
+[18:37:15] 
+
+[18:37:15]  ===============================
+
+[18:37:15]       sscanf plugin loaded.     
+
+[18:37:15]          Version:  2.8.2        
+
+[18:37:15]    (c) 2012 Alex "Y_Less" Cole  
+
+[18:37:15]  ===============================
+
+[18:37:15]   Loaded.
+[18:37:15]  Loading plugin: streamer
+[18:37:15] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[18:37:15]   Loaded.
+[18:37:15]  Loading plugin: timerfix
+[18:37:15]   >> TimerFix v1.4 successfully loaded.
+[18:37:15]   Loaded.
+[18:37:15]  Loading plugin: PawnPlus
+[18:37:15]  PawnPlus v1.5 loaded
+[18:37:15]  Created by IS4
+[18:37:15]   Loaded.
+[18:37:15]  Loading plugin: pawn-memory
+[18:37:15] ========================
+[18:37:15] = Memory access plugin =
+[18:37:15] =       Made by BigETI =
+[18:37:15] = Loaded!              =
+[18:37:15] ========================
+[18:37:15]   Loaded.
+[18:37:15]  Loading plugin: pawnraknet
+[18:37:16] [Pawn.RakNet] plugin v1.6.0 loading...
+[18:37:16] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[18:37:16]   Loaded.
+[18:37:16]  Loaded 8 plugins.
+
+[18:37:16] 
+[18:37:16] Filterscripts
+[18:37:16] ---------------
+[18:37:16]   Loaded 0 filterscripts.
+
+[18:37:16] [DATABASE]: Connection established to 'storylines'...
+[18:37:16] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[18:37:16] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[18:37:16] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[18:37:16] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[18:37:16] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[18:37:16] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[18:37:16] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[18:37:16] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[18:37:16] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[18:37:16] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[18:37:16] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[18:37:16] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[18:37:16] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[18:37:16] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[18:37:16] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[18:37:16] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[18:37:16] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[18:37:16] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[18:37:16] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[18:37:16] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[18:37:16] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[18:37:16] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[18:37:16] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[18:37:16] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[18:37:16] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[18:37:16] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[18:37:16] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[18:37:16] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[18:37:16] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[18:37:17] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[18:37:17] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[18:37:17] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[18:37:17] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[18:37:17] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[18:37:17] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[18:37:17] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[18:37:17] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[18:37:17] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[18:37:17] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[18:37:17] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[18:37:17] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[18:37:17] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[18:37:17] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[18:37:17] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[18:37:17] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[18:37:17] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[18:37:17] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[18:37:17] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[18:37:17] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[18:37:17] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[18:37:17] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[18:37:17] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[18:37:17] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[18:37:17] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[18:37:17] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[18:37:17] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[18:37:17] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[18:37:17] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[18:37:17] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[18:37:17] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[18:37:17] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[18:37:17] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[18:37:17] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[18:37:17] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[18:37:17] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[18:37:17] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[18:37:17] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[18:37:17] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[18:37:17] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[18:37:17] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[18:37:18] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[18:37:18] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[18:37:18] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[18:37:18] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[18:37:18] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[18:37:18] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[18:37:18] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[18:37:18] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[18:37:18] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[18:37:18] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[18:37:18] [debug] Long callback execution detected (hang or performance issue)
+[18:37:18] [debug] AMX backtrace:
+[18:37:18] [debug] #0 000381b0 in InsertObjects () at modules\visuals\enviroment.inc:52
+[18:37:18] [debug] #1 00255058 in public MS_OnGameModeInit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:210
+[18:37:18] [debug] #2 00035764 in public PawnRakNet_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\eSelection.inc:461
+[18:37:18] [debug] #3 000304ac in public PHY_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1153
+[18:37:18] [debug] #4 native CallLocalFunction () in samp-server.exe
+[18:37:18] [debug] #5 00021f20 in public Itter_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\physics.inc:193
+[18:37:18] [debug] #6 native CallLocalFunction () in samp-server.exe
+[18:37:18] [debug] #7 000210d0 in public PDialog_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:637
+[18:37:18] [debug] #8 000131c8 in public SSCANF_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:836
+[18:37:18] [debug] #9 00000c84 in public OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:211
+[18:37:18] Number of vehicle models: 1
+[18:37:18] *** Streamer Plugin: Streamer_SetFloatData: Invalid ID specified.
+[18:37:18] [SERVER]: 1 trashcan were loaded from "storylines" database...
+[18:37:18] [SERVER]: 17 tree were loaded from "storylines" database...
+[18:37:18] [SERVER]: 6 gates were loaded from "storylines" database...
+[18:37:18] [debug] Long callback execution detected (hang or performance issue)
+[18:37:18] [debug] AMX backtrace:
+[18:37:18] [debug] #0 00155b34 in public Query_LoadFurniture (labels=0) at modules\properties\property_furniture.inc:170
+[18:37:18] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[18:37:18] [SERVER]: 4 entrance were loaded from "storylines" database...
+[18:37:18] [SERVER]: 4 court were loaded from "storylines" database...
+[18:37:18] [SERVER]: No compensation were loaded from "storylines" database...
+[18:37:18] [debug] Long callback execution detected (hang or performance issue)
+[18:37:18] [debug] AMX backtrace:
+[18:37:18] [debug] #0 0013290c in BusinessRefresh (businessid=10) at modules\business\business.inc:229
+[18:37:18] [debug] #1 00138594 in public Query_LoadBusinesses () at modules\business\business.inc:643
+[18:37:18] [SERVER]: 11 businesses were loaded from "storylines" database...
+[18:37:18] [SERVER]: 2 properties were loaded from "storylines" database...
+[18:37:18] [SERVER]: 2 factions were loaded from "storylines" database...
+[18:37:18] [SERVER]: 0 property storage were loaded from "storylines" database...
+[18:37:18] [SERVER]: 0 property storage were loaded from "storylines" database...
+[18:38:09] [connection] incoming connection: 127.0.0.1:56431 id: 0
+[18:38:09] [join] Radeetz has joined the server (0:127.0.0.1)
+[18:38:16] [SERVER]: Ethan Pattersons inventory were loaded from "storylines" database...
+[18:38:16] [SERVER]: Ethan Pattersons contacts were loaded from "storylines" database...
+[18:38:16] [SERVER]: Ethan Pattersons relations were loaded from "storylines" database...
+[18:38:16] [SERVER]: Ethan Pattersons ticket were loaded from "storylines" database...
+[18:38:20] Player [Ethan Pattersons] sent command: /mycars
+[18:38:22] [debug] Long callback execution detected (hang or performance issue)
+[18:38:22] [debug] AMX backtrace:
+[18:38:22] [debug] #0 00100930 in public ResetPlayer (playerid=0) at modules\config\player.inc:191
+[18:38:22] [debug] #1 00256b58 in public MS_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:404
+[18:38:22] [debug] #2 00035980 in public Itter_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\eSelection.inc:479
+[18:38:22] [debug] #3 native CallLocalFunction () in samp-server.exe
+[18:38:22] [debug] #4 00021654 in public TIMERFIX_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:735
+[18:38:22] [debug] #5 00020d8c in public ppb_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\timerfix.inc:188
+[18:38:22] [debug] #6 0001fed8 in public PDialog_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\progress2.inc:405
+[18:38:22] [debug] #7 000133e0 in public SSCANF_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:935
+[18:38:22] [debug] #8 00000dc4 in public OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:266
+[18:38:22] [part] Ethan_Pattersons has left the server (0:1)
+[18:38:54] [connection] incoming connection: 127.0.0.1:65261 id: 0
+[18:38:54] [join] Radeetz has joined the server (0:127.0.0.1)
+[18:38:59] [SERVER]: Ethan Pattersons contacts were loaded from "storylines" database...
+[18:38:59] [SERVER]: Ethan Pattersons relations were loaded from "storylines" database...
+[18:38:59] [SERVER]: Ethan Pattersons ticket were loaded from "storylines" database...
+[18:38:59] [SERVER]: Ethan Pattersons inventory were loaded from "storylines" database...
+[18:39:03] Player [Ethan Pattersons] sent command: /mycars
+[18:39:05] [part] Ethan_Pattersons has left the server (0:1)
+[18:39:19] [connection] incoming connection: 127.0.0.1:58983 id: 0
+[18:39:19] [join] Blixkyyy has joined the server (0:127.0.0.1)
+[18:39:33] [SERVER]: Bryan Desean inventory were loaded from "storylines" database...
+[18:39:33] [SERVER]: Bryan Desean relations were loaded from "storylines" database...
+[18:39:33] [SERVER]: Bryan Desean contacts were loaded from "storylines" database...
+[18:39:33] [SERVER]: Bryan Desean ticket were loaded from "storylines" database...
+[18:39:36] Player [Bryan Desean] sent command: /mycars
+[18:39:37] Player [Bryan Desean] sent command: /mycars
+[18:39:38] Player [Bryan Desean] sent command: /mycars
+[18:39:39] Player [Bryan Desean] sent command: /mycars
+[18:39:40] Player [Bryan Desean] sent command: /mycars
+[18:39:41] Player [Bryan Desean] sent command: /mycars
+[18:39:43] Player [Bryan Desean] sent command: /createpcar
+[18:41:48] Player [Bryan Desean] sent command: /createpcar
+[18:42:00] Player [Bryan Desean] sent command: /createpcar 0 422 1 1
+[18:42:02] Player [Bryan Desean] sent command: /mycars
+[18:42:04] [SERVER]: Bobcat vehicle storage were loaded from "storylines" database...
+[18:42:07] [part] Bryan_Desean has left the server (0:1)
+[18:42:21] [connection] incoming connection: 127.0.0.1:63474 id: 0
+[18:42:21] [join] Radeetz has joined the server (0:127.0.0.1)
+[18:42:27] [SERVER]: Ethan Pattersons inventory were loaded from "storylines" database...
+[18:42:27] [SERVER]: Ethan Pattersons contacts were loaded from "storylines" database...
+[18:42:27] [SERVER]: Ethan Pattersons relations were loaded from "storylines" database...
+[18:42:27] [SERVER]: Ethan Pattersons ticket were loaded from "storylines" database...
+[18:42:29] Player [Ethan Pattersons] sent command: /mycars
+[18:42:32] Player [Ethan Pattersons] sent command: /mycars
+[18:42:35] [part] Ethan_Pattersons has left the server (0:1)
+[18:42:50] [connection] incoming connection: 127.0.0.1:61260 id: 0
+[18:42:50] [join] Blixkyyy has joined the server (0:127.0.0.1)
+[18:42:57] [SERVER]: Bryan Desean contacts were loaded from "storylines" database...
+[18:42:57] [SERVER]: Bryan Desean relations were loaded from "storylines" database...
+[18:42:57] [SERVER]: Bryan Desean inventory were loaded from "storylines" database...
+[18:42:57] [SERVER]: Bryan Desean ticket were loaded from "storylines" database...
+[18:43:01] Player [Bryan Desean] sent command: /mycars
+[18:43:11] Player [Bryan Desean] sent command: /despawncar
+[18:43:12] Player [Bryan Desean] sent command: /despawncar
+[18:43:15] Player [Bryan Desean] sent command: /cardespawn
+[18:43:25] Player [Bryan Desean] sent command: /mycars
+[18:43:26] [SERVER]: Bobcat vehicle storage were loaded from "storylines" database...
+[18:43:30] [part] Bryan_Desean has left the server (0:1)
+[18:43:33] [debug] Long callback execution detected (hang or performance issue)
+[18:43:33] [debug] AMX backtrace:
+[18:43:33] [debug] #0 0017855c in TotalledCheck (vehicleid=5) at modules\vehicles\vehicles_timer.inc:78
+[18:43:33] [debug] #1 00178b90 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:43:37] [debug] Long callback execution detected (hang or performance issue)
+[18:43:37] [debug] AMX backtrace:
+[18:43:37] [debug] #0 000f7df8 in SaveVehicle (vehicleid=5) at modules\config\savemysql.inc:142
+[18:43:37] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:44:11] [debug] Long callback execution detected (hang or performance issue)
+[18:44:11] [debug] AMX backtrace:
+[18:44:11] [debug] #0 0017855c in TotalledCheck (vehicleid=5) at modules\vehicles\vehicles_timer.inc:78
+[18:44:11] [debug] #1 00178b90 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:44:51] [connection] incoming connection: 127.0.0.1:50148 id: 0
+[18:44:52] [join] Radeetz has joined the server (0:127.0.0.1)
+[18:45:02] [SERVER]: Ethan Pattersons inventory were loaded from "storylines" database...
+[18:45:02] [SERVER]: Ethan Pattersons contacts were loaded from "storylines" database...
+[18:45:02] [SERVER]: Ethan Pattersons ticket were loaded from "storylines" database...
+[18:45:02] [SERVER]: Ethan Pattersons relations were loaded from "storylines" database...
+[18:45:05] Player [Ethan Pattersons] sent command: /mycars
+[18:45:06] [debug] Long callback execution detected (hang or performance issue)
+[18:45:06] [debug] AMX backtrace:
+[18:45:06] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:45:06] [debug] #1 00166d7c in SetVehicleHealthEx (vehicleid=6, Float:VehicleHealth=1000.00000) at modules\vehicles\vehicles.inc:721
+[18:45:06] [debug] #2 00164784 in public Query_LoadPrivateVehicle (playerid=0) at modules\vehicles\vehicles.inc:523
+[18:45:06] [SERVER]: Bobcat vehicle storage were loaded from "storylines" database...
+[18:45:11] Player [Ethan Pattersons] sent command: /gotocar 6
+[18:45:12] [debug] Long callback execution detected (hang or performance issue)
+[18:45:12] [debug] AMX backtrace:
+[18:45:12] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:45:12] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:45:13] [debug] Long callback execution detected (hang or performance issue)
+[18:45:13] [debug] AMX backtrace:
+[18:45:13] [debug] #0 000f7c38 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:134
+[18:45:13] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:45:13] Player [Ethan Pattersons] sent command: /gotocar 5
+[18:45:17] Player [Ethan Pattersons] sent command: /carfind
+[18:45:18] [debug] Long callback execution detected (hang or performance issue)
+[18:45:18] [debug] AMX backtrace:
+[18:45:18] [debug] #0 000f7e74 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:144
+[18:45:18] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:45:19] [debug] Long callback execution detected (hang or performance issue)
+[18:45:19] [debug] AMX backtrace:
+[18:45:19] [debug] #0 000f7df8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:142
+[18:45:19] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:45:20] [debug] Long callback execution detected (hang or performance issue)
+[18:45:20] [debug] AMX backtrace:
+[18:45:20] [debug] #0 000f7bc8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:132
+[18:45:20] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:45:21] [debug] Long callback execution detected (hang or performance issue)
+[18:45:21] [debug] AMX backtrace:
+[18:45:21] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:45:21] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:45:21] [part] Ethan_Pattersons has left the server (0:1)
+[18:45:29] [connection] incoming connection: 127.0.0.1:55585 id: 0
+[18:45:29] [join] Radeetz has joined the server (0:127.0.0.1)
+[18:45:34] [debug] Long callback execution detected (hang or performance issue)
+[18:45:34] [debug] AMX backtrace:
+[18:45:34] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:45:34] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:45:36] [debug] Long callback execution detected (hang or performance issue)
+[18:45:36] [debug] AMX backtrace:
+[18:45:36] [debug] #0 000f78b8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:121
+[18:45:36] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:45:37] [debug] Long callback execution detected (hang or performance issue)
+[18:45:37] [debug] AMX backtrace:
+[18:45:37] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:45:37] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:45:44] [SERVER]: Ethan Pattersons inventory were loaded from "storylines" database...
+[18:45:44] [SERVER]: Ethan Pattersons contacts were loaded from "storylines" database...
+[18:45:44] [SERVER]: Ethan Pattersons relations were loaded from "storylines" database...
+[18:45:44] [SERVER]: Ethan Pattersons ticket were loaded from "storylines" database...
+[18:45:49] Player [Ethan Pattersons] sent command: /carfind
+[18:45:51] [debug] Long callback execution detected (hang or performance issue)
+[18:45:51] [debug] AMX backtrace:
+[18:45:51] [debug] #0 000f7df8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:142
+[18:45:51] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:06] [part] Ethan_Pattersons has left the server (0:1)
+[18:46:07] [debug] Long callback execution detected (hang or performance issue)
+[18:46:07] [debug] AMX backtrace:
+[18:46:07] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:46:07] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:10] [debug] Long callback execution detected (hang or performance issue)
+[18:46:10] [debug] AMX backtrace:
+[18:46:10] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:46:10] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:14] [debug] Long callback execution detected (hang or performance issue)
+[18:46:14] [debug] AMX backtrace:
+[18:46:14] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:46:14] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:18] [debug] Long callback execution detected (hang or performance issue)
+[18:46:18] [debug] AMX backtrace:
+[18:46:18] [debug] #0 000f73ec in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:103
+[18:46:18] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:20] [debug] Long callback execution detected (hang or performance issue)
+[18:46:20] [debug] AMX backtrace:
+[18:46:20] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:46:20] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:21] [debug] Long callback execution detected (hang or performance issue)
+[18:46:21] [debug] AMX backtrace:
+[18:46:21] [debug] #0 000f78b8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:121
+[18:46:21] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:27] [debug] Long callback execution detected (hang or performance issue)
+[18:46:27] [debug] AMX backtrace:
+[18:46:27] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:46:27] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:28] [debug] Long callback execution detected (hang or performance issue)
+[18:46:28] [debug] AMX backtrace:
+[18:46:28] [debug] #0 000f78b8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:121
+[18:46:28] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:31] [debug] Long callback execution detected (hang or performance issue)
+[18:46:31] [debug] AMX backtrace:
+[18:46:31] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:46:31] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:32] [debug] Long callback execution detected (hang or performance issue)
+[18:46:32] [debug] AMX backtrace:
+[18:46:32] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=5) at modules\config\savemysql.inc:146
+[18:46:32] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:34] [debug] Long callback execution detected (hang or performance issue)
+[18:46:34] [debug] AMX backtrace:
+[18:46:34] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:46:34] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:35] [debug] Long callback execution detected (hang or performance issue)
+[18:46:35] [debug] AMX backtrace:
+[18:46:35] [debug] #0 000f78b8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:121
+[18:46:35] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:39] [debug] Long callback execution detected (hang or performance issue)
+[18:46:39] [debug] AMX backtrace:
+[18:46:39] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=5) at modules\config\savemysql.inc:146
+[18:46:39] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:41] [debug] Long callback execution detected (hang or performance issue)
+[18:46:41] [debug] AMX backtrace:
+[18:46:41] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:46:41] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:42] [debug] Long callback execution detected (hang or performance issue)
+[18:46:42] [debug] AMX backtrace:
+[18:46:42] [debug] #0 000f7bc8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:132
+[18:46:42] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:45] [debug] Long callback execution detected (hang or performance issue)
+[18:46:45] [debug] AMX backtrace:
+[18:46:45] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:46:45] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:48] [debug] Long callback execution detected (hang or performance issue)
+[18:46:48] [debug] AMX backtrace:
+[18:46:48] [debug] #0 000f7e74 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:144
+[18:46:48] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:52] [debug] Long callback execution detected (hang or performance issue)
+[18:46:52] [debug] AMX backtrace:
+[18:46:52] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:46:52] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:46:53] [debug] Long callback execution detected (hang or performance issue)
+[18:46:53] [debug] AMX backtrace:
+[18:46:53] [debug] #0 000f7bc8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:132
+[18:46:53] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:03] [debug] Long callback execution detected (hang or performance issue)
+[18:47:03] [debug] AMX backtrace:
+[18:47:03] [debug] #0 000f73ec in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:103
+[18:47:03] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:04] [debug] Long callback execution detected (hang or performance issue)
+[18:47:04] [debug] AMX backtrace:
+[18:47:04] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=5) at modules\config\savemysql.inc:150
+[18:47:04] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:05] [debug] Long callback execution detected (hang or performance issue)
+[18:47:05] [debug] AMX backtrace:
+[18:47:05] [debug] #0 000f7df8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:142
+[18:47:05] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:06] [debug] Long callback execution detected (hang or performance issue)
+[18:47:06] [debug] AMX backtrace:
+[18:47:06] [debug] #0 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:10] [debug] Long callback execution detected (hang or performance issue)
+[18:47:10] [debug] AMX backtrace:
+[18:47:10] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:47:10] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:11] [debug] Long callback execution detected (hang or performance issue)
+[18:47:11] [debug] AMX backtrace:
+[18:47:11] [debug] #0 0017894c in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:102
+[18:47:13] [debug] Long callback execution detected (hang or performance issue)
+[18:47:13] [debug] AMX backtrace:
+[18:47:13] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:47:13] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:27] [debug] Long callback execution detected (hang or performance issue)
+[18:47:27] [debug] AMX backtrace:
+[18:47:27] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:47:27] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:30] [debug] Long callback execution detected (hang or performance issue)
+[18:47:30] [debug] AMX backtrace:
+[18:47:30] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:47:30] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:48] [debug] Long callback execution detected (hang or performance issue)
+[18:47:48] [debug] AMX backtrace:
+[18:47:48] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:47:48] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:51] [debug] Long callback execution detected (hang or performance issue)
+[18:47:51] [debug] AMX backtrace:
+[18:47:51] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:47:51] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:52] [debug] Long callback execution detected (hang or performance issue)
+[18:47:52] [debug] AMX backtrace:
+[18:47:52] [debug] #0 000f78b8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:121
+[18:47:52] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:55] [debug] Long callback execution detected (hang or performance issue)
+[18:47:55] [debug] AMX backtrace:
+[18:47:55] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:47:55] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:56] [debug] Long callback execution detected (hang or performance issue)
+[18:47:56] [debug] AMX backtrace:
+[18:47:56] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=5) at modules\config\savemysql.inc:146
+[18:47:56] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:47:58] [debug] Long callback execution detected (hang or performance issue)
+[18:47:58] [debug] AMX backtrace:
+[18:47:58] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:47:58] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:05] [debug] Long callback execution detected (hang or performance issue)
+[18:48:05] [debug] AMX backtrace:
+[18:48:05] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:48:05] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:13] [debug] Long callback execution detected (hang or performance issue)
+[18:48:13] [debug] AMX backtrace:
+[18:48:13] [debug] #0 000f78b8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:121
+[18:48:13] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:16] [debug] Long callback execution detected (hang or performance issue)
+[18:48:16] [debug] AMX backtrace:
+[18:48:16] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:48:16] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:19] [debug] Long callback execution detected (hang or performance issue)
+[18:48:19] [debug] AMX backtrace:
+[18:48:19] [debug] #0 000f7df8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:142
+[18:48:19] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:26] [debug] Long callback execution detected (hang or performance issue)
+[18:48:26] [debug] AMX backtrace:
+[18:48:26] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:48:26] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:29] [debug] Long callback execution detected (hang or performance issue)
+[18:48:29] [debug] AMX backtrace:
+[18:48:29] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:48:29] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:33] [debug] Long callback execution detected (hang or performance issue)
+[18:48:33] [debug] AMX backtrace:
+[18:48:33] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:48:33] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:36] [debug] Long callback execution detected (hang or performance issue)
+[18:48:36] [debug] AMX backtrace:
+[18:48:36] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:48:36] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:40] [debug] Long callback execution detected (hang or performance issue)
+[18:48:40] [debug] AMX backtrace:
+[18:48:40] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:48:40] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:43] [debug] Long callback execution detected (hang or performance issue)
+[18:48:43] [debug] AMX backtrace:
+[18:48:43] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:48:43] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:47] [debug] Long callback execution detected (hang or performance issue)
+[18:48:47] [debug] AMX backtrace:
+[18:48:47] [debug] #0 000f7fb8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[18:48:47] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:48:50] [debug] Long callback execution detected (hang or performance issue)
+[18:48:50] [debug] AMX backtrace:
+[18:48:50] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:48:50] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[18:49:04] [debug] Long callback execution detected (hang or performance issue)
+[18:49:04] [debug] AMX backtrace:
+[18:49:04] [debug] #0 000f7eb0 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[18:49:04] [debug] #1 00178b70 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+Console input: exit
+[18:49:10] --- Server Shutting Down.
+[18:49:10] [debug] Long callback execution detected (hang or performance issue)
+[18:49:10] [debug] AMX backtrace:
+[18:49:10] [debug] #0 000f9b18 in SaveBusiness (id=5) at modules\config\savemysql.inc:270
+[18:49:10] [debug] #1 000f68e8 in SaveBusinesses () at modules\config\savemysql.inc:32
+[18:49:10] [debug] #2 002560c8 in public PDialog_OnGameModeExit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:306
+[18:49:10] [debug] #3 000131fc in public OnGameModeExit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:855
+[18:49:11] plugin.mysql: Unloading plugin...
+[18:49:11] plugin.mysql: Plugin unloaded.
+[18:49:11] 
+
+[18:49:11]  ===============================
+
+[18:49:11]      sscanf plugin unloaded.    
+
+[18:49:11]  ===============================
+
+[18:49:11] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[18:49:11] [plugin.timerfix] Plugsin successfully unloaded!
+[18:49:11]  PawnPlus v1.5 unloaded
+[18:49:11] ========================
+[18:49:11] = Memory access plugin =
+[18:49:11] =       Made by BigETI =
+[18:49:11] = Unloaded!            =
+[18:49:11] ========================

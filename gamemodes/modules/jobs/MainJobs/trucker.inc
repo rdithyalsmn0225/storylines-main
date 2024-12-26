@@ -265,11 +265,8 @@ CMD:sellcargo(playerid, params[])
 	}
 
 	// Secondary Sell:
-	if((id = IsPlayerNearBusiness(playerid)) != 0)
+	if((id = IsPlayerNearBusiness(playerid)) != 0 && !Inventory_Count(playerid, "Appliances Cargo"))
 	{
-		if(!Inventory_Count(playerid, "Appliances Cargo"))
-			return SendErrorMessage(playerid, "You are not carrying your cargo.");
-
 		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GENERAL)
 			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");
 
@@ -297,11 +294,8 @@ CMD:sellcargo(playerid, params[])
 		}
 		SendJobsMessage(playerid, "[Trucker] You has sell cargo for $%s.", FormatMoney(Cents));
 	}
-	if((id = IsPlayerNearBusiness(playerid)) != 0)
+	if((id = IsPlayerNearBusiness(playerid)) != 0 && !Inventory_Count(playerid, "Clothes Cargo"))
 	{
-		if(!Inventory_Count(playerid, "Clothes Cargo"))
-			return SendErrorMessage(playerid, "You are not carrying your cargo.");
-
 		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLOTHES)
 			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");
 
@@ -327,11 +321,8 @@ CMD:sellcargo(playerid, params[])
 		}
 		SendJobsMessage(playerid, "[Trucker] You has sell cargo for $%s.", FormatMoney(Cents));
 	}
-	if((id = IsPlayerNearBusiness(playerid)) != 0)
+	if((id = IsPlayerNearBusiness(playerid)) != 0 && !Inventory_Count(playerid, "Foods Cargo"))
 	{
-		if(!Inventory_Count(playerid, "Foods Cargo"))
-			return SendErrorMessage(playerid, "You are not carrying your cargo.");
-
 		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_DINNER && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BAR && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLUB)
 			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");
 

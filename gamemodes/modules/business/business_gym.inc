@@ -96,7 +96,7 @@ stock IsPlayerUsingMachine(playerid, type)
         case GYM_BENCH: //Bench
         {
             ApplyAnimation(playerid, "benchpress", "gym_bp_down", 4.1, 0, 0, 0, 1, 0, 1);
-            SetPlayerAttachedObject(playerid, ATTACH_ANIMS, -2504, 6, 0.0, 0.0, -0.1);
+            SetPlayerAttachedObject(playerid, ATTACH_HAND, -2504, 6, 0.0, 0.0, -0.1);
             
             PlayerGymMachine[playerid] = GYM_BENCH;
             PlayerPointGym[playerid] = 10.0;
@@ -349,7 +349,7 @@ stock IsPlayerUsingDumbell(playerid, businessid, area)
 			SetPlayerFacingAngle(playerid, 270);
 
             BusinessInfo[businessid][E_BUSINESS_DUMBELL] = true;
-            ShowHeaderMessage(playerid, "GYM", "To lift the dumbbells, use SPACE rapidly.");
+            ShowHeaderMessage(playerid, "GYM", "To lift the dumbbells, use ALT rapidly.");
 
             ApplyAnimation(playerid, "freeweights", "gym_free_down", 4.1, 0, 0, 0, 0, 0, 1);
 
@@ -363,7 +363,7 @@ stock IsPlayerUsingDumbell(playerid, businessid, area)
 
 			SetPlayerPos(playerid, 653.0922,-1869.6189,5.5537);
 			SetPlayerFacingAngle(playerid, 270);
-            ShowHeaderMessage(playerid, "GYM", "To lift the dumbbells, use SPACE rapidly.");
+            ShowHeaderMessage(playerid, "GYM", "To lift the dumbbells, use ALT rapidly.");
 
             ApplyAnimation(playerid, "freeweights", "gym_free_down", 4.1, 0, 0, 0, 0, 0, 1);
 
@@ -398,7 +398,7 @@ stock IsPlayerUsingTreadMill(playerid, businessid, area)
 			SetPlayerFacingAngle(playerid, 180);
 
             BusinessInfo[businessid][E_BUSINESS_TREADMILL] = true;
-            ShowHeaderMessage(playerid, "GYM", "To begin running, use SPACE rapidly. Do not allow your power bar to empty or you will fall off the treadmill.");
+            ShowHeaderMessage(playerid, "GYM", "To begin running, use ALT rapidly. Do not allow your power bar to empty or you will fall off the treadmill.");
 
             ApplyAnimation(playerid, "gymnasium", "gym_tread_alt", 4.1, 0, 0, 0, 0, 0, 1);	
 
@@ -412,7 +412,7 @@ stock IsPlayerUsingTreadMill(playerid, businessid, area)
 
 			SetPlayerPos(playerid,  661.3871, -1869.5911, 5.1775);
 			SetPlayerFacingAngle(playerid, 90);
-            ShowHeaderMessage(playerid, "GYM", "To begin running, use SPACE rapidly. Do not allow your power bar to empty or you will fall off the treadmill.");
+            ShowHeaderMessage(playerid, "GYM", "To begin running, use ALT rapidly. Do not allow your power bar to empty or you will fall off the treadmill.");
 
             ApplyAnimation(playerid, "gymnasium", "gym_tread_alt", 4.1, 0, 0, 0, 0, 0, 1);	
 
@@ -446,7 +446,7 @@ stock IsPlayerUsingBycle(playerid, businessid, area)
 			SetPlayerFacingAngle(playerid, 90);
 
             BusinessInfo[businessid][E_BUSINESS_BYCICLE] = true;
-            ShowHeaderMessage(playerid, "GYM", "Use SPACE rapidly to begin pedalling the bicycle.");
+            ShowHeaderMessage(playerid, "GYM", "Use ALT rapidly to begin pedalling the bicycle.");
 
             PlayerPointGym[playerid] = 10.0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Bicycle");
@@ -458,7 +458,7 @@ stock IsPlayerUsingBycle(playerid, businessid, area)
 
 			SetPlayerPos(playerid,  659.8035,-1863.9368,5.4609);
 			SetPlayerFacingAngle(playerid, 180);
-            ShowHeaderMessage(playerid, "GYM", "Use SPACE rapidly to begin pedalling the bicycle.");
+            ShowHeaderMessage(playerid, "GYM", "Use ALT rapidly to begin pedalling the bicycle.");
         
             PlayerPointGym[playerid] = 10.0;
             ShowGameBar(playerid, PlayerPointGym[playerid], "Bicycle");

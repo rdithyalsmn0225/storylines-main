@@ -703,8 +703,8 @@ stock GetStreetName(Float:fX, Float:fY)
     new
         name[32] = "San Andreas";
 
-    for (new i = 0; i != sizeof(g_arrZoneData); i ++) if((fX >= Streets[i][STREET_MINX] && fX <= Streets[i][STREET_MAXX]) && (fY >= Streets[i][STREET_MINY] && fY <= Streets[i][STREET_MAXY])) {
-        strunpack(name, g_arrZoneData[i][e_ZoneName]);
+    for (new i = 0; i != sizeof(Streets); i ++) if((fX >= Streets[i][STREET_MINX] && fX <= Streets[i][STREET_MAXX]) && (fY >= Streets[i][STREET_MINY] && fY <= Streets[i][STREET_MAXY])) {
+        strunpack(name, Streets[i][STREET_NAME]);
 
         break;
     }

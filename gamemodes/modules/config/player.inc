@@ -181,6 +181,7 @@ function:ResetPlayer(playerid)
 	for (new i = 0; i < 4; i ++) {
 	    characterLister[playerid][i][0] = 0;
 	}
+
 	for (new i = 0; i != MAX_INVENTORY; i ++) {
 	    InventoryInfo[playerid][i][E_INVENTORY_EXISTS] = false;
 	    InventoryInfo[playerid][i][E_INVENTORY_MODEL] = 0;
@@ -239,7 +240,9 @@ function:ResetPlayer(playerid)
 	HeaderBar[playerid] = INVALID_PLAYER_BAR_ID;
 	fuelbar[playerid] = INVALID_PLAYER_BAR_ID;
 	dmgbar[playerid] = INVALID_PLAYER_BAR_ID;
+	
 	//Master accounts:
+	AccountInfo[playerid][E_MASTERS_DBID] = 0;
 	AccountInfo[playerid][E_MASTERS_LOGGED] = false; 
 	
 	playerLogin[playerid] = 0; 
@@ -259,6 +262,8 @@ function:ResetPlayer(playerid)
 	format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, "");
 	
 	//Player characters:
+	PlayerInfo[playerid][E_CHARACTER_DBID] = 0; 
+	PlayerInfo[playerid][E_CHARACTER_ADMIN] = 0;
 	PlayerInfo[playerid][E_CHARACTER_ADMINDUTY] = false; 
 	
 	PlayerInfo[playerid][E_CHARACTER_PHONEOFF] = false; 
@@ -268,6 +273,8 @@ function:ResetPlayer(playerid)
 
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = INVALID_PLAYER_ID;
 	
+	PlayerInfo[playerid][E_CHARACTER_FACTION] = 0;
+	PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] = 0;
 	PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE] = 0;
 	PlayerInfo[playerid][E_CHARACTER_FACTIONINVITED] = INVALID_PLAYER_ID;
 
@@ -275,6 +282,10 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_TAXIFARE] = 0;
 	PlayerInfo[playerid][E_CHARACTER_TAXITIMER] = 0;
 	PlayerInfo[playerid][E_CHARACTER_TAXIPLAYER] = INVALID_PLAYER_ID;
+
+	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = false;
+	PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = INVALID_VEHICLE_ID;
+	PlayerInfo[playerid][E_CHARACTER_DUPLICATEKEY] = INVALID_VEHICLE_ID;
 
 	PlayerInfo[playerid][E_CHARACTER_POLICEDUTY] = false;
 	PlayerInfo[playerid][E_CHARACTER_MEDICDUTY] = false;

@@ -143,10 +143,10 @@ CMD:cardespawn(playerid, params[])
 	VehicleInfo[vehicleid][E_VEHICLE_POS][2] = z;
 	VehicleInfo[vehicleid][E_VEHICLE_POS][3] = a;
 	VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = vehicle_health;
+	
+	SendVehicleMessage(playerid, "[VEHICLE] You parked your %s.", ReturnVehicleName(vehicleid));
 	ResetVehicleVars(vehicleid);
 	DestroyVehicle(vehicleid); 
-		
-	SendVehicleMessage(playerid, "[VEHICLE] You parked your %s.", ReturnVehicleName(vehicleid));
     return 1;
 }
 
