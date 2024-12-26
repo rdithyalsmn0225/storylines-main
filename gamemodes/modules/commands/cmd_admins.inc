@@ -12,7 +12,7 @@ CMD:ahelp(playerid, params[])
 		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /aduty, /forumname, /goto, /gethere, /bring, /a (achat), /showmain, /kick, /(o)ajail,"); 
 		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /rjail, /rprison, /setint, /setvw, /skin, /sethp, /setar, /reports, /ar (accept), /dr (disregard),"); 
 		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /slap, /mute, /freeze, /unfreeze, /spec, /specoff, /stats (id), /gotols, /respawncar, /respawnstatic,"); 
-		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /gotocar, /getcar, /listmasks, /aooc, /revive.");
+		SendClientMessage(playerid, COLOR_ORANGE, "Helper: /gotocar, /maskid, /getcar, /aooc, /revive.");
 	}
 	
 	if(IsPlayerAdmins(playerid) >= 2)
@@ -888,6 +888,25 @@ CMD:gotols(playerid, params[])
 	
 	SendTeleportMessage(playerid);
 	return 1;
+}
+
+CMD:maskid(playerid, params[]) 
+{
+	if(!IsPlayerAdmins(playerid))
+		return SendUnauthMessage(playerid);
+
+	new targetid;
+
+	if (sscanf(params, "k<player>", targetid))
+		return SendUsageMessage(playerid, "/maskid [playerid]");
+
+	if(!IsPlayerConnected(targetid))
+		return SendErrorMessage(playerid, "Target isn't connected.");
+
+	new string [96];
+	format ( string, sizeof ( string ), "(%d) %s's mask ID is %d.", targetid, Account [ targetid ] [ E_PLAYER_ACCOUNT_NAME ], GetPlayerMaskID(targetid ) ) ;
+	SendClientMessage(playerid, COLOR_YELLOW, string);
+	return true;
 }
 
 CMD:respawncar(playerid, params[])
