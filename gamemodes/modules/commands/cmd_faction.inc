@@ -278,6 +278,9 @@ CMD:handcuff(playerid, params[])
 		
 	if(!IsPlayerNearPlayer(playerid, playerb, 5.0))
 		return SendErrorMessage(playerid, "You aren't near that player.");
+
+	if(playerb == playerid)
+		return SendErrorMessage(playerid, "You can't handcuff your self bitch ass nigga");
 		
 	if(PlayerInfo[playerb][E_CHARACTER_HANDCUFF])
 		return SendErrorMessage(playerid, "That player's already handcuffed."); 
@@ -572,9 +575,6 @@ CMD:tazer(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_POLICEGUN] = false;
 		PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 0;
 		PlayerInfo[playerid][E_CHARACTER_POLICEAMMO] = 0;
-		GivePlayerWeapon(playerid, 3, 1);
-		GivePlayerWeapon(playerid, WEAPON_CAMERA, 10);
-		GivePlayerWeapon(playerid, WEAPON_DEAGLE, 100);
 	}
 	return 1; 
 }
@@ -600,9 +600,6 @@ CMD:riotgun(playerid, params[])
 		PlayerInfo[playerid][E_CHARACTER_POLICEGUN] = false;
 		PlayerInfo[playerid][E_CHARACTER_WEAPONTYPE] = 0;
 		PlayerInfo[playerid][E_CHARACTER_POLICEAMMO] = 0;
-		GivePlayerWeapon(playerid, 3, 1);
-		GivePlayerWeapon(playerid, WEAPON_CAMERA, 10);
-		GivePlayerWeapon(playerid, WEAPON_DEAGLE, 100);
 	}
 	return 1; 
 }

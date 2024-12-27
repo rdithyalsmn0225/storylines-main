@@ -265,7 +265,7 @@ CMD:sellcargo(playerid, params[])
 	}
 
 	// Secondary Sell:
-	if((id = IsPlayerNearBusiness(playerid)) != 0 && !Inventory_Count(playerid, "Appliances Cargo"))
+	if((id = IsPlayerNearBusiness(playerid)) != 0 && Inventory_Count(playerid, "Appliances Cargo"))
 	{
 		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_GENERAL)
 			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");
@@ -294,7 +294,7 @@ CMD:sellcargo(playerid, params[])
 		}
 		SendJobsMessage(playerid, "[Trucker] You has sell cargo for $%s.", FormatMoney(Cents));
 	}
-	if((id = IsPlayerNearBusiness(playerid)) != 0 && !Inventory_Count(playerid, "Clothes Cargo"))
+	if((id = IsPlayerNearBusiness(playerid)) != 0 && Inventory_Count(playerid, "Clothes Cargo"))
 	{
 		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLOTHES)
 			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");
@@ -305,7 +305,7 @@ CMD:sellcargo(playerid, params[])
 		Inventory_Remove(playerid, "Clothes Cargo", 1);
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_NONE);
 		RemovePlayerAttachedObject(playerid, ATTACH_CARGO);
-		new Cents = floatround(IndustryInfo[5][Price] *2 * 100, floatround_round);
+		new Cents = floatround(IndustryInfo[5][Price] * 3 * 100, floatround_round);
 
 	    GiveMoney(playerid, Cents);
 
@@ -321,7 +321,7 @@ CMD:sellcargo(playerid, params[])
 		}
 		SendJobsMessage(playerid, "[Trucker] You has sell cargo for $%s.", FormatMoney(Cents));
 	}
-	if((id = IsPlayerNearBusiness(playerid)) != 0 && !Inventory_Count(playerid, "Foods Cargo"))
+	if((id = IsPlayerNearBusiness(playerid)) != 0 && Inventory_Count(playerid, "Foods Cargo"))
 	{
 		if(BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_DINNER && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_BAR && BusinessInfo[id][E_BUSINESS_TYPE] != BUSINESS_TYPE_CLUB)
 			return SendErrorMessage(playerid, "This business aren't requesting business or full of products");

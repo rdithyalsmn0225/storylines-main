@@ -790,18 +790,6 @@ enum E_TREE_DATA
 	bool:E_TREE_CUT,
 };
 
-//TRASH
-enum E_TRASH_DATA
-{
-	E_TRASH_DBID,
-	bool:E_TRASH_EXISTS,
-	Float:E_TRASH_POS[4],
-	Text3D:E_TRASH_TEXT3D,
-	E_TRASH_OBJECT,
-	E_TRASH_CAPACITY,
-	E_TRASH_AREA
-};
-
 // CONTACT:
 enum E_CONTACT_DATA 
 {
@@ -968,7 +956,6 @@ new
 	AccountInfo[MAX_PLAYERS][P_MASTER_ACCOUNTS],
 	ReportInfo[100][G_REPORT_INFO], 
 	TreeInfo[MAX_TREES][E_TREE_DATA],
-	TrashInfo[MAX_TRASH][E_TRASH_DATA],
 	playerReport[MAX_PLAYERS][128], 
 	CourtInfo[MAX_COURT][E_COURT_DATA],
 	FactionInfo[MAX_FACTIONS][E_FACTION_INFO], 
@@ -1514,7 +1501,7 @@ new Float:JobPoint[][] =
 	{-1438.6829,-1543.6034,101.7578}, 	//Lumberjack
 	{685.7347,-1421.4628,14.6839}, 		//Taxi Driver
 	{1034.9865,-1027.6021,32.1016}, 	//Mechanic
-	{1529.5608,-1849.4032,13.5469}, 	//Garbageman
+	//{1529.5608,-1849.4032,13.5469}, 	//Garbageman
 	{2748.7725,-2451.0012,13.6484},  	//Dockworker
 	{860.7480,-1372.0948,13.5469},		//Sweeper
 	{1696.8093,-1527.8206,13.4835},		//Bus Driver
@@ -2492,7 +2479,7 @@ new const JobLocName[][62] =
 	"Leafy Hollow.co (Job: Lumberjack)",
 	"Yellow Cab.co (Job: Taxi Drivers)",
 	"Autopart's.co (Job: Mechanic)",
-    "Garbage.co (SideJob: Garbageman)",
+    //"Garbage.co (SideJob: Garbageman)",
 	"Dockswork.co (SideJob: Dockworker)",
 	"Sweepers.co (SideJob: Street Cleaner)",
 	"Transit.co (SideJob: Bus Driver)",

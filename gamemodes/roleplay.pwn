@@ -17,10 +17,8 @@
 
 #include <a_samp>
 #include <a_mysql>
-#include <crashdetect>
 #include <streamer>
 #include <sscanf2>
-#include <PreviewModelDialog>
 #include <izcmd>
 #include <progress2>
 #include <timerfix>
@@ -30,6 +28,7 @@
 #include <garageblock>
 #include <eSelection>
 #include <compat>
+#include <PreviewModelDialog>
 
 //Database establisher:
 new MySQL:ourConnection; 
@@ -160,7 +159,6 @@ main ()  {}
 #include "modules\jobs\MainJobs\mechanic.inc"
 #include "modules\jobs\MainJobs\smuggler.inc"
 #include "modules\jobs\SideJobs\fishing.inc"
-#include "modules\jobs\SideJobs\trashmaster.inc"
 #include "modules\jobs\SideJobs\dockworker.inc"
 #include "modules\jobs\SideJobs\sweepers.inc"
 #include "modules\jobs\SideJobs\busdriver.inc"
@@ -679,23 +677,6 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 				}
 				ShowBoxMessage(playerid, str, 5);
 			}
-		}
-	}
-
-	forex(i, MAX_TRASH) if(TrashInfo[i][E_TRASH_EXISTS])
-	{
-		if(areaid == TrashInfo[i][E_TRASH_AREA])
-		{
-			new str[128];
-			if(!TrashInfo[i][E_TRASH_CAPACITY])
-			{
-				format(str, sizeof(str), "Trashcan is empty.");
-			}
-			else
-			{
-				format(str, sizeof(str), "Press '~r~ALT~w~' to collect trash.");
-			}
-			ShowBoxMessage(playerid, str, 5);
 		}
 	}
 	return 1;
@@ -4705,22 +4686,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						SetPlayerCameraLookAt(playerid,510.11267089844, -84.831642150879, 998.86785888672);
 					}
 				}
-			}
-		}
-	}
-	// GARBAGEMAN:
-	if (newkeys & KEY_WALK && !IsPlayerInAnyVehicle(playerid))
-	{
-		if(PlayerInfo[playerid][E_CHARACTER_GARBAGEMAN])
-		{
-			new id = -1;
-        
-			if ((id = IsPlayerNearTrashcan(playerid)) != -1)
-			{ 
-				if(!TrashInfo[id][E_TRASH_CAPACITY])
-        			return SendErrorMessage(playerid, "Trashcan is empty.");
-
-				CollectGarbage(playerid, id);
 			}
 		}
 	}

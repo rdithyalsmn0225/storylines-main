@@ -1018,15 +1018,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				new playerb = PlayerInfo[playerid][E_CHARACTER_MDCSELECT];
 				SetPlayerInPrison(playerb);
-				
-				ResetPlayerWeapons(playerb);
 				SaveCharacter(playerb);
-				RemovePlayerAttachedObject(playerb, 0);
+				ResetVarInventory(playerid);
 				PlayerInfo[playerb][E_CHARACTER_HANDCUFF] = false;
 				SetPlayerSpecialAction(playerb, SPECIAL_ACTION_NONE);
 
 				GiveMoney(playerb, -PlayerInfo[playerid][E_CHARACTER_MDCCHARGE]);
-
 				AddWanted(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], PlayerInfo[playerid][E_CHARACTER_MDCDESC]);
 			}
 		}
@@ -1297,7 +1294,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			        }
 			        case 3:
 			        {
-						new id = -1;
 			            if (IsPlayerInAnyVehicle(playerid))
 			                return SendErrorMessage(playerid, "You can't drop items right now.");
 
@@ -1310,18 +1306,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					    if(!strcmp(string, "Mask"))
 					        return SendErrorMessage(playerid, "You can't do that on this item!");
 					    
-						else if ((id = IsPlayerNearTrashcan(playerid)) != -1)
-						{
-							if (TrashInfo[id][E_TRASH_CAPACITY] >= 20)
-								return SendErrorMessage(playerid, "This trashcan is full of trash.");
-
-							TrashInfo[id][E_TRASH_CAPACITY]++;
-							Trashcan_Save(id);
-
-							Inventory_Remove(playerid, string);
-							
-							Trashcan_Refresh(id);
-						}
 						else if (InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY] == 1)
 						{
 							DropPlayerItem(playerid, itemid);						
@@ -1533,9 +1517,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Jobs Commands __________|");
 						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /joinjob, /quitjob, /jobduty, ");
 						SendClientMessage(playerid, COLOR_ORANGE, "Docksworker Commands: /loadcargo, /storecargo");
-						SendClientMessage(playerid, COLOR_ORANGE, "Garbageman Commands: /collectgarbage, /dumpgarbage");
+						//SendClientMessage(playerid, COLOR_ORANGE, "Garbageman Commands: /collectgarbage, /dumpgarbage");
 						SendClientMessage(playerid, COLOR_ORANGE, "Fishing Commands: /fish, /sellfish, /buybait, /buyrod");
-						SendTipMessage(playerid, "Press 'ALT' collect garbage");
+						//SendTipMessage(playerid, "Press 'ALT' collect garbage");
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRUCKER)
 						{
 							SendClientMessage(playerid, COLOR_ORANGE, "Truckers Commands: /tpda, /buycargo, /sellcargo");
@@ -2311,13 +2295,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				GPS_SetPlayerRaceCheckPoint(playerid, 1, BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][0], BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][1], BusinessInfo[listitem+3][E_BUSINESS_ENTRANCEPOS][2], 0.0, 0.0, 0.0);
 			}
 		}
-		case DIALOG_GPS_GARBAGE:
-		{
-			if (response)
-			{
-				GPS_SetPlayerRaceCheckPoint(playerid, 1, TrashInfo[listitem][E_TRASH_POS][0], TrashInfo[listitem][E_TRASH_POS][1], TrashInfo[listitem][E_TRASH_POS][2], 0.0, 0.0, 0.0);
-			}
-		}
 		case DIALOG_GPS_TREE:
 		{
 			if (response)
@@ -2452,12 +2429,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 0:
 					{
 						format(name, sizeof(name), "%s (%d):", name, InventoryInfo[playerid][listitem][E_INVENTORY_QUANTITY]);
-						if (IsPlayerNearTrashcan(playerid) != -1) {
-							ShowPlayerDialog(playerid, DIALOG_INVACTION, DIALOG_STYLE_LIST, name, "Equip Item\nUnequip Item\nGive Item\nThrow Item", "Select", "Cancel");
-						}
-						else {
-							ShowPlayerDialog(playerid, DIALOG_INVACTION, DIALOG_STYLE_LIST, name, "Equip Item\nUnequip Item\nGive Item\nDrop Item", "Select", "Cancel");
-						}
+						ShowPlayerDialog(playerid, DIALOG_INVACTION, DIALOG_STYLE_LIST, name, "Equip Item\nUnequip Item\nGive Item\nDrop Item", "Select", "Cancel");
 					}
 					case 1:
 					{

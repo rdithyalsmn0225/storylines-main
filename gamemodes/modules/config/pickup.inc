@@ -86,12 +86,12 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
         }
     }
     
-    if(pickupid == SideJobsPickup[0])
+    /*if(pickupid == SideJobsPickup[0])
     {
         format(str, sizeof(str), "Garbageman~n~~w~Type '/jobduty' start garbageman~n~~w~Type '/collectgarbage' collect trash~n~~w~Type '/dumpgarbage' unload trash into HQ."); 
         ShowBoxMessage(playerid, str, 5); 	
         return 1;	
-    }
+    }*/
 
     if(pickupid == SideJobsPickup[1])
     {

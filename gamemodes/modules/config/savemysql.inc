@@ -396,20 +396,3 @@ stock Gates_Save(gid)
 	);
 	return mysql_pquery(ourConnection, query);
 }
-
-stock Trashcan_Save(id)
-{
-	new
-	    query[300];
-
-	format(query, sizeof(query), "UPDATE `trashcan` SET `capacity` = '%d', `posx` = '%.4f', `posy` = '%.4f', `posz` = '%.4f', `posa` = '%.4f' WHERE `DBID` = '%d'",
-        TrashInfo[id][E_TRASH_CAPACITY],
-        TrashInfo[id][E_TRASH_POS][0],
-        TrashInfo[id][E_TRASH_POS][1],
-        TrashInfo[id][E_TRASH_POS][2],
-        TrashInfo[id][E_TRASH_POS][3],
-        TrashInfo[id][E_TRASH_DBID]
-	);
-	
-	return mysql_tquery(ourConnection, query);
-}

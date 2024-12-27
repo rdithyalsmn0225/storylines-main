@@ -44,7 +44,7 @@ stock StartMainJobs(playerid, type)
             }
             return 1;
         }
-        case 2: //Trashmaster
+        /*case 2: //Trashmaster
         {
             if(IsPlayerInRangeOfPoint(playerid, 3.0, 1529.5608,-1849.4032,13.5469))
             {
@@ -68,7 +68,7 @@ stock StartMainJobs(playerid, type)
                 }
             }
             return 1;
-        }
+        }*/
         case 3: //Sweeper
         {
             if(PlayerInfo[playerid][E_CHARACTER_SWEEPER] == false) //Start

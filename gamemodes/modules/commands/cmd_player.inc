@@ -1231,7 +1231,7 @@ CMD:delays(playerid, params[])
 	SendClientMessageEx(playerid, COLOR_ORANGE, "PRISON : %d minutes.", PlayerInfo[playerid][E_CHARACTER_PRISON] * 60);
 	SendClientMessageEx(playerid, COLOR_ORANGE, "MAIN JOBS : %d minutes.", PlayerInfo[playerid][E_CHARACTER_JOBSCD]);
 	SendClientMessageEx(playerid, COLOR_ORANGE, "STREET CLEANER : %d minutes.", PlayerInfo[playerid][E_CHARACTER_SWEEPERCD]);
-	SendClientMessageEx(playerid, COLOR_ORANGE, "GARBAGEMAN : %d minutes.", PlayerInfo[playerid][E_CHARACTER_GARBAGECD]);
+	//SendClientMessageEx(playerid, COLOR_ORANGE, "GARBAGEMAN : %d minutes.", PlayerInfo[playerid][E_CHARACTER_GARBAGECD]);
 	SendClientMessageEx(playerid, COLOR_ORANGE, "BUS DRIVER : %d minutes.", PlayerInfo[playerid][E_CHARACTER_BUSDRIVERCD]);
 	SendClientMessageEx(playerid, COLOR_ORANGE, "DOCKWORKERS : %d minutes.", PlayerInfo[playerid][E_CHARACTER_DOCKWORKERCD]);
 	return 1;

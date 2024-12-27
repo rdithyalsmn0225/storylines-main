@@ -349,6 +349,7 @@ function:OnAntiCheatUpdate()
                 format(str1, sizeof(str1), "%s has been detected for using program hack [Jetpack Hack]", ReturnMixedName(playerid)); 
 		        SendAdminMessage(1, str1);
 			}
+ 
 		}
 
         if(AC_WARP == true)
@@ -370,6 +371,7 @@ function:OnAntiCheatUpdate()
 		            SendAdminMessage(1, str1);
                 }
             }
+ 
         }
 
         if(AC_REM == true)
@@ -388,7 +390,7 @@ function:OnAntiCheatUpdate()
 		            SendAdminMessage(1, str1);
                 }
             }
-
+ 
         }
 
         if(GetPlayerMoney(playerid) > PlayerInfo[playerid][E_CHARACTER_MONEY] && ACPauseTimer[playerid] == 0 && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
@@ -400,13 +402,15 @@ function:OnAntiCheatUpdate()
 				{
 					format(gstr, sizeof(gstr), "[ANTI-CHEAT] %s has been detected for using program hack [Money Hack]", ReturnMixedName(playerid));
                     SendClientMessage(playerid, COLOR_YELLOW, gstr);
+                    GivePlayerMoney(playerid, PlayerInfo[playerid][E_CHARACTER_MONEY]);
                     KickEx(playerid);
                     new str1[128];
                     format(str1, sizeof(str1), "%s has been detected for using program hack [Money Hack]", ReturnMixedName(playerid)); 
 		            SendAdminMessage(1, str1);
+                    
 				}
 			}
-			SetMoney(playerid, PlayerInfo[playerid][E_CHARACTER_MONEY]);
+ 
 		}
 
         if(ACPauseTimer[playerid] == 0 && !Inventory_Count(playerid, "Colt 45") || !Inventory_Count(playerid, "Silenced Colt") || !Inventory_Count(playerid, "Uzi") || !Inventory_Count(playerid, "Shotgun") || !Inventory_Count(playerid, "Desert Eagle") 
@@ -437,6 +441,7 @@ function:OnAntiCheatUpdate()
                     }
                 }
             }
+ 
         }
         if(AC_FLY == true)
 		{
@@ -488,6 +493,7 @@ function:OnAntiCheatUpdate()
                     }
                 }
             }
+ 
         }
         if(AC_HEALTH == true)
 		{
@@ -511,6 +517,7 @@ function:OnAntiCheatUpdate()
 					}
 				}
 			}
+ 
 		}
         if(AC_ARMOR == true)
 		{
@@ -533,6 +540,7 @@ function:OnAntiCheatUpdate()
 					}
 				}
 			}
+ 
 		}
         if(AC_VHEALTH == true)
         {
@@ -561,6 +569,11 @@ function:OnAntiCheatUpdate()
                     }
                 }
             }
+ 
+        }
+        if(!IsPlayerAdmins(playerid) && GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USEJETPACK)
+        {
+            KickEx(playerid);
         }
     }
     return 1;

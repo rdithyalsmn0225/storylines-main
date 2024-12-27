@@ -28,17 +28,6 @@ stock ShowTreeLocation(playerid)
 	return ShowPlayerDialog(playerid, DIALOG_GPS_TREE, DIALOG_STYLE_TABLIST_HEADERS, "Tree Location", str, "Find", "Close");
 }
 
-stock ShowGarbageLocation(playerid)
-{
-	new str[1524];
-	format(str, sizeof(str), "Index\tStatus\tDistance\n");
-	forex(i, MAX_TRASH) if(TrashInfo[i][E_TRASH_EXISTS])
-	{
-		format(str, sizeof(str), "%s%d\t{33AA33}Available{ffffff}\t%.2f Meter\n", str,i, GetPlayerDistanceFromPoint(playerid, TrashInfo[i][E_TRASH_POS][0], TrashInfo[i][E_TRASH_POS][1], TrashInfo[i][E_TRASH_POS][2]));
-	}
-	return ShowPlayerDialog(playerid, DIALOG_GPS_GARBAGE, DIALOG_STYLE_TABLIST_HEADERS, "Garbage Location", str, "Find", "Close");
-}
-
 stock ShowENEXLocation(playerid)
 {
 	new str[1524];

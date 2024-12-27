@@ -272,7 +272,12 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_PHONELINE] = INVALID_PLAYER_ID;
 
 	PlayerInfo[playerid][E_CHARACTER_SPECTATE] = INVALID_PLAYER_ID;
-	
+
+	PlayerInfo[playerid][E_CHARACTER_PRISON] = 0;
+	PlayerInfo[playerid][E_CHARACTER_PRISONED] = false;
+	PlayerInfo[playerid][E_CHARACTER_ADMINJAIL] = 0;
+	PlayerInfo[playerid][E_CHARACTER_ADMINJAILED] = false;
+
 	PlayerInfo[playerid][E_CHARACTER_FACTION] = 0;
 	PlayerInfo[playerid][E_CHARACTER_FACTIONRANK] = 0;
 	PlayerInfo[playerid][E_CHARACTER_FACTIONINVITE] = 0;

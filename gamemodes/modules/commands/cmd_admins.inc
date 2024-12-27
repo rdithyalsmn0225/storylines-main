@@ -138,6 +138,15 @@ CMD:goto(playerid, params[])
 	return 1;
 }
 
+CMD:jetpack(playerid, params[]) 
+{
+	if(!IsPlayerAdmins(playerid))
+		return SendUnauthMessage(playerid); 
+
+	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USEJETPACK) ;
+	return 1;
+}
+
 CMD:bring(playerid, params[]) {
 
 	return cmd_gethere(playerid, params);
@@ -904,7 +913,7 @@ CMD:maskid(playerid, params[])
 		return SendErrorMessage(playerid, "Target isn't connected.");
 
 	new string [96];
-	format ( string, sizeof ( string ), "(%d) %s's mask ID is %d.", targetid, Account [ targetid ] [ E_PLAYER_ACCOUNT_NAME ], GetPlayerMaskID(targetid ) ) ;
+	format ( string, sizeof ( string ), "(%d) %s's mask ID", targetid, ReturnName(playerid));
 	SendClientMessage(playerid, COLOR_YELLOW, string);
 	return true;
 }
