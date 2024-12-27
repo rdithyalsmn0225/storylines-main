@@ -98,7 +98,6 @@ main ()  {}
 #include "modules\vehicles\vehicles_dealership.inc"
 #include "modules\vehicles\vehicles_rental.inc"
 #include "modules\vehicles\vehicles_commands.inc"
-#include "modules\vehicles\vehicles_modshop.inc"
 #include "modules\vehicles\vehicles_hotwire.inc"
 // FACTIONS MODULES
 #include "modules\faction\factions.inc"
@@ -116,7 +115,6 @@ main ()  {}
 #include "modules\props\spraytags.inc"
 #include "modules\props\advertise.inc"
 #include "modules\props\tree.inc"
-#include "modules\props\trash.inc"
 #include "modules\props\gate.inc"
 #include "modules\props\vending.inc"
 // DRUGS MODULES
@@ -205,7 +203,6 @@ public OnGameModeInit()
 	// Insert:
 	InsertPolice();
 	InsertObjects();
-	InsertModshops();
 	InsertBlackjack();
 	InsertJobsPoint();
 	InsertAntiCheat();

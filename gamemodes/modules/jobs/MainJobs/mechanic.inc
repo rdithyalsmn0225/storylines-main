@@ -39,6 +39,7 @@ CMD:tow(playerid, params[])
 	return 1;
 }
 
+CMD:mm(playerid, params[]) return cmd_mechmenu(playerid, params);
 CMD:mechmenu(playerid, params[])
 {
     if (PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_MECHANIC)
@@ -67,6 +68,7 @@ CMD:mechmenu(playerid, params[])
     strcat(str, "Repaint Paintjob type 2\t(2 Spraycan)\t40 seconds\n");
     strcat(str, "Repaint Paintjob type 3\t(2 Spraycan)\t40 seconds\n");
     strcat(str, "Manipulation Plates\t(2 Spraycan)\t35 seconds\n");
+    strcat(str, "Modifications\t(1 Repair Kits)\t30 seconds\n");
     ShowPlayerDialog(playerid, DIALOG_MECHMENU, DIALOG_STYLE_TABLIST_HEADERS, "Mechanic Menu", str, "Select", "Close");
     return 1;
 }
@@ -447,7 +449,7 @@ function:repaintplates(playerid, vehicleid)
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
-            Inventory_Remove(playerid, "Spraycan", 2);
+            Inventory_Remove(playerid, "Repair Kits", 1);
 
             new
                 plates[32],
@@ -477,6 +479,49 @@ function:repaintplates(playerid, vehicleid)
 			}
 
 		    SendVehicleMessage(playerid, "[VEHICLE] You've repaint %s plates.", ReturnVehicleName(vehicleid));
+		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
+		}
+    }
+    Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
+}
+
+function:modifications(playerid, vehicleid, modelid)
+{
+	new text[256];
+    PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT]++;
+
+    switch(PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT])
+    {
+        case 2: text = "Loading modifications process\n(( ||----- ))";
+        case 3: text = "Loading modifications process\n(( |||---- ))";
+        case 4: text = "Loading modifications process\n(( ||||--- ))";
+        case 5: text = "Loading modifications process\n(( |||||-- ))";
+        case 6: text = "Loading modifications process\n(( ||||||- ))";
+        case 7: text = "Loading modifications process\n(( ||||||| ))";
+        case 8:
+        {
+            PauseAC(playerid);
+		    TogglePlayerControllable(playerid, true);
+            PlayerInfo[playerid][E_CHARACTER_LOADING] = false; 
+            Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
+            KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
+
+            Inventory_Remove(playerid, "Repair Kits", 1);
+
+			VehicleInfo[vehicleid][E_VEHICLE_MODS][GetVehicleComponentType(modelid)] = modelid;
+			SaveVehicle(vehicleid);
+			AddVehicleComponent(vehicleid, modelid);
+			PauseAC(playerid);
+			PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
+
+            SetPlayerNeeds(playerid, -0.8, -0.5);
+
+            if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] > INVENTORY_NONE)
+			{
+				ResetVarInventory(playerid);
+			}
+
+		    SendVehicleMessage(playerid, "[VEHICLE] You've modifications %s.", ReturnVehicleName(vehicleid));
 		    RemovePlayerAttachedObject(playerid, ATTACH_HAND);
 		}
     }

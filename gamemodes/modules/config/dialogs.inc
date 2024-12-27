@@ -1537,7 +1537,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_MECHANIC)
 						{
-							SendClientMessage(playerid, COLOR_ORANGE, "Mechanic Commands: /jobduty, /mechmenu");
+							SendClientMessage(playerid, COLOR_ORANGE, "Mechanic Commands: /jobduty, /mechmenu(/mm)");
 							SendTipMessage(playerid, "Repairing, Repaint vehicles and maintenace road safety.");
 						}
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_SMUGGLER)
@@ -4568,6 +4568,53 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
 						PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintplates", 2500, true, "ii", playerid, vehicleid);
 					}
+					case 9:
+					{
+						if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != REPAIR_KITS)
+							return SendErrorMessage(playerid, "You must hold the repair kits in your hands.");
+
+						if(!Inventory_Count(playerid, "Repair Kits"))
+							return SendErrorMessage(playerid, "You don't have any repair kits in your inventory."); 
+
+						new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+						GetVehiclePos(vehicleid, vx, vy, vz);
+
+						if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+							return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+						if(IsPlayerInAnyVehicle(playerid))
+							return SendErrorMessage(playerid, "You can't be in a vehicle.");
+									
+						if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+							return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+						if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+							return SendErrorMessage(playerid, "You can't use this right now"); 
+
+						new modname[50][32], mods[50], count = 0;
+						new modlist[1024]; 
+
+						for(new m = 1000; m < 1193; m++)
+						{
+							if(IsVehicleUpgradeCompatible(VehicleInfo[vehicleid][E_VEHICLE_MODEL], m) && IsActualVehicleMod(m))
+							{
+								mods[count] = m;
+								format(modname[count], 32, "%s", GetVehicleModName(m));
+								
+								if(count == 0)
+									format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
+								else
+									format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
+								
+								SubVehicleComponentArr[playerid][count] = m; 
+								count++;
+							}
+						}
+
+						if(count == 0) return SendErrorMessage(playerid, "This vehicle does not support any bodywork modifications.");
+						
+						ShowPlayerDialog(playerid, DIALOG_PAYNSPRAY, DIALOG_STYLE_PREVIEW_MODEL, "ModShop:", modlist, "Select", "Close");
+					}
 				}
 			}
 		}
@@ -4992,67 +5039,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				TogglePlayerControllable(playerid, true);
 			}
 		}
-		case DIALOG_MODSHOP:
-		{
-			switch(listitem)
-			{
-				case 0: 
-				{
-					if (!response) {
-						return TogglePlayerControllable(playerid, true);
-					}
-
-					if (!IsPlayerInAnyVehicle(playerid)) {
-						return SendErrorMessage(playerid, "You aren't in any vehicle.");
-					}
-
-					new modname[50][32], v = GetPlayerVehicleID(playerid), mods[50], count = 0;
-					new modlist[1024]; 
-
-					for(new m = 1000; m < 1193; m++)
-					{
-						if(IsVehicleUpgradeCompatible(VehicleInfo[v][E_VEHICLE_MODEL], m) && IsActualVehicleMod(m))
-						{
-							mods[count] = m;
-							format(modname[count], 32, "%s", GetVehicleModName(m));
-							
-							if(count == 0)
-								format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
-							else
-								format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
-							
-							SubVehicleComponentArr[playerid][count] = m; 
-							count++;
-						}
-					}
-
-					if(count == 0) return SendErrorMessage(playerid, "This vehicle does not support any bodywork modifications.");
-					
-					ShowPlayerDialog(playerid, DIALOG_PAYNSPRAY, DIALOG_STYLE_PREVIEW_MODEL, "ModShop:", modlist, "Select", "Close");
-
-					TogglePlayerControllable(playerid, true); 
-					PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false; 
-				}
-			}
-		}
 		case DIALOG_PAYNSPRAY:
 		{
 			if(response)
 			{
-				new vehicleid = GetPlayerVehicleID(playerid), 
-					str[64],
-					modelid = SubVehicleComponentArr[playerid][listitem];
-				
-				format(str, sizeof(str), "Hope you like new mods!!");
-				ShowBoxMessage(playerid, str, 5);
-				VehicleInfo[vehicleid][E_VEHICLE_MODS][GetVehicleComponentType(modelid)] = modelid;
-				SaveVehicle(vehicleid);
-				AddVehicleComponent(vehicleid, modelid);
-				new Cents = floatround(GetVehicleComponentPrice(modelid) * 100, floatround_round);
+				new vehicleid = IsPlayerNearVehicle(playerid);
+				new Float:x, Float:y, Float:z;
+				GetPlayerPos(playerid, x, y, z);
+				TogglePlayerControllable(playerid, false);
+				ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 1, 0, 0, 0, 0, 1);
 
-				GiveMoney(playerid, -Cents);
-				PauseAC(playerid);
-				PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
+				PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading modifications process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+				PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+				PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+				PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("modifications", 2500, true, "iii", playerid, vehicleid, SubVehicleComponentArr[playerid][listitem]);
 			}
 		}
 		case DIALOG_RENTALCARS:
