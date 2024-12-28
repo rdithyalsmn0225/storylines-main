@@ -318,10 +318,10 @@ public OnPlayerConnect(playerid)
 	PlayAudioStreamForPlayer(playerid, "https://e.top4top.io/m_3254pyq011.mp3");
 
 	ShowClock(playerid);
-	ResetPlayer(playerid);
 	PreloadAnimations(playerid); 
 	RemoveObjects(playerid);
 	RemoveDefaultVendingMachines(playerid);
+	ResetPlayer(playerid);
 
 	//Visuals:
 	CreateTextdraws(playerid);
@@ -5040,7 +5040,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}
 		}
 	}
-	if ((newkeys & KEY_WALK) && (IsPlayerInAnyVehicle(playerid)))
+	if ((newkeys & KEY_FIRE) && (IsPlayerInAnyVehicle(playerid)))
 	{
 		cmd_engine(playerid, "");
 	}

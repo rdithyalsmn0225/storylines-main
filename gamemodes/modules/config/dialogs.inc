@@ -5154,6 +5154,5 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 		}
 	}
-	PlayerPlaySound(playerid, 1054, 0.0, 0.0, 0.0);
 	return 0;
 }

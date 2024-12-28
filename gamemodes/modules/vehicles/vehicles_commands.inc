@@ -145,6 +145,7 @@ CMD:cardespawn(playerid, params[])
 	VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = vehicle_health;
 	
 	SendVehicleMessage(playerid, "[VEHICLE] You parked your %s.", ReturnVehicleName(vehicleid));
+	SaveCharacter(playerid);
 	ResetVehicleVars(vehicleid);
 	DestroyVehicle(vehicleid); 
     return 1;

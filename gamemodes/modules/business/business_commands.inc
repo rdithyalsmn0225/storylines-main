@@ -429,7 +429,7 @@ CMD:editbusiness(playerid, params[])
 		new products;
 		
 		if(sscanf(bstr, "i", products))
-			return SendUsageMessage(playerid, "/editbusiness %i level [level]", id);
+			return SendUsageMessage(playerid, "/editbusiness %i stock [stock]", id);
 			
 		if(products < 1)
 			return SendErrorMessage(playerid, "You can't make the stock below 1."); 

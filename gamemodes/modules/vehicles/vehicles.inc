@@ -386,13 +386,15 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 		VehicleInfo[vehicleid][E_VEHICLE_DESTROYED] = 0;
 		VehicleInfo[vehicleid][E_VEHICLE_PLATESSTATUS] = true;
 		VehicleInfo[vehicleid][E_VEHICLE_TYPE] = VEHICLE_TYPE_PLAYER;
+		VehicleInfo[vehicleid][E_VEHICLE_EXISTS] = true;
 		
 		SaveVehicle(vehicleid);
+		
 		
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = true;
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid;
 
-		if(VehicleInfo[vehicleid][E_VEHICLE_EXISTS] && IsValidVehicle(vehicleid))
+		if(VehicleInfo[vehicleid][E_VEHICLE_EXISTS])
 		{
 			new str[128];
 			format(str, sizeof(str), "SELECT * FROM `vstorage` WHERE `ID` = '%d'", VehicleInfo[vehicleid][E_VEHICLE_DBID]);
@@ -904,26 +906,6 @@ stock SetVehicleToRespawnEx(vehicleid)
 	
 	SetVehicleToRespawn(vehicleid);
 	return true;
-}
-
-function:StartThief(playerid, vehicleid)
-{		
-	new statusString[90]; 
-	new engine, lights, alarm, doors, bonnet, boot, objective; 
-	
-	GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
-			
-	if(VehicleInfo[vehicleid][E_VEHICLE_LOCKED])
-	{
-		format(statusString, sizeof(statusString), "~g~%s UNLOCKED", ReturnVehicleName(vehicleid));
-			
-		SetVehicleParamsEx(vehicleid, engine, lights, alarm, false, bonnet, boot, objective);
-		VehicleInfo[vehicleid][E_VEHICLE_LOCKED] = false;
-	}
-	GameTextForPlayer(playerid, statusString, 3000, 3);
-	TogglePlayerControllable(playerid, true);
-	RemovePlayerAttachedObject(playerid, 4);
-	return 1;
 }
 
 stock IsVehicleUpgradeCompatible(model, componentid) // by AirKite

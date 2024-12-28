@@ -384,7 +384,7 @@ CMD:furniture(playerid, params[])
 	if(!CountPlayerProperties(playerid))
 		return SendErrorMessage(playerid, "You don't own a property."); 
 		
-	new id, pick[90], bstr[90], cstr[60];
+	new id, pick[90], cstr[60];
 	
 	if((id = IsPlayerInProperty(playerid)) == 0)
 		return SendErrorMessage(playerid, "You aren't inside your property.");
@@ -392,14 +392,14 @@ CMD:furniture(playerid, params[])
 	if(PropertyInfo[id][E_PROPERTY_OWNERDBID] != PlayerInfo[playerid][E_CHARACTER_DBID])
 		return SendErrorMessage(playerid, "You don't own this property."); 
 		
-	if(sscanf(bstr, "s[90]", pick))
+	if(sscanf(params, "s[90]S()[60]", pick, cstr))
 	{
 		SendUsageMessage(playerid, "/furniture [configuration]"); 
 		SendTipMessage(playerid, "Add, Edit, Destroy, Clear, Textures, Refresh.");
 		return 1;
 	}
 
-	if(!strcmp(pick, "add"))
+	else if(!strcmp(pick, "add"))
 	{
 		new queryBuffer[512];
 		mysql_format(ourConnection, queryBuffer, sizeof(queryBuffer), "SELECT COUNT(*) FROM furniture WHERE propertydbid = %i", PropertyInfo[id][E_PROPERTY_DBID]);
@@ -496,7 +496,7 @@ CMD:furniture(playerid, params[])
 			SendPropertyMessage(playerid, "[FURNITURE] You will no longer see any labels appear above your furniture.");
 		}
 	}
-	else return SendErrorMessage(playerid, "Invalid Paramater."); 
+	else return SendErrorMessage(playerid, "Invalid Parameter.");
 	return 1;
 }
 

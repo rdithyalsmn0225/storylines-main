@@ -16,7 +16,7 @@ CMD:factions(playerid, params[])
 	return 1;
 }
 
-CMD:faction(playerid, params[]) cmd_f(playerid, params);
+CMD:faction(playerid, params[]) return cmd_f(playerid, params);
 CMD:f(playerid, params[])
 {
 	if(!IsPlayerFaction(playerid))
