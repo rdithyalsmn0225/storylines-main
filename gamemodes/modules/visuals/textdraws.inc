@@ -2027,7 +2027,7 @@ CreateVehicleTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, VehicleSelection[13][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, VehicleSelection[13][playerid], 0);
 
-	VehicleSelection[14][playerid] = CreatePlayerTextDraw(playerid, 213.000000, 269.000000, "SPAWN");
+	VehicleSelection[14][playerid] = CreatePlayerTextDraw(playerid, 213.000000, 269.000000, "FIND");
 	PlayerTextDrawFont(playerid, VehicleSelection[14][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, VehicleSelection[14][playerid], 0.216667, 1.000000);
 	PlayerTextDrawTextSize(playerid, VehicleSelection[14][playerid], 400.000000, 57.000000);
@@ -2041,7 +2041,7 @@ CreateVehicleTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, VehicleSelection[14][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, VehicleSelection[14][playerid], 1);
 
-	VehicleSelection[15][playerid] = CreatePlayerTextDraw(playerid, 285.000000, 269.000000, "SPAWN");
+	VehicleSelection[15][playerid] = CreatePlayerTextDraw(playerid, 285.000000, 269.000000, "FIND");
 	PlayerTextDrawFont(playerid, VehicleSelection[15][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, VehicleSelection[15][playerid], 0.216667, 1.000000);
 	PlayerTextDrawTextSize(playerid, VehicleSelection[15][playerid], 400.000000, 57.000000);
@@ -2055,7 +2055,7 @@ CreateVehicleTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, VehicleSelection[15][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, VehicleSelection[15][playerid], 1);
 
-	VehicleSelection[16][playerid] = CreatePlayerTextDraw(playerid, 355.000000, 269.000000, "SPAWN");
+	VehicleSelection[16][playerid] = CreatePlayerTextDraw(playerid, 355.000000, 269.000000, "FIND");
 	PlayerTextDrawFont(playerid, VehicleSelection[16][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, VehicleSelection[16][playerid], 0.216667, 1.000000);
 	PlayerTextDrawTextSize(playerid, VehicleSelection[16][playerid], 400.000000, 57.000000);
@@ -2069,7 +2069,7 @@ CreateVehicleTextDraws(playerid)
 	PlayerTextDrawSetProportional(playerid, VehicleSelection[16][playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, VehicleSelection[16][playerid], 1);
 
-	VehicleSelection[17][playerid] = CreatePlayerTextDraw(playerid, 425.000000, 269.000000, "SPAWN");
+	VehicleSelection[17][playerid] = CreatePlayerTextDraw(playerid, 425.000000, 269.000000, "FIND");
 	PlayerTextDrawFont(playerid, VehicleSelection[17][playerid], 1);
 	PlayerTextDrawLetterSize(playerid, VehicleSelection[17][playerid], 0.216667, 1.000000);
 	PlayerTextDrawTextSize(playerid, VehicleSelection[17][playerid], 400.000000, 57.000000);
