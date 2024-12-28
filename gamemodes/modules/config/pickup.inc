@@ -159,6 +159,13 @@ public OnPlayerPickUpDynamicPickup(playerid, pickupid)
         return 1;	
     }
 
+    if(pickupid == RealtyPickup)
+    {
+        format(str, sizeof(str), "Radeetz Realty Estate~n~~w~Type '/listings' to to see properties for sale."); 
+        ShowBoxMessage(playerid, str, 5); 
+        return 1;	
+    }
+
     if(pickupid == FishFactoryPickup)
     {
         format(str, sizeof(str), "Fish Factory~n~~w~Type '/buybait' to buy fish bait~n~Type '/buyrod' to buy fishing rod~n~~w~Type '/sellfish' to sell fish."); 

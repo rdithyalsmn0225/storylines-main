@@ -1457,7 +1457,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /stats, /admins, /report, /o(oc), /pay, /isafk, /time, /delays, /levelup, /rcp, /inventory");
 						SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /enter, /exit, /mask, /setchannel, /setslot, /radio, /licenseexam, /unimpound");
 						SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /damages, /health, /acceptdeath, /helpup, /fixr, /respawnme, /setspawn, /settings");
-			        	SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /approve, /deny, /tickets, /coin, /dice, /gascan, /repairkits, /pc, /spray");
+			        	SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /approve, /deny, /tickets, /coin, /dice, /gascan, /listings, /pc, /spray");
 					}
 					case 1:
 					{
@@ -5054,6 +5054,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
 				PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("modifications", 2500, true, "iii", playerid, vehicleid, SubVehicleComponentArr[playerid][listitem]);
+			}
+		}
+		case DIALOG_REALTY:
+		{
+			if(response)
+			{
+				new idx = PlayerPropertyFound[listitem],
+					Float:x = PropertyInfo[idx][E_PROPERTY_ENTRANCEPOS][0],
+					Float:y = PropertyInfo[idx][E_PROPERTY_ENTRANCEPOS][1],
+					Float:z = PropertyInfo[idx][E_PROPERTY_ENTRANCEPOS][2];
+
+				GPS_SetPlayerRaceCheckPoint(playerid, 1, x, y, z, 0.0, 0.0, 0.0);
+				SendTipMessage(playerid, "You can buy property by type /buyproperty.");
 			}
 		}
 		case DIALOG_RENTALCARS:

@@ -16,6 +16,7 @@ InsertDynamicPickup()
 	FishFactoryPickup = CreateDynamicPickup(1239, 1, 2610.7708,-2441.7927,13.6310, -1, -1, -1, 5.0);
 	SAPDPickup = CreateDynamicPickup(1239, 1, 1568.7626,-1695.0494,5.8906, -1, -1, -1, 5.0);
 	SAMDPickup = CreateDynamicPickup(1239, 1, 1124.1577,-1324.4509,13.6212, -1, -1, -1, 5.0);
+	RealtyPickup = CreateDynamicPickup(1273, 1, 1778.0038,-1663.6217,14.4355);
 
 	for (new i = 0; i < sizeof(BusinessPoint); i++)
     {

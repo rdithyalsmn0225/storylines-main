@@ -1023,6 +1023,7 @@ new TotalPlayerDamages[MAX_PLAYERS],
 	PlayerSpeedLimit[MAX_PLAYERS],
 	PlayerEngineTimer[MAX_PLAYERS], 
 	PlayerEngineValue[MAX_PLAYERS],
+	PlayerPropertyFound[100],
 	LastSpawn[MAX_PLAYERS],
 	registerTime[MAX_PLAYERS], 
 	loginTime[MAX_PLAYERS], 
@@ -1080,6 +1081,7 @@ new FactionLockerPickup[3],
 	BusStopPickup[34],
 	HairCutPickup,
 	TicketPickup,
+	RealtyPickup,
 	GeneralStorePickup[sizeof(BusinessPoint)];
 
 new g_aLspdSkins[] = {

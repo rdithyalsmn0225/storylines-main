@@ -323,6 +323,14 @@ stock LoadCharacter(playerid)
 	SpawnPlayer(playerid);
 
 	PlayerInfo[playerid][E_CHARACTER_SPAWNED] = true;
+
+	new threadLoad[128]; 
+	for(new vid = 1; vid < MAX_PLAYER_VEHICLES; vid++)
+	{
+		mysql_format(ourConnection, threadLoad, sizeof(threadLoad), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][vid]);
+		mysql_pquery(ourConnection, threadLoad, "Query_LoadPrivateVehicle", "i", playerid); 
+	}
+
 	TogglePlayerControllable(playerid, true);
 	TogglePlayerSpectating(playerid, false);
 	return 1;
