@@ -592,7 +592,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							{
 								PlayerInfo[playerid][E_CHARACTER_POLICEDUTY] = false;
 			
-								ResetPlayerWeapons(playerid); 
+								ResetPlayerWeaponEx(playerid); 
 								
 								SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now Off Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid)); 
 								
@@ -619,7 +619,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							{
 								PlayerInfo[playerid][E_CHARACTER_MEDICDUTY] = false;
 			
-								ResetPlayerWeapons(playerid); 
+								ResetPlayerWeaponEx(playerid); 
 								
 								SendPoliceMessage(COLOR_COP, "** HQ: %s %s is now Off Duty! **", IsPlayerFactionRank(playerid), ReturnName(playerid)); 
 								
