@@ -143,7 +143,7 @@ CMD:jetpack(playerid, params[])
 	if(!IsPlayerAdmins(playerid))
 		return SendUnauthMessage(playerid); 
 
-	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USEJETPACK) ;
+	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USEJETPACK);
 	return 1;
 }
 

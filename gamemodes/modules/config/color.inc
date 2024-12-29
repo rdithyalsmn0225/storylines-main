@@ -17,7 +17,7 @@
 #define COLOR_FACTION       (0x99A5D7FF)
 #define COLOR_GAMES         (0xb6b9e1FF)
 #define COLOR_HEADER		(0x90D7F0FF)
-#define COLOR_JOBS          (0x9db986FF)
+#define COLOR_JOBS          (0x6CCB3DFF)
 #define COLOR_VEHICLE		(0xe2c5d4FF)
 #define COLOR_PROPERTY		(0x89b2a7FF)
 #define COLOR_EMMET         (0x088a74FF)

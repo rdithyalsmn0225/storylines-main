@@ -409,6 +409,20 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 	return 1;
 }
 
+stock Query_UnloadPrivateVehicle(playerid)
+{
+	for(new i = 1; i < MAX_VEHICLES; i++) if(VehicleInfo[i][E_VEHICLE_EXISTS])
+	{
+		if(VehicleInfo[i][E_VEHICLE_OWNERDBID] == PlayerInfo[playerid][E_CHARACTER_DBID])
+		{   
+			SaveVehicle(i);
+			ResetVehicleVars(i);
+			DestroyVehicle(i);
+		}
+	}
+	return 1;
+}
+
 function:Query_LoadPrivateVehicle(playerid)
 {
 	if(!cache_num_rows())

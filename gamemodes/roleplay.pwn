@@ -212,7 +212,7 @@ public OnGameModeInit()
 	InsertStaticArea();
 	Insert3DTextLabel();
 	InsertAcidGunLabs();
-	InsertProjectProp();
+	InsertReworkedMaps();
 	InsertSidejobsMaps();
 	InsertDocksWorkers();
 	InsertFactionLocker();
@@ -256,7 +256,6 @@ public OnGameModeInit()
 	mysql_pquery(ourConnection, "SELECT * FROM `court`", "Query_LoadCourt", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `gates`", "Query_LoadGates", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `tree`", "Query_LoadTree", ""); 
-	mysql_pquery(ourConnection, "SELECT * FROM `trashcan`", "Query_LoadTrashcan", ""); 
 	mysql_pquery(ourConnection, "SELECT * FROM `dropped`", "Query_LoadDropped", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `spray_tags`", "Query_LoadSpraytags", "");
 	mysql_pquery(ourConnection, "SELECT * FROM `server_data`", "Query_LoadServerData", "");
@@ -395,6 +394,7 @@ public OnPlayerDisconnect(playerid, reason)
 		SaveCharacter(playerid); SaveCharacterPos(playerid);
 	}
 
+	Query_UnloadPrivateVehicle(playerid);
 	ResetPlayer(playerid);
 
 	new businessid = IsPlayerInBusiness(playerid);

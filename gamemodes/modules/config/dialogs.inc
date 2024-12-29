@@ -1517,9 +1517,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ Jobs Commands __________|");
 						SendClientMessage(playerid, COLOR_ORANGE, "Jobs Commands: /joinjob, /quitjob, /jobduty, ");
 						SendClientMessage(playerid, COLOR_ORANGE, "Docksworker Commands: /loadcargo, /storecargo");
-						//SendClientMessage(playerid, COLOR_ORANGE, "Garbageman Commands: /collectgarbage, /dumpgarbage");
 						SendClientMessage(playerid, COLOR_ORANGE, "Fishing Commands: /fish, /sellfish, /buybait, /buyrod");
-						//SendTipMessage(playerid, "Press 'ALT' collect garbage");
 						if(PlayerInfo[playerid][E_CHARACTER_JOBS] == JOB_TRUCKER)
 						{
 							SendClientMessage(playerid, COLOR_ORANGE, "Truckers Commands: /tpda, /buycargo, /sellcargo");
