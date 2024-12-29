@@ -79576,3 +79576,599 @@ Console input: exit
 [10:21:24] =       Made by BigETI =
 [10:21:24] = Unloaded!            =
 [10:21:24] ========================
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.DL-R1, (C)2005-2018 SA-MP Team
+
+[11:49:46] filterscripts = ""  (string)
+[11:49:46] 
+[11:49:46] Server Plugins
+[11:49:46] --------------
+[11:49:46]  Loading plugin: crashdetect
+[11:49:46]   CrashDetect plugin 4.22-1-gcd608b6
+[11:49:46]   Loaded.
+[11:49:46]  Loading plugin: mysql
+[11:49:46]  >> plugin.mysql: R41-4 successfully loaded.
+[11:49:46]   Loaded.
+[11:49:46]  Loading plugin: sscanf
+[11:49:46] 
+
+[11:49:46]  ===============================
+
+[11:49:46]       sscanf plugin loaded.     
+
+[11:49:46]          Version:  2.8.2        
+
+[11:49:46]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:49:46]  ===============================
+
+[11:49:46]   Loaded.
+[11:49:46]  Loading plugin: streamer
+[11:49:46] 
+
+*** Streamer Plugin v2.9.5 by Incognito loaded ***
+
+[11:49:46]   Loaded.
+[11:49:46]  Loading plugin: timerfix
+[11:49:46]   >> TimerFix v1.4 successfully loaded.
+[11:49:46]   Loaded.
+[11:49:46]  Loading plugin: PawnPlus
+[11:49:46]  PawnPlus v1.5 loaded
+[11:49:46]  Created by IS4
+[11:49:46]   Loaded.
+[11:49:46]  Loading plugin: pawn-memory
+[11:49:46] ========================
+[11:49:46] = Memory access plugin =
+[11:49:46] =       Made by BigETI =
+[11:49:46] = Loaded!              =
+[11:49:46] ========================
+[11:49:46]   Loaded.
+[11:49:46]  Loading plugin: pawnraknet
+[11:49:46] [Pawn.RakNet] plugin v1.6.0 loading...
+[11:49:46] [Pawn.RakNet] 
+
+    | Pawn.RakNet 1.6.0 | 2016 - 2023
+    |--------------------------------
+    | Author and maintainer: katursis
+
+
+    | Compiled: Feb 12 2023 at 19:36:19
+    |--------------------------------------------------------------
+    | Repository: https://github.com/katursis/Pawn.RakNet
+    |--------------------------------------------------------------
+    | Wiki: https://github.com/katursis/Pawn.RakNet/wiki
+
+[11:49:46]   Loaded.
+[11:49:46]  Loaded 8 plugins.
+
+[11:49:46] 
+[11:49:46] Filterscripts
+[11:49:46] ---------------
+[11:49:46]   Loaded 0 filterscripts.
+
+[11:49:46] [DATABASE]: Connection established to 'storylines'...
+[11:49:46] [artwork:crc] misc/skin/citizen/bmciv1.dff CRC = 0xF3A6FED4
+[11:49:46] [artwork:crc] misc/skin/citizen/bmciv1.txd CRC = 0xBB1C0BFB
+[11:49:46] [artwork:crc] misc/skin/citizen/bmciv2.dff CRC = 0xB0AB0F35
+[11:49:46] [artwork:crc] misc/skin/citizen/bmciv2.txd CRC = 0xC4A028ED
+[11:49:46] [artwork:crc] misc/skin/citizen/bmgng1.dff CRC = 0xBB18A78F
+[11:49:46] [artwork:crc] misc/skin/citizen/bmgng1.txd CRC = 0x908AE0C5
+[11:49:46] [artwork:crc] misc/skin/citizen/hmciv1.dff CRC = 0x39E1BE5C
+[11:49:46] [artwork:crc] misc/skin/citizen/hmciv1.txd CRC = 0x20722199
+[11:49:46] [artwork:crc] misc/skin/citizen/hmciv2.dff CRC = 0x6389D68B
+[11:49:46] [artwork:crc] misc/skin/citizen/hmciv2.txd CRC = 0xF9DACFE9
+[11:49:46] [artwork:crc] misc/skin/citizen/mabam5.dff CRC = 0x218843A8
+[11:49:46] [artwork:crc] misc/skin/citizen/mabam5.txd CRC = 0x25B336B8
+[11:49:46] [artwork:crc] misc/skin/citizen/mbciv11.dff CRC = 0x3624007
+[11:49:46] [artwork:crc] misc/skin/citizen/mbciv11.txd CRC = 0x4D386092
+[11:49:46] [artwork:crc] misc/skin/citizen/mwacer.dff CRC = 0x6980F5E5
+[11:49:46] [artwork:crc] misc/skin/citizen/mwacer.txd CRC = 0x2B8ADB14
+[11:49:46] [artwork:crc] misc/skin/citizen/bmpretty1.dff CRC = 0x2F9F84AA
+[11:49:46] [artwork:crc] misc/skin/citizen/bmpretty1.txd CRC = 0x65CC16D7
+[11:49:46] [artwork:crc] misc/skin/citizen/bmpretty2.dff CRC = 0x24F53273
+[11:49:46] [artwork:crc] misc/skin/citizen/bmpretty2.txd CRC = 0xA58E378A
+[11:49:46] [artwork:crc] misc/skin/citizen/bmpretty3.dff CRC = 0x52DD38E0
+[11:49:46] [artwork:crc] misc/skin/citizen/bmpretty3.txd CRC = 0x46ABCAAB
+[11:49:46] [artwork:crc] misc/skin/citizen/bmpretty4.dff CRC = 0xA62FB623
+[11:49:46] [artwork:crc] misc/skin/citizen/bmpretty4.txd CRC = 0xFD54E192
+[11:49:46] [artwork:crc] misc/skin/citizen/hmyec3.dff CRC = 0xC3EBB5FF
+[11:49:46] [artwork:crc] misc/skin/citizen/hmyec3.txd CRC = 0x9528943E
+[11:49:46] [artwork:crc] misc/skin/citizen/fam1.dff CRC = 0x8A446488
+[11:49:46] [artwork:crc] misc/skin/citizen/fam1.txd CRC = 0xB3FB0D65
+[11:49:46] [artwork:crc] misc/skin/citizen/fam2.dff CRC = 0xDF1CDDD1
+[11:49:46] [artwork:crc] misc/skin/citizen/fam2.txd CRC = 0xC88517E0
+[11:49:46] [artwork:crc] misc/skin/citizen/fam3.dff CRC = 0xE1E54D4F
+[11:49:46] [artwork:crc] misc/skin/citizen/fam3.txd CRC = 0xE20C5360
+[11:49:46] [artwork:crc] misc/skin/citizen/hmycr.dff CRC = 0x29FFD568
+[11:49:46] [artwork:crc] misc/skin/citizen/hmycr.txd CRC = 0x156E4844
+[11:49:46] [artwork:crc] misc/skin/citizen/hmydrug.dff CRC = 0xDD478F1B
+[11:49:46] [artwork:crc] misc/skin/citizen/hmydrug.txd CRC = 0x93D551BA
+[11:49:46] [artwork:crc] misc/skin/citizen/smyst.dff CRC = 0x2D80FACF
+[11:49:46] [artwork:crc] misc/skin/citizen/smyst.txd CRC = 0xB899950A
+[11:49:46] [artwork:crc] misc/skin/citizen/smyst2.dff CRC = 0x33BC8078
+[11:49:46] [artwork:crc] misc/skin/citizen/smyst2.txd CRC = 0x2B7CDD47
+[11:49:46] [artwork:crc] misc/skin/citizen/wmyst.dff CRC = 0xF1066A59
+[11:49:46] [artwork:crc] misc/skin/citizen/wmyst.txd CRC = 0x9270020F
+[11:49:46] [artwork:crc] misc/skin/citizen/wmyva.dff CRC = 0x9724056C
+[11:49:46] [artwork:crc] misc/skin/citizen/wmyva.txd CRC = 0xF83A4A21
+[11:49:46] [artwork:crc] misc/skin/citizen/wmosci.dff CRC = 0x8D01A3EC
+[11:49:46] [artwork:crc] misc/skin/citizen/wmosci.txd CRC = 0xF82662DC
+[11:49:46] [artwork:crc] misc/skin/lspd/male/amypd2.dff CRC = 0xCD9452B7
+[11:49:46] [artwork:crc] misc/skin/lspd/male/amypd2.txd CRC = 0xC53BD086
+[11:49:46] [artwork:crc] misc/skin/lspd/male/bmopd1.dff CRC = 0xD30CE32
+[11:49:46] [artwork:crc] misc/skin/lspd/male/bmopd1.txd CRC = 0x4300C5D
+[11:49:46] [artwork:crc] misc/skin/lspd/male/bmypd1.dff CRC = 0xD40946E9
+[11:49:46] [artwork:crc] misc/skin/lspd/male/bmypd1.txd CRC = 0x77C993CF
+[11:49:46] [artwork:crc] misc/skin/lspd/male/bmypd2.dff CRC = 0xFEC71386
+[11:49:46] [artwork:crc] misc/skin/lspd/male/bmypd2.txd CRC = 0x54F074D3
+[11:49:46] [artwork:crc] misc/skin/lspd/male/omypd1.dff CRC = 0xE88A1191
+[11:49:46] [artwork:crc] misc/skin/lspd/male/omypd1.txd CRC = 0xBCEF58C7
+[11:49:46] [artwork:crc] misc/skin/lspd/male/fedlapd1.dff CRC = 0x46CEC1E3
+[11:49:46] [artwork:crc] misc/skin/lspd/male/fedlapd1.txd CRC = 0xD4AA4209
+[11:49:46] [artwork:crc] misc/skin/lspd/male/hmypd1.dff CRC = 0x2EE0CBC2
+[11:49:46] [artwork:crc] misc/skin/lspd/male/hmypd1.txd CRC = 0x47974F94
+[11:49:46] [artwork:crc] misc/skin/lspd/male/hmypd2.dff CRC = 0x77932EA4
+[11:49:46] [artwork:crc] misc/skin/lspd/male/hmypd2.txd CRC = 0xCFEE8ACE
+[11:49:46] [artwork:crc] misc/skin/lspd/female/ofypd1.dff CRC = 0xFE695F78
+[11:49:46] [artwork:crc] misc/skin/lspd/female/ofypd1.txd CRC = 0x5F20DFB0
+[11:49:46] [artwork:crc] misc/skin/lspd/female/wfysuit.dff CRC = 0xF50E641
+[11:49:46] [artwork:crc] misc/skin/lspd/female/wfysuit.txd CRC = 0x83F1A337
+[11:49:46] [artwork:crc] misc/drugs/heroine.dff CRC = 0xC468E665
+[11:49:46] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:49:46] [artwork:crc] misc/drugs/marijuana.dff CRC = 0xAD98B512
+[11:49:46] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:49:46] [artwork:crc] misc/drugs/cocaine.dff CRC = 0xDCE7B089
+[11:49:46] [artwork:crc] misc/drugs/drugs.txd CRC = 0xCA03610D
+[11:49:46] [artwork:crc] misc/bottle/champagne_bottle.dff CRC = 0xA59986C5
+[11:49:46] [artwork:crc] misc/bottle/champagne_bottle.txd CRC = 0x18EB8E6A
+[11:49:46] [artwork:crc] misc/gym/kmb_bpress.dff CRC = 0xD6DEF43B
+[11:49:46] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:49:46] [artwork:crc] misc/gym/kmb_dumbbell_l.dff CRC = 0x1BFB5DA0
+[11:49:46] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:49:46] [artwork:crc] misc/gym/kmb_dumbbell_r.dff CRC = 0x1BE67E4A
+[11:49:46] [artwork:crc] misc/gym/gym_weights.txd CRC = 0xF7C5C81B
+[11:49:46] [debug] Long callback execution detected (hang or performance issue)
+[11:49:46] [debug] AMX backtrace:
+[11:49:46] [debug] #0 000382a4 in InsertObjects () at modules\visuals\enviroment.inc:53
+[11:49:46] [debug] #1 00255834 in public PDialog_OnGameModeInit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:207
+[11:49:46] [debug] #2 00031648 in public MS_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:836
+[11:49:46] [debug] #3 00024fec in public PawnRakNet_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\eSelection.inc:461
+[11:49:46] [debug] #4 0001fd34 in public PHY_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\Pawn.RakNet.inc:1153
+[11:49:46] [debug] #5 native CallLocalFunction () in samp-server.exe
+[11:49:46] [debug] #6 000117a8 in public Itter_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\physics.inc:193
+[11:49:46] [debug] #7 native CallLocalFunction () in samp-server.exe
+[11:49:46] [debug] #8 00010958 in public SSCANF_OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:637
+[11:49:46] [debug] #9 00000c84 in public OnGameModeInit () at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:211
+[11:49:46] Number of vehicle models: 1
+[11:49:46] [SERVER]: No compensation were loaded from "storylines" database...
+[11:49:46] [SERVER]: 2 factions were loaded from "storylines" database...
+[11:49:46] [SERVER]: 0 dropped items were loaded from "storylines" database...
+[11:49:46] [SERVER]: 17 tree were loaded from "storylines" database...
+[11:49:46] [SERVER]: 6 gates were loaded from "storylines" database...
+[11:49:46] [SERVER]: 4 court were loaded from "storylines" database...
+[11:49:46] [SERVER]: 4 entrance were loaded from "storylines" database...
+[11:49:46] [SERVER]: 11 businesses were loaded from "storylines" database...
+[11:49:46] [SERVER]: 6 properties were loaded from "storylines" database...
+[11:49:46] [debug] Long callback execution detected (hang or performance issue)
+[11:49:46] [debug] AMX backtrace:
+[11:49:46] [debug] #0 0015966c in public Query_LoadFurniture (labels=0) at modules\properties\property_furniture.inc:165
+[11:49:46] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:49:46] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:49:46] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:49:46] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:49:46] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:49:46] [SERVER]: 0 property storage were loaded from "storylines" database...
+[11:49:59] [connection] incoming connection: 127.0.0.1:53770 id: 0
+[11:50:00] [join] Radeetz has joined the server (0:127.0.0.1)
+[11:50:05] [SERVER]: Ethan Pattersons inventory were loaded from "storylines" database...
+[11:50:05] [SERVER]: Ethan Pattersons contacts were loaded from "storylines" database...
+[11:50:05] [SERVER]: Ethan Pattersons ticket were loaded from "storylines" database...
+[11:50:05] [SERVER]: Ethan Pattersons relations were loaded from "storylines" database...
+[11:50:06] [debug] Long callback execution detected (hang or performance issue)
+[11:50:06] [debug] AMX backtrace:
+[11:50:06] [debug] #0 00167b64 in public Query_LoadPrivateVehicle (playerid=0) at modules\vehicles\vehicles.inc:486
+[11:50:06] [SERVER]: Bobcat vehicle storage were loaded from "storylines" database...
+[11:50:06] [SERVER]: Bobcat vehicle storage were loaded from "storylines" database...
+[11:50:06] [SERVER]: Sultan vehicle storage were loaded from "storylines" database...
+[11:50:06] [SERVER]: Manana vehicle storage were loaded from "storylines" database...
+[11:50:07] [debug] Long callback execution detected (hang or performance issue)
+[11:50:07] [debug] AMX backtrace:
+[11:50:07] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:50:07] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:09] [debug] Long callback execution detected (hang or performance issue)
+[11:50:09] [debug] AMX backtrace:
+[11:50:09] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:09] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:10] [debug] Long callback execution detected (hang or performance issue)
+[11:50:10] [debug] AMX backtrace:
+[11:50:10] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:10] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:11] [debug] Long callback execution detected (hang or performance issue)
+[11:50:11] [debug] AMX backtrace:
+[11:50:11] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:11] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:12] Player [Ethan Pattersons] sent command: /mycars
+[11:50:12] [debug] Long callback execution detected (hang or performance issue)
+[11:50:12] [debug] AMX backtrace:
+[11:50:12] [debug] #0 000fb160 in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:103
+[11:50:12] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:13] [debug] Long callback execution detected (hang or performance issue)
+[11:50:13] [debug] AMX backtrace:
+[11:50:13] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:50:13] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:14] [debug] Long callback execution detected (hang or performance issue)
+[11:50:14] [debug] AMX backtrace:
+[11:50:14] [debug] #0 0017c824 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:107
+[11:50:15] [debug] Long callback execution detected (hang or performance issue)
+[11:50:15] [debug] AMX backtrace:
+[11:50:15] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:15] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:17] [debug] Long callback execution detected (hang or performance issue)
+[11:50:17] [debug] AMX backtrace:
+[11:50:17] [debug] #0 000fbb6c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:142
+[11:50:17] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:18] Player [Ethan Pattersons] sent command: /setcar
+[11:50:19] [debug] Long callback execution detected (hang or performance issue)
+[11:50:19] [debug] AMX backtrace:
+[11:50:19] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:19] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:19] Player [Ethan Pattersons] sent command: /setcar
+[11:50:20] [debug] Long callback execution detected (hang or performance issue)
+[11:50:20] [debug] AMX backtrace:
+[11:50:20] [debug] #0 000fbb6c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:142
+[11:50:20] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:22] [debug] Long callback execution detected (hang or performance issue)
+[11:50:22] [debug] AMX backtrace:
+[11:50:22] [debug] #0 000fbbc8 in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:144
+[11:50:22] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:23] [debug] Long callback execution detected (hang or performance issue)
+[11:50:23] [debug] AMX backtrace:
+[11:50:23] [debug] #0 000fbd2c in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[11:50:23] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:23] Player [Ethan Pattersons] sent command: /setcar 8
+[11:50:24] [debug] Long callback execution detected (hang or performance issue)
+[11:50:24] [debug] AMX backtrace:
+[11:50:24] [debug] #0 000fbb6c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:142
+[11:50:24] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:25] [debug] Long callback execution detected (hang or performance issue)
+[11:50:25] [debug] AMX backtrace:
+[11:50:25] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:25] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:26] [debug] Long callback execution detected (hang or performance issue)
+[11:50:26] [debug] AMX backtrace:
+[11:50:26] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:50:26] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:27] [debug] Long callback execution detected (hang or performance issue)
+[11:50:27] [debug] AMX backtrace:
+[11:50:27] [debug] #0 000fb368 in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:111
+[11:50:27] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:28] Player [Ethan Pattersons] sent command: /setcar 8 fuel
+[11:50:28] [debug] Long callback execution detected (hang or performance issue)
+[11:50:28] [debug] AMX backtrace:
+[11:50:28] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:28] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:29] [debug] Long callback execution detected (hang or performance issue)
+[11:50:29] [debug] AMX backtrace:
+[11:50:29] [debug] #0 000fbd2c in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[11:50:29] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:29] Player [Ethan Pattersons] sent command: /setcar 8 fuel 50
+[11:50:30] [debug] Long callback execution detected (hang or performance issue)
+[11:50:30] [debug] AMX backtrace:
+[11:50:30] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:50:30] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:31] [debug] Long callback execution detected (hang or performance issue)
+[11:50:31] [debug] AMX backtrace:
+[11:50:31] [debug] #0 000fb160 in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:103
+[11:50:31] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:32] [debug] Long callback execution detected (hang or performance issue)
+[11:50:32] [debug] AMX backtrace:
+[11:50:32] [debug] #0 000fbb6c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:142
+[11:50:32] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:32] Player [Ethan Pattersons] sent command: /setcar 8 fuel 10
+[11:50:33] [debug] Long callback execution detected (hang or performance issue)
+[11:50:33] [debug] AMX backtrace:
+[11:50:33] [debug] #0 000facb0 in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:81
+[11:50:33] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:34] Player [Ethan Pattersons] sent command: /setcar 8 fuel 50
+[11:50:35] [debug] Long callback execution detected (hang or performance issue)
+[11:50:35] [debug] AMX backtrace:
+[11:50:35] [debug] #0 000fbc24 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:146
+[11:50:35] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:36] [debug] Long callback execution detected (hang or performance issue)
+[11:50:36] [debug] AMX backtrace:
+[11:50:36] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:36] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:37] [debug] Long callback execution detected (hang or performance issue)
+[11:50:37] [debug] AMX backtrace:
+[11:50:37] [debug] #0 000fbbc8 in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:144
+[11:50:37] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:38] [debug] Long callback execution detected (hang or performance issue)
+[11:50:38] [debug] AMX backtrace:
+[11:50:38] [debug] #0 000fbb6c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:142
+[11:50:38] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:39] [debug] Long callback execution detected (hang or performance issue)
+[11:50:39] [debug] AMX backtrace:
+[11:50:39] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:39] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:41] [debug] Long callback execution detected (hang or performance issue)
+[11:50:41] [debug] AMX backtrace:
+[11:50:41] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:50:41] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:43] [debug] Long callback execution detected (hang or performance issue)
+[11:50:43] [debug] AMX backtrace:
+[11:50:43] [debug] #0 0017c5c0 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:100
+[11:50:44] [debug] Long callback execution detected (hang or performance issue)
+[11:50:44] [debug] AMX backtrace:
+[11:50:44] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:44] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:45] [debug] Long callback execution detected (hang or performance issue)
+[11:50:45] [debug] AMX backtrace:
+[11:50:45] [debug] #0 000fbb6c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:142
+[11:50:45] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:46] [debug] Long callback execution detected (hang or performance issue)
+[11:50:46] [debug] AMX backtrace:
+[11:50:46] [debug] #0 000fb368 in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:111
+[11:50:46] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:47] [debug] Long callback execution detected (hang or performance issue)
+[11:50:47] [debug] AMX backtrace:
+[11:50:47] [debug] #0 000fbb6c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:142
+[11:50:47] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:48] [debug] Long callback execution detected (hang or performance issue)
+[11:50:48] [debug] AMX backtrace:
+[11:50:48] [debug] #0 000fbb6c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:142
+[11:50:48] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:49] [debug] Long callback execution detected (hang or performance issue)
+[11:50:49] [debug] AMX backtrace:
+[11:50:49] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:49] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:50] [debug] Long callback execution detected (hang or performance issue)
+[11:50:50] [debug] AMX backtrace:
+[11:50:50] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:50] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:51] [debug] Long callback execution detected (hang or performance issue)
+[11:50:51] [debug] AMX backtrace:
+[11:50:51] [debug] #0 000fbb6c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:142
+[11:50:51] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:52] [debug] Long callback execution detected (hang or performance issue)
+[11:50:52] [debug] AMX backtrace:
+[11:50:52] [debug] #0 000005a8 in bool:operator<(Float:,Float:) (Float:oper1=1000.00000, Float:oper2=400.00000) at F:\Radit Files\Storylines-main\pawno\include\float.inc:464
+[11:50:52] [debug] #1 0017c1b4 in TotalledCheck (vehicleid=8) at modules\vehicles\vehicles_timer.inc:74
+[11:50:52] [debug] #2 0017c864 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:53] [debug] Long callback execution detected (hang or performance issue)
+[11:50:53] [debug] AMX backtrace:
+[11:50:53] [debug] #0 000fb62c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:121
+[11:50:53] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:54] [debug] Long callback execution detected (hang or performance issue)
+[11:50:54] [debug] AMX backtrace:
+[11:50:54] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:54] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:55] [debug] Long callback execution detected (hang or performance issue)
+[11:50:55] [debug] AMX backtrace:
+[11:50:55] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:50:55] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:57] [debug] Long callback execution detected (hang or performance issue)
+[11:50:57] [debug] AMX backtrace:
+[11:50:57] [debug] #0 000fbbe8 in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:144
+[11:50:57] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:58] [debug] Long callback execution detected (hang or performance issue)
+[11:50:58] [debug] AMX backtrace:
+[11:50:58] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:50:58] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:50:59] [debug] Long callback execution detected (hang or performance issue)
+[11:50:59] [debug] AMX backtrace:
+[11:50:59] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:50:59] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:00] [debug] Long callback execution detected (hang or performance issue)
+[11:51:00] [debug] AMX backtrace:
+[11:51:00] [debug] #0 000fbb6c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:142
+[11:51:00] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:03] [debug] Long callback execution detected (hang or performance issue)
+[11:51:03] [debug] AMX backtrace:
+[11:51:03] [debug] #0 000facb0 in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:81
+[11:51:03] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:04] [debug] Long callback execution detected (hang or performance issue)
+[11:51:04] [debug] AMX backtrace:
+[11:51:04] [debug] #0 000005a8 in bool:operator<(Float:,Float:) (Float:oper1=1000.00000, Float:oper2=400.00000) at F:\Radit Files\Storylines-main\pawno\include\float.inc:464
+[11:51:04] [debug] #1 0017c1b4 in TotalledCheck (vehicleid=8) at modules\vehicles\vehicles_timer.inc:74
+[11:51:04] [debug] #2 0017c864 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:05] [debug] Long callback execution detected (hang or performance issue)
+[11:51:05] [debug] AMX backtrace:
+[11:51:05] [debug] #0 000fbb6c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:142
+[11:51:05] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:06] [debug] Long callback execution detected (hang or performance issue)
+[11:51:06] [debug] AMX backtrace:
+[11:51:06] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:51:06] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:07] [debug] Long callback execution detected (hang or performance issue)
+[11:51:07] [debug] AMX backtrace:
+[11:51:07] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:51:07] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:08] [debug] Long callback execution detected (hang or performance issue)
+[11:51:08] [debug] AMX backtrace:
+[11:51:08] [debug] #0 000fbb6c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:142
+[11:51:08] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:09] [debug] Long callback execution detected (hang or performance issue)
+[11:51:09] [debug] AMX backtrace:
+[11:51:09] [debug] #0 000fb62c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:121
+[11:51:09] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:10] [debug] Long callback execution detected (hang or performance issue)
+[11:51:10] [debug] AMX backtrace:
+[11:51:10] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:51:10] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:11] [debug] Long callback execution detected (hang or performance issue)
+[11:51:11] [debug] AMX backtrace:
+[11:51:11] [debug] #0 000fb160 in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:103
+[11:51:11] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:12] [debug] Long callback execution detected (hang or performance issue)
+[11:51:12] [debug] AMX backtrace:
+[11:51:12] [debug] #0 000005a8 in bool:operator<(Float:,Float:) (Float:oper1=1000.00000, Float:oper2=400.00000) at F:\Radit Files\Storylines-main\pawno\include\float.inc:464
+[11:51:12] [debug] #1 0017c1b4 in TotalledCheck (vehicleid=7) at modules\vehicles\vehicles_timer.inc:74
+[11:51:12] [debug] #2 0017c864 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:13] [debug] Long callback execution detected (hang or performance issue)
+[11:51:13] [debug] AMX backtrace:
+[11:51:13] [debug] #0 000facb0 in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:81
+[11:51:13] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:14] [debug] Long callback execution detected (hang or performance issue)
+[11:51:14] [debug] AMX backtrace:
+[11:51:14] [debug] #0 000fbbc8 in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:144
+[11:51:14] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:15] [debug] Long callback execution detected (hang or performance issue)
+[11:51:15] [debug] AMX backtrace:
+[11:51:15] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:51:15] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:17] [debug] Long callback execution detected (hang or performance issue)
+[11:51:17] [debug] AMX backtrace:
+[11:51:17] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:51:17] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:18] [debug] Long callback execution detected (hang or performance issue)
+[11:51:18] [debug] AMX backtrace:
+[11:51:18] [debug] #0 000fbbc8 in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:144
+[11:51:18] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:19] [debug] Long callback execution detected (hang or performance issue)
+[11:51:19] [debug] AMX backtrace:
+[11:51:19] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:51:19] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:20] [debug] Long callback execution detected (hang or performance issue)
+[11:51:20] [debug] AMX backtrace:
+[11:51:20] [debug] #0 0017c620 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:102
+[11:51:20] Player [Ethan Pattersons] sent command: /carlock
+[11:51:21] [debug] Long callback execution detected (hang or performance issue)
+[11:51:21] [debug] AMX backtrace:
+[11:51:21] [debug] #0 0017c758 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:105
+[11:51:22] [debug] Long callback execution detected (hang or performance issue)
+[11:51:22] [debug] AMX backtrace:
+[11:51:22] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:51:22] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:24] [debug] Long callback execution detected (hang or performance issue)
+[11:51:24] [debug] AMX backtrace:
+[11:51:24] [debug] #0 000fbc24 in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:146
+[11:51:24] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:26] [debug] Long callback execution detected (hang or performance issue)
+[11:51:26] [debug] AMX backtrace:
+[11:51:26] [debug] #0 000fb1ac in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:105
+[11:51:26] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:27] [debug] Long callback execution detected (hang or performance issue)
+[11:51:27] [debug] AMX backtrace:
+[11:51:27] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:51:27] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:28] [debug] Long callback execution detected (hang or performance issue)
+[11:51:28] [debug] AMX backtrace:
+[11:51:28] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:51:28] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:29] [debug] Long callback execution detected (hang or performance issue)
+[11:51:29] [debug] AMX backtrace:
+[11:51:29] [debug] #0 000fbbc8 in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:144
+[11:51:29] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:30] [debug] Long callback execution detected (hang or performance issue)
+[11:51:30] [debug] AMX backtrace:
+[11:51:30] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:51:30] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:31] [debug] Long callback execution detected (hang or performance issue)
+[11:51:31] [debug] AMX backtrace:
+[11:51:31] [debug] #0 000fbd2c in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[11:51:31] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:32] [debug] Long callback execution detected (hang or performance issue)
+[11:51:32] [debug] AMX backtrace:
+[11:51:32] [debug] #0 000005a8 in bool:operator<(Float:,Float:) (Float:oper1=1000.00000, Float:oper2=400.00000) at F:\Radit Files\Storylines-main\pawno\include\float.inc:464
+[11:51:32] [debug] #1 0017c1b4 in TotalledCheck (vehicleid=8) at modules\vehicles\vehicles_timer.inc:74
+[11:51:32] [debug] #2 0017c864 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:33] [debug] Long callback execution detected (hang or performance issue)
+[11:51:33] [debug] AMX backtrace:
+[11:51:33] [debug] #0 000fb1ac in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:105
+[11:51:33] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:34] [debug] Long callback execution detected (hang or performance issue)
+[11:51:34] [debug] AMX backtrace:
+[11:51:34] [debug] #0 0017c110 in TotalledCheck (vehicleid=6) at modules\vehicles\vehicles_timer.inc:69
+[11:51:34] [debug] #1 0017c864 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:35] [debug] Long callback execution detected (hang or performance issue)
+[11:51:35] [debug] AMX backtrace:
+[11:51:35] [debug] #0 000fbbe8 in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:144
+[11:51:35] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:36] [debug] Long callback execution detected (hang or performance issue)
+[11:51:36] [debug] AMX backtrace:
+[11:51:36] [debug] #0 000fbd2c in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[11:51:36] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:37] [debug] Long callback execution detected (hang or performance issue)
+[11:51:37] [debug] AMX backtrace:
+[11:51:37] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:51:37] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:38] [debug] Long callback execution detected (hang or performance issue)
+[11:51:38] [debug] AMX backtrace:
+[11:51:38] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:51:38] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:39] [debug] Long callback execution detected (hang or performance issue)
+[11:51:39] [debug] AMX backtrace:
+[11:51:39] [debug] #0 000fbc24 in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:146
+[11:51:39] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:40] [debug] Long callback execution detected (hang or performance issue)
+[11:51:40] [debug] AMX backtrace:
+[11:51:40] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:51:40] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:41] [debug] Long callback execution detected (hang or performance issue)
+[11:51:41] [debug] AMX backtrace:
+[11:51:41] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:51:41] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:42] [debug] Long callback execution detected (hang or performance issue)
+[11:51:42] [debug] AMX backtrace:
+[11:51:42] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:51:42] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:45] [debug] Long callback execution detected (hang or performance issue)
+[11:51:45] [debug] AMX backtrace:
+[11:51:45] [debug] #0 000fbbc8 in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:144
+[11:51:45] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:46] [debug] Long callback execution detected (hang or performance issue)
+[11:51:46] [debug] AMX backtrace:
+[11:51:46] [debug] #0 000fbd2c in SaveVehicle (vehicleid=7) at modules\config\savemysql.inc:150
+[11:51:46] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:49] [debug] Long callback execution detected (hang or performance issue)
+[11:51:49] [debug] AMX backtrace:
+[11:51:49] [debug] #0 000fbd2c in SaveVehicle (vehicleid=8) at modules\config\savemysql.inc:150
+[11:51:49] [debug] #1 0017c844 in public OnVehicleUpdate () at modules\vehicles\vehicles_timer.inc:109
+[11:51:50] [debug] Long callback execution detected (hang or performance issue)
+[11:51:50] [debug] AMX backtrace:
+[11:51:50] [debug] #0 000fbd2c in SaveVehicle (vehicleid=6) at modules\config\savemysql.inc:150
+[11:51:50] [debug] #1 00166570 in Query_UnloadPrivateVehicle (playerid=0) at modules\vehicles\vehicles.inc:419
+[11:51:50] [debug] #2 002572d4 in public PDialog_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:398
+[11:51:50] [debug] #3 00031860 in public MS_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:935
+[11:51:50] [debug] #4 00025208 in public Itter_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\eSelection.inc:479
+[11:51:50] [debug] #5 native CallLocalFunction () in samp-server.exe
+[11:51:50] [debug] #6 00010edc in public TIMERFIX_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\foreach.inc:735
+[11:51:50] [debug] #7 00010614 in public ppb_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\timerfix.inc:188
+[11:51:50] [debug] #8 0000f760 in public SSCANF_OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\progress2.inc:405
+[11:51:50] [debug] #9 00000dc4 in public OnPlayerDisconnect (playerid=0, reason=1) at F:\Radit Files\Storylines-main\pawno\include\sscanf2.inc:266
+[11:51:50] [part] Ethan_Pattersons has left the server (0:1)
+Console input: exit
+[11:52:02] --- Server Shutting Down.
+[11:52:02] [debug] Long callback execution detected (hang or performance issue)
+[11:52:02] [debug] AMX backtrace:
+[11:52:02] [debug] #0 000fd6d8 in SaveBusiness (id=3) at modules\config\savemysql.inc:262
+[11:52:02] [debug] #1 000fa65c in SaveBusinesses () at modules\config\savemysql.inc:32
+[11:52:02] [debug] #2 00256844 in public PDialog_OnGameModeExit () at F:\Radit Files\Storylines-main\gamemodes\roleplay.pwn:301
+[11:52:02] [debug] #3 0003167c in public OnGameModeExit () at F:\Radit Files\Storylines-main\pawno\include\PreviewModelDialog.inc:855
+[11:52:02] plugin.mysql: Unloading plugin...
+[11:52:02] plugin.mysql: Plugin unloaded.
+[11:52:02] 
+
+[11:52:02]  ===============================
+
+[11:52:02]      sscanf plugin unloaded.    
+
+[11:52:02]  ===============================
+
+[11:52:02] 
+
+*** Streamer Plugin v2.9.5 by Incognito unloaded ***
+
+[11:52:02] [plugin.timerfix] Plugsin successfully unloaded!
+[11:52:02]  PawnPlus v1.5 unloaded
+[11:52:02] ========================
+[11:52:02] = Memory access plugin =
+[11:52:02] =       Made by BigETI =
+[11:52:02] = Unloaded!            =
+[11:52:02] ========================

@@ -1481,6 +1481,7 @@ new Float:PublicPoint[][] =
     {2610.7708,-2441.7927,13.6310},  //Fish Factory
 	{2412.9312,-1425.4226,23.9835}, //Graveyard
 	{1743.3409,-1457.5900,13.5181}, //Advertise
+	{1778.0038,-1663.6217,14.4355}, //Pattersons Realty Estates
 	{684.6581,-1570.5861,14.2422}, //Dealership
 	{2132.0190,-1149.9902,24.2088}, //Dealership
 	{1629.6158,-1903.5123,13.5530}, //Dealership
@@ -2468,6 +2469,7 @@ new const PublicName[][128] =
 	"Fish Factory: Oceandocks",
 	"Vehicle Graveyard & Scrapyard",
 	"Los Santos Advertisement",
+	"Pattersons Realty Estate",
 	"Dealership: Bikes",
 	"Dealership: Compact Cars",
 	"Dealership: Luxury Cars",
