@@ -232,7 +232,7 @@ function:Vending_AnimatePlayer(playerid, arrayid, anim_reel) {
             GetPlayerPos(playerid, x, y, z);
             GetXYLeftOfPlayer(playerid, x, y, 0.35);
 
-            SetPlayerNeeds(playerid, 0, 20.0);
+            SetPlayerNeeds(playerid, 10.0);
             RemovePlayerAttachedObject(playerid, 0);
             g_PlayerVendingProp[playerid] = CreateDynamicObject(g_PlayerVendingModel[playerid], x, y, z, 0.0, 90.0, 90.0);
             Streamer_Update(playerid, STREAMER_TYPE_OBJECT);

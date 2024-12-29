@@ -107,19 +107,19 @@ function:OnPlayerUpdateEx()
 			{
 				GetVehicleZAngle(GetPlayerVehicleID(playerid), rz);
 
-				if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "North~n~~y~N";
-				else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "North East~n~~y~NE";
-				else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "East~n~~y~E";
-				else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "South East~n~~y~SE";
-				else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "South~n~~y~S";
-				else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "South West~n~~y~SW";
-				else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "West~n~~y~W";
-				else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "North West~n~~y~NW";
+				if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "N";
+				else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "NE";
+				else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "E";
+				else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "SE";
+				else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "S";
+				else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "SW";
+				else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "W";
+				else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "NW";
 
 				PlayerTextDrawSetString(playerid, Street[0][playerid], PlayerDirection[playerid]);
 
 				new str1[180];
-				format(str1, sizeof(str1), "%s~n~%s~n~San Andreas", ReturnLocationStreet(playerid), ReturnLocation(playerid));
+				format(str1, sizeof(str1), "%s~n~%s", ReturnLocationStreet(playerid), ReturnLocation(playerid));
 				PlayerTextDrawSetString(playerid, Street[1][playerid], str1);
 			}
 			
@@ -139,11 +139,8 @@ function:OnPlayerUpdateEx()
 				}
 
 				SetPlayerProgressBarValue(playerid, HEBAR[0][playerid], PlayerInfo[playerid][E_CHARACTER_HUNGRY]);
-				SetPlayerProgressBarValue(playerid, HEBAR[1][playerid], PlayerInfo[playerid][E_CHARACTER_THIRSTY]);
 				SetPlayerProgressBarColour(playerid, HEBAR[0][playerid], ConvertHBEColor(PlayerInfo[playerid][E_CHARACTER_HUNGRY]));
-				SetPlayerProgressBarColour(playerid, HEBAR[1][playerid], ConvertHBEColor(PlayerInfo[playerid][E_CHARACTER_THIRSTY]));
 				ShowPlayerProgressBar(playerid, HEBAR[0][playerid]);
-				ShowPlayerProgressBar(playerid, HEBAR[1][playerid]);
 			}		
 
 			if (IsPlayerInAnyVehicle(playerid))
@@ -175,19 +172,10 @@ function:OnPlayerUpdateEx()
 			{
 				PlayerInfo[playerid][E_CHARACTER_HUNGRY] = 100.0;
 			}
-			if(PlayerInfo[playerid][E_CHARACTER_THIRSTY] > 100.0)
-			{
-				PlayerInfo[playerid][E_CHARACTER_THIRSTY] = 100.0;
-			}
 			if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 0)
 			{
 				PlayerInfo[playerid][E_CHARACTER_HUNGRY] = 0;
 			}
-			if(PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 0)
-			{
-				PlayerInfo[playerid][E_CHARACTER_THIRSTY] = 0;
-			}
-
 			for(new i; i < 8; i++)
 			{
 				if(PlayerInfo[playerid][E_CHARACTER_WOUND][i] < 0)
@@ -265,48 +253,20 @@ function:OnPlayerUpdateEx()
 
 			if(IsPlayerInAnyVehicle(playerid) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER && IsEngineVehicle(vehicleid))
 			{
-				new str[128], stra[128], stru[128], stre[128];
+				new str[128], stra[128];
 				format(str, sizeof(str), "%.0f Mph", fSpeed);
-
-				new siren = GetVehicleParamsSirenState(vehicleid);
 
 				if(vhealth <= 350.0) vhealth = 0.0;
 				else if(vhealth > 1000.0) vhealth = 1000.0;
 
-				if(siren == 1)
-				{
-					format(stru, sizeof(stru), "Siren : ~g~on");
-				}
-				else
-				{
-					format(stru, sizeof(stru), "Siren : ~r~off");
-				}
-
-				format(stra, sizeof(stra), "Miles : %d", VehicleInfo[vehicleid][E_VEHICLE_MILES]);
-
-				format(stre, sizeof(stre), "%s", ReturnVehicleName(vehicleid));
+				format(stra, sizeof(stra), "%s", ConvertTextDrawsToDots(VehicleInfo[vehicleid][E_VEHICLE_FUEL]));
 
 				if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
 	    		{
-					PlayerTextDrawSetString(playerid, speedo[0][playerid], str);
-					PlayerTextDrawShow(playerid, speedo[0][playerid]);
-					PlayerTextDrawSetString(playerid, speedo[2][playerid], stra);
-					PlayerTextDrawShow(playerid, speedo[2][playerid]);
-					PlayerTextDrawSetString(playerid, speedo[3][playerid], stre);
-					PlayerTextDrawShow(playerid, speedo[3][playerid]);
-
-					if(IsPoliceVehicle(GetPlayerVehicleID(playerid)))
-					{
-						PlayerTextDrawSetString(playerid, speedo[1][playerid], stru);
-						PlayerTextDrawShow(playerid, speedo[1][playerid]);
-					}
-
-					SetPlayerProgressBarValue(playerid, fuelbar[playerid], VehicleInfo[vehicleid][E_VEHICLE_FUEL]);
-					SetPlayerProgressBarColour(playerid, fuelbar[playerid], ConvertHBEColor(VehicleInfo[vehicleid][E_VEHICLE_FUEL]));
-					SetPlayerProgressBarValue(playerid, dmgbar[playerid], vhealth);
-					SetPlayerProgressBarColour(playerid, dmgbar[playerid], ConvertVehicleColor(vhealth));
-					ShowPlayerProgressBar(playerid, fuelbar[playerid]);
-					ShowPlayerProgressBar(playerid, dmgbar[playerid]);
+					PlayerTextDrawSetString(playerid, speedo[14][playerid], str);
+					PlayerTextDrawShow(playerid, speedo[14][playerid]);
+					PlayerTextDrawSetString(playerid, speedo[13][playerid], stra);
+					PlayerTextDrawShow(playerid, speedo[13][playerid]);
 				}
 
 				for (new i = 0; i != MAX_BARRICADES; i ++) if (BarricadeInfo[i][E_CADE_EXISTS] && BarricadeInfo[i][E_CADE_TYPE] == 1 && IsPlayerInRangeOfPoint(playerid, 3.0, BarricadeInfo[i][E_CADE_POS][0], BarricadeInfo[i][E_CADE_POS][1], BarricadeInfo[i][E_CADE_POS][2]))

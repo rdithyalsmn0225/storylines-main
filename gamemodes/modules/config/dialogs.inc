@@ -4210,7 +4210,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < 5)
 							return SendErrorMessage(playerid, "Your level (5) is minimum to access this jobs."); 
 
-						if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+						if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20)
 							return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
 						ShowFreight(playerid);
@@ -4686,7 +4686,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				if (!PlayerInfo[targetid][E_CHARACTER_TAXICALLED])
 					return SendErrorMessage(playerid, "That player's call was accepted by another taxi driver.");
 
-				if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+				if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20)
 					return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
 				static

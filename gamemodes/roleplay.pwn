@@ -517,7 +517,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 				SaveCharacter(playerid);
 				
 				PlayerCheckpoint[playerid] = GPS_NONE; 
-				SetPlayerNeeds(playerid, -0.5, -0.4);
+				SetPlayerNeeds(playerid, -0.5);
 				return 1; 
 			}
 		}
@@ -600,7 +600,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 				PlayerSweeperIndex[playerid] = 0;
 				PlayerInfo[playerid][E_CHARACTER_SWEEPERCD] = 8;
 
-				SetPlayerNeeds(playerid, -0.2, -0.5);
+				SetPlayerNeeds(playerid, -0.2);
                     
 				GPS_DisablePlayerRaceCheckPoint(playerid);
 				DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
@@ -737,7 +737,6 @@ public OnVehicleDeath(vehicleid, killerid)
 	new Float: vehicle_health;
 	GetVehicleHealth(vehicleid, vehicle_health); 
 
-
 	#if defined DEBUG_MODE
 		printf("Callback OnVehicleDeath called for Vehicle ID: %i (%s) (Health: %.2f) destroyed by %s", vehicleid, ReturnVehicleName(vehicleid), vehicle_health, ReturnName(killerid, killerid)); 
 	#endif
@@ -747,19 +746,7 @@ public OnVehicleDeath(vehicleid, killerid)
 	foreach(new i : Player) if(PlayerInfo[i][E_CHARACTER_DBID] == VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID])
 	{
 		SendClientMessageEx(i, COLOR_RED, "Your %s was destroyed.", ReturnVehicleName(vehicleid)); 
-			
-		PlayerInfo[i][E_CHARACTER_VEHICLESPAWNED] = false;
-		PlayerInfo[i][E_CHARACTER_VEHICLESPAWN] = INVALID_VEHICLE_ID; 
 	}
-	else
-	{
-		new
-			chanquery[128];
-			
-		mysql_format(ourConnection, chanquery, sizeof(chanquery), "UPDATE characters SET pVehicleSpawned = 0, pVehicleSpawnedID = %i WHERE char_dbid = %i", INVALID_VEHICLE_ID, VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID]);
-		mysql_pquery(ourConnection, chanquery); 
-	}	
-		
 	return 1; 
 }
 
@@ -4186,7 +4173,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		new Float:health;
 		GetPlayerHealth(playerid, health);
 		SetPlayerHealthEx(playerid, health+10.0);
-		SetPlayerNeeds(playerid, 10.0, 5.0);
+		SetPlayerNeeds(playerid, 10.0);
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1];
 		ApplyAnimation(playerid, "FOOD", "EAT_Burger", 4.1, 0, 0, 0, 0, 0, 1);
@@ -4218,7 +4205,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		new Float:health;
 		GetPlayerHealth(playerid, health);
 		SetPlayerHealthEx(playerid, health+15.0);
-		SetPlayerNeeds(playerid, 15.0, 10.0);
+		SetPlayerNeeds(playerid, 15.0);
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
 		ApplyAnimation(playerid, "FOOD", "EAT_Chicken", 4.1, 0, 0, 0, 0, 0, 1);
@@ -4250,7 +4237,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 		new Float:health;
 		GetPlayerHealth(playerid, health);
 		SetPlayerHealthEx(playerid, health+20.0);
-		SetPlayerNeeds(playerid, 20.0, 15.0);
+		SetPlayerNeeds(playerid, 20.0);
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 		BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
 		ApplyAnimation(playerid, "FOOD", "EAT_Pizza", 4.1, 0, 0, 0, 0, 0, 1);
@@ -4444,7 +4431,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_LUMBERJACK)
 				return SendErrorMessage(playerid, "You aren't lumberjack.");
 
-			if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+			if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20)
 				return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
 			if(!Inventory_Count(playerid, "Chainsaw"))
@@ -4661,7 +4648,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
     {
 		if(PlayerUsingGym[playerid] == true)
 		{
-			if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+			if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20)
 				return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
 			IsPlayerPlayingMachine(playerid);
@@ -4688,7 +4675,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				PlayerInfo[playerid][E_CHARACTER_FISHINGSTART] = false;
 				PlayerInfo[playerid][E_CHARACTER_FISHINGVALUE] = 0;
 
-				SetPlayerNeeds(playerid, -0.2, -0.5);
+				SetPlayerNeeds(playerid, -0.2);
 
 				DestroyGameBar(playerid);
 				KillTimer(PlayerInfo[playerid][E_CHARACTER_FISHINGTIMER]);
@@ -5022,11 +5009,11 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	{
 		if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DRINK_SPRUNK)
 		{
-			SetPlayerNeeds(playerid, 0, 5.0);
+			SetPlayerNeeds(playerid, 4.5);
 		}
 		if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DRINK_BEER)
 		{
-			SetPlayerNeeds(playerid, 0, 5.5);
+			SetPlayerNeeds(playerid, 5.5);
 		}
 	}
 	if (newkeys & KEY_SECONDARY_ATTACK && !IsPlayerInAnyVehicle(playerid))
@@ -5819,9 +5806,8 @@ function:SaveCharacter(playerid)
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
 	
-	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pHungry = %f, pThirsty = %f WHERE char_dbid = %i", 
+	mysql_format(ourConnection, query, sizeof(query), "UPDATE characters SET pHungry = %f WHERE char_dbid = %i", 
 		PlayerInfo[playerid][E_CHARACTER_HUNGRY],
-		PlayerInfo[playerid][E_CHARACTER_THIRSTY],
 		PlayerInfo[playerid][E_CHARACTER_DBID]);
 	mysql_pquery(ourConnection, query);
 

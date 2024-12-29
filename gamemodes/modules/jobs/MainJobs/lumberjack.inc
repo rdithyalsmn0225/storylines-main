@@ -96,7 +96,7 @@ function:CutTree(playerid, id)
             Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
             KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
-            SetPlayerNeeds(playerid, -0.3, -0.2);
+            SetPlayerNeeds(playerid, -0.3);
 
             if(TreeInfo[id][E_TREE_PROGRESS] + rand >= 100)
             {
@@ -148,7 +148,7 @@ function:CreateTimber(playerid, id)
 
             Inventory_Add(playerid, "Woods", 1463, 1);
 
-            SetPlayerNeeds(playerid, -0.1, -0.2);
+            SetPlayerNeeds(playerid, -0.1);
 
             SendJobsMessage(playerid, "[LUMBERJACK] You've successfully take woods timber.");
             SendTipMessage(playerid, "Place the timber into your pickup vehicle.");
@@ -227,7 +227,7 @@ CMD:sellwood(playerid, params[])
 	if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_LUMBERJACK)
         return SendErrorMessage(playerid, "You aren't lumberjack.");
 
-    if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+    if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 )
 		return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
 	if(IsPlayerInRangeOfPoint(playerid, 3.0, IndustryInfo[2][Posx], IndustryInfo[2][Posy], IndustryInfo[2][Posz]))

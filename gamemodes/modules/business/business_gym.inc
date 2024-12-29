@@ -125,7 +125,7 @@ stock IsPlayerPlayingMachine(playerid)
 				}
 			}
             PlayerPointGym[playerid] = 10.0;
-            SetPlayerNeeds(playerid, 0.0, -0.1);
+            SetPlayerNeeds(playerid, -0.1);
         }
         else if(PlayerPointGym[playerid] == 10.0)
         {
@@ -140,7 +140,7 @@ stock IsPlayerPlayingMachine(playerid)
         {
 			ApplyAnimation(playerid, "gymnasium", "gym_tread_sprint", 4.1, 1, 0, 0, 1, 1, 1);	
             PlayerPointGym[playerid] = 100.0;
-            SetPlayerNeeds(playerid, 0.0, -0.1);
+            SetPlayerNeeds(playerid, -0.1);
         }
         else if(PlayerPointGym[playerid] >= 30.0)
         {
@@ -161,7 +161,7 @@ stock IsPlayerPlayingMachine(playerid)
 			PlayerPlaySound(playerid, 17801, 0, 0, 0);
 			ApplyAnimation(playerid, "gymnasium", "gym_bike_faster", 4.1, 1, 0, 0, 1, 1, 1);	
             PlayerPointGym[playerid] = 100.0;
-            SetPlayerNeeds(playerid, 0.0, -0.1);
+            SetPlayerNeeds(playerid, -0.1);
         }
         else if(PlayerPointGym[playerid] >= 0)
         {
@@ -187,7 +187,7 @@ stock IsPlayerPlayingMachine(playerid)
 					ApplyAnimation(playerid, "benchpress", "gym_bp_up_B", 4.1, 0, 0, 0, 1, 0, 1 );
 				}
 			}
-            SetPlayerNeeds(playerid, 0.0, -0.1);
+            SetPlayerNeeds(playerid, -0.1);
             PlayerPlaySound(playerid, 17807, 0, 0, 0);
             PlayerPointGym[playerid] = 10.0;
         }
@@ -531,7 +531,7 @@ CMD:gym(playerid, params[])
         if(!IsPlayerInBusiness(playerid) && BusinessInfo[businessid][E_BUSINESS_TYPE != BUSINESS_TYPE_GYM])
             return SendErrorMessage(playerid, "You aren't in business.");
             
-        if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+        if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20)
             return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
         if(IsPlayerInRangeOfPoint(playerid, 2.0, 772.6528,5.4322,1000.7802)) 

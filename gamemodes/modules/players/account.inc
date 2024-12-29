@@ -383,7 +383,6 @@ function:Query_LoadCharacter(playerid)
 	cache_get_value_name_int(0, "pHasInjured", PlayerInfo[playerid][E_CHARACTER_INJURED]); 
 	cache_get_value_name_int(0, "pHasDeath", PlayerInfo[playerid][E_CHARACTER_DEATH]); 
 	cache_get_value_name_float(0, "pHungry", PlayerInfo[playerid][E_CHARACTER_HUNGRY]); 
-	cache_get_value_name_float(0, "pThirsty", PlayerInfo[playerid][E_CHARACTER_THIRSTY]); 
 	cache_get_value_name_float(0, "pHealth", PlayerInfo[playerid][E_CHARACTER_HEALTH]); 
 	cache_get_value_name_float(0, "pMaxHealth", PlayerInfo[playerid][E_CHARACTER_MAXHEALTH]); 
 	cache_get_value_name_float(0, "pArmor", PlayerInfo[playerid][E_CHARACTER_ARMOUR]); 

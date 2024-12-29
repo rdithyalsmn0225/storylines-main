@@ -352,7 +352,7 @@ CMD:quitjob(playerid, params[])
 
 CMD:jobduty(playerid, params[])
 {
-    if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+    if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20)
 		return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
     if(GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)

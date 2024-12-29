@@ -29,7 +29,7 @@ function:BusDrivers(playerid, type)
                     Delete3DTextLabel(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY]); 
                     KillTimer(PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER]);
 
-                    SetPlayerNeeds(playerid, -0.2, -0.3);
+                    SetPlayerNeeds(playerid, -0.2);
 
                     new gstr[128];
                     format(gstr, sizeof(gstr),"~w~Passanger Entering~n~~r~%i~w~/~g~22", PlayerBusDriverIndex[playerid]);

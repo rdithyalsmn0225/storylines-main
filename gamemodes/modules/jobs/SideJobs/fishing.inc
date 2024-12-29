@@ -203,7 +203,7 @@ CMD:fish(playerid, params[])
 	if(GetPlayerState(playerid) != PLAYER_STATE_ONFOOT)
 		return SendErrorMessage(playerid, "You must be onfoot!");
 
-	if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+	if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 )
 		return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
 	PlayerInfo[playerid][E_CHARACTER_FISHING] = true;

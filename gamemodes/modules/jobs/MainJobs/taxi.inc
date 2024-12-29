@@ -108,7 +108,7 @@ CMD:taxicall(playerid, params[])
 	if (!PlayerInfo[playerid][E_CHARACTER_TAXIDUTY])
 	    return SendErrorMessage(playerid, "You must be on taxi duty to accept calls.");
 
-	if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 || PlayerInfo[playerid][E_CHARACTER_THIRSTY] < 20)
+	if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20 )
 		return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
 	Taxi_ShowCalls(playerid);

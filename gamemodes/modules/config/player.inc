@@ -219,10 +219,7 @@ function:ResetPlayer(playerid)
 		PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i] = 0; 
 	}
 
-	for(new i; i < 2; i++)
-	{
-		HEBAR[i][playerid] = INVALID_PLAYER_BAR_ID;
-	}
+	
 	
 	//Anticheat
 	CurrentHealthVar[playerid] = 0;
@@ -238,8 +235,7 @@ function:ResetPlayer(playerid)
 	DestroyVehicle(DealershipPlayerCar[playerid]);
 
 	HeaderBar[playerid] = INVALID_PLAYER_BAR_ID;
-	fuelbar[playerid] = INVALID_PLAYER_BAR_ID;
-	dmgbar[playerid] = INVALID_PLAYER_BAR_ID;
+	HEBAR[0][playerid] = INVALID_PLAYER_BAR_ID;
 	
 	//Master accounts:
 	AccountInfo[playerid][E_MASTERS_DBID] = 0;
