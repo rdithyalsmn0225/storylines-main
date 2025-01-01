@@ -30,8 +30,107 @@ CMD:rentcars(playerid, params[])
 		return 1;
 	}
 
-    ShowPlayerDialog(playerid, DIALOG_RENTALCARS, DIALOG_STYLE_TABLIST, "Rental Cars:", "Faggio\t{33AA33}$50.00/hours{ffffff}\nSentinel\t{33AA33}$120.00/hours{ffffff}", "Select", "Cancel");
+    Dialog_Show(playerid, DialogRentalCars, DIALOG_STYLE_TABLIST, "Rental Cars:", "Faggio\t{33AA33}$50.00/hours{ffffff}\nSentinel\t{33AA33}$120.00/hours{ffffff}", "Select", "Cancel");
     return 1;
+}
+
+Dialog:DialogRentalCars(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		switch(listitem)
+		{
+			case 0:
+			{
+				new Cents = floatround(50 * 100, floatround_round);
+
+				if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+					return SendErrorMessage(playerid, "You can't afford the total price. (Price: $%s, Total:$%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+
+				new
+					idx, 
+					plates[32],
+					randset[3],
+					insert[256],
+					Float:x,
+					Float:y,
+					Float:z,
+					Float:a;
+				
+				for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
+				{
+					if(!PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
+					{
+						idx = i;
+						break;
+					}
+				}
+
+				GetPlayerPos(playerid, x, y, z);
+				GetPlayerFacingAngle(playerid, a);
+
+				randset[0] = random(sizeof(possible_vehicle_plates)); 
+				randset[1] = random(sizeof(possible_vehicle_plates)); 
+				randset[2] = random(sizeof(possible_vehicle_plates)); 
+				
+				format(plates, 32, "%d%s%s%s%d%d%d", random(9), possible_vehicle_plates[randset[0]], possible_vehicle_plates[randset[1]], possible_vehicle_plates[randset[2]], random(9), random(9)); 
+
+				GiveMoney(playerid, -Cents);
+				
+				ShowPlayerPlates(playerid, plates); 
+				
+				mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO vehicles (VehicleOwnerDBID, VehicleModel, VehicleParkPosX, VehicleParkPosY, VehicleParkPosZ, VehicleParkPosA, VehicleRental, VehicleRentalTimer) VALUES(%i, %i, %f, %f, %f, %f, %i, %i)",
+					PlayerInfo[playerid][E_CHARACTER_DBID], 462, x, y, z, a, 1, 60); 
+					
+				mysql_pquery(ourConnection, insert, "OnPlayerVehicleRental", "iiiisffff", playerid, idx, 462, Cents, plates, x, y, z, a);
+			}
+			case 1:
+			{
+				new Cents = floatround(120 * 100, floatround_round);
+
+				if(Cents > PlayerInfo[playerid][E_CHARACTER_MONEY])
+					return SendErrorMessage(playerid, "You can't afford the total price. (Price: $%s, Total:$%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+
+				new
+					idx, 
+					plates[32],
+					randset[3],
+					insert[256],
+					Float:x,
+					Float:y,
+					Float:z,
+					Float:a;
+				
+				for(new i = 1; i < MAX_PLAYER_VEHICLES; i++)
+				{
+					if(!PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
+					{
+						idx = i;
+						break;
+					}
+				}
+
+				GetPlayerPos(playerid, x, y, z);
+				GetPlayerFacingAngle(playerid, a);
+
+				randset[0] = random(sizeof(possible_vehicle_plates)); 
+				randset[1] = random(sizeof(possible_vehicle_plates)); 
+				randset[2] = random(sizeof(possible_vehicle_plates)); 
+				
+				format(plates, 32, "%d%s%s%s%d%d%d", random(9), possible_vehicle_plates[randset[0]], possible_vehicle_plates[randset[1]], possible_vehicle_plates[randset[2]], random(9), random(9)); 
+				
+				GiveMoney(playerid, -Cents);
+				
+				ShowPlayerPlates(playerid, plates); 
+				
+				mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO vehicles (VehicleOwnerDBID, VehicleModel, VehicleParkPosX, VehicleParkPosY, VehicleParkPosZ, VehicleParkPosA, VehicleRental, VehicleRentalTimer) VALUES(%i, %i, %f, %f, %f, %f, %i, %i)",
+					PlayerInfo[playerid][E_CHARACTER_DBID], 405, x, y, z, a, 1, 60); 
+					
+				mysql_pquery(ourConnection, insert, "OnPlayerVehicleRental", "iiiisffff", playerid, idx, 405, Cents, plates, x, y, z, a);
+			}
+		}
+	}
+	return 1;
 }
 
 function:OnPlayerVehicleRental(playerid, id, modelid, cost, plates[], Float:x, Float:y, Float:z, Float:a)

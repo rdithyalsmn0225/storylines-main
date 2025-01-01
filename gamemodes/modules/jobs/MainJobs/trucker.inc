@@ -358,7 +358,7 @@ CMD:tpda(playerid, params[])
     if(PlayerInfo[playerid][E_CHARACTER_JOBS] != JOB_TRUCKER)
         return SendErrorMessage(playerid, "You aren't truckers.");
 
-    ShowPlayerDialog(playerid, DIALOG_INDUSTRY, DIALOG_STYLE_LIST, "Truck PDA:", "Show Oceandocks Information\nShow Freight Industry\nShow Cargo Industry\nShow Business Request Shipments", "Select", "Cancel");
+    Dialog_Show(playerid, DialogIndustry, DIALOG_STYLE_LIST, "Truck PDA:", "Show Oceandocks Information\nShow Freight Industry\nShow Cargo Industry\nShow Business Request Shipments", "Select", "Cancel");
     return 1;
 }
 

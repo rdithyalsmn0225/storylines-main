@@ -843,7 +843,7 @@ stock ShowFightStyleMenu(playerid)
 	new id = IsPlayerInBusiness(playerid), str[128];
 
 	format(str, sizeof(str), "%s:", BusinessInfo[id][E_BUSINESS_NAME]);
-	ShowPlayerDialog(playerid, DIALOG_GYM, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nBoxing\t$150.00\nKneehead\t$200.00\nGrabKick\t$300.00\nReset\t$100.00\nSprunk\t$2.00", "Select", "Cancel");
+	Dialog_Show(playerid, DialogGym, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nBoxing\t$150.00\nKneehead\t$200.00\nGrabKick\t$300.00\nReset\t$100.00\nSprunk\t$2.00", "Select", "Cancel");
 	return 1;
 }
 

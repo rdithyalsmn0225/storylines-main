@@ -18,9 +18,9 @@ CMD:drugsdeal(playerid, params[])
 	if(DrugsDealerExists[playerid] == 0)
 	{
 		if(ReturnFactionType(playerid) == FACTION_TYPE_ILLEGAL)
-			ShowPlayerDialog(playerid, DIALOG_DRUGSDEALTYPE1, DIALOG_STYLE_TABLIST_HEADERS, "Choose type of drugs to deal", "Drugs\tCost\nCrack, Marijuana\t(Cost Influenced)\nHeroin\t(No Cost Influenced)", "Select", "Cancel");
+			Dialog_Show(playerid, DialogDrugsDealType1, DIALOG_STYLE_TABLIST_HEADERS, "Choose type of drugs to deal", "Drugs\tCost\nCrack, Marijuana\t(Cost Influenced)\nHeroin\t(No Cost Influenced)", "Select", "Cancel");
 		else
-			ShowPlayerDialog(playerid, DIALOG_DRUGSDEALTYPE2, DIALOG_STYLE_TABLIST_HEADERS, "Choose type of drugs to deal", "Drugs\tCost\nCrack, Marijuana\t(Cost Influenced)\nPCP\t(No Cost Influenced)", "Select", "Cancel");
+			Dialog_Show(playerid, DialogDrugsDealType2, DIALOG_STYLE_TABLIST_HEADERS, "Choose type of drugs to deal", "Drugs\tCost\nCrack, Marijuana\t(Cost Influenced)\nPCP\t(No Cost Influenced)", "Select", "Cancel");
 	}
 	else if(DrugsDealerExists[playerid] == 1)
 	{
@@ -36,28 +36,28 @@ CMD:drugsdeal(playerid, params[])
 			{
 				DrugsDealerAmount[playerid] = randomEx(1, 5);
 				format(str, sizeof(str), "The customers want %d Crack\nNOTE: If you don't have this drugs, customers will run and insult.", DrugsDealerAmount[playerid]);
-				ShowPlayerDialog(playerid, DIALOG_DRUGSDEAL, DIALOG_STYLE_MSGBOX, "Drugs Dealing:", str, "Confirm", "Reject");
+				Dialog_Show(playerid, DialogDrugsDeal, DIALOG_STYLE_MSGBOX, "Drugs Dealing:", str, "Confirm", "Reject");
 				SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 			}
 			else if(DrugsDealerType[playerid] == 2)
 			{
 				DrugsDealerAmount[playerid] = randomEx(1, 5);
 				format(str, sizeof(str), "The customers want %d Marijuana\nNOTE: If you don't have this drugs, customers will run and insult.", DrugsDealerAmount[playerid]);
-				ShowPlayerDialog(playerid, DIALOG_DRUGSDEAL, DIALOG_STYLE_MSGBOX, "Drugs Dealing:", str, "Confirm", "Reject");
+				Dialog_Show(playerid, DialogDrugsDeal, DIALOG_STYLE_MSGBOX, "Drugs Dealing:", str, "Confirm", "Reject");
 				SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 			}
 			else if(DrugsDealerType[playerid] == 3)
 			{
 				DrugsDealerAmount[playerid] = randomEx(1, 5);
 				format(str, sizeof(str), "The customers want %d Heroin\nNOTE: If you don't have this drugs, customers will run and insult.", DrugsDealerAmount[playerid]);
-				ShowPlayerDialog(playerid, DIALOG_DRUGSDEAL, DIALOG_STYLE_MSGBOX, "Drugs Dealing:", str, "Confirm", "Reject");
+				Dialog_Show(playerid, DialogDrugsDeal, DIALOG_STYLE_MSGBOX, "Drugs Dealing:", str, "Confirm", "Reject");
 				SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 			}
 			else if(DrugsDealerType[playerid] == 4)
 			{
 				DrugsDealerAmount[playerid] = randomEx(1, 5);
 				format(str, sizeof(str), "The customers want %d PCP\nNOTE: If you don't have this drugs, customers will run and insult.", DrugsDealerAmount[playerid]);
-				ShowPlayerDialog(playerid, DIALOG_DRUGSDEAL, DIALOG_STYLE_MSGBOX, "Drugs Dealing:", str, "Confirm", "Reject");
+				Dialog_Show(playerid, DialogDrugsDeal, DIALOG_STYLE_MSGBOX, "Drugs Dealing:", str, "Confirm", "Reject");
 				SetDynamicActorAngleToPlayer(DrugsDealerActor[playerid], playerid);
 			}
 		}

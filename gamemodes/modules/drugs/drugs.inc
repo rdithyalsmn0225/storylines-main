@@ -285,7 +285,7 @@ CMD:production(playerid, params[])
 		{
 			if(BusinessInfo[id][E_BUSINESS_AMOUNT] == 0)
 			{
-				ShowPlayerDialog(playerid, DIALOG_DRUGSCOMBINE, DIALOG_STYLE_TABLIST_HEADERS, "Choose your drugs:", "Drugs Name\tIngredient\nCocaine Crack\tBaking Soda & Cocaine\nPCP\tMarijuana, Parsley, Mint & Baking Soda", "Select", "Cancel");
+				Dialog_Show(playerid, DialogDrugsCombine, DIALOG_STYLE_TABLIST_HEADERS, "Choose your drugs:", "Drugs Name\tIngredient\nCocaine Crack\tBaking Soda & Cocaine\nPCP\tMarijuana, Parsley, Mint & Baking Soda", "Select", "Cancel");
 			}
 
 			if(BusinessInfo[id][E_BUSINESS_AMOUNT] == 1)
@@ -326,6 +326,36 @@ CMD:buydrugs(playerid, params[])
 	strcat(str, "Marijuana\t$3000\n");
 	strcat(str, "Cocaine\t$5000\n");
 	strcat(str, "Heroin\t$5000\n");
-	ShowPlayerDialog(playerid, DIALOG_DRUGSTORE, DIALOG_STYLE_TABLIST_HEADERS, "Drugs Labs:", str, "Select", "Close");
+	Dialog_Show(playerid, DialogDrugStore, DIALOG_STYLE_TABLIST_HEADERS, "Drugs Labs:", str, "Select", "Close");
+	return 1;
+}
+
+Dialog:DialogDrugStore(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		new str[256];
+		switch(listitem)
+		{
+			case 0:
+			{
+				new Cents = floatround(PMARIJUANA * 100, floatround_round);
+				format(str, sizeof(str), "Are you sure you want to buy this drugs for {33AA33}$%s{ffffff}?", FormatMoney(Cents)); 
+				ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 0, 25, PMARIJUANA); 
+			}
+			case 1:
+			{
+				new Cents = floatround(PCOCAINE * 100, floatround_round);
+				format(str, sizeof(str), "Are you sure you want to buy this drugs for {33AA33}$%s{ffffff}?", FormatMoney(Cents)); 
+				ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 1, 20, PCOCAINE); 
+			}
+			case 2:
+			{
+				new Cents = floatround(PHEROIN * 100, floatround_round);
+				format(str, sizeof(str), "Are you sure you want to buy this drugs for {33AA33}$%s{ffffff}?", FormatMoney(Cents)); 
+				ConfirmDialog(playerid, "Confirmation", str, "OnPlayerPurchaseDrugs", 2, 20, PHEROIN); 
+			}
+		}
+	}
 	return 1;
 }

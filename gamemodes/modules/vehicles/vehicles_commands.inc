@@ -503,7 +503,7 @@ CMD:carradio(playerid, params[])
 	if (!IsEngineVehicle(GetPlayerVehicleID(playerid)))
 		return SendErrorMessage(playerid, "You are not in any vehicle.");
 		
-	ShowPlayerDialog(playerid, DIALOG_RADIO, DIALOG_STYLE_LIST, "Radio:", "Add URL\nTurn Off", "Select", "Close");
+	Dialog_Show(playerid, DialogRadio, DIALOG_STYLE_LIST, "Radio:", "Add URL\nTurn Off", "Select", "Close");
     return 1;
 }
 

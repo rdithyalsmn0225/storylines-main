@@ -27,7 +27,7 @@ stock ShowDealerAppend(playerid)
 	strcat(str, "Colors\n");
 	strcat(str, "{FFFF00}Purchase Vehicle\n"); 
 			
-	ShowPlayerDialog(playerid, DIALOG_DEALERSHIP_APPEND, DIALOG_STYLE_LIST, caption, str, "Append", "<<"); 
+	Dialog_Show(playerid, DialogDealerAppend, DIALOG_STYLE_LIST, caption, str, "Append", "<<"); 
 	return 1; 
 }
 
@@ -77,7 +77,7 @@ CMD:dealership(playerid, params[])
 			}
 		}
 				
-		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 2132.0190,-1149.9902,24.2088))
 	{		
@@ -98,7 +98,7 @@ CMD:dealership(playerid, params[])
 			}
 		}
 				
-		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 1629.6158,-1903.5123,13.5530))
 	{		
@@ -119,7 +119,7 @@ CMD:dealership(playerid, params[])
 			}
 		}
 				
-		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 2684.1277,-2515.6733,13.1552))
 	{		
@@ -140,7 +140,7 @@ CMD:dealership(playerid, params[])
 			}
 		}
 				
-		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
 	else if(IsPlayerInRangeOfPoint(playerid, 3.0, 666.1486,-1419.0734,14.0272))
 	{		
@@ -160,7 +160,7 @@ CMD:dealership(playerid, params[])
 				counter++; 
 			}
 		}		
-		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
 	else if(IsPlayerInRangeOfPoint(playerid, 3.0, 666.1486,-1419.0734,14.0272))
 	{		
@@ -180,7 +180,7 @@ CMD:dealership(playerid, params[])
 				counter++; 
 			}
 		}
-		ShowPlayerDialog(playerid, DIALOG_DEALERSHIP, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
 	}
     return 1;
 }

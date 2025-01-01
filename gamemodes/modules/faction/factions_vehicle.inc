@@ -32,7 +32,7 @@ CMD:spawn(playerid, params[])
             }
             
         }
-        ShowPlayerDialog(playerid, DIALOG_POLICEVEHICLES, DIALOG_STYLE_TABLIST, "Faction Vehicles", str, "Select", "Close");
+        Dialog_Show(playerid, DialogPoliceVehicles, DIALOG_STYLE_TABLIST, "Faction Vehicles", str, "Select", "Close");
     }
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 1124.1577,-1324.4509,13.6212) && ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
     {
@@ -49,7 +49,7 @@ CMD:spawn(playerid, params[])
             }
             
         }
-        ShowPlayerDialog(playerid, DIALOG_MEDICVEHICLES, DIALOG_STYLE_TABLIST, "Faction Vehicles", str, "Select", "Close");
+        Dialog_Show(playerid, DialogMedicVehicles, DIALOG_STYLE_TABLIST, "Faction Vehicles", str, "Select", "Close");
     }
     else SendErrorMessage(playerid, "You aren't near faction vehicle spawn point");
     return 1;

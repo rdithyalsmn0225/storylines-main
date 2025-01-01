@@ -5,7 +5,7 @@ stock ShowBusinessShop(playerid, businessid)
 	{
 		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
 		{
-			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			Dialog_Show(playerid, DialogClerk, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
 			return 1;
 		}
 
@@ -14,14 +14,14 @@ stock ShowBusinessShop(playerid, businessid)
 		format(str2, sizeof(str2), "%sPisswasher (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 		format(str2, sizeof(str2), "%sPisswasher Extra (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 		format(str2, sizeof(str2), "%sPisswasher Large (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
-		ShowPlayerDialog(playerid, DIALOG_BARSTORE, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
+		Dialog_Show(playerid, DialogBarstore, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
 		Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_CLOTHES)
 	{
 		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
 		{
-			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			Dialog_Show(playerid, DialogClerk, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
 			return 1;
 		}
 
@@ -29,14 +29,14 @@ stock ShowBusinessShop(playerid, businessid)
 		format(str2, sizeof(str2), "Product\tPrice\n");
 		format(str2, sizeof(str2), "%sClassic Clothes\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 		format(str2, sizeof(str2), "%sAccessories\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
-		ShowPlayerDialog(playerid, DIALOG_BUYSKIN, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
+		Dialog_Show(playerid, DialogBuyskin, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
 		Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_CLUB)
 	{
 		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
 		{
-			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			Dialog_Show(playerid, DialogClerk, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
 			return 1;
 		}
 
@@ -45,14 +45,14 @@ stock ShowBusinessShop(playerid, businessid)
 		format(str2, sizeof(str2), "%sPisswasher (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 		format(str2, sizeof(str2), "%sPisswasher Extra (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
 		format(str2, sizeof(str2), "%sPisswasher Large (Beer)\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
-		ShowPlayerDialog(playerid, DIALOG_BARSTORE, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
+		Dialog_Show(playerid, DialogBarstore, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel");
 		Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_DINNER)
 	{
 		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
 		{
-			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			Dialog_Show(playerid, DialogClerk, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
 			return 1;
 		}
 
@@ -77,7 +77,7 @@ stock ShowBusinessShop(playerid, businessid)
 	{
 		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
 		{
-			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			Dialog_Show(playerid, DialogClerk, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
 		}
 		else
 		{
@@ -89,7 +89,7 @@ stock ShowBusinessShop(playerid, businessid)
 				return SendErrorMessage(playerid, "You can't afford a bills.");
 			}
 
-			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk", "Select", "Close");
+			Dialog_Show(playerid, DialogClerk, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk", "Select", "Close");
 
 			Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 		}
@@ -98,7 +98,7 @@ stock ShowBusinessShop(playerid, businessid)
 	{
 		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
 		{
-			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			Dialog_Show(playerid, DialogClerk, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
 			return 1;
 		}
 
@@ -110,7 +110,7 @@ stock ShowBusinessShop(playerid, businessid)
 		{
 			format(str5, sizeof(str5), "%s%d\n", str5, g_aHaircut[i]);
 		}
-		ShowPlayerDialog(playerid, DIALOG_BARBERSTORE, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str5, "Select", "Close");
+		Dialog_Show(playerid, DialogBarberstore, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str5, "Select", "Close");
 		Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK)
@@ -121,7 +121,7 @@ stock ShowBusinessShop(playerid, businessid)
 	{
 		if(BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_ROBBERYCASH])
 		{
-			ShowPlayerDialog(playerid, DIALOG_CLERK, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
+			Dialog_Show(playerid, DialogClerk, DIALOG_STYLE_LIST, "Choose an option:", "Inventory\nPay to clerk\nTake Cash", "Select", "Close");
 			return 1;
 		}
 

@@ -140,7 +140,7 @@ ShowSelectionModel(playerid, type)
 				SetCameraBehindPlayer(playerid);
 				BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_STOCK]--;
 				BusinessInfo[businessid][E_BUSINESS_CASH] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2];
-				ShowPlayerDialog(playerid, DIALOG_BUYCLOTHING, DIALOG_STYLE_LIST, "Bone Selection:", "Spine\nHead\nLeft upper arm\nRight upper arm\nLeft hand\nRight hand\nLeft thigh\nRight thigh\nLeft foot\nRight foot\nRight calf\nLeft calf\nLeft forearm\nRight forearm\nLeft shoulder\nRight shoulder\nNeck\nJaw", "Choose", "Cancel");
+				Dialog_Show(playerid, DialogBuyCloth, DIALOG_STYLE_LIST, "Bone Selection:", "Spine\nHead\nLeft upper arm\nRight upper arm\nLeft hand\nRight hand\nLeft thigh\nRight thigh\nLeft foot\nRight foot\nRight calf\nLeft calf\nLeft forearm\nRight forearm\nLeft shoulder\nRight shoulder\nNeck\nJaw", "Choose", "Cancel");
 				PlayerInfo[playerid][E_CHARACTER_TEMPMODEL] = g_aClothingCustom[E_MODEL_SELECTION_MODELID];
             }
             else

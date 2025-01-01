@@ -27,7 +27,7 @@ stock Taxi_ShowCalls(playerid)
 	if (!strlen(string)) {
 	    SendErrorMessage(playerid, "There are no taxi calls to accept.");
 	}
-	else ShowPlayerDialog(playerid, DIALOG_ACCEPTTAXI, DIALOG_STYLE_TABLIST, "Taxi Calls:", string, "Accept", "Cancel");
+	else Dialog_Show(playerid, DialogAcceptTaxi, DIALOG_STYLE_TABLIST, "Taxi Calls:", string, "Accept", "Cancel");
 	return 1;
 }
 
@@ -112,5 +112,36 @@ CMD:taxicall(playerid, params[])
 		return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
 
 	Taxi_ShowCalls(playerid);
+	return 1;
+}
+
+Dialog:DialogAcceptTaxi(playerid, response, listitem, inputtext[])
+{
+	if (response)
+	{
+		new targetid = strval(inputtext);
+
+		if (!IsPlayerConnected(targetid))
+			return SendErrorMessage(playerid, "The specified player has disconnected.");
+
+		if (!PlayerInfo[targetid][E_CHARACTER_TAXICALLED])
+			return SendErrorMessage(playerid, "That player's call was accepted by another taxi driver.");
+
+		if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20)
+			return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
+
+		static
+			Float:x,
+			Float:y,
+			Float:z;
+
+		GetPlayerPos(targetid, x, y, z);
+
+		PlayerInfo[targetid][E_CHARACTER_TAXICALLED] = 0;
+		GPS_SetPlayerRaceCheckPoint(playerid, 1, x, y, z, 0.0, 0.0, 0.0);
+
+		SendJobsMessage(playerid, "[Taxi] You have accepted %s's taxi call.", ReturnName(targetid));
+		SendJobsMessage(targetid, "[Taxi] %s has accepted your taxi call and is on their way.", ReturnName(playerid, targetid));
+	}
 	return 1;
 }

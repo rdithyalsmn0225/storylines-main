@@ -1984,7 +1984,7 @@ CMD:gotomark(playerid, params[])
 	    strcat(str, g_arrInteriorData[i][E_INT_NAME]);
 	    strcat(str, "\n");
     }
-   	ShowPlayerDialog(playerid, DIALOG_INTERIOR, DIALOG_STYLE_LIST, "Teleport:", str, "Select", "Cancel");
+   	Dialog_Show(playerid, DialogInterior, DIALOG_STYLE_LIST, "Teleport:", str, "Select", "Cancel");
     return 1;
 }
 

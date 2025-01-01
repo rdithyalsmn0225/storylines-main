@@ -101,7 +101,7 @@ CMD:clearcode(playerid, params[])
 
 CMD:claim(playerid, params[])
 {
-    ShowPlayerDialog(playerid, DIALOG_COMPENTATION, DIALOG_STYLE_INPUT, "Claim Compensation:", "Enter your compensation code:", "Submit", "Cancel");
+    Dialog_Show(playerid, DialogCompensation, DIALOG_STYLE_INPUT, "Claim Compensation:", "Input compensation code below:", "Submit", "Cancel");
     return 1;
 }
 

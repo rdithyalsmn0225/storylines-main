@@ -129,6 +129,6 @@ CMD:charge(playerid, params[])
 	forex(i, sizeof(PenalInfo)){
 		format(str, sizeof(str), "%s%s\n", str, PenalInfo[i][E_PENALCODES_TYPE]);
     }
-	ShowPlayerDialog(playerid, DIALOG_CHARGES, DIALOG_STYLE_TABLIST_HEADERS, "State Penal Code (Arrest Offesenses):", str, "Select", "Cancel");
+	Dialog_Show(playerid, DialogCharge, DIALOG_STYLE_TABLIST_HEADERS, "State Penal Code (Arrest Offesenses):", str, "Select", "Cancel");
     return 1;
 }

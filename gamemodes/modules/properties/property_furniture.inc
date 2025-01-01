@@ -253,6 +253,58 @@ ShowFurnituresCategories(playerid)
 		format(string, sizeof(string), "%s%s\n", string, g_aFurnitureCategories[i]);
 	}
 
-	ShowPlayerDialog(playerid, DIALOG_FURNITURE_PURCHASE, DIALOG_STYLE_LIST, "Furnitures Categories:", string, "Select", "Cancel");
+	Dialog_Show(playerid, DialogFurniturePurchase, DIALOG_STYLE_LIST, "Furnitures Categories:", string, "Select", "Cancel");
+	return 1;
+}
+
+Dialog:DialogFurniturePurchase(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		new string[1024], counter = 0;
+
+		for(new i = 0; i < sizeof(g_aFurnitureArray); i++)
+		{
+			if(!strcmp(g_aFurnitureArray[i][E_FURNITUREVAR_CATEGORY], g_aFurnitureCategories[listitem]))
+			{
+				format(string, sizeof(string), "%s%d\t~g~$%s~w~\n", string, g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], FormatMoney(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE]));
+				SubFurnitureHolderArr[playerid][counter] = i;
+				counter++;
+			}
+		}
+
+		Dialog_Show(playerid, DialogFurnitureConfirm, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", string, "Select", "Back");
+	}
+	return 1;
+}
+
+Dialog:DialogFurnitureConfirm(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		
+		new i = SubFurnitureHolderArr[playerid][listitem];
+		new Cents = floatround(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE] * 100, floatround_round);
+		if(PlayerInfo[playerid][E_CHARACTER_MONEY] < g_aFurnitureArray[i][E_FURNITUREVAR_PRICE])
+			return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+		
+		
+		new
+			Float:x,
+			Float:y,
+			Float:z,
+			Float:a;
+
+		GetPlayerPos(playerid, x, y, z);
+		GetPlayerFacingAngle(playerid, a);
+
+		PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 7;
+		PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], x + 2.0 * floatsin(-a, degrees), y + 2.0 * floatcos(-a, degrees), z + 1.0, 0.0, 0.0, ((19353 <= g_aFurnitureArray[i][E_FURNITUREVAR_MODEL] <= 19417) || (19426 <= g_aFurnitureArray[i][E_FURNITUREVAR_MODEL] <= 19465)) ? (a + 90.0) : (a), GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid));
+		PlayerInfo[playerid][E_CHARACTER_LISTITEM] = i;
+
+		SendPropertyMessage(playerid, "[FURNITURE] You are now previewing %s. This furniture item costs $%s to purchase.", g_aFurnitureArray[i][E_FURNITUREVAR_NAME], FormatMoney(Cents));
+		SendTipMessage(playerid, "Use your cursor to control the editor interface. Click the save icon to save changes.");
+		EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]);
+	}
 	return 1;
 }

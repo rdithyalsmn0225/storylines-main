@@ -20,7 +20,7 @@ CMD:help(playerid, params[])
 {
 	new str[1264];
 	format(str, sizeof(str), "General Commands\nRoleplay Commands\nProperty Commands\nBusiness Commands\nFaction Commands\nVehicle Commands\nMinigames Commands\nJobs Commands\nCrime Professions Commands\nDonatur Commands");
-	ShowPlayerDialog(playerid, DIALOG_HELP, DIALOG_STYLE_LIST, "Commands:", str, "Select", "Close");
+	Dialog_Show(playerid, DialogHelp, DIALOG_STYLE_LIST, "Commands:", str, "Select", "Close");
 	return 1; 
 }
 
@@ -53,7 +53,7 @@ CMD:settings(playerid, params[])
 	format(str, sizeof(str), "%sTips Messages\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGTIPS] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
 	format(str, sizeof(str), "%sPhone Style\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGPHONE] == false) ? ("{33AA33}Old School{ffffff}") : ("{FF6347}Modern{ffffff}"));
 	format(str, sizeof(str), "%sALPR Interface\t%s\n", str, (PlayerInfo[playerid][E_CHARACTER_TOGALPR] == false) ? ("{33AA33}ENABLE{ffffff}") : ("{FF6347}DISABLE{ffffff}"));
-	ShowPlayerDialog(playerid, DIALOG_SETTINGS, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
+	Dialog_Show(playerid, DialogSettings, DIALOG_STYLE_TABLIST, "Settings:", str, "Select", "Close");
 	return 1;
 }
 
@@ -147,7 +147,7 @@ CMD:report(playerid, params[])
 	;
 	
 	format(showString, sizeof(showString), "{FFFFFF}Are you sure you want to send this report?\n\n{F81414}Remember that, reporting actions which do not happen at the moment is extremely difficult for online admins to handle on the spot, since no proof is presented to them.\n{FFFFFF}Report: %s", params);
-	ShowPlayerDialog(playerid, DIALOG_REPORT, DIALOG_STYLE_MSGBOX, "Confirmation:", showString, "Yes", "No"); 
+	Dialog_Show(playerid, DialogReport, DIALOG_STYLE_MSGBOX, "Confirmation:", showString, "Yes", "No"); 
 	
 	format(playerReport[playerid], 128, "%s", params);
 	return 1;
@@ -2088,7 +2088,7 @@ CMD:accessories(playerid, params[])
 			format(string, sizeof(string), "%s[SLOT]: <EMPTY>\n", string);
 		}
 	}
-	ShowPlayerDialog(playerid, DIALOG_CLOTHSHOW, DIALOG_STYLE_TABLIST_HEADERS, "Accessory Menu:", string, "Select", "Close");
+	Dialog_Show(playerid, DialogClothShow, DIALOG_STYLE_TABLIST_HEADERS, "Accessory Menu:", string, "Select", "Close");
 	SavePlayerToys(playerid);
 	return 1;
 }

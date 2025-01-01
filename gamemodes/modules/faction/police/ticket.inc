@@ -117,5 +117,23 @@ CMD:tickets(playerid, params[])
 
 		else format(string, sizeof(string), "%s[SLOT]: <EMPTY>\n", string);
 	}
-	return ShowPlayerDialog(playerid, DIALOG_TICKETS, DIALOG_STYLE_TABLIST_HEADERS, "Tickets:", string, "Pay", "Cancel");
+	return Dialog_Show(playerid, DialogTicket, DIALOG_STYLE_TABLIST_HEADERS, "Tickets:", string, "Pay", "Cancel");
+}
+
+Dialog:DialogTicket(playerid, response, listitem, inputtext[])
+{
+	if (response)
+	{
+		if (!TicketInfo[playerid][listitem][E_TICKET_EXISTS])
+			return SendErrorMessage(playerid, "There is no ticket in the selected slot.");
+
+		if (TicketInfo[playerid][listitem][E_TICKET_FEE] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+			return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(TicketInfo[playerid][listitem][E_TICKET_FEE]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
+
+		GiveMoney(playerid, -TicketInfo[playerid][listitem][E_TICKET_FEE]);
+
+		SendInfoMessage(playerid, "[TICKET] You have paid off a $%s ticket for %s.", FormatMoney(TicketInfo[playerid][listitem][E_TICKET_FEE]), TicketInfo[playerid][listitem][E_TICKET_REASON]);
+		Ticket_Remove(playerid, listitem);
+	}
+	return 1;
 }

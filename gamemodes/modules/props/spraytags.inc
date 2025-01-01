@@ -175,7 +175,7 @@ CMD:spray(playerid, params[])
 
     
     
-    ShowPlayerDialog(playerid, DIALOG_SPRAYFONT, DIALOG_STYLE_INPUT, "Spraytags:", "The font you input will only be visible to visual players that only have that font Ex: Arial\n{33AA33}Info:{ffffff} Required for spraying font your spraytags", "Input", "Cancel");
+    Dialog_Show(playerid, DialogSprayColor, DIALOG_STYLE_INPUT, "Spraytags:", "The font you input will only be visible to visual players that only have that font Ex: Arial\n{33AA33}Info:{ffffff} Required for spraying font your spraytags", "Input", "Cancel");
     return 1;
 }
 
@@ -192,4 +192,73 @@ function:OnSprayTagsUpdate()
             Spraytags_Delete(i);
         }
     }
+}
+
+Dialog:DialogSprayFont(playerid, response, listitem, inputtext[])
+{
+    if(response)
+    {
+        if (isnull(inputtext) || !FilterInputFont(inputtext) || strlen(inputtext) < 5)
+            return Dialog_Show(playerid, DialogSprayFont, DIALOG_STYLE_INPUT, "Spraytags Fonts:", "Your spraytags will replace the spraytags with custom font.\nThe font you input will only be visible to visual players that only have that font\n{33AA33}Info:{ffffff} Required for spraying font your spraytags", "Input", "Cancel");
+
+        format(PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], 512, inputtext);
+        
+        new colors[3200];
+        for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+        {
+            format(colors, sizeof colors, "%s{%06x}%03d%s", colors, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+        }
+
+        format(colors, sizeof(colors), "%s\n\n{ffffff}Enter the Color ID below: (Ex: 255)", colors);
+        Dialog_Show(playerid, DialogSprayColor, DIALOG_STYLE_INPUT, "Spraytags Colors:", colors, "Enter", "Close");
+    }
+    return 1;
+}
+
+Dialog:DialogSprayColor(playerid, response, listitem, inputtext[])
+{
+    if(response)
+    {
+        if (isnull(inputtext) || strval(inputtext) < 0 || strlen(inputtext) > g_MaxVehicleColors)
+            return SendErrorMessage(playerid, "Invalid Color ID");
+
+        new fontcolor = g_VehicleColors[strval(inputtext)];
+        new iColor = RGBAtoARGB(fontcolor);
+        PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR] = iColor;
+        Dialog_Show(playerid, DialogSprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and ( ) - = / ? \nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+    }
+    return 1;
+}
+
+Dialog:DialogSprayText(playerid, response, listitem, inputtext[])
+{
+    if (response) 
+    {
+        if (isnull(inputtext) || strlen(inputtext) < 5 || strlen(inputtext) > 32)
+            return Dialog_Show(playerid, DialogSprayText, DIALOG_STYLE_INPUT, "Spraytags Texts:", "Allowed letter is A - Z and * = / ? !\nTo break the letter use \"|\"\n{33AA33}Info:{ffffff} Required for letter your spraytags", "Input", "Cancel");
+
+        new formattedText[512];
+        format(formattedText, sizeof(formattedText), "%s", inputtext);
+
+        for (new i = 0; i < strlen(formattedText); i++)
+        {
+            if (formattedText[i] == '|')
+            {
+                formattedText[i] = '\n'; 
+            }
+        }
+
+        format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 128, formattedText);
+
+        new Float:x, Float:y, Float:z; 
+        GetPlayerPos(playerid, x, y, z); 
+
+        
+        PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = CreateDynamicObject(19482, x, y, z, 0.0, 0.0, 0.0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid)); 
+        SetDynamicObjectMaterialText(PlayerInfo[playerid][E_CHARACTER_ADDOBJECT], 0, formattedText, OBJECT_MATERIAL_SIZE_512x256, PlayerInfo[playerid][E_CHARACTER_OBJECTFONT], 40, 1, PlayerInfo[playerid][E_CHARACTER_OBJECTCOLOR], 0, OBJECT_MATERIAL_TEXT_ALIGN_CENTER);
+        
+        EditDynamicObject(playerid, PlayerInfo[playerid][E_CHARACTER_ADDOBJECT]); 
+        PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 1;
+    }
+    return 1;
 }

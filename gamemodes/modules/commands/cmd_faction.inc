@@ -378,14 +378,14 @@ CMD:flocker(playerid, params[])
 	{
 		if(ReturnFactionType(playerid) == FACTION_TYPE_POLICE)
 		{
-			ShowPlayerDialog(playerid, DIALOG_FACTIONLOCKER, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Desert Eagle\nTake Shotgun\nTake Regular Ammo\nTake Surplus Ammo\nTake JHP Ammo\nTake Rubber Ammo", "Select", "Cancel");
+			Dialog_Show(playerid, DialogFactionLocker, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Desert Eagle\nTake Shotgun\nTake Regular Ammo\nTake Surplus Ammo\nTake JHP Ammo\nTake Rubber Ammo", "Select", "Cancel");
 		}
 	}
 	else if(IsPlayerInRangeOfPoint(playerid, 5.0, 1833.1627,-1072.3607,41.6537) || IsPlayerInRangeOfPoint(playerid, 5.0, 1269.3730,-1307.3560,1061.1392))
 	{
 		if(ReturnFactionType(playerid) == FACTION_TYPE_MEDICAL)
 		{
-			ShowPlayerDialog(playerid, DIALOG_FACTIONLOCKER, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Bandage (10 Pcs)\nTake Fire Extinguisher", "Select", "Cancel");
+			Dialog_Show(playerid, DialogFactionLocker, DIALOG_STYLE_LIST, "Faction Lockers:", "Faction Duty\nUniform\nTake Bandage (10 Pcs)\nTake Fire Extinguisher", "Select", "Cancel");
 		}
 	}
 	else return SendErrorMessage(playerid, "You aren't near your faction spawn.");
@@ -810,7 +810,7 @@ CMD:treatment(playerid, params[])
 		return SendErrorMessage(playerid, "You must be close to that player!");
 
 	PlayerInfo[playerid][E_CHARACTER_TARGETID] = targetid;
-	ShowPlayerDialog(playerid, DIALOG_TREATMENT, DIALOG_STYLE_LIST, "Treatment Menu:", "Check Patient\nRevive Patient\nHeal Patient\nSurgery Patient", "Select", "Close");
+	Dialog_Show(playerid, DialogTreatment, DIALOG_STYLE_LIST, "Treatment Menu:", "Check Patient\nRevive Patient\nHeal Patient\nSurgery Patient", "Select", "Close");
 	return 1;
 }
 

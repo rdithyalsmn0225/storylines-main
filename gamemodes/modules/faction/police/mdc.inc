@@ -75,7 +75,7 @@ function:OnMDCPlate(playerid)
 		for(new i = 0; i < 5; i++) PlayerPlateSaver[playerid][i] = "";
 		format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, ""); 
 		
-		return ShowPlayerDialog(playerid, DIALOG_MDC_PLATE, DIALOG_STYLE_INPUT, "View Plates:", "The plate you inputted was not found.\nPlease enter the vehicle plates:", "Submint", "Cancel"); 
+		return Dialog_Show(playerid, DialogMDCPlate, DIALOG_STYLE_INPUT, "View Plates:", "The plate you inputted was not found.\nPlease enter the vehicle plates:", "Submint", "Cancel"); 
 	}
 	
 	new rows, fields, str[128];
@@ -95,7 +95,7 @@ function:OnMDCPlate(playerid)
 		}
 	}
 	
-	ShowPlayerDialog(playerid, DIALOG_MDC_PLATELIST, DIALOG_STYLE_LIST, "View Plates", str, "Select", "<<"); 
+	Dialog_Show(playerid, DialogMDCPlateList, DIALOG_STYLE_LIST, "View Plates", str, "Select", "<<"); 
 	return 1;
 }
 

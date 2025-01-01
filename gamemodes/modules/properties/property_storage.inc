@@ -42,7 +42,7 @@ stock Property_ShowItems(playerid, houseid)
 			else format(string, sizeof(string), "%s[SLOT]: %s\t%d\n", string, name, PropertyStorage[houseid][i][E_PSTORAGE_QUANTITY]);
 		}
 	}
-	ShowPlayerDialog(playerid, DIALOG_PROPERTY_ITEMS, DIALOG_STYLE_LIST, "Item Storage:", string, "Select", "Cancel");
+	Dialog_Show(playerid, DialogPropertyItem, DIALOG_STYLE_LIST, "Item Storage:", string, "Select", "Cancel");
 	return 1;
 }
 

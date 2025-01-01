@@ -164,7 +164,7 @@ stock ShowFreight(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t{33AA33}%s{ffffff}\t%s\n", str, GetZoneName(FreightInfo[i][Startx], FreightInfo[i][Starty], FreightInfo[i][Startz]), FreightInfo[i][Cargo], GetZoneName(FreightInfo[i][Endx], FreightInfo[i][Endy], FreightInfo[i][Endz]));
 	}
-	ShowPlayerDialog(playerid, DIALOG_FREIGHTLOC, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
+	Dialog_Show(playerid, DialogFreightLoc, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
 	return 1;
 }
 
@@ -176,7 +176,7 @@ stock ShowIndustry(playerid)
 	{
 		format(str, sizeof(str), "%s%s\t{33AA33}%s{ffffff}\t%s\n", str, IndustryInfo[i][Name], IndustryInfo[i][Cargo], IndustryInfo[i][Type]);
 	}
-	ShowPlayerDialog(playerid, DIALOG_INDUSTRYLOC, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
+	Dialog_Show(playerid, DialogIndustryLoc, DIALOG_STYLE_TABLIST_HEADERS, "Truck PDA - Industrial:", str, "Select", "Close");
 	return 1;
 }
 
@@ -257,5 +257,63 @@ function:OnIndustryUpdate()
 		ServerInfo[0][E_SERVER_DRUGS] = 100;
 
 	IndustryRefresh(0);
+	return 1;
+}
+
+Dialog:DialogIndustry(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		switch(listitem)
+		{
+			case 0:
+			{
+				new str[256];
+				strcat(str, "Welcome to los santos economy!\n\nThe ship & warehouses is currently restocked product every 30 minute(s).\n\nYou can buy cargo products if stock is still available on the ship or warehouses.");
+				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Information:", str, "Confirm", "");
+			}
+			case 1:
+			{
+				if(GetVehicleModel(GetPlayerVehicleID(playerid)) != 515 && GetVehicleModel(GetPlayerVehicleID(playerid)) != 514 && GetVehicleModel(GetPlayerVehicleID(playerid)) != 403)
+					return SendErrorMessage(playerid, "You aren't in heavy truck.");
+
+				if(PlayerInfo[playerid][E_CHARACTER_LEVEL] < 5)
+					return SendErrorMessage(playerid, "Your level (5) is minimum to access this jobs."); 
+
+				if(PlayerInfo[playerid][E_CHARACTER_HUNGRY] < 20)
+					return SendErrorMessage(playerid, "You're hungry or thirsty right now.");
+
+				ShowFreight(playerid);
+			}
+			case 2:
+			{
+				ShowIndustry(playerid);
+			}
+			case 3:
+			{
+				ShowShipments(playerid);
+			}
+		}
+	}
+	return 1;
+}
+
+Dialog:DialogIndustryLoc(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		GPS_SetPlayerRaceCheckPoint(playerid, 1, IndustryInfo[listitem][Posx], IndustryInfo[listitem][Posy], IndustryInfo[listitem][Posz], 0.0, 0.0, 0.0);
+	}
+	return 1;
+}
+
+Dialog:DialogFreightLoc(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		PlayerTruckIndex[playerid] = listitem+1;
+		SendJobsMessage(playerid, "[Trucker] You has selected truck missions in %s, go to checkpoint to take the trailer.", GetZoneName(FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz]));
+		GPS_SetPlayerRaceCheckPoint(playerid, 1, FreightInfo[listitem][Startx], FreightInfo[listitem][Starty], FreightInfo[listitem][Startz], 0.0, 0.0, 0.0, GPS_TRUCKERS);
+	}
 	return 1;
 }

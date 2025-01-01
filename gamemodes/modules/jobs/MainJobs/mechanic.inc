@@ -69,7 +69,7 @@ CMD:mechmenu(playerid, params[])
     strcat(str, "Repaint Paintjob type 3\t(2 Spraycan)\t40 seconds\n");
     strcat(str, "Manipulation Plates\t(2 Spraycan)\t35 seconds\n");
     strcat(str, "Modifications\t(1 Repair Kits)\t30 seconds\n");
-    ShowPlayerDialog(playerid, DIALOG_MECHMENU, DIALOG_STYLE_TABLIST_HEADERS, "Mechanic Menu", str, "Select", "Close");
+    Dialog_Show(playerid, DialogMechMenu, DIALOG_STYLE_TABLIST_HEADERS, "Mechanic Menu", str, "Select", "Close");
     return 1;
 }
 
@@ -526,4 +526,436 @@ function:modifications(playerid, vehicleid, modelid)
 		}
     }
     Update3DTextLabelText(PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY], COLOR_3DTEXT, text); 
+}
+
+Dialog:DialogMechMenu(playerid, response, listitem, inputtext[])
+{
+    if(response)
+    {
+        switch(listitem)
+        {
+            case 0:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != REPAIR_KITS)
+                    return SendErrorMessage(playerid, "You must hold the repair kits in your hands.");
+
+                if(!Inventory_Count(playerid, "Repair Kits"))
+                    return SendErrorMessage(playerid, "You don't have any repair kits in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehicleHood(vehicleid, vx, vy, vz);  
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
+
+                new Float:x, Float:y, Float:z;
+                GetPlayerPos(playerid, x, y, z);
+                TogglePlayerControllable(playerid, false);
+                ApplyAnimation(playerid, "BD_FIRE", "wash_up", 4.1, 1, 0, 0, 0, 0, 1);
+
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+                PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairengine", 3125, true, "ii", playerid, vehicleid);
+            }
+            case 1:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != REPAIR_KITS)
+                    return SendErrorMessage(playerid, "You must hold the repair kits in your hands.");
+
+                if(!Inventory_Count(playerid, "Repair Kits"))
+                    return SendErrorMessage(playerid, "You don't have any repair kits in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
+
+                new Float:x, Float:y, Float:z;
+                GetPlayerPos(playerid, x, y, z);
+                TogglePlayerControllable(playerid, false);
+                ApplyAnimation(playerid, "TATTOOS", "TAT_Che_Pose_T", 4.1, 1, 0, 0, 0, 0, 1);
+
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+                PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairbody", 3750, true, "ii", playerid, vehicleid);
+            }
+            case 2:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != REPAIR_KITS)
+                    return SendErrorMessage(playerid, "You must hold the repair kits in your hands.");
+
+                if(!Inventory_Count(playerid, "Repair Kits"))
+                    return SendErrorMessage(playerid, "You don't have any repair kits in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
+
+                new Float:x, Float:y, Float:z;
+                GetPlayerPos(playerid, x, y, z);
+                TogglePlayerControllable(playerid, false);
+                ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 1, 0, 0, 0, 0, 1);
+
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repairing process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+                PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repairtire", 2500, true, "ii", playerid, vehicleid);
+            }
+            case 3:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+                    return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+                if(!Inventory_Count(playerid, "Spraycan"))
+                    return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
+
+                new colors[3200];
+                for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+                {
+                    format(colors, sizeof colors, "%s{%06x}%03d%s", colors, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+                }
+
+                format(colors, sizeof(colors), "%s\n\n{ffffff}Enter the Color ID below: (Ex: 255)", colors);
+                Dialog_Show(playerid, DialogMechSpray1, DIALOG_STYLE_INPUT, "Select Color:", colors, "Enter", "Close");
+            }
+            case 4:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+                    return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+                if(!Inventory_Count(playerid, "Spraycan"))
+                    return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
+
+                new colors[3200];
+                for (new colorid; colorid != sizeof g_VehicleColors; colorid++)
+                {
+                    format(colors, sizeof colors, "%s{%06x}%03d%s", colors, g_VehicleColors[colorid] >>> 8, colorid, !((colorid + 1) % 16) ? ("\n") : (" "));
+                }
+
+                format(colors, sizeof(colors), "%s\n\n{ffffff}Enter the Color ID below: (Ex: 255)", colors);
+                Dialog_Show(playerid, DialogMechSpray2, DIALOG_STYLE_INPUT, "Select Color:", colors, "Enter", "Close");
+            }
+            case 5:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+                    return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+                if(Inventory_Count(playerid, "Spraycan") < 2)
+                    return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(!IsSuitablePaintjobCar(vehicleid)) 
+                    return SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
+
+                new Float:x, Float:y, Float:z;
+                GetPlayerPos(playerid, x, y, z);
+                TogglePlayerControllable(playerid, false);
+                ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
+
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+                PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob1", 5000, true, "ii", playerid, vehicleid);
+            }
+            case 6:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+                    return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+                if(Inventory_Count(playerid, "Spraycan") < 2)
+                    return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(!IsSuitablePaintjobCar(vehicleid)) 
+                    return SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
+
+                new Float:x, Float:y, Float:z;
+                GetPlayerPos(playerid, x, y, z);
+                TogglePlayerControllable(playerid, false);
+                ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
+
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+                PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob2", 5000, true, "ii", playerid, vehicleid);
+            }
+            case 7:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+                    return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+                if(Inventory_Count(playerid, "Spraycan") < 2)
+                    return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(!IsSuitablePaintjobCar(vehicleid)) 
+                    return SendErrorMessage(playerid, "Your current vehicle does not natively support paintjobs.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
+
+                new Float:x, Float:y, Float:z;
+                GetPlayerPos(playerid, x, y, z);
+                TogglePlayerControllable(playerid, false);
+                ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 1);
+
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+                PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintpaintjob3", 5000, true, "ii", playerid, vehicleid);
+            }
+            case 8:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != SPRAYCAN)
+                    return SendErrorMessage(playerid, "You must hold the spraycan in your hands.");
+
+                if(Inventory_Count(playerid, "Spraycan") < 1)
+                    return SendErrorMessage(playerid, "You don't have any spraycan in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
+
+                new Float:x, Float:y, Float:z;
+                GetPlayerPos(playerid, x, y, z);
+                TogglePlayerControllable(playerid, false);
+                ApplyAnimation(playerid, "BOMBER", "BOM_Plant", 4.1, 1, 0, 0, 0, 0, 1);
+
+                PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint plates process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+                PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+                PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+                PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintplates", 2500, true, "ii", playerid, vehicleid);
+            }
+            case 9:
+            {
+                if(PlayerInfo[playerid][E_CHARACTER_EQUIPITEMS] != REPAIR_KITS)
+                    return SendErrorMessage(playerid, "You must hold the repair kits in your hands.");
+
+                if(!Inventory_Count(playerid, "Repair Kits"))
+                    return SendErrorMessage(playerid, "You don't have any repair kits in your inventory."); 
+
+                new vehicleid = IsPlayerNearVehicle(playerid), Float:vx, Float:vy, Float:vz;
+                GetVehiclePos(vehicleid, vx, vy, vz);
+
+                if(!IsPlayerInRangeOfPoint(playerid, 5.0, vx, vy, vz))
+                    return SendErrorMessage(playerid, "You aren't near the vehicles hood.");
+
+                if(IsPlayerInAnyVehicle(playerid))
+                    return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                            
+                if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+                    return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+                if(PlayerInfo[playerid][E_CHARACTER_LOADING] == true)
+                    return SendErrorMessage(playerid, "You can't use this right now"); 
+
+                new modname[50][32], mods[50], count = 0;
+                new modlist[1024]; 
+
+                for(new m = 1000; m < 1193; m++)
+                {
+                    if(IsVehicleUpgradeCompatible(VehicleInfo[vehicleid][E_VEHICLE_MODEL], m) && IsActualVehicleMod(m))
+                    {
+                        mods[count] = m;
+                        format(modname[count], 32, "%s", GetVehicleModName(m));
+                        
+                        if(count == 0)
+                            format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
+                        else
+                            format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
+                        
+                        SubVehicleComponentArr[playerid][count] = m; 
+                        count++;
+                    }
+                }
+
+                if(count == 0) return SendErrorMessage(playerid, "This vehicle does not support any bodywork modifications.");
+                
+                Dialog_Show(playerid, DialogPaySpray, DIALOG_STYLE_PREVIEW_MODEL, "ModShop:", modlist, "Select", "Close");
+            }
+        }
+    }
+    return 1;
+}
+
+Dialog:DialogMechSpray1(playerid, response, listitem, inputtext[])
+{
+    if(response)
+    {
+        if (strval(inputtext) < 0 || strval(inputtext) > g_MaxVehicleColors || isnull(inputtext))
+            return SendErrorMessage(playerid, "Invalid Color ID.");
+            
+        new vehicleid = IsPlayerNearVehicle(playerid);
+
+        if(IsPlayerInAnyVehicle(playerid))
+            return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                
+        if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+            return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+        new Float:x, Float:y, Float:z;
+        GetPlayerPos(playerid, x, y, z);
+        TogglePlayerControllable(playerid, false);
+        ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 0);
+
+        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+        PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintexterior", 4375, true, "iii", playerid, vehicleid, strval(inputtext));
+
+        PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+    }
+    return 1;
+}
+
+Dialog:DialogMechSpray2(playerid, response, listitem, inputtext[])
+{
+    if(response)
+    {
+        if (strval(inputtext) < 0 || strval(inputtext) > g_MaxVehicleColors || isnull(inputtext))
+            return SendErrorMessage(playerid, "Invalid Color ID.");
+            
+        new vehicleid = IsPlayerNearVehicle(playerid);
+
+        if(IsPlayerInAnyVehicle(playerid))
+            return SendErrorMessage(playerid, "You can't be in a vehicle.");
+                
+        if(IsPlayerNearVehicle(playerid) == INVALID_VEHICLE_ID)
+            return SendErrorMessage(playerid, "You aren't near a vehicle.");
+
+        new Float:x, Float:y, Float:z;
+        GetPlayerPos(playerid, x, y, z);
+        TogglePlayerControllable(playerid, false);
+        ApplyAnimation(playerid, "SPRAYCAN", "spraycan_fire", 4.1, 1, 0, 0, 0, 0, 0);
+
+        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading repaint process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
+        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
+
+        PlayerInfo[playerid][E_CHARACTER_LOADING] = true; 
+        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("repaintinterior", 4375, true, "iii", playerid, vehicleid, strval(inputtext));
+
+        PlayerInfo[playerid][E_CHARACTER_TOGMENU] = false;
+    }
+    return 1;
 }

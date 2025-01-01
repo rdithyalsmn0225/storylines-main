@@ -18,17 +18,18 @@
 #include <a_samp>
 #include <a_mysql>
 #include <streamer>
-#include <sscanf2>
-#include <izcmd>
 #include <progress2>
 #include <timerfix>
+#include <easyDialog>
+#include <PreviewModelDialog2>
+#include <zcmd>
+#include <sscanf2>
 #include <physics>
 #include <PawnPlus>
+#include <eSelection>
 #include <Pawn.RakNet>
 #include <garageblock>
-#include <eSelection>
 #include <compat>
-#include <PreviewModelDialog>
 
 //Database establisher:
 new MySQL:ourConnection; 
@@ -1947,7 +1948,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 	}
 
 	new Float: healths = PlayerInfo[playerid][E_CHARACTER_HEALTH];
-	if(healths >= 11 && healths <= 30)
+	if(healths >= 11 && healths <= 30 && PlayerInfo[playerid][E_CHARACTER_SPAWNED])
 	{
 		SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 200);
 		SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 500);
@@ -1963,7 +1964,7 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 
 		SendServerMessage(playerid, "Low health, shooting skills at medium.");
 	}
-	if(healths <= 10)
+	if(healths <= 10 && PlayerInfo[playerid][E_CHARACTER_SPAWNED])
 	{
 		SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL, 0);
 		SetPlayerSkillLevel(playerid, WEAPONSKILL_PISTOL_SILENCED, 100);
@@ -4064,7 +4065,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         if(PlayerInfo[playerid][E_CHARACTER_PHONEOFF])
 			return SendErrorMessage(playerid, "Your cellphone is turned off.");
 
-		ShowPlayerDialog(playerid, DIALOG_DIALNUMBER, DIALOG_STYLE_INPUT, "Dial Number:", "Please enter the number that you wish to dial below:", "Submit", "Cancel");
+		Dialog_Show(playerid, DialogDialNumber, DIALOG_STYLE_INPUT, "Dial Number:", "Please enter the number that you wish to dial below:", "Submit", "Cancel");
         return 1;
     }
 
@@ -4074,7 +4075,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         if(PlayerInfo[playerid][E_CHARACTER_PHONEOFF])
 			return SendErrorMessage(playerid, "Your cellphone is turned off.");
 
-		ShowPlayerDialog(playerid, DIALOG_SMS, DIALOG_STYLE_INPUT, "Send Text Message:", "Please enter the number that you wish to send a text message to:", "Submit", "Cancel");
+		Dialog_Show(playerid, DialogSMS, DIALOG_STYLE_INPUT, "Send Text Message:", "Please enter the number that you wish to send a text message to:", "Submit", "Cancel");
         return 1;
     }
 	if (playertextid == Phone[5][playerid])
@@ -4091,7 +4092,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         if(PlayerInfo[playerid][E_CHARACTER_PHONEOFF])
 			return SendErrorMessage(playerid, "Your cellphone is turned off.");
 
-		ShowPlayerDialog(playerid, DIALOG_BACKGROUND, DIALOG_STYLE_LIST, "Choose Wallpaper Color:", "(1) Default\n(2) Red\n(3) Yellow\n(4) Blue\n(5) Purple\n(6) Green", "Select", "Cancel");
+		Dialog_Show(playerid, DialogBackground, DIALOG_STYLE_LIST, "Choose Wallpaper Color:", "(1) Default\n(2) Red\n(3) Yellow\n(4) Blue\n(5) Purple\n(6) Green", "Select", "Cancel");
         return 1;
     }
 	if (playertextid == Phone[7][playerid])
@@ -4120,7 +4121,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
 			return 0;
 
-		ShowPlayerDialog(playerid, DIALOG_MDC_NAME, DIALOG_STYLE_INPUT, "Place Charges:", "Please enter the name of the player:", "Search", "Back");
+		Dialog_Show(playerid, DialogMDCName, DIALOG_STYLE_INPUT, "Place Charges:", "Please enter the name of the player:", "Search", "Back");
         return 1;
     }
 	if (playertextid == MDC[10][playerid])
@@ -4128,7 +4129,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
 			return 0;
 
-		ShowPlayerDialog(playerid, DIALOG_MDC_VIEW, DIALOG_STYLE_INPUT, "View Charges:", "Please enter the name of the player:", "Search", "Back");
+		Dialog_Show(playerid, DialogMDCView, DIALOG_STYLE_INPUT, "View Charges:", "Please enter the name of the player:", "Search", "Back");
         return 1;
     }
 	if (playertextid == MDC[11][playerid])
@@ -4136,7 +4137,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         if (ReturnFactionType(playerid) != FACTION_TYPE_POLICE || !IsPoliceVehicle(GetPlayerVehicleID(playerid)))
 			return 0;
 
-		ShowPlayerDialog(playerid, DIALOG_MDC_PLATE, DIALOG_STYLE_INPUT, "View Plates:", "Please enter the vehicle plates:", "Search", "Back"); 
+		Dialog_Show(playerid, DialogMDCPlate, DIALOG_STYLE_INPUT, "View Plates:", "Please enter the vehicle plates:", "Search", "Back"); 
         return 1;
     }
 	if (playertextid == MDC[12][playerid])
@@ -5069,7 +5070,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					else
 						SendErrorMessage(playerid, "You don't have any slot in your inventory.");
 				}
-				else ShowPlayerDialog(playerid, DIALOG_PICKUPITEM, DIALOG_STYLE_LIST, "Pickup Items:", string, "Pickup", "Cancel");
+				else Dialog_Show(playerid, DialogPickup, DIALOG_STYLE_LIST, "Pickup Items:", string, "Pickup", "Cancel");
 			}
 		}
 		else
@@ -5082,7 +5083,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					{
 						new string[128];
 						format(string, sizeof(string), "Inventory\n%s", BusinessPoint[ii][E_BUSINESS_POINT_NAME]);
-						return ShowPlayerDialog(playerid, DIALOG_SHOP, DIALOG_STYLE_LIST, "Choose an option:", string, "Select", "Close");
+						return Dialog_Show(playerid, DialogShop, DIALOG_STYLE_LIST, "Choose an option:", string, "Select", "Close");
 					}
 				}
 			}
@@ -5671,7 +5672,7 @@ function:Query_CreateCharacter(playerid)
 {
 	if(cache_num_rows())
 	{
-		ShowPlayerDialog(playerid, DIALOG_CHAR_NAME, DIALOG_STYLE_MSGBOX, "Character Name:", "Insert a full name of your character.\nInfo: Required in format of Firstname_Lastname", "Confirm", "");	
+		Dialog_Show(playerid, DialogCharName, DIALOG_STYLE_MSGBOX, "Character Name:", "Insert a full name of your character.\nInfo: Required in format of Firstname_Lastname", "Confirm", "");	
 		SendErrorMessage(playerid, "That character already exists. Please try again."); 
 		return 1; 
 	}
@@ -5686,7 +5687,7 @@ function:Query_ChangeCharacter(playerid)
 {
 	if(cache_num_rows())
 	{
-		ShowPlayerDialog(playerid, DIALOG_CHANGENAME, DIALOG_STYLE_INPUT, "Change Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "Close");	
+		Dialog_Show(playerid, DialogChangeName, DIALOG_STYLE_INPUT, "Change Character Name:", "Insert a full name of your character.\n{33AA33}Info:{ffffff} Required in format of Firstname_Lastname", "Confirm", "Close");	
 		SendErrorMessage(playerid, "That character already exists. Please try again."); 
 		return 1; 
 	}

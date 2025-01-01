@@ -137,7 +137,31 @@ CMD:sellfish(playerid, params[])
 	new Cents = floatround(total * 100, floatround_round);
 
 	format(str, sizeof(str), "%sTotal - {33AA33}$%s{ffffff}\n", str, FormatMoney(Cents));
-	ShowPlayerDialog(playerid, DIALOG_SELLFISH, DIALOG_STYLE_LIST, "Sell Fish:", str, "Sell", "Cancel");
+	Dialog_Show(playerid, DialogSellfish, DIALOG_STYLE_LIST, "Sell Fish:", str, "Sell", "Cancel");
+	return 1;
+}
+
+Dialog:DialogSellfish(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		new total = 0;
+		if(Inventory_Count(playerid, "Cod") != 0 || Inventory_Count(playerid, "Carp") != 0 || Inventory_Count(playerid, "Salmon") != 0 || Inventory_Count(playerid, "Cat Fish") != 0 || Inventory_Count(playerid, "Herring") != 0)
+		{
+			total = floatround(COD_PRICE * Inventory_Count(playerid, "Cod"), floatround_round) + floatround(CARP_PRICE * Inventory_Count(playerid, "Carp"), floatround_round) + floatround(SALMON_PRICE * Inventory_Count(playerid, "Salmon"), floatround_round) + floatround(CATFISH_PRICE * Inventory_Count(playerid, "Cat Fish"), floatround_round) + floatround(HERRING_PRICE * Inventory_Count(playerid, "Herring"), floatround_round);
+			
+			Inventory_Set(playerid, "Cod", 19630, 0);
+			Inventory_Set(playerid, "Carp", 19630, 0);
+			Inventory_Set(playerid, "Salmon", 19630, 0);
+			Inventory_Set(playerid, "Cat Fish", 19630, 0);
+			Inventory_Set(playerid, "Herring", 19630, 0);
+		}
+
+		new Cents = floatround(total * 100, floatround_round);
+
+		GiveMoney(playerid, Cents);
+		SendJobsMessage(playerid, "[Fishing] You have sold all the fish and earn $%s.", FormatMoney(Cents));
+	}
 	return 1;
 }
 

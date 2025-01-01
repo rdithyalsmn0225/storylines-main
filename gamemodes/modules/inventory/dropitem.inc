@@ -146,6 +146,6 @@ DropPlayerItem(playerid, itemid, quantity = 1, type = 0)
 	PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = type;
 	format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, string);
 
-	ShowPlayerDialog(playerid, DIALOG_DROPITEMS, DIALOG_STYLE_MSGBOX, "Dropped Items:", "Select your dropped items type 'Static' or 'Cursor'.", "Static", "Cursor");
+	Dialog_Show(playerid, DialogDropitems, DIALOG_STYLE_MSGBOX, "Dropped Items:", "Select your dropped items type 'Static' or 'Cursor'.", "Static", "Cursor");
 	return 1;
 }

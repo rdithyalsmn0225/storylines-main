@@ -66,6 +66,6 @@ CMD:streetshop(playerid, params[])
 	strcat(str, "VIP Supreme Player 7 Days\t80\n");
 	strcat(str, "VIP Legend Player 7 Days\t120\n");
 	strcat(str, "VIP Ultimate Player 7 Days\t150");
-	ShowPlayerDialog(playerid, DIALOG_STREETSHOP, DIALOG_STYLE_TABLIST_HEADERS, "Street Shop:", str, "Select", "Close");
+	Dialog_Show(playerid, DialogStreetShop, DIALOG_STYLE_TABLIST_HEADERS, "Street Shop:", str, "Select", "Close");
 	return 1;
 }

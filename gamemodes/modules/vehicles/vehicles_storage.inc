@@ -177,7 +177,7 @@ stock ShowVehicleStorage(playerid, carid)
 		}
 	}
 	PlayerInfo[playerid][E_CHARACTER_STORAGESELECT] = 0;
-	ShowPlayerDialog(playerid, DIALOG_VSTORAGE, DIALOG_STYLE_TABLIST_HEADERS, "Vehicle Storage:", string, "Select", "Cancel");
+	Dialog_Show(playerid, DialogVStorage, DIALOG_STYLE_TABLIST_HEADERS, "Vehicle Storage:", string, "Select", "Cancel");
 	return 1;
 }
 

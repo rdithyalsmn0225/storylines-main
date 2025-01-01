@@ -48,13 +48,13 @@ function:LogPlayerIn(playerid)
 		
 		new str[128];
 		format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
-		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
+		Dialog_Show(playerid, DialogLogin, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
 	}
 	else
 	{
 		for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }	
 		registerTime[playerid] = 1;	
-		ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
+		Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
 	}
 	return 1;
 }
@@ -70,7 +70,7 @@ function:OnPlayerRegister(playerid)
 	new str[128];
 	format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
 	SendServerMessage(playerid, "You successfully registered as %s. You need to login to continue:", ReturnName(playerid)); 
-	return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
+	return Dialog_Show(playerid, DialogLogin, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
 }
 
 function:LoggingIn(playerid)
@@ -89,7 +89,7 @@ function:LoggingIn(playerid)
 		
 		new str[128];
 		format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
-		return ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
+		return Dialog_Show(playerid, DialogLogin, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
 	}
 	
 	new rows, fields, fetchChars[128];
@@ -450,7 +450,7 @@ function:Query_LoadCharacter(playerid)
 		
 	}
 	format(string, sizeof(string), "%s\t#%d\tLast Position\t{33AA33}PRIVATE{ffffff}", string, 8 + 1);
-	return ShowPlayerDialog(playerid, DIALOG_SPAWNS, DIALOG_STYLE_TABLIST, "Spawn Option:", string, "Select", "Close");
+	return Dialog_Show(playerid, DialogSpawn, DIALOG_STYLE_TABLIST, "Spawn Option:", string, "Select", "Close");
 }
 
 stock ShowCharacterPreview(playerid)
@@ -583,6 +583,6 @@ stock ShowCharacterPreview(playerid)
 	format(str, sizeof(str), "%sEyes\t%s\n", str, eyes);
 	format(str, sizeof(str), "%sHeight\t%d cm\n", str, playerCharactersHeights[playerid]);
 	format(str, sizeof(str), "%sDescription\t%s\n", str, playerCharactersDescription[playerid]);
-	ShowPlayerDialog(playerid, DIALOG_CHAR_PREVIEW, DIALOG_STYLE_TABLIST_HEADERS, "Character Appearance:", str, "Edit", "Finish");	
+	Dialog_Show(playerid, DialogCharPreview, DIALOG_STYLE_TABLIST_HEADERS, "Character Appearance:", str, "Edit", "Finish");	
 	return 1;
 }
