@@ -288,9 +288,7 @@ function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float
 		VehicleInfo[vehicleid][E_VEHICLE_PLATESSTATUS] = true;
 		VehicleInfo[vehicleid][E_VEHICLE_TYPE] = VEHICLE_TYPE_PLAYER;
 		VehicleInfo[vehicleid][E_VEHICLE_EXISTS] = true;
-		
 		SaveVehicle(vehicleid);
-		
 		
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED] = true;
 		PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN] = vehicleid;
@@ -326,8 +324,8 @@ stock Query_UnloadPrivateVehicle(playerid)
 
 function:Query_LoadPrivateVehicle(playerid)
 {
-	if(!cache_num_rows())
-		return SendErrorMessage(playerid, "An error occurred while loading your vehicle."); 
+	//if(!cache_num_rows())
+		//return SendErrorMessage(playerid, "An error occurred while loading your vehicle."); 
 		
 	new rows, fields; 
 	cache_get_row_count(rows);

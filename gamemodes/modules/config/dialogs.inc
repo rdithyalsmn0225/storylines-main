@@ -4093,8 +4093,8 @@ Dialog:DialogDealerConfirm(playerid, response, listitem, inputtext[])
 		
 		ShowPlayerPlates(playerid, plates); 
 		
-		mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO vehicles (VehicleOwnerDBID, VehicleModel, VehicleParkPosX, VehicleParkPosY, VehicleParkPosZ, VehicleParkPosA) VALUES(%i, %i, %f, %f, %f, %f)",
-			PlayerInfo[playerid][E_CHARACTER_DBID], g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODELID], x, y, z, a); 
+		mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO vehicles (VehicleOwnerDBID, VehicleModel, VehicleParkPosX, VehicleParkPosY, VehicleParkPosZ, VehicleParkPosA, VehicleColor1, VehicleColor2) VALUES(%i, %i, %f, %f, %f, %f, %i, %i)",
+			PlayerInfo[playerid][E_CHARACTER_DBID], g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODELID], x, y, z, a, DealershipCarColors[playerid][0], DealershipCarColors[playerid][1]); 
 			
 		mysql_pquery(ourConnection, insert, "OnPlayerVehiclePurchase", "iisffff", playerid, idx, plates, x, y, z, a);
 		
