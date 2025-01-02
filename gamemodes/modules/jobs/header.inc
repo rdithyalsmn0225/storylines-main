@@ -19,6 +19,7 @@ stock StartMainJobs(playerid, type)
                 VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_FUEL] = 1000;
 
                 PlayerPutIntoVehicle(playerid, PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], 0);
+                VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_TYPE] = VEHICLE_TYPE_JOBS;
                 PlayerInfo[playerid][E_CHARACTER_DOCKSWORK] = true;
                 PlayerDockworkerCollect[playerid] = random(sizeof(Dockworker_Collect));
                 GPS_SetPlayerRaceCheckPoint(playerid, 1, Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_POS][0], Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_POS][1], Dockworker_Collect[PlayerDockworkerCollect[playerid]][E_DOCKWORK_POS][2], 0.0, 0.0, 0.0);
@@ -81,6 +82,7 @@ stock StartMainJobs(playerid, type)
                 VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_FUEL] = 1000;
                 
                 PlayerPutIntoVehicle(playerid, PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], 0);
+                VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_TYPE] = VEHICLE_TYPE_JOBS;
                 PlayerInfo[playerid][E_CHARACTER_SWEEPER] = true;
                 PlayerSweeperIndex[playerid] = 1;
                 
@@ -116,6 +118,7 @@ stock StartMainJobs(playerid, type)
                 VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_FUEL] = 1000;
                 
                 PlayerPutIntoVehicle(playerid, PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE], 0);
+                VehicleInfo[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]][E_VEHICLE_TYPE] = VEHICLE_TYPE_JOBS;
                 PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = true;
                 PlayerBusDriverIndex[playerid] = 0;
 

@@ -147,7 +147,7 @@ main ()  {}
 #include "modules\players\accessories.inc"
 #include "modules\players\afk.inc"
 #include "modules\players\vip.inc"
-//COMPENSATION
+// COMPENSATION
 #include "modules\competation\competation.inc"
 // INDUSTRIAL MODULES
 #include "modules\industry\industry.inc"
@@ -332,7 +332,6 @@ public OnPlayerConnect(playerid)
 	CreatePoolTextDraws(playerid);
 	CreateALPRTextdraws(playerid);
 	CreatePhoneTextDraws(playerid);
-	CreateIDCARDTextDraws(playerid);
 	CreateVehicleTextDraws(playerid);
 	CreateHotwireTextDraws(playerid);
 	CreateBarInfoTextDraws(playerid);
@@ -3988,17 +3987,6 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
             }
             return 1;
         }
-    }
-
-	//IDCARD
-	if (playertextid == idcard[0][playerid])
-    {
-		for(new i; i < 19; i++)
-		{
-			PlayerTextDrawHide(playerid, idcard[i][playerid]);
-		}
-		CancelSelectTextDraw(playerid);
-		return 1;
     }
 
 	//Hit BlackJack

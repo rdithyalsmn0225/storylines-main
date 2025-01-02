@@ -554,6 +554,33 @@ CMD:engine(playerid, params[])
 			}
 			else ShowBoxMessage(playerid, "This vehicle is ~r~totalled~w~ and needs repairing.", 3);
 		}
+		else if(VehicleInfo[vehicleid][E_VEHICLE_TYPE] == VEHICLE_TYPE_JOBS)
+		{
+			if(PlayerEngineTimer[playerid])
+				return ShowBoxMessage(playerid, "Please wait....", 5);
+
+			if (ReturnVehicleHealth(vehicleid) > 400)
+			{
+				if(VehicleInfo[vehicleid][E_VEHICLE_FUEL] < 1 && !VehicleInfo[vehicleid][E_VEHICLE_ADMIN])
+					return SendClientMessage(playerid, COLOR_RED, "Vehicle is out of fuel!"); 
+				
+				if(!VehicleInfo[vehicleid][E_VEHICLE_ENGINE])
+				{	ShowBoxMessage(playerid, "~g~Turn on engine.", 5);
+					PlayerEngineValue[playerid] = 0;
+					PlayerEngineTimer[playerid] = SetTimerEx("TurnEngine", 500, true, "dd", playerid, vehicleid);
+					format(str, sizeof(str), "twists the key turning the engine of the %s on", ReturnVehicleName(vehicleid));
+					cmd_me(playerid, str);
+				}
+				else
+				{
+					SendClientMessageEx(playerid, COLOR_WHITE, "> Engine {FF6347}Stopped");	
+					ToggleVehicleEngine(vehicleid, false); VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = false;
+					format(str, sizeof(str), "twists the key turning the engine of the %s off", ReturnVehicleName(vehicleid));
+					cmd_me(playerid, str);
+				}
+			}
+			else ShowBoxMessage(playerid, "This vehicle is ~r~totalled~w~ and needs repairing.", 3);
+		}
 		else
 		{
 			if(PlayerEngineTimer[playerid])
