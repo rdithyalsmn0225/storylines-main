@@ -240,105 +240,6 @@ function:OnVehicleTow(playerid)
 	return 1;
 }
 
-function:OnGascanRefill(playerid, vehicleid, x, y, z)
-{
-	new 
-		text[128]
-	;
-	if(GetVehicleDistanceFromPoint(vehicleid, x, y, z) > 5)
-	{
-		SendErrorMessage(playerid, "The vehicle you were refilling moved and canceled."); 
-		
-		KillTimer(playerRefillTimer[playerid]);
-		playerRefillingVehicle[playerid] = false; 
-		
-		Delete3DTextLabel(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY]); 
-		VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 0; 
-		return 1;
-	}
-	
-	if(!IsPlayerInRangeOfPoint(playerid, 2.0, PlayerInfo[playerid][E_CHARACTER_LASTPOS][0], PlayerInfo[playerid][E_CHARACTER_LASTPOS][1], PlayerInfo[playerid][E_CHARACTER_LASTPOS][2]))
-	{
-		SendErrorMessage(playerid, "You moved and stopped refilling the vehicle."); 
-		
-		KillTimer(playerRefillTimer[playerid]);
-		playerRefillingVehicle[playerid] = false; 
-		
-		Delete3DTextLabel(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY]); 
-		VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 0; 
-		return 1;
-	}
-	VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] ++;
-	
-	switch(VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT])
-	{
-		case 2: text = "Loading refilling fuel process\n(( ||----- ))";
-		case 3: text = "Loading refilling fuel process\n(( |||---- ))";
-		case 4: text = "Loading refilling fuel process\n(( ||||--- ))";
-		case 5: text = "Loading refilling fuel process\n(( |||||-- ))";
-		case 6: text = "Loading refilling fuel process\n(( ||||||- ))";
-		case 7: text = "Loading refilling fuel process\n(( ||||||| ))";
-		case 8:
-		{
-			KillTimer(playerRefillTimer[playerid]);
-			playerRefillingVehicle[playerid] = false; 
-			
-			Delete3DTextLabel(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY]); 
-			VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 0; 
-			
-			VehicleInfo[vehicleid][E_VEHICLE_FUEL] += 50.0;
-			Inventory_Remove(playerid, "Gascan", 1);
-			
-			SendVehicleMessage(playerid, "[VEHICLE] You refilled the %s to 50 percent fuel.", ReturnVehicleName(vehicleid)); 
-			return 1;
-		}
-	}
-	
-	Update3DTextLabelText(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], COLOR_3DTEXT, text); 
-	return 1;
-}
-
-function:OnGasStationRefill(playerid, vehicleid, price, Float:fuels, x, y, z)
-{
-	new 
-		text[128];
-	
-	VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] ++;
-	
-	switch(VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT])
-	{
-		case 2: text = "Loading refilling fuel process\n(( ||----- ))";
-		case 3: text = "Loading refilling fuel process\n(( |||---- ))";
-		case 4: text = "Loading refilling fuel process\n(( ||||--- ))";
-		case 5: text = "Loading refilling fuel process\n(( |||||-- ))";
-		case 6: text = "Loading refilling fuel process\n(( ||||||- ))";
-		case 7: text = "Loading refilling fuel process\n(( ||||||| ))";
-		case 8:
-		{
-			KillTimer(playerRefillTimer[playerid]);
-			playerRefillingVehicle[playerid] = false; 
-			
-			Delete3DTextLabel(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY]); 
-			VehicleInfo[vehicleid][E_VEHICLE_REFILLCOUNT] = 0; 
-			
-			VehicleInfo[vehicleid][E_VEHICLE_FUEL] += fuels;
-			GiveMoney(playerid, -price);
-
-			for(new i; i < 23; i++)
-			{
-				PlayerTextDrawHide(playerid, fuel[i][playerid]);
-			}
-			TogglePlayerControllable(playerid, true);
-			
-			SendVehicleMessage(playerid, "[VEHICLE] You refilled the %s to 50 percent fuel for $50.00.", ReturnVehicleName(vehicleid)); 
-			return 1;
-		}
-	}
-	
-	Update3DTextLabelText(VehicleInfo[vehicleid][E_VEHICLE_REFILLDISPLAY], COLOR_3DTEXT, text); 
-	return 1;
-}
-
 function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float:z, Float:a)
 {
 	new
@@ -573,11 +474,9 @@ function:OnVehicleAlarm(vehicleid)
 	return ToggleVehicleAlarms(vehicleid, false);
 }
 
-function:Query_ShowVehicleList(playerid, idx)
+function:Query_ShowVehicleList(playerid)
 {
-	new rows, fields;
-	cache_get_row_count(rows);
-	cache_get_field_count(fields);
+	new rows = cache_num_rows();
 
 	if (rows == 0)
 	{
@@ -587,37 +486,23 @@ function:Query_ShowVehicleList(playerid, idx)
 
 	new 
 		vehicleDBID,
+		ownerDBID,
 		vehicleModel,
 		vehiclePlates[32],
 		vehicleRentalTimer,
 		bool:vehicleRental,
-		bool:isSpawned = false,
-		color[64],
+		count = 0,
 		rent[64];
 
 	for (new i = 0; i < rows; i++)
 	{
+		cache_get_value_name_int(i, "VehicleOwnerDBID", ownerDBID);
 		cache_get_value_name_int(i, "VehicleDBID", vehicleDBID);
 		cache_get_value_name_int(i, "VehicleModel", vehicleModel);
 		cache_get_value_name(i, "VehiclePlates", vehiclePlates, sizeof(vehiclePlates));
 		cache_get_value_name_bool(i, "VehicleRental", vehicleRental);
 		cache_get_value_name_int(i, "VehicleRentalTimer", vehicleRentalTimer);
 
-		isSpawned = false;
-		for (new id = 1; id < MAX_PLAYER_VEHICLES; id++)
-		{
-			if (VehicleInfo[id][E_VEHICLE_DBID] == vehicleDBID)
-			{
-				isSpawned = true;
-				break;
-			}
-		}
-
-		if (isSpawned)
-			format(color, sizeof(color), "{33AA33}Spawned");
-		else
-			format(color, sizeof(color), "{FF6347}Despawned");
-			
 		if(vehicleRental)
 			format(rent, sizeof(rent), "Rented %d Minutes", vehicleRentalTimer);
 		else
@@ -625,7 +510,7 @@ function:Query_ShowVehicleList(playerid, idx)
 
 		new str[128], str2[128];
 		
-		if(idx == 1)
+		if(count == 1)
 		{
 			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
 			format(str2, sizeof(str2), "%s", vehiclePlates);
@@ -638,7 +523,7 @@ function:Query_ShowVehicleList(playerid, idx)
 			PlayerTextDrawShow(playerid, VehicleSelection[10][playerid]);
 			PlayerTextDrawShow(playerid, VehicleSelection[14][playerid]);
 		}
-		else if(idx == 2)
+		else if(count == 2)
 		{
 			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
 			format(str2, sizeof(str2), "%s", vehiclePlates);
@@ -651,7 +536,7 @@ function:Query_ShowVehicleList(playerid, idx)
 			PlayerTextDrawShow(playerid, VehicleSelection[11][playerid]);
 			PlayerTextDrawShow(playerid, VehicleSelection[15][playerid]);
 		}
-		else if(idx == 3)
+		else if(count == 3)
 		{
 			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
 			format(str2, sizeof(str2), "%s", vehiclePlates);
@@ -664,7 +549,7 @@ function:Query_ShowVehicleList(playerid, idx)
 			PlayerTextDrawShow(playerid, VehicleSelection[12][playerid]);
 			PlayerTextDrawShow(playerid, VehicleSelection[16][playerid]);
 		}
-		else if(idx == 4)
+		else if(count == 4)
 		{
 			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
 			format(str2, sizeof(str2), "%s", vehiclePlates);
@@ -681,6 +566,7 @@ function:Query_ShowVehicleList(playerid, idx)
 		PlayerTextDrawShow(playerid, VehicleSelection[1][playerid]);
 		PlayerTextDrawShow(playerid, VehicleSelection[18][playerid]);
 
+		count++;
 		SelectTextDraw(playerid, COLOR_YELLOW);
 	}
 	return 1;
@@ -846,15 +732,9 @@ stock CountPlayerVehicles(playerid)
 
 stock ShowVehicleList(playerid)
 {
-	new thread[128]; 
-	for (new i = 1; i < MAX_PLAYER_VEHICLES; i++)
-	{
-		if(PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i])
-		{
-			mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM vehicles WHERE VehicleDBID = %i", PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][i]);
-			mysql_pquery(ourConnection, thread, "Query_ShowVehicleList", "ii", playerid, i);
-		}
-	}
+	new thread[256]; 
+	mysql_format(ourConnection, thread, sizeof(thread), "SELECT * FROM vehicles WHERE VehicleOwnerDBID = %i", PlayerInfo[playerid][E_CHARACTER_DBID]);
+	mysql_pquery(ourConnection, thread, "Query_ShowVehicleList", "i", playerid);
 	return 1;
 }
 
