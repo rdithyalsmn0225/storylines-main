@@ -3295,6 +3295,22 @@ Dialog:DialogGeneral1(playerid, response, listitem, inputtext[])
 
 				ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 			}
+			case 2:
+			{
+				if(Inventory_Count(playerid, "Boombox"))
+					return SendErrorMessage(playerid, "You already own a boombox.");
+			
+				if(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3] > PlayerInfo[playerid][E_CHARACTER_MONEY])
+					return SendErrorMessage(playerid, "You can't afford a boombox.");
+			
+				SendInventoryMessage(playerid, "You bought a radio for $%s don't forget to pay at the clerk.", FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
+
+				PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
+				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+				Inventory_Add(playerid, "Boombox", 2103, 1);
+
+				ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+			}
 		}
 	}
 	return 1;

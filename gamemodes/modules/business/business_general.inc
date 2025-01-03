@@ -34,6 +34,7 @@ stock ShowGeneralList(playerid, type)
 				format(str2, sizeof(str2), "Product\tPrice\n");
 				format(str2, sizeof(str2), "%sCellphone\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][1]));
 				format(str2, sizeof(str2), "%sRadio\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][2]));
+				format(str2, sizeof(str2), "%sBoombox\t$%s\n", str2, FormatMoney(BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3]));
 				Dialog_Show(playerid, DialogGeneral1, DIALOG_STYLE_TABLIST_HEADERS, str, str2, "Select", "Cancel"); 
 			}
 		}
