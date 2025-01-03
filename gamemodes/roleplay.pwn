@@ -119,6 +119,7 @@ main ()  {}
 #include "modules\props\advertise.inc"
 #include "modules\props\tree.inc"
 #include "modules\props\gate.inc"
+#include "modules\props\boombox.inc"
 #include "modules\props\vending.inc"
 // DRUGS MODULES
 #include "modules\drugs\drugs.inc"
@@ -639,6 +640,24 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 		printf("Callback OnPlayerEnterDynamicArea called for player %s (ID: %i)", ReturnName(playerid), playerid); 
 	#endif
 	
+	if (!IsPlayerInAnyVehicle(playerid)) 
+	{
+		for (new i, j = MAX_DROPPED_ITEMS; i < j; i++) 
+		{
+			if(DroppedInfo[i][E_DROPPED_DBID] != -1 && BoomboxInfo[i][E_BOOMBOX_STATUS] == true) 
+			{
+				if (BoomboxInfo[i][E_BOOMBOX_AREA] == areaid) 
+				{
+					PlayAudioStreamForPlayer(playerid, BoomboxInfo[i][E_BOOMBOX_URL], 
+						DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], 
+						DroppedInfo[i][E_DROPPED_POS][2], 20.0, true); 
+				}
+				else continue;
+			}
+			else continue;
+		}
+	}
+
 	if (GetPlayerState(playerid) == PLAYER_STATE_ONFOOT) 
 	{
 		for(new i = 0; i < sizeof(sc_VendingMachines); i++) 

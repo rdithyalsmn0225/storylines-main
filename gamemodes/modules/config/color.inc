@@ -10,7 +10,7 @@
 
 #define COLOR_CREDITS       (0xf8b56eFF)
 #define COLOR_SYNTAX        (0x9fc5e8FF)
-#define COLOR_3DTEXT        (0x3fe49cFF)
+#define COLOR_3DTEXT        (0x866D40FF)
 #define COLOR_INFO          (0x7f0c0cAA)
 #define COLOR_INVENTORY     (0xE7EAB5FF)
 #define COLOR_TIP           (0xffeaaeFF)

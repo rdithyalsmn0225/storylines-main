@@ -1303,7 +1303,11 @@ Dialog:DialogInvOption(playerid, response, listitem, inputtext[])
 
 				if(!strcmp(string, "Mask"))
 					return SendErrorMessage(playerid, "You can't do that on this item!");
-				
+
+				if(!strcmp(string, "Boombox"))
+				{
+					DropPlayerItem(playerid, itemid, 1, E_DROPPED_TYPE_BOOMBOX);		
+				}
 				else if (InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY] == 1)
 				{
 					DropPlayerItem(playerid, itemid);						
@@ -1726,7 +1730,7 @@ Dialog:DialogRadio(playerid, response, listitem, inputtext[])
 			{
 				Dialog_Show(playerid, DialogAddURL, DIALOG_STYLE_INPUT, "Radio Stations:", "Type a song or radio station URL.\nNote that year we roleplay in 1990.", "Input", "Close");
 			}
-			case 2:
+			case 1:
 			{
 				StopAudioStreamForPlayer(playerid);
 				VehicleInfo[GetPlayerVehicleID(playerid)][E_VEHICLE_RADIO] = false;

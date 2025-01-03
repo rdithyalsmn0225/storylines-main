@@ -827,6 +827,12 @@ enum E_INVENTORY_ITEMS
 	E_INVENTORY_TYPE
 };
 
+enum 
+{
+	E_DROPPED_TYPE_NONE,
+	E_DROPPED_TYPE_BOOMBOX
+};
+
 enum E_DROPPED_DATA
 {
 	E_DROPPED_DBID,
@@ -834,18 +840,28 @@ enum E_DROPPED_DATA
 	E_DROPPED_PLAYER[24],
 	E_DROPPED_MODEL,
 	E_DROPPED_QUANTITY,
-	Float: E_DROPPED_POS[6],
 	E_DROPPED_TYPE,
 	E_DROPPED_AMOUNT,
-	bool:E_DROPPED_LOADING,
 	E_DROPPED_LOADINGCOUNT,
 	E_DROPPED_LOADINGTIMER,
-	Text3D:E_DROPPED_LOADINGDISPLAY,
 	E_DROPPED_INTERIOR,
 	E_DROPPED_WORLD,
-	Text3D:E_DROPPED_3DTEXT,
-	E_DROPPED_OBJECT
+	E_DROPPED_OBJECT,
+	Float: E_DROPPED_POS[6],
+	bool:E_DROPPED_LOADING,
+	Text3D:E_DROPPED_LOADINGDISPLAY,
+	Text3D:E_DROPPED_3DTEXT
 };
+
+// BOOMBOX:
+enum E_BOOMBOX_DATA
+{
+	E_BOOMBOX_AREA,
+	E_BOOMBOX_URL[256],
+	bool:E_BOOMBOX_STATUS
+};
+
+new BoomboxInfo[MAX_DROPPED_ITEMS][E_BOOMBOX_DATA];
 
 // SPRAYTAG:
 enum E_SPRAYTAGS_DATA 
@@ -2391,6 +2407,7 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Sprunk", 2601, 0},
 	{"Spraycan", 365, 0},
 	{"Screwdriver", 18644, 0},
+	{"Boombox", 2103, E_DROPPED_TYPE_BOOMBOX},
 	{"Chainsaw", 341, 0},
 	{"Extinguisher", 366, 0},
 	{"Gascan", 1650, 0},
@@ -2435,8 +2452,9 @@ new const g_aInventoryItems[][E_INVENTORY_ITEMS] =
 	{"Oregano", 19570, 0},
 	{"Baking Soda", 19570, 0},
 	{"Materials", 3014, 0},
+
+	/// Woods Lumberjack
 	{"Woods", 1463, 0},
-	
 	// Cargo Truckers:
 	{"Fish Cargo", 2912, 0},
 	{"Fabric Cargo", 2912, 0},

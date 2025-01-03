@@ -1,7 +1,7 @@
 SetClock(hour, minute, second)
 {
-    new timestr[256];
-    new weekday_str[10], month[12], date[6];
+    new timestr[512];
+    new weekday_str[10], month[24], date[6];
     new suffix[3]; // Untuk menampung akhiran (st, nd, rd, th)
 
     getdate(date[2], date[1], date[0]);

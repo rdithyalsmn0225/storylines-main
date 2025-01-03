@@ -16,6 +16,17 @@ stock Item_Delete(itemid)
 		DestroyDynamic3DTextLabel(DroppedInfo[itemid][E_DROPPED_3DTEXT]);
 	    DestroyDynamicObject(DroppedInfo[itemid][E_DROPPED_OBJECT]);
 
+		if(DroppedInfo[itemid][E_DROPPED_TYPE] == E_DROPPED_TYPE_BOOMBOX)
+		{
+			if(IsValidDynamicArea(BoomboxInfo[itemid][E_BOOMBOX_AREA])) {
+
+				DestroyDynamicArea(BoomboxInfo[itemid][E_BOOMBOX_AREA]) ;
+				BoomboxInfo[itemid][E_BOOMBOX_AREA] = -1;
+			}
+			BoomboxInfo[itemid][E_BOOMBOX_STATUS] = false;
+		}
+
+
 	    mysql_format(ourConnection, query, sizeof(query), "DELETE FROM `dropped` WHERE `ID` = '%d'", DroppedInfo[itemid][E_DROPPED_DBID]);
 	    mysql_pquery(ourConnection, query);
 	}
@@ -42,6 +53,7 @@ stock PickupItem(playerid, itemid)
 	        return SendErrorMessage(playerid, "You don't have any inventory slots left.");
 
 	    Item_Delete(itemid);
+		StopAudioStreamForPlayer(playerid);
 	}
 	return 1;
 }
@@ -75,7 +87,18 @@ function:Query_LoadDropped()
 		cache_get_value_name_int(i, "itemInt", DroppedInfo[i][E_DROPPED_INTERIOR]);
 		cache_get_value_name_int(i, "itemWorld", DroppedInfo[i][E_DROPPED_WORLD]);
 
-		DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(DroppedInfo[i][E_DROPPED_ITEM], COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+		if(DroppedInfo[i][E_DROPPED_TYPE] == E_DROPPED_TYPE_BOOMBOX)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}\nAvailable Commands: /boombox", DroppedInfo[i][E_DROPPED_ITEM]);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+		}
+		else
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]", DroppedInfo[i][E_DROPPED_ITEM]);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+		}
 		DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(DroppedInfo[i][E_DROPPED_MODEL], DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], DroppedInfo[i][E_DROPPED_POS][3], DroppedInfo[i][E_DROPPED_POS][4], DroppedInfo[i][E_DROPPED_POS][5], DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
 	}
 	printf("[SERVER]: %i dropped items were loaded from \"%s\" database...", rows, SQL_DATABASE);
@@ -105,7 +128,21 @@ DropItem(item[], player[], model, quantity, Float:x, Float:y, Float:z, Float:rx,
 		DroppedInfo[i][E_DROPPED_INTERIOR] = interior;
 		DroppedInfo[i][E_DROPPED_WORLD] = world;
 
-		DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(item, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
+		if(type == E_DROPPED_TYPE_BOOMBOX)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /boombox", item);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
+			BoomboxInfo[i][E_BOOMBOX_STATUS] = false;
+			format(BoomboxInfo[i][E_BOOMBOX_STATUS], 256, "");
+			BoomboxInfo[i][E_BOOMBOX_AREA] = CreateDynamicCircle(x, y, 20.0, world, interior);
+		}
+		else 
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]", item);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
+		}
 		DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior);
 
  		format(query, sizeof(query), "INSERT INTO `dropped` (`itemName`, `itemPlayer`, `itemModel`, `itemQuantity`, `itemType`, `itemX`, `itemY`, `itemZ`, `itemRX`, `itemRY`, `itemRZ`, `itemInt`, `itemWorld`) VALUES('%s', '%s', '%d', '%d', '%d', '%.4f', '%.4f', '%.4f', '%.4f', '%.4f', '%.4f', '%d', '%d')", item, player, model, quantity, type, x, y, z, rx, ry, rz, interior, world);
