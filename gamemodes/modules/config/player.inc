@@ -528,14 +528,9 @@ stock ShowIDCARD(playerid, playerb)
 stock ShowCharacterStats(playerid, playerb)
 {
 	new 
-		vehicle_key[20],
 		duplicate_key[20],
 		business_key[20] = "None",
 		gender[20];
-	
-	if(!PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED])
-		vehicle_key = "None";
-	else format(vehicle_key, 32, "%d", PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWN]);
 
 	if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 1) format(gender, 20, "Male");
 	else if(PlayerInfo[playerid][E_CHARACTER_GENDER] == 2) format(gender, 20, "Female");
@@ -561,7 +556,7 @@ stock ShowCharacterStats(playerid, playerb)
 	SendClientMessageEx(playerid, 0x88D9D8FF, "[SESSION]:{ffffff} [Gender: %s] [Level: %d] [EXP: %d/10] [Time played: %d hours]\n", gender, PlayerInfo[playerid][E_CHARACTER_LEVEL], PlayerInfo[playerid][E_CHARACTER_EXP], PlayerInfo[playerid][E_CHARACTER_TIMEPLAYED]);
 	SendClientMessageEx(playerid, 0xD9C388FF, "[FINANCIAL]:{ffffff} [Cash Hand: $%s] [Cash Bank: $%s] [Paycheck: $%s]\n", FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_BANK]), FormatMoney(PlayerInfo[playerid][E_CHARACTER_PAYCHECK]));
 	SendClientMessageEx(playerid, 0xA37EBEFF, "[JOBS]:{ffffff} [Jobs: %s] [Skills: %s]\n", ReturnJobName(PlayerInfo[playerid][E_CHARACTER_JOBS]), ReturnJobSkill(playerid, PlayerInfo[playerid][E_CHARACTER_JOBS]));
-	SendClientMessageEx(playerid, 0x98D988FF, "[KEYS]:{ffffff} VehicleKey:[%s] DuplicateKey:[%s] BusinessKey:[%s]\n", vehicle_key, duplicate_key, business_key);	
+	SendClientMessageEx(playerid, 0x98D988FF, "[KEYS]:{ffffff} DuplicateKey:[%s] BusinessKey:[%s]\n", duplicate_key, business_key);	
 	if(PlayerInfo[playerb][E_CHARACTER_FACTION])
 	{
 		SendClientMessageEx(playerid, 0xD39483FF, "[FACTION]:{ffffff} [Faction: %s] [Rank: %s]\n", ReturnFactionName(playerid), IsPlayerFactionRank(playerid));

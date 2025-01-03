@@ -243,13 +243,11 @@ function:OnVehicleTow(playerid)
 function:OnPlayerVehiclePurchase(playerid, id, plates[], Float:x, Float:y, Float:z, Float:a)
 {
 	new
-		vehicleid = INVALID_VEHICLE_ID
-	;
+		vehicleid = INVALID_VEHICLE_ID;
 	
 	DestroyVehicle(DealershipPlayerCar[playerid]);
 	
-	vehicleid = 
-		CreateVehicle(g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODELID], x, y, z, a, DealershipCarColors[playerid][0], DealershipCarColors[playerid][1], -1);  
+	vehicleid = CreateVehicle(g_aDealershipData[SubDealershipHolder[playerid]][E_DEALERSHIP_MODELID], x, y, z, a, DealershipCarColors[playerid][0], DealershipCarColors[playerid][1], -1);  
 		
 	SetVehicleNumberPlate(vehicleid, plates); 
 	SetVehicleToRespawnEx(vehicleid); 
@@ -455,10 +453,62 @@ function:Query_LoadPrivateVehicle(playerid)
 	return 1;
 }
 
-function:Query_AddPlayerVehicle(playerid, playerb)
+function:Query_AddPlayerVehicle(playerid, playerb, modelid, color1, color2, FLoat:x, FLoat:y, FLoat:z)
 {
-	PlayerInfo[playerb][E_CHARACTER_OWNEDVEHICLE][playerInsertID[playerb]] = cache_insert_id(); 
+
+	new vehicleid = INVALID_VEHICLE_ID;
+
+	vehicleid = CreateVehicle(modelid, x, y, z, 0.0, color1, color2, -1);  
+		
+	SetVehicleNumberPlate(vehicleid, "None"); 
+	SetVehicleToRespawnEx(vehicleid); 
 	
+	PlayerPutIntoVehicle(playerid, vehicleid, 0); 
+	PlayerInfo[playerid][E_CHARACTER_OWNEDVEHICLE][playerInsertID[playerb]] = cache_insert_id(); 
+	
+	if(vehicleid != INVALID_VEHICLE_ID)
+	{
+		VehicleInfo[vehicleid][E_VEHICLE_DBID] = cache_insert_id();
+		VehicleInfo[vehicleid][E_VEHICLE_OWNERDBID] = PlayerInfo[playerid][E_CHARACTER_DBID]; 
+		
+		VehicleInfo[vehicleid][E_VEHICLE_MODEL] = modelid;
+		
+		VehicleInfo[vehicleid][E_VEHICLE_COLOR1] = color1;
+		VehicleInfo[vehicleid][E_VEHICLE_COLOR2] = color2;
+		
+		VehicleInfo[vehicleid][E_VEHICLE_PAINTJOB] = -1;
+		
+		VehicleInfo[vehicleid][E_VEHICLE_POS][0] = x;
+		VehicleInfo[vehicleid][E_VEHICLE_POS][1] = y;
+		VehicleInfo[vehicleid][E_VEHICLE_POS][2] = z;
+		VehicleInfo[vehicleid][E_VEHICLE_POS][3] = 0.0;
+		
+		format(VehicleInfo[vehicleid][E_VEHICLE_PLATES], 32, "None"); 
+		
+		VehicleInfo[vehicleid][E_VEHICLE_LOCKED] = false;
+		VehicleInfo[vehicleid][E_VEHICLE_ENGINE] = false;
+		
+		VehicleInfo[vehicleid][E_VEHICLE_FUEL] = 100.0; 
+		VehicleInfo[vehicleid][E_VEHICLE_MILES] = 0; 
+		
+		VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = 1000.0; 
+		
+		VehicleInfo[vehicleid][E_VEHICLE_DESTROYED] = 0;
+		VehicleInfo[vehicleid][E_VEHICLE_PLATESSTATUS] = true;
+		VehicleInfo[vehicleid][E_VEHICLE_TYPE] = VEHICLE_TYPE_PLAYER;
+		VehicleInfo[vehicleid][E_VEHICLE_EXISTS] = true;
+		SaveVehicle(vehicleid);
+		
+		PlayerInfo[playerb][E_CHARACTER_VEHICLESPAWNED] = true;
+		PlayerInfo[playerb][E_CHARACTER_VEHICLESPAWN] = vehicleid;
+
+		if(VehicleInfo[vehicleid][E_VEHICLE_EXISTS])
+		{
+			new str[128];
+			format(str, sizeof(str), "SELECT * FROM `vstorage` WHERE `ID` = '%d'", VehicleInfo[vehicleid][E_VEHICLE_DBID]);
+			mysql_pquery(ourConnection, str, "VehicleStorage_Load", "d", vehicleid);
+		}
+	}
 	SendVehicleMessage(playerb, "[VEHICLE] You received a vehicle from %s in slot %d.", ReturnName(playerid), playerInsertID[playerb]);
 	SendVehicleMessage(playerid, "[VEHICLE] You issued %s a new vehicle.", ReturnName(playerb));
 	

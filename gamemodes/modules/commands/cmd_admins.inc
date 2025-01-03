@@ -1575,7 +1575,7 @@ CMD:createpcar(playerid, params[])
 		
 		mysql_format(ourConnection, insertQuery, sizeof(insertQuery), "INSERT INTO vehicles (`VehicleOwnerDBID`, `VehicleModel`, `VehicleColor1`, `VehicleColor2`, `VehicleParkPosX`, `VehicleParkPosY`, `VehicleParkPosZ`, `VehicleParkPosA`) VALUES(%i, %i, %i, %i, %f, %f, %f, 0.0)",
 			PlayerInfo[playerb][E_CHARACTER_DBID], modelid, color1, color2, x, y, z);
-		mysql_pquery(ourConnection, insertQuery, "Query_AddPlayerVehicle", "ii", playerid, playerb); 
+		mysql_pquery(ourConnection, insertQuery, "Query_AddPlayerVehicle", "iiiiiifff", playerid, playerb, modelid, color1, color2, x, y ,z); 
 	}
 	
 	return 1;

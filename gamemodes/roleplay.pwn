@@ -587,7 +587,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 
 			else if(PlayerSweeperIndex[playerid] == 16)
 			{
-				new rand = randomEx(3, 4);
+				new rand = randomEx(6, 8);
 				new total = (PlayerSweeperIndex[playerid] * rand);
 
             	new Cents = floatround(total * 100, floatround_round);
