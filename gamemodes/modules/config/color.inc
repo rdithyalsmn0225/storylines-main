@@ -21,7 +21,7 @@
 #define COLOR_VEHICLE		(0xe2c5d4FF)
 #define COLOR_PROPERTY		(0x89b2a7FF)
 #define COLOR_EMMET         (0x088a74FF)
-#define COLOR_CRIME         (0x8e7cc3FF)
+#define COLOR_CRIME         (0x077292FF)
 
 #define COLOR_GRAD1			(0xCCE6E6FF)
 #define COLOR_GRAD2			(0xE2FFFFFF)

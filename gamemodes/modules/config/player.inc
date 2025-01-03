@@ -307,6 +307,7 @@ function:ResetPlayer(playerid)
 	PlayerInfo[playerid][E_CHARACTER_OBJECTID] = 0;
 	PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = 0;
 	PlayerInfo[playerid][E_CHARACTER_OBJECTOWN] = 0;
+	PlayerInfo[playerid][E_CHARACTER_OBJECTAMOUNT] = 0;
 	PlayerInfo[playerid][E_CHARACTER_ADDOBJECT] = INVALID_OBJECT_ID;
 	PlayerInfo[playerid][E_CHARACTER_EDITINGOBJECT] = 0;
 	

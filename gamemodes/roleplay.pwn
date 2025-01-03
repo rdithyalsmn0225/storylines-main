@@ -119,7 +119,7 @@ main ()  {}
 #include "modules\props\advertise.inc"
 #include "modules\props\tree.inc"
 #include "modules\props\gate.inc"
-#include "modules\props\boombox.inc"
+#include "modules\props\spawnables.inc"
 #include "modules\props\vending.inc"
 // DRUGS MODULES
 #include "modules\drugs\drugs.inc"
@@ -5393,7 +5393,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 
 				if(response == EDIT_RESPONSE_FINAL)
 				{
-					DropItem(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY], x, y, z, rx, ry, rz, GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE]);
+					DropItem(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY], x, y, z, rx, ry, rz, GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE], PlayerInfo[playerid][E_CHARACTER_OBJECTAMOUNT]);
 					Inventory_Remove(playerid, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY]);
 					ApplyAnimation(playerid, "GRENADE", "WEAPON_throwu", 4.1, 0, 0, 0, 0, 0, 1);
 

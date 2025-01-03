@@ -47,3 +47,41 @@ Dialog:DialogBoomboxUrl(playerid, response, listitem, inputtext[])
 	}
     return 1;
 }
+
+CMD:getsprunk(playerid, params[])
+{
+	new id = Item_Nearest(playerid);
+	if(DroppedInfo[id][E_DROPPED_TYPE] != E_DROPPED_TYPE_SPRUNK)
+		return SendErrorMessage(playerid, "You aren't near pack of sprunk.");
+		
+	if(!DroppedInfo[id][E_DROPPED_AMOUNT])
+		return SendErrorMessage(playerid, "Pack of sprunk is empty.");
+
+	DroppedInfo[id][E_DROPPED_AMOUNT]--;
+	SendInventoryMessage(playerid, "You take 1x of sprunk from pack of sprunk.");
+    Inventory_Add(playerid, "Sprunk", 2601, 1);
+
+	new string[256];
+	format(string, sizeof(string), "UPDATE `dropped` SET `itemAmount` = %d WHERE `ID` = '%d'", DroppedInfo[id][E_DROPPED_AMOUNT], DroppedInfo[id][E_DROPPED_DBID]);
+	mysql_pquery(ourConnection, string);
+    return 1;
+}
+
+CMD:getbeer(playerid, params[])
+{
+	new id = Item_Nearest(playerid);
+	if(DroppedInfo[id][E_DROPPED_TYPE] != E_DROPPED_TYPE_SPRUNK)
+		return SendErrorMessage(playerid, "You aren't near pack of beer.");
+		
+	if(!DroppedInfo[id][E_DROPPED_AMOUNT])
+		return SendErrorMessage(playerid, "Pack of beer is empty.");
+
+	DroppedInfo[id][E_DROPPED_AMOUNT]--;
+	SendInventoryMessage(playerid, "You take 1x of pishwasher from pack of beer.");
+    Inventory_Add(playerid, "Pisswasher", 2601, 1);
+
+	new string[256];
+	format(string, sizeof(string), "UPDATE `dropped` SET `itemAmount` = %d WHERE `ID` = '%d'", DroppedInfo[id][E_DROPPED_AMOUNT], DroppedInfo[id][E_DROPPED_DBID]);
+	mysql_pquery(ourConnection, string);
+    return 1;
+}

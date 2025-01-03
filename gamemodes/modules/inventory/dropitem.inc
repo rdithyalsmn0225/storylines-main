@@ -47,7 +47,7 @@ stock PickupItem(playerid, itemid)
 {
 	if (itemid != -1 && DroppedInfo[itemid][E_DROPPED_MODEL])
 	{
-	    new id = Inventory_Add(playerid, DroppedInfo[itemid][E_DROPPED_ITEM], DroppedInfo[itemid][E_DROPPED_MODEL], DroppedInfo[itemid][E_DROPPED_QUANTITY]);
+	    new id = Inventory_Add(playerid, DroppedInfo[itemid][E_DROPPED_ITEM], DroppedInfo[itemid][E_DROPPED_MODEL], DroppedInfo[itemid][E_DROPPED_QUANTITY], DroppedInfo[itemid][E_DROPPED_AMOUNT]);
 
 	    if (id == -1)
 	        return SendErrorMessage(playerid, "You don't have any inventory slots left.");
@@ -90,8 +90,25 @@ function:Query_LoadDropped()
 		if(DroppedInfo[i][E_DROPPED_TYPE] == E_DROPPED_TYPE_BOOMBOX)
 		{
 			new str[128];
-			format(str, sizeof(str), "[%s]\n{ffffff}\nAvailable Commands: /boombox", DroppedInfo[i][E_DROPPED_ITEM]);
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /boombox", DroppedInfo[i][E_DROPPED_ITEM]);
 			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(DroppedInfo[i][E_DROPPED_MODEL], DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], DroppedInfo[i][E_DROPPED_POS][3], DroppedInfo[i][E_DROPPED_POS][4], DroppedInfo[i][E_DROPPED_POS][5], DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+		}
+		else if(DroppedInfo[i][E_DROPPED_TYPE] == E_DROPPED_TYPE_PISH)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getbeer", DroppedInfo[i][E_DROPPED_ITEM]);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(DroppedInfo[i][E_DROPPED_MODEL], DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], DroppedInfo[i][E_DROPPED_POS][3], DroppedInfo[i][E_DROPPED_POS][4], DroppedInfo[i][E_DROPPED_POS][5], DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+			SetDynamicObjectMaterial(DroppedInfo[i][E_DROPPED_OBJECT], 0, 1551, "cj_bar", "CJ_old_pish", 0xFFFFFFFF);
+		}
+		else if(DroppedInfo[i][E_DROPPED_TYPE] == E_DROPPED_TYPE_SPRUNK)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getsprunk", DroppedInfo[i][E_DROPPED_ITEM]);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(DroppedInfo[i][E_DROPPED_MODEL], DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], DroppedInfo[i][E_DROPPED_POS][3], DroppedInfo[i][E_DROPPED_POS][4], DroppedInfo[i][E_DROPPED_POS][5], DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+			SetDynamicObjectMaterial(DroppedInfo[i][E_DROPPED_OBJECT], 0, 2354, "burger_tray", "sprunk_cb", 0xFFFFFFFF);
 		}
 		else
 		{
@@ -99,13 +116,12 @@ function:Query_LoadDropped()
 			format(str, sizeof(str), "[%s]", DroppedInfo[i][E_DROPPED_ITEM]);
 			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
 		}
-		DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(DroppedInfo[i][E_DROPPED_MODEL], DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], DroppedInfo[i][E_DROPPED_POS][3], DroppedInfo[i][E_DROPPED_POS][4], DroppedInfo[i][E_DROPPED_POS][5], DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
 	}
 	printf("[SERVER]: %i dropped items were loaded from \"%s\" database...", rows, SQL_DATABASE);
 	return 1;
 }
 
-DropItem(item[], player[], model, quantity, Float:x, Float:y, Float:z, Float:rx, Float:ry, Float:rz, interior, world, type = 0)
+DropItem(item[], player[], model, quantity, Float:x, Float:y, Float:z, Float:rx, Float:ry, Float:rz, interior, world, type = 0, amount = 0)
 {
 	new
 	    query[512];
@@ -117,6 +133,7 @@ DropItem(item[], player[], model, quantity, Float:x, Float:y, Float:z, Float:rx,
 
 		DroppedInfo[i][E_DROPPED_MODEL] = model;
 		DroppedInfo[i][E_DROPPED_QUANTITY] = quantity;
+		DroppedInfo[i][E_DROPPED_AMOUNT] = amount;
   		DroppedInfo[i][E_DROPPED_TYPE] = type;
 		DroppedInfo[i][E_DROPPED_POS][0] = x;
 		DroppedInfo[i][E_DROPPED_POS][1] = y;
@@ -136,23 +153,40 @@ DropItem(item[], player[], model, quantity, Float:x, Float:y, Float:z, Float:rx,
 			BoomboxInfo[i][E_BOOMBOX_STATUS] = false;
 			format(BoomboxInfo[i][E_BOOMBOX_STATUS], 256, "");
 			BoomboxInfo[i][E_BOOMBOX_AREA] = CreateDynamicCircle(x, y, 20.0, world, interior);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior);
+		}
+		else if(type == E_DROPPED_TYPE_PISH)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getbeer", item);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior);
+			SetDynamicObjectMaterial(DroppedInfo[i][E_DROPPED_OBJECT], 0, 1551, "cj_bar", "CJ_old_pish", 0xFFFFFFFF);
+		}
+		else if(type == E_DROPPED_TYPE_SPRUNK)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getsprunk", item);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior);
+			SetDynamicObjectMaterial(DroppedInfo[i][E_DROPPED_OBJECT], 0, 2354, "burger_tray", "sprunk_cb", 0xFFFFFFFF);
 		}
 		else 
 		{
 			new str[128];
 			format(str, sizeof(str), "[%s]", item);
 			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior);
 		}
-		DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior);
 
- 		format(query, sizeof(query), "INSERT INTO `dropped` (`itemName`, `itemPlayer`, `itemModel`, `itemQuantity`, `itemType`, `itemX`, `itemY`, `itemZ`, `itemRX`, `itemRY`, `itemRZ`, `itemInt`, `itemWorld`) VALUES('%s', '%s', '%d', '%d', '%d', '%.4f', '%.4f', '%.4f', '%.4f', '%.4f', '%.4f', '%d', '%d')", item, player, model, quantity, type, x, y, z, rx, ry, rz, interior, world);
-		mysql_pquery(ourConnection, query, "OnE_DROPPED_ITEM", "d", i);
+ 		format(query, sizeof(query), "INSERT INTO `dropped` (`itemName`, `itemPlayer`, `itemModel`, `itemQuantity`, `itemAmount`, `itemType`, `itemX`, `itemY`, `itemZ`, `itemRX`, `itemRY`, `itemRZ`, `itemInt`, `itemWorld`) VALUES('%s', '%s', '%d', '%d', '%d', '%d', '%.4f', '%.4f', '%.4f', '%.4f', '%.4f', '%.4f', '%d', '%d')", item, player, model, quantity, amount, type, x, y, z, rx, ry, rz, interior, world);
+		mysql_pquery(ourConnection, query, "OnDroppedItem", "d", i);
 		return i;
 	}
 	return -1;
 }
 
-function:OnE_DROPPED_ITEM(itemid)
+function:OnDroppedItem(itemid)
 {
 	if (itemid == -1 || !DroppedInfo[itemid][E_DROPPED_MODEL])
 	    return 0;
@@ -180,6 +214,7 @@ DropPlayerItem(playerid, itemid, quantity = 1, type = 0)
 
 	PlayerInfo[playerid][E_CHARACTER_OBJECTID] = InventoryInfo[playerid][itemid][E_INVENTORY_MODEL];
 	PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY] = quantity;
+	PlayerInfo[playerid][E_CHARACTER_OBJECTAMOUNT] = InventoryInfo[playerid][itemid][E_INVENTORY_AMOUNT];
 	PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE] = type;
 	format(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], 512, string);
 

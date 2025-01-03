@@ -1304,9 +1304,17 @@ Dialog:DialogInvOption(playerid, response, listitem, inputtext[])
 				if(!strcmp(string, "Mask"))
 					return SendErrorMessage(playerid, "You can't do that on this item!");
 
-				if(!strcmp(string, "Boombox"))
+				else if(!strcmp(string, "Boombox"))
 				{
 					DropPlayerItem(playerid, itemid, 1, E_DROPPED_TYPE_BOOMBOX);		
+				}
+				else if(!strcmp(string, "Pack of Beer"))
+				{
+					DropPlayerItem(playerid, itemid, 1, E_DROPPED_TYPE_PISH);		
+				}
+				else if(!strcmp(string, "Pack of Sprunk"))
+				{
+					DropPlayerItem(playerid, itemid, 1, E_DROPPED_TYPE_SPRUNK);		
 				}
 				else if (InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY] == 1)
 				{
@@ -2596,7 +2604,7 @@ Dialog:DialogDropitems(playerid, response, listitem, inputtext[])
 		GetPlayerPos(playerid, x, y, z);
 		GetPlayerFacingAngle(playerid, angle);
 
-		DropItem(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY], x, y, z - 0.9, 0.0, 0.0, 0.0, GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE]);
+		DropItem(PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], ReturnName(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTID], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY], x, y, z - 0.9, 0.0, 0.0, 0.0, GetPlayerInterior(playerid), GetPlayerVirtualWorld(playerid), PlayerInfo[playerid][E_CHARACTER_OBJECTTYPE], PlayerInfo[playerid][E_CHARACTER_OBJECTAMOUNT]);
 		Inventory_Remove(playerid, PlayerInfo[playerid][E_CHARACTER_OBJECTSTRING], PlayerInfo[playerid][E_CHARACTER_OBJECTQUANTITY]);
 		ApplyAnimation(playerid, "GRENADE", "WEAPON_throwu", 4.1, 0, 0, 0, 0, 0, 1);
 
@@ -3307,7 +3315,7 @@ Dialog:DialogGeneral1(playerid, response, listitem, inputtext[])
 
 				PlayerInfo[playerid][E_CHARACTER_PURCHASE] += BusinessInfo[businessid][E_BUSINESS_PRODUCTS][3];
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
-				Inventory_Add(playerid, "Boombox", 2103, 1);
+				Inventory_Add(playerid, "Boombox", 2103, 1, E_DROPPED_TYPE_BOOMBOX);
 
 				ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 			}
@@ -3562,7 +3570,7 @@ Dialog:DialogGeneral5(playerid, response, listitem, inputtext[])
 				if(200 > PlayerInfo[playerid][E_CHARACTER_MONEY])
 					return SendErrorMessage(playerid, "You can't afford a sprunk.");
 			
-				SendInventoryMessage(playerid, "You bought a sprunk for $2.");
+				SendInventoryMessage(playerid, "You bought a sprunk for $2.00.");
 
 				PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 200; 
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
@@ -3573,16 +3581,48 @@ Dialog:DialogGeneral5(playerid, response, listitem, inputtext[])
 			case 1:
 			{
 				if(Inventory_Count(playerid, "Pisswasher") >= 5)	
-					return SendErrorMessage(playerid, "You may only hold up to 5 sprunk.");
+					return SendErrorMessage(playerid, "You may only hold up to 5 pishwasher.");
 			
 				if(500 > PlayerInfo[playerid][E_CHARACTER_MONEY])
-					return SendErrorMessage(playerid, "You can't afford a sprunk.");
+					return SendErrorMessage(playerid, "You can't afford a pishwasher.");
 			
-				SendInventoryMessage(playerid, "You bought a sprunk for $2.");
+				SendInventoryMessage(playerid, "You bought a pishwasher for $5.00.");
 
 				PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 500; 
 				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
 				Inventory_Add(playerid, "Pisswasher", 1484, 1);
+
+				ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+			}
+			case 2:
+			{
+				if(Inventory_Count(playerid, "Pack of Sprunk") >= 5)	
+					return SendErrorMessage(playerid, "You may only hold up to 5 pack of sprunk.");
+			
+				if(500 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+					return SendErrorMessage(playerid, "You can't afford a pack of sprunk.");
+			
+				SendInventoryMessage(playerid, "You bought a  for $20.00.");
+
+				PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 2000; 
+				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+				Inventory_Add(playerid, "Pack of Sprunk", 19572, 1, E_DROPPED_TYPE_SPRUNK, 10);
+
+				ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
+			}
+			case 3:
+			{
+				if(Inventory_Count(playerid, "Pack of Beer") >= 5)	
+					return SendErrorMessage(playerid, "You may only hold up to 5 pack of beer.");
+			
+				if(500 > PlayerInfo[playerid][E_CHARACTER_MONEY])
+					return SendErrorMessage(playerid, "You can't afford a pack of beer.");
+			
+				SendInventoryMessage(playerid, "You bought a  for $25.00.");
+
+				PlayerInfo[playerid][E_CHARACTER_PURCHASE] += 2500; 
+				BusinessInfo[businessid][E_BUSINESS_STOCK]--;
+				Inventory_Add(playerid, "Pack of Beer", 19572, 1, E_DROPPED_TYPE_PISH, 5);
 
 				ApplyAnimation(playerid, "MISC", "GRAB_R", 4.1, 0, 0, 0, 0, 0, 0);
 			}

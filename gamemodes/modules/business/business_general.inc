@@ -69,7 +69,7 @@ stock ShowGeneralList(playerid, type)
 			if(IsPlayerInBusiness(playerid))
 			{	
 				format(str, sizeof(str), "%s:", BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
-				Dialog_Show(playerid, DialogGeneral5, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nSprunk\t$2.00\nPisswasher\t$5.00", "Select", "Cancel"); 
+				Dialog_Show(playerid, DialogGeneral5, DIALOG_STYLE_TABLIST_HEADERS, str, "Product\tPrice\nSprunk\t$2.00\nPisswasher\t$5.00\nPack of Sprunk\t$20.00\nPack of Beer\t$25.00", "Select", "Cancel"); 
 			}
 		}
 		case 6: //Knife

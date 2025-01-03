@@ -13,6 +13,7 @@ stock Inventory_Clear(playerid)
 	        InventoryInfo[playerid][i][E_INVENTORY_MODEL] = 0;
 	        InventoryInfo[playerid][i][E_INVENTORY_QUANTITY] = 0;
 			InventoryInfo[playerid][i][E_INVENTORY_TYPE] = 0;
+			InventoryInfo[playerid][i][E_INVENTORY_AMOUNT] = 0;
 		}
 	}
 	format(string, sizeof(string), "DELETE FROM `inventory` WHERE `ID` = '%d'", PlayerInfo[playerid][E_CHARACTER_DBID]);
@@ -113,6 +114,7 @@ stock Inventory_SetQuantity(playerid, item[], quantity, type=0)
 
 	    InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY] = quantity;
 		InventoryInfo[playerid][itemid][E_INVENTORY_TYPE] = type;
+		InventoryInfo[playerid][itemid][E_INVENTORY_AMOUNT] = 0;
 	}
 	return 1;
 }
@@ -149,11 +151,11 @@ stock Inventory_Remove(playerid, item[], quantity = 1)
 	return 0;
 }
 
-stock Inventory_Add(playerid, item[], model, quantity = 1, type = 0)
+stock Inventory_Add(playerid, item[], model, quantity = 1, type = 0, amount = 0)
 {
 	new
 		itemid = Inventory_GetItemID(playerid, item),
-		string[128];
+		string[512];
 
 	if (itemid == -1)
 	{
@@ -165,10 +167,11 @@ stock Inventory_Add(playerid, item[], model, quantity = 1, type = 0)
 	        InventoryInfo[playerid][itemid][E_INVENTORY_MODEL] = model;
 	        InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY] = quantity;
 			InventoryInfo[playerid][itemid][E_INVENTORY_TYPE] = type;
+			InventoryInfo[playerid][itemid][E_INVENTORY_AMOUNT] = amount;
 
 	        strpack(InventoryInfo[playerid][itemid][E_INVENTORY_ITEM], item, 32 char);
 
-			format(string, sizeof(string), "INSERT INTO `inventory` (`ID`, `invItem`, `invModel`, `invQuantity`, `invType`) VALUES('%d', '%s', '%d', '%d', '%d')", PlayerInfo[playerid][E_CHARACTER_DBID], item, model, quantity, type);
+			format(string, sizeof(string), "INSERT INTO `inventory` (`ID`, `invItem`, `invModel`, `invQuantity`, `invType`, `invAmount`) VALUES('%d', '%s', '%d', '%d', '%d', '%d')", PlayerInfo[playerid][E_CHARACTER_DBID], item, model, quantity, type, amount);
 			mysql_pquery(ourConnection, string, "OnInventoryAdd", "dd", playerid, itemid);
 	        return itemid;
 		}
@@ -263,6 +266,7 @@ function:LoadPlayerItems(playerid)
 	    cache_get_value_name_int(i, "invModel", InventoryInfo[playerid][i][E_INVENTORY_MODEL]);
         cache_get_value_name_int(i, "invQuantity", InventoryInfo[playerid][i][E_INVENTORY_QUANTITY]);
 		cache_get_value_name_int(i, "invType", InventoryInfo[playerid][i][E_INVENTORY_TYPE]);
+		cache_get_value_name_int(i, "invAmount", InventoryInfo[playerid][i][E_INVENTORY_AMOUNT]);
 
 		cache_get_value_name(i, "invItem", name, sizeof(name));
 		strpack(InventoryInfo[playerid][i][E_INVENTORY_ITEM], name, 32 char);
