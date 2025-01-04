@@ -835,6 +835,9 @@ enum
 	E_DROPPED_TYPE_BOOMBOX,
 	E_DROPPED_TYPE_PISH,
 	E_DROPPED_TYPE_SPRUNK,
+	E_DROPPED_TYPE_DRUGS_PIZZA, //1582
+	E_DROPPED_TYPE_DRUGS_BURGER, //19811
+	E_DROPPED_TYPE_DRUGS_SHOE //2694
 };
 
 enum E_DROPPED_DATA
@@ -1044,6 +1047,7 @@ new TotalPlayerDamages[MAX_PLAYERS],
 	PlayerEngineTimer[MAX_PLAYERS], 
 	PlayerEngineValue[MAX_PLAYERS],
 	PlayerPropertyFound[100],
+	PlayerSelectDrugs[MAX_PLAYERS],
 	LastSpawn[MAX_PLAYERS],
 	registerTime[MAX_PLAYERS], 
 	loginTime[MAX_PLAYERS], 

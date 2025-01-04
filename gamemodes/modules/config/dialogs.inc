@@ -1316,6 +1316,12 @@ Dialog:DialogInvOption(playerid, response, listitem, inputtext[])
 				{
 					DropPlayerItem(playerid, itemid, 1, E_DROPPED_TYPE_SPRUNK);		
 				}
+				else if(!strcmp(string, "Marijuana") || !strcmp(string, "Cocaine") || !strcmp(string, "Heroine") || strcmp(string, "PCP") || strcmp(string, "Cocaine Crack"))
+				{
+					PlayerSelectDrugs[playerid] = itemid;
+					Dialog_Show(playerid, DialogSelectBox, DIALOG_STYLE_LIST, "Choose drugs box:", "Pizza Box\nBurger Box\nShoebox Pro Laps\nJust Drop", "Select", "Close");
+						
+				}
 				else if (InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY] == 1)
 				{
 					DropPlayerItem(playerid, itemid);						
@@ -1323,6 +1329,34 @@ Dialog:DialogInvOption(playerid, response, listitem, inputtext[])
 				else
 					format(str, sizeof(str), "Item: %s - Quantity: %d\n\nPlease specify how much of this item you wish to drop:", string, InventoryInfo[playerid][itemid][E_INVENTORY_QUANTITY]),
 					Dialog_Show(playerid, DialogDropItem, DIALOG_STYLE_INPUT, "Drop Item:", str, "Drop", "Cancel");
+			}
+		}
+	}
+	return 1;
+}
+
+Dialog:DialogSelectBox(playerid, response, listitem, inputtext[])
+{
+	if(response)
+	{
+		new itemid = PlayerSelectDrugs[playerid];
+		switch(listitem)
+		{
+			case 0:
+			{
+				DropPlayerItem(playerid, itemid, 1, E_DROPPED_TYPE_DRUGS_PIZZA);	
+			}
+			case 1:
+			{
+				DropPlayerItem(playerid, itemid, 1, E_DROPPED_TYPE_DRUGS_BURGER);
+			}
+			case 2:
+			{
+				DropPlayerItem(playerid, itemid, 1, E_DROPPED_TYPE_DRUGS_SHOE);
+			}
+			case 3:
+			{
+				DropPlayerItem(playerid, itemid, 1);
 			}
 		}
 	}
@@ -1482,7 +1516,7 @@ Dialog:DialogHelp(playerid, response, listitem, inputtext[])
 				SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /stats, /admins, /report, /o(oc), /pay, /isafk, /time, /delays, /levelup, /rcp, /inventory");
 				SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /enter, /exit, /mask, /setchannel, /setslot, /radio, /licenseexam, /unimpound");
 				SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /damages, /health, /acceptdeath, /helpup, /fixr, /respawnme, /setspawn, /settings");
-				SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /approve, /deny, /tickets, /coin, /dice, /gascan, /listings, /pc, /spray");
+				SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /approve, /deny, /tickets, /coin, /dice, /gascan, /listings, /pc, /spray, /getdrink");
 			}
 			case 1:
 			{

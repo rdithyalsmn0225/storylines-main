@@ -94,10 +94,31 @@ function:Query_LoadDropped()
 			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
 			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(DroppedInfo[i][E_DROPPED_MODEL], DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], DroppedInfo[i][E_DROPPED_POS][3], DroppedInfo[i][E_DROPPED_POS][4], DroppedInfo[i][E_DROPPED_POS][5], DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
 		}
+		else if(DroppedInfo[i][E_DROPPED_TYPE] == E_DROPPED_TYPE_DRUGS_PIZZA || DroppedInfo[i][E_DROPPED_TYPE] == E_DROPPED_TYPE_DRUGS_BURGER || DroppedInfo[i][E_DROPPED_TYPE] == E_DROPPED_TYPE_DRUGS_SHOE)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getdrugs", DroppedInfo[i][E_DROPPED_ITEM]);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(1582, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], DroppedInfo[i][E_DROPPED_POS][3], DroppedInfo[i][E_DROPPED_POS][4], DroppedInfo[i][E_DROPPED_POS][5], DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+		}
+		else if(DroppedInfo[i][E_DROPPED_TYPE] == E_DROPPED_TYPE_DRUGS_BURGER)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getdrugs", DroppedInfo[i][E_DROPPED_ITEM]);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(19811, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], DroppedInfo[i][E_DROPPED_POS][3], DroppedInfo[i][E_DROPPED_POS][4], DroppedInfo[i][E_DROPPED_POS][5], DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+		}
+		else if(DroppedInfo[i][E_DROPPED_TYPE] == E_DROPPED_TYPE_DRUGS_SHOE)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getdrugs", DroppedInfo[i][E_DROPPED_ITEM]);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(2694, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], DroppedInfo[i][E_DROPPED_POS][3], DroppedInfo[i][E_DROPPED_POS][4], DroppedInfo[i][E_DROPPED_POS][5], DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
+		}
 		else if(DroppedInfo[i][E_DROPPED_TYPE] == E_DROPPED_TYPE_PISH)
 		{
 			new str[128];
-			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getbeer", DroppedInfo[i][E_DROPPED_ITEM]);
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getdrink", DroppedInfo[i][E_DROPPED_ITEM]);
 			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
 			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(DroppedInfo[i][E_DROPPED_MODEL], DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], DroppedInfo[i][E_DROPPED_POS][3], DroppedInfo[i][E_DROPPED_POS][4], DroppedInfo[i][E_DROPPED_POS][5], DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
 			SetDynamicObjectMaterial(DroppedInfo[i][E_DROPPED_OBJECT], 0, 1551, "cj_bar", "CJ_old_pish", 0xFFFFFFFF);
@@ -105,7 +126,7 @@ function:Query_LoadDropped()
 		else if(DroppedInfo[i][E_DROPPED_TYPE] == E_DROPPED_TYPE_SPRUNK)
 		{
 			new str[128];
-			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getsprunk", DroppedInfo[i][E_DROPPED_ITEM]);
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getdrink", DroppedInfo[i][E_DROPPED_ITEM]);
 			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
 			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(DroppedInfo[i][E_DROPPED_MODEL], DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], DroppedInfo[i][E_DROPPED_POS][2], DroppedInfo[i][E_DROPPED_POS][3], DroppedInfo[i][E_DROPPED_POS][4], DroppedInfo[i][E_DROPPED_POS][5], DroppedInfo[i][E_DROPPED_WORLD], DroppedInfo[i][E_DROPPED_INTERIOR]);
 			SetDynamicObjectMaterial(DroppedInfo[i][E_DROPPED_OBJECT], 0, 2354, "burger_tray", "sprunk_cb", 0xFFFFFFFF);
@@ -155,10 +176,31 @@ DropItem(item[], player[], model, quantity, Float:x, Float:y, Float:z, Float:rx,
 			BoomboxInfo[i][E_BOOMBOX_AREA] = CreateDynamicCircle(x, y, 20.0, world, interior);
 			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior);
 		}
+		else if(type == E_DROPPED_TYPE_DRUGS_PIZZA)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getdrugs", item);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(1582, x, y, z, rx, ry, rz, world, interior);
+		}
+		else if(type == E_DROPPED_TYPE_DRUGS_BURGER)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getdrugs", item);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(19811, x, y, z, rx, ry, rz, world, interior);
+		}
+		else if(type == E_DROPPED_TYPE_DRUGS_SHOE)
+		{
+			new str[128];
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getdrugs", item);
+			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
+			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(2694, x, y, z, rx, ry, rz, world, interior);
+		}
 		else if(type == E_DROPPED_TYPE_PISH)
 		{
 			new str[128];
-			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getbeer", item);
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getdrink", item);
 			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
 			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior);
 			SetDynamicObjectMaterial(DroppedInfo[i][E_DROPPED_OBJECT], 0, 1551, "cj_bar", "CJ_old_pish", 0xFFFFFFFF);
@@ -166,7 +208,7 @@ DropItem(item[], player[], model, quantity, Float:x, Float:y, Float:z, Float:rx,
 		else if(type == E_DROPPED_TYPE_SPRUNK)
 		{
 			new str[128];
-			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getsprunk", item);
+			format(str, sizeof(str), "[%s]\n{ffffff}Available Commands: /getdrink", item);
 			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
 			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior);
 			SetDynamicObjectMaterial(DroppedInfo[i][E_DROPPED_OBJECT], 0, 2354, "burger_tray", "sprunk_cb", 0xFFFFFFFF);

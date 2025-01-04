@@ -85,7 +85,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 				return SendErrorMessage(playerid, "You can't afford this. (Cost: $%s, Total: $%s)", FormatMoney(Cents), FormatMoney(PlayerInfo[playerid][E_CHARACTER_MONEY]));
 
 			GiveMoney(playerid, -Cents);
-			Inventory_Add(playerid, "Marijuana", -2501, amount);
+			Inventory_Add(playerid, "Marijuana", -2501, amount, 0, 5);
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 			
@@ -99,7 +99,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 		
 			
 			GiveMoney(playerid, -Cents);
-			Inventory_Add(playerid, "Cocaine", -2502, amount);
+			Inventory_Add(playerid, "Cocaine", -2502, amount, 0, 5);
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 
@@ -110,7 +110,7 @@ function:OnPlayerPurchaseDrugs(playerid, response, type, amount, price)
 			
 			
 			GiveMoney(playerid, -Cents);
-			Inventory_Add(playerid, "Heroin", -2500, amount);
+			Inventory_Add(playerid, "Heroin", -2500, amount, 0, 5);
 			FactionInfo[PlayerInfo[playerid][E_CHARACTER_FACTION]][E_FACTION_STORAGE] -= amount;
 			SaveFaction(PlayerInfo[playerid][E_CHARACTER_FACTION]);
 
@@ -297,7 +297,7 @@ CMD:production(playerid, params[])
 					BusinessInfo[id][E_BUSINESS_AMOUNT] = 0;
 					BusinessInfo[id][E_BUSINESS_LOADING] = false;
 					
-					Inventory_Add(playerid, "Cocaine Crack", -2502, rand);
+					Inventory_Add(playerid, "Cocaine Crack", -2502, rand, 0, 5);
 					SendInfoMessage(playerid, "[PRODUCTION] You've receive %d grams of Cocaine Crack.", rand);
 				}
 				else if(PlayerInfo[playerid][E_CHARACTER_SELECTITEMS] == 2)
@@ -307,7 +307,7 @@ CMD:production(playerid, params[])
 					BusinessInfo[id][E_BUSINESS_AMOUNT] = 0;
 					BusinessInfo[id][E_BUSINESS_LOADING] = false;
 
-					Inventory_Add(playerid, "PCP", -2500, rand);
+					Inventory_Add(playerid, "PCP", -2500, rand, 0, 5);
 					SendInfoMessage(playerid, "[PRODUCTION] You've receive %d grams of PCP.", rand);
 				}
 			}
