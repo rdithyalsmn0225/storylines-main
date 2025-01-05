@@ -131,7 +131,7 @@ enum
 enum P_MASTER_ACCOUNTS
 {
 	E_MASTERS_DBID,
-	E_MASTERS_CODE,
+	E_MASTERS_CODE[32],
 	E_MASTERS_ADMINS,
 	E_MASTERS_VIP,
 	E_MASTERS_VIPTIMER,
@@ -1107,6 +1107,11 @@ new FactionLockerPickup[3],
 	TicketPickup,
 	RealtyPickup,
 	GeneralStorePickup[sizeof(BusinessPoint)];
+
+new const Words[][] = {
+    "tikus", "kuda", "ayam", "bebek", "ular", 
+    "ikan", "burung", "gajah", "kucing", "anjing"
+};
 
 new g_aLspdSkins[] = {
 	300, 301, 302, 310, 311, 20260, 20261, 20262, 20263, 20264, 20265,

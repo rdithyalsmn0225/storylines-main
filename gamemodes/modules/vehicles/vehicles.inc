@@ -558,7 +558,7 @@ function:Query_ShowVehicleList(playerid)
 
 		new str[128], str2[128];
 		
-		if(count == 1)
+		if(count == 0)
 		{
 			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
 			format(str2, sizeof(str2), "%s", vehiclePlates);
@@ -571,7 +571,7 @@ function:Query_ShowVehicleList(playerid)
 			PlayerTextDrawShow(playerid, VehicleSelection[10][playerid]);
 			PlayerTextDrawShow(playerid, VehicleSelection[14][playerid]);
 		}
-		else if(count == 2)
+		else if(count == 1)
 		{
 			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
 			format(str2, sizeof(str2), "%s", vehiclePlates);
@@ -584,7 +584,7 @@ function:Query_ShowVehicleList(playerid)
 			PlayerTextDrawShow(playerid, VehicleSelection[11][playerid]);
 			PlayerTextDrawShow(playerid, VehicleSelection[15][playerid]);
 		}
-		else if(count == 3)
+		else if(count == 2)
 		{
 			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
 			format(str2, sizeof(str2), "%s", vehiclePlates);
@@ -597,7 +597,7 @@ function:Query_ShowVehicleList(playerid)
 			PlayerTextDrawShow(playerid, VehicleSelection[12][playerid]);
 			PlayerTextDrawShow(playerid, VehicleSelection[16][playerid]);
 		}
-		else if(count == 4)
+		else if(count == 3)
 		{
 			format(str, sizeof(str), "%s~n~(%s)", ReturnVehicleModelName(vehicleModel), rent);
 			format(str2, sizeof(str2), "%s", vehiclePlates);

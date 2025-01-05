@@ -95,9 +95,11 @@ Dialog:DialogRegister(playerid, response, listitem, inputtext[])
 	new insert[256]; 
 	
 	if(strlen(inputtext) > 128 || strlen(inputtext) < 3)
-		return Dialog_Show(playerid, DialogRegister, DIALOG_STYLE_PASSWORD, "Register:", str, "Confirm", "");
+		return Dialog_Show(playerid, DialogRegister, DIALOG_STYLE_PASSWORD, "Register your account:", str, "Confirm", "");
 		
-	mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO `masters` (`acc_name`, `acc_pass`, `register_date`, `register_ip`, `forum_name`) VALUES ('%e', sha1('%e'), '%e', '%e', '%e')", ReturnName(playerid, 1), inputtext, ReturnDate(), ReturnIP(playerid), ReturnName(playerid, 1));
+	new randomIndex = random(sizeof(Words));
+
+	mysql_format(ourConnection, insert, sizeof(insert), "INSERT INTO `masters` (`acc_name`, `acc_pass`, `register_date`, `register_ip`, `forum_name`, `secret_word`) VALUES ('%e', sha1('%e'), '%e', '%e', '%e', '%s')", ReturnName(playerid, 1), inputtext, ReturnDate(), ReturnIP(playerid), ReturnName(playerid, 1), Words[randomIndex]);
 	mysql_pquery(ourConnection, insert, "OnPlayerRegister", "i", playerid);
 	return 1;
 }

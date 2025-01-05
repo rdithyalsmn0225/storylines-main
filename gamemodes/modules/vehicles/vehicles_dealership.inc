@@ -34,9 +34,6 @@ stock ShowDealerAppend(playerid)
 CMD:dealership(playerid, params[])
 {		
 	new idx;
-			
-	if(PlayerInfo[playerid][E_CHARACTER_VEHICLESPAWNED])
-		return SendErrorMessage(playerid, "You have a vehicle spawned."); 
 
 	new maxVehicles = AccountInfo[playerid][E_MASTERS_VIP] ? 4 : 2;
 

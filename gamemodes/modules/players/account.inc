@@ -20,7 +20,7 @@ function:CheckBanList(playerid)
 		new existCheck[314];
 		for(new i = 0; i < 4; i ++) {PlayerTextDrawShow(playerid, LoginScreen[i][playerid]);}
 		
-		mysql_format(ourConnection, existCheck, sizeof(existCheck), "SELECT acc_dbid, secret_word, verified FROM masters WHERE acc_name = '%e'", ReturnName(playerid, 1));
+		mysql_format(ourConnection, existCheck, sizeof(existCheck), "SELECT acc_dbid, secret_word, verified, active_ip FROM masters WHERE acc_name = '%e'", ReturnName(playerid, 1));
 		mysql_pquery(ourConnection, existCheck, "LogPlayerIn", "i", playerid);
 	}
 	else
@@ -47,14 +47,14 @@ function:LogPlayerIn(playerid)
 		for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }
 		
 		new str[128];
-		format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
+		format(str, sizeof(str), "You are registered user! Plase log in!");
 		Dialog_Show(playerid, DialogLogin, DIALOG_STYLE_PASSWORD, "Log in to your account:", str, "Confirm", "");
 	}
 	else
 	{
 		for(new i = 0; i < 20; i ++) { SendClientMessage(playerid, -1, " "); }	
 		registerTime[playerid] = 1;	
-		Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Connection:", "Your account was not registered, Please registration in official discord Storylines.", "Close", "");
+		Dialog_Show(playerid, DialogRegister, DIALOG_STYLE_PASSWORD, "Register your account:", "You are not registered user! Plase register!", "Confirm", "");
 	}
 	return 1;
 }
@@ -66,11 +66,8 @@ function:OnPlayerRegister(playerid)
 	
 	registerTime[playerid] = 0;
 	loginTime[playerid] = 1; 
-	
-	new str[128];
-	format(str, sizeof(str), "You are registered user! Plase log in!", ReturnName(playerid));
-	SendServerMessage(playerid, "You successfully registered as %s. You need to login to continue:", ReturnName(playerid)); 
-	return Dialog_Show(playerid, DialogLogin, DIALOG_STYLE_PASSWORD, "Login:", str, "Confirm", "");
+	SendServerMessage(playerid, "You successfully registered as %s. You need to log in to continue:", ReturnName(playerid)); 
+	return Dialog_Show(playerid, DialogLogin, DIALOG_STYLE_PASSWORD, "Log in to your account:", "You are registered user! Plase log in!", "Confirm", "");
 }
 
 function:LoggingIn(playerid)
@@ -101,7 +98,7 @@ function:LoggingIn(playerid)
 	cache_get_value_name_int(0, "acc_dbid", AccountInfo[playerid][E_MASTERS_DBID]); 
 	cache_get_value_name(0, "forum_name", AccountInfo[playerid][E_MASTERS_FORUMNAME], 60);
 	cache_get_value_name_int(0, "acc_admin", AccountInfo[playerid][E_MASTERS_ADMINS]); 
-	cache_get_value_name_int(0, "secret_word", AccountInfo[playerid][E_MASTERS_CODE]);
+	cache_get_value_name(0, "secret_word", AccountInfo[playerid][E_MASTERS_CODE], 32);
 	cache_get_value_name_int(0, "vip", AccountInfo[playerid][E_MASTERS_VIP]); 
 	cache_get_value_name_int(0, "vip_time", AccountInfo[playerid][E_MASTERS_VIPTIMER]); 
 	cache_get_value_name_int(0, "street_credits", AccountInfo[playerid][E_MASTERS_STREETCREDITS]); 

@@ -1090,3 +1090,32 @@ stock IsKeyJustUp(key, newkeys, oldkeys)
 	if(!(newkeys & key) && (oldkeys & key)) return 1;
 	return 0;
 }
+
+stock GenerateShuffledWord(const input[], output[])
+{
+    const MAX_WORD_LENGTH = 32; // Panjang maksimum kata
+    new len = strlen(input);
+    new indices[MAX_WORD_LENGTH];
+    
+    if (len >= MAX_WORD_LENGTH)
+    {
+        len = MAX_WORD_LENGTH - 1; // Batasi panjang untuk menghindari buffer overflow
+    }
+
+    for (new i = 0; i < len; i++) 
+        indices[i] = i;
+
+    // Shuffle indices
+    for (new i = 0; i < len; i++)
+    {
+        new randIndex = random(len);
+        new temp = indices[i];
+        indices[i] = indices[randIndex];
+        indices[randIndex] = temp;
+    }
+
+    // Buat output berdasarkan indeks yang telah diacak
+    for (new i = 0; i < len; i++) 
+        output[i] = input[indices[i]];
+    output[len] = '\0';
+}

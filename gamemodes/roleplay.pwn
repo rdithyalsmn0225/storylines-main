@@ -471,20 +471,23 @@ public OnPlayerDisconnect(playerid, reason)
         ShowBoxMessage(playerid, "~r~Dockworker job stopped.", 5); 
 		DestroyDynamicObject(CrateObject[PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]]);
 		DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+		GPS_DisablePlayerRaceCheckPoint(playerid);
     }   
 
-	if(PlayerInfo[playerid][E_CHARACTER_SWEEPER])
+	if(PlayerInfo[playerid][E_CHARACTER_SWEEPER] && PlayerSweeperIndex[playerid])
     {
         PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
         ShowBoxMessage(playerid, "~r~Street Cleaner job stopped.", 5); 
 		DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+		GPS_DisablePlayerRaceCheckPoint(playerid);
     }   
 
-	if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER])
+	if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] && PlayerBusDriverIndex[playerid])
     {
         PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = false;
         ShowBoxMessage(playerid, "~r~Bus Driver job stopped.", 5); 
 		DestroyVehicle(PlayerInfo[playerid][E_CHARACTER_JOBSVEHICLE]);
+		GPS_DisablePlayerRaceCheckPoint(playerid);
     }   
 	
 	switch(reason)
@@ -619,7 +622,7 @@ public OnPlayerEnterRaceCheckpoint(playerid)
             PlayerInfo[playerid][E_CHARACTER_LOADING] = true;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGCOUNT] = 1;
 	        PlayerInfo[playerid][E_CHARACTER_LOADINGDISPLAY] = Create3DTextLabel("Loading passenger entering process\n(( |------ ))", COLOR_3DTEXT, x, y, z, 25.0, 0, 1);
-	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("BusDrivers", 2000, true, "ii", playerid, 0);
+	        PlayerInfo[playerid][E_CHARACTER_LOADINGTIMER] = SetTimerEx("BusDrivers", 100, true, "ii", playerid, 0);
 	        TogglePlayerControllable(playerid, false);
 		}
 		return 1;
@@ -5172,7 +5175,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 		GPS_DisablePlayerRaceCheckPoint(playerid);
     }   
 
-	if(PlayerInfo[playerid][E_CHARACTER_SWEEPER])
+	if(PlayerInfo[playerid][E_CHARACTER_SWEEPER] && PlayerSweeperIndex[playerid])
     {
         PlayerInfo[playerid][E_CHARACTER_SWEEPER] = false;
         ShowBoxMessage(playerid, "~r~Street Cleaner job stopped.", 5); 
@@ -5180,7 +5183,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 		GPS_DisablePlayerRaceCheckPoint(playerid);
     }   
 
-	if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER])
+	if(PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] && PlayerBusDriverIndex[playerid])
     {
         PlayerInfo[playerid][E_CHARACTER_BUSDRIVER] = false;
         ShowBoxMessage(playerid, "~r~Bus Driver job stopped.", 5); 
