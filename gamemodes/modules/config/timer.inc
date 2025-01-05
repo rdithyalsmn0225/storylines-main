@@ -28,7 +28,6 @@ function:OnPlayerUpdateEx()
 {
 	foreach(new playerid : Player)
 	{
-		SyncPlayerTime(playerid);
 		if(AccountInfo[playerid][E_MASTERS_LOGGED] == false)
 		{
 			if(loginTime[playerid] > 0)
@@ -57,6 +56,7 @@ function:OnPlayerUpdateEx()
 		{
 			AFKCheck(playerid);
 			UpdateNameTagsTicks(playerid);
+			SyncPlayerTime(playerid);
 
 			new string[128];
 			
@@ -98,31 +98,6 @@ function:OnPlayerUpdateEx()
 				}
 			}
 			
-			new Float:rz;
-			new p_PreviousDirection[8];
-
-			strcat((p_PreviousDirection[0] = EOS, p_PreviousDirection), PlayerDirection[playerid]);
-
-			if(IsPlayerInAnyVehicle(playerid)) 
-			{
-				GetVehicleZAngle(GetPlayerVehicleID(playerid), rz);
-
-				if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "N";
-				else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "NE";
-				else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "E";
-				else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "SE";
-				else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "S";
-				else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "SW";
-				else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "W";
-				else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "NW";
-
-				PlayerTextDrawSetString(playerid, Street[0][playerid], PlayerDirection[playerid]);
-
-				new str1[180];
-				format(str1, sizeof(str1), "%s~n~%s", ReturnLocationStreet(playerid), ReturnLocation(playerid));
-				PlayerTextDrawSetString(playerid, Street[1][playerid], str1);
-			}
-			
 			if(PlayerInfo[playerid][E_CHARACTER_TOGHUD] == false)
 	    	{
 				if(IsPlayerInAnyVehicle(playerid))
@@ -141,20 +116,6 @@ function:OnPlayerUpdateEx()
 				SetPlayerProgressBarValue(playerid, HEBAR[0][playerid], PlayerInfo[playerid][E_CHARACTER_HUNGRY]);
 				SetPlayerProgressBarColour(playerid, HEBAR[0][playerid], ConvertHBEColor(PlayerInfo[playerid][E_CHARACTER_HUNGRY]));
 				ShowPlayerProgressBar(playerid, HEBAR[0][playerid]);
-			}		
-
-			if (IsPlayerInAnyVehicle(playerid))
-			{
-				new vehicleid = GetPlayerVehicleID(playerid);
-				new Float:velocity[3];
-				GetVehicleVelocity(vehicleid, velocity[0], velocity[1], velocity[2]);
-
-				new Float:speed = floatsqroot((velocity[0] * velocity[0]) + (velocity[1] * velocity[1]) + (velocity[2] * velocity[2])) * 100;
-
-				if (PlayerSpeedLimit[playerid] > 0 && speed > float(PlayerSpeedLimit[playerid])) 
-				{
-					SetVehicleVelocity(vehicleid, velocity[0] * 0.8, velocity[1] * 0.8, velocity[2] * 0.8); 
-				}
 			}
 
 			if(characterPickTime[playerid] > 0)
@@ -239,20 +200,50 @@ function:OnPlayerUpdateEx()
 					SendClientMessage(playerid, COLOR_DARKGREEN, "You took too long and failed."); 
 				}
 			}
-			//Speedo
+
 			new vehicleid = GetPlayerVehicleID(playerid);
-
-			static
-				Float:fSpeed,
-				Float:fVelocity[3],
-				Float:vhealth;
-
-			GetVehicleHealth(vehicleid, vhealth);
-			GetVehicleVelocity(vehicleid, fVelocity[0], fVelocity[1], fVelocity[2]);
-			fSpeed = floatmul(floatsqroot((fVelocity[0] * fVelocity[0]) + (fVelocity[1] * fVelocity[1]) + (fVelocity[2] * fVelocity[2])), 100.0);
-
 			if(IsPlayerInAnyVehicle(playerid) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER && IsEngineVehicle(vehicleid))
 			{
+				new Float:velocity[3];
+				GetVehicleVelocity(vehicleid, velocity[0], velocity[1], velocity[2]);
+
+				new Float:speed = floatsqroot((velocity[0] * velocity[0]) + (velocity[1] * velocity[1]) + (velocity[2] * velocity[2])) * 100;
+
+				if (PlayerSpeedLimit[playerid] > 0 && speed > float(PlayerSpeedLimit[playerid])) 
+				{
+					SetVehicleVelocity(vehicleid, velocity[0] * 0.8, velocity[1] * 0.8, velocity[2] * 0.8); 
+				}
+
+				new Float:rz;
+				new p_PreviousDirection[8];
+
+				strcat((p_PreviousDirection[0] = EOS, p_PreviousDirection), PlayerDirection[playerid]);
+				GetVehicleZAngle(GetPlayerVehicleID(playerid), rz);
+
+				if(rz >= 348.75 && rz < 11.25) PlayerDirection[playerid] = "N";
+				else if(rz >= 303.75 && rz < 326.25) PlayerDirection[playerid] = "NE";
+				else if(rz >= 258.75 && rz < 281.25) PlayerDirection[playerid] = "E";
+				else if(rz >= 213.75 && rz < 236.25) PlayerDirection[playerid] = "SE";
+				else if(rz >= 168.75 && rz < 191.25) PlayerDirection[playerid] = "S";
+				else if(rz >= 123.25 && rz < 146.25) PlayerDirection[playerid] = "SW";
+				else if(rz >= 78.75 && rz < 101.25) PlayerDirection[playerid] = "W";
+				else if(rz >= 33.75 && rz < 56.25) PlayerDirection[playerid] = "NW";
+
+				PlayerTextDrawSetString(playerid, Street[0][playerid], PlayerDirection[playerid]);
+
+				new str1[180];
+				format(str1, sizeof(str1), "%s~n~%s", ReturnLocationStreet(playerid), ReturnLocation(playerid));
+				PlayerTextDrawSetString(playerid, Street[1][playerid], str1);
+
+				static
+					Float:fSpeed,
+					Float:fVelocity[3],
+					Float:vhealth;
+
+				GetVehicleHealth(vehicleid, vhealth);
+				GetVehicleVelocity(vehicleid, fVelocity[0], fVelocity[1], fVelocity[2]);
+				fSpeed = floatmul(floatsqroot((fVelocity[0] * fVelocity[0]) + (fVelocity[1] * fVelocity[1]) + (fVelocity[2] * fVelocity[2])), 100.0);
+				
 				new str[128], stra[128];
 				format(str, sizeof(str), "%.0f Mph", fSpeed);
 
@@ -289,7 +280,6 @@ function:OnPlayerUpdateEx()
 
 function:OnPlayerWeaponUpdate()
 {
-	
 	foreach(new i : Player)
 	{
 		if(PlayerInfo[i][E_CHARACTER_SPAWNED] == true && AccountInfo[i][E_MASTERS_LOGGED] == true)
@@ -460,6 +450,7 @@ function:OnPlayerWeaponUpdate()
 	}
 	return 1;
 }
+
 function:FunctionPaychecks()
 {
 	foreach(new i : Player)

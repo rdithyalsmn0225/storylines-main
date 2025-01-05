@@ -4682,7 +4682,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			{
 				if(GetPlayerAnimationIndex(playerid) != 1120 && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
 				{
-					SetTimerEx("TackleModes", 3000, false, "i", playerid);
+					SetTimerEx("TackleModes", 1000, false, "i", playerid);
 					return true;
 				}
 			}
