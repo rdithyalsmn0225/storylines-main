@@ -221,7 +221,7 @@ stock ShowInventory(playerid, targetid)
 			}
 		}
 	}
-	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS,"Inventory:", str,  "Close", "");
+	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS,"Inventory:", str,  "Close", "");
 	return 1;
 
 }

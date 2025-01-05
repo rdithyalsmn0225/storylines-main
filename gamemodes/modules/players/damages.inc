@@ -343,7 +343,7 @@ stock ShowPlayerCondition(playerid, targetid)
 	format(str, sizeof(str), "%s{ffffff}Part : Left Leg - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
 	format(str, sizeof(str), "%s{ffffff}Part : Head - %s\n", str,  GetWoundStatus(PlayerInfo[targetid][E_CHARACTER_WOUND][0]));
 
-	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, str2, str, "Close", "");
+	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, str2, str, "Close", "");
 	return 1;
 }
 
@@ -358,7 +358,7 @@ stock ShowPlayerDamages(damageid, playerid, adminView)
 	format(caption, sizeof(caption), "%s:", ReturnName(damageid, playerid));
 	
 	if (TotalPlayerDamages[damageid] < 1)
-		return ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, caption, "There aren't any damages to show.", "<<", ""); 
+		return Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, caption, "There aren't any damages to show.", "<<", ""); 
 
 	switch(adminView)
 	{
@@ -373,7 +373,7 @@ stock ShowPlayerDamages(damageid, playerid, adminView)
 				strcat(longstr, str); 
 			}
 			
-			ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, caption, longstr, "<<", ""); 
+			Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, caption, longstr, "<<", ""); 
 		}
 		case 1:
 		{
@@ -386,7 +386,7 @@ stock ShowPlayerDamages(damageid, playerid, adminView)
 				strcat(longstr, str); 
 			}
 			
-			ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, caption, longstr, "<<", ""); 
+			Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, caption, longstr, "<<", ""); 
 		}
 	}
 	return 1;

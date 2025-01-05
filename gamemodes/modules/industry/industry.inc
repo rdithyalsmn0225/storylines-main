@@ -210,7 +210,7 @@ stock ShowShipments(playerid)
 	if (!strlen(string)) {
 	    SendErrorMessage(playerid, "There is no shipments available.");
 	}
-	else ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, "Shipments:", string, "Close", "");
+	else Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, "Shipments:", string, "Close", "");
 	return 1;
 }
 
@@ -270,7 +270,7 @@ Dialog:DialogIndustry(playerid, response, listitem, inputtext[])
 			{
 				new str[256];
 				strcat(str, "Welcome to los santos economy!\n\nThe ship & warehouses is currently restocked product every 30 minute(s).\n\nYou can buy cargo products if stock is still available on the ship or warehouses.");
-				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Information:", str, "Confirm", "");
+				Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Information:", str, "Confirm", "");
 			}
 			case 1:
 			{

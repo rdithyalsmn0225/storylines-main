@@ -132,7 +132,7 @@ function:OnPlateSelect(playerid, listitem)
 	for(new i = 0; i < 5; i++) PlayerPlateSaver[playerid][i] = "";
 	format(PlayerInfo[playerid][E_CHARACTER_MDCPLAYER], 32, ""); 
 	
-	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Mobile Database Computer:", primary_str, "Close", "");
+	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Mobile Database Computer:", primary_str, "Close", "");
 	return 1;
 }
 

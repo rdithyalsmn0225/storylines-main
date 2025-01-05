@@ -12,7 +12,7 @@ CMD:factions(playerid, params[])
 		strcat(longstr, str);
 	}
 	
-	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Factions:", longstr, "Select", ""); 
+	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST, "Factions:", longstr, "Select", ""); 
 	return 1;
 }
 
@@ -229,13 +229,13 @@ CMD:factionon(playerid, params[])
 			{
 				format(lstr, sizeof(lstr), "%s(%d)\t%s\t%s", lstr, i, IsPlayerFactionRank(i), ReturnName(i, i));
 				format(lstr, sizeof(lstr), "%s\n", lstr);
-				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Faction Online:", lstr, "Close", "");
+				Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Faction Online:", lstr, "Close", "");
 			}	
 			else
 			{
 				format(lstr, sizeof(lstr), "%s(%d)\t%s\t%s", lstr, i, IsPlayerFactionRank(i), ReturnName(i, i));
 				format(lstr, sizeof(lstr), "%s\n", lstr);
-				ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, str, lstr, "Close", "");
+				Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, str, lstr, "Close", "");
 			}
 		}
 		
@@ -248,7 +248,7 @@ CMD:factionon(playerid, params[])
 	new lstr[256], str[256];
 	format(str, sizeof(str), "%s online:", ReturnFactionName(playerid));
 	format(lstr, sizeof(lstr), "There is no one online in this faction", lstr);
-	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, str, lstr, "Close", "");
+	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, str, lstr, "Close", "");
 	return 1;
 }
 

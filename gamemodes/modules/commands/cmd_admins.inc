@@ -1229,7 +1229,7 @@ CMD:itemlist(playerid, params[])
 			format(string, sizeof(string), "%s%s\n", string, g_aInventoryItems[i][E_INVENTORY_ITEM]);
 		}
 	}
-	return ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, "List of Items:", string, "Select", "Cancel");
+	return Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_LIST, "List of Items:", string, "Select", "Cancel");
 }
 
 CMD:gotoentrance(playerid, params[])

@@ -75,10 +75,11 @@ GPS_SetPlayerRaceCheckPoint(playerid, type, Float:x, Float:y, Float:z, Float:nex
 	return SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, 2.0);
 }
 
-GPS_DisablePlayerRaceCheckPoint(playerid)
+stock GPS_DisablePlayerRaceCheckPoint(playerid)
 {
 	PlayerCheckpoint[playerid] = GPS_NONE; 
-	return DisablePlayerRaceCheckpoint(playerid);
+	DisablePlayerRaceCheckpoint(playerid);
+	return 1; 
 }
 
 // CMD:

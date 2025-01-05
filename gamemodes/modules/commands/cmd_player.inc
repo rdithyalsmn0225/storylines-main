@@ -392,7 +392,7 @@ CMD:radiochannel(playerid, params[])
 	strcat(str, "#987\tLSC DISP\tLSSD Los Santos County Dispatch\n"); 
 	strcat(str, "#912\tL-TAC 1\tLSSD Law Enforcement Tactical Channel\n"); 
 	strcat(str, "#991\tDispatch\tLSFD Dispact\n"); 
-	ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Radio Channels:", str, "Select", "Cancel");
+	Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Radio Channels:", str, "Select", "Cancel");
 	return 1;
 }
 CMD:setchannel(playerid, params[])

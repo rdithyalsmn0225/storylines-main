@@ -160,10 +160,10 @@ stock ShowRelations(playerid)
 		{
 			strunpack(str, RelationsInfo[playerid][i][E_RELATIONS_BUSINESSNAME]);
 			format(string, sizeof(string), "%s%d\t%s\n", string, RelationsInfo[playerid][i][E_RELATIONS_POINTS], str);
-			return ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Relationships:", string, "OK", "Close");
+			return Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_TABLIST_HEADERS, "Relationships:", string, "OK", "Close");
 		}
 		else
-			return ShowPlayerDialog(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Relationships:", "You don't have any relationship with business.", "OK", "Close");
+			return Dialog_Show(playerid, DIALOG_DEFAULT, DIALOG_STYLE_MSGBOX, "Relationships:", "You don't have any relationship with business.", "OK", "Close");
 	}
 	return 1;
 }
