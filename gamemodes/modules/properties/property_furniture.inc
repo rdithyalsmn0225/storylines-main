@@ -267,13 +267,13 @@ Dialog:DialogFurniturePurchase(playerid, response, listitem, inputtext[])
 		{
 			if(!strcmp(g_aFurnitureArray[i][E_FURNITUREVAR_CATEGORY], g_aFurnitureCategories[listitem]))
 			{
-				format(string, sizeof(string), "%s%d\t~g~$%s~w~\n", string, g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], FormatMoney(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE]));
+				format(string, sizeof(string), "%s%d\t$%s\n", string, g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], FormatMoney(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE]));
 				SubFurnitureHolderArr[playerid][counter] = i;
 				counter++;
 			}
 		}
 
-		Dialog_Show(playerid, DialogFurnitureConfirm, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", string, "Select", "Back");
+		Dialog_Show(playerid, DialogFurnitureConfirm, DIALOG_STYLE_TABLIST, "Available Models:", string, "Select", "Back");
 	}
 	return 1;
 }

@@ -51,7 +51,7 @@ AFKCheck(playerid)
 	PlayerInfo[playerid][E_CHARACTER_AFKPOS][5] = cz;
 }
 
-CMD:afklist(playerid, params[])
+CMD:isafk(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_HIGH)
 	    return 0;

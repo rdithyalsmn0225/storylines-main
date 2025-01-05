@@ -880,9 +880,9 @@ Dialog:DialogMechMenu(playerid, response, listitem, inputtext[])
                         format(modname[count], 32, "%s", GetVehicleModName(m));
                         
                         if(count == 0)
-                            format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
+                            format(modlist, sizeof(modlist), "%s%d\t%s\t$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
                         else
-                            format(modlist, sizeof(modlist), "%s%d\t%s~g~$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
+                            format(modlist, sizeof(modlist), "%s%d\t%s\t$%s\n", modlist, m, modname[count], FormatMoney(floatround(GetVehicleComponentPrice(m) * 100, floatround_round)));
                         
                         SubVehicleComponentArr[playerid][count] = m; 
                         count++;
@@ -891,7 +891,7 @@ Dialog:DialogMechMenu(playerid, response, listitem, inputtext[])
 
                 if(count == 0) return SendErrorMessage(playerid, "This vehicle does not support any bodywork modifications.");
                 
-                Dialog_Show(playerid, DialogPaySpray, DIALOG_STYLE_PREVIEW_MODEL, "ModShop:", modlist, "Select", "Close");
+                Dialog_Show(playerid, DialogPaySpray, DIALOG_STYLE_TABLIST, "ModShop:", modlist, "Select", "Close");
             }
         }
     }

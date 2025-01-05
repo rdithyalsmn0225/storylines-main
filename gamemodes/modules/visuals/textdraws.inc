@@ -1,7 +1,6 @@
 //Textdraws
 new Text:Times;
 new PlayerText:servername[MAX_PLAYERS];
-new PlayerText:servername2[MAX_PLAYERS];
 new PlayerText:LoginScreen[4][MAX_PLAYERS];
 new PlayerText:HeaderTD[2][MAX_PLAYERS];
 new PlayerText:Street[2][MAX_PLAYERS];
@@ -21,8 +20,6 @@ new PlayerText:HE[2][MAX_PLAYERS];
 new PlayerBar:HEBAR[1][MAX_PLAYERS];
 new PlayerText:money[MAX_PLAYERS];
 new PlayerText:MoneyFormat[MAX_PLAYERS];
-
-new PlayerText:Fades[MAX_PLAYERS];
 
 new PlayerText:SelectFactionLocation[MAX_PLAYERS];
 new PlayerText:SelectFactionName[MAX_PLAYERS];
@@ -67,7 +64,7 @@ stock CreateTextdraws(playerid)
 	TextDrawSetSelectable(UpdateIn, 0);
 
 
-	servername[playerid] = CreatePlayerTextDraw(playerid, 584.000000, 416.000000, "~r~F~w~ear and ~b~R~w~espect");
+	servername[playerid] = CreatePlayerTextDraw(playerid, 584.000000, 416.000000, "~r~F~w~ear and ~b~R~w~espect~n~~b~S~w~tory and ~r~R~w~oleplay");
 	PlayerTextDrawFont(playerid, servername[playerid], 0);
 	PlayerTextDrawLetterSize(playerid, servername[playerid], 0.420832, 1.500000);
 	PlayerTextDrawTextSize(playerid, servername[playerid], 400.000000, 158.000000);
@@ -80,29 +77,6 @@ stock CreateTextdraws(playerid)
 	PlayerTextDrawUseBox(playerid, servername[playerid], 0);
 	PlayerTextDrawSetProportional(playerid, servername[playerid], 1);
 	PlayerTextDrawSetSelectable(playerid, servername[playerid], 0);
-
-	servername2[playerid] = CreatePlayerTextDraw(playerid, 584.000000, 432.000000, "~b~S~w~tory and ~r~R~w~oleplay");
-	PlayerTextDrawFont(playerid, servername2[playerid], 0);
-	PlayerTextDrawLetterSize(playerid, servername2[playerid], 0.420832, 1.500000);
-	PlayerTextDrawTextSize(playerid, servername2[playerid], 400.000000, 158.000000);
-	PlayerTextDrawSetOutline(playerid, servername2[playerid], 1);
-	PlayerTextDrawSetShadow(playerid, servername2[playerid], 0);
-	PlayerTextDrawAlignment(playerid, servername2[playerid], 2);
-	PlayerTextDrawColor(playerid, servername2[playerid], -1);
-	PlayerTextDrawBackgroundColor(playerid, servername2[playerid], 255);
-	PlayerTextDrawBoxColor(playerid, servername2[playerid], 50);
-	PlayerTextDrawUseBox(playerid, servername2[playerid], 0);
-	PlayerTextDrawSetProportional(playerid, servername2[playerid], 1);
-	PlayerTextDrawSetSelectable(playerid, servername2[playerid], 0);
-
-	Fades[playerid] = CreatePlayerTextDraw(playerid, -20.000000, 0.000000, "_");
-	PlayerTextDrawUseBox(playerid, Fades[playerid], 1);
-	PlayerTextDrawBoxColor(playerid, Fades[playerid], 0x000000FF);
-	PlayerTextDrawAlignment(playerid, Fades[playerid], 0);
-	PlayerTextDrawBackgroundColor(playerid, Fades[playerid], 0x000000FF);
-	PlayerTextDrawFont(playerid, Fades[playerid], 3);
-	PlayerTextDrawLetterSize(playerid, Fades[playerid], 1.000000, 52.200000);
-	PlayerTextDrawColor(playerid, Fades[playerid], 0x000000FF);
 
 	LoginScreen[0][playerid] = CreatePlayerTextDraw(playerid, 319.000000, 123.000000, "_");
 	PlayerTextDrawFont(playerid, LoginScreen[0][playerid], 1);

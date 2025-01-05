@@ -21,7 +21,6 @@
 #include <progress2>
 #include <timerfix>
 #include <easyDialog>
-#include <PreviewModelDialog2>
 #include <zcmd>
 #include <sscanf2>
 #include <physics>
@@ -3581,7 +3580,6 @@ public OnPlayerSpawn(playerid)
 	Streamer_SetVisibleItems(STREAMER_TYPE_OBJECT, 300);
 	Streamer_Update(playerid, STREAMER_TYPE_OBJECT);
 	PlayerTextDrawShow(playerid, servername[playerid]);
-	PlayerTextDrawShow(playerid, servername2[playerid]);
 	ShowMoneyFormat(playerid);
 	return 1;
 }

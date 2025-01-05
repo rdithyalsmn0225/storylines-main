@@ -110,7 +110,7 @@ stock ShowBusinessShop(playerid, businessid)
 		{
 			format(str5, sizeof(str5), "%s%d\n", str5, g_aHaircut[i]);
 		}
-		Dialog_Show(playerid, DialogBarberstore, DIALOG_STYLE_PREVIEW_MODEL, "Choose your skins:", str5, "Select", "Close");
+		Dialog_Show(playerid, DialogBarberstore, DIALOG_STYLE_TABLIST, "Choose your skins:", str5, "Select", "Close");
 		Relations_Add(playerid, BusinessInfo[IsPlayerInBusiness(playerid)][E_BUSINESS_NAME]);
 	}
 	else if(BusinessInfo[businessid][E_BUSINESS_TYPE] == BUSINESS_TYPE_BANK)

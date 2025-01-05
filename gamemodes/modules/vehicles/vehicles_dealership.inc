@@ -67,14 +67,14 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_BIKES == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t~g~$%s~w~\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
 			}
 		}
 				
-		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_TABLIST, "Available Models:", larstr, "Select", "Close"); 			
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 2132.0190,-1149.9902,24.2088))
 	{		
@@ -88,14 +88,14 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_TWODOOR == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t~g~$%s~w~\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
 			}
 		}
 				
-		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_TABLIST, "Available Models:", larstr, "Select", "Close"); 			
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 1629.6158,-1903.5123,13.5530))
 	{		
@@ -109,14 +109,14 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_FOURDOOR == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t~g~$%s~w~\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
 			}
 		}
 				
-		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_TABLIST, "Available Models:", larstr, "Select", "Close"); 			
 	}
     else if(IsPlayerInRangeOfPoint(playerid, 3.0, 2684.1277,-2515.6733,13.1552))
 	{		
@@ -130,14 +130,14 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_INDUSTRIAL == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t~g~$%s~w~\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
 			}
 		}
 				
-		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_TABLIST, "Available Models:", larstr, "Select", "Close"); 			
 	}
 	else if(IsPlayerInRangeOfPoint(playerid, 3.0, 666.1486,-1419.0734,14.0272))
 	{		
@@ -151,13 +151,13 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_TAXI == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t~g~$%s~w~\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
 			}
 		}		
-		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_TABLIST, "Available Models:", larstr, "Select", "Close"); 			
 	}
 	else if(IsPlayerInRangeOfPoint(playerid, 3.0, 666.1486,-1419.0734,14.0272))
 	{		
@@ -171,13 +171,13 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_BOAT == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t~g~$%s~w~\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
 			}
 		}
-		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_PREVIEW_MODEL, "Available Models:", larstr, "Select", "Close"); 			
+		Dialog_Show(playerid, DialogDealership, DIALOG_STYLE_TABLIST, "Available Models:", larstr, "Select", "Close"); 			
 	}
     return 1;
 }
