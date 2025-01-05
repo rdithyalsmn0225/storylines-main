@@ -1515,7 +1515,7 @@ Dialog:DialogHelp(playerid, response, listitem, inputtext[])
 			case 0:
 			{
 				SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ General Commands __________|");
-				SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /stats, /admins, /report, /o(oc), /pay, /isafk, /time, /delays, /levelup, /rcp, /inventory");
+				SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /stats, /admins, /report, /o(oc), /pay, /isafk, /time, /delays, /rcp, /inventory");
 				SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /enter, /exit, /setchannel, /setslot, /radio, /licenseexam, /unimpound");
 				SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /damages, /health, /acceptdeath, /helpup, /fixr, /respawnme, /setspawn, /settings");
 				SendClientMessage(playerid, COLOR_ORANGE, "General Commands: /approve, /deny, /tickets, /coin, /dice, /gascan, /listings, /pc, /spray, /getdrink");

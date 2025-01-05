@@ -19,7 +19,6 @@
 #include <a_mysql>
 #include <streamer>
 #include <progress2>
-#include <timerfix>
 #include <easyDialog>
 #include <zcmd>
 #include <sscanf2>

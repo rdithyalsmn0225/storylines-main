@@ -267,7 +267,7 @@ Dialog:DialogFurniturePurchase(playerid, response, listitem, inputtext[])
 		{
 			if(!strcmp(g_aFurnitureArray[i][E_FURNITUREVAR_CATEGORY], g_aFurnitureCategories[listitem]))
 			{
-				format(string, sizeof(string), "%s%d\t$%s\n", string, g_aFurnitureArray[i][E_FURNITUREVAR_MODEL], FormatMoney(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE]));
+				format(string, sizeof(string), "%s%s\t{52B788}$%s{ffffff}\n", string, g_aFurnitureArray[i][E_FURNITUREVAR_NAME], FormatMoney(g_aFurnitureArray[i][E_FURNITUREVAR_PRICE]));
 				SubFurnitureHolderArr[playerid][counter] = i;
 				counter++;
 			}

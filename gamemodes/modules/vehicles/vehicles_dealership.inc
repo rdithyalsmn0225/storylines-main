@@ -67,7 +67,7 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_BIKES == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%s\t{52B788}$%s{ffffff}\n", larstr, ReturnVehicleModelName(g_aDealershipData[i][E_DEALERSHIP_MODELID]), FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
@@ -88,7 +88,7 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_TWODOOR == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%s\t{52B788}$%s{ffffff}\n", larstr, ReturnVehicleModelName(g_aDealershipData[i][E_DEALERSHIP_MODELID]), FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
@@ -109,7 +109,7 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_FOURDOOR == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%s\t{52B788}$%s{ffffff}\n", larstr, ReturnVehicleModelName(g_aDealershipData[i][E_DEALERSHIP_MODELID]), FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
@@ -130,7 +130,7 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_INDUSTRIAL == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%s\t{52B788}$%s{ffffff}\n", larstr, ReturnVehicleModelName(g_aDealershipData[i][E_DEALERSHIP_MODELID]), FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
@@ -151,7 +151,7 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_TAXI == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%s\t{52B788}$%s{ffffff}\n", larstr, ReturnVehicleModelName(g_aDealershipData[i][E_DEALERSHIP_MODELID]), FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
@@ -171,7 +171,7 @@ CMD:dealership(playerid, params[])
 			new Cents = floatround(g_aDealershipData[i][E_DEALERSHIP_PRICE] * 100, floatround_round);
 			if(DEALERSHIP_CATEGORY_BOAT == g_aDealershipData[i][E_DEALERSHIP_CATEGORY])
 			{
-				format(larstr, sizeof(larstr), "%s%d\t$%s\n", larstr, g_aDealershipData[i][E_DEALERSHIP_MODELID], FormatMoney(Cents));
+				format(larstr, sizeof(larstr), "%s%s\t{52B788}$%s{ffffff}\n", larstr, ReturnVehicleModelName(g_aDealershipData[i][E_DEALERSHIP_MODELID]), FormatMoney(Cents));
 						
 				SubDealershipHolderArr[playerid][counter] = i; 
 				counter++; 
