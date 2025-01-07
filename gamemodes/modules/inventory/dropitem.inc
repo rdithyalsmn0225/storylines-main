@@ -173,7 +173,7 @@ DropItem(item[], player[], model, quantity, Float:x, Float:y, Float:z, Float:rx,
 			DroppedInfo[i][E_DROPPED_3DTEXT] = CreateDynamic3DTextLabel(str, COLOR_3DTEXT, x, y, z, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, world, interior);
 			BoomboxInfo[i][E_BOOMBOX_STATUS] = false;
 			format(BoomboxInfo[i][E_BOOMBOX_STATUS], 256, "");
-			BoomboxInfo[i][E_BOOMBOX_AREA] = CreateDynamicCircle(x, y, 20.0, world, interior);
+			BoomboxInfo[i][E_BOOMBOX_AREA] = CreateDynamicCircle(x, y, 30.0, world, interior);
 			DroppedInfo[i][E_DROPPED_OBJECT] = CreateDynamicObject(model, x, y, z, rx, ry, rz, world, interior);
 		}
 		else if(type == E_DROPPED_TYPE_DRUGS_PIZZA)

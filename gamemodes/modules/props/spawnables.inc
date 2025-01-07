@@ -41,8 +41,8 @@ Dialog:DialogBoomboxUrl(playerid, response, listitem, inputtext[])
 			Dialog_Show(playerid, DialogAddURL, DIALOG_STYLE_INPUT, "Radio Stations:", "Type a song or radio station URL.\nNote that year we roleplay in 1990.", "Input", "Close");
 		}
 
-        format(BoomboxInfo[id][E_BOOMBOX_STATUS], 256, inputtext);
-		PlayAudioStreamForPlayer(playerid, inputtext, DroppedInfo[id][E_DROPPED_POS][0], DroppedInfo[id][E_DROPPED_POS][1], DroppedInfo[id][E_DROPPED_POS][2], 20.0, true);
+        format(BoomboxInfo[id][E_BOOMBOX_URL], 256, inputtext);
+		PlayAudioStreamForPlayer(playerid, inputtext, DroppedInfo[id][E_DROPPED_POS][0], DroppedInfo[id][E_DROPPED_POS][1], DroppedInfo[id][E_DROPPED_POS][2], 30.0, true);
 		BoomboxInfo[id][E_BOOMBOX_STATUS] = true;
 	}
     return 1;

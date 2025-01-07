@@ -641,21 +641,14 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 		printf("Callback OnPlayerEnterDynamicArea called for player %s (ID: %i)", ReturnName(playerid), playerid); 
 	#endif
 	
-	if (!IsPlayerInAnyVehicle(playerid)) 
+	if (GetPlayerState(playerid) == PLAYER_STATE_ONFOOT) 
 	{
-		for (new i, j = MAX_DROPPED_ITEMS; i < j; i++) 
+		new i = Item_Nearest(playerid);
+		if (areaid == BoomboxInfo[i][E_BOOMBOX_AREA] && BoomboxInfo[i][E_BOOMBOX_STATUS] == true)
 		{
-			if(DroppedInfo[i][E_DROPPED_DBID] != -1 && BoomboxInfo[i][E_BOOMBOX_STATUS] == true) 
-			{
-				if (BoomboxInfo[i][E_BOOMBOX_AREA] == areaid) 
-				{
-					PlayAudioStreamForPlayer(playerid, BoomboxInfo[i][E_BOOMBOX_URL], 
-						DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], 
-						DroppedInfo[i][E_DROPPED_POS][2], 20.0, true); 
-				}
-				else continue;
-			}
-			else continue;
+			PlayAudioStreamForPlayer(playerid, BoomboxInfo[i][E_BOOMBOX_URL], 
+				DroppedInfo[i][E_DROPPED_POS][0], DroppedInfo[i][E_DROPPED_POS][1], 
+				DroppedInfo[i][E_DROPPED_POS][2], 30.0, true); 
 		}
 	}
 
