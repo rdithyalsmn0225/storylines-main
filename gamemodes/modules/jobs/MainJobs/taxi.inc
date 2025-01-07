@@ -67,6 +67,7 @@ function:OnPlayerTaxiUpdate()
             ShowBoxMessage(GetVehicleDriver(GetPlayerVehicleID(i)), str, 5);
 		}
     }
+	return 1;
 }
 
 CMD:setfare(playerid, params[])

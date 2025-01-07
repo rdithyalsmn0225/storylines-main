@@ -64,6 +64,7 @@ function:OnVehicleRental()
 			}
 		}
 	}
+	return 1;
 }
 
 stock TotalledCheck(vehicleid)

@@ -17,6 +17,7 @@ function:OnPlayerTipsUpdate ()
 			tips = 0;
 		}
 	}
+	return 1;
 }
 
 SendTipsMessage(color, const text[]) 

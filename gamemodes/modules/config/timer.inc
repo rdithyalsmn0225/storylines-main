@@ -22,6 +22,7 @@ function:WeatherRotator()
 {
 	new index = random(sizeof(g_aWeatherRotations));
 	SetWeather(g_aWeatherRotations[index]);
+	return 1;
 }
 
 function:OnPlayerUpdateEx()

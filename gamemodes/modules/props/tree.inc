@@ -129,6 +129,7 @@ function:OnTreeUpdate()
 			Tree_Refresh(i);
 		}
 	}
+	return 1;
 }
 
 CMD:createtree(playerid, params[])

@@ -42,6 +42,7 @@ function:OnPlayerPacketUpdate()
             SendClientMessage(p, COLOR_DARKGREEN, "[Word on the Streetz] Smuggler packet has been spawned '/findpacket' to track packet");
         }
     }
+    return 1;
 }
 
 CMD:findpacket(playerid, params[])

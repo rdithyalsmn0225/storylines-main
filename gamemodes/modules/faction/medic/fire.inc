@@ -66,6 +66,7 @@ function:RandomFire(check)
 	        gFires = index;
 	    }
 	}
+	return 1;
 }
 
 function:DestroyWater(objectid)

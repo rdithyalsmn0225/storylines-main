@@ -192,6 +192,7 @@ function:OnSprayTagsUpdate()
             Spraytags_Delete(i);
         }
     }
+    return 1;
 }
 
 Dialog:DialogSprayFont(playerid, response, listitem, inputtext[])
