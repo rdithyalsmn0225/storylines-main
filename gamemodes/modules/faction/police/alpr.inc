@@ -58,5 +58,5 @@ stock DetectVehicleInFront(playerid)
             HideHeaderMessage(playerid);
         }
     }
-    return 0;
+    return 1;
 }

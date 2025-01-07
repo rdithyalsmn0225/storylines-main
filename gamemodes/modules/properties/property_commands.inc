@@ -1,7 +1,7 @@
 CMD:createproperty(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new 
 		vartype, 
@@ -39,7 +39,7 @@ CMD:createproperty(playerid, params[])
 CMD:editproperty(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new id, indx[60], specifier[60];
 	
@@ -505,7 +505,7 @@ CMD:removefurniture(playerid, params[])
 	new id, str[512];
 
 	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
-	    return 0;
+	    return SendUnauthMessage(playerid);
 
 	if(sscanf(params, "i", id))
 	    return SendUsageMessage(playerid, "/removefurniture [propertyid]");

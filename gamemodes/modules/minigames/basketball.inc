@@ -298,7 +298,7 @@ CMD:resetcourt(playerid, params[])
 CMD:createcourt(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new idx, query[128]; 
 	new Float:pos[3];
@@ -324,7 +324,7 @@ CMD:createcourt(playerid, params[])
 CMD:editcourt(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new id, indx[128];
 	

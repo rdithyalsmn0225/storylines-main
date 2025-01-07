@@ -49,12 +49,13 @@ AFKCheck(playerid)
 	PlayerInfo[playerid][E_CHARACTER_AFKPOS][3] = cx;
 	PlayerInfo[playerid][E_CHARACTER_AFKPOS][4] = cy;
 	PlayerInfo[playerid][E_CHARACTER_AFKPOS][5] = cz;
+	return 1;
 }
 
 CMD:isafk(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_HIGH)
-	    return 0;
+	    return SendUnauthMessage(playerid);
 
 	SendClientMessage(playerid, COLOR_DARKGREEN, "|__________ AFK List __________|");
 

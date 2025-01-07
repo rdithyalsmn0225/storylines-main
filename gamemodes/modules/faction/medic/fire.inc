@@ -10,7 +10,7 @@ IsFireActive()
 		}
 	}
 
-	return 0;
+	return 1;
 }
 
 function:RandomFire(check)
@@ -78,7 +78,7 @@ function:DestroyWater(objectid)
 CMD:randomfire(playerid, params[])
 {
     if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
-	    return 0;
+	    return SendUnauthMessage(playerid);
 
 	if(IsFireActive())
 	    return SendErrorMessage(playerid, "There is a fire active already. /destroyfire to kill it!");
@@ -101,7 +101,7 @@ CMD:randomfire(playerid, params[])
 CMD:destroyfire(playerid, params[])
 {
     if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
-	    return 0;
+	    return SendUnauthMessage(playerid);
 
 	if(!IsFireActive())
 	    return SendErrorMessage(playerid, "There is currently no fire active.");

@@ -304,7 +304,7 @@ CMD:sellbusiness(playerid, params[])
 CMD:createbusiness(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;		
+		return SendUnauthMessage(playerid);		
 
 	new 
 		type_id,
@@ -344,7 +344,7 @@ CMD:createbusiness(playerid, params[])
 CMD:editbusiness(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
+		return SendUnauthMessage(playerid);
 
 	new 
 		id,

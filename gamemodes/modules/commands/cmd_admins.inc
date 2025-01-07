@@ -4,7 +4,7 @@
 CMD:ahelp(playerid, params[])
 {
 	if(!IsPlayerAdmins(playerid))
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	if(IsPlayerAdmins(playerid) >= 1)
 	{
@@ -41,7 +41,7 @@ CMD:ahelp(playerid, params[])
 CMD:aduty(playerid, params[])
 {
 	if(!IsPlayerAdmins(playerid))
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new str[128];
 		
@@ -66,7 +66,7 @@ CMD:aduty(playerid, params[])
 CMD:a(playerid, params[])
 {
 	if(!IsPlayerAdmins(playerid))
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	if(isnull(params)) return SendUsageMessage(playerid, "/a (admin chat) [text]"); 
 	
@@ -626,7 +626,7 @@ CMD:sethp(playerid, params[])
 CMD:reports(playerid, params[])
 {
 	if(!IsPlayerAdmins(playerid))
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	SendClientMessage(playerid, COLOR_DARKGREEN, "|____________________ Reports ____________________|");
 		
@@ -648,7 +648,7 @@ CMD:reports(playerid, params[])
 CMD:ar(playerid, params[])
 {
 	if(!IsPlayerAdmins(playerid))
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new reportid;
 	
@@ -669,7 +669,7 @@ CMD:ar(playerid, params[])
 CMD:dr(playerid, params[])
 {
 	if(!IsPlayerAdmins(playerid))
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new reportid;
 	
@@ -1144,7 +1144,7 @@ CMD:setar(playerid, params[])
 CMD:clearreports(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_HIGH)
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new reportCount = 0;
 	
@@ -1439,7 +1439,7 @@ CMD:repair(playerid, params[])
 CMD:spawncar(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new modelid, color1, color2, siren, str[128], vehicleid = GetPlayerVehicleID(playerid); 
 	
@@ -1484,7 +1484,7 @@ CMD:spawncar(playerid, params[])
 CMD:despawncars(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
-		return 0;
+		return SendUnauthMessage(playerid);
 
 	new vehicleCount, str[128];
 
@@ -1508,7 +1508,7 @@ CMD:despawncars(playerid, params[])
 CMD:despawncar(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new vehicleid, str[128];
 	
@@ -1973,7 +1973,7 @@ CMD:gotoint(playerid, params[]) return cmd_gotomark(playerid, params);
 CMD:gotomark(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;		
+		return SendUnauthMessage(playerid);		
     new
         str[2024];
 

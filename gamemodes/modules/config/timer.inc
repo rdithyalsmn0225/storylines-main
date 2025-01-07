@@ -462,7 +462,7 @@ function:FunctionPaychecks()
 			if(PlayerInfo[i][E_CHARACTER_AFK] && PlayerInfo[i][E_CHARACTER_AFKTIME] > 900)
 			{
 				PlayerInfo[i][E_CHARACTER_PAYCHECKTIMER] = 0;
-				return SendInfoMessage(i, "[Paycheck] You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
+				SendInfoMessage(i, "[Paycheck] You didn't receive a paycheck this hour as you were AFK for more than 15 minutes.");
 			}
 			else
 			{

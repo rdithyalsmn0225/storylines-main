@@ -1,7 +1,7 @@
 CMD:createfaction(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new varAbbrev[32], varName[128]; 
 	
@@ -44,7 +44,7 @@ CMD:createfaction(playerid, params[])
 CMD:editfaction(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new factionid, oneString[60], secString[90]; 
 		

@@ -18,7 +18,7 @@ function:OnPlayerVIPUpdate()
 CMD:setvip(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
-		return 0;
+		return SendUnauthMessage(playerid);
 	
 	new alevel, dayz, otherid, str[128];
 	if(sscanf(params, "udd", otherid, alevel, dayz))

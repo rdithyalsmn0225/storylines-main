@@ -135,7 +135,7 @@ function:OnTreeUpdate()
 CMD:createtree(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < 4)
-		return 0;
+		return SendUnauthMessage(playerid);
 
 	new id;
 

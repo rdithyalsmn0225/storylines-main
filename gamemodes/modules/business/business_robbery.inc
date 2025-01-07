@@ -30,8 +30,8 @@ function:OnPlayerFinishRobbery(playerid, actorid, type)
 
 		if(type == TYPE_FAILED)
 		{
-			SendErrorMessage(playerid, "You have failed to rob the business.");
-			return 0;
+			
+			return SendErrorMessage(playerid, "You have failed to rob the business.");
 		}
 		else
 		{

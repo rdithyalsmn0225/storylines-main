@@ -97,4 +97,5 @@ function:UpdateNameTagsTicks(playerid)
         }
         UpdateDynamic3DTextLabelText(PlayerNameTags[i], 0xFFFFFFFF, nametag);
     }
+    return 1;
 }

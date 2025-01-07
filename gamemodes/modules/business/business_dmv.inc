@@ -36,7 +36,6 @@ stock IsPlayerInDMVVehicle(playerid)
 		if(vehicleid == DMV_Vehicles[i])
 			return 1;
 	}
-		
 	return 0;
 }
 

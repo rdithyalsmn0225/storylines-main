@@ -31,7 +31,7 @@ function:Query_LoadCompensation()
 CMD:createcode(playerid, params[])
 {
     if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-        return 0;
+        return SendUnauthMessage(playerid);
 
     new code[32], players, days, moneyc, streetcredits;
     if (sscanf(params, "s[32]iiii", code, players, days, moneyc, streetcredits))
@@ -76,7 +76,7 @@ CMD:createcode(playerid, params[])
 CMD:clearcode(playerid, params[])
 {
     if (IsPlayerAdmins(playerid) < ADMINS_OWNER)
-        return 0;
+        return SendUnauthMessage(playerid);
 
     new query[256];
     

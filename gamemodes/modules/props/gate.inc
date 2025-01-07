@@ -213,8 +213,8 @@ CMD:creategate(playerid, params[])
 	static
 	    id = -1;
 
-    if(IsPlayerAdmins(playerid) < 4)
-		return 0;
+    if(IsPlayerAdmins(playerid) < ADMINS_OPERATOR)
+		return SendUnauthMessage(playerid);
 
 	id = Gates_Create(playerid);
 
@@ -231,7 +231,7 @@ CMD:destroygate(playerid, params[])
 	    id = 0;
 
     if(IsPlayerAdmins(playerid) < 4)
-		return 0;
+		return SendUnauthMessage(playerid);
 
 	if (sscanf(params, "d", id))
 	    return SendUsageMessage(playerid, "/destroygate [gate id]");
@@ -252,7 +252,7 @@ CMD:editgate(playerid, params[])
 	    string[128];
 
 	if(IsPlayerAdmins(playerid) < 4)
-		return 0;
+		return SendUnauthMessage(playerid);
 
 	if (sscanf(params, "ds[24]S()[128]", id, type, string))
  	{

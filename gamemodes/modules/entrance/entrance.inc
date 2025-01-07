@@ -114,7 +114,7 @@ function:OnPlayerEnterEntrance(playerid, id)
 CMD:createentrance(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new 
 		icon, 
@@ -148,7 +148,7 @@ CMD:createentrance(playerid, params[])
 CMD:editentrance(playerid, params[])
 {
 	if(IsPlayerAdmins(playerid) < ADMINS_OWNER)
-		return 0;
+		return SendUnauthMessage(playerid);
 		
 	new id, indx[60], specifier[60];
 	
