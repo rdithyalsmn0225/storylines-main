@@ -14,11 +14,6 @@
 	#define SQL_PASSWORD ""
 #endif
 
-#if defined MAX_PLAYERS
-	#undef MAX_PLAYERS
-	#define MAX_PLAYERS 100
-#endif
-
 #define SERVER_NAME "Storylines Roleplay | Fear N Respect"
 #define SCRIPT_REV "Fear N Respect v1.0.3 Revision"
 #define PLAYER_MOTD "Please read the rules first!"

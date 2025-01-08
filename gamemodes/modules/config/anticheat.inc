@@ -269,7 +269,7 @@ stock VehicleOnAntiCheatUpdate(vehicleid)
 
 	if(cch > csh) return false;
 	VehicleInfo[vehicleid][E_VEHICLE_HEALTH] = currenthp;
-	return true;
+	return 1;
 }
 
 // ARMOUR CHECK:
@@ -279,7 +279,7 @@ stock ArmourOnAntiCheatUpdate(playerid)
 	new cav = floatround(CurrentArmourVar[playerid]), av = floatround(PlayerInfo[playerid][E_CHARACTER_ARMOUR]);
 	if(cav > av) return false;
 	PlayerInfo[playerid][E_CHARACTER_ARMOUR] = CurrentArmourVar[playerid];
-	return true;
+	return 1;
 }
 
 // HEALTH CHECK:
@@ -289,14 +289,14 @@ stock HealthOnAntiCheatUpdate(playerid)
 	new chv = floatround(CurrentHealthVar[playerid]), hv = floatround(PlayerInfo[playerid][E_CHARACTER_HEALTH]);
 	if(chv > hv) return false;
 	PlayerInfo[playerid][E_CHARACTER_HEALTH] = CurrentHealthVar[playerid];
-	return true;
+	return 1;
 }
 
 // PAUSED CHECK:
 stock PauseVehicleAC(vehicleid)
 {
 	VehicleInfo[vehicleid][E_VEHICLE_VCTIMER] = 5 * 4;
-	return true;
+	return 1;
 }
 
 // WEAPONS CHECK:
@@ -390,7 +390,6 @@ function:OnAntiCheatUpdate()
 		            SendAdminMessage(1, str1);
                 }
             }
- 
         }
 
         if(GetPlayerMoney(playerid) > PlayerInfo[playerid][E_CHARACTER_MONEY] && ACPauseTimer[playerid] == 0 && PlayerInfo[playerid][E_CHARACTER_SPAWNED] == true)
@@ -406,11 +405,9 @@ function:OnAntiCheatUpdate()
                     KickEx(playerid);
                     new str1[128];
                     format(str1, sizeof(str1), "%s has been detected for using program hack [Money Hack]", ReturnMixedName(playerid)); 
-		            SendAdminMessage(1, str1);
-                    
+		            SendAdminMessage(1, str1); 
 				}
 			}
- 
 		}
 
         if(ACPauseTimer[playerid] == 0 && !Inventory_Count(playerid, "Colt 45") || !Inventory_Count(playerid, "Silenced Colt") || !Inventory_Count(playerid, "Uzi") || !Inventory_Count(playerid, "Shotgun") || !Inventory_Count(playerid, "Desert Eagle") 
@@ -751,7 +748,7 @@ IPacket:PLAYER_SYNC(playerid, BitStream:bs) {
         }
     }
 
-    return true;
+    return 1;
 }
 
 const VEHICLE_SYNC = 200;
@@ -797,5 +794,5 @@ IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
         }
     }
 
-    return true;
+    return 1;
 }

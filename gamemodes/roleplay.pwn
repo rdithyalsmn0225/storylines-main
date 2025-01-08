@@ -19,13 +19,13 @@
 #include <a_mysql>
 #include <streamer>
 #include <progress2>
-#include <easyDialog>
-#include <zcmd>
+#include <izcmd>
 #include <sscanf2>
 #include <physics>
 #include <PawnPlus>
-#include <eSelection>
 #include <Pawn.RakNet>
+#include <easyDialog>
+#include <eSelection>
 #include <garageblock>
 #include <compat>
 
@@ -4949,7 +4949,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		{
 			SetPlayerNeeds(playerid, 4.5);
 		}
-		if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DRINK_BEER)
+		else if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_DRINK_BEER)
 		{
 			SetPlayerNeeds(playerid, 5.5);
 		}

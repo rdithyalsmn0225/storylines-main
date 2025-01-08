@@ -453,7 +453,8 @@ stock IsValidRoleplayName(const name[]) {
 
 stock KickEx(playerid)
 {
-	return SetTimerEx("KickTimer", 100, false, "i", playerid);
+	SetTimerEx("KickTimer", 100, false, "i", playerid);
+	return 1;
 }
 
 stock ClearLines(playerid, lines)
