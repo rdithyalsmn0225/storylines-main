@@ -23,6 +23,7 @@ SetClock(hour, minute, second)
     }
 
     switch (date[1]) {
+        case 0: month = "Unknown";
         case 1: month = "January";
         case 2: month = "February";
         case 3: month = "March";
@@ -50,6 +51,7 @@ SetClock(hour, minute, second)
 
     format(timestr, sizeof(timestr), "%02d:%02d:%02d, %s~n~%d%s of %s %02d", hour, minute, second, weekday_str, date[0], suffix, month, date[2]);
     TextDrawSetString(Times, timestr);
+    return 1;
 }
 
 
