@@ -688,7 +688,7 @@ stock TeleportACSpawn(playerid) {
     return 1;
 }
 
-
+/*
 const PLAYER_SYNC = 207;
 
 IPacket:PLAYER_SYNC(playerid, BitStream:bs) {
@@ -796,3 +796,4 @@ IPacket:VEHICLE_SYNC(playerid, BitStream:bs)
 
     return 1;
 }
+*/
